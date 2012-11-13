@@ -1,0 +1,46 @@
+Vaadin Charts ${project.version}
+===========================
+
+This is a preliminary build of Vaadin Charts add-on. Vaadin Charts 
+is based on Highcharts library. Highcharts license is included
+in CVAL license of the product. Vaadin Charts also includes 
+previously separate Vaadin Timeline add-on, that is built with 
+custom html5 canvas implementation.
+
+Installation
+============
+Vaadin Charts is a standard Vaadin Add-on package. At its 
+current develop status it is offered only with CVAL license 
+for Vaadin Pro Account customers. To use it drag jar file in 
+this package to you project or use following maven module:
+
+<dependency>
+	<groupId>com.vaadin.addon</groupId>
+	<artifactId>vaadin-charts</artifactId>
+	<version>${project.version}</version>
+</dependency>
+
+Note, that package has also client side extensions, so make sure
+you compile your widgetset after installation!
+
+Links
+=====
+
+Homepage:
+https://vaadin.com/add-ons/charts
+
+Homepage (Timeline):
+https://vaadin.com/add-ons/timeline
+
+Code and usage examples:
+http://demo.vaadin.com/charts-demo/
+
+Issue tracker:
+http://dev.vaadin.com/
+
+Documentation (work in progress, not necessary up to date with add-on yet):
+http://vaadin.com/download/book-of-vaadin/vaadin-charts/pdf/book-of-vaadin.pdf
+
+SCM (SVN):
+http://dev.vaadin.com/svn/addons/vaadin-charts
+

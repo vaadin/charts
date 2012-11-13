@@ -1,0 +1,5 @@
+<module>
+	<inherits name="com.vaadin.terminal.gwt.DefaultWidgetSet" /> 	    
+	<stylesheet src="com_vaadin_addon_timeline/styles.css"/>
+    <inherits name="com.vaadin.addon.timeline.gwt.canvas.gwt-canvas" />
+</module>

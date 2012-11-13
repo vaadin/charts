@@ -1,0 +1,57 @@
+<!--
+ Copyright 2008-2009 Oliver Zoran
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<module>
+
+	<inherits name='com.google.gwt.core.Core'/>
+	<inherits name='com.google.gwt.user.UserAgent'/>
+
+	<replace-with class='com.vaadin.addon.timeline.gwt.canvas.client.impl.ie.CanvasImplIE'>
+		<when-type-is class='com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl'/>
+		<when-property-is name='user.agent' value='ie6'/>
+	</replace-with>
+	
+	<replace-with class='com.vaadin.addon.timeline.gwt.canvas.client.impl.ie.CanvasImplIE8'>
+		<when-type-is class='com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl'/>
+		<when-property-is name='user.agent' value='ie8'/>
+	</replace-with>
+	
+	<replace-with class='com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl'>
+		<when-type-is class='com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl'/>
+		<when-property-is name='user.agent' value='ie9'/>
+	</replace-with>
+	
+	<replace-with class='com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImplSafari'>
+		<when-type-is class='com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl'/>
+		<when-property-is name='user.agent' value='safari'/>
+	</replace-with>
+
+	<replace-with class='com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImplOpera'>
+		<when-type-is class='com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl'/>
+		<when-property-is name='user.agent' value='opera'/>
+	</replace-with>
+
+	<replace-with class='com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImplMozilla'>
+		<when-type-is class='com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl'/>
+		<any>
+			<when-property-is name='user.agent' value='gecko'/>
+			<when-property-is name='user.agent' value='gecko1_8'/>			
+		</any>
+	</replace-with>
+
+	<source path='client'/>
+
+</module>
