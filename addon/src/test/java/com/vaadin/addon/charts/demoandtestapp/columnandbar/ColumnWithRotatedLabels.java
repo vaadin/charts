@@ -26,8 +26,6 @@ public class ColumnWithRotatedLabels extends AbstractVaadinChartExample {
     @Override
     protected Component getChart() {
         Chart chart = new Chart(ChartType.COLUMN);
-        chart.setWidth("100%");
-        chart.setHeight("450px");
 
         Configuration conf = chart.getConfiguration();
         conf.getChart().setMargin(50, 50, 100, 80);

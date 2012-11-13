@@ -26,8 +26,6 @@ public class Spiderweb extends AbstractVaadinChartExample {
     @Override
     protected Component getChart() {
         Chart chart = new Chart(ChartType.LINE);
-        chart.setWidth("100%");
-        chart.setHeight("450px");
 
         Configuration conf = chart.getConfiguration();
         conf.getChart().setPolar(true);

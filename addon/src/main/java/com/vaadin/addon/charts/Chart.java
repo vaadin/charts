@@ -24,6 +24,8 @@ public class Chart extends AbstractComponent {
     private boolean stateDirty = false;
 
     public Chart() {
+        setWidth(100, Unit.PERCENTAGE);
+        setHeight(400, Unit.PIXELS);
         configuration = new Configuration();
 
         registerRpc(new HighchartRpc() {

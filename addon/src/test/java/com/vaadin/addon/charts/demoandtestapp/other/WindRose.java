@@ -29,8 +29,6 @@ public class WindRose extends AbstractVaadinChartExample {
     @Override
     protected Component getChart() {
         Chart chart = new Chart(ChartType.COLUMN);
-        chart.setWidth("100%");
-        chart.setHeight("450px");
 
         Configuration conf = chart.getConfiguration();
         conf.getChart().setPolar(true);

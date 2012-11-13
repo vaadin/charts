@@ -36,8 +36,6 @@ public class StackedArea extends AbstractVaadinChartExample {
     protected Component getChart() {
 
         Chart chart = new Chart(ChartType.AREA);
-        chart.setWidth("100%");
-        chart.setHeight("450px");
 
         Configuration conf = chart.getConfiguration();
 

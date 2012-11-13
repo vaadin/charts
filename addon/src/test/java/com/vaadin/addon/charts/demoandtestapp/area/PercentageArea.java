@@ -29,8 +29,6 @@ public class PercentageArea extends AbstractVaadinChartExample {
     @Override
     protected Component getChart() {
         Component chart = createNewChart();
-        chart.setWidth("100%");
-        chart.setHeight("450px");
         return chart;
     }
 

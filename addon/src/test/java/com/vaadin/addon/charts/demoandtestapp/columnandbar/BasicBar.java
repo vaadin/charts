@@ -32,8 +32,6 @@ public class BasicBar extends AbstractVaadinChartExample {
     @Override
     protected Component getChart() {
         Chart chart = new Chart(ChartType.BAR);
-        chart.setWidth("100%");
-        chart.setHeight("450px");
 
         Configuration conf = chart.getConfiguration();
 

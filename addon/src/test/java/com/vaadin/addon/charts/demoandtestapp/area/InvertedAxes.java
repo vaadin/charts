@@ -26,8 +26,6 @@ public class InvertedAxes extends AbstractVaadinChartExample {
     @Override
     protected Component getChart() {
         Chart chart = new Chart(ChartType.AREA);
-        chart.setWidth("100%");
-        chart.setHeight("450px");
 
         Configuration conf = chart.getConfiguration();
 

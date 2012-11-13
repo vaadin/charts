@@ -32,7 +32,6 @@ public class AreaSpline extends AbstractVaadinChartExample {
     @Override
     protected Component getChart() {
         Chart chart = new Chart(ChartType.AREASPLINE);
-        chart.setWidth("100%");
         chart.setHeight("450px");
 
         Configuration conf = chart.getConfiguration();

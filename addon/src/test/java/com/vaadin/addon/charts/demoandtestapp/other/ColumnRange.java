@@ -23,8 +23,6 @@ public class ColumnRange extends AbstractVaadinChartExample {
     @Override
     protected Component getChart() {
         Chart chart = new Chart(ChartType.COLUMNRANGE);
-        chart.setWidth("100%");
-        chart.setHeight("450px");
 
         Configuration conf = chart.getConfiguration();
         conf.getChart().setInverted(true);

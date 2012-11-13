@@ -29,8 +29,6 @@ public class ColumnWithDrilldown extends AbstractVaadinChartExample {
     @Override
     protected Component getChart() {
         Chart chart = new Chart(ChartType.COLUMN);
-        chart.setWidth("100%");
-        chart.setHeight("450px");
 
         Color[] colors = new VaadinTheme().getColors();
         Configuration conf = chart.getConfiguration();

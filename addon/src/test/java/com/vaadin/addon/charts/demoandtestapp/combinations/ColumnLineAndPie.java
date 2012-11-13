@@ -30,8 +30,6 @@ public class ColumnLineAndPie extends AbstractVaadinChartExample {
     @Override
     protected Component getChart() {
         Chart chart = new Chart();
-        chart.setWidth("100%");
-        chart.setHeight("450px");
         Configuration conf = chart.getConfiguration();
 
         conf.setTitle("Combination chart");
