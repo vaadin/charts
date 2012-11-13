@@ -6,7 +6,7 @@ import com.vaadin.addon.charts.model.style.Style;
 /**
  * Chart model class
  */
-public class Chart extends AbstractConfigurationObject {
+public class ChartModel extends AbstractConfigurationObject {
     private ChartType type;
     private Number spacingTop;
     private Number spacingLeft;
@@ -35,7 +35,7 @@ public class Chart extends AbstractConfigurationObject {
     /**
      * Default constructor
      */
-    public Chart() {
+    public ChartModel() {
     }
 
     /**
@@ -44,7 +44,7 @@ public class Chart extends AbstractConfigurationObject {
      * @param type
      *            Type of chart
      */
-    public Chart(ChartType type) {
+    public ChartModel(ChartType type) {
         this.type = type;
     }
 

@@ -6,6 +6,7 @@ import com.vaadin.addon.charts.client.ui.HighchartClientRpc;
 import com.vaadin.addon.charts.client.ui.HighchartComponentState;
 import com.vaadin.addon.charts.client.ui.HighchartRpc;
 import com.vaadin.addon.charts.client.ui.VHighchart;
+import com.vaadin.addon.charts.model.ChartModel;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeriesEventListener;
@@ -56,7 +57,7 @@ public class Chart extends AbstractComponent {
 
     public Chart(ChartType type) {
         this();
-        configuration.setChart(new com.vaadin.addon.charts.model.Chart(type));
+        configuration.setChart(new ChartModel(type));
     }
 
     @Override

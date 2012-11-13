@@ -16,7 +16,7 @@ import com.vaadin.addon.charts.model.DataSeriesEventListener.DataUpdatedEvent;
 public class Configuration extends AbstractConfigurationObject {
 
     private Lang lang;
-    private Chart chart;
+    private ChartModel chart;
     private Title title;
     private SubTitle subtitle;
     private AxisList xAxis;
@@ -40,9 +40,9 @@ public class Configuration extends AbstractConfigurationObject {
      * 
      * @return
      */
-    public Chart getChart() {
+    public ChartModel getChart() {
         if (chart == null) {
-            chart = new Chart();
+            chart = new ChartModel();
         }
         return chart;
     }
@@ -51,7 +51,7 @@ public class Configuration extends AbstractConfigurationObject {
      * @see #getChart()
      * @param chart
      */
-    public void setChart(Chart chart) {
+    public void setChart(ChartModel chart) {
         this.chart = chart;
     }
 
