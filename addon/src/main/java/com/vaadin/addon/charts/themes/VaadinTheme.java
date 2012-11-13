@@ -12,10 +12,6 @@ import com.vaadin.addon.charts.model.style.Theme;
  */
 public class VaadinTheme extends Theme {
 
-    public static void main(String[] args) {
-        VaadinTheme vaadinTheme = new VaadinTheme();
-    }
-
     protected static final int BORDER_RADIUS = 2;
     protected final static SolidColor COLOR1 = new SolidColor(74, 112, 147);
     protected final static SolidColor COLOR2 = new SolidColor(73, 207, 229);
