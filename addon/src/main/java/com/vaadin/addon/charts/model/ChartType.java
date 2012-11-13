@@ -5,7 +5,7 @@ package com.vaadin.addon.charts.model;
  * AREASPLINE, COLUMN, BAR, PIE, SCATTER, AREARANGE, AREASPLINERANGE, and
  * COLUMNRANGE. Defaults to LINE.
  * <p>
- * Own custom extensions can be made by extendin this class.
+ * Own custom extensions can be made by extending this class.
  */
 public class ChartType implements ChartEnum {
     
