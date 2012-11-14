@@ -2,6 +2,7 @@ package com.vaadin.addon.charts;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -18,6 +19,8 @@ import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.data.util.HierarchicalContainer;
 import com.vaadin.server.Page;
+import com.vaadin.server.Page.UriFragmentChangedEvent;
+import com.vaadin.server.Page.UriFragmentChangedListener;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.HorizontalSplitPanel;
@@ -65,7 +68,7 @@ public class ChartsDemoUI extends UI {
         tests = grouped;
     }
 
-    private Class<? extends AbstractVaadinChartExample> selected;
+    private Tree tree;
 
     @Override
     protected void init(VaadinRequest request) {
@@ -85,11 +88,11 @@ public class ChartsDemoUI extends UI {
         horizontalSplitPanel.setSplitPosition(20);
         setContent(horizontalSplitPanel);
 
-        final Tree tree = new Tree();
+        tree = new Tree();
         tree.setImmediate(true);
         tree.setContainerDataSource(getContainer());
         tree.setItemCaptionPropertyId("displayName");
-        Panel panel = new Panel("Vaadin Charts - Test explorer");
+        Panel panel = new Panel("Vaadin Charts - Test Explorer");
         panel.addComponent(tree);
         panel.setSizeFull();
         horizontalSplitPanel.setFirstComponent(panel);
@@ -115,7 +118,7 @@ public class ChartsDemoUI extends UI {
                         c.setContentMode(ContentMode.HTML);
                         tabSheet.addTab(c, "Source");
                         
-                        Page.getCurrent().setFragment(value.getSimpleName());
+                        Page.getCurrent().setUriFragment(value.getSimpleName(), false);
 
                     } catch (Exception e) {
                         // TODO Auto-generated catch block
@@ -127,18 +130,40 @@ public class ChartsDemoUI extends UI {
             }
         });
         
+        selectItem();
+        
+        Page.getCurrent().addUriFragmentChangedListener(new UriFragmentChangedListener() {
+            @Override
+            public void uriFragmentChanged(UriFragmentChangedEvent event) {
+                selectItem();
+            }
+        });
+        
+    }
 
-        if(selected != null) {
-            Object parent2 = tree.getParent(selected);
-            tree.expandItem(parent2);
-            tree.setValue(selected);
+    private void selectItem() {
+        String uriFragment = Page.getCurrent().getUriFragment();
+        if(uriFragment != null) {
+            Collection<?> itemIds = tree.getItemIds();
+            for (Object object : itemIds) {
+                if (object instanceof Class) {
+                    @SuppressWarnings("unchecked")
+                    Class<? extends AbstractVaadinChartExample> t = (Class<? extends AbstractVaadinChartExample>) object;
+                    if(t.getSimpleName().equals(uriFragment)) {
+                        Object parent2 = tree.getParent(t);
+                        tree.expandItem(parent2);
+                        tree.setValue(t);
+                        return;
+                    }
+                }
+            }
         } else {
             Iterator<?> iterator = tree.getItemIds().iterator();
             tree.expandItem(iterator.next());
             tree.select(iterator.next());
         }
         tree.focus();
-
+        
     }
 
     private HierarchicalContainer getContainer() {
@@ -160,9 +185,6 @@ public class ChartsDemoUI extends UI {
                         class1.getSimpleName());
                 hierarchicalContainer.setParent(class1, group);
                 hierarchicalContainer.setChildrenAllowed(class1, false);
-                if(class1.getSimpleName().equals(Page.getCurrent().getFragment())) {
-                    selected = class1;
-                }
             }
             
         }

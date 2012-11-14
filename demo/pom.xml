@@ -73,8 +73,8 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.4</version>
 		</dependency>
-		
-        <dependency>
+
+		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-webapp</artifactId>
 			<version>7.2.2.v20101205</version>
@@ -93,7 +93,7 @@
 			<version>4.10</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 	</dependencies>
 
 	<build>
@@ -107,6 +107,13 @@
 			</resource>
 		</resources>
 		<plugins>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<packagingExcludes>**/gwt-unitCache/*,**/widgetsets/WEB-INF/**/*</packagingExcludes>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
@@ -159,13 +166,13 @@
 						way compatible with Vaadin eclipse plugin. -->
 					<webappDirectory>${basedir}/src/main/webapp/VAADIN/widgetsets
 					</webappDirectory>
-					<hostedWebapp>${basedir}/src/main/webapp/VAADIN/widgetsets
+					<hostedWebapp>${basedir}/target/diipadaipa/VAADIN/widgetsets
 					</hostedWebapp>
 					<noServer>true</noServer>
 					<!-- Remove draftCompile when project is ready -->
 					<draftCompile>false</draftCompile>
 					<compileReport>true</compileReport>
-					<style>PRETTY</style>
+					<!-- <style>PRETTY</style> -->
 					<strict>true</strict>
 					<runTarget>http://localhost:8080/</runTarget>
 				</configuration>
