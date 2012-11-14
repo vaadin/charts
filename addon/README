@@ -1,18 +1,31 @@
 Vaadin Charts ${project.version}
 ===========================
 
-This is a preliminary build of Vaadin Charts add-on. Vaadin Charts 
-is based on Highcharts library. Highcharts license is included
-in CVAL license of the product. Vaadin Charts also includes 
-previously separate Vaadin Timeline add-on, that is built with 
-custom html5 canvas implementation.
+This is a preliminary build of Vaadin Charts add-on. Vaadin Charts is based on
+Highcharts ${highcharts.version} library. Highcharts license is included in CVAL license of the
+product. Vaadin Charts also includes previously separate Vaadin Timeline
+add-on, that is built with custom html5 canvas implementation.
+
+THIRD PARTY LICENSING
+=====================
+
+This Add-on component is a derivate works of Highcharts JS product ("Highchart
+JS").
+
+Highsoft Solutions AS retains all rights, title and interest in and to the
+Highchart JS (resource files: highcharts.js, highcharts-more.js and
+highcharts.src.js)
+
+Using this Add-on component does not require a separate Highcharts JS license
+purchase. Existing Highcharts JS license does not entitle to use this Add-on
+component under the terms of CVALv2.
 
 Installation
 ============
-Vaadin Charts is a standard Vaadin Add-on package. At its 
-current develop status it is offered only with CVAL license 
-for Vaadin Pro Account customers. To use it drag jar file in 
-this package to you project or use following maven module:
+Vaadin Charts is a standard Vaadin Add-on package. At its current develop
+status it is offered only with CVAL license for Vaadin Pro Account customers.
+To use it drag jar file in this package to you project or use following maven
+module:
 
 <dependency>
 	<groupId>com.vaadin.addon</groupId>
@@ -20,8 +33,8 @@ this package to you project or use following maven module:
 	<version>${project.version}</version>
 </dependency>
 
-Note, that package has also client side extensions, so make sure
-you compile your widgetset after installation!
+Note, that package has also client side extensions, so make sure you compile
+your widgetset after installation!
 
 Links
 =====
@@ -29,7 +42,7 @@ Links
 Homepage:
 https://vaadin.com/add-ons/charts
 
-Homepage (Timeline):
+Timeline Homepage:
 https://vaadin.com/add-ons/timeline
 
 Code and usage examples:
