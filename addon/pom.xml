@@ -27,7 +27,6 @@
 		<developerConnection>scm:svn:http://dev.vaadin.com/svn/incubator/highchartsthingclient</developerConnection>
 	</scm>
 
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.organization>Vaadin Ltd</project.organization>
@@ -64,7 +63,7 @@
 		</resources>
 
 		<plugins>
-		
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
@@ -129,8 +128,18 @@
 					</execution>
 				</executions>
 			</plugin>
-
-
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
@@ -203,13 +212,13 @@
 						<draftCompile>true</draftCompile>
 						<style>PRETTY</style>
 						<module>com.vaadin.addon.charts.ChartsWithTimelineWidgetset</module>
-						
+
 						<!-- Skip in default phase, we only gwt compile for tests -->
 						<!--<skip>true</skip> -->
 						<!-- <attachDebugger>true</attachDebugger> -->
 						<strict>true</strict>
 					</configuration>
-										
+
 				</plugin>
 				<plugin>
 					<artifactId>maven-surefire-plugin</artifactId>
