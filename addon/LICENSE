@@ -10,3 +10,17 @@ or delete the Software immediately.
 
 This software may also be available for download under alternative
 licenses at http://vaadin.com/directory .
+
+THIRD PARTY LICENSING
+=====================
+
+This Add-on component and related documentation is a derivative work of 
+Highcharts JS product ("Highchart JS").
+
+Highsoft Solutions AS retains all rights, title and interest in and to the
+Highchart JS (resource files: highcharts.js, highcharts-more.js and
+highcharts.src.js)
+
+Using this Add-on component does not require a separate Highcharts JS license
+purchase. Please note that existing Highcharts JS license does not entitle to 
+use this Add-on component under the terms of CVALv2.

@@ -2,23 +2,9 @@ Vaadin Charts ${project.version}
 ===========================
 
 This is a preliminary build of Vaadin Charts add-on. Vaadin Charts is based on
-Highcharts ${highcharts.version} library. Highcharts license is included in CVAL license of the
-product. Vaadin Charts also includes previously separate Vaadin Timeline
-add-on, that is built with custom html5 canvas implementation.
+Highcharts ${highcharts.version} library. Vaadin Charts also includes previously 
+separate Vaadin Timeline add-on, that is built with custom html5 canvas implementation.
 
-THIRD PARTY LICENSING
-=====================
-
-This Add-on component is a derivate works of Highcharts JS product ("Highchart
-JS").
-
-Highsoft Solutions AS retains all rights, title and interest in and to the
-Highchart JS (resource files: highcharts.js, highcharts-more.js and
-highcharts.src.js)
-
-Using this Add-on component does not require a separate Highcharts JS license
-purchase. Existing Highcharts JS license does not entitle to use this Add-on
-component under the terms of CVALv2.
 
 Installation
 ============
