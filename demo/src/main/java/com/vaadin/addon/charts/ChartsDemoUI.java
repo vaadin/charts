@@ -93,7 +93,7 @@ public class ChartsDemoUI extends UI {
         tree.setContainerDataSource(getContainer());
         tree.setItemCaptionPropertyId("displayName");
         Panel panel = new Panel("Vaadin Charts - Test Explorer");
-        panel.addComponent(tree);
+        panel.setContent(tree);
         panel.setSizeFull();
         horizontalSplitPanel.setFirstComponent(panel);
 
