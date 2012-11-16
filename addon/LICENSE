@@ -9,7 +9,7 @@ You must either accept the terms of the above mentioned license agreement
 or delete the Software immediately. 
 
 This software may also be available for download under alternative
-licenses at http://vaadin.com/directory .
+licenses at http://vaadin.com/directory.
 
 THIRD PARTY LICENSING
 =====================
@@ -21,6 +21,11 @@ Highsoft Solutions AS retains all rights, title and interest in and to the
 Highchart JS (resource files: highcharts.js, highcharts-more.js and
 highcharts.src.js)
 
-Using this Add-on component does not require a separate Highcharts JS license
-purchase. Please note that existing Highcharts JS license does not entitle to 
-use this Add-on component under the terms of CVALv2.
+Using Vaadin Charts Add-on does not require a separate Highcharts JS license
+purchase. 
+
+Please note that; 
+- A valid Highcharts JS license does not entitle you to use Vaadin Charts Add-on  
+under the terms of CVALv2.
+- The Vaadin Charts Add-on (CVALv2) license does not entitle you to use the 
+Highcharts JS product in other ways than through the Vaadin Charts Add-on API.

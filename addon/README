@@ -5,6 +5,7 @@ This is a preliminary build of Vaadin Charts add-on. Vaadin Charts is based on
 Highcharts ${highcharts.version} library. Vaadin Charts also includes previously 
 separate Vaadin Timeline add-on, that is built with custom html5 canvas implementation.
 
+This version is built against Vaadin ${vaadin.version.maven}.
 
 Installation
 ============
@@ -31,6 +32,9 @@ https://vaadin.com/add-ons/charts
 Timeline Homepage:
 https://vaadin.com/add-ons/timeline
 
+Highcharts JS Homepage: 
+http://www.highcharts.com
+ 
 Code and usage examples:
 http://demo.vaadin.com/charts-demo/
 
