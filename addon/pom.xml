@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.vaadin.addon</groupId>
-	<version>1.0.0-alpha1</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<artifactId>vaadin-charts</artifactId>
 	<packaging>jar</packaging>
 	<name>Vaadin Charts</name>
@@ -31,7 +31,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.organization>Vaadin Ltd</project.organization>
 		<highcharts.version>2.3.2</highcharts.version>
-		<vaadin.version.maven>7.0.0.beta9</vaadin.version.maven>
+		<vaadin.version.maven>7.0-SNAPSHOT</vaadin.version.maven>
 		<snapshot.repository.url>http://oss.sonatype.org/content/repositories/vaadin-snapshots/</snapshot.repository.url>
 	</properties>
 
