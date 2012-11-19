@@ -207,6 +207,7 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
 
                 masterChart.getConfiguration().getxAxis()
                         .setPlotBands(plotBand1, plotBand2);
+                masterChart.drawChart();
 
                 List<Number> list = getPartialList(start, end);
 
@@ -214,8 +215,7 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
                 configuration.getChart().setAnimation(false);
                 ListSeries detailData = (ListSeries) configuration.getSeries()
                         .get(0);
-                // FIXME allow List<Number> as parameter for setData
-                detailData.setData(list.toArray(new Number[list.size()]));
+                detailData.setData(list);
                 detailData.setPointStart(start);
                 detailChart.drawChart(configuration);
             }

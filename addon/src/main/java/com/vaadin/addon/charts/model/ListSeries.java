@@ -3,6 +3,7 @@ package com.vaadin.addon.charts.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 /**
  * A list of numerical values. In this case, the numerical values will be
@@ -14,7 +15,7 @@ import java.util.Date;
  */
 public class ListSeries extends AbstractSeries {
 
-    private ArrayList<Number> data = new ArrayList<Number>();
+    private List<Number> data = new ArrayList<Number>();
     private Number pointStart;
     private Number pointInterval;
     private Number yAxis;
@@ -63,13 +64,22 @@ public class ListSeries extends AbstractSeries {
     }
 
     /**
-     * Set array of numeric values
+     * Set array of numeric values as values.
      * 
      * @return
      */
     public void setData(Number... data) {
         this.data.clear();
         Collections.addAll(this.data, data);
+    }
+
+    /**
+     * Set the given list of numeric values as values.
+     * 
+     * @return
+     */
+    public void setData(List<Number> data) {
+        this.data = data;
     }
 
     /**
