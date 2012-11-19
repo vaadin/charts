@@ -17,13 +17,11 @@ import com.vaadin.ui.HasComponents;
 import com.vaadin.ui.UI;
 
 /**
- * ChartTheme extension configures page global theme for charts. 
- * With this extension it is possible to configure e.g. default 
- * colors used by all Chart objects displayed in the UI.
+ * ChartTheme extension configures page global theme for charts. With this
+ * extension it is possible to configure e.g. default colors used by all Chart
+ * objects displayed in the UI.
  */
 public class ChartTheme extends AbstractExtension {
-
-    private boolean painted = false;
 
     protected ChartTheme() {
     }
@@ -70,16 +68,9 @@ public class ChartTheme extends AbstractExtension {
      */
     public void setTheme(Theme theme) {
         getState().json = gson.toJson(theme);
-        if (painted) {
-            notifyListeners();
-        }
+        notifyListeners();
     }
 
-    @Override
-    public void beforeClientResponse(boolean initial) {
-        super.beforeClientResponse(initial);
-        painted = true;
-    }
 
     @Override
     protected ThemerState getState() {
