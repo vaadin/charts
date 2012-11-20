@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.vaadin.addon.charts.model.gsonhelpers.AbstractContainerSeriesSerializer;
 import com.vaadin.addon.charts.model.gsonhelpers.AxisListSerializer;
 import com.vaadin.addon.charts.model.gsonhelpers.ChartEnumSerializer;
+import com.vaadin.addon.charts.model.gsonhelpers.ContainerSeriesSerializer;
 import com.vaadin.addon.charts.model.gsonhelpers.PaneListSerializer;
 import com.vaadin.addon.charts.model.gsonhelpers.SolidColorSerializer;
 import com.vaadin.addon.charts.model.style.SolidColor;
@@ -40,8 +40,8 @@ public abstract class AbstractConfigurationObject implements Serializable {
                 new AxisListSerializer());
         builder.registerTypeHierarchyAdapter(PaneList.class,
                 new PaneListSerializer());
-        builder.registerTypeHierarchyAdapter(AbstractContainerSeries.class,
-                new AbstractContainerSeriesSerializer());
+        builder.registerTypeAdapter(ContainerDataSeries.class,
+                new ContainerSeriesSerializer());
 
         return builder;
     }
@@ -56,7 +56,7 @@ public abstract class AbstractConfigurationObject implements Serializable {
      * @see #createGsonBuilder()
      */
     public static void setGsonInstance(Gson customGson) {
-        if(customGson == null) {
+        if (customGson == null) {
             throw new IllegalArgumentException("GSON serializer cannot be null");
         }
         gson = customGson;

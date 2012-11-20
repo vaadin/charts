@@ -2,15 +2,15 @@ package com.vaadin.addon.charts.demoandtestapp.container;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.model.AbstractContainerSeries;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
-import com.vaadin.addon.charts.model.ContainerSeries;
+import com.vaadin.addon.charts.model.ContainerDataSeries;
 import com.vaadin.addon.charts.model.Series;
 import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.themes.VaadinTheme;
 import com.vaadin.data.Container;
 import com.vaadin.data.Item;
+import com.vaadin.data.util.IndexedContainer;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.Table;
@@ -25,8 +25,8 @@ public class SimpleChartWithContainerSeries extends AbstractVaadinChartExample {
     @Override
     protected Component getChart() {
         CssLayout lo = new CssLayout();
-        AbstractContainerSeries container = createContainer();
-        Component table = createTable(container);
+        ContainerDataSeries container = createContainer();
+        Component table = createTable(container.getVaadinContainer());
         Component chart = createChart(container);
 
         table.setWidth("50%");
@@ -41,14 +41,19 @@ public class SimpleChartWithContainerSeries extends AbstractVaadinChartExample {
         return lo;
     }
 
-    private AbstractContainerSeries createContainer() {
-        AbstractContainerSeries container = new ContainerSeries();
-        container.addContainerProperty("name", String.class, null);
-        container.addContainerProperty("y", Number.class, null);
-        container.addContainerProperty("color", Color.class, null);
+    private ContainerDataSeries createContainer() {
+        IndexedContainer vaadinContainer = new IndexedContainer();
+        ContainerDataSeries container = new ContainerDataSeries(vaadinContainer);
+        vaadinContainer.addContainerProperty("name", String.class, null);
+        vaadinContainer.addContainerProperty("y", Number.class, null);
+        vaadinContainer.addContainerProperty("color", Color.class, null);
 
         container.setName("Browser share");
         container.setType(ChartType.PIE);
+
+        container.setYAttributesContainerId("y");
+        container.setNameAttributesContainerId("name");
+        container.addAttributeToPropertyIdMapping("color", "color");
 
         String[] names = new String[] { "MSIE", "Firefox", "Chrome", "Safari",
                 "Opera" };
@@ -56,7 +61,7 @@ public class SimpleChartWithContainerSeries extends AbstractVaadinChartExample {
         Color[] colors = new VaadinTheme().getColors();
 
         for (int i = 0; i < names.length; i++) {
-            Item ie = container.addItem(i);
+            Item ie = vaadinContainer.addItem(i);
             ie.getItemProperty("name").setValue(names[i]);
             ie.getItemProperty("y").setValue(values[i]);
             ie.getItemProperty("color").setValue(colors[i]);

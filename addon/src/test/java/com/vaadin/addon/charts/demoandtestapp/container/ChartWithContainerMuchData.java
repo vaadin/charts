@@ -2,12 +2,11 @@ package com.vaadin.addon.charts.demoandtestapp.container;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.model.AbstractContainerSeries;
 import com.vaadin.addon.charts.model.AreaStates;
 import com.vaadin.addon.charts.model.Axis;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
-import com.vaadin.addon.charts.model.ContainerSeries;
+import com.vaadin.addon.charts.model.ContainerDataSeries;
 import com.vaadin.addon.charts.model.HoverState;
 import com.vaadin.addon.charts.model.Marker;
 import com.vaadin.addon.charts.model.MarkerStates;
@@ -18,6 +17,7 @@ import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.data.Container;
 import com.vaadin.data.Item;
+import com.vaadin.data.util.IndexedContainer;
 import com.vaadin.ui.AbstractSelect.ItemCaptionMode;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.CssLayout;
@@ -33,8 +33,8 @@ public class ChartWithContainerMuchData extends AbstractVaadinChartExample {
     @Override
     protected Component getChart() {
         CssLayout lo = new CssLayout();
-        AbstractContainerSeries container = createContainer();
-        Component table = createTable(container);
+        ContainerDataSeries container = createContainer();
+        Component table = createTable(container.getVaadinContainer());
         Component chart = createChart(container);
 
         table.setWidth("10%");
@@ -49,18 +49,19 @@ public class ChartWithContainerMuchData extends AbstractVaadinChartExample {
         return lo;
     }
 
-    private AbstractContainerSeries createContainer() {
-        AbstractContainerSeries container = new ContainerSeries();
+    private ContainerDataSeries createContainer() {
+        IndexedContainer vaadinContainer = new IndexedContainer();
+        ContainerDataSeries container = new ContainerDataSeries(vaadinContainer);
+        vaadinContainer.addContainerProperty("y", Number.class, null);
+
+        for (int i = 0; i < getContainerData().length; i++) {
+            Item item = vaadinContainer.addItem(i);
+            item.getItemProperty("y").setValue(getContainerData()[i]);
+        }
 
         container.setName("USD to EUR");
         container.setType(ChartType.AREA);
-        container.addContainerProperty("y", Number.class, null);
-        container.addDefaultPropertyId("y");
-
-        for (int i = 0; i < getContainerData().length; i++) {
-            Item item = container.addItem(i);
-            item.getItemProperty("y").setValue(getContainerData()[i]);
-        }
+        container.setYAttributesContainerId("y");
 
         return container;
     }
