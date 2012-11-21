@@ -18,21 +18,28 @@ import com.vaadin.data.Property;
 /**
  * Serializer for ContainerSeries TODO: optimization
  */
-public class ContainerSeriesSerializer implements
+public class ContainerDataSeriesSerializer implements
         JsonSerializer<ContainerDataSeries> {
 
     @Override
     public JsonElement serialize(ContainerDataSeries src, Type typeOfSrc,
             JsonSerializationContext context) {
+        JsonObject series = new JsonObject();
         JsonArray data = new JsonArray();
 
-        JsonObject series = new JsonObject();
-        if (src.getType() != null) {
-            series.add("type", new JsonPrimitive(src.getType().toString()));
-        }
-        if (src.getName() != null) {
-            series.add("name", new JsonPrimitive(src.getName()));
-        }
+        series.add("size", context.serialize(src.getSize()));
+        series.add("innerSize", context.serialize(src.getInnerSize()));
+        series.add("center", context.serialize(src.getCenter()));
+        series.add("color", context.serialize(src.getColor()));
+        series.add("dataLabels", context.serialize(src.getDataLabels()));
+        series.add("marker", context.serialize(src.getMarker()));
+        series.add("name", context.serialize(src.getName()));
+        series.add("pointPlacement", context.serialize(src.getPointPlacement()));
+        series.add("stack", context.serialize(src.getStack()));
+        series.add("states", context.serialize(src.getStates()));
+        series.add("tooltip", context.serialize(src.getTooltip()));
+        series.add("type", context.serialize(src.getType()));
+
         series.add("data", data);
 
         Map<String, Object> pidMap = src.getAttributeToPropertyIdMap();
@@ -43,6 +50,7 @@ public class ContainerSeriesSerializer implements
                 .get(ContainerDataSeries.SERIES_DEFAULT_ATTRIBUTE2);
 
         Container container = src.getVaadinContainer();
+
         for (Object iid : container.getItemIds()) {
             Item item = container.getItem(iid);
             boolean hasFirstDefault = defaultId1 != null
@@ -101,7 +109,6 @@ public class ContainerSeriesSerializer implements
             }
 
         }
-        System.out.println(series.toString());
         return series;
     }
 

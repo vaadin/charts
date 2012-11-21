@@ -12,10 +12,7 @@ import com.vaadin.data.Container;
  */
 public class ContainerDataSeries extends DataSeries {
 
-    private String name;
-    private ChartType type;
-
-    private transient final Container container;
+    private transient final Container vaadinContainer;
 
     public transient static final String SERIES_DEFAULT_ATTRIBUTE1 = "x";
     public transient static final String SERIES_DEFAULT_ATTRIBUTE2 = "y";
@@ -27,28 +24,8 @@ public class ContainerDataSeries extends DataSeries {
     private transient final Map<String, Object> attributeToPropertyIdMap;
 
     public ContainerDataSeries(Container container) {
-        this.container = container;
+        vaadinContainer = container;
         attributeToPropertyIdMap = new HashMap<String, Object>();
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public ChartType getType() {
-        return type;
-    }
-
-    @Override
-    public void setType(ChartType type) {
-        this.type = type;
     }
 
     /**
@@ -99,7 +76,7 @@ public class ContainerDataSeries extends DataSeries {
      * @return
      */
     public Container getVaadinContainer() {
-        return container;
+        return vaadinContainer;
     }
 
     /**

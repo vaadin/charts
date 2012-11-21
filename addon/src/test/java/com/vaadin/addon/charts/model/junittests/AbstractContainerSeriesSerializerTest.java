@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import com.google.gson.JsonElement;
 import com.vaadin.addon.charts.model.ContainerDataSeries;
-import com.vaadin.addon.charts.model.gsonhelpers.ContainerSeriesSerializer;
+import com.vaadin.addon.charts.model.gsonhelpers.ContainerDataSeriesSerializer;
 import com.vaadin.data.Container;
 import com.vaadin.data.Item;
 import com.vaadin.data.util.IndexedContainer;
@@ -16,11 +16,11 @@ public class AbstractContainerSeriesSerializerTest {
 
     private Container vaadinContainer;
     private ContainerDataSeries container;
-    private ContainerSeriesSerializer serializer;
+    private ContainerDataSeriesSerializer serializer;
 
     @Before
     public void setup() {
-        serializer = new ContainerSeriesSerializer();
+        serializer = new ContainerDataSeriesSerializer();
 
         vaadinContainer = new IndexedContainer();
 
