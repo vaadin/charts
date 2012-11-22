@@ -142,13 +142,13 @@ public class Clock extends AbstractVaadinChartExample {
                     hour.setY(hours + (mins / 60.0));
                     minute.setY(mins * (12.0 / 60.0) + secs * (12.0 / 3600.0));
                     second.setY(secs * (12.0 / 60.0));
-                    getSession().getLock().lock();
+                    getSession().lock();
                     try {
                         series.updateData(hour);
                         series.updateData(minute);
                         series.updateData(second);
                     } finally {
-                        getSession().getLock().unlock();
+                        getSession().unlock();
                     }
                     try {
                         sleep(1000);

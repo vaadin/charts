@@ -65,12 +65,12 @@ public class SplineUpdatingEachSecond extends AbstractVaadinChartExample {
                         if (chart.isConnectorEnabled()) {
                             long x = System.currentTimeMillis();
                             double y = random.nextDouble();
-                            getSession().getLock().lock();
+                            getSession().lock();
                             try {
                                 series.addData(new DataSeriesItem(x, y));
                                 // chart.addPoint(x, y, 0);
                             } finally {
-                                getSession().getLock().unlock();
+                                getSession().unlock();
                             }
                         } else {
                             break;

@@ -112,11 +112,11 @@ public class AngularGauge extends AbstractVaadinChartExample {
                         sleep(3000);
                         Integer oldValue = series.getData()[0].intValue();
                         Integer newValue = (int) (oldValue + (r.nextDouble() - 0.5) * 20.0);
-                        getSession().getLock().lock();
+                        getSession().lock();
                         try {
                             series.updatePoint(0, newValue);
                         } finally {
-                            getSession().getLock().unlock();
+                            getSession().unlock();
                         }
                     } catch (InterruptedException e) {
                         e.printStackTrace();

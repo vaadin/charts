@@ -100,11 +100,11 @@ public class GaugeWithDualAxes extends AbstractVaadinChartExample {
                         sleep(5000);
                         Integer oldValue = series.getData()[0].intValue();
                         Integer newValue = (int) (oldValue + (r.nextDouble() - 0.5) * 20.0);
-                        getSession().getLock().lock();
+                        getSession().lock();
                         try {
                             series.updatePoint(0, newValue);
                         } finally {
-                            getSession().getLock().unlock();
+                            getSession().unlock();
                         }
                     } catch (InterruptedException e) {
                     }

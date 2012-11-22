@@ -8,7 +8,7 @@ public class TestUI extends UI {
 
     @Override
     protected void init(VaadinRequest request) {
-        String name = request.getRequestPathInfo();
+        String name = request.getPathInfo();
         if (name.startsWith("/")) {
             name = name.substring(1);
         }
@@ -17,7 +17,7 @@ public class TestUI extends UI {
             try {
 
                 String className;
-                if(name.startsWith("com.")) {
+                if (name.startsWith("com.")) {
                     className = name;
                 } else {
                     className = getClass().getPackage().getName() + "."
