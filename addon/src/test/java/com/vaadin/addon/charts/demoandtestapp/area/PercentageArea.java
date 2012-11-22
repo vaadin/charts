@@ -64,7 +64,7 @@ public class PercentageArea extends AbstractVaadinChartExample {
         marker.setLineColor(WHITE);
         marker.setLineWidth(1);
         plotOptions.setMarker(marker);
-        conf.getPlotOptions().setArea(plotOptions);
+        conf.setPlotOptions(plotOptions);
 
         conf.addSeries(new ListSeries("Asia", 502, 635, 809, 947, 1402, 3634,
                 5268));

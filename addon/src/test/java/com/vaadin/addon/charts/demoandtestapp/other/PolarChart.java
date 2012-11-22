@@ -7,7 +7,6 @@ import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.Pane;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
-import com.vaadin.addon.charts.model.PlotOptionsHolder;
 import com.vaadin.addon.charts.model.PlotOptionsSeries;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
@@ -49,9 +48,8 @@ public class PolarChart extends AbstractVaadinChartExample {
         column.setPointPadding(0);
         column.setGroupPadding(0);
 
-        conf.setPlotOptions(new PlotOptionsHolder());
-        conf.getPlotOptions().setSeries(series);
-        conf.getPlotOptions().setColumn(column);
+        conf.setPlotOptions(series);
+        conf.setAdditionalPlotOptions(column);
 
         ListSeries col = new ListSeries(8, 7, 6, 5, 4, 3, 2, 1);
         ListSeries line = new ListSeries(1, 2, 3, 4, 5, 6, 7, 8);

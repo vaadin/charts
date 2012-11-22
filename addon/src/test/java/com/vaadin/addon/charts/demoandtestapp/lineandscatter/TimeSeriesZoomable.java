@@ -228,7 +228,7 @@ public class TimeSeriesZoomable extends AbstractVaadinChartExample {
         plotOptions.setStates(areaStates);
         plotOptions.setMarker(marker);
         plotOptions.setShadow(false);
-        configuration.getPlotOptions().setArea(plotOptions);
+        configuration.setPlotOptions(plotOptions);
 
         SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
 

@@ -8,7 +8,6 @@ import com.vaadin.addon.charts.model.HorizontalAlign;
 import com.vaadin.addon.charts.model.LayoutDirection;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.Pane;
-import com.vaadin.addon.charts.model.PlotOptionsHolder;
 import com.vaadin.addon.charts.model.PlotOptionsSeries;
 import com.vaadin.addon.charts.model.PointPlacement;
 import com.vaadin.addon.charts.model.Stacking;
@@ -67,8 +66,7 @@ public class WindRose extends AbstractVaadinChartExample {
         series.setShadow(false);
         series.setGroupPadding(0);
         series.setPointPlacement(PointPlacement.ON);
-        conf.setPlotOptions(new PlotOptionsHolder());
-        conf.getPlotOptions().setSeries(series);
+        conf.setPlotOptions(series);
 
         ListSeries n = new ListSeries("N", 1.81, 1.78, 0.16, 0.00, 0.00, 0.00,
                 0.00);

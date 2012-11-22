@@ -90,7 +90,7 @@ public class ChartWithExternalContainer extends AbstractVaadinChartExample {
         configuration.getLegend().setEnabled(false);
 
         PlotOptionsPie plotOptions = new PlotOptionsPie();
-        configuration.getPlotOptions().setPie(plotOptions);
+        configuration.setPlotOptions(plotOptions);
 
         configuration.setSeries(container);
         System.out.println(configuration.toString());
@@ -111,7 +111,7 @@ public class ChartWithExternalContainer extends AbstractVaadinChartExample {
         configuration.addyAxis(ax);
 
         PlotOptionsColumn plotOptions = new PlotOptionsColumn();
-        configuration.getPlotOptions().setColumn(plotOptions);
+        configuration.setPlotOptions(plotOptions);
 
         configuration.setSeries(container);
         System.out.println(configuration.toString());

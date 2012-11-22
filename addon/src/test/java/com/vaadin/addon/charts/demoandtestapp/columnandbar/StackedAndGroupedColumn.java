@@ -46,7 +46,7 @@ public class StackedAndGroupedColumn extends AbstractVaadinChartExample {
 
         PlotOptionsColumn plotOptions = new PlotOptionsColumn();
         plotOptions.setStacking(Stacking.NORMAL);
-        conf.getPlotOptions().setColumn(plotOptions);
+        conf.setPlotOptions(plotOptions);
 
         ListSeries serie = new ListSeries("John",
                 new Number[] { 5, 3, 4, 7, 2 });

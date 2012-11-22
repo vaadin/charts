@@ -59,7 +59,7 @@ public class AreaWithMissingPoints extends AbstractVaadinChartExample {
 
         PlotOptionsArea plotOptions = new PlotOptionsArea();
         plotOptions.setFillOpacity(0.5);
-        conf.getPlotOptions().setArea(plotOptions);
+        conf.setPlotOptions(plotOptions);
 
         conf.addSeries(new ListSeries("John", 0, 1, 4, 4, 5, 2, 3, 7));
         conf.addSeries(new ListSeries("Jane", 1, 0, 3, null, 3, 1, 2, 1));

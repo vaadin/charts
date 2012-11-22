@@ -14,7 +14,6 @@ import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.Pane;
 import com.vaadin.addon.charts.model.PlotBand;
 import com.vaadin.addon.charts.model.PlotOptionsGauge;
-import com.vaadin.addon.charts.model.PlotOptionsHolder;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
@@ -102,8 +101,7 @@ public class VUMeter extends AbstractVaadinChartExample {
         gauge.setDial(new Dial());
         gauge.getDial().setRadius("100%");
 
-        configuration.setPlotOptions(new PlotOptionsHolder());
-        configuration.getPlotOptions().setGauge(gauge);
+        configuration.setPlotOptions(gauge);
 
         final ListSeries series1 = new ListSeries(-20);
         final ListSeries series2 = new ListSeries(-20);
@@ -136,12 +134,12 @@ public class VUMeter extends AbstractVaadinChartExample {
                             rightVal = leftVal;
                         }
 
-                        getSession().getLock().lock();
+                        getSession().lock();
                         try {
                             series1.updatePoint(0, leftVal);
                             series2.updatePoint(0, rightVal);
                         } finally {
-                            getSession().getLock().unlock();
+                            getSession().unlock();
                         }
 
                     } catch (InterruptedException e) {

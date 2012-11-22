@@ -104,16 +104,14 @@ public class SplineWithPlotBands extends AbstractVaadinChartExample {
                         "Highcharts.dateFormat('%e. %b %Y, %H:00', this.x) +': '+ this.y +' m/s'");
 
         PlotOptionsSpline plotOptions = new PlotOptionsSpline();
-        configuration.getPlotOptions().setSpline(plotOptions);
-        configuration.getPlotOptions().getSpline().getMarker()
-                .setEnabled(false);
-        configuration.getPlotOptions().getSpline().getMarker().setLineWidth(4);
+        configuration.setPlotOptions(plotOptions);
+        configuration.getPlotOptions().getMarker().setEnabled(false);
+        configuration.getPlotOptions().getMarker().setLineWidth(4);
         MarkerStates states = new MarkerStates(new HoverState(true));
         states.getHover().setSymbol(MarkerSymbolEnum.CIRCLE);
         states.getHover().setRadius(5);
         states.getHover().setLineWidth(1);
-        configuration.getPlotOptions().getSpline().getMarker()
-                .setStates(states);
+        configuration.getPlotOptions().getMarker().setStates(states);
 
         plotOptions.setPointInterval(ONE_HOUR);
         plotOptions.setPointStart(new Date(2009 - 1900, 9 - 1, 6).getTime());

@@ -56,7 +56,7 @@ public class BasicBar extends AbstractVaadinChartExample {
 
         PlotOptionsBar plot = new PlotOptionsBar();
         plot.setDataLabels(new Labels(true));
-        conf.getPlotOptions().setBar(plot);
+        conf.setPlotOptions(plot);
 
         Legend legend = new Legend();
         legend.setLayout(LayoutDirection.VERTICAL);

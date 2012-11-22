@@ -50,7 +50,7 @@ public class DonutChart extends AbstractVaadinChartExample {
 
         PlotOptionsPie pie = new PlotOptionsPie();
         pie.setShadow(false);
-        conf.getPlotOptions().setPie(pie);
+        conf.setPlotOptions(pie);
 
         conf.getTooltip().setValueSuffix("%");
 

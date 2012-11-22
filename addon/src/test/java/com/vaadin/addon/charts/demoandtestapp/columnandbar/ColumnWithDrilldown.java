@@ -8,7 +8,6 @@ import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.Cursor;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
-import com.vaadin.addon.charts.model.PlotOptionsHolder;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
@@ -51,8 +50,7 @@ public class ColumnWithDrilldown extends AbstractVaadinChartExample {
         column.getDataLabels().getStyle().setFontWeight(FontWeight.BOLD);
         column.getDataLabels().setFormatter("function() {return this.y +'%';}");
 
-        conf.setPlotOptions(new PlotOptionsHolder());
-        conf.getPlotOptions().setColumn(column);
+        conf.setPlotOptions(column);
 
         Tooltip tooltip = new Tooltip();
         tooltip.setFormatter("function() { var point = this.point, s = this.x +':<b>'+ this.y +'% market share</b><br/>'; if (point.drilldown) { s += 'Click to view '+ point.category +' versions'; } else { s += 'Click to return to browser brands'; } return s; }");

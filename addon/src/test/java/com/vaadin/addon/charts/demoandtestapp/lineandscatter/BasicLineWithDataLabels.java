@@ -41,10 +41,9 @@ public class BasicLineWithDataLabels extends AbstractVaadinChartExample {
                         "'<b>'+ this.series.name +'</b><br/>'+this.x +': '+ this.y +'°C'");
 
         PlotOptionsLine plotOptions = new PlotOptionsLine();
-        configuration.getPlotOptions().setLine(plotOptions);
-        configuration.getPlotOptions().getLine().getDataLabels()
-                .setEnabled(true);
-        configuration.getPlotOptions().getLine().setEnableMouseTracking(false);
+        configuration.setPlotOptions(plotOptions);
+        configuration.getPlotOptions().getDataLabels().setEnabled(true);
+        configuration.getPlotOptions().setEnableMouseTracking(false);
 
         ListSeries ls = new ListSeries();
         ls.setName("Tokyo");

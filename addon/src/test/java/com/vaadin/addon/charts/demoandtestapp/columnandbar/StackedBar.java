@@ -48,7 +48,7 @@ public class StackedBar extends AbstractVaadinChartExample {
 
         PlotOptionsSeries plot = new PlotOptionsSeries();
         plot.setStacking(Stacking.NORMAL);
-        conf.getPlotOptions().setSeries(plot);
+        conf.setPlotOptions(plot);
 
         conf.addSeries(new ListSeries("John", 5, 3, 4, 7, 2));
         conf.addSeries(new ListSeries("Jane", 2, 2, 3, 2, 1));

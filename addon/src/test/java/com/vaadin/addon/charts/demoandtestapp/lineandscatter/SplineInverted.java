@@ -56,8 +56,8 @@ public class SplineInverted extends AbstractVaadinChartExample {
         configuration.getTooltip().setFormatter("this.x +' km: '+this.y +'°C'");
 
         PlotOptionsSpline plotOptions = new PlotOptionsSpline();
-        configuration.getPlotOptions().setSpline(plotOptions);
-        configuration.getPlotOptions().getSpline().getMarker().setEnabled(true);
+        configuration.setPlotOptions(plotOptions);
+        configuration.getPlotOptions().getMarker().setEnabled(true);
 
         Legend legend = configuration.getLegend();
         legend.setEnabled(false);

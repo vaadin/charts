@@ -16,7 +16,6 @@ import com.vaadin.addon.charts.model.HoverState;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.MarkerStates;
 import com.vaadin.addon.charts.model.PlotBand;
-import com.vaadin.addon.charts.model.PlotOptionsHolder;
 import com.vaadin.addon.charts.model.PlotOptionsSeries;
 import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.ZoomType;
@@ -266,8 +265,8 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
                         "function() {var point = this.points[0];return '<b>'+ point.series.name +'</b><br/>'+Highcharts.dateFormat('%A %B %e %Y', this.x) + ':<br/>'+'1 USD = '+ Highcharts.numberFormat(point.y, 2) +' EUR';}");
         configuration.getTooltip().setShared(true);
 
-        PlotOptionsHolder holder = configuration.getPlotOptions();
         PlotOptionsSeries series = new PlotOptionsSeries();
+        configuration.setPlotOptions(series);
 
         MarkerStates states = new MarkerStates(new HoverState(true));
         states.getHover().setRadius(3);
@@ -275,8 +274,6 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
         series.getMarker().setEnabled(false);
         series.getMarker().setStates(states);
         series.setAnimation(false);
-
-        holder.setSeries(series);
 
         ListSeries seriesList = new ListSeries();
         seriesList.setName("USD to EUR");
@@ -343,7 +340,7 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
         plotOptions.setStates(hover);
         plotOptions.setEnableMouseTracking(false);
         plotOptions.setAnimation(false);
-        configuration.getPlotOptions().setSeries(plotOptions);
+        configuration.setPlotOptions(plotOptions);
 
         AreaListSeries ls = new AreaListSeries();
         ls.getMarker().setEnabled(false);

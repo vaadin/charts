@@ -68,7 +68,7 @@ public class StackedArea extends AbstractVaadinChartExample {
         marker.setLineColor(GRAY);
         marker.setLineWidth(1);
         plotOptions.setMarker(marker);
-        conf.getPlotOptions().setArea(plotOptions);
+        conf.setPlotOptions(plotOptions);
 
         List<Series> series = new ArrayList<Series>();
         series.add(new ListSeries("Asia", 502, 635, 809, 947, 1402, 3634, 5268));

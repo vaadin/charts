@@ -58,7 +58,7 @@ public class BarWithNegativeStack extends AbstractVaadinChartExample {
 
         PlotOptionsSeries plot = new PlotOptionsSeries();
         plot.setStacking(Stacking.NORMAL);
-        conf.getPlotOptions().setSeries(plot);
+        conf.setPlotOptions(plot);
 
         Tooltip tooltip = new Tooltip();
         tooltip.setFormatter("function(){ return '<b>'+ this.series.name +', age '+ this.point.category +'</b><br/>'+ 'Population: '+ Highcharts.numberFormat(Math.abs(this.point.y), 0); }");

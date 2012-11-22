@@ -72,7 +72,7 @@ public class AreaSpline extends AbstractVaadinChartExample {
 
         PlotOptionsArea plotOptions = new PlotOptionsArea();
         plotOptions.setFillOpacity(0.5);
-        conf.getPlotOptions().setArea(plotOptions);
+        conf.setPlotOptions(plotOptions);
 
         ListSeries o = new ListSeries("John", 3, 4, 3, 5, 4, 10);
         // Add last value separately

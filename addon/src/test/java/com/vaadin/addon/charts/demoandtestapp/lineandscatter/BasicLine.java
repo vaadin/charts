@@ -49,9 +49,8 @@ public class BasicLine extends AbstractVaadinChartExample {
                         "'<b>'+ this.series.name +'</b><br/>'+this.x +': '+ this.y +'°C'");
 
         PlotOptionsLine plotOptions = new PlotOptionsLine();
-        configuration.getPlotOptions().setLine(plotOptions);
-        configuration.getPlotOptions().getLine().getDataLabels()
-                .setEnabled(true);
+        configuration.setPlotOptions(plotOptions);
+        configuration.getPlotOptions().getDataLabels().setEnabled(true);
 
         Legend legend = configuration.getLegend();
         legend.setLayout(LayoutDirection.VERTICAL);

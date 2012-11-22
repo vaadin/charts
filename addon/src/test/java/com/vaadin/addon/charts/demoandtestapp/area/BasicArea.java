@@ -44,7 +44,7 @@ public class BasicArea extends AbstractVaadinChartExample {
         marker.setRadius(2);
         marker.setStates(new MarkerStates(new HoverState(true)));
         plotOptions.setMarker(marker);
-        conf.getPlotOptions().setArea(plotOptions);
+        conf.setPlotOptions(plotOptions);
 
         XAxis xAxis = new XAxis();
         Labels labels = new Labels();

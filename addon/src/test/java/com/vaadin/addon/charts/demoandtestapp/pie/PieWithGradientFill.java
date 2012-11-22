@@ -9,10 +9,8 @@ import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.PlotOptionsPie;
-import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
-import com.vaadin.addon.charts.themes.VaadinTheme;
 import com.vaadin.ui.Component;
 
 @SuppressWarnings("serial")
@@ -40,7 +38,7 @@ public class PieWithGradientFill extends AbstractVaadinChartExample {
         dataLabels
                 .setFormatter("'<b>'+ this.point.name +'</b>: '+ this.percentage +' %'");
         plotOptions.setDataLabels(dataLabels);
-        conf.getPlotOptions().setPie(plotOptions);
+        conf.setPlotOptions(plotOptions);
 
         DataSeries series = new DataSeries();
         series.setType(ChartType.PIE);
@@ -81,7 +79,7 @@ public class PieWithGradientFill extends AbstractVaadinChartExample {
         chart.drawChart(conf);
         return chart;
     }
-    
+
     private GradientColor getGradientColor(SolidColor start, SolidColor end) {
         GradientColor color = GradientColor.createRadial(0.5, 0.3, 0.7);
         color.addColorStop(0, start);

@@ -46,11 +46,11 @@ public class SplineWithSymbols extends AbstractVaadinChartExample {
         configuration.getTooltip().setCrosshairs(true);
 
         PlotOptionsSpline plotOptions = new PlotOptionsSpline();
-        configuration.getPlotOptions().setSpline(plotOptions);
-        configuration.getPlotOptions().getSpline().getMarker().setRadius(4);
-        configuration.getPlotOptions().getSpline().getMarker()
+        configuration.setPlotOptions(plotOptions);
+        configuration.getPlotOptions().getMarker().setRadius(4);
+        configuration.getPlotOptions().getMarker()
                 .setLineColor(new SolidColor("#666666"));
-        configuration.getPlotOptions().getSpline().getMarker().setLineWidth(1);
+        configuration.getPlotOptions().getMarker().setLineWidth(1);
 
         DataSeries ls = new DataSeries();
         ls.setName("Tokyo");

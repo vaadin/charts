@@ -78,7 +78,7 @@ public class StackedColumn extends AbstractVaadinChartExample {
         Labels labels = new Labels();
         labels.setEnabled(true);
         // TODO: code based color
-        conf.getPlotOptions().setColumn(plotOptions);
+        conf.setPlotOptions(plotOptions);
 
         conf.addSeries(new ListSeries("John", new Number[] { 5, 3, 4, 7, 2 }));
         conf.addSeries(new ListSeries("Jane", new Number[] { 2, 2, 3, 2, 1 }));

@@ -44,7 +44,7 @@ public class PieChart extends AbstractVaadinChartExample {
         dataLabels
                 .setFormatter("'<b>'+ this.point.name +'</b>: '+ this.percentage +' %'");
         plotOptions.setDataLabels(dataLabels);
-        conf.getPlotOptions().setPie(plotOptions);
+        conf.setPlotOptions(plotOptions);
 
         DataSeries series = new DataSeries();
         series.setType(ChartType.PIE);

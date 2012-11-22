@@ -24,7 +24,7 @@ public class Configuration extends AbstractConfigurationObject {
     private Tooltip tooltip;
     private Legend legend;
     private Credits credits;
-    private PlotOptionsHolder plotOptions;
+    private AbstractPlotOptions plotOptions;
     private HTMLLabels labels;
 
     private List<Series> series = new ArrayList<Series>();
@@ -33,6 +33,7 @@ public class Configuration extends AbstractConfigurationObject {
     private PaneList pane;
 
     private transient DataSeriesEventListener dataSeriesEventListener;
+    private AbstractPlotOptions additionalPlotOptions;
 
     /**
      * Options regarding the chart area and plot area as well as general chart
@@ -382,10 +383,6 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * The PlotOptionsHolder is a wrapper object for configuration objects for
-     * each series type. The configuration objects for each series can also be
-     * overridden for each series item as given in the series array.
-     * 
      * Configuration options for the series are given in three levels. Options
      * for all series in a chart are given in the PlotOptionsSeries object. Then
      * options for all series of a specific type are given in the PlotOptions of
@@ -394,10 +391,7 @@ public class Configuration extends AbstractConfigurationObject {
      * 
      * @return
      */
-    public PlotOptionsHolder getPlotOptions() {
-        if (plotOptions == null) {
-            plotOptions = new PlotOptionsHolder();
-        }
+    public AbstractPlotOptions getPlotOptions() {
         return plotOptions;
     }
 
@@ -405,8 +399,13 @@ public class Configuration extends AbstractConfigurationObject {
      * @see #getPlotOptions()
      * @param plotOptions
      */
-    public void setPlotOptions(PlotOptionsHolder plotOptions) {
+    public void setPlotOptions(AbstractPlotOptions plotOptions) {
         this.plotOptions = plotOptions;
+    }
+
+    // TODO
+    public void setAdditionalPlotOptions(AbstractPlotOptions plotOptions) {
+        additionalPlotOptions = plotOptions;
     }
 
     /**

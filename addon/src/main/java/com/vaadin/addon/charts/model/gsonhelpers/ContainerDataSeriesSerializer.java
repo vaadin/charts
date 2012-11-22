@@ -16,7 +16,7 @@ import com.vaadin.data.Item;
 import com.vaadin.data.Property;
 
 /**
- * Serializer for ContainerSeries TODO: optimization
+ * Serializer for ContainerSeries
  */
 public class ContainerDataSeriesSerializer implements
         JsonSerializer<ContainerDataSeries> {

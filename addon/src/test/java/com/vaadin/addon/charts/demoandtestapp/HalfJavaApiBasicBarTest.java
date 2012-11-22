@@ -84,9 +84,8 @@ public class HalfJavaApiBasicBarTest extends AbstractVaadinChartExample {
         // }
         // }
         // },
-        configuration.getPlotOptions().setBar(new PlotOptionsBar());
-        configuration.getPlotOptions().getBar().getDataLabels()
-                .setEnabled(true);
+        configuration.setPlotOptions(new PlotOptionsBar());
+        configuration.getPlotOptions().getDataLabels().setEnabled(true);
         // legend: {
         // layout: 'vertical',
         // align: 'right',

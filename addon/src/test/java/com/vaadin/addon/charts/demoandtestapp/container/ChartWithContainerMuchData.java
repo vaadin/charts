@@ -116,7 +116,7 @@ public class ChartWithContainerMuchData extends AbstractVaadinChartExample {
         plotOptions.setStates(areaStates);
         plotOptions.setMarker(marker);
         plotOptions.setShadow(false);
-        configuration.getPlotOptions().setArea(plotOptions);
+        configuration.setPlotOptions(plotOptions);
 
         configuration.setSeries(container);
 

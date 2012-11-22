@@ -39,7 +39,7 @@ public class PieWithLegend extends AbstractVaadinChartExample {
         plotOptions.setShowInLegend(true);
         Labels dataLabels = new Labels();
         dataLabels.setEnabled(true);
-        conf.getPlotOptions().setPie(plotOptions);
+        conf.setPlotOptions(plotOptions);
 
         DataSeries series = new DataSeries();
         series.setType(ChartType.PIE);

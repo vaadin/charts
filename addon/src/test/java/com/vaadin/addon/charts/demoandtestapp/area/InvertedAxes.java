@@ -56,7 +56,7 @@ public class InvertedAxes extends AbstractVaadinChartExample {
 
         PlotOptionsArea plotOptions = new PlotOptionsArea();
         plotOptions.setFillOpacity(0.5);
-        conf.getPlotOptions().setArea(plotOptions);
+        conf.setPlotOptions(plotOptions);
 
         conf.addSeries(new ListSeries("John", 3, 4, 3, 5, 4, 10, 12));
         conf.addSeries(new ListSeries("Jane", 1, 3, 4, 3, 3, 5, 4));

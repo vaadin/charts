@@ -46,7 +46,7 @@ public class ColumnRange extends AbstractVaadinChartExample {
         columnRange.setDataLabels(new Labels(true));
         columnRange.getDataLabels().setFormatter(
                 "function() {return this.y + '°C';}");
-        conf.getPlotOptions().setColumnRange(columnRange);
+        conf.setPlotOptions(columnRange);
 
         conf.getLegend().setEnabled(false);
 
