@@ -24,7 +24,7 @@ public class Configuration extends AbstractConfigurationObject {
     private Tooltip tooltip;
     private Legend legend;
     private Credits credits;
-    private AbstractPlotOptions plotOptions;
+    private AbstractPlotOptionsList plotOptions;
     private HTMLLabels labels;
 
     private List<Series> series = new ArrayList<Series>();
@@ -33,7 +33,6 @@ public class Configuration extends AbstractConfigurationObject {
     private PaneList pane;
 
     private transient DataSeriesEventListener dataSeriesEventListener;
-    private AbstractPlotOptions additionalPlotOptions;
 
     /**
      * Options regarding the chart area and plot area as well as general chart
@@ -392,7 +391,13 @@ public class Configuration extends AbstractConfigurationObject {
      * @return
      */
     public AbstractPlotOptions getPlotOptions() {
-        return plotOptions;
+        if (plotOptions == null) {
+            plotOptions = new AbstractPlotOptionsList();
+        }
+        if (plotOptions.getNumberOfPlotOptions() == 0) {
+            return null;
+        }
+        return plotOptions.getPlotOptions(0);
     }
 
     /**
@@ -400,12 +405,35 @@ public class Configuration extends AbstractConfigurationObject {
      * @param plotOptions
      */
     public void setPlotOptions(AbstractPlotOptions plotOptions) {
-        this.plotOptions = plotOptions;
+        if (this.plotOptions == null) {
+            this.plotOptions = new AbstractPlotOptionsList();
+        } else {
+            this.plotOptions.clear();
+        }
+        this.plotOptions.addPlotOptions(plotOptions);
     }
 
-    // TODO
-    public void setAdditionalPlotOptions(AbstractPlotOptions plotOptions) {
-        additionalPlotOptions = plotOptions;
+    /**
+     * Adds plot options
+     * 
+     * @see #setPlotOptions(AbstractPlotOptions)
+     * 
+     * @param plotOptions
+     */
+    public void addPlotOptions(AbstractPlotOptions plotOptions) {
+        if (this.plotOptions == null) {
+            this.plotOptions = new AbstractPlotOptionsList();
+        }
+        this.plotOptions.addPlotOptions(plotOptions);
+    }
+
+    /**
+     * Returns plot options from given index
+     * 
+     * @return
+     */
+    public AbstractPlotOptions getPlotOptions(int index) {
+        return plotOptions.getPlotOptions(index);
     }
 
     /**

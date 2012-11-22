@@ -43,7 +43,7 @@ public abstract class AbstractConfigurationObject implements Serializable {
                 new PaneListSerializer());
         builder.registerTypeAdapter(ContainerDataSeries.class,
                 new ContainerDataSeriesSerializer());
-        builder.registerTypeHierarchyAdapter(AbstractPlotOptions.class,
+        builder.registerTypeHierarchyAdapter(AbstractPlotOptionsList.class,
                 new PlotOptionsSerializer());
         return builder;
     }
