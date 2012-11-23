@@ -48,9 +48,8 @@ public class StackedColumn extends AbstractVaadinChartExample {
         StackLabels sLabels = new StackLabels(true);
         Style slStyle = new Style();
         slStyle.setFontWeight(FontWeight.BOLD);
-        // TODO: js code to color
-        // (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
         slStyle.setColor(new SolidColor("gray"));
+        sLabels.setStyle(slStyle);
         yAxis.setStackLabels(sLabels);
         conf.addyAxis(yAxis);
 
@@ -77,7 +76,8 @@ public class StackedColumn extends AbstractVaadinChartExample {
         plotOptions.setStacking(Stacking.NORMAL);
         Labels labels = new Labels();
         labels.setEnabled(true);
-        // TODO: code based color
+        labels.setColor(new SolidColor("white"));
+        plotOptions.setDataLabels(labels);
         conf.setPlotOptions(plotOptions);
 
         conf.addSeries(new ListSeries("John", new Number[] { 5, 3, 4, 7, 2 }));
@@ -85,7 +85,7 @@ public class StackedColumn extends AbstractVaadinChartExample {
         conf.addSeries(new ListSeries("Joe", new Number[] { 3, 4, 4, 2, 5 }));
 
         chart.drawChart(conf);
-
+        System.out.println(conf.toString());
         return chart;
     }
 }
