@@ -27,10 +27,10 @@ public class ColumnWithDrilldown extends AbstractVaadinChartExample {
 
     @Override
     protected Component getChart() {
-        Chart chart = new Chart(ChartType.COLUMN);
+        final Chart chart = new Chart(ChartType.COLUMN);
 
         Color[] colors = new VaadinTheme().getColors();
-        Configuration conf = chart.getConfiguration();
+        final Configuration conf = chart.getConfiguration();
 
         conf.setTitle("Browser market share, April, 2011");
         conf.setSubTitle("Click the columns to view versions. Click again to view brands.");
@@ -53,7 +53,7 @@ public class ColumnWithDrilldown extends AbstractVaadinChartExample {
         conf.setPlotOptions(column);
 
         Tooltip tooltip = new Tooltip();
-        tooltip.setFormatter("function() { var point = this.point, s = this.x +':<b>'+ this.y +'% market share</b><br/>'; if (point.drilldown) { s += 'Click to view '+ point.category +' versions'; } else { s += 'Click to return to browser brands'; } return s; }");
+        tooltip.setFormatter("function() { var point = this.point, s = this.x +':<b>'+ this.y +'% market share</b><br/>'; if (!point.drilldown) { s += 'Click to view '+ point.category +' versions'; } else { s += 'Click to return to browser brands'; } return s; }");
         conf.setTooltip(tooltip);
 
         final DrilldownSeries series = new DrilldownSeries(conf, 55.11, 21.63,
@@ -106,6 +106,7 @@ public class ColumnWithDrilldown extends AbstractVaadinChartExample {
                 } else {
                     series.backToUp();
                 }
+                chart.drawChart(conf);
             }
         });
 
