@@ -100,8 +100,9 @@ public class DataSeries extends AbstractSeries {
 
     /**
      * Shortcut way to add list of (x,y) data pairs<br />
-     * e.g. [[0, 15], [10, -50], [20, -56.5]... could be inserted as follows<br />
-     * new Number[][] { { 0, 15 }, { 10, -50 }, { 20, -56.5 }
+     * &nbsp;&nbsp;&nbsp;e.g. [[0, 15], [10, -50], [20, -56.5]... <br />
+     * could be inserted as follows<br />
+     * &nbsp;&nbsp;&nbsp;new Number[][] { { 0, 15 }, { 10, -50 }, { 20, -56.5 }
      * 
      * @param entries
      */

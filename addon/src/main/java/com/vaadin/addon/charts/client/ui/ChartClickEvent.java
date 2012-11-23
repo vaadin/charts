@@ -2,6 +2,9 @@ package com.vaadin.addon.charts.client.ui;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
+/**
+ * Client side ChartClickEvent
+ */
 public class ChartClickEvent extends JavaScriptObject {
     protected ChartClickEvent() {
     }

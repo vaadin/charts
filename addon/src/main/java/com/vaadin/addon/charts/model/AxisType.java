@@ -1,7 +1,7 @@
 package com.vaadin.addon.charts.model;
 
 /**
- * The type of axis. Can be one of "linear", "logarithmic" or "datetime". In a
+ * The type of axis. Can be one of LINEAR, LOGARITHMIC or DATETIME. In a
  * datetime axis, the numbers are given in milliseconds, and tick marks are
  * placed on appropriate values like full hours or days. Defaults to LINEAR.
  */

@@ -2,6 +2,9 @@ package com.vaadin.addon.charts.client.ui;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
+/**
+ * Client side ChartSelectionEvent
+ */
 public class ChartSelectionEvent extends JavaScriptObject {
     protected ChartSelectionEvent() {
     }
@@ -16,7 +19,7 @@ public class ChartSelectionEvent extends JavaScriptObject {
         return this.xAxis[0].max;
     }-*/;
 
-    public native final void preventDefault() 
+    public native final void preventDefault()
     /*-{
         this.preventDefault();
     }-*/;

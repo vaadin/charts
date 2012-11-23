@@ -3,11 +3,18 @@ package com.vaadin.addon.charts.model;
 /**
  * For a datetime axis, the scale will automatically adjust to the appropriate
  * unit. This member gives the default string representations used for each
- * unit. For an overview of the replacement codes, see dateFormat. Defaults to:
+ * unit. For an overview of the replacement codes, see dateFormat. Defaults to:<br />
+ * <br />
  * 
- * { second: '%H:%M:%S', minute: '%H:%M', hour: '%H:%M', day: '%e. %b', week:
- * '%e. %b', month: '%b \'%y', year: '%Y' }
+ * &nbsp;&nbsp;&nbsp;{ second: '%H:%M:%S',<br />
+ * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;minute: '%H:%M',<br />
+ * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hour: '%H:%M',<br />
+ * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;day: '%e. %b',<br />
+ * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;week: '%e. %b',<br />
+ * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;month: '%b \'%y',<br />
+ * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;year: '%Y' }
  */
+@SuppressWarnings("serial")
 public class DateTimeLabelFormats extends AbstractConfigurationObject {
 
     private String second;

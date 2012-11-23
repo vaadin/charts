@@ -24,6 +24,9 @@ public class Chart extends AbstractComponent {
 
     private boolean stateDirty = false;
 
+    /**
+     * Default constructor, constructs 100% width and 400px height chart
+     */
     public Chart() {
         setWidth(100, Unit.PERCENTAGE);
         setHeight(400, Unit.PIXELS);
@@ -55,6 +58,12 @@ public class Chart extends AbstractComponent {
         });
     }
 
+    /**
+     * Constructs chart with given ChartType
+     * 
+     * @see #Chart()
+     * @param type
+     */
     public Chart(ChartType type) {
         this();
         configuration.setChart(new ChartModel(type));
@@ -108,6 +117,10 @@ public class Chart extends AbstractComponent {
         stateDirty = true;
     }
 
+    /**
+     * @see #drawChart(String)
+     * @return
+     */
     public String getJsonConfig() {
         return jsonConfig;
     }
@@ -167,38 +180,66 @@ public class Chart extends AbstractComponent {
             ChartSelectionListener.class, "onSelection",
             ChartSelectionEvent.class);
 
+    /**
+     * Add chart click listener for listening clicks on the chart area
+     * 
+     * @param listener
+     */
     public void addChartClickListener(ChartClickListener listener) {
         this.addListener(VHighchart.CHART_CLICK_EVENT_ID,
                 ChartClickEvent.class, listener, chartClickMethod);
     }
 
+    /**
+     * @see #addChartClickListener(ChartClickListener)
+     * @param listener
+     */
     public void removeChartClickListener(ChartClickListener listener) {
         this.removeListener(VHighchart.CHART_CLICK_EVENT_ID,
                 ChartClickEvent.class, listener);
     }
 
+    /**
+     * Add a click listener for listening clicks on the chart points
+     * 
+     * @param listener
+     */
     public void addPointClickListener(PointClickListener listener) {
         this.addListener(VHighchart.POINT_CLICK_EVENT_ID,
                 PointClickEvent.class, listener, pointClickMethod);
     }
 
+    /**
+     * @see #addPointClickListener(PointClickListener)
+     * @param listener
+     */
     public void removePointClickListener(ChartClickListener listener) {
         this.removeListener(VHighchart.POINT_CLICK_EVENT_ID,
                 PointClickEvent.class, listener);
     }
 
+    /**
+     * Add a click listener for listening clicks on the column chart's columns
+     * 
+     * @param listener
+     */
     public void addColumnClickListener(PointClickListener listener) {
         this.addListener(VHighchart.COLUMN_CLICK_EVENT_ID,
                 PointClickEvent.class, listener, pointClickMethod);
     }
 
+    /**
+     * @see #addColumnClickListener(PointClickListener)
+     * @param listener
+     */
     public void removeColumnClickListener(ChartClickListener listener) {
         this.removeListener(VHighchart.COLUMN_CLICK_EVENT_ID,
                 PointClickEvent.class, listener);
     }
 
     /**
-     * FIXME missing javadoc
+     * Add a chart drag-selection listener<br />
+     * <br />
      * 
      * Note, if a chart selection listener is set, default action for selection
      * is prevented. Most commonly this means that client side zoom don't work
@@ -211,6 +252,10 @@ public class Chart extends AbstractComponent {
                 ChartSelectionEvent.class, listener, chartSelectionMethod);
     }
 
+    /**
+     * @see #addChartSelectionListener(ChartSelectionListener)
+     * @param listener
+     */
     public void removeChartSelectionListener(ChartSelectionListener listener) {
         this.removeListener(VHighchart.CHART_SELECTION_EVENT_ID,
                 ChartSelectionEvent.class, listener);
@@ -253,7 +298,7 @@ public class Chart extends AbstractComponent {
      * Listens to events on the data series attached to the chart and redraws as
      * necessary.
      */
-    private DataSeriesEventListener dataSeriesEventListener = new DataSeriesEventListener() {
+    private final DataSeriesEventListener dataSeriesEventListener = new DataSeriesEventListener() {
         // TODO: add support for DataSeriesItems with name,y pairs
 
         @Override

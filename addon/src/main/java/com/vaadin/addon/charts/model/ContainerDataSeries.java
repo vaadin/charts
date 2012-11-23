@@ -23,6 +23,11 @@ public class ContainerDataSeries extends DataSeries {
 
     private transient final Map<String, Object> attributeToPropertyIdMap;
 
+    /**
+     * Construct ContainerDataSeries wrapping the given Container
+     * 
+     * @param container
+     */
     public ContainerDataSeries(Container container) {
         vaadinContainer = container;
         attributeToPropertyIdMap = new HashMap<String, Object>();
