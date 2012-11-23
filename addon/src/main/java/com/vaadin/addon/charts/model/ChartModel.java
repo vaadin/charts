@@ -14,7 +14,7 @@ public class ChartModel extends AbstractConfigurationObject {
     private Number spacingRight;
     private Boolean inverted;
     private Color plotBackgroundColor;
-    private String plotBorderColor;
+    private Color plotBorderColor;
     private Number plotBorderWidth;
     private Boolean plotShadow;
     private ZoomType zoomType;
@@ -49,9 +49,7 @@ public class ChartModel extends AbstractConfigurationObject {
     }
 
     /**
-     * The default series type for the chart. Can be one of line, spline, area,
-     * areaspline, column, bar, pie and scatter. Defaults to "line".
-     * 
+     * @see #setType(ChartType)
      * @return Type of chart or null if not defined
      */
     public ChartType getType() {
@@ -59,7 +57,9 @@ public class ChartModel extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getType()
+     * The default series type for the chart. Can be one of line, spline, area,
+     * areaspline, column, bar, pie and scatter. Defaults to "line".
+     * 
      * @param type
      */
     public void setType(ChartType type) {
@@ -67,9 +67,7 @@ public class ChartModel extends AbstractConfigurationObject {
     }
 
     /**
-     * The space between the top edge of the chart and the content (plot area,
-     * axis title and labels, title, subtitle or legend in top position).
-     * 
+     * @see #setSpacingTop(Number)
      * @return Spacing top or null if not defined
      */
     public Number getSpacingTop() {
@@ -77,7 +75,9 @@ public class ChartModel extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getSpacingTop()
+     * The space between the top edge of the chart and the content (plot area,
+     * axis title and labels, title, subtitle or legend in top position).
+     * 
      * @param spacingTop
      */
     public void setSpacingTop(Number spacingTop) {
@@ -85,9 +85,7 @@ public class ChartModel extends AbstractConfigurationObject {
     }
 
     /**
-     * The space between the left edge of the chart and the content (plot area,
-     * axis title and labels, title, subtitle or legend in top position).
-     * 
+     * @see #setSpacingLeft(Number)
      * @return Spacing left or null if not defined
      */
     public Number getSpacingLeft() {
@@ -95,7 +93,9 @@ public class ChartModel extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getSpacingLeft()
+     * The space between the left edge of the chart and the content (plot area,
+     * axis title and labels, title, subtitle or legend in top position).
+     * 
      * @param spacingLeft
      */
     public void setSpacingLeft(Number spacingLeft) {
@@ -103,9 +103,7 @@ public class ChartModel extends AbstractConfigurationObject {
     }
 
     /**
-     * The space between the bottom edge of the chart and the content (plot
-     * area, axis title and labels, title, subtitle or legend in top position).
-     * 
+     * @see #setSpacingBottom(Number)
      * @return Spacing bottom or null if not defined
      */
     public Number getSpacingBottom() {
@@ -113,7 +111,9 @@ public class ChartModel extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getSpacingBottom()
+     * The space between the bottom edge of the chart and the content (plot
+     * area, axis title and labels, title, subtitle or legend in top position).
+     * 
      * @param spacingBottom
      */
     public void setSpacingBottom(Number spacingBottom) {
@@ -121,9 +121,7 @@ public class ChartModel extends AbstractConfigurationObject {
     }
 
     /**
-     * The space between the right edge of the chart and the content (plot area,
-     * axis title and labels, title, subtitle or legend in top position).
-     * 
+     * @see #setSpacingRight(Number)
      * @return Spacing right or null if not defined
      */
     public Number getSpacingRight() {
@@ -131,11 +129,21 @@ public class ChartModel extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getSpacingRight()
+     * The space between the right edge of the chart and the content (plot area,
+     * axis title and labels, title, subtitle or legend in top position).
+     * 
      * @param spacingRight
      */
     public void setSpacingRight(Number spacingRight) {
         this.spacingRight = spacingRight;
+    }
+
+    /**
+     * @see #setInverted(Boolean)
+     * @return Inverted state or null if not defined
+     */
+    public boolean isInverted() {
+        return inverted == null ? false : inverted;
     }
 
     /**
@@ -144,14 +152,6 @@ public class ChartModel extends AbstractConfigurationObject {
      * is present in the chart, it will be inverted automatically. Defaults to
      * false.
      * 
-     * @return Inverted state or null if not defined
-     */
-    public boolean isInverted() {
-    	return inverted == null ? false : inverted;
-    }
-
-    /**
-     * @see #isInverted()
      * @param inverted
      */
     public void setInverted(Boolean inverted) {
@@ -177,7 +177,7 @@ public class ChartModel extends AbstractConfigurationObject {
     }
 
     /**
-     * The background color or gradient for the plot area. Defaults to null.
+     * @see #setPlotBackgroundColor(Color)
      * 
      * @return Background color or null if not defined
      */
@@ -186,7 +186,8 @@ public class ChartModel extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getPlotBackgroundColor()
+     * The background color or gradient for the plot area. Defaults to null.
+     * 
      * @param plotBackgroundColor
      */
     public void setPlotBackgroundColor(Color plotBackgroundColor) {
@@ -194,25 +195,24 @@ public class ChartModel extends AbstractConfigurationObject {
     }
 
     /**
-     * The color of the inner chart or plot area border. Defaults to "#C0C0C0".
-     * 
+     * @see #setPlotBorderColor(Color)
      * @return Border color or null if not defined
      */
-    public String getPlotBorderColor() {
+    public Color getPlotBorderColor() {
         return plotBorderColor;
     }
 
     /**
-     * @see #getPlotBorderColor()
+     * The color of the inner chart or plot area border. Defaults to "#C0C0C0".
+     * 
      * @param plotBorderColor
      */
-    public void setPlotBorderColor(String plotBorderColor) {
+    public void setPlotBorderColor(Color plotBorderColor) {
         this.plotBorderColor = plotBorderColor;
     }
 
     /**
-     * The pixel width of the plot area border. Defaults to 0.
-     * 
+     * @see #setPlotBorderWidth(Number)
      * @return Border width or null if not defined
      */
     public Number getPlotBorderWidth() {
@@ -220,7 +220,8 @@ public class ChartModel extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getPlotBorderWidth()
+     * The pixel width of the plot area border. Defaults to 0.
+     * 
      * @param plotBorderWidth
      */
     public void setPlotBorderWidth(Number plotBorderWidth) {
@@ -232,7 +233,7 @@ public class ChartModel extends AbstractConfigurationObject {
      * @return
      */
     public boolean isPlotShadow() {
-    	return plotShadow == null ? false : plotShadow;
+        return plotShadow == null ? false : plotShadow;
     }
 
     /**
@@ -316,7 +317,7 @@ public class ChartModel extends AbstractConfigurationObject {
      * @return
      */
     public boolean isReflow() {
-    	return reflow == null ? true : reflow;
+        return reflow == null ? true : reflow;
     }
 
     /**
@@ -469,6 +470,7 @@ public class ChartModel extends AbstractConfigurationObject {
     }
 
     /**
+     * @see #setAnimation(Boolean)
      * @return true is animation are enabled for this chart
      */
     public boolean isAnimation() {
@@ -512,7 +514,7 @@ public class ChartModel extends AbstractConfigurationObject {
      * @return
      */
     public boolean isAlignTicks() {
-    	return alignTicks == null ? true : alignTicks;
+        return alignTicks == null ? true : alignTicks;
     }
 
     /**
@@ -531,6 +533,6 @@ public class ChartModel extends AbstractConfigurationObject {
      * @return
      */
     public boolean isPolar() {
-    	return polar == null ? false : polar;
+        return polar == null ? false : polar;
     }
 }

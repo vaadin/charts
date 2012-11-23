@@ -2,6 +2,9 @@ package com.vaadin.addon.charts.model.style;
 
 import com.vaadin.addon.charts.model.AbstractConfigurationObject;
 
+/**
+ * Styles for PlotOptions of different plot types
+ */
 public class PlotOptionsStyle extends AbstractConfigurationObject {
     private PlotOptionStyle bar = new PlotOptionStyle();
     private PlotOptionStyle area = new PlotOptionStyle();

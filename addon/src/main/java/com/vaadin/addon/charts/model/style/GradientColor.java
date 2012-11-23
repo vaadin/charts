@@ -43,17 +43,28 @@ public class GradientColor implements Color {
     private GradientColor() {
 
     }
-    
+
+    /**
+     * Return the linearGradient
+     * 
+     * @return
+     */
     public LinearGradient getLinearGradient() {
         return linearGradient;
     }
-    
+
+    /**
+     * Return the radialGradient
+     * 
+     * @return
+     */
     public RadialGradient getRadialGradient() {
         return radialGradient;
     }
-    
+
     /**
-     * Currently for internal use only, make stops typed if opening api is required.
+     * Currently for internal use only, make stops typed if opening api is
+     * required.
      */
     List<List<Object>> getStops() {
         return stops;

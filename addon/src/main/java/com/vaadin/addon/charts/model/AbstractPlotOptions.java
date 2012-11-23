@@ -34,9 +34,7 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     private PointPlacement pointPlacement;
 
     /**
-     * Labels for plot point items (points/bars/columns etc.)
-     * 
-     * @return
+     * @see #setDataLabels()
      */
     public Labels getDataLabels() {
         if (dataLabels == null) {
@@ -46,7 +44,8 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getDataLabels()
+     * Labels for plot point items (points/bars/columns etc.)
+     * 
      * @param dataLabels
      */
     public void setDataLabels(Labels dataLabels) {
@@ -54,10 +53,7 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     }
 
     /**
-     * Whether to select the series initially. If showCheckbox is true, the
-     * checkbox next to the series name will be checked for a selected series.
-     * Defaults to false.
-     * 
+     * @see #setSelected(Boolean)
      * @return Selection state or null if not defined
      */
     public boolean isSelected() {
@@ -65,7 +61,10 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #isSelected()
+     * Whether to select the series initially. If showCheckbox is true, the
+     * checkbox next to the series name will be checked for a selected series.
+     * Defaults to false.
+     * 
      * @param selected
      */
     public void setSelected(Boolean selected) {
@@ -73,8 +72,7 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     }
 
     /**
-     * Define the z index of the series. Defaults to null.
-     * 
+     * @see #setzIndex(Number)
      * @return Z index or null if not defined
      */
     public Number getzIndex() {
@@ -82,7 +80,8 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getzIndex()
+     * Define the z index of the series. Defaults to null.
+     * 
      * @param zIndex
      */
     public void setzIndex(Number zIndex) {
@@ -90,8 +89,7 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     }
 
     /**
-     * Set the initial visibility of the series. Defaults to true.
-     * 
+     * @see #setVisible(Boolean)
      * @return Visibility or null if not defined
      */
     public boolean isVisible() {
@@ -99,7 +97,8 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #isVisible()
+     * Set the initial visibility of the series. Defaults to true.
+     * 
      * @param visible
      */
     public void setVisible(Boolean visible) {
@@ -107,10 +106,7 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     }
 
     /**
-     * Whether to stack the values of each series on top of each other. Possible
-     * values are null to disable, "normal" to stack by value or "percent".
-     * Defaults to null.
-     * 
+     * @see #setStacking(Stacking)
      * @return Stacking or null if not defined
      */
     public Stacking getStacking() {
@@ -118,7 +114,10 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getStacking()
+     * Whether to stack the values of each series on top of each other. Possible
+     * values are null to disable, "normal" to stack by value or "percent".
+     * Defaults to null.
+     * 
      * @param stacking
      */
     public void setStacking(Stacking stacking) {
@@ -126,16 +125,16 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     }
 
     /**
-     * A separate color for the graph line. By default the line takes the color
-     * of the series, but the lineColor setting allows setting a separate color
-     * for the line without altering the fillColor. Defaults to null
+     * @see #setLineColor(Color)
      */
     public Color getLineColor() {
         return lineColor;
     }
 
     /**
-     * Set line color
+     * A separate color for the graph line. By default the line takes the color
+     * of the series, but the lineColor setting allows setting a separate color
+     * for the line without altering the fillColor. Defaults to null
      * 
      * @param lineColor
      */
@@ -144,8 +143,7 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     }
 
     /**
-     * Pixel with of the graph line. Defaults to 2.
-     * 
+     * @see #setLineWidth(Number)
      * @return Line width or null if undefined
      */
     public Number getLineWidth() {
@@ -153,7 +151,8 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getLineWidth()
+     * Pixel with of the graph line. Defaults to 2.
+     * 
      * @param lineWidth
      */
     public void setLineWidth(Number lineWidth) {
@@ -161,9 +160,7 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     }
 
     /**
-     * Fill color or gradient for the area. When null, the series' color is used
-     * with the series' fillOpacity. Defaults to null.
-     * 
+     * @see #setFillColor(Color)
      * @return
      */
     public Color getFillColor() {
@@ -171,7 +168,9 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getFillColor()
+     * Fill color or gradient for the area. When null, the series' color is used
+     * with the series' fillOpacity. Defaults to null.
+     * 
      * @param fillColor
      */
     public void setFillColor(Color fillColor) {
@@ -179,8 +178,7 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     }
 
     /**
-     * Fill opacity for the area. Defaults to .75.
-     * 
+     * @see #setFillOpacity(Number)
      * @return Fill opacity or null if not defined
      */
     public Number getFillOpacity() {
@@ -188,7 +186,8 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getFillOpacity()
+     * Fill opacity for the area. Defaults to .75.
+     * 
      * @param fillOpacity
      */
     public void setFillOpacity(Number fillOpacity) {
@@ -226,7 +225,7 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
      * @return
      */
     public boolean isEnableMouseTracking() {
-    	return enableMouseTracking == null ? true : enableMouseTracking;
+        return enableMouseTracking == null ? true : enableMouseTracking;
     }
 
     /**
@@ -256,6 +255,7 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     }
 
     /**
+     * @see #setAnimation(Boolean)
      * @return true is animation are enabled
      */
     public boolean isAnimation() {
@@ -308,10 +308,10 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
      * any padding of the X axis. In a polar column chart this means that the
      * first column points directly north. If the pointPlacement is "between",
      * the columns will be laid out between ticks. This is useful for example
-     * for visualising an amount between two points in time or in a certain
+     * for visualizing an amount between two points in time or in a certain
      * sector of a polar chart.
      * 
-     * Defaults to null in cartesian charts, "between" in polar charts.
+     * Defaults to null in Cartesian charts, "between" in polar charts.
      * 
      * @param pointPlacement
      */
@@ -328,17 +328,17 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     }
 
     /**
-     * Allow this series' points to be selected by clicking on the markers, bars
-     * or pie slices. Defaults to false.
-     * 
+     * @see #setAllowPointSelect(Boolean)
      * @return
      */
     public boolean isAllowPointSelect() {
-    	return allowPointSelect == null ? false : allowPointSelect;
+        return allowPointSelect == null ? false : allowPointSelect;
     }
 
     /**
-     * @see #isAllowPointSelect()
+     * Allow this series' points to be selected by clicking on the markers, bars
+     * or pie slices. Defaults to false.
+     * 
      * @param allowPointSelect
      */
     public void setAllowPointSelect(Boolean allowPointSelect) {
@@ -346,17 +346,17 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     }
 
     /**
-     * Whether to display this particular series or series type in the legend.
-     * Defaults to false.
-     * 
+     * @see #setShowInLegend(Boolean)
      * @return
      */
     public Boolean isShowInLegend() {
-    	return showInLegend == null ? false : showInLegend;
+        return showInLegend == null ? false : showInLegend;
     }
 
     /**
-     * @see #isShowInLegend()
+     * Whether to display this particular series or series type in the legend.
+     * Defaults to false.
+     * 
      * @param showInLegend
      */
     public void setShowInLegend(Boolean showInLegend) {

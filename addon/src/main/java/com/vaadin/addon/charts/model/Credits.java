@@ -43,16 +43,16 @@ public class Credits {
     }
 
     /**
-     * Whether to show the credits text. Defaults to true.
-     * 
+     * @see #setEnabled(Boolean)
      * @return enabled
      */
     public boolean isEnabled() {
-    	return enabled == null ? true : enabled;
+        return enabled == null ? true : enabled;
     }
 
     /**
-     * @see #isEnabled()
+     * Whether to show the credits text. Defaults to true.
+     * 
      * @param enabled
      */
     public void setEnabled(Boolean enabled) {
@@ -60,8 +60,7 @@ public class Credits {
     }
 
     /**
-     * The text for the credits label. Defaults to "Highcharts.com".
-     * 
+     * @see #setText(String)
      * @return Text or null if not defined
      */
     public String getText() {
@@ -69,7 +68,8 @@ public class Credits {
     }
 
     /**
-     * @see #getText()
+     * The text for the credits label. Defaults to "Vaadin Charts".
+     * 
      * @param text
      */
     public void setText(String text) {
@@ -77,9 +77,7 @@ public class Credits {
     }
 
     /**
-     * Position configuration for the credits label. Supported properties are
-     * align, verticalAlign, x and y.
-     * 
+     * @see #setPosition(StylePosition)
      * @return Position or null if not defined
      */
     public StylePosition getPosition() {
@@ -87,7 +85,9 @@ public class Credits {
     }
 
     /**
-     * @see #getPosition()
+     * Position configuration for the credits label. Supported properties are
+     * align, verticalAlign, x and y.
+     * 
      * @param position
      */
     public void setPosition(StylePosition position) {
@@ -95,8 +95,7 @@ public class Credits {
     }
 
     /**
-     * Gets the link where credits text point to
-     * 
+     * @see #setHref(String)
      * @return
      */
     public String getHref() {

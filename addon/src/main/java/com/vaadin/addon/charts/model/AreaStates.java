@@ -2,7 +2,6 @@ package com.vaadin.addon.charts.model;
 
 /**
  * A wrapper object for all the series options in specific states.
- * 
  */
 public class AreaStates extends AbstractConfigurationObject {
     private HoverState hover;

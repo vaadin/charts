@@ -56,13 +56,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     private Boolean endOnTick;
 
     /**
-     * If categories are present for the Axis, names are used instead of numbers
-     * for that axis. Example:
-     * 
-     * categories: {"Apples", "Bananas", "Oranges"}
-     * 
-     * Defaults to {}.
-     * 
+     * @see #setCategories(String...)
      * @return
      */
     public String[] getCategories() {
@@ -70,7 +64,13 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getCategories()
+     * If categories are present for the Axis, names are used instead of numbers
+     * for that axis. Example:
+     * 
+     * categories: {"Apples", "Bananas", "Oranges"}
+     * 
+     * Defaults to {}.
+     * 
      * @param categories
      */
     public void setCategories(String... categories) {
@@ -78,8 +78,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * The axis title, showing next to the axis line.
-     * 
+     * @see #setTitle(String)
      * @return Axis title or null if not defined
      */
     public Title getTitle() {
@@ -87,7 +86,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * Set new title with given text
+     * The axis title, showing next to the axis line.
      * 
      * @param text
      *            Text of title
@@ -97,7 +96,8 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getTitle()
+     * The axis title, showing next to the axis line.
+     * 
      * @param title
      */
     public void setTitle(Title title) {
@@ -105,10 +105,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * The minimum value of the axis. If null the min value is automatically
-     * calculated. If the startOnTick option is true, the min value might be
-     * rounded down. Defaults to null.
-     * 
+     * @see #setMin(Number)
      * @return Minimum value of axis or null
      */
     public Number getMin() {
@@ -116,11 +113,22 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getMin()
+     * The minimum value of the axis. If null the min value is automatically
+     * calculated. If the startOnTick option is true, the min value might be
+     * rounded down. Defaults to null.
+     * 
      * @param min
      */
     public void setMin(Number min) {
         this.min = min;
+    }
+
+    /**
+     * @see #setMax(Number)
+     * @return Maximum value of axis or null
+     */
+    public Number getMax() {
+        return max;
     }
 
     /**
@@ -129,14 +137,6 @@ public abstract class Axis extends AbstractConfigurationObject {
      * rounded up. The actual maximum value is also influenced by
      * chart.alignTicks. Defaults to null.
      * 
-     * @return Maximum value of axis or null
-     */
-    public Number getMax() {
-        return max;
-    }
-
-    /**
-     * @see #getMax()
      * @param max
      */
     public void setMax(Number max) {
@@ -156,7 +156,8 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getLabels()
+     * The axis labels show the number or category for each tick.
+     * 
      * @param labels
      */
     public void setLabels(Labels labels) {
@@ -164,10 +165,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * For categorized axes only. If "on" the tick mark is placed in the center
-     * of the category, if "between" the tick mark is placed between categories.
-     * Defaults to "between".
-     * 
+     * @see #setTickmarkPlacement(TickmarkPlacement)
      * @return
      */
     public TickmarkPlacement getTickmarkPlacement() {
@@ -175,7 +173,10 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getTickmarkPlacement()
+     * For categorized axes only. If "on" the tick mark is placed in the center
+     * of the category, if "between" the tick mark is placed between categories.
+     * Defaults to "between".
+     * 
      * @param tickmarkPlacement
      */
     public void setTickmarkPlacement(TickmarkPlacement tickmarkPlacement) {
@@ -183,9 +184,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * A colored band stretching across the plot area marking an interval on the
-     * axis.
-     * 
+     * @see #setPlotBands(PlotBand...)
      * @return
      */
     public PlotBand[] getPlotBands() {
@@ -193,7 +192,9 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getPlotBands()
+     * A colored band stretching across the plot area marking an interval on the
+     * axis.
+     * 
      * @param plotBands
      */
     public void setPlotBands(PlotBand... plotBands) {
@@ -230,7 +231,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #setStartOnTick(boolean)
+     * @see #setStartOnTick(Boolean)
      * @return
      */
     public boolean isStartOnTick() {
@@ -247,11 +248,11 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #setShowFirstLabel(boolean)
+     * @see #setShowFirstLabel(Boolean)
      * @return
      */
     public boolean isShowFirstLabel() {
-    	return showFirstLabel == null ? true : showFirstLabel;
+        return showFirstLabel == null ? true : showFirstLabel;
     }
 
     /**
@@ -302,18 +303,18 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
+     * @see #setAllowDecimals(Boolean)
+     * @return
+     */
+    public boolean isAllowDecimals() {
+        return allowDecimals == null ? true : allowDecimals;
+    }
+
+    /**
      * Whether to allow decimals in this axis' ticks. When counting integers,
      * like persons or hits on a web page, decimals must be avoided in the axis
      * tick labels. Defaults to true.
      * 
-     * @return
-     */
-    public boolean isAllowDecimals() {
-    	return allowDecimals == null ? true : allowDecimals;
-    }
-
-    /**
-     * @see #isAllowDecimals()
      * @param allowDecimals
      */
     public void setAllowDecimals(Boolean allowDecimals) {
@@ -336,7 +337,7 @@ public abstract class Axis extends AbstractConfigurationObject {
      * @return
      */
     public boolean isReversed() {
-    	return reversed == null ? false : reversed;
+        return reversed == null ? false : reversed;
     }
 
     /**
@@ -372,7 +373,7 @@ public abstract class Axis extends AbstractConfigurationObject {
      * @return
      */
     public boolean isShowLastLabel() {
-    	return showLastLabel == null ? false : showLastLabel;
+        return showLastLabel == null ? false : showLastLabel;
     }
 
     /**
@@ -447,7 +448,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * Color of the minor, secondary grid lines.
+     * @see #setMinorGridColor(String)
      * 
      * @return Color or minor grid line, or null if not defined
      */
@@ -456,7 +457,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * Set minor grid color
+     * Color of the minor, secondary grid lines.
      * 
      * @param minorGridColor
      *            Color
@@ -466,19 +467,19 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
+     * @see #setOpposite(Boolean)
+     * @return Opposite value or null if not defined
+     */
+    public boolean isOpposite() {
+        return opposite == null ? false : opposite;
+    }
+
+    /**
      * Whether to display the axis on the opposite side of the normal. The
      * normal is on the left side for vertical axes and bottom for horizontal,
      * so the opposite sides will be right and top respectively. This is
      * typically used with dual or multiple axes. Defaults to false.
      * 
-     * @return Opposite value or null if not defined
-     */
-    public boolean isOpposite() {
-    	return opposite == null ? false : opposite;
-    }
-
-    /**
-     * @see #isOpposite()
      * @param opposite
      */
     public void setOpposite(Boolean opposite) {
@@ -581,12 +582,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * Index of another axis that this axis is linked to. When an axis is linked
-     * to a master axis, it will take the same extremes as the master, but as
-     * assigned by min or max or by setExtremes. It can be used to show
-     * additional info, or to ease reading the chart by duplicating the scales.
-     * Defaults to null.
-     * 
+     * @see #setLinkedTo(Number)
      * @return Linked to value or null if not defined
      */
     public Number getLinkedTo() {
@@ -594,7 +590,12 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getLinkedTo()
+     * Index of another axis that this axis is linked to. When an axis is linked
+     * to a master axis, it will take the same extremes as the master, but as
+     * assigned by min or max or by setExtremes. It can be used to show
+     * additional info, or to ease reading the chart by duplicating the scales.
+     * Defaults to null.
+     * 
      * @param linkedTo
      */
     public void setLinkedTo(Number linkedTo) {
@@ -635,7 +636,7 @@ public abstract class Axis extends AbstractConfigurationObject {
      * @return
      */
     public boolean isShowLastTickLabel() {
-    	return showLastTickLabel == null ? false : showLastTickLabel;
+        return showLastTickLabel == null ? false : showLastTickLabel;
     }
 
     /**
@@ -854,7 +855,7 @@ public abstract class Axis extends AbstractConfigurationObject {
      * @return
      */
     public boolean isEndOnTick() {
-    	return endOnTick == null ? false : endOnTick;
+        return endOnTick == null ? false : endOnTick;
     }
 
     /**

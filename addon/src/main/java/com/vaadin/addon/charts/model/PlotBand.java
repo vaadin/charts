@@ -43,8 +43,7 @@ public class PlotBand extends AbstractConfigurationObject {
     }
 
     /**
-     * The start position of the plot band in axis units. Defaults to null.
-     * 
+     * @see #setFrom(Number)
      * @return From value
      */
     public Number getFrom() {
@@ -52,7 +51,8 @@ public class PlotBand extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getFrom()
+     * The start position of the plot band in axis units. Defaults to null.
+     * 
      * @param from
      */
     public void setFrom(Number from) {
@@ -60,8 +60,7 @@ public class PlotBand extends AbstractConfigurationObject {
     }
 
     /**
-     * The end position of the plot band in axis units. Defaults to null.
-     * 
+     * @see #setTo(Number)
      * @return To value
      */
     public Number getTo() {
@@ -69,7 +68,8 @@ public class PlotBand extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getTo()
+     * The end position of the plot band in axis units. Defaults to null.
+     * 
      * @param to
      */
     public void setTo(Number to) {
@@ -77,8 +77,7 @@ public class PlotBand extends AbstractConfigurationObject {
     }
 
     /**
-     * The color of the plot band. Defaults to null.
-     * 
+     * @see #setColor(Color)
      * @return Color value
      */
     public Color getColor() {
@@ -86,7 +85,8 @@ public class PlotBand extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getColor()
+     * The color of the plot band. Defaults to null.
+     * 
      * @param color
      */
     public void setColor(Color color) {
@@ -94,8 +94,7 @@ public class PlotBand extends AbstractConfigurationObject {
     }
 
     /**
-     * The z index of the plot band within the chart. Defaults to null.
-     * 
+     * @see #setzIndex(Number)
      * @return Z index value
      */
     public Number getzIndex() {
@@ -103,7 +102,8 @@ public class PlotBand extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getzIndex()
+     * The z index of the plot band within the chart. Defaults to null.
+     * 
      * @param zIndex
      */
     public void setzIndex(Number zIndex) {

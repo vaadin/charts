@@ -4,6 +4,7 @@ import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.HorizontalAlign;
 import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.Legend;
 import com.vaadin.addon.charts.model.ListSeries;
@@ -40,7 +41,7 @@ public class ColumnWithRotatedLabels extends AbstractVaadinChartExample {
                 "Shenzhen", "Istanbul" });
         Labels labels = new Labels();
         labels.setRotation(-45);
-        labels.setAlign("right");
+        labels.setAlign(HorizontalAlign.RIGHT);
         Style style = new Style();
         style.setFontSize("13px");
         style.setFontFamily("Verdana, sans-serif");
@@ -68,7 +69,7 @@ public class ColumnWithRotatedLabels extends AbstractVaadinChartExample {
         dataLabels.setEnabled(true);
         dataLabels.setRotation(-90);
         dataLabels.setColor(new SolidColor(255, 255, 255));
-        dataLabels.setAlign("right");
+        dataLabels.setAlign(HorizontalAlign.RIGHT);
         dataLabels.setX(-3);
         dataLabels.setY(10);
         dataLabels.setFormatter("function() { return this.y; }");

@@ -69,7 +69,7 @@ public class Pane extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #setEndAngle(Number)
+     * @see #setBackground(Background[])
      * @return
      */
     public Background[] getBackground() {
@@ -123,5 +123,4 @@ public class Pane extends AbstractConfigurationObject {
     public Object getSize() {
         return size;
     }
-
 }

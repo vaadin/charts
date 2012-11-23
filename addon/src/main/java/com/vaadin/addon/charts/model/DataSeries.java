@@ -309,10 +309,7 @@ public class DataSeries extends AbstractSeries {
     }
 
     /**
-     * When using dual or multiple x axes, this number defines which xAxis the
-     * particular series is connected to. It refers to the index of the axis in
-     * the xAxis array, with 0 being the first. Defaults to 0.
-     * 
+     * @see #setxAxis(Number)
      * @return X Axis number or null if not defined.
      */
     public Number getxAxis() {
@@ -320,7 +317,10 @@ public class DataSeries extends AbstractSeries {
     }
 
     /**
-     * @see #getxAxis()
+     * When using dual or multiple x axes, this number defines which xAxis the
+     * particular series is connected to. It refers to the index of the axis in
+     * the xAxis array, with 0 being the first. Defaults to 0.
+     * 
      * @param xAxis
      */
     public void setxAxis(Number xAxis) {
@@ -328,10 +328,7 @@ public class DataSeries extends AbstractSeries {
     }
 
     /**
-     * When using dual or multiple y axes, this number defines which yAxis the
-     * particular series is connected to. It refers to the index of the axis in
-     * the yAxis array, with 0 being the first. Defaults to 0.
-     * 
+     * @see #setyAxis(Number)
      * @return Y Axis number or null if not defined
      */
     public Number getyAxis() {
@@ -339,7 +336,10 @@ public class DataSeries extends AbstractSeries {
     }
 
     /**
-     * @see #getyAxis()
+     * When using dual or multiple y axes, this number defines which yAxis the
+     * particular series is connected to. It refers to the index of the axis in
+     * the yAxis array, with 0 being the first. Defaults to 0.
+     * 
      * @param yAxis
      */
     public void setyAxis(Number yAxis) {

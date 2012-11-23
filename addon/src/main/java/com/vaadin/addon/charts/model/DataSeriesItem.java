@@ -75,9 +75,7 @@ public class DataSeriesItem extends AbstractConfigurationObject {
     }
 
     /**
-     * The name of the point as shown in the legend, tooltip, dataLabel etc.
-     * Defaults to "".
-     * 
+     * @see #setName(String)
      * @return Name of point or null if not defined
      */
     public String getName() {
@@ -85,7 +83,9 @@ public class DataSeriesItem extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getName()
+     * The name of the point as shown in the legend, tooltip, dataLabel etc.
+     * Defaults to "".
+     * 
      * @param name
      */
     public void setName(String name) {
@@ -93,8 +93,7 @@ public class DataSeriesItem extends AbstractConfigurationObject {
     }
 
     /**
-     * The y value of the point. Defaults to null.
-     * 
+     * @see #setY(Number)
      * @return
      */
     public Number getY() {
@@ -102,7 +101,8 @@ public class DataSeriesItem extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getY()
+     * The y value of the point. Defaults to null.
+     * 
      * @param y
      */
     public void setY(Number y) {
@@ -110,8 +110,7 @@ public class DataSeriesItem extends AbstractConfigurationObject {
     }
 
     /**
-     * The x value of the point. Defaults to null.
-     * 
+     * @see #setX(Number)
      * @return
      */
     public Number getX() {
@@ -119,7 +118,8 @@ public class DataSeriesItem extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getX()
+     * The x value of the point. Defaults to null.
+     * 
      * @param x
      */
     public void setX(Number x) {
@@ -127,9 +127,7 @@ public class DataSeriesItem extends AbstractConfigurationObject {
     }
 
     /**
-     * Pie series only. Whether to display a slice offset from the center.
-     * Defaults to false.
-     * 
+     * @see #setSliced(Boolean)
      * @return Slided value or null if not defined
      */
     public boolean getSliced() {
@@ -137,7 +135,9 @@ public class DataSeriesItem extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getSliced()
+     * Pie series only. Whether to display a slice offset from the center.
+     * Defaults to false.
+     * 
      * @param sliced
      */
     public void setSliced(Boolean sliced) {
@@ -145,8 +145,7 @@ public class DataSeriesItem extends AbstractConfigurationObject {
     }
 
     /**
-     * Whether the item (point) is selected or not.
-     * 
+     * @see #setSelected(Boolean)
      * @return
      */
     public boolean isSelected() {
@@ -154,7 +153,8 @@ public class DataSeriesItem extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #isSelected()
+     * Whether the item (point) is selected or not.
+     * 
      * @param selected
      */
     public void setSelected(Boolean selected) {
@@ -162,8 +162,7 @@ public class DataSeriesItem extends AbstractConfigurationObject {
     }
 
     /**
-     * Individual color for the point. Defaults to null.
-     * 
+     * @see #setColor(Color)
      * @return
      */
     public Color getColor() {
@@ -171,7 +170,8 @@ public class DataSeriesItem extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getColor()
+     * Individual color for the point. Defaults to null.
+     * 
      * @param color
      */
     public void setColor(Color color) {
@@ -179,9 +179,7 @@ public class DataSeriesItem extends AbstractConfigurationObject {
     }
 
     /**
-     * Pies only. The sequential index of the pie slice in the legend. Defaults
-     * to undefined.
-     * 
+     * @see #setLegendIndex(Number)
      * @return Legend index or null if not defined
      */
     public Number getLegendIndex() {
@@ -189,7 +187,9 @@ public class DataSeriesItem extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getLegendIndex()
+     * Pies only. The sequential index of the pie slice in the legend. Defaults
+     * to undefined.
+     * 
      * @param legendIndex
      */
     public void setLegendIndex(Number legendIndex) {
@@ -218,9 +218,7 @@ public class DataSeriesItem extends AbstractConfigurationObject {
     }
 
     /**
-     * An id for the point. This can be used after render time to get a pointer
-     * to the point object. Defaults to null.
-     * 
+     * @see #setId(String)
      * @return
      */
     public String getId() {
@@ -228,7 +226,9 @@ public class DataSeriesItem extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getId()
+     * An id for the point. This can be used after render time to get a pointer
+     * to the point object. Defaults to null.
+     * 
      * @param id
      */
     public void setId(String id) {

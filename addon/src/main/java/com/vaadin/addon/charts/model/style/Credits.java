@@ -1,6 +1,5 @@
 package com.vaadin.addon.charts.model.style;
 
-
 /**
  * Highchart by default puts a credits label in the lower right corner of the
  * chart. This can be changed using these options.
@@ -42,16 +41,16 @@ public class Credits extends StyleWrapper {
     }
 
     /**
-     * Whether to show the credits text. Defaults to true.
-     * 
+     * @see #setEnabled(Boolean)
      * @return enabled
      */
     public boolean isEnabled() {
-    	return enabled == null ? true : enabled;
+        return enabled == null ? true : enabled;
     }
 
     /**
-     * @see #isEnabled()
+     * Whether to show the credits text. Defaults to true.
+     * 
      * @param enabled
      */
     public void setEnabled(Boolean enabled) {
@@ -59,8 +58,7 @@ public class Credits extends StyleWrapper {
     }
 
     /**
-     * The text for the credits label. Defaults to "Highcharts.com".
-     * 
+     * @see #setText(String)
      * @return Text or null if not defined
      */
     public String getText() {
@@ -68,7 +66,8 @@ public class Credits extends StyleWrapper {
     }
 
     /**
-     * @see #getText()
+     * The text for the credits label. Defaults to "Vaadin Charts".
+     * 
      * @param text
      */
     public void setText(String text) {
@@ -76,9 +75,7 @@ public class Credits extends StyleWrapper {
     }
 
     /**
-     * Position configuration for the credits label. Supported properties are
-     * align, verticalAlign, x and y.
-     * 
+     * @see #setPosition(StylePosition)
      * @return Position or null if not defined
      */
     public StylePosition getPosition() {
@@ -86,7 +83,9 @@ public class Credits extends StyleWrapper {
     }
 
     /**
-     * @see #getPosition()
+     * Position configuration for the credits label. Supported properties are
+     * align, verticalAlign, x and y.
+     * 
      * @param position
      */
     public void setPosition(StylePosition position) {
@@ -94,7 +93,7 @@ public class Credits extends StyleWrapper {
     }
 
     /**
-     * Gets the link where credits text point to
+     * @see #setHref(String)
      * 
      * @return
      */

@@ -33,16 +33,16 @@ public class Marker extends AbstractConfigurationObject {
     }
 
     /**
-     * Enable or disable the point marker. Defaults to true.
-     * 
+     * @see Marker#setEnabled(Boolean)
      * @return
      */
     public boolean isEnabled() {
-    	return enabled == null ? true : enabled;
+        return enabled == null ? true : enabled;
     }
 
     /**
-     * @see Marker#isEnabled()
+     * Enable or disable the point marker. Defaults to true.
+     * 
      * @param enabled
      */
     public void setEnabled(Boolean enabled) {
@@ -140,9 +140,7 @@ public class Marker extends AbstractConfigurationObject {
     }
 
     /**
-     * The fill color of the point marker. When null, the series' or point's
-     * color is used. Defaults to null.
-     * 
+     * @see #setFillColor(Color)
      * @return Fill color or null if not defined
      */
     public Color getFillColor() {
@@ -150,7 +148,9 @@ public class Marker extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getFillColor()
+     * The fill color of the point marker. When null, the series' or point's
+     * color is used. Defaults to null.
+     * 
      * @param fillColor
      */
     public void setFillColor(Color fillColor) {

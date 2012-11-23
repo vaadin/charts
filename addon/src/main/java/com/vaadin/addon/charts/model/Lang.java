@@ -10,7 +10,7 @@ public class Lang extends AbstractConfigurationObject {
     private String thousandsSep;
 
     /**
-     * Get loading text shown
+     * @see #setLoading(String)
      * 
      * @return Loading text or null if not defined
      */
@@ -19,7 +19,8 @@ public class Lang extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getLoading()
+     * set loading text shown
+     * 
      * @param loading
      */
     public void setLoading(String loading) {
@@ -29,6 +30,7 @@ public class Lang extends AbstractConfigurationObject {
     /**
      * Decimal point used
      * 
+     * @see #setDecimalPoint(String)
      * @return Decimal point or null if not defined
      */
     public String getDecimalPoint() {
@@ -36,7 +38,8 @@ public class Lang extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getDecimalPoint()
+     * Decimal point used
+     * 
      * @param decimalPoint
      */
     public void setDecimalPoint(String decimalPoint) {
@@ -44,8 +47,7 @@ public class Lang extends AbstractConfigurationObject {
     }
 
     /**
-     * Thousands separator used
-     * 
+     * @see #setThousandsSep()
      * @return Thousands separator point or null if not defined
      */
     public String getThousandsSep() {
@@ -53,7 +55,8 @@ public class Lang extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getThousandsSep()
+     * Thousands separator used
+     * 
      * @param thousandsSep
      */
     public void setThousandsSep(String thousandsSep) {

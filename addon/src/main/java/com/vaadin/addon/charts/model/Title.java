@@ -25,10 +25,7 @@ public class Title extends AbstractTitle {
     }
 
     /**
-     * The margin between the title and the plot area, or if a subtitle is
-     * present, the margin between the subtitle and the plot area. Defaults to
-     * 15.
-     * 
+     * @see #setMargin(Number)
      * @return Margin of title or null if not defined.
      */
     public Number getMargin() {
@@ -36,7 +33,10 @@ public class Title extends AbstractTitle {
     }
 
     /**
-     * @see #getMargin()
+     * The margin between the title and the plot area, or if a subtitle is
+     * present, the margin between the subtitle and the plot area. Defaults to
+     * 15.
+     * 
      * @param margin
      */
     public void setMargin(Number margin) {

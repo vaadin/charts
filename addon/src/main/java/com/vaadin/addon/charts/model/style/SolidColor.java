@@ -5,9 +5,7 @@ import java.util.Locale;
 import com.vaadin.addon.charts.model.AbstractConfigurationObject;
 
 /**
- * 
- * TODO consider using awt color as base class
- * 
+ * Solid (non gradient) colors
  */
 public class SolidColor extends AbstractConfigurationObject implements Color {
 

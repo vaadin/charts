@@ -84,10 +84,7 @@ public class Tooltip extends AbstractConfigurationObject {
     }
 
     /**
-     * How many decimals to show in each series' y value. This is overridable in
-     * each series' tooltip options object. The default is to preserve all
-     * decimals.
-     * 
+     * @see #setValueDecimals(Number)
      * @return
      */
     public Number getValueDecimals() {
@@ -95,7 +92,10 @@ public class Tooltip extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getValueDecimals()
+     * How many decimals to show in each series' y value. This is overridable in
+     * each series' tooltip options object. The default is to preserve all
+     * decimals.
+     * 
      * @param valueDecimals
      */
     public void setValueDecimals(Number valueDecimals) {
@@ -123,17 +123,7 @@ public class Tooltip extends AbstractConfigurationObject {
     }
 
     /**
-     * The HTML of the point's part in the tooltip. Variables are enclosed by
-     * curly brackets. Available variables are point.x, point.y, series.name and
-     * series.color and other properties on the same form. Furthermore, point.y
-     * can be extended by the tooltip.yPrefix and tooltip.ySuffix variables.
-     * This can also be overridden for each series, which makes it a good hook
-     * for displaying units.
-     * <p>
-     * Defaults to <code>
-     * &lt;span style="color:{series.color}"&gt;{series.name}&lt;/span&gt;: &lt;b&gt;{point.y}&lt;/b&gt;
-     * </code>
-     * 
+     * @see #setPointFormat(String)
      * @return
      */
     public String getPointFormat() {
@@ -141,9 +131,18 @@ public class Tooltip extends AbstractConfigurationObject {
     }
 
     /**
-     * Sets the tooltip formatting string for the point part.
+     * Sets the tooltip formatting string for the point part. The HTML of the
+     * point's part in the tooltip. Variables are enclosed by curly brackets.
+     * Available variables are point.x, point.y, series.name and series.color
+     * and other properties on the same form. Furthermore, point.y can be
+     * extended by the tooltip.yPrefix and tooltip.ySuffix variables. This can
+     * also be overridden for each series, which makes it a good hook for
+     * displaying units.
+     * <p>
+     * Defaults to <code>
+     * &lt;span style="color:{series.color}"&gt;{series.name}&lt;/span&gt;: &lt;b&gt;{point.y}&lt;/b&gt;
+     * </code>
      * 
-     * @see #getPointFormat()
      * @param pointFormat
      */
     public void setPointFormat(String pointFormat) {
@@ -207,6 +206,7 @@ public class Tooltip extends AbstractConfigurationObject {
     }
 
     /**
+     * @see #setEnabled(Boolean)
      * @return true if tooltips are displayed
      */
     public boolean isEnabled() {

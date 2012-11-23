@@ -83,10 +83,7 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
     }
 
     /**
-     * This option allows grouping series in a stacked chart. The stack option
-     * can be a string or a number or anything else, as long as the grouped
-     * series' stack options match each other. Defaults to null.
-     * 
+     * @see #setStack(String)
      * @return
      */
     public String getStack() {
@@ -94,7 +91,10 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
     }
 
     /**
-     * @see #getStack()
+     * This option allows grouping series in a stacked chart. The stack option
+     * can be a string or a number or anything else, as long as the grouped
+     * series' stack options match each other. Defaults to null.
+     * 
      * @param stack
      */
     public void setStack(String stack) {
@@ -102,9 +102,7 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
     }
 
     /**
-     * Individual data label for each point. The options are the same as the
-     * ones for plotOptions.series.dataLabels
-     * 
+     * @see #setDataLabels(Labels)
      * @return DataLabels of null if not defined
      */
     public Labels getDataLabels() {
@@ -112,7 +110,9 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
     }
 
     /**
-     * @see #getDataLabels()
+     * Individual data label for each point. The options are the same as the
+     * ones for plotOptions.series.dataLabels
+     * 
      * @param dataLabels
      */
     public void setDataLabels(Labels dataLabels) {
@@ -149,10 +149,10 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
      * any padding of the X axis. In a polar column chart this means that the
      * first column points directly north. If the pointPlacement is "between",
      * the columns will be laid out between ticks. This is useful for example
-     * for visualising an amount between two points in time or in a certain
+     * for visualizing an amount between two points in time or in a certain
      * sector of a polar chart.
      * 
-     * Defaults to null in cartesian charts, "between" in polar charts.
+     * Defaults to null in Cartesian charts, "between" in polar charts.
      * 
      * @param pointPlacement
      */
@@ -210,7 +210,7 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
     }
 
     /**
-     * @see #setSize(Object)
+     * @see #setInnerSize(Object)
      * 
      * @return
      */

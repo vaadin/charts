@@ -7,7 +7,6 @@ import com.vaadin.addon.charts.model.style.Style;
 /**
  * The legend is a box containing a symbol and name for each series item or
  * point item in the chart.
- * 
  */
 public class Legend extends AbstractConfigurationObject {
 
@@ -30,7 +29,7 @@ public class Legend extends AbstractConfigurationObject {
     private Style itemHiddenStyle;
 
     /**
-     * Get hover style of item
+     * @see #setItemHoverStyle(Style)
      * 
      * @return Item style
      */
@@ -39,7 +38,10 @@ public class Legend extends AbstractConfigurationObject {
     }
 
     /**
-     * Set hover style of item
+     * CSS styles for each legend item in hover mode. Properties are inherited
+     * from style unless overridden here. Defaults to:
+     * 
+     * itemHoverStyle: { color: '#000' }
      * 
      * @param itemHoverStyle
      *            Item style
@@ -49,7 +51,7 @@ public class Legend extends AbstractConfigurationObject {
     }
 
     /**
-     * Get hidden style of item
+     * @see #setItemHiddenStyle(Style)
      * 
      * @return Item style
      */
@@ -58,7 +60,11 @@ public class Legend extends AbstractConfigurationObject {
     }
 
     /**
-     * Set hidden style of item
+     * CSS styles for each legend item when the corresponding series or point is
+     * hidden. Properties are inherited from style unless overridden here.
+     * Defaults to:
+     * 
+     * itemHiddenStyle: { color: '#CCC' }
      * 
      * @param itemHiddenStyle
      *            Item style
@@ -68,9 +74,7 @@ public class Legend extends AbstractConfigurationObject {
     }
 
     /**
-     * The layout of the legend items. Can be one of HORIZONTAL("horizontal") or
-     * VERTICAL("vertical"). Defaults to HORIZONTAL.
-     * 
+     * @see #setLayout(LayoutDirection)
      * @return the layout
      */
     public LayoutDirection getLayout() {
@@ -78,7 +82,8 @@ public class Legend extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getLayout()
+     * The layout of the legend items. Can be one of HORIZONTAL("horizontal") or
+     * VERTICAL("vertical"). Defaults to HORIZONTAL.
      */
     public void setLayout(LayoutDirection layout) {
         this.layout = layout;
@@ -219,7 +224,7 @@ public class Legend extends AbstractConfigurationObject {
     }
 
     /**
-     * The color of the drawn border around the legend.
+     * @see #setBorderColor(SolidColor)
      * 
      * @return Border color or null if not defined
      */
@@ -246,8 +251,7 @@ public class Legend extends AbstractConfigurationObject {
     }
 
     /**
-     * The border corner radius of the legend. Defaults to 5.
-     * 
+     * @see #setBorderRadius(Number)
      * @return Border radius or null if not defined
      */
     public Number getBorderRadius() {
@@ -255,7 +259,8 @@ public class Legend extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getBorderRadius()
+     * The border corner radius of the legend. Defaults to 5.
+     * 
      * @param borderRadius
      */
     public void setBorderRadius(Number borderRadius) {
@@ -280,10 +285,7 @@ public class Legend extends AbstractConfigurationObject {
     }
 
     /**
-     * Whether to reverse the order of the legend items compared to the order of
-     * the series or points as defined in the configuration object. Defaults to
-     * false.
-     * 
+     * @see #setReversed()
      * @return Reversed value or null if not defined
      */
     public boolean isReversed() {
@@ -291,7 +293,10 @@ public class Legend extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getReversed()
+     * Whether to reverse the order of the legend items compared to the order of
+     * the series or points as defined in the configuration object. Defaults to
+     * false.
+     * 
      * @param reversed
      */
     public void setReversed(Boolean reversed) {

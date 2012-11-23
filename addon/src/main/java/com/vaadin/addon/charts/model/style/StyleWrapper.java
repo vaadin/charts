@@ -8,10 +8,20 @@ import com.vaadin.addon.charts.model.AbstractConfigurationObject;
 public class StyleWrapper extends AbstractConfigurationObject {
     private Style style = new Style();
 
+    /**
+     * Return the style object
+     * 
+     * @return
+     */
     public Style getStyle() {
         return style;
     }
 
+    /**
+     * Set the style object
+     * 
+     * @param style
+     */
     public void setStyle(Style style) {
         this.style = style;
     }

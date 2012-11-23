@@ -20,16 +20,16 @@ public interface Series {
     public void setName(String name);
 
     /**
-     * The type of series. Can be one of AREA, LINE, SPLINE(, AREASPLINE,
-     * COLUMN, BAR, PIE, SCATTER, GAUGE, AREARANGE, COLUMNRANGE,
-     * AREASPLINERANGE. Defaults to LINE.
-     * 
+     * @see #setType(ChartType)
      * @return
      */
     public ChartType getType();
 
     /**
-     * @see #getType()
+     * The type of series. Can be one of AREA, LINE, SPLINE(, AREASPLINE,
+     * COLUMN, BAR, PIE, SCATTER, GAUGE, AREARANGE, COLUMNRANGE,
+     * AREASPLINERANGE. Defaults to LINE.
+     * 
      * @param type
      */
     public void setType(ChartType type);

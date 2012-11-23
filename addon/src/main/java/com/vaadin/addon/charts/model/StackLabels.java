@@ -38,10 +38,7 @@ public class StackLabels extends AbstractConfigurationObject {
     }
 
     /**
-     * Defines the horizontal alignment of the stack total label. Can be one of
-     * "left", "center" or "right". The default value is calculated at runtime
-     * and depends on orientation and whether the stack is positive or negative.
-     * 
+     * @see #setAlign(HorizontalAlign)
      * @return Align or null if not defined
      */
     public HorizontalAlign getAlign() {
@@ -49,7 +46,10 @@ public class StackLabels extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getAlign()
+     * Defines the horizontal alignment of the stack total label. Can be one of
+     * "left", "center" or "right". The default value is calculated at runtime
+     * and depends on orientation and whether the stack is positive or negative.
+     * 
      * @param align
      */
     public void setAlign(HorizontalAlign align) {
@@ -57,8 +57,7 @@ public class StackLabels extends AbstractConfigurationObject {
     }
 
     /**
-     * Enable or disable the stack total labels. Defaults to false.
-     * 
+     * @see #setEnabled(Boolean)
      * @return
      */
     public boolean isEnabled() {
@@ -66,7 +65,8 @@ public class StackLabels extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #isEnabled()
+     * Enable or disable the stack total labels. Defaults to false.
+     * 
      * @param enabled
      */
     public void setEnabled(Boolean enabled) {
@@ -91,8 +91,7 @@ public class StackLabels extends AbstractConfigurationObject {
     }
 
     /**
-     * Rotation of the labels in degrees. Defaults to 0.
-     * 
+     * @see #setRotation(Number)
      * @return Rotation or null if not defined
      */
     public Number getRotation() {
@@ -100,7 +99,8 @@ public class StackLabels extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getRotation()
+     * Rotation of the labels in degrees. Defaults to 0.
+     * 
      * @param rotation
      */
     public void setRotation(Number rotation) {
@@ -108,8 +108,7 @@ public class StackLabels extends AbstractConfigurationObject {
     }
 
     /**
-     * Style object
-     * 
+     * @see #setStyle(Style)
      * @return Style object or null if not defined
      */
     public Style getStyle() {
@@ -117,11 +116,20 @@ public class StackLabels extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getStyle()
+     * Style object
+     * 
      * @param style
      */
     public void setStyle(Style style) {
         this.style = style;
+    }
+
+    /**
+     * @see #setTextAlign(HorizontalAlign)
+     * @return Text align or null if not defined
+     */
+    public HorizontalAlign getTextAlign() {
+        return textAlign;
     }
 
     /**
@@ -131,14 +139,6 @@ public class StackLabels extends AbstractConfigurationObject {
      * "left", "center" and "right". The default value is calculated at runtime
      * and depends on orientation and whether the stack is positive or negative.
      * 
-     * @return Text align or null if not defined
-     */
-    public HorizontalAlign getTextAlign() {
-        return textAlign;
-    }
-
-    /**
-     * @see #getTextAlign()
      * @param textAlign
      */
     public void setTextAlign(HorizontalAlign textAlign) {
@@ -146,10 +146,7 @@ public class StackLabels extends AbstractConfigurationObject {
     }
 
     /**
-     * Defines the vertical alignment of the stack total label. Can be one of
-     * "top", "middle" or "bottom". The default value is calculated at runtime
-     * and depends on orientation and whether the stack is positive or negative.
-     * 
+     * @see #setVerticalAlign(VerticalAlign)
      * @return Vertical align or null if not defined
      */
     public VerticalAlign getVerticalAlign() {
@@ -157,7 +154,10 @@ public class StackLabels extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getVerticalAlign()
+     * Defines the vertical alignment of the stack total label. Can be one of
+     * "top", "middle" or "bottom". The default value is calculated at runtime
+     * and depends on orientation and whether the stack is positive or negative.
+     * 
      * @param verticalAlign
      */
     public void setVerticalAlign(VerticalAlign verticalAlign) {
@@ -172,10 +172,7 @@ public class StackLabels extends AbstractConfigurationObject {
     }
 
     /**
-     * The x position offset of the label relative to the left of the stacked
-     * bar. The default value is calculated at runtime and depends on
-     * orientation and whether the stack is positive or negative.
-     * 
+     * @see #setX(Number)
      * @return X value or null if not defined
      */
     public Number getX() {
@@ -183,7 +180,11 @@ public class StackLabels extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getX()
+     * The x position offset of the label relative to the left of the stacked
+     * bar. The default value is calculated at runtime and depends on
+     * orientation and whether the stack is positive or negative.
+     * 
+     * @see #setX(Number)
      * @param x
      */
     public void setX(Number x) {
@@ -191,10 +192,7 @@ public class StackLabels extends AbstractConfigurationObject {
     }
 
     /**
-     * The y position offset of the label relative to the tick position on the
-     * axis. The default value is calculated at runtime and depends on
-     * orientation and whether the stack is positive or negative.
-     * 
+     * @see #setY(Number)
      * @return Y value or null if not defined
      */
     public Number getY() {
@@ -202,7 +200,10 @@ public class StackLabels extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getY()
+     * The y position offset of the label relative to the tick position on the
+     * axis. The default value is calculated at runtime and depends on
+     * orientation and whether the stack is positive or negative.
+     * 
      * @param y
      */
     public void setY(Number y) {

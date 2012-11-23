@@ -26,8 +26,6 @@ public abstract class AbstractConfigurationObject implements Serializable {
 
     /**
      * Returns default gson builder for configuration serializer.
-     * 
-     * @return
      */
     public static GsonBuilder createGsonBuilder() {
         GsonBuilder builder = new GsonBuilder();

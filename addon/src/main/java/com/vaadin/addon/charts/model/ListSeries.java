@@ -11,7 +11,6 @@ import java.util.List;
  * either starting at 0 and incrementing by 1, or from pointStart and
  * pointInterval given in the plotOptions. If the axis is has categories, these
  * will be used. This option is not available for range series.
- * 
  */
 public class ListSeries extends AbstractSeries {
 
@@ -168,10 +167,7 @@ public class ListSeries extends AbstractSeries {
     }
 
     /**
-     * When using dual or multiple y axes, this number defines which yAxis the
-     * particular series is connected to. It refers to the index of the axis in
-     * the yAxis array, with 0 being the first. Defaults to 0.
-     * 
+     * @see #setyAxis(Number)
      * @return Y Axis number or null if not defined
      */
     public Number getyAxis() {
@@ -179,7 +175,10 @@ public class ListSeries extends AbstractSeries {
     }
 
     /**
-     * @see #getyAxis()
+     * When using dual or multiple y axes, this number defines which yAxis the
+     * particular series is connected to. It refers to the index of the axis in
+     * the yAxis array, with 0 being the first. Defaults to 0.
+     * 
      * @param yAxis
      */
     public void setyAxis(Number yAxis) {

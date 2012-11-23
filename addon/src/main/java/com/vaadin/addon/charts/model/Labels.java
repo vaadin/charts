@@ -9,7 +9,7 @@ import com.vaadin.addon.charts.model.style.Style;
  */
 public class Labels extends AbstractConfigurationObject {
 
-    private String align;
+    private HorizontalAlign align;
     private Boolean enabled;
     private Object rotation;
     private Number staggerLines;
@@ -41,28 +41,36 @@ public class Labels extends AbstractConfigurationObject {
     }
 
     /**
+     * @see #setAlign(HorizontalAlign)
      * @return the align
      */
-    public String getAlign() {
+    public HorizontalAlign getAlign() {
         return align;
     }
 
     /**
+     * What part of the string the given position is anchored to. Can be one of
+     * "left", "center" or "right". In inverted charts, x axis label alignment
+     * and y axis alignment are swapped. Defaults to "center".
+     * 
      * @param align
      *            the align to set
      */
-    public void setAlign(String align) {
+    public void setAlign(HorizontalAlign align) {
         this.align = align;
     }
 
     /**
+     * @see #setEnabled(Boolean)
      * @return the enabled
      */
     public boolean getEnabled() {
-    	return enabled == null ? true : enabled;
+        return enabled == null ? true : enabled;
     }
 
     /**
+     * Enable or disable the axis labels. Defaults to true.
+     * 
      * @param enabled
      *            the enabled to set
      */
@@ -71,9 +79,7 @@ public class Labels extends AbstractConfigurationObject {
     }
 
     /**
-     * The rotation is typically numeric like 90 but could be also String like
-     * "auto"
-     * 
+     * @see #setRotation(Number)
      * @return the rotation
      */
     public Object getRotation() {
@@ -81,6 +87,9 @@ public class Labels extends AbstractConfigurationObject {
     }
 
     /**
+     * Rotation of the labels in degrees. Defaults to 0. The rotation is
+     * typically numeric like 90 but could be also String like "auto"
+     * 
      * @param rotation
      *            the rotation in Number format
      */
@@ -97,6 +106,7 @@ public class Labels extends AbstractConfigurationObject {
     }
 
     /**
+     * @see #setStaggerLines(Number)
      * @return the staggerLines
      */
     public Number getStaggerLines() {
@@ -104,6 +114,9 @@ public class Labels extends AbstractConfigurationObject {
     }
 
     /**
+     * Horizontal axes only. The number of lines to spread the labels over to
+     * make room or tighter labels. . Defaults to null.
+     * 
      * @param staggerLines
      *            the staggerLines to set
      */
@@ -112,6 +125,7 @@ public class Labels extends AbstractConfigurationObject {
     }
 
     /**
+     * @see #setStep(Number)
      * @return the step
      */
     public Number getStep() {
@@ -119,6 +133,9 @@ public class Labels extends AbstractConfigurationObject {
     }
 
     /**
+     * To show only every n'th label on the axis, set the step to n. Setting the
+     * step to 2 shows every other label. Defaults to null.
+     * 
      * @param step
      *            the step to set
      */
@@ -127,6 +144,7 @@ public class Labels extends AbstractConfigurationObject {
     }
 
     /**
+     * @see #setStyle(Style)
      * @return the style
      */
     public Style getStyle() {
@@ -137,6 +155,10 @@ public class Labels extends AbstractConfigurationObject {
     }
 
     /**
+     * CSS styles for the label. Defaults to:
+     * 
+     * style: { color: '#6D869F', fontWeight: 'bold' }
+     * 
      * @param style
      *            the style to set
      */
@@ -145,6 +167,7 @@ public class Labels extends AbstractConfigurationObject {
     }
 
     /**
+     * @see #setX(Number)
      * @return the x
      */
     public Number getX() {
@@ -152,6 +175,9 @@ public class Labels extends AbstractConfigurationObject {
     }
 
     /**
+     * The x position offset of the label relative to the tick position on the
+     * axis. Defaults to 0.
+     * 
      * @param x
      *            the x to set
      */
@@ -160,6 +186,7 @@ public class Labels extends AbstractConfigurationObject {
     }
 
     /**
+     * @see #setY(Number)
      * @return the y
      */
     public Number getY() {
@@ -167,6 +194,9 @@ public class Labels extends AbstractConfigurationObject {
     }
 
     /**
+     * The y position offset of the label relative to the tick position on the
+     * axis. Defaults to 0.
+     * 
      * @param y
      *            the y to set
      */
@@ -192,7 +222,8 @@ public class Labels extends AbstractConfigurationObject {
      * function(){ return this.value; }
      * </code>
      * <p>
-     * If function is simpler one liner, it can be given in a shortened form. E.g. the default formatter could be simply:
+     * If function is simpler one liner, it can be given in a shortened form.
+     * E.g. the default formatter could be simply:
      * <p>
      * <code>this.value</code>
      * 
@@ -203,8 +234,7 @@ public class Labels extends AbstractConfigurationObject {
     }
 
     /**
-     * The text color for the data labels. Defaults to null. Defaults to null.
-     * 
+     * @see #setColor(Color)
      * @return Text color
      */
     public Color getColor() {
@@ -212,7 +242,8 @@ public class Labels extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getColor()
+     * The text color for the data labels. Defaults to null. Defaults to null.
+     * 
      * @param color
      */
     public void setColor(Color color) {
@@ -220,10 +251,7 @@ public class Labels extends AbstractConfigurationObject {
     }
 
     /**
-     * The color of the line connecting the data label to the pie slice. The
-     * default color is the same as the point's color. Defaults to
-     * {point.color}.
-     * 
+     * @see #setConnectorColor(Color)
      * @return Connector color or null if not defined
      */
     public Color getConnectorColor() {
@@ -231,7 +259,10 @@ public class Labels extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getConnectorColor()
+     * The color of the line connecting the data label to the pie slice. The
+     * default color is the same as the point's color. Defaults to
+     * {point.color}.
+     * 
      * @param connectorColor
      */
     public void setConnectorColor(Color connectorColor) {

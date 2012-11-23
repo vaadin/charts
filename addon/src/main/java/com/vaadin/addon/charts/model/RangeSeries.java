@@ -119,10 +119,7 @@ public class RangeSeries extends AbstractSeries {
     }
 
     /**
-     * When using dual or multiple y axes, this number defines which yAxis the
-     * particular series is connected to. It refers to the index of the axis in
-     * the yAxis array, with 0 being the first. Defaults to 0.
-     * 
+     * @see #setyAxis(Number)
      * @return Y Axis number or null if not defined
      */
     public Number getyAxis() {
@@ -130,7 +127,10 @@ public class RangeSeries extends AbstractSeries {
     }
 
     /**
-     * @see #getyAxis()
+     * When using dual or multiple y axes, this number defines which yAxis the
+     * particular series is connected to. It refers to the index of the axis in
+     * the yAxis array, with 0 being the first. Defaults to 0.
+     * 
      * @param yAxis
      */
     public void setyAxis(Number yAxis) {

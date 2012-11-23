@@ -35,9 +35,7 @@ public class Configuration extends AbstractConfigurationObject {
     private transient DataSeriesEventListener dataSeriesEventListener;
 
     /**
-     * Options regarding the chart area and plot area as well as general chart
-     * options.
-     * 
+     * @see #setChart(ChartModel)
      * @return
      */
     public ChartModel getChart() {
@@ -48,7 +46,9 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getChart()
+     * Options regarding the chart area and plot area as well as general chart
+     * options.
+     * 
      * @param chart
      */
     public void setChart(ChartModel chart) {
@@ -98,8 +98,7 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * The chart's main title.
-     * 
+     * @see #setTitle(Title)
      * @return
      */
     public Title getTitle() {
@@ -110,7 +109,8 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getTitle()
+     * The chart's main title.
+     * 
      * @param title
      */
     public void setTitle(Title title) {
@@ -310,9 +310,7 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * Options for the tooltip that appears when the user hovers over a series
-     * or point.
-     * 
+     * @see #setTooltip(Tooltip)
      * @return
      */
     public Tooltip getTooltip() {
@@ -323,7 +321,9 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getTooltip()
+     * Options for the tooltip that appears when the user hovers over a series
+     * or point.
+     * 
      * @param tooltip
      */
     public void setTooltip(Tooltip tooltip) {
@@ -331,9 +331,7 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * Highchart by default puts a credits label in the lower right corner of
-     * the chart. This can be changed using these options.
-     * 
+     * @see #setCredits(Credits)
      * @return
      */
     public Credits getCredits() {
@@ -344,7 +342,9 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getCredits()
+     * Highchart by default puts a credits label in the lower right corner of
+     * the chart. This can be changed using these options.
+     * 
      * @param credits
      */
     public void setCredits(Credits credits) {
@@ -361,9 +361,7 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * The legend is a box containing a symbol and name for each series item or
-     * point item in the chart.
-     * 
+     * @see #setLegend(Legend)
      * @return
      */
     public Legend getLegend() {
@@ -374,7 +372,9 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getLegend()
+     * The legend is a box containing a symbol and name for each series item or
+     * point item in the chart.
+     * 
      * @param legend
      */
     public void setLegend(Legend legend) {
@@ -382,12 +382,7 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * Configuration options for the series are given in three levels. Options
-     * for all series in a chart are given in the PlotOptionsSeries object. Then
-     * options for all series of a specific type are given in the PlotOptions of
-     * that type, for example PlotOptionsLine. Next, options for one single
-     * series are given in the series array.
-     * 
+     * @see #setPlotOptions(AbstractPlotOptions)
      * @return
      */
     public AbstractPlotOptions getPlotOptions() {
@@ -401,7 +396,12 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getPlotOptions()
+     * Configuration options for the series are given in three levels. Options
+     * for all series in a chart are given in the PlotOptionsSeries object. Then
+     * options for all series of a specific type are given in the PlotOptions of
+     * that type, for example PlotOptionsLine. Next, options for one single
+     * series are given in the series array.
+     * 
      * @param plotOptions
      */
     public void setPlotOptions(AbstractPlotOptions plotOptions) {
@@ -437,8 +437,7 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * HTML labels that can be positioned anywhere in the chart area.
-     * 
+     * @see #setLabels(HTMLLabels)
      * @return Labels or null if not defined
      */
     public HTMLLabels getLabels() {
@@ -446,7 +445,8 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getLabels()
+     * HTML labels that can be positioned anywhere in the chart area.
+     * 
      * @param labels
      */
     public void setLabels(HTMLLabels labels) {
@@ -496,10 +496,7 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * Language object. The language object is global and it can't be set on
-     * each chart initiation. Instead, use Highcharts.setOptions to set it
-     * before any chart is initiated.
-     * 
+     * @see #setLang(Lang)
      * @return
      */
     public Lang getLang() {
@@ -507,7 +504,10 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getLang()
+     * Language object. The language object is global and it can't be set on
+     * each chart initiation. Instead, use Highcharts.setOptions to set it
+     * before any chart is initiated.
+     * 
      * @param lang
      */
     public void setLang(Lang lang) {
@@ -515,10 +515,7 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * Applies only to polar charts and angular gauges. This configuration
-     * object holds general options for the combined X and Y axes set. Each
-     * xAxis or yAxis can reference the pane by index.
-     * 
+     * @see #addPane(Pane)
      * @return
      */
     public Pane getPane() {
@@ -534,7 +531,10 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getPane()
+     * Applies only to polar charts and angular gauges. This configuration
+     * object holds general options for the combined X and Y axes set. Each
+     * xAxis or yAxis can reference the pane by index.
+     * 
      * @param pane
      */
     public void addPane(Pane pan) {
@@ -623,6 +623,11 @@ public class Configuration extends AbstractConfigurationObject {
                 pointIndex));
     }
 
+    /**
+     * Add data series event listener
+     * 
+     * @param listener
+     */
     public void setDataSeriesEventListener(DataSeriesEventListener listener) {
         dataSeriesEventListener = listener;
     }

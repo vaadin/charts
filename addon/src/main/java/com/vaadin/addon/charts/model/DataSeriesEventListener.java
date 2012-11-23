@@ -1,5 +1,8 @@
 package com.vaadin.addon.charts.model;
 
+/**
+ * Listener interface for events of DataSeries like data add/remove/update
+ */
 public interface DataSeriesEventListener {
     /** A data point has been added */
     void dataAdded(DataAddedEvent event);
@@ -12,7 +15,7 @@ public interface DataSeriesEventListener {
 
     public static class DataAddedEvent {
         /** The affected series */
-        private Series series;
+        private final Series series;
         /** The value added. May be null if item != null */
         private Number value;
         /** The item added. May be null if value != null */
@@ -36,14 +39,17 @@ public interface DataSeriesEventListener {
             this.item = item;
         }
 
+        /** The value added. May be null if item != null */
         public Number getValue() {
             return value;
         }
 
+        /** The item added. May be null if value != null */
         public DataSeriesItem getItem() {
             return item;
         }
 
+        /** The affected series */
         public Series getSeries() {
             return series;
         }

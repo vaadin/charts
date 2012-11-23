@@ -85,10 +85,10 @@ public class Background extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #setOuterWidth(Number)
+     * @see #setBorderWidth(Number)
      * @return
      */
-    public Number setBorderWidth() {
+    public Number getBorderWidth() {
         return borderWidth;
     }
 

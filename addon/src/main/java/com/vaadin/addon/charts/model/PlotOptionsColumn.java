@@ -9,8 +9,7 @@ public class PlotOptionsColumn extends AbstractPlotOptions {
     private Number groupPadding;
 
     /**
-     * Padding between each column or bar, in x axis units. Defaults to 0.1.
-     * 
+     * @see #setPointPadding(Number)
      * @return Padding or null if not set
      */
     public Number getPointPadding() {
@@ -18,7 +17,8 @@ public class PlotOptionsColumn extends AbstractPlotOptions {
     }
 
     /**
-     * @see #getPointPadding()
+     * Padding between each column or bar, in x axis units. Defaults to 0.1.
+     * 
      * @param pointPadding
      */
     public void setPointPadding(Number pointPadding) {
@@ -26,8 +26,7 @@ public class PlotOptionsColumn extends AbstractPlotOptions {
     }
 
     /**
-     * The width of the border surronding each column or bar. Defaults to 1.
-     * 
+     * @see #setBorderWidth(Number)
      * @return Border with or null if not set
      */
     public Number getBorderWidth() {
@@ -35,7 +34,8 @@ public class PlotOptionsColumn extends AbstractPlotOptions {
     }
 
     /**
-     * @see #getBorderWidth()
+     * The width of the border surrounding each column or bar. Defaults to 1.
+     * 
      * @param borderWidth
      */
     public void setBorderWidth(Number borderWidth) {

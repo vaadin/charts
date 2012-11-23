@@ -10,12 +10,7 @@ public class YAxis extends Axis {
     private String gridLineInterpolation;
 
     /**
-     * The stack labels show the total value for each bar in a stacked column or
-     * bar chart. The label will be placed on top of positive columns and below
-     * negative columns. In case of an inverted column chart or a bar chart the
-     * label is placed to the right of positive bars and to the left of negative
-     * bars.
-     * 
+     * @see #setStackLabels(StackLabels)
      * @return
      */
     public StackLabels getStackLabels() {
@@ -23,7 +18,12 @@ public class YAxis extends Axis {
     }
 
     /**
-     * @see #getStackLabels()
+     * The stack labels show the total value for each bar in a stacked column or
+     * bar chart. The label will be placed on top of positive columns and below
+     * negative columns. In case of an inverted column chart or a bar chart the
+     * label is placed to the right of positive bars and to the left of negative
+     * bars.
+     * 
      * @param stackLabels
      */
     public void setStackLabels(StackLabels stackLabels) {
@@ -64,7 +64,7 @@ public class YAxis extends Axis {
     }
 
     /**
-     * UNDOCUMENTED FEATURE
+     * Define polar graph type. E.g. "POLYGON" for spiderweb chart
      * 
      * @param gridLineInterpolation
      */
