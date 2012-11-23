@@ -2,7 +2,6 @@ package com.vaadin.addon.charts.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import com.vaadin.addon.charts.model.style.Color;
@@ -159,21 +158,6 @@ public class DataSeries extends AbstractSeries {
         data.clear();
         for (int i = 0; i < numericdata.length; i++) {
             data.add(new DataSeriesItem("" + numericdata[i], numericdata[i]));
-        }
-    }
-
-    /**
-     * Way to insert array data with Date and double y<br />
-     * e.g. "{{date1,0}, {date2,0.6}, {date3,0.7}"<br />
-     * Clears old data before insert
-     * 
-     * @param objects
-     */
-    public void setData(Object[][] objects) {
-        data.clear();
-        for (Object[] entry : objects) {
-            data.add(new DateDataSeriesItem((Date) entry[0], Double
-                    .valueOf(entry[1].toString())));
         }
     }
 

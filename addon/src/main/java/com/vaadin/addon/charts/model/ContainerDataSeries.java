@@ -116,11 +116,6 @@ public class ContainerDataSeries extends DataSeries {
     }
 
     @Override
-    public void setData(Object[][] objects) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
     public void setData(List<DataSeriesItem> data) {
         throw new UnsupportedOperationException();
     }
