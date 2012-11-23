@@ -6,6 +6,7 @@ import com.vaadin.addon.charts.model.style.FontWeight;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.charts.model.style.Style;
 import com.vaadin.addon.charts.model.style.Theme;
+import com.vaadin.addon.charts.model.style.TickIntervalStyle;
 
 /**
  * Default Vaadin theme
@@ -71,7 +72,7 @@ public class VaadinTheme extends Theme {
         getTooltip().setBorderWidth(1);
         getTooltip().setBorderRadius(BORDER_RADIUS);
         getTooltip().getStyle().setColor(TITLE_COLOR);
-        
+
         getLegend().getItemStyle().setColor(LEGEND_TEXT_COLOR);
         Style itemHoverStyle = new Style();
         itemHoverStyle.setColor(new SolidColor(0, 0, 0));
@@ -90,9 +91,11 @@ public class VaadinTheme extends Theme {
         getCredits().setText("Vaadin Charts");
         getCredits().setHref("http://vaadin.com");
 
+        getyAxis().setMinorTickInterval(TickIntervalStyle.NONE);
         getyAxis().setAlternateGridColor(BGCOLOR_LIGHT_GRAY);
         getyAxis().setGridLineColor(LINE_COLOR);
         getyAxis().setLineWidth(0);
+        getyAxis().setTickWidth(0);
 
         getxAxis().setLineColor(LINE_COLOR);
 
