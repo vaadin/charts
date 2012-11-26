@@ -93,6 +93,17 @@ public class PlotOptionsSerializer implements
             opts.add("pointStart", context.serialize(src.getPointStart()));
             opts.add("stacking", context.serialize(src.getStacking()));
             opts.add("zIndex", context.serialize(src.getzIndex()));
+
+            opts.add("allowPointSelect",
+                    context.serialize(src.isAllowPointSelect()));
+            opts.add("animation", context.serialize(src.isAnimation()));
+            opts.add("enableMouseTracking",
+                    context.serialize(src.isEnableMouseTracking()));
+            opts.add("selected", context.serialize(src.isSelected()));
+            opts.add("shadows", context.serialize(src.isShadows()));
+            opts.add("showInLegend", context.serialize(src.isShowInLegend()));
+            opts.add("stickyTracking",
+                    context.serialize(src.isStickyTracking()));
         }
         return plotoptions;
     }

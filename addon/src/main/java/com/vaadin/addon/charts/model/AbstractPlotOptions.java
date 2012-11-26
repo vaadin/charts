@@ -25,6 +25,7 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     private Boolean allowPointSelect;
     private Boolean showInLegend;
     private Boolean enableMouseTracking;
+    private Boolean stickyTracking;
 
     private Cursor cursor;
 
@@ -381,5 +382,28 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
      */
     public void setMarker(Marker marker) {
         this.marker = marker;
+    }
+
+    /**
+     * Sticky tracking of mouse events. When true, the mouseOut event on a
+     * series isn't triggered until the mouse moves over another series, or out
+     * of the plot area. When false, the mouseOut event on a series is triggered
+     * when the mouse leaves the area around the series' graph or markers. This
+     * also implies the tooltip. When stickyTracking is false and tooltip.shared
+     * is false, the tooltip will be hidden when moving the mouse between
+     * series. Defaults to true.
+     * 
+     * @param stickyTracking
+     */
+    public void setStickyTracking(Boolean stickyTracking) {
+        this.stickyTracking = stickyTracking;
+    }
+
+    /**
+     * @see #setStickyTracking(Boolean)
+     * @return
+     */
+    public Boolean isStickyTracking() {
+        return stickyTracking;
     }
 }

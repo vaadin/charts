@@ -41,6 +41,10 @@ public class ContainerDataSeriesSerializer implements
             series.add("states", context.serialize(src.getStates()));
             series.add("tooltip", context.serialize(src.getTooltip()));
             series.add("type", context.serialize(src.getType()));
+            series.add("enableMouseTracking",
+                    context.serialize(src.isEnableMouseTracking()));
+            series.add("showInLegend", context.serialize(src.isShowInLegend()));
+
         }
         series.add("data", data);
 
