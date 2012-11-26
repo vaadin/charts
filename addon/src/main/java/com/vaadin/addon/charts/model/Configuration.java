@@ -73,11 +73,18 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * The actual series to append to the chart. In addition to the members
-     * listed below, any member of the plotOptions for that specific type of
-     * plot can be added to a series individually. For example, even though a
-     * general lineWidth is specified in plotOptions.series, an individual
-     * lineWidth can be specified for each series.
+     * The actual series to append to the chart. Series objects contains the
+     * data content (individual points/columns etc.) of the plot. The series
+     * object could have data (the content), name, labels, tooltips, markers
+     * etc.
+     * 
+     * <br />
+     * <br />
+     * In addition to the attributes listed above, any member of the plotOptions
+     * for that specific type of plot can be added to a series individually. For
+     * example, even though a general lineWidth is specified in
+     * AbstractPlotOptions, an individual lineWidth can be specified for each
+     * series (e.g. to enable each series have different lineWidth).
      * 
      * @param series
      */
