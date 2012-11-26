@@ -29,9 +29,8 @@ public class Configuration extends AbstractConfigurationObject {
 
     private List<Series> series = new ArrayList<Series>();
 
-    private Boolean exporting;
     private PaneList pane;
-
+    private Exporting exporting = new Exporting(false);
     private transient DataSeriesEventListener dataSeriesEventListener;
 
     /**
@@ -454,20 +453,37 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * Whether to enable the exporting module. Defaults to true.
+     * Whether to enable exporting
      * 
      * @param exporting
      */
     public void setExporting(Boolean exporting) {
+        this.exporting.setEnabled(exporting);
+    }
+
+    /**
+     * Set exporting module
+     * 
+     * @param exporting
+     */
+    public void setExporting(Exporting exporting) {
         this.exporting = exporting;
+    }
+
+    /**
+     * @see #setExporting(Exporting)
+     * @return
+     */
+    public Exporting getExporting() {
+        return exporting;
     }
 
     /**
      * @see #setExporting(Boolean)
      * @return
      */
-    public boolean isExporting() {
-        return exporting == null ? true : exporting;
+    public Boolean isExporting() {
+        return exporting.isEnabled();
     }
 
     /**

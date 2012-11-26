@@ -34,6 +34,9 @@ public class ColumnLineAndPie extends AbstractVaadinChartExample {
 
         conf.setTitle("Combination chart");
 
+        conf.setExporting(true);
+        conf.getExporting().setWidth(800);
+
         XAxis x = new XAxis();
         x.setCategories("Apples", "Oranges", "Pears", "Bananas", "Plums");
         conf.addxAxis(x);

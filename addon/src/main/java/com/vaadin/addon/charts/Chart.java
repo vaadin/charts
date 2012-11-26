@@ -15,7 +15,7 @@ import com.vaadin.ui.AbstractComponent;
 import com.vaadin.util.ReflectTools;
 
 @JavaScript({ "jquery.min.js", "highcharts.src.js", "highcharts-more.js",
-        "vaadintheme.js" })
+        "vaadintheme.js", "exporting.js" })
 public class Chart extends AbstractComponent {
 
     private String jsonConfig;
