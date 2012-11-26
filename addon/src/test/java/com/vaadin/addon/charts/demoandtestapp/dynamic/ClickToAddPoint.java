@@ -13,6 +13,7 @@ import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.Legend;
 import com.vaadin.addon.charts.model.PlotLine;
+import com.vaadin.addon.charts.model.PlotOptionsSeries;
 import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
@@ -46,20 +47,24 @@ public class ClickToAddPoint extends AbstractVaadinChartExample {
         YAxis yAxis = configuration.getyAxis();
         yAxis.setTitle(new Title("Value"));
         yAxis.setPlotLines(new PlotLine(0, 1, new SolidColor("#808080")));
+        yAxis.setMinPadding(0.2);
+        yAxis.setMaxPadding(0.2);
+        yAxis.setMaxZoom(60);
 
         Legend legend = configuration.getLegend();
         legend.setEnabled(false);
-
         configuration.setExporting(false);
 
+        PlotOptionsSeries opt = new PlotOptionsSeries();
+        opt.setLineWidth(1);
+        configuration.setPlotOptions(opt);
+
         final DataSeries series = new DataSeries();
-        series.setType(ChartType.LINE);
         series.addData(new DataSeriesItem(20, 20));
         series.addData(new DataSeriesItem(80, 80));
         configuration.setSeries(series);
 
         chart.drawChart(configuration);
-
         chart.addChartClickListener(new ChartClickListener() {
 
             @Override
@@ -88,7 +93,6 @@ public class ClickToAddPoint extends AbstractVaadinChartExample {
                 }
             }
         });
-
         return chart;
     }
 }
