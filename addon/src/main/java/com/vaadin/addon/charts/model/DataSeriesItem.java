@@ -170,7 +170,8 @@ public class DataSeriesItem extends AbstractConfigurationObject {
     }
 
     /**
-     * Individual color for the point. Defaults to null.
+     * Individual color for the point. Defaults to null. Might not work for all
+     * point types, but at least it works for COLUMN charts
      * 
      * @param color
      */
