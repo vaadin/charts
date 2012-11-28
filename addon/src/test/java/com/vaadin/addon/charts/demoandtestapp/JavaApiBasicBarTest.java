@@ -5,6 +5,7 @@ import com.vaadin.addon.charts.model.Axis;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.HorizontalAlign;
+import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.LayoutDirection;
 import com.vaadin.addon.charts.model.Legend;
 import com.vaadin.addon.charts.model.ListSeries;
@@ -80,7 +81,8 @@ public class JavaApiBasicBarTest extends AbstractVaadinChartExample {
         // }
         // },
         configuration.setPlotOptions(new PlotOptionsBar());
-        configuration.getPlotOptions().getDataLabels().setEnabled(true);
+        configuration.getPlotOptions().setDataLabels(new Labels(true));
+
         // legend: {
         // layout: 'vertical',
         // align: 'right',

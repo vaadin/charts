@@ -38,9 +38,6 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
      * @see #setDataLabels()
      */
     public Labels getDataLabels() {
-        if (dataLabels == null) {
-            dataLabels = new Labels();
-        }
         return dataLabels;
     }
 
@@ -369,9 +366,6 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
      * @return
      */
     public Marker getMarker() {
-        if (marker == null) {
-            marker = new Marker();
-        }
         return marker;
     }
 

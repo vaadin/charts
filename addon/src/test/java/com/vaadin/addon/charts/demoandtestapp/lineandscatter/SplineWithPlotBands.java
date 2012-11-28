@@ -10,6 +10,7 @@ import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.HoverState;
 import com.vaadin.addon.charts.model.ListSeries;
+import com.vaadin.addon.charts.model.Marker;
 import com.vaadin.addon.charts.model.MarkerStates;
 import com.vaadin.addon.charts.model.MarkerSymbolEnum;
 import com.vaadin.addon.charts.model.PlotBand;
@@ -105,7 +106,7 @@ public class SplineWithPlotBands extends AbstractVaadinChartExample {
 
         PlotOptionsSpline plotOptions = new PlotOptionsSpline();
         configuration.setPlotOptions(plotOptions);
-        configuration.getPlotOptions().getMarker().setEnabled(false);
+        configuration.getPlotOptions().setMarker(new Marker(false));
         configuration.getPlotOptions().getMarker().setLineWidth(4);
         MarkerStates states = new MarkerStates(new HoverState(true));
         states.getHover().setSymbol(MarkerSymbolEnum.CIRCLE);

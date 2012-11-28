@@ -8,6 +8,7 @@ import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.Legend;
+import com.vaadin.addon.charts.model.Marker;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
 import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.VerticalAlign;
@@ -57,7 +58,7 @@ public class SplineInverted extends AbstractVaadinChartExample {
 
         PlotOptionsSpline plotOptions = new PlotOptionsSpline();
         configuration.setPlotOptions(plotOptions);
-        configuration.getPlotOptions().getMarker().setEnabled(true);
+        configuration.getPlotOptions().setMarker(new Marker(true));
 
         Legend legend = configuration.getLegend();
         legend.setEnabled(false);

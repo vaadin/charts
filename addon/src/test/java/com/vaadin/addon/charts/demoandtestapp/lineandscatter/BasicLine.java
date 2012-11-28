@@ -6,6 +6,7 @@ import com.vaadin.addon.charts.model.Axis;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.HorizontalAlign;
+import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.LayoutDirection;
 import com.vaadin.addon.charts.model.Legend;
 import com.vaadin.addon.charts.model.ListSeries;
@@ -50,7 +51,7 @@ public class BasicLine extends AbstractVaadinChartExample {
 
         PlotOptionsLine plotOptions = new PlotOptionsLine();
         configuration.setPlotOptions(plotOptions);
-        configuration.getPlotOptions().getDataLabels().setEnabled(true);
+        configuration.getPlotOptions().setDataLabels(new Labels(true));
 
         Legend legend = configuration.getLegend();
         legend.setLayout(LayoutDirection.VERTICAL);

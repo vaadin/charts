@@ -7,6 +7,7 @@ import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.Cursor;
+import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.XAxis;
@@ -45,7 +46,7 @@ public class ColumnWithDrilldown extends AbstractVaadinChartExample {
 
         PlotOptionsColumn column = new PlotOptionsColumn();
         column.setCursor(Cursor.POINTER);
-        column.getDataLabels().setEnabled(true);
+        column.setDataLabels(new Labels(true));
         column.getDataLabels().setColor(colors[0]);
         column.getDataLabels().getStyle().setFontWeight(FontWeight.BOLD);
         column.getDataLabels().setFormatter("function() {return this.y +'%';}");

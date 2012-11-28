@@ -7,6 +7,7 @@ import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.Labels;
+import com.vaadin.addon.charts.model.Marker;
 import com.vaadin.addon.charts.model.MarkerSymbolEnum;
 import com.vaadin.addon.charts.model.MarkerSymbolUrl;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
@@ -47,6 +48,7 @@ public class SplineWithSymbols extends AbstractVaadinChartExample {
 
         PlotOptionsSpline plotOptions = new PlotOptionsSpline();
         configuration.setPlotOptions(plotOptions);
+        configuration.getPlotOptions().setMarker(new Marker(true));
         configuration.getPlotOptions().getMarker().setRadius(4);
         configuration.getPlotOptions().getMarker()
                 .setLineColor(new SolidColor("#666666"));

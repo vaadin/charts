@@ -5,6 +5,7 @@ import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.Axis;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.Title;
@@ -42,7 +43,7 @@ public class BasicLineWithDataLabels extends AbstractVaadinChartExample {
 
         PlotOptionsLine plotOptions = new PlotOptionsLine();
         configuration.setPlotOptions(plotOptions);
-        configuration.getPlotOptions().getDataLabels().setEnabled(true);
+        configuration.getPlotOptions().setDataLabels(new Labels(true));
         configuration.getPlotOptions().setEnableMouseTracking(false);
 
         ListSeries ls = new ListSeries();
