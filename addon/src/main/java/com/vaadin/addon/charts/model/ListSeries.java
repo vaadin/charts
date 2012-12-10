@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * A list of numerical values. In this case, the numerical values will be
- * interpreted and y values, and x values will be automatically calculated,
+ * interpreted as y values, and x values will be automatically calculated,
  * either starting at 0 and incrementing by 1, or from pointStart and
  * pointInterval given in the plotOptions. If the axis is has categories, these
  * will be used. This option is not available for range series.
