@@ -39,7 +39,7 @@ public class ContainerDataSeries extends DataSeries {
      * 
      * @param containerPId
      */
-    public void setXAttributesContainerId(Object containerPId) {
+    public void setXPropertyId(Object containerPId) {
         attributeToPropertyIdMap.put(XATTRIBUTE, containerPId);
     }
 
@@ -49,7 +49,7 @@ public class ContainerDataSeries extends DataSeries {
      * 
      * @param containerPId
      */
-    public void setYAttributesContainerId(Object containerPId) {
+    public void setYPropertyId(Object containerPId) {
         attributeToPropertyIdMap.put(YATTRIBUTE, containerPId);
     }
 
@@ -57,10 +57,10 @@ public class ContainerDataSeries extends DataSeries {
      * Add mapping that translates container's property id into chart's name
      * attribute
      * 
-     * @param containerPId
+     * @param propertyId
      */
-    public void setNameAttributesContainerId(Object containerPId) {
-        attributeToPropertyIdMap.put(NAMEATTRIBUTE, containerPId);
+    public void setNamePropertyId(Object propertyId) {
+        attributeToPropertyIdMap.put(NAMEATTRIBUTE, propertyId);
     }
 
     /**

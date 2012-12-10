@@ -51,8 +51,8 @@ public class SimpleChartWithContainerSeries extends AbstractVaadinChartExample {
         container.setName("Browser share");
         container.setType(ChartType.PIE);
 
-        container.setYAttributesContainerId("y");
-        container.setNameAttributesContainerId("name");
+        container.setYPropertyId("y");
+        container.setNamePropertyId("name");
         container.addAttributeToPropertyIdMapping("color", "color");
 
         String[] names = new String[] { "MSIE", "Firefox", "Chrome", "Safari",

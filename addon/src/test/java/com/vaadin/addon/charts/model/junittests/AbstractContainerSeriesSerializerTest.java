@@ -25,8 +25,8 @@ public class AbstractContainerSeriesSerializerTest {
         vaadinContainer = new IndexedContainer();
 
         container = new ContainerDataSeries(vaadinContainer);
-        container.setXAttributesContainerId("x");
-        container.setYAttributesContainerId("y");
+        container.setXPropertyId("x");
+        container.setYPropertyId("y");
 
         vaadinContainer.addContainerProperty("x", Number.class, null);
         vaadinContainer.addContainerProperty("y", Number.class, null);

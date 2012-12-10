@@ -61,7 +61,7 @@ public class ChartWithContainerMuchData extends AbstractVaadinChartExample {
 
         container.setName("USD to EUR");
         container.setType(ChartType.AREA);
-        container.setYAttributesContainerId("y");
+        container.setYPropertyId("y");
 
         return container;
     }

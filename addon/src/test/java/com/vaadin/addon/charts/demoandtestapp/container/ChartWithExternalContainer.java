@@ -55,9 +55,9 @@ public class ChartWithExternalContainer extends AbstractVaadinChartExample {
         container.setName("Order item quantities");
         container.setType(ChartType.PIE);
         container
-                .setYAttributesContainerId(ExampleUtil.ORDER_QUANTITY_PROPERTY_ID);
+                .setYPropertyId(ExampleUtil.ORDER_QUANTITY_PROPERTY_ID);
         container
-                .setNameAttributesContainerId(ExampleUtil.ORDER_DESCRIPTION_PROPERTY_ID);
+                .setNamePropertyId(ExampleUtil.ORDER_DESCRIPTION_PROPERTY_ID);
         return container;
     }
 
@@ -66,9 +66,9 @@ public class ChartWithExternalContainer extends AbstractVaadinChartExample {
         container.setName("Order item prices");
         container.setType(ChartType.COLUMN);
         container
-                .setYAttributesContainerId(ExampleUtil.ORDER_ITEMPRICE_PROPERTY_ID);
+                .setYPropertyId(ExampleUtil.ORDER_ITEMPRICE_PROPERTY_ID);
         container
-                .setNameAttributesContainerId(ExampleUtil.ORDER_DESCRIPTION_PROPERTY_ID);
+                .setNamePropertyId(ExampleUtil.ORDER_DESCRIPTION_PROPERTY_ID);
         return container;
     }
 
