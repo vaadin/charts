@@ -1,6 +1,5 @@
 package com.vaadin.addon.charts.model;
 
-import java.util.Date;
 
 /**
  * Series for range type data
@@ -8,8 +7,6 @@ import java.util.Date;
 public class RangeSeries extends AbstractSeries {
     private Number[][] data;
 
-    private Number pointStart;
-    private Number pointInterval;
     private Number yAxis;
 
     /**
@@ -62,55 +59,6 @@ public class RangeSeries extends AbstractSeries {
      */
     public void setData(Number[]... data) {
         this.data = data;
-    }
-
-    /**
-     * If no x values are given for the points in a series, pointStart defines
-     * on what value to start. For example, if a series contains one yearly
-     * value starting from 1945, set pointStart to 1945. Defaults to 0.
-     * 
-     * @param pointStart
-     */
-    public void setPointStart(Number pointStart) {
-        this.pointStart = pointStart;
-    }
-
-    /**
-     * @see #setPointStart(Number)
-     * @return
-     */
-    public Number getPointStart() {
-        return pointStart;
-    }
-
-    /**
-     * If no x values are given for the points in a series, pointInterval
-     * defines the interval of the x values. For example, if a series contains
-     * one value every decade starting from year 0, set pointInterval to 10.
-     * 
-     * @param pointInterval
-     */
-    public void setPointInterval(Number pointInterval) {
-        this.pointInterval = pointInterval;
-    }
-
-    /**
-     * @see #setPointInterval(Number)
-     * @return
-     */
-    public Number getPointInterval() {
-        return pointInterval;
-    }
-
-    /**
-     * If no x values are given for the points in a series, pointStart defines
-     * on what value to start. For example, if a series contains one yearly
-     * value starting from 1945, set pointStart to 1945. Defaults to 0.
-     * 
-     * @param pointStart
-     */
-    public void setPointStart(Date date) {
-        pointStart = date.getTime();
     }
 
     /**
