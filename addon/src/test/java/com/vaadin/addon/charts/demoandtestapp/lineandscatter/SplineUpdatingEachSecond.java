@@ -12,6 +12,7 @@ import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.PlotLine;
+import com.vaadin.addon.charts.model.PlotOptionsSpline;
 import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
@@ -50,7 +51,7 @@ public class SplineUpdatingEachSecond extends AbstractVaadinChartExample {
         configuration.getLegend().setEnabled(false);
 
         final DataSeries series = new DataSeries();
-        series.setType(ChartType.SPLINE);
+        series.setPlotOptions(new PlotOptionsSpline());
         series.setName("Random data");
         for (int i = -19; i <= 0; i++) {
             series.addData(new DataSeriesItem(System.currentTimeMillis() + i

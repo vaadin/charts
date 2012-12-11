@@ -5,6 +5,7 @@ import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.ContainerDataSeries;
+import com.vaadin.addon.charts.model.PlotOptionsPie;
 import com.vaadin.addon.charts.model.Series;
 import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.themes.VaadinTheme;
@@ -49,7 +50,7 @@ public class SimpleChartWithContainerSeries extends AbstractVaadinChartExample {
         vaadinContainer.addContainerProperty("color", Color.class, null);
 
         container.setName("Browser share");
-        container.setType(ChartType.PIE);
+        container.setPlotOptions(new PlotOptionsPie());
 
         container.setYPropertyId("y");
         container.setNamePropertyId("name");

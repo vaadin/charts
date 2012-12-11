@@ -8,15 +8,17 @@ import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.ChartSelectionEvent;
 import com.vaadin.addon.charts.ChartSelectionListener;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.model.AreaListSeries;
 import com.vaadin.addon.charts.model.Axis;
 import com.vaadin.addon.charts.model.AxisType;
 import com.vaadin.addon.charts.model.Configuration;
-import com.vaadin.addon.charts.model.HoverState;
+import com.vaadin.addon.charts.model.State;
 import com.vaadin.addon.charts.model.ListSeries;
+import com.vaadin.addon.charts.model.Marker;
 import com.vaadin.addon.charts.model.MarkerStates;
 import com.vaadin.addon.charts.model.PlotBand;
+import com.vaadin.addon.charts.model.PlotOptionsArea;
 import com.vaadin.addon.charts.model.PlotOptionsSeries;
+import com.vaadin.addon.charts.model.States;
 import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.ZoomType;
 import com.vaadin.addon.charts.model.style.GradientColor;
@@ -215,7 +217,6 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
                 ListSeries detailData = (ListSeries) configuration.getSeries()
                         .get(0);
                 detailData.setData(list);
-                detailData.setPointStart(start);
                 detailChart.drawChart(configuration);
             }
 
@@ -266,19 +267,24 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
         configuration.getTooltip().setShared(true);
 
         PlotOptionsSeries series = new PlotOptionsSeries();
+        series.setPointInterval(DAY_IN_MILLIS);
         configuration.setPlotOptions(series);
 
-        MarkerStates states = new MarkerStates(new HoverState(true));
+        MarkerStates states = new MarkerStates(new State(true));
         states.getHover().setRadius(3);
 
-        series.getMarker().setEnabled(false);
-        series.getMarker().setStates(states);
+        Marker marker = new Marker();
+        marker.setEnabled(false);
+        marker.setStates(states);
+        series.setMarker(marker);
         series.setAnimation(false);
 
         ListSeries seriesList = new ListSeries();
+        PlotOptionsArea plotOptionsArea = new PlotOptionsArea();
+        plotOptionsArea.setPointInterval(DAY_IN_MILLIS);
+        plotOptionsArea.setPointStart(DEMO_DATA_INITIAL_DETAIL_START);
+        seriesList.setPlotOptions(plotOptionsArea);
         seriesList.setName("USD to EUR");
-        seriesList.setPointInterval(DAY_IN_MILLIS);
-        seriesList.setPointStart(DEMO_DATA_INITIAL_DETAIL_START);
         seriesList.setData(getInitialDetailData());
         configuration.getLegend().setEnabled(false);
         configuration.setExporting(false);
@@ -335,22 +341,27 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
         plotOptions.setFillColor(fillColor);
         plotOptions.setLineWidth(1);
         plotOptions.setShadow(false);
-        HoverState hover = new HoverState();
+        State hover = new State();
         hover.setLineWidth(1);
-        plotOptions.setStates(hover);
+        States states = new States();
+        states.setHover(hover);
+        plotOptions.setStates(states);
         plotOptions.setEnableMouseTracking(false);
         plotOptions.setAnimation(false);
         configuration.setPlotOptions(plotOptions);
 
-        AreaListSeries ls = new AreaListSeries();
-        ls.getMarker().setEnabled(false);
+        ListSeries ls = new ListSeries();
+        PlotOptionsArea plotOptions2 = new PlotOptionsArea();
+        plotOptions2.setPointInterval(24 * 3600 * 1000);
+        plotOptions2.setMarker(new Marker(false));
+        plotOptions2.setPointStart(DEMO_DATASET_START);
+        ls.setPlotOptions(plotOptions2);
         ls.setName("USD to EUR");
-        ls.setPointInterval(24 * 3600 * 1000);
-        ls.setPointStart(DEMO_DATASET_START);
         ls.setData(FULL_DEMO_DATA_SET);
         configuration.addSeries(ls);
 
         masterChart.drawChart(configuration);
+
         return masterChart;
     }
 }

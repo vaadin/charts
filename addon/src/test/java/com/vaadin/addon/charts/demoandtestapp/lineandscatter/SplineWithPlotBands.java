@@ -8,7 +8,7 @@ import com.vaadin.addon.charts.model.Axis;
 import com.vaadin.addon.charts.model.AxisType;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
-import com.vaadin.addon.charts.model.HoverState;
+import com.vaadin.addon.charts.model.State;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.Marker;
 import com.vaadin.addon.charts.model.MarkerStates;
@@ -106,13 +106,13 @@ public class SplineWithPlotBands extends AbstractVaadinChartExample {
 
         PlotOptionsSpline plotOptions = new PlotOptionsSpline();
         configuration.setPlotOptions(plotOptions);
-        configuration.getPlotOptions().setMarker(new Marker(false));
-        configuration.getPlotOptions().getMarker().setLineWidth(4);
-        MarkerStates states = new MarkerStates(new HoverState(true));
+        plotOptions.setMarker(new Marker(false));
+        plotOptions.getMarker().setLineWidth(4);
+        MarkerStates states = new MarkerStates(new State(true));
         states.getHover().setSymbol(MarkerSymbolEnum.CIRCLE);
         states.getHover().setRadius(5);
         states.getHover().setLineWidth(1);
-        configuration.getPlotOptions().getMarker().setStates(states);
+        plotOptions.getMarker().setStates(states);
 
         plotOptions.setPointInterval(ONE_HOUR);
         plotOptions.setPointStart(new Date(2009 - 1900, 9 - 1, 6).getTime());

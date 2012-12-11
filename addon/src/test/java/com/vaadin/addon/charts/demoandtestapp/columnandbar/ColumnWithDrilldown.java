@@ -60,7 +60,9 @@ public class ColumnWithDrilldown extends AbstractVaadinChartExample {
         final DrilldownSeries series = new DrilldownSeries(conf, 55.11, 21.63,
                 11.94, 7.15, 2.14);
         series.setName("Browser brands");
-        series.setColor(new SolidColor("#ffffff"));
+        PlotOptionsColumn plotOptionsColumn = new PlotOptionsColumn();
+        plotOptionsColumn.setColor(new SolidColor("#ffffff"));
+        series.setPlotOptions(plotOptionsColumn);
 
         Drilldown drill = new Drilldown("MSIE versions");
         drill.setData(10.85, 7.35, 33.06, 2.81);

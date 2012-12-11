@@ -58,4 +58,9 @@ public class PlotOptionsColumn extends AbstractPlotOptions {
     public Number getGroupPadding() {
         return groupPadding;
     }
+
+    @Override
+    public ChartType getChartType() {
+        return ChartType.COLUMN;
+    }
 }

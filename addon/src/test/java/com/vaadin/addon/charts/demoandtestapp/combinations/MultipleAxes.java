@@ -2,6 +2,7 @@ package com.vaadin.addon.charts.demoandtestapp.combinations;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.model.AbstractPlotOptions;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
@@ -9,6 +10,8 @@ import com.vaadin.addon.charts.model.HorizontalAlign;
 import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.LayoutDirection;
 import com.vaadin.addon.charts.model.Legend;
+import com.vaadin.addon.charts.model.PlotOptionsColumn;
+import com.vaadin.addon.charts.model.PlotOptionsSpline;
 import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.VerticalAlign;
@@ -101,25 +104,31 @@ public class MultipleAxes extends AbstractVaadinChartExample {
         legend.setBackgroundColor("#FFFFFF");
         conf.setLegend(legend);
 
-        DataSeries series = new DataSeries(ChartType.COLUMN);
+        DataSeries series = new DataSeries();
+        AbstractPlotOptions plotOptions = new PlotOptionsColumn();
+        plotOptions.setColor(new SolidColor("#4572A7"));
+        series.setPlotOptions(plotOptions);
         series.setName("Rainfall");
-        series.setColor(new SolidColor("#4572A7"));
         series.setyAxis(1);
         series.setData(49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5,
                 216.4, 194.1, 95.6, 54.4);
         conf.addSeries(series);
 
-        series = new DataSeries(ChartType.SPLINE);
+        series = new DataSeries();
+        plotOptions = new PlotOptionsSpline();
+        plotOptions.setColor(new SolidColor("#AA4643"));
+        series.setPlotOptions(plotOptions);
         series.setName("Sea-Level Pressure");
-        series.setColor(new SolidColor("#AA4643"));
         series.setyAxis(2);
         series.setData(1016, 1016, 1015.9, 1015.5, 1012.3, 1009.5, 1009.6,
                 1010.2, 1013.1, 1016.9, 1018.2, 1016.7);
         conf.addSeries(series);
 
-        series = new DataSeries(ChartType.SPLINE);
+        series = new DataSeries();
+        plotOptions = new PlotOptionsSpline();
+        plotOptions.setColor(new SolidColor("#89A54E"));
+        series.setPlotOptions(plotOptions);
         series.setName("Temperature");
-        series.setColor(new SolidColor("#89A54E"));
         series.setData(7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3,
                 13.9, 9.6);
         conf.addSeries(series);

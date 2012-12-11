@@ -28,22 +28,23 @@ public class ContainerDataSeriesSerializer implements
         JsonArray data = new JsonArray();
 
         if (context != null) {
-            series.add("size", context.serialize(src.getSize()));
-            series.add("innerSize", context.serialize(src.getInnerSize()));
-            series.add("center", context.serialize(src.getCenter()));
-            series.add("color", context.serialize(src.getColor()));
-            series.add("dataLabels", context.serialize(src.getDataLabels()));
-            series.add("marker", context.serialize(src.getMarker()));
+            // FIXME serialize custom Plot options stuff or verify this works
+//            series.add("size", context.serialize(src.getSize()));
+//            series.add("center", context.serialize(src.getCenter()));
+//            series.add("dataLabels", context.serialize(src.getDataLabels()));
+//            series.add("type", context.serialize(src.getType()));
+//            series.add("innerSize", context.serialize(src.getInnerSize()));
+//            series.add("showInLegend", context.serialize(src.isShowInLegend()));
+//            series.add("pointPlacement",
+//                    context.serialize(src.getPointPlacement()));
+//            series.add("marker", context.serialize(src.getMarker()));
+//            series.add("tooltip", context.serialize(src.getTooltip()));
+//            series.add("color", context.serialize(src.getColor()));
+//            series.add("states", context.serialize(src.getStates()));
+//            series.add("enableMouseTracking",
+//                    context.serialize(src.isEnableMouseTracking()));
             series.add("name", context.serialize(src.getName()));
-            series.add("pointPlacement",
-                    context.serialize(src.getPointPlacement()));
             series.add("stack", context.serialize(src.getStack()));
-            series.add("states", context.serialize(src.getStates()));
-            series.add("tooltip", context.serialize(src.getTooltip()));
-            series.add("type", context.serialize(src.getType()));
-            series.add("enableMouseTracking",
-                    context.serialize(src.isEnableMouseTracking()));
-            series.add("showInLegend", context.serialize(src.isShowInLegend()));
 
         }
         series.add("data", data);

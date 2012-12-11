@@ -76,7 +76,9 @@ public class DrilldownSeries extends DataSeries {
             mainData = getNumericData().clone();
             mainCategories = configuration.getxAxis().getCategories().clone();
             mainName = getName();
-            mainColor = getColor();
+            if (getPlotOptions() != null) {
+                mainColor = getPlotOptions().getColor();
+            }
         }
 
         Drilldown dd = drilldowns.get(category);

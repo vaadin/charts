@@ -32,15 +32,10 @@ package com.vaadin.addon.charts.model;
 public abstract class AbstractSeries extends AbstractConfigurationObject
         implements Series {
 
-    private ChartType type;
     private String name;
     private String stack;
-    private Labels dataLabels;
-    private Tooltip tooltip;
-    private PointPlacement pointPlacement;
-    private Marker marker;
-    private Object size;
-    private Object innerSize;
+
+    private AbstractPlotOptions plotOptions;
 
     private transient Configuration configuration;
 
@@ -68,20 +63,6 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
         this.name = name;
     }
 
-    @Override
-    public ChartType getType() {
-        if (type == null) {
-            return ChartType.LINE;
-        } else {
-            return type;
-        }
-    }
-
-    @Override
-    public void setType(ChartType type) {
-        this.type = type;
-    }
-
     /**
      * @see #setStack(String)
      * @return
@@ -101,136 +82,6 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
         this.stack = stack;
     }
 
-    /**
-     * @see #setDataLabels(Labels)
-     * @return DataLabels of null if not defined
-     */
-    public Labels getDataLabels() {
-        return dataLabels;
-    }
-
-    /**
-     * Individual data label for each point. The options are the same as the
-     * ones for plotOptions.series.dataLabels
-     * 
-     * @param dataLabels
-     */
-    public void setDataLabels(Labels dataLabels) {
-        this.dataLabels = dataLabels;
-    }
-
-    /**
-     * @see #setTooltip(Tooltip)
-     * @return
-     */
-    public Tooltip getTooltip() {
-        if (tooltip == null) {
-            tooltip = new Tooltip();
-        }
-        return tooltip;
-    }
-
-    /**
-     * A configuration object for the tooltip rendering of each single series.
-     * Properties are inherited from tooltip. Overridable properties are
-     * headerFormat, pointFormat, valueDecimals, xDateFormat, valuePrefix and
-     * valueSuffix. . Defaults to {}.
-     * 
-     * @param tooltip
-     */
-    public void setTooltip(Tooltip tooltip) {
-        this.tooltip = tooltip;
-    }
-
-    /**
-     * Possible values: null, "on", "between".
-     * 
-     * In a column chart, when pointPlacement is "on", the point will not create
-     * any padding of the X axis. In a polar column chart this means that the
-     * first column points directly north. If the pointPlacement is "between",
-     * the columns will be laid out between ticks. This is useful for example
-     * for visualizing an amount between two points in time or in a certain
-     * sector of a polar chart.
-     * 
-     * Defaults to null in Cartesian charts, "between" in polar charts.
-     * 
-     * @param pointPlacement
-     */
-    public void setPointPlacement(PointPlacement pointPlacement) {
-        this.pointPlacement = pointPlacement;
-    }
-
-    /**
-     * @see #setPointPlacement(PointPlacement)
-     * @return
-     */
-    public PointPlacement getPointPlacement() {
-        return pointPlacement;
-    }
-
-    /**
-     * Series marker for whole series
-     * 
-     * @param marker
-     */
-    public void setMarker(Marker marker) {
-        this.marker = marker;
-    }
-
-    /**
-     * @see #setMarker(Marker)
-     * @return
-     */
-    public Marker getMarker() {
-        if (marker == null) {
-            marker = new Marker();
-        }
-        return marker;
-    }
-
-    /**
-     * @see #setSize(Object)
-     * 
-     * @return
-     */
-    public Object getSize() {
-        return size;
-    }
-
-    /**
-     * The diameter of the pie relative to the plot area. Can be a percentage or
-     * pixel value. Pixel values are given as integers. Defaults to "75%". <br />
-     * <br />
-     * <b>This relevant only for ChartType.PIE</b>
-     * 
-     * @param size
-     */
-    public void setSize(Object size) {
-        this.size = size;
-    }
-
-    /**
-     * @see #setInnerSize(Object)
-     * 
-     * @return
-     */
-    public Object getInnerSize() {
-        return innerSize;
-    }
-
-    /**
-     * The size of the inner diameter for the pie. A size greater than 0 renders
-     * a donut chart. Can be a percentage or pixel value. Percentages are
-     * relative to the size of the plot area. Pixel values are given as
-     * integers. Defaults to 0. <br />
-     * <br />
-     * <b>This relevant only for ChartType.PIE</b>
-     * 
-     * @param innerSize
-     */
-    public void setInnerSize(Object innerSize) {
-        this.innerSize = innerSize;
-    }
 
     @Override
     public void setConfiguration(Configuration configuration) {
@@ -242,5 +93,26 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
      */
     public Configuration getConfiguration() {
         return configuration;
+    }
+
+    /**
+     * Gets plot options related to this specific series. This is needed in
+     * eg.g. "combinded charts".
+     * 
+     * @return
+     */
+    public AbstractPlotOptions getPlotOptions() {
+        return plotOptions;
+    }
+
+    /**
+     * Sets plot options related to this specific series. This is needed in e.g.
+     * "combined charts". The type of plot options fixes the type used rendering
+     * this series.
+     * 
+     * @param plotOptions
+     */
+    public void setPlotOptions(AbstractPlotOptions plotOptions) {
+        this.plotOptions = plotOptions;
     }
 }

@@ -3,7 +3,10 @@ package com.vaadin.addon.charts.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 import com.vaadin.addon.charts.model.DataSeriesEventListener.DataAddedEvent;
 import com.vaadin.addon.charts.model.DataSeriesEventListener.DataRemovedEvent;
@@ -24,7 +27,7 @@ public class Configuration extends AbstractConfigurationObject {
     private Tooltip tooltip;
     private Legend legend;
     private Credits credits;
-    private AbstractPlotOptionsList plotOptions;
+    private Map<String, AbstractPlotOptions> plotOptions;
     private HTMLLabels labels;
 
     private List<Series> series = new ArrayList<Series>();
@@ -391,14 +394,8 @@ public class Configuration extends AbstractConfigurationObject {
      * @see #setPlotOptions(AbstractPlotOptions)
      * @return
      */
-    public AbstractPlotOptions getPlotOptions() {
-        if (plotOptions == null) {
-            plotOptions = new AbstractPlotOptionsList();
-        }
-        if (plotOptions.getNumberOfPlotOptions() == 0) {
-            return null;
-        }
-        return plotOptions.getPlotOptions(0);
+    public AbstractPlotOptions[] getPlotOptions() {
+        return plotOptions.values().toArray(new AbstractPlotOptions[plotOptions.size()]);
     }
 
     /**
@@ -412,11 +409,11 @@ public class Configuration extends AbstractConfigurationObject {
      */
     public void setPlotOptions(AbstractPlotOptions plotOptions) {
         if (this.plotOptions == null) {
-            this.plotOptions = new AbstractPlotOptionsList();
+            this.plotOptions = new HashMap<String,AbstractPlotOptions>();
         } else {
             this.plotOptions.clear();
         }
-        this.plotOptions.addPlotOptions(plotOptions);
+        addPlotOptions(plotOptions);
     }
 
     /**
@@ -428,18 +425,13 @@ public class Configuration extends AbstractConfigurationObject {
      */
     public void addPlotOptions(AbstractPlotOptions plotOptions) {
         if (this.plotOptions == null) {
-            this.plotOptions = new AbstractPlotOptionsList();
+            this.plotOptions = new HashMap<String,AbstractPlotOptions>();
         }
-        this.plotOptions.addPlotOptions(plotOptions);
-    }
-
-    /**
-     * Returns plot options from given index
-     * 
-     * @return
-     */
-    public AbstractPlotOptions getPlotOptions(int index) {
-        return plotOptions.getPlotOptions(index);
+        if (plotOptions instanceof PlotOptionsSeries) {
+            this.plotOptions.put("series", plotOptions);
+        } else {
+            this.plotOptions.put(plotOptions.getChartType().toString(), plotOptions);
+        }
     }
 
     /**

@@ -8,6 +8,8 @@ import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.HorizontalAlign;
 import com.vaadin.addon.charts.model.LayoutDirection;
 import com.vaadin.addon.charts.model.Legend;
+import com.vaadin.addon.charts.model.PlotOptionsColumn;
+import com.vaadin.addon.charts.model.PlotOptionsSpline;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.XAxis;
@@ -70,18 +72,21 @@ public class DualAxesLineAndColumn extends AbstractVaadinChartExample {
         legend.setBackgroundColor("#FFFFFF");
         conf.setLegend(legend);
 
-        DataSeries series = new DataSeries(ChartType.COLUMN);
+        DataSeries series = new DataSeries();
+        series.setPlotOptions(new PlotOptionsColumn());
         series.setName("Rainfall");
         series.setData(49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5,
                 216.4, 194.1, 95.6, 54.4);
         series.setyAxis(1);
         conf.addSeries(series);
 
-        series = new DataSeries(ChartType.SPLINE);
+        series = new DataSeries();
+        PlotOptionsSpline plotOptions = new PlotOptionsSpline();
+        series.setPlotOptions(plotOptions);
         series.setName("Temperature");
         series.setData(7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3,
                 13.9, 9.6);
-        series.setColor(new SolidColor("#89A54E"));
+        plotOptions.setColor(new SolidColor("#89A54E"));
         conf.addSeries(series);
 
         chart.drawChart(conf);

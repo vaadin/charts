@@ -5,4 +5,9 @@ package com.vaadin.addon.charts.model;
  */
 public class PlotOptionsColumnRange extends AbstractPlotOptions {
 
+    @Override
+    public ChartType getChartType() {
+        return ChartType.COLUMNRANGE;
+    }
+
 }

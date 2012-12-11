@@ -12,6 +12,8 @@ import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.Dial;
 import com.vaadin.addon.charts.model.Labels;
+import com.vaadin.addon.charts.model.PlotOptionsGauge;
+import com.vaadin.addon.charts.model.PlotOptionsSeries;
 import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.FontWeight;
@@ -115,7 +117,11 @@ public class Clock extends AbstractVaadinChartExample {
         series.addData(hour);
         series.addData(minute);
         series.addData(second);
-        series.setDataLabels(new Labels(false));
+        
+        PlotOptionsGauge plotOptionsGauge = new PlotOptionsGauge();
+        plotOptionsGauge.setDataLabels(new Labels(false));
+        configuration.setPlotOptions(plotOptionsGauge);
+        
         configuration.setSeries(series);
 
         Thread clockEngine = new Thread() {

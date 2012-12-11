@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts.model;
 
+import java.util.Date;
+
 import com.vaadin.addon.charts.model.style.Color;
 
 /**
@@ -33,6 +35,14 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
 
     private Marker marker;
     private PointPlacement pointPlacement;
+
+    private Color color;
+
+    private States states;
+
+    private Tooltip tooltip;
+    
+    public abstract ChartType getChartType();
 
     /**
      * @see #setDataLabels()
@@ -270,6 +280,18 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     public void setPointStart(Number pointStart) {
         this.pointStart = pointStart;
     }
+    
+    /**
+     * If no x values are given for the points in a series, pointStart defines
+     * on what value to start. For example, if a series contains one yearly
+     * value starting from 1945, set pointStart to 1945. Defaults to 0.
+     * 
+     * @param pointStart
+     */
+    public void setPointStart(Date date) {
+        pointStart = date.getTime();
+    }
+
 
     /**
      * @see #setPointStart(Number)
@@ -347,7 +369,7 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
      * @see #setShowInLegend(Boolean)
      * @return
      */
-    public Boolean isShowInLegend() {
+    public boolean isShowInLegend() {
         return showInLegend == null ? false : showInLegend;
     }
 
@@ -400,4 +422,65 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     public Boolean isStickyTracking() {
         return stickyTracking;
     }
+    
+    /**
+     * @see #setColor(Color)
+     * 
+     * @return
+     */
+    public Color getColor() {
+        return color;
+    }
+
+    /**
+     * The main color or the series. In line type series it applies to the line
+     * and the point markers unless otherwise specified. In bar type series it
+     * applies to the bars unless a color is specified per point. The default
+     * value is pulled from the VaadinTheme's colors
+     * 
+     * @param color
+     */
+    public void setColor(Color color) {
+        this.color = color;
+    }
+    
+    /**
+     * @see #setStates(States)
+     */
+    public States getStates() {
+        return states;
+    }
+
+    /**
+     * A wrapper object for all the series options in specific states.
+     * 
+     * @param states
+     */
+    public void setStates(States states) {
+        this.states = states;
+    }
+    
+    /**
+     * @see #setTooltip(Tooltip)
+     * @return
+     */
+    public Tooltip getTooltip() {
+        if (tooltip == null) {
+            tooltip = new Tooltip();
+        }
+        return tooltip;
+    }
+
+    /**
+     * A configuration object for the tooltip rendering of each single series.
+     * Properties are inherited from tooltip. Overridable properties are
+     * headerFormat, pointFormat, valueDecimals, xDateFormat, valuePrefix and
+     * valueSuffix. . Defaults to {}.
+     * 
+     * @param tooltip
+     */
+    public void setTooltip(Tooltip tooltip) {
+        this.tooltip = tooltip;
+    }
+
 }

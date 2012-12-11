@@ -41,7 +41,6 @@ public class PieWithGradientFill extends AbstractVaadinChartExample {
         conf.setPlotOptions(plotOptions);
 
         DataSeries series = new DataSeries();
-        series.setType(ChartType.PIE);
         DataSeriesItem item = new DataSeriesItem("Firefox", 45.0);
         item.setColor(getGradientColor(new SolidColor(255, 128, 0),
                 new SolidColor(128, 64, 0)));

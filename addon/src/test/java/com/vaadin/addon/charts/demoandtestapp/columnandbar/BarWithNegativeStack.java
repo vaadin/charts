@@ -74,7 +74,7 @@ public class BarWithNegativeStack extends AbstractVaadinChartExample {
                 1005011, 330870, 130632, 21208));
 
         chart.drawChart(conf);
-
+        
         return chart;
     }
 

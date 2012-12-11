@@ -8,6 +8,7 @@ import com.vaadin.addon.charts.model.HorizontalAlign;
 import com.vaadin.addon.charts.model.LayoutDirection;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.Pane;
+import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.PointPlacement;
 import com.vaadin.addon.charts.model.TickmarkPlacement;
 import com.vaadin.addon.charts.model.VerticalAlign;
@@ -61,16 +62,20 @@ public class Spiderweb extends AbstractVaadinChartExample {
                 10000);
         ListSeries line2 = new ListSeries(50000, 39000, 42000, 31000, 26000,
                 14000);
-        line1.setType(ChartType.LINE);
+        PlotOptionsLine plotOptions = new PlotOptionsLine();
+        plotOptions.setPointPlacement(PointPlacement.ON);
+        line1.setPlotOptions(plotOptions);
         line1.setName("Allocated Budget");
-        line1.setPointPlacement(PointPlacement.ON);
-        line2.setType(ChartType.LINE);
+        
+        plotOptions = new PlotOptionsLine();
+        plotOptions.setPointPlacement(PointPlacement.ON);
+        line2.setPlotOptions(plotOptions);
         line2.setName("Actual Spending");
-        line2.setPointPlacement(PointPlacement.ON);
 
         conf.setSeries(line1, line2);
 
         chart.drawChart(conf);
+        
         return chart;
     }
 }

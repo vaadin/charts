@@ -56,12 +56,14 @@ public class DonutChart extends AbstractVaadinChartExample {
 
         DataSeries innerSeries = new DataSeries();
         innerSeries.setName("Browsers");
-        innerSeries.setSize("60%");
-        innerSeries.setDataLabels(new Labels());
-        innerSeries.getDataLabels().setFormatter(
+        PlotOptionsPie innerPieOptions = new PlotOptionsPie();
+        innerSeries.setPlotOptions(innerPieOptions);
+        innerPieOptions.setSize("60%");
+        innerPieOptions.setDataLabels(new Labels());
+        innerPieOptions.getDataLabels().setFormatter(
                 "this.y > 5 ? this.point.name : null");
-        innerSeries.getDataLabels().setColor(new SolidColor(255, 255, 255));
-        innerSeries.getDataLabels().setDistance(-30);
+        innerPieOptions.getDataLabels().setColor(new SolidColor(255, 255, 255));
+        innerPieOptions.getDataLabels().setDistance(-30);
 
         Color[] innerColors = Arrays.copyOf(colors, 5);
         innerSeries.setData(new String[] { "MSIE", "Firefox", "Chrome",
@@ -70,9 +72,11 @@ public class DonutChart extends AbstractVaadinChartExample {
 
         DataSeries outerSeries = new DataSeries();
         outerSeries.setName("Versions");
-        outerSeries.setInnerSize("60%");
-        outerSeries.setDataLabels(new Labels());
-        outerSeries
+        PlotOptionsPie outerSeriesOptions = new PlotOptionsPie();
+        outerSeries.setPlotOptions(outerSeriesOptions);
+        outerSeriesOptions.setInnerSize("60%");
+        outerSeriesOptions.setDataLabels(new Labels());
+        outerSeriesOptions
                 .getDataLabels()
                 .setFormatter(
                         "this.y > 1 ? '<b>'+ this.point.name +':</b> '+ this.y +'%' : null");

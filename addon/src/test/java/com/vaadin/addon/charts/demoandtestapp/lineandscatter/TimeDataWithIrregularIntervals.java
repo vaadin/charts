@@ -15,6 +15,7 @@ import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.DateDataSeriesItem;
 import com.vaadin.addon.charts.model.DateTimeLabelFormats;
+import com.vaadin.addon.charts.model.PlotOptionsSpline;
 import com.vaadin.addon.charts.model.Title;
 import com.vaadin.ui.Component;
 
@@ -55,7 +56,7 @@ public class TimeDataWithIrregularIntervals extends AbstractVaadinChartExample {
                         "'<b>'+ this.series.name +'</b><br/>\'+ Highcharts.dateFormat('%e. %b', this.x) +': '+ this.y +' m'");
 
         DataSeries ls = new DataSeries();
-        ls.setType(ChartType.SPLINE);
+        ls.setPlotOptions(new PlotOptionsSpline());
         ls.setName("Winter 2007-2008");
 
         Object[][] data1 = getData1();
@@ -69,7 +70,7 @@ public class TimeDataWithIrregularIntervals extends AbstractVaadinChartExample {
         configuration.addSeries(ls);
 
         ls = new DataSeries();
-        ls.setType(ChartType.SPLINE);
+        ls.setPlotOptions(new PlotOptionsSpline());
         ls.setName("Winter 2008-2009");
 
         Object[][] data2 = getData2();
@@ -83,7 +84,7 @@ public class TimeDataWithIrregularIntervals extends AbstractVaadinChartExample {
         configuration.addSeries(ls);
 
         ls = new DataSeries();
-        ls.setType(ChartType.SPLINE);
+        ls.setPlotOptions(new PlotOptionsSpline());
         ls.setName("Winter 2009-2010");
         Object[][] data3 = getData3();
         for (int i = 0; i < data3.length; i++) {

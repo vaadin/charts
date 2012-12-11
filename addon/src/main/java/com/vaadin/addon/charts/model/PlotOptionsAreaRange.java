@@ -5,4 +5,9 @@ package com.vaadin.addon.charts.model;
  */
 public class PlotOptionsAreaRange extends AbstractPlotOptions {
 
+    @Override
+    public ChartType getChartType() {
+        return ChartType.AREARANGE;
+    }
+
 }

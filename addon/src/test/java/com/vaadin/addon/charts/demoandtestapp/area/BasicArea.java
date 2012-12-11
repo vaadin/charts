@@ -4,7 +4,7 @@ import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
-import com.vaadin.addon.charts.model.HoverState;
+import com.vaadin.addon.charts.model.State;
 import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.Marker;
@@ -42,7 +42,7 @@ public class BasicArea extends AbstractVaadinChartExample {
         marker.setEnabled(false);
         marker.setSymbol(MarkerSymbolEnum.CIRCLE);
         marker.setRadius(2);
-        marker.setStates(new MarkerStates(new HoverState(true)));
+        marker.setStates(new MarkerStates(new State(true)));
         plotOptions.setMarker(marker);
         conf.setPlotOptions(plotOptions);
 

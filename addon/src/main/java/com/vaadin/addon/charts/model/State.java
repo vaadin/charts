@@ -1,9 +1,10 @@
 package com.vaadin.addon.charts.model;
 
 /**
- * Hovered series state
+ * Custom styles for varios states.
  */
-public class HoverState extends AbstractConfigurationObject {
+public class State extends AbstractConfigurationObject {
+    
     private Boolean enabled;
     private Number radius;
     private Number lineWidth;
@@ -12,7 +13,7 @@ public class HoverState extends AbstractConfigurationObject {
     /**
      * Default constructor
      */
-    public HoverState() {
+    public State() {
 
     }
 
@@ -21,7 +22,7 @@ public class HoverState extends AbstractConfigurationObject {
      * 
      * @param enabled
      */
-    public HoverState(Boolean enabled) {
+    public State(Boolean enabled) {
         this.enabled = enabled;
     }
 

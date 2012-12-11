@@ -1,53 +1,15 @@
 package com.vaadin.addon.charts.model;
 
 /**
- * Plot options that are specific for ChartType.SERIES charts
+ * Generic plot options that are are used for all chart types.
  */
 public class PlotOptionsSeries extends AbstractPlotOptions {
-    private SeriesStates states;
     private Number groupPadding;
 
     /**
      * Default constructor
      */
     public PlotOptionsSeries() {
-    }
-
-    /**
-     * Construct PlotOptions with given series states
-     * 
-     * @param states
-     */
-    public PlotOptionsSeries(SeriesStates states) {
-        this.states = states;
-    }
-
-    /**
-     * A wrapper object for all the series options in specific states.
-     * 
-     * @param states
-     */
-    public void setStates(SeriesStates states) {
-        this.states = states;
-    }
-
-    /**
-     * A wrapper object for all the series options in specific states.<br />
-     * Initialize with given HoverState
-     * 
-     * @param states
-     */
-    public SeriesStates setStates(HoverState hoverState) {
-        states = new SeriesStates(hoverState);
-        return states;
-    }
-
-    /**
-     * @see #setStates(SeriesStates)
-     * @return
-     */
-    public SeriesStates getStates() {
-        return states;
     }
 
     /**
@@ -65,6 +27,11 @@ public class PlotOptionsSeries extends AbstractPlotOptions {
      */
     public Number getGroupPadding() {
         return groupPadding;
+    }
+
+    @Override
+    public ChartType getChartType() {
+        return ChartType.LINE;
     }
 
 }

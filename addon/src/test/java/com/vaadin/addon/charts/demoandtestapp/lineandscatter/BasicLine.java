@@ -50,8 +50,8 @@ public class BasicLine extends AbstractVaadinChartExample {
                         "'<b>'+ this.series.name +'</b><br/>'+this.x +': '+ this.y +'°C'");
 
         PlotOptionsLine plotOptions = new PlotOptionsLine();
+        plotOptions.setDataLabels(new Labels(true));
         configuration.setPlotOptions(plotOptions);
-        configuration.getPlotOptions().setDataLabels(new Labels(true));
 
         Legend legend = configuration.getLegend();
         legend.setLayout(LayoutDirection.VERTICAL);

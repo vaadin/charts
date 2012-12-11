@@ -42,7 +42,6 @@ public class PieWithLegend extends AbstractVaadinChartExample {
         conf.setPlotOptions(plotOptions);
 
         DataSeries series = new DataSeries();
-        series.setType(ChartType.PIE);
         series.addData(new DataSeriesItem("Firefox", 45.0));
         series.addData(new DataSeriesItem("IE", 26.8));
         DataSeriesItem chrome = new DataSeriesItem("Chrome", 12.8);

@@ -24,27 +24,12 @@ public class DataSeries extends AbstractSeries {
     private Number xAxis;
     private Number yAxis;
 
-    private Object[] center;
-    private Boolean showInLegend;
-    private Color color;
-    private Boolean enableMouseTracking;
-    private States states;
-
     /**
      * Constructs an empty {@link DataSeries}. Developers should then populate
      * the series with varios addData and setData methods.
      */
     public DataSeries() {
 
-    }
-
-    /**
-     * Constructs DataSeries with given ChartType
-     * 
-     * @param type
-     */
-    public DataSeries(ChartType type) {
-        setType(type);
     }
 
     /**
@@ -229,53 +214,6 @@ public class DataSeries extends AbstractSeries {
     }
 
     /**
-     * @see #setCenter(Object, Object)
-     * 
-     * @return
-     */
-    public Object[] getCenter() {
-        return center;
-    }
-
-    /**
-     * The center of the pie chart relative to the plot area. Can be percentages
-     * or pixel values. Defaults to "50%", "50%". <br />
-     * <br />
-     * <b>This relevant only for ChartType.PIE</b>
-     * 
-     * @param left
-     * @param top
-     */
-    public void setCenter(Object left, Object top) {
-        Object[] array = null;
-        if (left != null && top != null) {
-            array = new Object[] { left, top };
-        }
-        center = array;
-    }
-
-    /**
-     * @see #setShowInLegend(Boolean)
-     * 
-     * @return
-     */
-    public boolean isShowInLegend() {
-        return showInLegend == null ? false : showInLegend;
-    }
-
-    /**
-     * Whether to display this particular series or series type in the legend.
-     * Defaults to false. <br />
-     * <br />
-     * <b>This relevant only for ChartType.PIE</b>
-     * 
-     * @param showInLegend
-     */
-    public void setShowInLegend(Boolean showInLegend) {
-        this.showInLegend = showInLegend;
-    }
-
-    /**
      * @see #setxAxis(Number)
      * @return X Axis number or null if not defined.
      */
@@ -311,63 +249,6 @@ public class DataSeries extends AbstractSeries {
      */
     public void setyAxis(Number yAxis) {
         this.yAxis = yAxis;
-    }
-
-    /**
-     * @see #setColor(Color)
-     * 
-     * @return
-     */
-    public Color getColor() {
-        return color;
-    }
-
-    /**
-     * The main color or the series. In line type series it applies to the line
-     * and the point markers unless otherwise specified. In bar type series it
-     * applies to the bars unless a color is specified per point. The default
-     * value is pulled from the VaadinTheme's colors
-     * 
-     * @param color
-     */
-    public void setColor(Color color) {
-        this.color = color;
-    }
-
-    /**
-     * @see #setEnableMouseTracking(Boolean)
-     * 
-     * @return
-     */
-    public boolean isEnableMouseTracking() {
-        return enableMouseTracking == null ? true : enableMouseTracking;
-    }
-
-    /**
-     * Enable or disable the mouse tracking for a specific series. This includes
-     * point tooltips and click events on graphs and points. For large datasets
-     * it improves performance. Defaults to true.
-     * 
-     * @param enableMouseTracking
-     */
-    public void setEnableMouseTracking(Boolean enableMouseTracking) {
-        this.enableMouseTracking = enableMouseTracking;
-    }
-
-    /**
-     * @see #setStates(States)
-     */
-    public States getStates() {
-        return states;
-    }
-
-    /**
-     * A wrapper object for all the series options in specific states.
-     * 
-     * @param states
-     */
-    public void setStates(States states) {
-        this.states = states;
     }
 
     /**

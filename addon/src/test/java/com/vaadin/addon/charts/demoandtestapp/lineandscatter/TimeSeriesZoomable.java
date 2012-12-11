@@ -5,15 +5,15 @@ import java.text.SimpleDateFormat;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.model.AreaListSeries;
-import com.vaadin.addon.charts.model.AreaStates;
 import com.vaadin.addon.charts.model.Axis;
 import com.vaadin.addon.charts.model.AxisType;
 import com.vaadin.addon.charts.model.Configuration;
-import com.vaadin.addon.charts.model.HoverState;
+import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.Marker;
 import com.vaadin.addon.charts.model.MarkerStates;
 import com.vaadin.addon.charts.model.PlotOptionsArea;
+import com.vaadin.addon.charts.model.State;
+import com.vaadin.addon.charts.model.States;
 import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.ZoomType;
 import com.vaadin.addon.charts.model.style.GradientColor;
@@ -216,28 +216,29 @@ public class TimeSeriesZoomable extends AbstractVaadinChartExample {
 
         Marker marker = new Marker();
         marker.setEnabled(false);
-        HoverState hoverState = new HoverState(true);
+        State hoverState = new State(true);
         hoverState.setRadius(5);
         MarkerStates states = new MarkerStates(hoverState);
         marker.setStates(states);
 
-        HoverState hoverStateForArea = new HoverState(true);
+        State hoverStateForArea = new State(true);
         hoverState.setLineWidth(1);
 
-        AreaStates areaStates = new AreaStates(hoverStateForArea);
-        plotOptions.setStates(areaStates);
+        plotOptions.setStates(new States(hoverStateForArea));
         plotOptions.setMarker(marker);
         plotOptions.setShadow(false);
         configuration.setPlotOptions(plotOptions);
 
         SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
 
-        AreaListSeries ls = new AreaListSeries();
+        ListSeries ls = new ListSeries();
+        PlotOptionsArea options = new PlotOptionsArea();
+        options.setPointInterval(DAY_IN_MILLIS);
+        ls.setPlotOptions(options);
         ls.setName("USD to EUR");
-        ls.setPointInterval(DAY_IN_MILLIS);
 
         try {
-            ls.setPointStart(df.parse("2006/01/02").getTime());
+            options.setPointStart(df.parse("2006/01/02").getTime());
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -245,6 +246,7 @@ public class TimeSeriesZoomable extends AbstractVaadinChartExample {
         configuration.setSeries(ls);
 
         chart.drawChart(configuration);
+        
         return chart;
     }
 }

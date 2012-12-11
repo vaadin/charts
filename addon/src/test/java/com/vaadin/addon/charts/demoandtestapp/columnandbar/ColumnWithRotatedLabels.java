@@ -8,6 +8,7 @@ import com.vaadin.addon.charts.model.HorizontalAlign;
 import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.Legend;
 import com.vaadin.addon.charts.model.ListSeries;
+import com.vaadin.addon.charts.model.PlotOptionsColumn;
 import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.XAxis;
@@ -70,17 +71,21 @@ public class ColumnWithRotatedLabels extends AbstractVaadinChartExample {
         dataLabels.setRotation(-90);
         dataLabels.setColor(new SolidColor(255, 255, 255));
         dataLabels.setAlign(HorizontalAlign.RIGHT);
-        dataLabels.setX(-3);
+        dataLabels.setX(4);
         dataLabels.setY(10);
         dataLabels.setFormatter("function() { return this.y; }");
         style = new Style();
         style.setFontSize("13px");
         style.setFontFamily("Verdana, sans-serif");
         dataLabels.setStyle(style);
-        serie.setDataLabels(dataLabels);
+        PlotOptionsColumn plotOptionsColumn = new PlotOptionsColumn();
+        plotOptionsColumn.setDataLabels(dataLabels);
+        serie.setPlotOptions(plotOptionsColumn);
         conf.addSeries(serie);
 
         chart.drawChart(conf);
+        
+        System.out.println(conf);
 
         return chart;
     }

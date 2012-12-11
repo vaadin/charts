@@ -64,11 +64,6 @@ public class RangeSeries extends AbstractSeries {
         this.data = data;
     }
 
-    @Override
-    public ChartType getType() {
-        return ChartType.AREARANGE;
-    }
-
     /**
      * If no x values are given for the points in a series, pointStart defines
      * on what value to start. For example, if a series contains one yearly

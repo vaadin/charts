@@ -4,11 +4,11 @@ import java.io.Serializable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.vaadin.addon.charts.model.gsonhelpers.AbstractSeriesTypeAdapterFactory;
 import com.vaadin.addon.charts.model.gsonhelpers.AxisListSerializer;
 import com.vaadin.addon.charts.model.gsonhelpers.ChartEnumSerializer;
 import com.vaadin.addon.charts.model.gsonhelpers.ContainerDataSeriesSerializer;
 import com.vaadin.addon.charts.model.gsonhelpers.PaneListSerializer;
-import com.vaadin.addon.charts.model.gsonhelpers.PlotOptionsSerializer;
 import com.vaadin.addon.charts.model.gsonhelpers.SolidColorSerializer;
 import com.vaadin.addon.charts.model.style.SolidColor;
 
@@ -41,8 +41,7 @@ public abstract class AbstractConfigurationObject implements Serializable {
                 new PaneListSerializer());
         builder.registerTypeAdapter(ContainerDataSeries.class,
                 new ContainerDataSeriesSerializer());
-        builder.registerTypeHierarchyAdapter(AbstractPlotOptionsList.class,
-                new PlotOptionsSerializer());
+        builder.registerTypeAdapterFactory(new AbstractSeriesTypeAdapterFactory());
         return builder;
     }
 

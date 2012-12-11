@@ -9,9 +9,12 @@ import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
-import com.vaadin.addon.charts.model.HoverState;
+import com.vaadin.addon.charts.model.State;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.Marker;
+import com.vaadin.addon.charts.model.PlotOptionsLine;
+import com.vaadin.addon.charts.model.PlotOptionsScatter;
+import com.vaadin.addon.charts.model.PlotOptionsSpline;
 import com.vaadin.addon.charts.model.States;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
@@ -43,38 +46,39 @@ public class ScatterWithRegressionLine extends AbstractVaadinChartExample {
 
         conf.setTitle("Scatter plot with regression line");
 
-        DataSeries series = new DataSeries(ChartType.LINE);
+        DataSeries series = new DataSeries();
+        PlotOptionsLine plotOptions = new PlotOptionsLine();
+        plotOptions.setColor(new SolidColor("#AA4643"));
+        series.setPlotOptions(plotOptions);
         series.setName("Regression Line");
-        series.setColor(new SolidColor("#AA4643"));
 
         List<DataSeriesItem> list = new ArrayList<DataSeriesItem>();
         list.add(new DataSeriesItem(0, 1.11));
         list.add(new DataSeriesItem(5, 4.51));
         series.setData(list);
 
-        series.getMarker().setEnabled(false);
-        series.setEnableMouseTracking(true);
+        plotOptions.setMarker(new Marker(true));
+        plotOptions.setEnableMouseTracking(true);
 
-        States states = new States();
-        HoverState hover = new HoverState();
+        State hover = new State();
         hover.setLineWidth(0);
-        states.setHover(hover);
-        series.setStates(states);
+        plotOptions.setStates(new States(hover));
 
         conf.addSeries(series);
 
         ListSeries listSeries = new ListSeries("Observations", 1, 1.5, 2.8,
                 3.5, 3.9, 4.2);
-        listSeries.setType(ChartType.SCATTER);
+        PlotOptionsScatter plotOptions2 = new PlotOptionsScatter();
+        listSeries.setPlotOptions(plotOptions2);
 
         Marker marker = new Marker(true);
         marker.setRadius(4);
-        listSeries.setMarker(marker);
+        plotOptions2.setMarker(marker);
 
         conf.addSeries(listSeries);
 
         chart.drawChart(conf);
-
+        
         return chart;
     }
 }

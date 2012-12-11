@@ -57,14 +57,14 @@ public class SplineInverted extends AbstractVaadinChartExample {
         configuration.getTooltip().setFormatter("this.x +' km: '+this.y +'°C'");
 
         PlotOptionsSpline plotOptions = new PlotOptionsSpline();
+        plotOptions.setMarker(new Marker(true));
         configuration.setPlotOptions(plotOptions);
-        configuration.getPlotOptions().setMarker(new Marker(true));
 
         Legend legend = configuration.getLegend();
         legend.setEnabled(false);
 
         DataSeries series = new DataSeries();
-        series.setType(ChartType.SPLINE);
+        series.setPlotOptions(new PlotOptionsSpline());
         series.setName("Temperature");
         series.addData(new Number[][] { { 0, 15 }, { 10, -50 }, { 20, -56.5 },
                 { 30, -46.5 }, { 40, -22.1 }, { 50, -2.5 }, { 60, -27.7 },

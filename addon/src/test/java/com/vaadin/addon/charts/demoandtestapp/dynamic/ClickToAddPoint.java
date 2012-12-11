@@ -42,14 +42,12 @@ public class ClickToAddPoint extends AbstractVaadinChartExample {
         Axis xAxis = configuration.getxAxis();
         xAxis.setMinPadding(0.2);
         xAxis.setMaxPadding(0.2);
-        xAxis.setMaxZoom(60);
 
         YAxis yAxis = configuration.getyAxis();
         yAxis.setTitle(new Title("Value"));
         yAxis.setPlotLines(new PlotLine(0, 1, new SolidColor("#808080")));
         yAxis.setMinPadding(0.2);
         yAxis.setMaxPadding(0.2);
-        yAxis.setMaxZoom(60);
 
         Legend legend = configuration.getLegend();
         legend.setEnabled(false);

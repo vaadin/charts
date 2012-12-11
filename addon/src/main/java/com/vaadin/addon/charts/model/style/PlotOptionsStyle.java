@@ -1,24 +1,31 @@
 package com.vaadin.addon.charts.model.style;
 
 import com.vaadin.addon.charts.model.AbstractConfigurationObject;
+import com.vaadin.addon.charts.model.PlotOptionsArea;
+import com.vaadin.addon.charts.model.PlotOptionsBar;
+import com.vaadin.addon.charts.model.PlotOptionsColumn;
+import com.vaadin.addon.charts.model.PlotOptionsLine;
+import com.vaadin.addon.charts.model.PlotOptionsPie;
+import com.vaadin.addon.charts.model.PlotOptionsSeries;
+import com.vaadin.addon.charts.model.PlotOptionsSpline;
 
 /**
  * Styles for PlotOptions of different plot types
  */
 public class PlotOptionsStyle extends AbstractConfigurationObject {
-    private PlotOptionStyle bar = new PlotOptionStyle();
-    private PlotOptionStyle area = new PlotOptionStyle();
-    private PlotOptionStyle pie = new PlotOptionStyle();
-    private PlotOptionStyle line = new PlotOptionStyle();
-    private PlotOptionStyle column = new PlotOptionStyle();
-    private PlotOptionStyle spline = new PlotOptionStyle();
-    private PlotOptionStyle series = new PlotOptionStyle();
+    private PlotOptionsBar bar = new PlotOptionsBar();
+    private PlotOptionsArea area = new PlotOptionsArea();
+    private PlotOptionsPie pie = new PlotOptionsPie();
+    private PlotOptionsLine line = new PlotOptionsLine();
+    private PlotOptionsColumn column = new PlotOptionsColumn();
+    private PlotOptionsSpline spline = new PlotOptionsSpline();
+    private PlotOptionsSeries series = new PlotOptionsSeries();
 
     /**
      * @see #getBar()
      * @return
      */
-    public PlotOptionStyle getBar() {
+    public PlotOptionsBar getBar() {
         return bar;
     }
 
@@ -27,7 +34,7 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
      * 
      * @param bar
      */
-    public void setBar(PlotOptionStyle bar) {
+    public void setBar(PlotOptionsBar bar) {
         this.bar = bar;
     }
 
@@ -35,7 +42,7 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
      * @see #getArea()
      * @return
      */
-    public PlotOptionStyle getArea() {
+    public PlotOptionsArea getArea() {
         return area;
     }
 
@@ -44,7 +51,7 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
      * 
      * @param bar
      */
-    public void setArea(PlotOptionStyle area) {
+    public void setArea(PlotOptionsArea area) {
         this.area = area;
     }
 
@@ -52,7 +59,7 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
      * @see #getPie()
      * @return
      */
-    public PlotOptionStyle getPie() {
+    public PlotOptionsPie getPie() {
         return pie;
     }
 
@@ -61,7 +68,7 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
      * 
      * @param bar
      */
-    public void setPie(PlotOptionStyle pie) {
+    public void setPie(PlotOptionsPie pie) {
         this.pie = pie;
     }
 
@@ -69,7 +76,7 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
      * @see #getLine()
      * @return
      */
-    public PlotOptionStyle getLine() {
+    public PlotOptionsLine getLine() {
         return line;
     }
 
@@ -78,7 +85,7 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
      * 
      * @param bar
      */
-    public void setLine(PlotOptionStyle line) {
+    public void setLine(PlotOptionsLine line) {
         this.line = line;
     }
 
@@ -86,7 +93,7 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
      * @see #getColumn()
      * @return
      */
-    public PlotOptionStyle getColumn() {
+    public PlotOptionsColumn getColumn() {
         return column;
     }
 
@@ -95,7 +102,7 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
      * 
      * @param bar
      */
-    public void setColumn(PlotOptionStyle column) {
+    public void setColumn(PlotOptionsColumn column) {
         this.column = column;
     }
 
@@ -103,7 +110,7 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
      * @see #getSpline()
      * @return
      */
-    public PlotOptionStyle getSpline() {
+    public PlotOptionsSpline getSpline() {
         return spline;
     }
 
@@ -112,7 +119,7 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
      * 
      * @param bar
      */
-    public void setSpline(PlotOptionStyle spline) {
+    public void setSpline(PlotOptionsSpline spline) {
         this.spline = spline;
     }
 
@@ -120,16 +127,16 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
      * @see #getSeries()
      * @return
      */
-    public PlotOptionStyle getSeries() {
+    public PlotOptionsSeries getSeries() {
         return series;
     }
 
     /**
-     * Set style options SERIES charts
+     * Set style rules for all chart types
      * 
      * @param bar
      */
-    public void setSeries(PlotOptionStyle series) {
+    public void setSeries(PlotOptionsSeries series) {
         this.series = series;
     }
 

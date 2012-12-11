@@ -22,4 +22,9 @@ public class PlotOptionsGauge extends AbstractPlotOptions {
     public Dial getDial() {
         return dial;
     }
+
+    @Override
+    public ChartType getChartType() {
+        return ChartType.GAUGE;
+    }
 }

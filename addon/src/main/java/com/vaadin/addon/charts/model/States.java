@@ -5,13 +5,20 @@ package com.vaadin.addon.charts.model;
  */
 public class States extends AbstractConfigurationObject {
 
-    private HoverState hover;
+    private State hover;
+
+    public States(State hoverState) {
+        hover = hoverState;
+    }
+
+    public States() {
+    }
 
     /**
-     * @see #setHover(HoverState)
+     * @see #setHover(State)
      * @return
      */
-    public HoverState getHover() {
+    public State getHover() {
         return hover;
     }
 
@@ -20,7 +27,7 @@ public class States extends AbstractConfigurationObject {
      * 
      * @param hover
      */
-    public void setHover(HoverState hover) {
+    public void setHover(State hover) {
         this.hover = hover;
     }
 }

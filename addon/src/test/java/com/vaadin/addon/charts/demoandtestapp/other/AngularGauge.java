@@ -10,6 +10,7 @@ import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.PlotBand;
+import com.vaadin.addon.charts.model.PlotOptionsGauge;
 import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.GradientColor;
@@ -94,7 +95,9 @@ public class AngularGauge extends AbstractVaadinChartExample {
         yAxis.setPlotBands(plotBands);
 
         final ListSeries series = new ListSeries("Speed", 80);
-        series.getTooltip().setValueSuffix(" km/h");
+        PlotOptionsGauge plotOptions = new PlotOptionsGauge();
+        plotOptions.getTooltip().setValueSuffix(" km/h");
+        series.setPlotOptions(plotOptions);
         configuration.setSeries(series);
 
         Thread generator = new Thread() {

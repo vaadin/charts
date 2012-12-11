@@ -48,15 +48,19 @@ public class SplineWithSymbols extends AbstractVaadinChartExample {
 
         PlotOptionsSpline plotOptions = new PlotOptionsSpline();
         configuration.setPlotOptions(plotOptions);
-        configuration.getPlotOptions().setMarker(new Marker(true));
-        configuration.getPlotOptions().getMarker().setRadius(4);
-        configuration.getPlotOptions().getMarker()
+        plotOptions.setMarker(new Marker(true));
+        plotOptions.getMarker().setRadius(4);
+        plotOptions.getMarker()
                 .setLineColor(new SolidColor("#666666"));
-        configuration.getPlotOptions().getMarker().setLineWidth(1);
+        plotOptions.getMarker().setLineWidth(1);
 
         DataSeries ls = new DataSeries();
+        plotOptions = new PlotOptionsSpline();
+        Marker marker = new Marker();
+        marker.setSymbol(MarkerSymbolEnum.SQUARE);
+        plotOptions.setMarker(marker);
+        ls.setPlotOptions(plotOptions);
         ls.setName("Tokyo");
-        ls.getMarker().setSymbol(MarkerSymbolEnum.SQUARE);
 
         ls.setData(7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3,
                 13.9, 9.6);
@@ -69,8 +73,12 @@ public class SplineWithSymbols extends AbstractVaadinChartExample {
         configuration.addSeries(ls);
 
         ls = new DataSeries();
+        plotOptions = new PlotOptionsSpline();
+        marker = new Marker();
+        marker.setSymbol(MarkerSymbolEnum.DIAMOND);
+        plotOptions.setMarker(marker);
+        ls.setPlotOptions(plotOptions);
         ls.setName("London");
-        ls.getMarker().setSymbol(MarkerSymbolEnum.DIAMOND);
         ls.setData(3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6,
                 4.8);
         ls.getDataSeriesItem("3.9")

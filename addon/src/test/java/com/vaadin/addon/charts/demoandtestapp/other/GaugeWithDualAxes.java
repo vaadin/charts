@@ -9,6 +9,7 @@ import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.ListSeries;
+import com.vaadin.addon.charts.model.PlotOptionsGauge;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
@@ -78,18 +79,23 @@ public class GaugeWithDualAxes extends AbstractVaadinChartExample {
 
         configuration.addyAxis(yAxis);
         configuration.addyAxis(yAxis2);
-
+        
         final ListSeries series = new ListSeries("Speed", 80);
-        series.getTooltip().setValueSuffix(" km/h");
-        configuration.setSeries(series);
-        series.setDataLabels(new Labels());
-        series.getDataLabels()
-                .setFormatter(
-                        "function() {return '<span style=\"color:#339\">'+ this.y + ' km/h</span><br/>' + '<span style=\"color:#933\">' + Math.round(this.y * 0.621) + ' mph</span>';}");
+        
+        PlotOptionsGauge plotOptionsGauge = new PlotOptionsGauge();
+        plotOptionsGauge.setDataLabels(new Labels());
+        plotOptionsGauge.getDataLabels()
+        .setFormatter(
+                "function() {return '<span style=\"color:#339\">'+ this.y + ' km/h</span><br/>' + '<span style=\"color:#933\">' + Math.round(this.y * 0.621) + ' mph</span>';}");
         GradientColor gradient = GradientColor.createLinear(0, 0, 0, 1);
         gradient.addColorStop(0, new SolidColor("#DDD"));
         gradient.addColorStop(1, new SolidColor("#FFF"));
-        series.getDataLabels().setBackgroundColor(gradient);
+        plotOptionsGauge.getDataLabels().setBackgroundColor(gradient);
+        plotOptionsGauge.getTooltip().setValueSuffix(" km/h");
+        series.setPlotOptions(plotOptionsGauge);
+        
+
+        configuration.setSeries(series);
 
         generator = new Thread() {
             @Override
@@ -114,6 +120,7 @@ public class GaugeWithDualAxes extends AbstractVaadinChartExample {
         generator.start();
 
         chart.drawChart(configuration);
+        
         return chart;
     }
 

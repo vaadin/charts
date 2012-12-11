@@ -2,16 +2,16 @@ package com.vaadin.addon.charts.demoandtestapp.container;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.model.AreaStates;
 import com.vaadin.addon.charts.model.Axis;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.ContainerDataSeries;
-import com.vaadin.addon.charts.model.HoverState;
 import com.vaadin.addon.charts.model.Marker;
 import com.vaadin.addon.charts.model.MarkerStates;
 import com.vaadin.addon.charts.model.PlotOptionsArea;
 import com.vaadin.addon.charts.model.Series;
+import com.vaadin.addon.charts.model.State;
+import com.vaadin.addon.charts.model.States;
 import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
@@ -60,7 +60,7 @@ public class ChartWithContainerMuchData extends AbstractVaadinChartExample {
         }
 
         container.setName("USD to EUR");
-        container.setType(ChartType.AREA);
+        container.setPlotOptions(new PlotOptionsArea());
         container.setYPropertyId("y");
 
         return container;
@@ -104,16 +104,17 @@ public class ChartWithContainerMuchData extends AbstractVaadinChartExample {
 
         Marker marker = new Marker();
         marker.setEnabled(false);
-        HoverState hoverState = new HoverState(true);
+        State hoverState = new State(true);
         hoverState.setRadius(5);
-        MarkerStates states = new MarkerStates(hoverState);
-        marker.setStates(states);
+        MarkerStates markerStates = new MarkerStates(hoverState);
+        marker.setStates(markerStates);
 
-        HoverState hoverStateForArea = new HoverState(true);
+        State hoverStateForArea = new State(true);
         hoverState.setLineWidth(1);
 
-        AreaStates areaStates = new AreaStates(hoverStateForArea);
-        plotOptions.setStates(areaStates);
+        States states = new States();
+        states.setHover(hoverStateForArea);
+        plotOptions.setStates(states);
         plotOptions.setMarker(marker);
         plotOptions.setShadow(false);
         configuration.setPlotOptions(plotOptions);

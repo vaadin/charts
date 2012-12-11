@@ -84,8 +84,7 @@ public class StackedColumn extends AbstractVaadinChartExample {
         conf.addSeries(new ListSeries("Jane", new Number[] { 2, 2, 3, 2, 1 }));
         conf.addSeries(new ListSeries("Joe", new Number[] { 3, 4, 4, 2, 5 }));
 
-        chart.drawChart(conf);
-        System.out.println(conf.toString());
+        chart.drawChart(conf);        
         return chart;
     }
 }

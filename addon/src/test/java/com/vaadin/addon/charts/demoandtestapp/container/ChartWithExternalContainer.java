@@ -53,7 +53,7 @@ public class ChartWithExternalContainer extends AbstractVaadinChartExample {
     private ContainerDataSeries createContainerView1(Container vaadinContainer) {
         ContainerDataSeries container = new ContainerDataSeries(vaadinContainer);
         container.setName("Order item quantities");
-        container.setType(ChartType.PIE);
+        container.setPlotOptions(new PlotOptionsPie());
         container
                 .setYPropertyId(ExampleUtil.ORDER_QUANTITY_PROPERTY_ID);
         container
@@ -64,7 +64,7 @@ public class ChartWithExternalContainer extends AbstractVaadinChartExample {
     private ContainerDataSeries createContainerView2(Container vaadinContainer) {
         ContainerDataSeries container = new ContainerDataSeries(vaadinContainer);
         container.setName("Order item prices");
-        container.setType(ChartType.COLUMN);
+        container.setPlotOptions(new PlotOptionsColumn());
         container
                 .setYPropertyId(ExampleUtil.ORDER_ITEMPRICE_PROPERTY_ID);
         container
