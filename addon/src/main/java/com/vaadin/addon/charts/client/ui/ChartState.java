@@ -2,7 +2,7 @@ package com.vaadin.addon.charts.client.ui;
 
 import com.vaadin.shared.AbstractComponentState;
 
-public class HighchartComponentState extends AbstractComponentState {
+public class ChartState extends AbstractComponentState {
 
     public String jsonState;
     /**

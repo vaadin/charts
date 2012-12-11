@@ -3,7 +3,7 @@ package com.vaadin.addon.charts.client.ui;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.user.client.ui.Widget;
 
-public class VHighchart extends Widget {
+public class HighchartWidget extends Widget {
 
     public static final String CHART_CLICK_EVENT_ID = "cl";
     public static final String CHART_SELECTION_EVENT_ID = "cs";
@@ -16,7 +16,7 @@ public class VHighchart extends Widget {
     private boolean shift = false;
     private boolean animation = true;
 
-    public VHighchart() {
+    public HighchartWidget() {
         setElement(Document.get().createDivElement());
         getElement().setInnerHTML("Loading chart...");
     }

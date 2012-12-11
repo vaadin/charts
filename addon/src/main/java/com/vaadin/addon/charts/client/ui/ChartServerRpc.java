@@ -21,7 +21,7 @@ import com.vaadin.shared.communication.ServerRpc;
  * 
  * @author mattitahvonenitmill
  */
-public interface HighchartRpc extends ServerRpc {
+public interface ChartServerRpc extends ServerRpc {
 
     void onChartClick(double x, double y);
 

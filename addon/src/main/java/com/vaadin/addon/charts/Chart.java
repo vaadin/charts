@@ -2,10 +2,10 @@ package com.vaadin.addon.charts;
 
 import java.lang.reflect.Method;
 
-import com.vaadin.addon.charts.client.ui.HighchartClientRpc;
-import com.vaadin.addon.charts.client.ui.HighchartComponentState;
-import com.vaadin.addon.charts.client.ui.HighchartRpc;
-import com.vaadin.addon.charts.client.ui.VHighchart;
+import com.vaadin.addon.charts.client.ui.ChartClientRpc;
+import com.vaadin.addon.charts.client.ui.ChartState;
+import com.vaadin.addon.charts.client.ui.ChartServerRpc;
+import com.vaadin.addon.charts.client.ui.HighchartWidget;
 import com.vaadin.addon.charts.model.ChartModel;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
@@ -32,7 +32,7 @@ public class Chart extends AbstractComponent {
         setHeight(400, Unit.PIXELS);
         configuration = new Configuration();
 
-        registerRpc(new HighchartRpc() {
+        registerRpc(new ChartServerRpc() {
 
             @Override
             public void onChartClick(double x, double y) {
@@ -84,8 +84,8 @@ public class Chart extends AbstractComponent {
     }
 
     @Override
-    protected HighchartComponentState getState() {
-        return (HighchartComponentState) super.getState();
+    protected ChartState getState() {
+        return (ChartState) super.getState();
     }
 
     private String getChartConfig() {
@@ -186,7 +186,7 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void addChartClickListener(ChartClickListener listener) {
-        this.addListener(VHighchart.CHART_CLICK_EVENT_ID,
+        this.addListener(HighchartWidget.CHART_CLICK_EVENT_ID,
                 ChartClickEvent.class, listener, chartClickMethod);
     }
 
@@ -195,7 +195,7 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void removeChartClickListener(ChartClickListener listener) {
-        this.removeListener(VHighchart.CHART_CLICK_EVENT_ID,
+        this.removeListener(HighchartWidget.CHART_CLICK_EVENT_ID,
                 ChartClickEvent.class, listener);
     }
 
@@ -205,7 +205,7 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void addPointClickListener(PointClickListener listener) {
-        this.addListener(VHighchart.POINT_CLICK_EVENT_ID,
+        this.addListener(HighchartWidget.POINT_CLICK_EVENT_ID,
                 PointClickEvent.class, listener, pointClickMethod);
     }
 
@@ -214,7 +214,7 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void removePointClickListener(ChartClickListener listener) {
-        this.removeListener(VHighchart.POINT_CLICK_EVENT_ID,
+        this.removeListener(HighchartWidget.POINT_CLICK_EVENT_ID,
                 PointClickEvent.class, listener);
     }
 
@@ -224,7 +224,7 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void addColumnClickListener(PointClickListener listener) {
-        this.addListener(VHighchart.COLUMN_CLICK_EVENT_ID,
+        this.addListener(HighchartWidget.COLUMN_CLICK_EVENT_ID,
                 PointClickEvent.class, listener, pointClickMethod);
     }
 
@@ -233,7 +233,7 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void removeColumnClickListener(ChartClickListener listener) {
-        this.removeListener(VHighchart.COLUMN_CLICK_EVENT_ID,
+        this.removeListener(HighchartWidget.COLUMN_CLICK_EVENT_ID,
                 PointClickEvent.class, listener);
     }
 
@@ -248,7 +248,7 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void addChartSelectionListener(ChartSelectionListener listener) {
-        this.addListener(VHighchart.CHART_SELECTION_EVENT_ID,
+        this.addListener(HighchartWidget.CHART_SELECTION_EVENT_ID,
                 ChartSelectionEvent.class, listener, chartSelectionMethod);
     }
 
@@ -257,7 +257,7 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void removeChartSelectionListener(ChartSelectionListener listener) {
-        this.removeListener(VHighchart.CHART_SELECTION_EVENT_ID,
+        this.removeListener(HighchartWidget.CHART_SELECTION_EVENT_ID,
                 ChartSelectionEvent.class, listener);
     }
 
@@ -286,11 +286,11 @@ public class Chart extends AbstractComponent {
      */
     public void setClientSideRenderingParams(boolean redrawAfterUpdate,
             boolean shiftAfterUpdate, boolean animationAfterUpdate) {
-        getRpcProxy(HighchartClientRpc.class).setRedrawAfterUpdate(
+        getRpcProxy(ChartClientRpc.class).setRedrawAfterUpdate(
                 redrawAfterUpdate);
-        getRpcProxy(HighchartClientRpc.class).setShiftAfterUpdate(
+        getRpcProxy(ChartClientRpc.class).setShiftAfterUpdate(
                 shiftAfterUpdate);
-        getRpcProxy(HighchartClientRpc.class).setAnimationAfterUpdate(
+        getRpcProxy(ChartClientRpc.class).setAnimationAfterUpdate(
                 animationAfterUpdate);
     }
 
@@ -306,7 +306,7 @@ public class Chart extends AbstractComponent {
             if (event.getItem() != null) {
                 if (event.getItem().getX() != null) {
                     // x,y type data
-                    getRpcProxy(HighchartClientRpc.class).addPoint(
+                    getRpcProxy(ChartClientRpc.class).addPoint(
                             event.getItem().getX().doubleValue(),
                             event.getItem().getY().doubleValue(),
                             getConfiguration().getSeries().indexOf(
@@ -320,7 +320,7 @@ public class Chart extends AbstractComponent {
             if (event.getItem() != null) {
                 if (event.getItem().getX() != null) {
                     // x,y type data
-                    getRpcProxy(HighchartClientRpc.class).removePoint(
+                    getRpcProxy(ChartClientRpc.class).removePoint(
                             event.getItem().getX().doubleValue(),
                             event.getItem().getY().doubleValue());
                 }
@@ -330,7 +330,7 @@ public class Chart extends AbstractComponent {
         @Override
         public void dataUpdated(DataUpdatedEvent event) {
             if (event.getValue() != null) {
-                getRpcProxy(HighchartClientRpc.class).updatePointValue(
+                getRpcProxy(ChartClientRpc.class).updatePointValue(
                         getConfiguration().getSeries().indexOf(
                                 event.getSeries()), event.getPointIndex(),
                         event.getValue().doubleValue());

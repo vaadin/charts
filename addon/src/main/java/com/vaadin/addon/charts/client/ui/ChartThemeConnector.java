@@ -10,7 +10,7 @@ import com.vaadin.shared.ui.Connect;
 
 @SuppressWarnings("serial")
 @Connect(com.vaadin.addon.charts.ChartTheme.class)
-public class ThemerConnector extends AbstractExtensionConnector {
+public class ChartThemeConnector extends AbstractExtensionConnector {
 
     @Override
     public void onStateChanged(StateChangeEvent event) {
@@ -30,8 +30,8 @@ public class ThemerConnector extends AbstractExtensionConnector {
     }-*/;
 
     @Override
-    public ThemerState getState() {
-        return (ThemerState) super.getState();
+    public ChartThemeState getState() {
+        return (ChartThemeState) super.getState();
     }
 
     @Override

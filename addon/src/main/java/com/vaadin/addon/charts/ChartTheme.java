@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.vaadin.addon.charts.client.ui.ThemerState;
+import com.vaadin.addon.charts.client.ui.ChartThemeState;
 import com.vaadin.addon.charts.model.AbstractConfigurationObject;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.Theme;
@@ -73,8 +73,8 @@ public class ChartTheme extends AbstractExtension {
 
 
     @Override
-    protected ThemerState getState() {
-        return (ThemerState) super.getState();
+    protected ChartThemeState getState() {
+        return (ChartThemeState) super.getState();
     }
 
     void extendConnector(AbstractClientConnector connector) {

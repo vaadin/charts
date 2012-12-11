@@ -10,12 +10,12 @@ import com.vaadin.shared.ui.Connect;
 
 @SuppressWarnings("serial")
 @Connect(Chart.class)
-public class HighchartConnector extends AbstractComponentConnector {
+public class ChartConnector extends AbstractComponentConnector {
 
-    HighchartRpc rpc = RpcProxy.create(HighchartRpc.class, this);
+    ChartServerRpc rpc = RpcProxy.create(ChartServerRpc.class, this);
 
-    public HighchartConnector() {
-        registerRpc(HighchartClientRpc.class, new HighchartClientRpc() {
+    public ChartConnector() {
+        registerRpc(ChartClientRpc.class, new ChartClientRpc() {
             @Override
             public void addPoint(double x, double y, int seriesIndex) {
                 getWidget().addPoint(x, y, seriesIndex);
@@ -51,13 +51,13 @@ public class HighchartConnector extends AbstractComponentConnector {
     }
 
     @Override
-    public VHighchart getWidget() {
-        return (VHighchart) super.getWidget();
+    public HighchartWidget getWidget() {
+        return (HighchartWidget) super.getWidget();
     }
 
     @Override
-    public HighchartComponentState getState() {
-        return (HighchartComponentState) super.getState();
+    public ChartState getState() {
+        return (ChartState) super.getState();
     }
 
     @Override
@@ -67,7 +67,7 @@ public class HighchartConnector extends AbstractComponentConnector {
                 .createFromServerSideString(getState().jsonState);
         if (getState().registeredEventListeners != null
                 && getState().registeredEventListeners
-                        .contains(VHighchart.CHART_CLICK_EVENT_ID)) {
+                        .contains(HighchartWidget.CHART_CLICK_EVENT_ID)) {
             cfg.setClickHandler(new ChartClickHandler() {
                 @Override
                 public void onClick(ChartClickEvent event) {
@@ -77,7 +77,7 @@ public class HighchartConnector extends AbstractComponentConnector {
         }
         if (getState().registeredEventListeners != null
                 && getState().registeredEventListeners
-                        .contains(VHighchart.POINT_CLICK_EVENT_ID)) {
+                        .contains(HighchartWidget.POINT_CLICK_EVENT_ID)) {
             cfg.setSeriesPointClickHandler(new PointClickHandler() {
 
                 @Override
@@ -90,7 +90,7 @@ public class HighchartConnector extends AbstractComponentConnector {
 
         if (getState().registeredEventListeners != null
                 && getState().registeredEventListeners
-                        .contains(VHighchart.COLUMN_CLICK_EVENT_ID)) {
+                        .contains(HighchartWidget.COLUMN_CLICK_EVENT_ID)) {
             cfg.setSeriesPointClickHandler(new PointClickHandler() {
 
                 @Override
@@ -103,7 +103,7 @@ public class HighchartConnector extends AbstractComponentConnector {
 
         if (getState().registeredEventListeners != null
                 && getState().registeredEventListeners
-                        .contains(VHighchart.CHART_SELECTION_EVENT_ID)) {
+                        .contains(HighchartWidget.CHART_SELECTION_EVENT_ID)) {
             cfg.setChartSelectionHandler(new ChartSelectionHandler() {
 
                 @Override

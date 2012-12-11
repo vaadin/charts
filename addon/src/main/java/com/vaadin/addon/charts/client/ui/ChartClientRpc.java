@@ -2,7 +2,7 @@ package com.vaadin.addon.charts.client.ui;
 
 import com.vaadin.shared.communication.ClientRpc;
 
-public interface HighchartClientRpc extends ClientRpc {
+public interface ChartClientRpc extends ClientRpc {
 
     /**
      * Adds a new point into series that is found from seriesIndex
