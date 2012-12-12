@@ -85,8 +85,6 @@ public class ColumnWithRotatedLabels extends AbstractVaadinChartExample {
 
         chart.drawChart(conf);
         
-        System.out.println(conf);
-
         return chart;
     }
 }
