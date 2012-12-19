@@ -2,6 +2,7 @@ package com.vaadin.addon.charts.client.ui;
 
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.json.client.JSONParser;
+import com.vaadin.addon.charts.client.HighchartsScriptLoader;
 import com.vaadin.client.ServerConnector;
 import com.vaadin.client.VConsole;
 import com.vaadin.client.communication.StateChangeEvent;
@@ -11,6 +12,10 @@ import com.vaadin.shared.ui.Connect;
 @SuppressWarnings("serial")
 @Connect(com.vaadin.addon.charts.ChartTheme.class)
 public class ChartThemeConnector extends AbstractExtensionConnector {
+    
+    public ChartThemeConnector() {
+        HighchartsScriptLoader.ensureInjected();
+    }
 
     @Override
     public void onStateChanged(StateChangeEvent event) {

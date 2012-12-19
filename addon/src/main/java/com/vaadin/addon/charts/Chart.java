@@ -3,19 +3,16 @@ package com.vaadin.addon.charts;
 import java.lang.reflect.Method;
 
 import com.vaadin.addon.charts.client.ui.ChartClientRpc;
-import com.vaadin.addon.charts.client.ui.ChartState;
 import com.vaadin.addon.charts.client.ui.ChartServerRpc;
+import com.vaadin.addon.charts.client.ui.ChartState;
 import com.vaadin.addon.charts.client.ui.HighchartWidget;
 import com.vaadin.addon.charts.model.ChartModel;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeriesEventListener;
-import com.vaadin.annotations.JavaScript;
 import com.vaadin.ui.AbstractComponent;
 import com.vaadin.util.ReflectTools;
 
-@JavaScript({ "jquery.min.js", "highcharts.src.js", "highcharts-more.js",
-        "vaadintheme.js", "exporting.js" })
 public class Chart extends AbstractComponent {
 
     private String jsonConfig;

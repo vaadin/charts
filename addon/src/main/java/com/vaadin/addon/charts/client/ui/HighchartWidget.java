@@ -2,6 +2,7 @@ package com.vaadin.addon.charts.client.ui;
 
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.user.client.ui.Widget;
+import com.vaadin.addon.charts.client.HighchartsScriptLoader;
 
 public class HighchartWidget extends Widget {
 
@@ -17,6 +18,7 @@ public class HighchartWidget extends Widget {
     private boolean animation = true;
 
     public HighchartWidget() {
+        HighchartsScriptLoader.ensureInjected();
         setElement(Document.get().createDivElement());
         getElement().setInnerHTML("Loading chart...");
     }
