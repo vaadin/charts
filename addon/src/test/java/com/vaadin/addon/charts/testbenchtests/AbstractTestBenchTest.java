@@ -73,9 +73,12 @@ public abstract class AbstractTestBenchTest {
 
     protected void startBrowser() {
         prepareDriver();
-        // dimension includes browser chrome
-        driver.manage().window().setSize(new Dimension(800, 600));
         testBench = (TestBenchCommands) driver;
+        // dimension includes browser chrome, use TestBench utility to fix
+        // actual viewport size -> survive from browser upgrades and varying
+        // settings
+        testBench.resizeViewPortTo(800, 513);
+
     }
 
     protected void prepareDriver() {
