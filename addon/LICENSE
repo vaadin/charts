@@ -29,3 +29,5 @@ Please note that;
 under the terms of CVALv2.
 - The Vaadin Charts Add-on (CVALv2) license does not entitle you to use the 
 Highcharts JS product in other ways than through the Vaadin Charts Add-on API.
+
+Vaadin Charts also requires Gson library licensed under liberal Apache 2 license.
