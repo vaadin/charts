@@ -152,11 +152,8 @@
 							<goal>copy-dependencies</goal>
 						</goals>
 						<configuration>
-							<scope>compile</scope>
-							<includeScope>compile</includeScope>
-							<excludeScope>provided</excludeScope>
+							<includeScope>runtime</includeScope>
 							<outputDirectory>target/libs</outputDirectory>
-							<!-- configure the plugin here -->
 						</configuration>
 					</execution>
 				</executions>
@@ -342,7 +339,7 @@
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-server</artifactId>
 			<version>${vaadin.version.maven}</version>
-			<scope>compile</scope>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.vaadin</groupId>
