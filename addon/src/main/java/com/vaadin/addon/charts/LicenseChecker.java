@@ -19,10 +19,9 @@ package com.vaadin.addon.charts;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.List;
 
-import com.google.common.base.Charsets;
-import com.google.common.io.CharStreams;
+import org.apache.commons.io.IOUtils;
 
 /*
  * This class nags about license information whenever Charts usage is started
@@ -45,9 +44,10 @@ public class LicenseChecker {
 
     private static void printCVALInformationAndHowToGetRidOfThisInformation() {
         try {
-            System.err.println(CharStreams.toString(new InputStreamReader(
-                    LicenseChecker.class.getResourceAsStream("licensenag.txt"),
-                    Charsets.UTF_8)));
+            List<String> readLines = IOUtils.readLines(LicenseChecker.class.getResourceAsStream("licensenag.txt"), "UTF-8");
+            for (String line : readLines) {
+                System.err.println(line);
+            }
         } catch (IOException e) {
             System.err
                     .println("VAADIN TESTBENCH IS COMMERCIAL SOFTWARE, SEE https://vaadin.com/license/cval-2.0");
