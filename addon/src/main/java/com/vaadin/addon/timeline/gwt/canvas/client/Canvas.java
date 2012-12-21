@@ -16,6 +16,10 @@
 
 package com.vaadin.addon.timeline.gwt.canvas.client;
 
+/*
+ * %%Ignore-License
+ */
+
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.DOM;

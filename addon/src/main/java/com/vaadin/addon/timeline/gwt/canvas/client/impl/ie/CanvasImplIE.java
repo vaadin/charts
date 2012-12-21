@@ -16,6 +16,9 @@
 
 package com.vaadin.addon.timeline.gwt.canvas.client.impl.ie;
 
+/*
+ * %%Ignore-License
+ */
 
 import java.util.Stack;
 

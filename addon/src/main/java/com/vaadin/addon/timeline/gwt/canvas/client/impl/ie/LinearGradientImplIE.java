@@ -16,6 +16,10 @@
 
 package com.vaadin.addon.timeline.gwt.canvas.client.impl.ie;
 
+/*
+ * %%Ignore-License
+ */
+
 /**
  * The Internet Explorer implementation of the linear gradient style.
  */

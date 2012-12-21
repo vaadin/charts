@@ -16,6 +16,10 @@
 
 package com.vaadin.addon.timeline.gwt.canvas.client.impl.ie;
 
+/*
+ * %%Ignore-License
+ */
+
 /**
  * Internet Explorer specific storage object for an offset and color
  * combination corresponding to a color stop for color gradients.
