@@ -31,6 +31,10 @@ import com.vaadin.ui.AbstractComponent;
 import com.vaadin.util.ReflectTools;
 
 public class Chart extends AbstractComponent {
+    
+    static {
+        LicenseChecker.nag();
+    }
 
     private String jsonConfig;
 
