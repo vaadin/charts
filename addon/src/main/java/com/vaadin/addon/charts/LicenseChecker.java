@@ -23,19 +23,22 @@ import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 
-/*
+/**
  * This class nags about license information whenever Charts usage is started
  * unless the vaadin.charts.developer.license system property is set or the
  * ~/.vaadin.charts.developer.license file exists.
  */
-public class LicenseChecker {
-    public static void nag() {
+class LicenseChecker {
+
+    /**
+     * Nags about unlicensed software unless a valid key is found.
+     */
+    static void nag() {
         String userAccount = System
                 .getProperty("vaadin.charts.developer.license");
         if (userAccount == null) {
             String homedir = System.getProperty("user.home");
-            File file = new File(homedir
-                    + "/.vaadin.charts.developer.license");
+            File file = new File(homedir + "/.vaadin.charts.developer.license");
             if (!file.exists()) {
                 printCVALInformationAndHowToGetRidOfThisInformation();
             }
@@ -44,7 +47,9 @@ public class LicenseChecker {
 
     private static void printCVALInformationAndHowToGetRidOfThisInformation() {
         try {
-            List<String> readLines = IOUtils.readLines(LicenseChecker.class.getResourceAsStream("licensenag.txt"), "UTF-8");
+            List<String> readLines = IOUtils.readLines(
+                    LicenseChecker.class.getResourceAsStream("licensenag.txt"),
+                    "UTF-8");
             for (String line : readLines) {
                 System.err.println(line);
             }
