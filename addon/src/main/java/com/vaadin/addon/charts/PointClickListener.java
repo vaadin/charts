@@ -18,13 +18,14 @@ package com.vaadin.addon.charts;
  */
 
 /**
- * Listener interface for click event on the chart's points
+ * Listener interface for click events on the data points of the chart
  */
 public interface PointClickListener {
     /**
-     * Click happened
+     * Called when a data point is clicked by the user.
      * 
      * @param event
+     *            a {@link PointClickEvent} containing information on the click
      */
     public void onClick(PointClickEvent event);
 

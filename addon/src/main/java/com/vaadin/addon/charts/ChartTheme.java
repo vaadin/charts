@@ -34,7 +34,7 @@ import com.vaadin.ui.HasComponents;
 import com.vaadin.ui.UI;
 
 /**
- * ChartTheme extension configures page global theme for charts. With this
+ * The ChartTheme extension configures a page local theme for charts. With this
  * extension it is possible to configure e.g. default colors used by all Chart
  * objects displayed in the UI.
  */
@@ -76,10 +76,10 @@ public class ChartTheme extends AbstractExtension {
     }
 
     /**
-     * Sets the currently used Vaadin Charts theme.
+     * Sets the theme to use.
      * <p>
-     * Note, that if view is already drawn, all existing {@link Chart}s will be
-     * redrawn.
+     * Note that if the view is already drawn, all existing {@link Chart}s will
+     * be redrawn.
      * 
      * @param theme
      */
@@ -87,7 +87,6 @@ public class ChartTheme extends AbstractExtension {
         getState().json = gson.toJson(theme);
         notifyListeners();
     }
-
 
     @Override
     protected ChartThemeState getState() {
@@ -99,12 +98,12 @@ public class ChartTheme extends AbstractExtension {
     }
 
     /**
-     * Returns a ChartTheme extension for given UI. If ChartTheme extension is
-     * not yet added, a new one is created.
+     * Returns a ChartTheme extension for the given UI. If a ChartTheme
+     * extension has not yet been added, a new one is created and added.
      * 
      * @param ui
-     *            the UI which ChartTheme should be returned
-     * @return the ChartTheme instance connected to given UI
+     *            the UI for which the ChartTheme should be returned
+     * @return the ChartTheme instance connected to the given UI
      */
     public static ChartTheme get(UI ui) {
         ChartTheme themer = null;
@@ -128,10 +127,10 @@ public class ChartTheme extends AbstractExtension {
     }
 
     /**
-     * Returns a ChartTheme extension for current UI. If ChartTheme extension is
-     * not yet added, a new one is created.
+     * Returns a ChartTheme extension for the current UI. If a ChartTheme
+     * extension has not yet been added, a new one is created and added.
      * 
-     * @return a ChartTheme instance connected to currently active UI
+     * @return a ChartTheme instance connected to the currently active UI
      */
     public static ChartTheme get() {
         UI ui = UI.getCurrent();

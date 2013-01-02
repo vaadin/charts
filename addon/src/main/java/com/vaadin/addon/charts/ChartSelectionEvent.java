@@ -18,7 +18,8 @@ package com.vaadin.addon.charts;
  */
 
 /**
- * Server side event class for drag selection events on the chart's area
+ * The ChartSelectionEvent class stores information on selection events on the
+ * chart's area. Only selections along the X axis are supported.
  */
 public class ChartSelectionEvent extends com.vaadin.ui.Component.Event {
 
@@ -40,18 +41,14 @@ public class ChartSelectionEvent extends com.vaadin.ui.Component.Event {
     }
 
     /**
-     * x-axis value where the drag selection started
-     * 
-     * @return
+     * @return the X coordinate where the selection started.
      */
     public Double getSelectionStart() {
         return selectionStart;
     }
 
     /**
-     * x-axis value where the drag selection ended
-     * 
-     * @return
+     * @return the X coordinate where the selection ended.
      */
     public Double getSelectionEnd() {
         return selectionEnd;

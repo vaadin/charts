@@ -18,7 +18,8 @@ package com.vaadin.addon.charts;
  */
 
 /**
- * Server side event class for click events on the chart's points
+ * The PointClickEvent class stores data for click events on the points of the
+ * chart.
  */
 public class PointClickEvent extends com.vaadin.ui.Component.Event {
 
@@ -46,36 +47,28 @@ public class PointClickEvent extends com.vaadin.ui.Component.Event {
     }
 
     /**
-     * x-value of the clicked point
-     * 
-     * @return
+     * @return the X coordinate of the point that was clicked.
      */
     public double getX() {
         return x;
     }
 
     /**
-     * y-value of the clicked point
-     * 
-     * @return
+     * @return the Y coordinate of the point that was clicked.
      */
     public double getY() {
         return y;
     }
 
     /**
-     * Name of the series containing the clicked point
-     * 
-     * @return
+     * @return the name of the series containing the point that was clicked.
      */
     public String getSeriesName() {
         return seriesName;
     }
 
     /**
-     * Name of the category of the clicked point
-     * 
-     * @return
+     * @return the name of the category for the point that was clicked.
      */
     public String getCategory() {
         return category;

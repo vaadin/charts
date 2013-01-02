@@ -26,12 +26,14 @@ import com.vaadin.addon.charts.client.ui.HighchartWidget;
 import com.vaadin.addon.charts.model.ChartModel;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesEventListener;
+import com.vaadin.addon.charts.model.Series;
 import com.vaadin.ui.AbstractComponent;
 import com.vaadin.util.ReflectTools;
 
 public class Chart extends AbstractComponent {
-    
+
     static {
         LicenseChecker.nag();
     }
@@ -43,7 +45,8 @@ public class Chart extends AbstractComponent {
     private boolean stateDirty = false;
 
     /**
-     * Default constructor, constructs 100% width and 400px height chart
+     * Constructs a chart by setting the dimensions to 100% width and 400px
+     * height and creating an empty {@link Configuration}.
      */
     public Chart() {
         setWidth(100, Unit.PERCENTAGE);
@@ -77,10 +80,11 @@ public class Chart extends AbstractComponent {
     }
 
     /**
-     * Constructs chart with given ChartType
+     * Constructs a chart of the specified type. {@see ChartType}
      * 
      * @see #Chart()
      * @param type
+     *            the {@link ChartType}
      */
     public Chart(ChartType type) {
         this();
@@ -106,6 +110,10 @@ public class Chart extends AbstractComponent {
         return (ChartState) super.getState();
     }
 
+    /**
+     * @return the configuration for the chart in Highcharts compatible JSON
+     *         format.
+     */
     private String getChartConfig() {
         if (jsonConfig != null) {
             return jsonConfig;
@@ -114,19 +122,20 @@ public class Chart extends AbstractComponent {
     }
 
     /**
-     * Draws chart with given configuration as a starting point. The
-     * configuration is given as "native Highcarts config" in JSON.
+     * Draws chart with the given configuration as a starting point. The
+     * configuration is given in Highcharts configuration format (JSON).
      * <p>
-     * Javascript is now allowed in the configuration. An exception is formatter
-     * functions. Those must be given with special "_fn_" prefix to property
-     * name. Client side will evaluate these into functions, otherwise the
-     * configuration is evaluated safely with JSON parser.
+     * JavaScript is not allowed in the configuration. An exception is formatter
+     * functions. Those must be given by prepending the special
+     * <code>_fn_</code> prefix to the property name. The client side will
+     * evaluate these into functions. Otherwise the configuration is evaluated
+     * safely with a JSON parser.
      * <p>
-     * Note, that if further modifications are done to configuration, the method
-     * must be called again to redraw the UI.
+     * Note, that if further modifications are done to the configuration, the
+     * method must be called again to redraw the UI.
      * 
      * @param jsonConfig
-     *            the chart configuration as json string
+     *            the chart configuration as a JSON string
      */
     public void drawChart(String jsonConfig) {
         this.jsonConfig = jsonConfig;
@@ -137,14 +146,14 @@ public class Chart extends AbstractComponent {
 
     /**
      * @see #drawChart(String)
-     * @return
+     * @return the Highcharts compatible JSON configuration of the chart.
      */
     public String getJsonConfig() {
         return jsonConfig;
     }
 
     /**
-     * @return the chart configuration that is used for this chart component
+     * @return the chart configuration that is used for this chart
      * @see #drawChart(Configuration)
      */
     public Configuration getConfiguration() {
@@ -152,18 +161,17 @@ public class Chart extends AbstractComponent {
     }
 
     /**
-     * Draws chart with given configuration as a starting point.
+     * Draws a chart with the given configuration as a starting point.
      * <p>
-     * Note, that if further modifications are done directly to the
-     * configuration, the method must be called again to redraw the UI.
+     * Note that if you modify the underlying {@link Series} directly the chart
+     * will automatically be updated to reflect this unless explicitly told not
+     * to. The methods listed below can be used as an example.
      * 
-     * <p>
-     * If developers wishes to make more efficient "partial updates" to chart,
-     * one should use mutator methods listed below.
-     * 
-     * @see #addPoint(Number, Number, Integer)
-     * @see #removePoint(Number, Number)
-     * @see #updatePoint(int, int, Number)
+     * @see DataSeries#addData(com.vaadin.addon.charts.model.DataSeriesItem)
+     * @see DataSeries#addData(com.vaadin.addon.charts.model.DataSeriesItem,
+     *      boolean)
+     * @see DataSeries#removeData(com.vaadin.addon.charts.model.DataSeriesItem)
+     * @see DataSeries#updateData(com.vaadin.addon.charts.model.DataSeriesItem)
      * 
      * @param configuration
      */
@@ -180,8 +188,9 @@ public class Chart extends AbstractComponent {
     }
 
     /**
-     * Completely redraw the chart based on its current config state.
+     * Draws the chart using the current configuration.
      * 
+     * @see #getConfiguration()
      * @see #drawChart(Configuration)
      */
     public void drawChart() {
@@ -199,7 +208,8 @@ public class Chart extends AbstractComponent {
             ChartSelectionEvent.class);
 
     /**
-     * Add chart click listener for listening clicks on the chart area
+     * Adds chart click listener, which will be notified of clicks on the chart
+     * area
      * 
      * @param listener
      */
@@ -209,6 +219,8 @@ public class Chart extends AbstractComponent {
     }
 
     /**
+     * Removes a chart click listener.
+     * 
      * @see #addChartClickListener(ChartClickListener)
      * @param listener
      */
@@ -218,7 +230,8 @@ public class Chart extends AbstractComponent {
     }
 
     /**
-     * Add a click listener for listening clicks on the chart points
+     * Adds a point click listener, which will be notified of clicks on the
+     * points in the chart
      * 
      * @param listener
      */
@@ -228,6 +241,8 @@ public class Chart extends AbstractComponent {
     }
 
     /**
+     * Removes a point click listener.
+     * 
      * @see #addPointClickListener(PointClickListener)
      * @param listener
      */
@@ -237,7 +252,8 @@ public class Chart extends AbstractComponent {
     }
 
     /**
-     * Add a click listener for listening clicks on the column chart's columns
+     * Adds a column click listener, which will be notified of clicks on the
+     * chart's columns
      * 
      * @param listener
      */
@@ -247,6 +263,8 @@ public class Chart extends AbstractComponent {
     }
 
     /**
+     * Removes a column click listener.
+     * 
      * @see #addColumnClickListener(PointClickListener)
      * @param listener
      */
@@ -256,12 +274,13 @@ public class Chart extends AbstractComponent {
     }
 
     /**
-     * Add a chart drag-selection listener<br />
+     * Adds a chart selection listener<br />
      * <br />
      * 
-     * Note, if a chart selection listener is set, default action for selection
-     * is prevented. Most commonly this means that client side zoom don't work
-     * and user is expected to set zoom or what ever wished in the listener.
+     * Note that if a chart selection listener is set, default action for
+     * selection is prevented. Most commonly this means that client side zoom
+     * doesn't work and you are responsible for setting the zoom, etc in the
+     * listener implementation.
      * 
      * @param listener
      */
@@ -271,6 +290,8 @@ public class Chart extends AbstractComponent {
     }
 
     /**
+     * Removes a chart selection listener.
+     * 
      * @see #addChartSelectionListener(ChartSelectionListener)
      * @param listener
      */
@@ -283,20 +304,21 @@ public class Chart extends AbstractComponent {
      * Set client side chart rendering parameters
      * 
      * @param redrawAfterUpdate
-     *            Defaults to true. Whether to redraw the chart after the point
-     *            is added/removed/altered. When adding more than one point, it
-     *            is highly recommended that the redraw option be set to false,
-     *            and instead chart.redraw() is explicitly called after the
-     *            adding of points is finished.
+     *            Defaults to true. Whether to redraw the chart after a point is
+     *            added/removed/altered. When adding more than one point, it is
+     *            highly recommended that the redraw option be set to false, and
+     *            instead chart.redraw() is explicitly called after the adding
+     *            of points is finished.
      * @param shiftAfterUpdate
-     *            Defaults to false. When shift is true, one point is shifted
-     *            off the start of the series as one is appended to the end. Use
-     *            this option for live charts monitoring a value over time.
+     *            Defaults to false. When true, a point is shifted off the start
+     *            of the series as one is appended to the end. Use this option
+     *            for live charts monitoring a value over time.
      * @param animationAfterUpdate
      *            Defaults to true. When true, the graph will be animated with
-     *            default animation options. The animation can also be a
-     *            configuration object with properties duration and easing. <br />
-     *            <b>Only boolean value is currently supported by Vaadin</b>
+     *            the default animation options. The animation can also be a
+     *            configuration object with the properties duration and easing. <br />
+     *            <b>Only a boolean value is currently supported by Vaadin
+     *            Charts</b>
      * 
      * <br />
      * <br />
@@ -306,14 +328,13 @@ public class Chart extends AbstractComponent {
             boolean shiftAfterUpdate, boolean animationAfterUpdate) {
         getRpcProxy(ChartClientRpc.class).setRedrawAfterUpdate(
                 redrawAfterUpdate);
-        getRpcProxy(ChartClientRpc.class).setShiftAfterUpdate(
-                shiftAfterUpdate);
+        getRpcProxy(ChartClientRpc.class).setShiftAfterUpdate(shiftAfterUpdate);
         getRpcProxy(ChartClientRpc.class).setAnimationAfterUpdate(
                 animationAfterUpdate);
     }
 
     /**
-     * Listens to events on the data series attached to the chart and redraws as
+     * Listens to events on the series attached to the chart and redraws as
      * necessary.
      */
     private final DataSeriesEventListener dataSeriesEventListener = new DataSeriesEventListener() {

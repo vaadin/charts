@@ -18,14 +18,16 @@ package com.vaadin.addon.charts;
  */
 
 /**
- * Listener interface for chart drag selections events
+ * Listener interface for chart selection events
  */
 public interface ChartSelectionListener {
 
     /**
-     * Selection happened
+     * Called when the user finishes the selection of an area on the X axis.
      * 
      * @param event
+     *            the {@link ChartSelectionEvent} containing information on the
+     *            selection.
      */
     public void onSelection(ChartSelectionEvent event);
 

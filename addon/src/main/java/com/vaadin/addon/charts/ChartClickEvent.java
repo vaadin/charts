@@ -18,7 +18,8 @@ package com.vaadin.addon.charts;
  */
 
 /**
- * Server side event class for click events on the chart's area
+ * The ChartClickEvent class stores information on click events anywhere on the
+ * area of the chart.
  */
 public class ChartClickEvent extends com.vaadin.ui.Component.Event {
 
@@ -26,7 +27,7 @@ public class ChartClickEvent extends com.vaadin.ui.Component.Event {
     private final Double yAxisValue;
 
     /**
-     * Construct ChartClickEvent
+     * Constructs a ChartClickEvent
      * 
      * @param source
      * @param xAxis
@@ -39,18 +40,14 @@ public class ChartClickEvent extends com.vaadin.ui.Component.Event {
     }
 
     /**
-     * X location of the click
-     * 
-     * @return
+     * @return the X coordinate of the click.
      */
     public double getxAxisValue() {
         return xAxisValue;
     }
 
     /**
-     * Y location of the click
-     * 
-     * @return
+     * @return the Y coordinate of the click
      */
     public double getyAxisValue() {
         return yAxisValue;
