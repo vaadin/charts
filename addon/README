@@ -1,18 +1,18 @@
 Vaadin Charts ${project.version}
 ===========================
 
-This is a preliminary build of Vaadin Charts add-on. Vaadin Charts is based on
-Highcharts ${highcharts.version} library. Vaadin Charts also includes previously 
-separate Vaadin Timeline add-on, that is built with custom HTML5 canvas implementation.
+This is a preliminary build of the Vaadin Charts add-on. Vaadin Charts is based on
+Highcharts ${highcharts.version}. Vaadin Charts also includes the previously separate 
+Vaadin Timeline add-on, which uses the HTML5 canvas for drawing.
 
 This version is built against Vaadin ${vaadin.version.maven}.
 
 Installation
 ============
-Vaadin Charts is a standard Vaadin Add-on package. At its current develop
-status it is offered only with CVAL license for Vaadin Pro Account customers.
-To use it drag jar file in this package to you project or use following maven
-module:
+Vaadin Charts is a standard Vaadin Add-on package. At its current development
+status it is offered only under the CVAL license for Vaadin Pro Account customers.
+To use it, drag the jar file in this package to your project or use the following
+maven module:
 
 <dependency>
 	<groupId>com.vaadin.addon</groupId>
@@ -20,12 +20,12 @@ module:
 	<version>${project.version}</version>
 </dependency>
 
-Project also requires Apache 2 licensed  Gson library. Dependencies 
-are defined in pom.xml and will be automatically resolved for Maven users. 
-All required libraries are also collected to lib directory.
+The project also requires the Apache 2 licensed Gson library. Dependencies 
+are defined in the pom.xml and will be automatically resolved for Maven users. 
+All required libraries are also collected in the lib directory.
 
-Note, that package has also client side extensions, so make sure you compile
-your widgetset after installation!
+Note, that the package also has client side extensions, so make sure that you
+compile your widgetset after installation!
 
 Links
 =====
