@@ -55,7 +55,7 @@ class LicenseChecker {
             }
         } catch (IOException e) {
             System.err
-                    .println("VAADIN TESTBENCH IS COMMERCIAL SOFTWARE, SEE https://vaadin.com/license/cval-2.0");
+                    .println("VAADIN CHARTS IS COMMERCIAL SOFTWARE, SEE https://vaadin.com/license/cval-2.0");
         }
     }
 }

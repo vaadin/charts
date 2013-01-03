@@ -15,7 +15,7 @@ Directory or alternatively the email address you use to login to an active
 Vaadin Pro Account.   
 
 Register your copy of Vaadin Charts by creating a file named
-.vaadin.testbench.developer.license containing the license key in your home 
+.vaadin.charts.developer.license containing the license key in your home 
 directory or by setting the vaadin.charts.developer.license=license_key
 system property to disable this message. Thank you.
 ----------------------------------------------------------------------------
