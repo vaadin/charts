@@ -23,19 +23,19 @@ package com.vaadin.addon.charts.model;
  */
 public class Dial {
 
-    private String radius;
+    private Object radius;
     private Number baseWidth;
-    private String baseLength;
-    private String rearLength;
+    private Object baseLength;
+    private Object rearLength;
 
     public Dial() {
     }
 
     /**
-     * @see #setRadius(String)
+     * @see #setRadius(Object)
      * @return The radius or length of the dial in percent.
      */
-    public String getRadius() {
+    public Object getRadius() {
         return radius;
     }
 
@@ -45,7 +45,7 @@ public class Dial {
      * 
      * @param radius
      */
-    public void setRadius(String radius) {
+    public void setRadius(Object radius) {
         this.radius = radius;
     }
 
@@ -68,10 +68,10 @@ public class Dial {
     }
 
     /**
-     * @see #setBaseLength(String)
+     * @see #setBaseLength(Object)
      * @return The base length of the dial.
      */
-    public String getBaseLength() {
+    public Object getBaseLength() {
         return baseLength;
     }
 
@@ -81,15 +81,15 @@ public class Dial {
      * 
      * @param baseLength
      */
-    public void setBaseLength(String baseLength) {
+    public void setBaseLength(Object baseLength) {
         this.baseLength = baseLength;
     }
 
     /**
-     * @see #setRearLength(String)
+     * @see #setRearLength(Object)
      * @return The rear length of the dial.
      */
-    public String getRearLength() {
+    public Object getRearLength() {
         return rearLength;
     }
 
@@ -99,7 +99,7 @@ public class Dial {
      * 
      * @param rearLength
      */
-    public void setRearLength(String rearLength) {
+    public void setRearLength(Object rearLength) {
         this.rearLength = rearLength;
     }
 
