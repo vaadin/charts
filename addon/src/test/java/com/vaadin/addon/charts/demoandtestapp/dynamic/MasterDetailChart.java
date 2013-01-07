@@ -11,13 +11,13 @@ import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.Axis;
 import com.vaadin.addon.charts.model.AxisType;
 import com.vaadin.addon.charts.model.Configuration;
-import com.vaadin.addon.charts.model.State;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.Marker;
 import com.vaadin.addon.charts.model.MarkerStates;
 import com.vaadin.addon.charts.model.PlotBand;
 import com.vaadin.addon.charts.model.PlotOptionsArea;
 import com.vaadin.addon.charts.model.PlotOptionsSeries;
+import com.vaadin.addon.charts.model.State;
 import com.vaadin.addon.charts.model.States;
 import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.ZoomType;
@@ -258,7 +258,7 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
                 .setSubTitle("Select an area by dragging across the lower chart");
         configuration.getxAxis().setType(AxisType.DATETIME);
         configuration.getyAxis().setTitle((String) null);
-        configuration.getyAxis().setMaxZoom(0.1);
+        configuration.getyAxis().setMinRange(0.1);
 
         configuration
                 .getTooltip()
@@ -312,7 +312,7 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
 
         configuration.getxAxis().setType(AxisType.DATETIME);
         configuration.getxAxis().setShowLastTickLabel(true);
-        configuration.getxAxis().setMaxZoom(14 * DAY_IN_MILLIS);
+        configuration.getxAxis().setMinRange(14 * DAY_IN_MILLIS);
         configuration.getxAxis().setTitle(new Title(""));
 
         PlotBand mask = new PlotBand();

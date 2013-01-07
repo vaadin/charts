@@ -191,7 +191,7 @@ public class TimeSeriesZoomable extends AbstractVaadinChartExample {
         configuration.getSubTitle().setText(title);
 
         configuration.getxAxis().setType(AxisType.DATETIME);
-        configuration.getxAxis().setMaxZoom(TWO_WEEKS);
+        configuration.getxAxis().setMinRange(TWO_WEEKS);
         configuration.getxAxis().setTitle(new Title(""));
 
         configuration.getLegend().setEnabled(false);
@@ -246,7 +246,7 @@ public class TimeSeriesZoomable extends AbstractVaadinChartExample {
         configuration.setSeries(ls);
 
         chart.drawChart(configuration);
-        
+
         return chart;
     }
 }

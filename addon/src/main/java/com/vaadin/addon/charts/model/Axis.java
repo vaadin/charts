@@ -268,26 +268,6 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * Use {@link #setMinRange(Number)} instead
-     * 
-     * @param maxZoom
-     */
-    @Deprecated
-    public void setMaxZoom(Number maxZoom) {
-        this.maxZoom = maxZoom;
-    }
-
-    /**
-     * Use {@link #getMinRange()} instead
-     * 
-     * @return
-     */
-    @Deprecated
-    public Number getMaxZoom() {
-        return maxZoom;
-    }
-
-    /**
      * The minimum range to display on this axis. The entire axis will not be
      * allowed to span over a smaller interval than this. For example, for a
      * DATETIME axis the main unit is milliseconds. If minRange is set to
