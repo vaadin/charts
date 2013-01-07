@@ -23,7 +23,7 @@ public class ChartState extends AbstractComponentState {
 
     public String jsonState;
     /**
-     * Hacky helper field that can be used to force state chance event. TODO
+     * Hacky helper field that can be used to force state change event. TODO
      * figure out a better method.
      */
     public int paintCount;

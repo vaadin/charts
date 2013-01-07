@@ -22,7 +22,7 @@ import com.vaadin.shared.communication.ClientRpc;
 public interface ChartClientRpc extends ClientRpc {
 
     /**
-     * Adds a new point into series that is found from seriesIndex
+     * Adds a new point into the series identified by seriesIndex
      * 
      * @param x
      * @param y
@@ -31,7 +31,7 @@ public interface ChartClientRpc extends ClientRpc {
     void addPoint(double x, double y, int seriesIndex);
 
     /**
-     * Removes the first point which is found from given "coordinates"
+     * Removes the first point found at the given coordinates
      * 
      * @param x
      * @param y
@@ -39,7 +39,7 @@ public interface ChartClientRpc extends ClientRpc {
     void removePoint(double x, double y);
 
     /**
-     * Updates the value of given point in the given series
+     * Updates the value of a point in the series identified by seriesIndex
      * 
      * @param seriesIndex
      * @param pointIndex
@@ -48,26 +48,25 @@ public interface ChartClientRpc extends ClientRpc {
     void updatePointValue(int seriesIndex, int pointIndex, double newValue);
 
     /**
-     * redraw: Boolean Defaults to true. Whether to redraw the chart after the
-     * point is altered.
+     * Sets whether to redraw the chart after a point is altered. Default is
+     * true.
      * 
      * @param redraw
      */
     void setRedrawAfterUpdate(boolean redraw);
 
     /**
-     * animation: Mixed Defaults to true. When true, the move will be animated
-     * with default animation options. The animation can also be a configuration
-     * object with properties duration and easing.
+     * When true, updates will be animated using the default animation options.
+     * Default is true.
      * 
      * @param animationAfterUpdate
      */
     void setAnimationAfterUpdate(boolean animationAfterUpdate);
 
     /**
-     * Defaults to false. When shift is true, one point is shifted off the start
-     * of the series as one is appended to the end. Use this option for live
-     * charts monitoring a value over time.
+     * When shift is true, one point is shifted off the start of the series as
+     * one is appended to the end. Use this option for live charts monitoring a
+     * value over time. Default is false.
      * 
      * @param shiftAfterUpdate
      */

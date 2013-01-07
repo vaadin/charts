@@ -18,21 +18,22 @@ package com.vaadin.addon.charts.model;
  */
 
 /**
- * Chart's title
+ * The Title class represents the title of a chart
  */
+@SuppressWarnings("serial")
 public class Title extends AbstractTitle {
 
     private Number margin;
 
     /**
-     * Default constructor
+     * Constructs a blank title.
      */
     public Title() {
         super();
     }
 
     /**
-     * Create new title with given text
+     * Constructs a new title using the given text
      * 
      * @param text
      *            Text of title
@@ -43,14 +44,15 @@ public class Title extends AbstractTitle {
 
     /**
      * @see #setMargin(Number)
-     * @return Margin of title or null if not defined.
+     * @return The margin between the title and the plot area or null if not
+     *         defined.
      */
     public Number getMargin() {
         return margin;
     }
 
     /**
-     * The margin between the title and the plot area, or if a subtitle is
+     * Sets the margin between the title and the plot area, or if a subtitle is
      * present, the margin between the subtitle and the plot area. Defaults to
      * 15.
      * 

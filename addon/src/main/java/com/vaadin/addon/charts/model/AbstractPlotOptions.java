@@ -22,7 +22,7 @@ import java.util.Date;
 import com.vaadin.addon.charts.model.style.Color;
 
 /**
- * Common plot options shared by all extending PlotOptions classes
+ * Common plot options shared by all the different PlotOptions classes
  */
 public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     private Labels dataLabels;
@@ -46,7 +46,7 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     private Boolean enableMouseTracking;
     private Boolean stickyTracking;
 
-    private Cursor cursor;
+    private Cursor cursor = Cursor.NONE;
 
     private Boolean animation;
 
@@ -58,7 +58,10 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     private States states;
 
     private Tooltip tooltip;
-    
+
+    /**
+     * @return the type of chart
+     */
     public abstract ChartType getChartType();
 
     /**
@@ -69,7 +72,7 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     }
 
     /**
-     * Labels for plot point items (points/bars/columns etc.)
+     * Set the labels for plot point items (points/bars/columns etc.)
      * 
      * @param dataLabels
      */
@@ -79,14 +82,14 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
 
     /**
      * @see #setSelected(Boolean)
-     * @return Selection state or null if not defined
+     * @return Selection state, false if not defined.
      */
     public boolean isSelected() {
         return selected == null ? false : selected;
     }
 
     /**
-     * Whether to select the series initially. If showCheckbox is true, the
+     * Sets whether to select the series initially. If showCheckbox is true, the
      * checkbox next to the series name will be checked for a selected series.
      * Defaults to false.
      * 
@@ -115,7 +118,7 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
 
     /**
      * @see #setVisible(Boolean)
-     * @return Visibility or null if not defined
+     * @return the visibility, true if undefined.
      */
     public boolean isVisible() {
         return visible == null ? true : visible;
@@ -139,9 +142,9 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     }
 
     /**
-     * Whether to stack the values of each series on top of each other. Possible
-     * values are null to disable, "normal" to stack by value or "percent".
-     * Defaults to null.
+     * Sets whether to stack the values of each series on top of each other.
+     * Possible values are null to disable, {@link Stacking#NORMAL} to stack by
+     * value or {@link Stacking#PERCENT}. Defaults to null.
      * 
      * @param stacking
      */
@@ -157,9 +160,9 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     }
 
     /**
-     * A separate color for the graph line. By default the line takes the color
-     * of the series, but the lineColor setting allows setting a separate color
-     * for the line without altering the fillColor. Defaults to null
+     * Sets a separate color for the graph line. By default the line takes the
+     * color of the series, but the lineColor setting allows setting a separate
+     * color for the line without altering the fillColor. Defaults to null
      * 
      * @param lineColor
      */
@@ -176,7 +179,7 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     }
 
     /**
-     * Pixel with of the graph line. Defaults to 2.
+     * Sets the with of the graph line in pixels. Defaults to 2.
      * 
      * @param lineWidth
      */
@@ -186,15 +189,14 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
 
     /**
      * @see #setFillColor(Color)
-     * @return
      */
     public Color getFillColor() {
         return fillColor;
     }
 
     /**
-     * Fill color or gradient for the area. When null, the series' color is used
-     * with the series' fillOpacity. Defaults to null.
+     * Sets the fill color or gradient for the area. When null, the series'
+     * color is used with the series' fillOpacity. Defaults to null.
      * 
      * @param fillColor
      */
@@ -211,7 +213,7 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     }
 
     /**
-     * Fill opacity for the area. Defaults to .75.
+     * Sets the fill opacity for the area. Defaults to .75.
      * 
      * @param fillOpacity
      */
@@ -220,7 +222,8 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     }
 
     /**
-     * Whether to apply a drop shadow to the graph line. Defaults to true.
+     * Sets whether to apply a drop shadow below the graph line. Defaults to
+     * true.
      */
     public void setShadow(Boolean shadows) {
         shadow = shadows;
@@ -228,16 +231,15 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
 
     /**
      * @see #setShadow(boolean)
-     * @return
      */
     public boolean isShadows() {
         return shadow == null ? true : shadow;
     }
 
     /**
-     * Enable or disable the mouse tracking for a specific series. This includes
-     * point tooltips and click events on graphs and points. For large datasets
-     * it improves performance. Defaults to true.
+     * Enables or disables the mouse tracking for a specific series. This
+     * includes point tooltips and click events on graphs and points. For large
+     * data sets it improves performance. Enabled by default.
      * 
      * @param enableMouseTracking
      */
@@ -247,16 +249,15 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
 
     /**
      * @see #setEnableMouseTracking(Boolean)
-     * @return
      */
     public boolean isEnableMouseTracking() {
         return enableMouseTracking == null ? true : enableMouseTracking;
     }
 
     /**
-     * You can set the cursor to "pointer" if you have click events attached to
-     * the series, to signal to the user that the points and lines can be
-     * clicked. Defaults to ''.
+     * You can set the cursor to {@link Cursor#POINTER} if you have click events
+     * attached to the series, to signal to the user that the points and lines
+     * can be clicked. Defaults to {@link Cursor#NONE}.
      */
     public void setCursor(Cursor cursor) {
         this.cursor = cursor;
@@ -264,14 +265,13 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
 
     /**
      * @see #setCursor(Cursor)
-     * @return
      */
     public Cursor getCursor() {
         return cursor;
     }
 
     /**
-     * Set the animation for initial plotting.
+     * Sets the whether to use animation for initial plotting.
      * 
      * @param animation
      */
@@ -281,27 +281,27 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
 
     /**
      * @see #setAnimation(Boolean)
-     * @return true is animation are enabled
+     * @return true if animation is enabled
      */
     public boolean isAnimation() {
         return animation == null ? true : animation;
     }
 
     /**
-     * If no x values are given for the points in a series, pointStart defines
-     * on what value to start. For example, if a series contains one yearly
-     * value starting from 1945, set pointStart to 1945. Defaults to 0.
+     * If no X values are given for the points in a series, pointStart defines
+     * on which value to start. For example, if a series contains a yearly value
+     * starting from 1945, set pointStart to 1945. Defaults to 0.
      * 
      * @param pointStart
      */
     public void setPointStart(Number pointStart) {
         this.pointStart = pointStart;
     }
-    
+
     /**
-     * If no x values are given for the points in a series, pointStart defines
-     * on what value to start. For example, if a series contains one yearly
-     * value starting from 1945, set pointStart to 1945. Defaults to 0.
+     * If no X values are given for the points in a series, pointStart defines
+     * on what value to start. For example, if a series contains a yearly value
+     * starting from 1945, set pointStart to 1945. Defaults to 0.
      * 
      * @param pointStart
      */
@@ -309,20 +309,18 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
         pointStart = date.getTime();
     }
 
-
     /**
      * @see #setPointStart(Number)
-     * @return
      */
     public Number getPointStart() {
         return pointStart;
     }
 
     /**
-     * If no x values are given for the points in a series, pointInterval
-     * defines the interval of the x values. For example, if a series contains
-     * one value every decade starting from year 0, set pointInterval to 10. .
-     * Defaults to 1.
+     * If no X values are given for the points in a series, pointInterval
+     * defines the interval of the values on the X-axis. For example, if a
+     * series contains a value for every decade starting from year 0, set
+     * pointInterval to 10. Defaults to 1.
      * 
      * @param pointInterval
      */
@@ -332,23 +330,25 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
 
     /**
      * @see #setPointInterval(Number)
-     * @return
      */
     public Number getPointInterval() {
         return pointInterval;
     }
 
     /**
-     * Possible values: null, "on", "between".
+     * In a column chart, when pointPlacement is {@link PointPlacement#ON}, the
+     * point will not create any padding of the X-axis.
      * 
-     * In a column chart, when pointPlacement is "on", the point will not create
-     * any padding of the X axis. In a polar column chart this means that the
-     * first column points directly north. If the pointPlacement is "between",
-     * the columns will be laid out between ticks. This is useful for example
-     * for visualizing an amount between two points in time or in a certain
-     * sector of a polar chart.
+     * In a polar column chart {@link PointPlacement#ON} means that the first
+     * column points directly north.
      * 
-     * Defaults to null in Cartesian charts, "between" in polar charts.
+     * If pointPlacement is {@link PointPlacement#BETWEEN}, the columns will be
+     * laid out between ticks. This is useful for example for visualizing an
+     * amount between two points in time or in a certain sector of a polar
+     * chart.
+     * 
+     * Defaults to null in Cartesian charts, {@link PointPlacement#BETWEEN} in
+     * polar charts.
      * 
      * @param pointPlacement
      */
@@ -358,7 +358,7 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
 
     /**
      * @see #setPointPlacement(PointPlacement)
-     * @return
+     * @return the polar placement or null if none.
      */
     public PointPlacement getPointPlacement() {
         return pointPlacement;
@@ -366,15 +366,14 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
 
     /**
      * @see #setAllowPointSelect(Boolean)
-     * @return
      */
     public boolean isAllowPointSelect() {
         return allowPointSelect == null ? false : allowPointSelect;
     }
 
     /**
-     * Allow this series' points to be selected by clicking on the markers, bars
-     * or pie slices. Defaults to false.
+     * Sets whether to allow points in this series to be selected by clicking on
+     * the markers, bars or pie slices. Defaults to false.
      * 
      * @param allowPointSelect
      */
@@ -384,15 +383,14 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
 
     /**
      * @see #setShowInLegend(Boolean)
-     * @return
      */
     public boolean isShowInLegend() {
         return showInLegend == null ? false : showInLegend;
     }
 
     /**
-     * Whether to display this particular series or series type in the legend.
-     * Defaults to false.
+     * Sets whether to display this particular series or series type in the
+     * legend. Defaults to false.
      * 
      * @param showInLegend
      */
@@ -402,14 +400,13 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
 
     /**
      * @see #setMarker(Marker)
-     * @return
      */
     public Marker getMarker() {
         return marker;
     }
 
     /**
-     * Marker used for the plot point items (points/bars/columns)
+     * Sets the marker used for the plot point items (points/bars/columns)
      * 
      * @param marker
      */
@@ -418,13 +415,13 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     }
 
     /**
-     * Sticky tracking of mouse events. When true, the mouseOut event on a
-     * series isn't triggered until the mouse moves over another series, or out
-     * of the plot area. When false, the mouseOut event on a series is triggered
-     * when the mouse leaves the area around the series' graph or markers. This
-     * also implies the tooltip. When stickyTracking is false and tooltip.shared
-     * is false, the tooltip will be hidden when moving the mouse between
-     * series. Defaults to true.
+     * Sets the sticky tracking of mouse events. When true (default), the
+     * mouseOut event on a series isn't triggered until the mouse moves over
+     * another series, or out of the plot area. When false, the mouseOut event
+     * on a series is triggered when the mouse leaves the area around the
+     * series' graph or markers. This also implies the tooltip. When
+     * stickyTracking is false and tooltip.shared is false, the tooltip will be
+     * hidden when moving the mouse between series. Defaults to true.
      * 
      * @param stickyTracking
      */
@@ -434,33 +431,31 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
 
     /**
      * @see #setStickyTracking(Boolean)
-     * @return
+     * @return whether sticky tracking is on or off, true if undefined.
      */
     public Boolean isStickyTracking() {
-        return stickyTracking;
+        return stickyTracking == null ? true : stickyTracking;
     }
-    
+
     /**
      * @see #setColor(Color)
-     * 
-     * @return
      */
     public Color getColor() {
         return color;
     }
 
     /**
-     * The main color or the series. In line type series it applies to the line
-     * and the point markers unless otherwise specified. In bar type series it
-     * applies to the bars unless a color is specified per point. The default
-     * value is pulled from the VaadinTheme's colors
+     * Sets the main color of the series. In line type series it applies to the
+     * line and the point markers unless otherwise specified. In bar type series
+     * it applies to the bars unless a color is specified per point. The default
+     * value is pulled from the VaadinTheme colors
      * 
      * @param color
      */
     public void setColor(Color color) {
         this.color = color;
     }
-    
+
     /**
      * @see #setStates(States)
      */
@@ -469,17 +464,16 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     }
 
     /**
-     * A wrapper object for all the series options in specific states.
+     * Sets the wrapper object for all the series options in specific states.
      * 
      * @param states
      */
     public void setStates(States states) {
         this.states = states;
     }
-    
+
     /**
      * @see #setTooltip(Tooltip)
-     * @return
      */
     public Tooltip getTooltip() {
         if (tooltip == null) {
@@ -489,10 +483,13 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     }
 
     /**
-     * A configuration object for the tooltip rendering of each single series.
-     * Properties are inherited from tooltip. Overridable properties are
-     * headerFormat, pointFormat, valueDecimals, xDateFormat, valuePrefix and
-     * valueSuffix. . Defaults to {}.
+     * Sets the configuration object for the tooltip rendering of each single
+     * series. Properties are inherited from tooltip. Overridable properties are
+     * {@link Tooltip#setHeaderFormat(String)},
+     * {@link Tooltip#setPointFormat(String)},
+     * {@link Tooltip#setValueDecimals(Number)},
+     * {@link Tooltip#setValuePrefix(String)} and
+     * {@link Tooltip#setValueSuffix(String)}. Defaults to nothing.
      * 
      * @param tooltip
      */

@@ -18,8 +18,8 @@ package com.vaadin.addon.charts.model;
  */
 
 /**
- * Language object. The language object is global and it can't be set on each
- * chart initiation.
+ * Language object. The language object is global and can only be set once. It
+ * cannot be set on each chart initiation.
  */
 public class Lang extends AbstractConfigurationObject {
     private String loading;
@@ -29,14 +29,14 @@ public class Lang extends AbstractConfigurationObject {
     /**
      * @see #setLoading(String)
      * 
-     * @return Loading text or null if not defined
+     * @return The loading text or null if not defined
      */
     public String getLoading() {
         return loading;
     }
 
     /**
-     * set loading text shown
+     * Sets the loading text that is shown while loading charts.
      * 
      * @param loading
      */
@@ -45,17 +45,15 @@ public class Lang extends AbstractConfigurationObject {
     }
 
     /**
-     * Decimal point used
-     * 
      * @see #setDecimalPoint(String)
-     * @return Decimal point or null if not defined
+     * @return The decimal point or null if not defined
      */
     public String getDecimalPoint() {
         return decimalPoint;
     }
 
     /**
-     * Decimal point used
+     * Sets the decimal point to use
      * 
      * @param decimalPoint
      */
@@ -65,14 +63,14 @@ public class Lang extends AbstractConfigurationObject {
 
     /**
      * @see #setThousandsSep()
-     * @return Thousands separator point or null if not defined
+     * @return The thousands separator point or null if not defined
      */
     public String getThousandsSep() {
         return thousandsSep;
     }
 
     /**
-     * Thousands separator used
+     * Sets the thousands separator to use
      * 
      * @param thousandsSep
      */

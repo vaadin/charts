@@ -21,9 +21,9 @@ import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.Style;
 
 /**
- * The axis labels show the number or category for each tick.
- * 
+ * The axis labels show the numeric value or category name for each tick.
  */
+@SuppressWarnings("serial")
 public class Labels extends AbstractConfigurationObject {
 
     private HorizontalAlign align;
@@ -40,18 +40,14 @@ public class Labels extends AbstractConfigurationObject {
     private Number distance;
     private Color backgroundColor;
 
-    /**
-     * Default constructor
-     */
     public Labels() {
-
     }
 
     /**
-     * Create new label with enabled state
+     * Creates a new enabled or disabled label
      * 
      * @param enabled
-     *            Enabled state
+     *            true to enable, false to disable
      */
     public Labels(boolean enabled) {
         setEnabled(enabled);
@@ -59,16 +55,16 @@ public class Labels extends AbstractConfigurationObject {
 
     /**
      * @see #setAlign(HorizontalAlign)
-     * @return the align
+     * @return The horizontal alignment relative to the position of a label.
      */
     public HorizontalAlign getAlign() {
         return align;
     }
 
     /**
-     * What part of the string the given position is anchored to. Can be one of
-     * "left", "center" or "right". In inverted charts, x axis label alignment
-     * and y axis alignment are swapped. Defaults to "center".
+     * Sets which part of the string the given position is anchored to. In
+     * inverted charts, X-axis label alignment and Y-axis alignment are swapped.
+     * Defaults to {@link HorizontalAlign#CENTER}.
      * 
      * @param align
      *            the align to set
@@ -79,7 +75,6 @@ public class Labels extends AbstractConfigurationObject {
 
     /**
      * @see #setEnabled(Boolean)
-     * @return the enabled
      */
     public boolean getEnabled() {
         return enabled == null ? true : enabled;
@@ -89,7 +84,6 @@ public class Labels extends AbstractConfigurationObject {
      * Enable or disable the axis labels. Defaults to true.
      * 
      * @param enabled
-     *            the enabled to set
      */
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
@@ -97,24 +91,28 @@ public class Labels extends AbstractConfigurationObject {
 
     /**
      * @see #setRotation(Number)
-     * @return the rotation
+     * @return The rotation of the labels in degrees.
      */
     public Object getRotation() {
         return rotation;
     }
 
     /**
-     * Rotation of the labels in degrees. Defaults to 0. The rotation is
-     * typically numeric like 90 but could be also String like "auto"
+     * Sets the rotation of the labels in degrees. Defaults to 0.
+     * 
+     * @see #setRotation(String)
      * 
      * @param rotation
-     *            the rotation in Number format
+     *            the rotation in degrees
      */
     public void setRotation(Number rotation) {
         this.rotation = rotation;
     }
 
     /**
+     * Sets the rotation of the labels in degrees. Defaults to 0. Can also be
+     * set to "auto".
+     * 
      * @param rotation
      *            in String format (e.g. "auto") the rotation to set
      */
@@ -124,15 +122,16 @@ public class Labels extends AbstractConfigurationObject {
 
     /**
      * @see #setStaggerLines(Number)
-     * @return the staggerLines
      */
     public Number getStaggerLines() {
         return staggerLines;
     }
 
     /**
-     * Horizontal axes only. The number of lines to spread the labels over to
-     * make room or tighter labels. . Defaults to null.
+     * The number of lines to spread the labels over to make room or tighter
+     * labels. Defaults to null.
+     * 
+     * <em>Note</em> This applies to horizontal axes only.
      * 
      * @param staggerLines
      *            the staggerLines to set
@@ -143,14 +142,13 @@ public class Labels extends AbstractConfigurationObject {
 
     /**
      * @see #setStep(Number)
-     * @return the step
      */
     public Number getStep() {
         return step;
     }
 
     /**
-     * To show only every n'th label on the axis, set the step to n. Setting the
+     * Sets whether to show only every n'th label on the axis. E.g. setting the
      * step to 2 shows every other label. Defaults to null.
      * 
      * @param step
@@ -162,7 +160,6 @@ public class Labels extends AbstractConfigurationObject {
 
     /**
      * @see #setStyle(Style)
-     * @return the style
      */
     public Style getStyle() {
         if (style == null) {
@@ -172,7 +169,7 @@ public class Labels extends AbstractConfigurationObject {
     }
 
     /**
-     * CSS styles for the label. Defaults to:
+     * Sets the CSS styles for the labels. Defaults to:
      * 
      * style: { color: '#6D869F', fontWeight: 'bold' }
      * 
@@ -185,18 +182,16 @@ public class Labels extends AbstractConfigurationObject {
 
     /**
      * @see #setX(Number)
-     * @return the x
      */
     public Number getX() {
         return x;
     }
 
     /**
-     * The x position offset of the label relative to the tick position on the
-     * axis. Defaults to 0.
+     * Sets the X position offset of the labels relative to the tick position on
+     * the axis. Defaults to 0.
      * 
      * @param x
-     *            the x to set
      */
     public void setX(Number x) {
         this.x = x;
@@ -204,18 +199,16 @@ public class Labels extends AbstractConfigurationObject {
 
     /**
      * @see #setY(Number)
-     * @return the y
      */
     public Number getY() {
         return y;
     }
 
     /**
-     * The y position offset of the label relative to the tick position on the
+     * The Y position offset of the label relative to the tick position on the
      * axis. Defaults to 0.
      * 
      * @param y
-     *            the y to set
      */
     public void setY(Number y) {
         this.y = y;
@@ -223,7 +216,6 @@ public class Labels extends AbstractConfigurationObject {
 
     /**
      * @see #setFormatter(String)
-     * @return
      */
     public String getFormatter() {
         return _fn_formatter;
@@ -231,18 +223,16 @@ public class Labels extends AbstractConfigurationObject {
     }
 
     /**
-     * JavaScript function to format the label. The value is given by
+     * Sets a JavaScript function to format the label. The value is given by
      * this.value. Additional properties for this are axis, chart, isFirst and
      * isLast. Defaults to:
-     * <p>
+     * 
      * <code>
      * function(){ return this.value; }
      * </code>
-     * <p>
-     * If function is simpler one liner, it can be given in a shortened form.
-     * E.g. the default formatter could be simply:
-     * <p>
-     * <code>this.value</code>
+     * 
+     * If the function is a simple one liner, it can be given in a shortened
+     * form, e.g.: <code>this.value</code>
      * 
      * @param formatter
      */
@@ -252,14 +242,13 @@ public class Labels extends AbstractConfigurationObject {
 
     /**
      * @see #setColor(Color)
-     * @return Text color
      */
     public Color getColor() {
         return color;
     }
 
     /**
-     * The text color for the data labels. Defaults to null. Defaults to null.
+     * Sets the text color for the data labels. Defaults to null.
      * 
      * @param color
      */
@@ -269,16 +258,15 @@ public class Labels extends AbstractConfigurationObject {
 
     /**
      * @see #setConnectorColor(Color)
-     * @return Connector color or null if not defined
+     * @return The connector color or null if not defined
      */
     public Color getConnectorColor() {
         return connectorColor;
     }
 
     /**
-     * The color of the line connecting the data label to the pie slice. The
-     * default color is the same as the point's color. Defaults to
-     * {point.color}.
+     * Sets the color of the line connecting the data label to the pie slice.
+     * The default color is the same as the point's color.
      * 
      * @param connectorColor
      */
@@ -287,9 +275,9 @@ public class Labels extends AbstractConfigurationObject {
     }
 
     /**
-     * The distance of the data label from the pie's edge. Negative numbers put
-     * the data label on top of the pie slices. Connectors are only shown for
-     * data labels outside the pie. Defaults to 30.
+     * Sets the distance of the data label from the pie's edge. Negative numbers
+     * put the data label on top of the pie slices. Connectors are only shown
+     * for data labels outside the pie. Defaults to 30.
      * 
      * @param distance
      */
@@ -299,15 +287,14 @@ public class Labels extends AbstractConfigurationObject {
 
     /**
      * @see #setDistance(Number)
-     * @return
      */
     public Number getDistance() {
         return distance;
     }
 
     /**
-     * The background color or gradient for the data label. Defaults to
-     * undefined. Defaults to undefined.
+     * Sets the background color or gradient for the data label. Defaults to
+     * undefined.
      * 
      * @param backgroundColor
      */
@@ -317,7 +304,6 @@ public class Labels extends AbstractConfigurationObject {
 
     /**
      * @see #setBackgroundColor(Color)
-     * @return
      */
     public Color getBackgroundColor() {
         return backgroundColor;

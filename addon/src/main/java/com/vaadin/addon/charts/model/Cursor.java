@@ -20,10 +20,10 @@ package com.vaadin.addon.charts.model;
 /**
  * You can set the cursor to POINTER("pointer") if you have click events
  * attached to the series, to signal to the user that the points and lines can
- * be clicked. Defaults to ''.
+ * be clicked. Defaults to NONE.
  */
 public enum Cursor implements ChartEnum {
-    POINTER("pointer");
+    POINTER("pointer"), NONE("");
 
     private String cursor;
 

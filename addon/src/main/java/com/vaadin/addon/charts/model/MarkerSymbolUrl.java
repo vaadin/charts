@@ -21,12 +21,13 @@ package com.vaadin.addon.charts.model;
  * Symbol that is fetched from the url, implementing ChartEnum to provide
  * correct serialization
  */
-public class MarkerSymbolUrl extends AbstractConfigurationObject implements MarkerSymbol, ChartEnum {
+public class MarkerSymbolUrl extends AbstractConfigurationObject implements
+        MarkerSymbol, ChartEnum {
 
     private String url;
 
     /**
-     * Construct MarkerSymbol from given url
+     * Constructs a MarkerSymbol with the given URL
      * 
      * @param url
      */
@@ -35,7 +36,7 @@ public class MarkerSymbolUrl extends AbstractConfigurationObject implements Mark
     }
 
     /**
-     * Set the url of the marker symbol
+     * Sets the URL of the marker symbol
      * 
      * @param url
      */
@@ -45,7 +46,6 @@ public class MarkerSymbolUrl extends AbstractConfigurationObject implements Mark
 
     /**
      * @see #setUrl(String)
-     * @return
      */
     public String getUrl() {
         return url;

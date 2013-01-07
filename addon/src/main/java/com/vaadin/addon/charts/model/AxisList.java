@@ -28,48 +28,45 @@ public class AxisList extends AbstractConfigurationObject {
     private List<Axis> axesList = new ArrayList<Axis>();
 
     /**
-     * Get number or axes in list
-     * 
-     * @return
+     * @return the number of axes in the list
      */
     public int getNumberOfAxes() {
         return axesList.size();
     }
 
     /**
-     * Get Axis with given index
+     * Finds the axis at the given index
      * 
      * @param index
-     *            Index of axis
-     * @return Axis with given index
+     *            The index of the axis
+     * @return The axis at the given index
      */
     public Axis getAxis(int index) {
         return axesList.get(index);
     }
 
     /**
-     * Get axes list. Use this only for serialization.
-     * 
-     * @return
+     * @return The list of axes. Used only for serialization.
      */
     public List<Axis> getAxes() {
         return axesList;
     }
 
     /**
-     * Add new axis to list
+     * Adds a new axis to the list
      * 
      * @param axis
-     *            Axis added
+     *            The axis to add
      */
     public void addAxis(Axis axis) {
         axesList.add(axis);
     }
 
     /**
-     * Add new axis to list
+     * Removes an axis from the list
      * 
      * @param axis
+     *            The axis to remove
      */
     public void removeAxis(Axis axis) {
         axesList.remove(axis);

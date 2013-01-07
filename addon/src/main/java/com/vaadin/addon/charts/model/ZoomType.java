@@ -18,9 +18,7 @@ package com.vaadin.addon.charts.model;
  */
 
 /**
- * Decides in what dimensions the user can zoom by dragging the mouse. Can be
- * one of X("x"), Y("y"), XY("xy"). Defaults to "".
- * 
+ * Parameters for in what dimensions the user can zoom by dragging the mouse.
  */
 public enum ZoomType implements ChartEnum {
     X("x"), Y("y"), XY("xy");

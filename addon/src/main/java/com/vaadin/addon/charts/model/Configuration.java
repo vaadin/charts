@@ -54,7 +54,6 @@ public class Configuration extends AbstractConfigurationObject {
 
     /**
      * @see #setChart(ChartModel)
-     * @return
      */
     public ChartModel getChart() {
         if (chart == null) {
@@ -64,7 +63,7 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * Options regarding the chart area and plot area as well as general chart
+     * Sets options regarding the chart and plot areas as well as general chart
      * options.
      * 
      * @param chart
@@ -75,14 +74,13 @@ public class Configuration extends AbstractConfigurationObject {
 
     /**
      * @see #setSeries(List)
-     * @return
      */
     public List<Series> getSeries() {
         return Collections.unmodifiableList(series);
     }
 
     /**
-     * Add a single series to the list of series in this configuration.
+     * Adds a single series to the list of series in this configuration.
      * 
      * @param series
      */
@@ -92,8 +90,8 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * The actual series to append to the chart. Series objects contains the
-     * data content (individual points/columns etc.) of the plot. The series
+     * Sets the actual series to append to the chart. Series objects contains
+     * the data content (individual points/columns etc.) of the plot. The series
      * object could have data (the content), name, labels, tooltips, markers
      * etc.
      * 
@@ -124,7 +122,6 @@ public class Configuration extends AbstractConfigurationObject {
 
     /**
      * @see #setTitle(Title)
-     * @return
      */
     public Title getTitle() {
         if (title == null) {
@@ -134,7 +131,7 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * The chart's main title.
+     * The main title of the chart.
      * 
      * @param title
      */
@@ -143,7 +140,7 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * Set the new chart's main title to the given string
+     * Sets the new chart's main title to the given string
      * 
      * @param text
      *            Text of title
@@ -153,9 +150,7 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * The chart's subtitle
-     * 
-     * @return
+     * @return The chart's subtitle
      */
     public SubTitle getSubTitle() {
         if (subtitle == null) {
@@ -165,7 +160,7 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * Set new subtitle with given text
+     * Sets the subtitle to the given text
      * 
      * @param text
      *            Text of subtitle
@@ -175,7 +170,7 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * Set the chart's subtitle
+     * Sets the chart's subtitle
      * 
      * @param subTitle
      */
@@ -184,12 +179,12 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * The X axis or category axis. Normally this is the horizontal axis, though
-     * if the chart is inverted this is the vertical axis. In case of multiple
-     * axes defined, the first axis is returned. Will create Axis if no axis
-     * defined.
+     * Returns the X-axis or category axis. Normally this is the horizontal
+     * axis, though if the chart is inverted this is the vertical axis. In case
+     * of multiple axes defined, the first axis is returned. An axis will be
+     * created if no axis is defined.
      * 
-     * @return
+     * @return the X-axis or category axis.
      */
     public XAxis getxAxis() {
 
@@ -205,9 +200,7 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * Get number of X Axes defined
-     * 
-     * @return
+     * @return the number of X-axes defined
      */
     public int getNumberOfxAxes() {
         if (xAxis == null) {
@@ -218,9 +211,7 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * Get axis with given index
-     * 
-     * @return X axis with given index or null if index is not valid
+     * @return The X-axis with the given index or null if the index is not valid
      */
     public XAxis getxAxis(int index) {
         if (index > 0 && xAxis != null && getNumberOfxAxes() > index) {
@@ -231,17 +222,17 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * Remove all X axes defined
+     * Removes all defined X-axes
      */
     public void removexAxes() {
         xAxis = null;
     }
 
     /**
-     * Add axis to configuration
+     * Adds an X-axis to the configuration
      * 
      * @param axis
-     *            X Axis set as single X axis of configuration.
+     *            The X-Axis to add.
      * @see #getxAxis()
      * @see #getxAxes()
      */
@@ -253,11 +244,12 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * The Y axis or value axis. Normally this is the vertical axis, though if
-     * the chart is inverted this is the horizontal axis. In case of multiple
-     * axes (list) the first axis is returned.
+     * Returns the Y-axis or value axis. Normally this is the vertical axis,
+     * though if the chart is inverted this is the horizontal axis. In case
+     * there are multiple axes defined (a list), only the first axis is
+     * returned. If none exist, a Y-axis will be created.
      * 
-     * @return first y axis
+     * @return The first Y-axis
      * @see #getyAxes()
      */
     public YAxis getyAxis() {
@@ -273,9 +265,7 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * Get number of Y Axes defined
-     * 
-     * @return
+     * @return The number of Y-axes defined
      */
     public int getNumberOfyAxes() {
         if (yAxis == null) {
@@ -286,9 +276,7 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * Get axis with given index
-     * 
-     * @return X axis with given index or null if index is not valid
+     * @return The X-axis with the given index or null if the index is not valid
      */
     public YAxis getyAxis(int index) {
         if (index > 0 && yAxis != null && getNumberOfyAxes() > index) {
@@ -299,17 +287,17 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * Remove all Y axes defined
+     * Removes all defined Y-axes
      */
     public void removeyAxes() {
         yAxis = null;
     }
 
     /**
-     * Set Y axis.
+     * Adds a Y-axis.
      * 
      * @param yAxis
-     *            Y Axis or multiple Y Axis. Only YAxes accepted!
+     *            The Y-axis to add.
      * @see #getyAxes()
      * @see #getyAxis()
      */
@@ -321,13 +309,10 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * Get Y axes if list is defined. Will return null else.
-     * 
-     * @return Y axes list if defined, null if not. Also single axis will return
-     *         null.
+     * @return A list of all defined Y-axes, null if none are found.
      */
     public AxisList getyAxes() {
-        if (yAxis != null && yAxis instanceof AxisList) {
+        if (yAxis != null) {
             return yAxis;
         } else {
             return null;
@@ -336,7 +321,8 @@ public class Configuration extends AbstractConfigurationObject {
 
     /**
      * @see #setTooltip(Tooltip)
-     * @return
+     * @return the tooltip options for this chart. If none have been set, a new
+     *         Tooltip object with the default options is created.
      */
     public Tooltip getTooltip() {
         if (tooltip == null) {
@@ -346,8 +332,8 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * Options for the tooltip that appears when the user hovers over a series
-     * or point.
+     * Sets the options for the tooltip that appears when the user hovers over a
+     * series or point.
      * 
      * @param tooltip
      */
@@ -357,7 +343,6 @@ public class Configuration extends AbstractConfigurationObject {
 
     /**
      * @see #setCredits(Credits)
-     * @return
      */
     public Credits getCredits() {
         if (credits == null) {
@@ -367,8 +352,8 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * Highchart by default puts a credits label in the lower right corner of
-     * the chart. This can be changed using these options.
+     * Sets/changes the credits label that is added in the lower right corner of
+     * the chart.
      * 
      * @param credits
      */
@@ -377,7 +362,8 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * Disables the credits by adding disabled credit to configure.
+     * Disables the credits by setting a Credits object with the enabled
+     * property set to false.
      */
     public void disableCredits() {
         Credits disabled = new Credits();
@@ -387,7 +373,6 @@ public class Configuration extends AbstractConfigurationObject {
 
     /**
      * @see #setLegend(Legend)
-     * @return
      */
     public Legend getLegend() {
         if (legend == null) {
@@ -397,8 +382,8 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * The legend is a box containing a symbol and name for each series item or
-     * point item in the chart.
+     * Sets the legend. The legend is a box containing a symbol and name for
+     * each series item or point item in the chart.
      * 
      * @param legend
      */
@@ -408,24 +393,25 @@ public class Configuration extends AbstractConfigurationObject {
 
     /**
      * @see #setPlotOptions(AbstractPlotOptions)
-     * @return
      */
     public AbstractPlotOptions[] getPlotOptions() {
-        return plotOptions.values().toArray(new AbstractPlotOptions[plotOptions.size()]);
+        return plotOptions.values().toArray(
+                new AbstractPlotOptions[plotOptions.size()]);
     }
 
     /**
-     * Configuration options for the series are given in three levels. Options
-     * for all series in a chart are given in the PlotOptionsSeries object. Then
-     * options for all series of a specific type are given in the PlotOptions of
-     * that type, for example PlotOptionsLine. Next, options for one single
-     * series are given in the series array.
+     * Sets the configuration options for the series. The options are given in
+     * three levels. Options for all series in a chart are given in the
+     * {@link PlotOptionsSeries} object. Then options for all series of a
+     * specific type are given in the PlotOptions of that type, for example
+     * {@link PlotOptionsLine}. Next, options for one single series are given in
+     * the series array.
      * 
      * @param plotOptions
      */
     public void setPlotOptions(AbstractPlotOptions plotOptions) {
         if (this.plotOptions == null) {
-            this.plotOptions = new HashMap<String,AbstractPlotOptions>();
+            this.plotOptions = new HashMap<String, AbstractPlotOptions>();
         } else {
             this.plotOptions.clear();
         }
@@ -441,12 +427,13 @@ public class Configuration extends AbstractConfigurationObject {
      */
     public void addPlotOptions(AbstractPlotOptions plotOptions) {
         if (this.plotOptions == null) {
-            this.plotOptions = new HashMap<String,AbstractPlotOptions>();
+            this.plotOptions = new HashMap<String, AbstractPlotOptions>();
         }
         if (plotOptions instanceof PlotOptionsSeries) {
             this.plotOptions.put("series", plotOptions);
         } else {
-            this.plotOptions.put(plotOptions.getChartType().toString(), plotOptions);
+            this.plotOptions.put(plotOptions.getChartType().toString(),
+                    plotOptions);
         }
     }
 
@@ -459,7 +446,7 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * HTML labels that can be positioned anywhere in the chart area.
+     * Sets HTML labels that can be positioned anywhere in the chart area.
      * 
      * @param labels
      */
@@ -468,7 +455,7 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * Whether to enable exporting
+     * Sets whether to enable exporting
      * 
      * @param exporting
      */
@@ -477,7 +464,7 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * Set exporting module
+     * Sets the exporting module
      * 
      * @param exporting
      */
@@ -487,7 +474,6 @@ public class Configuration extends AbstractConfigurationObject {
 
     /**
      * @see #setExporting(Exporting)
-     * @return
      */
     public Exporting getExporting() {
         return exporting;
@@ -495,7 +481,6 @@ public class Configuration extends AbstractConfigurationObject {
 
     /**
      * @see #setExporting(Boolean)
-     * @return
      */
     public Boolean isExporting() {
         return exporting.isEnabled();
@@ -503,12 +488,12 @@ public class Configuration extends AbstractConfigurationObject {
 
     /**
      * Auxiliary search method for finding point/DataSeriesItem with given
-     * series name and xy coordinates
+     * series name and X,Y coordinates
      * 
      * @param serieName
      * @param x
      * @param y
-     * @return
+     * @return the data series item identified by the parameters.
      */
     public DataSeriesItem getDataSeriesItem(String serieName, double x, double y) {
         DataSeriesItem item = null;
@@ -528,16 +513,14 @@ public class Configuration extends AbstractConfigurationObject {
 
     /**
      * @see #setLang(Lang)
-     * @return
      */
     public Lang getLang() {
         return lang;
     }
 
     /**
-     * Language object. The language object is global and it can't be set on
-     * each chart initiation. Instead, use Highcharts.setOptions to set it
-     * before any chart is initiated.
+     * Sets the language object. The language object is global and can be set
+     * only once and affects all charts.
      * 
      * @param lang
      */
@@ -547,7 +530,6 @@ public class Configuration extends AbstractConfigurationObject {
 
     /**
      * @see #addPane(Pane)
-     * @return
      */
     public Pane getPane() {
         if (pane == null) {
@@ -562,21 +544,21 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * Applies only to polar charts and angular gauges. This configuration
-     * object holds general options for the combined X and Y axes set. Each
-     * xAxis or yAxis can reference the pane by index.
+     * Adds a pane. This applies only to polar charts and angular gauges. This
+     * configuration object holds general options for the combined X and Y -axes
+     * set. Each XAxis or YAxis can reference the pane by index.
      * 
      * @param pane
      */
-    public void addPane(Pane pan) {
-        if (pane == null) {
-            pane = new PaneList();
+    public void addPane(Pane pane) {
+        if (this.pane == null) {
+            this.pane = new PaneList();
         }
-        pane.addPane(pan);
+        this.pane.addPane(pane);
     }
 
     /**
-     * Reverses ListSeries (makes a transpose such that categories would be
+     * Reverses the ListSeries (transposes it such that categories would be
      * series names and vice versa) to help stacking
      * 
      * throws {@link IllegalStateException} if series are not ListSeries type

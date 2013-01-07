@@ -19,20 +19,16 @@ package com.vaadin.addon.charts.model;
 
 /**
  * HTML labels that can be positioned anywhere in the chart area.
- * 
  */
+@SuppressWarnings("serial")
 public class HTMLLabels extends AbstractConfigurationObject {
     private HTMLLabelItem[] items;
 
-    /**
-     * Default constructor
-     */
     public HTMLLabels() {
-
     }
 
     /**
-     * Constructor with given label items
+     * Constructs a HTMLLabels instance with the given label items
      * 
      * @param items
      */
@@ -41,16 +37,14 @@ public class HTMLLabels extends AbstractConfigurationObject {
     }
 
     /**
-     * Return array of single label items
-     * 
-     * @return
+     * @return An array of the label items
      */
     public HTMLLabelItem[] getItems() {
         return items;
     }
 
     /**
-     * Set label items
+     * Sets the label items
      * 
      * @param items
      */

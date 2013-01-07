@@ -18,15 +18,15 @@ package com.vaadin.addon.charts.client;
  */
 
 /**
- * Helper to load javascripts required by Highcharts
+ * Helper to load the JavaScripts required by Highcharts
  */
 public class HighchartsScriptLoader {
 
     private static boolean injected;
 
     /**
-     * Highchart related widgets and GWT overalays should ensure scripts are
-     * injected to host page using this method.
+     * Highchart related widgets and GWT overlays should ensure scripts are
+     * injected in the host page using this method.
      */
     public static void ensureInjected() {
         if (!injected) {

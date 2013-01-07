@@ -36,15 +36,12 @@ public class PlotBand extends AbstractConfigurationObject {
     private String innerRadius;
     private String outerRadius;
 
-    /**
-     * Default constructor
-     */
     public PlotBand() {
-
     }
 
     /**
-     * Create new PlotBand with from, to and color values
+     * Constructs a new PlotBand with a starting position, an ending position
+     * and a color.
      * 
      * @param from
      *            The start position of the plot band in axis units.
@@ -61,14 +58,14 @@ public class PlotBand extends AbstractConfigurationObject {
 
     /**
      * @see #setFrom(Number)
-     * @return From value
+     * @return The starting position of the plot band
      */
     public Number getFrom() {
         return from;
     }
 
     /**
-     * The start position of the plot band in axis units. Defaults to null.
+     * Sets the start position of the plot band in axis units. Defaults to null.
      * 
      * @param from
      */
@@ -78,14 +75,14 @@ public class PlotBand extends AbstractConfigurationObject {
 
     /**
      * @see #setTo(Number)
-     * @return To value
+     * @return The ending position of the plot band
      */
     public Number getTo() {
         return to;
     }
 
     /**
-     * The end position of the plot band in axis units. Defaults to null.
+     * Sets the end position of the plot band in axis units. Defaults to null.
      * 
      * @param to
      */
@@ -95,14 +92,14 @@ public class PlotBand extends AbstractConfigurationObject {
 
     /**
      * @see #setColor(Color)
-     * @return Color value
+     * @return The color of the plot band
      */
     public Color getColor() {
         return color;
     }
 
     /**
-     * The color of the plot band. Defaults to null.
+     * Sets the color of the plot band. Defaults to null.
      * 
      * @param color
      */
@@ -112,14 +109,14 @@ public class PlotBand extends AbstractConfigurationObject {
 
     /**
      * @see #setzIndex(Number)
-     * @return Z index value
+     * @return The Z index
      */
     public Number getzIndex() {
         return zIndex;
     }
 
     /**
-     * The z index of the plot band within the chart. Defaults to null.
+     * Sets the z index of the plot band within the chart. Defaults to null.
      * 
      * @param zIndex
      */
@@ -128,7 +125,7 @@ public class PlotBand extends AbstractConfigurationObject {
     }
 
     /**
-     * Text labels for the plot bands
+     * Sets a text label for the plot band
      * 
      * @param label
      */
@@ -138,14 +135,14 @@ public class PlotBand extends AbstractConfigurationObject {
 
     /**
      * @see #setLabel(PlotBandLabel)
-     * @return
+     * @return The text label for the plot band
      */
     public PlotBandLabel getLabel() {
         return label;
     }
 
     /**
-     * The start position of the plot band in axis units. Defaults to null.
+     * Sets the start position of the plot band in axis units. Defaults to null.
      * 
      * @param date
      */
@@ -154,7 +151,7 @@ public class PlotBand extends AbstractConfigurationObject {
     }
 
     /**
-     * The end position of the plot band in axis units. Defaults to null.
+     * Sets the end position of the plot band in axis units. Defaults to null.
      * 
      * @return To value
      */
@@ -163,8 +160,8 @@ public class PlotBand extends AbstractConfigurationObject {
     }
 
     /**
-     * An id used for identifying the plot band in Axis.removePlotBand. Defaults
-     * to null.
+     * Sets an ID for the plot band. The ID can be used for identifying the plot
+     * band in Axis.removePlotBand. Defaults to null.
      * 
      * @param id
      */
@@ -174,15 +171,16 @@ public class PlotBand extends AbstractConfigurationObject {
 
     /**
      * @see #setId(String)
-     * @return
+     * @return The ID
      */
     public String getId() {
         return id;
     }
 
     /**
-     * Only applicable for ChartType.GAUGE, sets the inner radius of plot band
-     * on the gauge
+     * Sets the inner radius of the plot band on the gauge.
+     * 
+     * <em>Note<em>: Only applicable for {@link ChartType#GAUGE}
      * 
      * @param innerRadius
      */
@@ -192,15 +190,15 @@ public class PlotBand extends AbstractConfigurationObject {
 
     /**
      * @see #setInnerRadius(String)
-     * @return
      */
     public String getInnerRadius() {
         return innerRadius;
     }
 
     /**
-     * Only applicable for ChartType.GAUGE, sets the outer radius of plot band
-     * on the gauge
+     * Sets the outer radius of the plot band on the gauge.
+     * 
+     * <em>Note<em>: Only applicable for {@link ChartType#GAUGE}
      * 
      * @param outerRadius
      */
@@ -210,7 +208,6 @@ public class PlotBand extends AbstractConfigurationObject {
 
     /**
      * @see #setOuterRadius(String)
-     * @return
      */
     public String getOuterRadius() {
         return outerRadius;

@@ -31,15 +31,11 @@ public abstract class AbstractTitle extends AbstractConfigurationObject {
     private Number x;
     private Number y;
 
-    /**
-     * Default constructor
-     */
     public AbstractTitle() {
-
     }
 
     /**
-     * Construct title with given text
+     * Constructs a title with the given text
      * 
      * @param text
      */
@@ -50,7 +46,7 @@ public abstract class AbstractTitle extends AbstractConfigurationObject {
     /**
      * @see #setFloating(Boolean)
      * 
-     * @return the floating
+     * @return whether the title is floating or not, false if undefined.
      */
     public boolean isFloating() {
         return floating == null ? false : floating;
@@ -59,7 +55,6 @@ public abstract class AbstractTitle extends AbstractConfigurationObject {
     /**
      * When the title is floating, the plot area will not move to make space for
      * it. Defaults to false.
-     * 
      * 
      * @param floating
      *            the floating to set
@@ -77,8 +72,9 @@ public abstract class AbstractTitle extends AbstractConfigurationObject {
     }
 
     /**
-     * The vertical alignment of the title. Can be one of TOP, MIDDLE and
-     * BOTTOM. Defaults to TOP.
+     * Sets the vertical alignment of the title. Can be one of
+     * {@link VerticalAlign#TOP}, {@link VerticalAlign#MIDDLE} and
+     * {@link VerticalAlign#BOTTOM}. Defaults to {@link VerticalAlign#TOP}.
      * 
      * @param verticalAlign
      *            the align to set
@@ -89,18 +85,20 @@ public abstract class AbstractTitle extends AbstractConfigurationObject {
 
     /**
      * @see #setHorizontalAlign(HorizontalAlign)
-     * @return the horizontalAlign
+     * @return the horizontal alignment
      */
     public HorizontalAlign getHorizontalAlign() {
         return align;
     }
 
     /**
-     * The horizontal alignment of the title. Can be one of LEFT, CENTER and
-     * RIGHT. Defaults to CENTER.
+     * The horizontal alignment of the title. Can be one of
+     * {@link HorizontalAlign#LEFT}, {@link HorizontalAlign#CENTER} and
+     * {@link HorizontalAlign#RIGHT}. Defaults to {@link HorizontalAlign#CENTER}
+     * .
      * 
      * @param horizontalAlign
-     *            the align to set
+     *            the alignment to set
      */
     public void setHorizontalAlign(HorizontalAlign horizontalAlign) {
         align = horizontalAlign;
@@ -109,15 +107,15 @@ public abstract class AbstractTitle extends AbstractConfigurationObject {
     /**
      * @see #setText(String)
      * 
-     * @return the text
+     * @return the text of the title
      */
     public String getText() {
         return text;
     }
 
     /**
-     * The title of the chart. To disable the title, set the text to null.
-     * Defaults to "Chart title".
+     * Set the text of the title for the chart. To disable the title, set the
+     * text to null. Defaults to "Chart title".
      * 
      * @param text
      *            the text to set
@@ -128,15 +126,17 @@ public abstract class AbstractTitle extends AbstractConfigurationObject {
 
     /**
      * @see #setStyle(Style)
-     * @return the style
+     * @return the style of the title
      */
     public Style getStyle() {
         return style;
     }
 
     /**
-     * CSS styles for the title. Use this for font styling, but use align, x and
-     * y for text alignment.
+     * Sets the CSS styles for the title. Use this for font styling, but use
+     * {@link #setHorizontalAlign(HorizontalAlign)},
+     * {@link #setVerticalAlign(VerticalAlign)}, {@link #setX(Number)} and
+     * {@link #setY(Number)} for text alignment.
      * 
      * @param style
      *            the style to set
@@ -147,18 +147,18 @@ public abstract class AbstractTitle extends AbstractConfigurationObject {
 
     /**
      * @see #setX(Number)
-     * @return the x
+     * @return the X position of the title
      */
     public Number getX() {
         return x;
     }
 
     /**
-     * The x position of the title relative to the alignment within
+     * The X position of the title relative to the alignment within
      * chart.spacingLeft and chart.spacingRight. Defaults to 0.
      * 
      * @param x
-     *            the x to set
+     *            the X position to set
      */
     public void setX(Number x) {
         this.x = x;
@@ -167,18 +167,18 @@ public abstract class AbstractTitle extends AbstractConfigurationObject {
     /**
      * 
      * @see #setY(Number)
-     * @return the y
+     * @return the Y position of the title
      */
     public Number getY() {
         return y;
     }
 
     /**
-     * The y position of the title relative to the alignment within
+     * The Y position of the title relative to the alignment within
      * chart.spacingTop and chart.spacingBottom. Defaults to 15.
      * 
      * @param y
-     *            the y to set
+     *            the Y position to set
      */
     public void setY(Number y) {
         this.y = y;

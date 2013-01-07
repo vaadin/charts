@@ -18,47 +18,47 @@ package com.vaadin.addon.charts.model;
  */
 
 /**
- * Options for the dial or arrow pointer of the gauge.
+ * The Dial class contains options for the dial or arrow pointer of a gauge
+ * chart.
  */
 public class Dial {
 
-    private Object radius;
+    private String radius;
     private Number baseWidth;
-    private Object baseLength;
-    private Object rearLength;
+    private String baseLength;
+    private String rearLength;
 
     public Dial() {
-
     }
 
     /**
-     * @see #setRadius(Object)
-     * @return
+     * @see #setRadius(String)
+     * @return The radius or length of the dial in percent.
      */
-    public Object getRadius() {
+    public String getRadius() {
         return radius;
     }
 
     /**
-     * The radius or length of the dial, in percentages relative to the radius
-     * of the gauge itself. Defaults to 80%.
+     * Sets the radius or length of the dial. The value is specified in
+     * percentages relative to the radius of the gauge itself. Defaults to 80%.
      * 
      * @param radius
      */
-    public void setRadius(Object radius) {
+    public void setRadius(String radius) {
         this.radius = radius;
     }
 
     /**
      * @see #setBaseWidth(Number)
-     * @return
+     * @return The pixel width of the base of the dial.
      */
     public Number getBaseWidth() {
         return baseWidth;
     }
 
     /**
-     * The pixel width of the base of the gauge dial. The base is the part
+     * Sets the pixel width of the base of the gauge dial. The base is the part
      * closest to the pivot, defined by baseLength. Defaults to 3.
      * 
      * @param baseWidth
@@ -68,10 +68,10 @@ public class Dial {
     }
 
     /**
-     * @see #setBaseWidth(Object)
-     * @return
+     * @see #setBaseLength(String)
+     * @return The base length of the dial.
      */
-    public Object getBaseLength() {
+    public String getBaseLength() {
         return baseLength;
     }
 
@@ -81,15 +81,15 @@ public class Dial {
      * 
      * @param baseLength
      */
-    public void setBaseLength(Object baseLength) {
+    public void setBaseLength(String baseLength) {
         this.baseLength = baseLength;
     }
 
     /**
-     * @see #setRearLength(Object)
-     * @return
+     * @see #setRearLength(String)
+     * @return The rear length of the dial.
      */
-    public Object getRearLength() {
+    public String getRearLength() {
         return rearLength;
     }
 
@@ -99,7 +99,7 @@ public class Dial {
      * 
      * @param rearLength
      */
-    public void setRearLength(Object rearLength) {
+    public void setRearLength(String rearLength) {
         this.rearLength = rearLength;
     }
 

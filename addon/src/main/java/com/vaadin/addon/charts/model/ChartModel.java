@@ -49,17 +49,14 @@ public class ChartModel extends AbstractConfigurationObject {
     private Boolean alignTicks;
     private Boolean polar;
 
-    /**
-     * Default constructor
-     */
     public ChartModel() {
     }
 
     /**
-     * Create new chart with given type
+     * Create new chart of the given type
      * 
      * @param type
-     *            Type of chart
+     *            The type of chart to create
      */
     public ChartModel(ChartType type) {
         this.type = type;
@@ -74,8 +71,8 @@ public class ChartModel extends AbstractConfigurationObject {
     }
 
     /**
-     * The default series type for the chart. Can be one of line, spline, area,
-     * areaspline, column, bar, pie and scatter. Defaults to "line".
+     * The default series type for the chart. Can be any one of the members of
+     * {@link ChartType}. Defaults to {@link ChartType#LINE}.
      * 
      * @param type
      */
@@ -92,8 +89,8 @@ public class ChartModel extends AbstractConfigurationObject {
     }
 
     /**
-     * The space between the top edge of the chart and the content (plot area,
-     * axis title and labels, title, subtitle or legend in top position).
+     * Sets the space between the top edge of the chart and the content (plot
+     * area, axis title and labels, title, subtitle or legend in top position).
      * 
      * @param spacingTop
      */
@@ -110,8 +107,8 @@ public class ChartModel extends AbstractConfigurationObject {
     }
 
     /**
-     * The space between the left edge of the chart and the content (plot area,
-     * axis title and labels, title, subtitle or legend in top position).
+     * Sets the space between the left edge of the chart and the content (plot
+     * area, axis title and labels, title, subtitle or legend in top position).
      * 
      * @param spacingLeft
      */
@@ -128,7 +125,7 @@ public class ChartModel extends AbstractConfigurationObject {
     }
 
     /**
-     * The space between the bottom edge of the chart and the content (plot
+     * Sets the space between the bottom edge of the chart and the content (plot
      * area, axis title and labels, title, subtitle or legend in top position).
      * 
      * @param spacingBottom
@@ -146,8 +143,8 @@ public class ChartModel extends AbstractConfigurationObject {
     }
 
     /**
-     * The space between the right edge of the chart and the content (plot area,
-     * axis title and labels, title, subtitle or legend in top position).
+     * Sets the space between the right edge of the chart and the content (plot
+     * area, axis title and labels, title, subtitle or legend in top position).
      * 
      * @param spacingRight
      */
@@ -164,10 +161,10 @@ public class ChartModel extends AbstractConfigurationObject {
     }
 
     /**
-     * Whether to invert the axes so that the x axis is vertical and y axis is
-     * horizontal. When true, the x axis is reversed by default. If a bar series
-     * is present in the chart, it will be inverted automatically. Defaults to
-     * false.
+     * Sets whether to invert the axes so that the X-axis is vertical and Y-axis
+     * is horizontal. When true, the X-axis is reversed by default. If a bar
+     * series is present in the chart, it will be inverted automatically.
+     * Defaults to false.
      * 
      * @param inverted
      */
@@ -187,7 +184,6 @@ public class ChartModel extends AbstractConfigurationObject {
 
     /**
      * @see #getZoomType()
-     * @return
      */
     public ZoomType getZoomType() {
         return zoomType;
@@ -196,14 +192,15 @@ public class ChartModel extends AbstractConfigurationObject {
     /**
      * @see #setPlotBackgroundColor(Color)
      * 
-     * @return Background color or null if not defined
+     * @return The background color or null if not defined
      */
     public Color getPlotBackgroundColor() {
         return plotBackgroundColor;
     }
 
     /**
-     * The background color or gradient for the plot area. Defaults to null.
+     * Sets the background color or gradient for the plot area. Defaults to
+     * null.
      * 
      * @param plotBackgroundColor
      */
@@ -213,14 +210,15 @@ public class ChartModel extends AbstractConfigurationObject {
 
     /**
      * @see #setPlotBorderColor(Color)
-     * @return Border color or null if not defined
+     * @return The color of the border or null if not defined
      */
     public Color getPlotBorderColor() {
         return plotBorderColor;
     }
 
     /**
-     * The color of the inner chart or plot area border. Defaults to "#C0C0C0".
+     * Sets the color of the inner chart or plot area border. Defaults to
+     * "#C0C0C0".
      * 
      * @param plotBorderColor
      */
@@ -230,14 +228,14 @@ public class ChartModel extends AbstractConfigurationObject {
 
     /**
      * @see #setPlotBorderWidth(Number)
-     * @return Border width or null if not defined
+     * @return The width of the border in pixels or null if not defined
      */
     public Number getPlotBorderWidth() {
         return plotBorderWidth;
     }
 
     /**
-     * The pixel width of the plot area border. Defaults to 0.
+     * Sets the pixel width of the plot area border. Defaults to 0.
      * 
      * @param plotBorderWidth
      */
@@ -247,14 +245,13 @@ public class ChartModel extends AbstractConfigurationObject {
 
     /**
      * @see #setPlotShadow(Number)
-     * @return
      */
     public boolean isPlotShadow() {
         return plotShadow == null ? false : plotShadow;
     }
 
     /**
-     * Whether to apply a drop shadow to the plot area. Requires that
+     * Sets whether to apply a drop shadow to the plot area. Requires that
      * plotBackgroundColor be set. Since 2.3 the shadow can be an object
      * configuration containing color, offsetX, offsetY, opacity and width.
      * Defaults to false.
@@ -320,8 +317,8 @@ public class ChartModel extends AbstractConfigurationObject {
     }
 
     /**
-     * Whether to reflow the chart to fit the width of the container div on
-     * resizing the window. Defaults to true.
+     * Sets whether to reflow the chart to fit the width of the container DIV
+     * when resizing the window. Defaults to true.
      * 
      * @param reflow
      */
@@ -331,15 +328,14 @@ public class ChartModel extends AbstractConfigurationObject {
 
     /**
      * @see #setReflow(Boolean)
-     * @return
      */
     public boolean isReflow() {
         return reflow == null ? true : reflow;
     }
 
     /**
-     * The pixel width of the outer chart border. The border is painted using
-     * vector graphic techniques to allow rounded corners. Defaults to 0.
+     * Sets the pixel width of the outer chart border. The border is painted
+     * using vector graphic techniques to allow rounded corners. Defaults to 0.
      * 
      * @param borderWidth
      */
@@ -349,15 +345,14 @@ public class ChartModel extends AbstractConfigurationObject {
 
     /**
      * @see #setBorderWidth(Number)
-     * @return
      */
     public Number getBorderWidth() {
         return borderWidth;
     }
 
     /**
-     * The background color or gradient for the outer chart area. Defaults to
-     * "#FFFFFF".
+     * Sets the background color or gradient for the outer chart area. Defaults
+     * to "#FFFFFF".
      * 
      * @param backgroundColor
      */
@@ -367,16 +362,17 @@ public class ChartModel extends AbstractConfigurationObject {
 
     /**
      * @see #setBackgroundColor(Color)
-     * @return
      */
     public Color getBackgroundColor() {
         return backgroundColor;
     }
 
     /**
-     * The margin between the left outer edge of the chart and the plot area.
-     * Use this to set a fixed pixel value for the margin as opposed to the
-     * default dynamic margin. See also spacingLeft. Defaults to 80.
+     * Sets the margin between the left outer edge of the chart and the plot
+     * area. Use this to set a fixed pixel value for the margin as opposed to
+     * the default dynamic margin. Defaults to 80.
+     * 
+     * @see #setSpacingLeft(Number)
      * 
      * @param marginLeft
      */
@@ -386,16 +382,17 @@ public class ChartModel extends AbstractConfigurationObject {
 
     /**
      * @see #setMarginLeft(Number)
-     * @return
      */
     public Number getMarginLeft() {
         return marginLeft;
     }
 
     /**
-     * The margin between the right outer edge of the chart and the plot area.
-     * Use this to set a fixed pixel value for the margin as opposed to the
-     * default dynamic margin. See also spacingRight. Defaults to 50.
+     * Sets the margin between the right outer edge of the chart and the plot
+     * area. Use this to set a fixed pixel value for the margin as opposed to
+     * the default dynamic margin. Defaults to 50.
+     * 
+     * @see #setSpacingRight(Number)
      * 
      * @param marginRight
      */
@@ -405,7 +402,6 @@ public class ChartModel extends AbstractConfigurationObject {
 
     /**
      * @see #setMarginRight(Number)
-     * @return
      */
     public Number getMarginRight() {
         return marginRight;
@@ -413,7 +409,6 @@ public class ChartModel extends AbstractConfigurationObject {
 
     /**
      * @see #setStyle(Style)
-     * @return
      */
     public Style getStyle() {
         if (style == null) {
@@ -423,9 +418,10 @@ public class ChartModel extends AbstractConfigurationObject {
     }
 
     /**
-     * Additional CSS styles to apply inline to the container div. Note that
-     * since the default font styles are applied in the renderer, it is ignorant
-     * of the individual chart options and must be set globally. Defaults to: <br>
+     * Sets additional CSS styles to apply inline in the container DIV. Note
+     * that since the default font styles are applied in the renderer, it is
+     * ignorant of the individual chart options and must be set globally.
+     * Defaults to: <br>
      * style: { fontFamily: '"Lucida Grande", "Lucida Sans Unicode", Verdana,
      * Arial, Helvetica, sans-serif', // default font fontSize: '12px' }
      * 
@@ -436,9 +432,11 @@ public class ChartModel extends AbstractConfigurationObject {
     }
 
     /**
-     * The margin between the bottom outer edge of the chart and the plot area.
-     * Use this to set a fixed pixel value for the margin as opposed to the
-     * default dynamic margin. See also spacingBottom. Defaults to 70.
+     * Sets the margin between the bottom outer edge of the chart and the plot
+     * area. Use this to set a fixed pixel value for the margin as opposed to
+     * the default dynamic margin. Defaults to 70.
+     * 
+     * @see #setSpacingBottom(Number)
      * 
      * @param marginBottom
      */
@@ -448,16 +446,17 @@ public class ChartModel extends AbstractConfigurationObject {
 
     /**
      * @see #setMarginBottom(Number)
-     * @return
      */
     public Number getMarginBottom() {
         return marginBottom;
     }
 
     /**
-     * The margin between the top outer edge of the chart and the plot area. Use
-     * this to set a fixed pixel value for the margin as opposed to the default
-     * dynamic margin. See also spacingTop. Defaults to null.
+     * Sets the margin between the top outer edge of the chart and the plot
+     * area. Use this to set a fixed pixel value for the margin as opposed to
+     * the default dynamic margin. Defaults to null.
+     * 
+     * @see #setSpacingTop(Number)
      * 
      * @param marginTop
      */
@@ -467,18 +466,17 @@ public class ChartModel extends AbstractConfigurationObject {
 
     /**
      * @see #setMarginTop(Number)
-     * @return
      */
     public Number getMarginTop() {
         return marginTop;
     }
 
     /**
-     * Set the overall animation for all chart updating. Animation can be
+     * Sets the overall animation for all chart updates. Animation can be
      * disabled throughout the chart by setting it to false here.
      * <p>
-     * Note, that animation for initial (or redraw) is controlled by plot
-     * options.
+     * Note, that animation for the initial rendering (or redraw) is controlled
+     * by the plot options.
      * 
      * @param animation
      */
@@ -495,8 +493,8 @@ public class ChartModel extends AbstractConfigurationObject {
     }
 
     /**
-     * The URL for an image to use as the plot background. To set an image as
-     * the background for the entire chart, set a CSS background image to the
+     * Sets the URL for an image to use as the plot background. To set an image
+     * as the background for the entire chart, set a CSS background image to the
      * container element. Defaults to null.
      * 
      * @param object
@@ -507,14 +505,13 @@ public class ChartModel extends AbstractConfigurationObject {
 
     /**
      * @see #setPlotBackgroundImage(String)
-     * @return
      */
     public String getPlotBackgroundImage() {
         return plotBackgroundImage;
     }
 
     /**
-     * When using multiple axis, the ticks of two or more opposite axes will
+     * When using multiple axes, the ticks of two or more opposite axes will
      * automatically be aligned by adding ticks to the axis or axes with the
      * least ticks. This can be prevented by setting alignTicks to false. If the
      * grid lines look messy, it's a good idea to hide them for the secondary
@@ -528,7 +525,6 @@ public class ChartModel extends AbstractConfigurationObject {
 
     /**
      * @see #setAlignTicks(Boolean)
-     * @return
      */
     public boolean isAlignTicks() {
         return alignTicks == null ? true : alignTicks;
@@ -547,7 +543,6 @@ public class ChartModel extends AbstractConfigurationObject {
 
     /**
      * @see #setPolar(Boolean)
-     * @return
      */
     public boolean isPolar() {
         return polar == null ? false : polar;

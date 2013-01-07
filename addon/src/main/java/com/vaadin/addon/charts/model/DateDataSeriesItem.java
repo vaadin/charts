@@ -21,11 +21,16 @@ import java.util.Date;
 
 /**
  * DataSeries item where the values of the x-axis are Dates, (date is serialized
- * to Long value from epoch).
- * 
+ * to a Long value starting at the epoch).
  */
 public class DateDataSeriesItem extends DataSeriesItem {
 
+    /**
+     * Constructs a DateDataSeriesItem with the specified date and Y value.
+     * 
+     * @param date
+     * @param y
+     */
     public DateDataSeriesItem(Date date, Number y) {
         setX(date.getTime());
         setY(y);

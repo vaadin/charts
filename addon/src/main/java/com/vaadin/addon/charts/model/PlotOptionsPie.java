@@ -20,12 +20,13 @@ package com.vaadin.addon.charts.model;
 /**
  * Plot options that are specific for ChartType.PIE charts
  */
+@SuppressWarnings("serial")
 public class PlotOptionsPie extends AbstractPlotOptions {
-    
+
     private Object size;
     private Object[] center;
     private Object innerSize;
-    
+
     @Override
     public ChartType getChartType() {
         return ChartType.PIE;
@@ -33,60 +34,57 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 
     /**
      * @see #setInnerSize(Object)
-     * 
-     * @return
+     * @return The size of the inner diameter of the pie.
      */
     public Object getInnerSize() {
         return innerSize;
     }
 
     /**
-     * The size of the inner diameter for the pie. A size greater than 0 renders
-     * a donut chart. Can be a percentage or pixel value. Percentages are
-     * relative to the size of the plot area. Pixel values are given as
-     * integers. Defaults to 0. <br />
-     * <br />
-     * <b>This relevant only for ChartType.PIE</b>
+     * Sets the size of the inner diameter of the pie. A size greater than 0
+     * renders a donut chart. Can be a percentage or pixel value. Percentages
+     * are relative to the size of the plot area. Pixel values are given as
+     * integers. Defaults to 0.
+     * 
+     * <em>Note</em>: This relevant only for {@link ChartType#PIE}
      * 
      * @param innerSize
      */
     public void setInnerSize(Object innerSize) {
         this.innerSize = innerSize;
     }
-    
+
     /**
      * @see #setSize(Object)
-     * 
-     * @return
+     * @return The diameter of the pie.
      */
     public Object getSize() {
         return size;
     }
 
     /**
-     * The diameter of the pie relative to the plot area. Can be a percentage (String) or
-     * pixel value (Number). Pixel values are given as integers. Defaults to "75%".
+     * Sets the diameter of the pie relative to the plot area. Can be a
+     * percentage (String) or pixel value (Number). Pixel values are given as
+     * integers. Defaults to "75%".
      * 
      * @param size
      */
     public void setSize(Object size) {
         this.size = size;
     }
-    
+
     /**
      * @see #setCenter(Object, Object)
-     * 
-     * @return
      */
     public Object[] getCenter() {
         return center;
     }
 
     /**
-     * The center of the pie chart relative to the plot area. Can be percentages
-     * or pixel values. Defaults to "50%", "50%". <br />
-     * <br />
-     * <b>This relevant only for ChartType.PIE</b>
+     * Sets the center of the pie chart relative to the plot area. Can be
+     * percentages or pixel values. Defaults to "50%", "50%".
+     * 
+     * <em>Note</em>: This relevant only for {@link ChartType#PIE}
      * 
      * @param left
      * @param top

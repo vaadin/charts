@@ -32,18 +32,14 @@ public class Marker extends AbstractConfigurationObject {
     private Color lineColor;
     private Color fillColor;
 
-    /**
-     * Default constructor
-     */
     public Marker() {
-
     }
 
     /**
-     * Create marker with enabled state
+     * Constructs a marker which is either enabled or disabled.
      * 
      * @param enabled
-     *            false to disable
+     *            true to enable, false to disable
      */
     public Marker(Boolean enabled) {
         setEnabled(enabled);
@@ -51,14 +47,13 @@ public class Marker extends AbstractConfigurationObject {
 
     /**
      * @see Marker#setEnabled(Boolean)
-     * @return
      */
     public boolean isEnabled() {
         return enabled == null ? true : enabled;
     }
 
     /**
-     * Enable or disable the point marker. Defaults to true.
+     * Enables or disables the point marker. Defaults to enabled (true).
      * 
      * @param enabled
      */
@@ -68,14 +63,13 @@ public class Marker extends AbstractConfigurationObject {
 
     /**
      * @see #setRadius(Number)
-     * @return
      */
     public Number getRadius() {
         return radius;
     }
 
     /**
-     * The radius of the point marker. Defaults to 0.
+     * Sets the radius of the point marker. Defaults to 0.
      * 
      * @param radius
      */
@@ -85,14 +79,13 @@ public class Marker extends AbstractConfigurationObject {
 
     /**
      * @see #setStates(MarkerStates)
-     * @return
      */
     public MarkerStates getStates() {
         return states;
     }
 
     /**
-     * Marker state for hover and select events
+     * Sets the marker state for hover and select events
      * 
      * @param states
      */
@@ -102,14 +95,13 @@ public class Marker extends AbstractConfigurationObject {
 
     /**
      * @see #setLineWidth(Number)
-     * @return
      */
     public Number getLineWidth() {
         return lineWidth;
     }
 
     /**
-     * The width of the point marker's outline. Defaults to 0.
+     * Sets the width of the point marker's outline. Defaults to 0.
      * 
      * @param lineWidth
      */
@@ -119,14 +111,13 @@ public class Marker extends AbstractConfigurationObject {
 
     /**
      * @see #setLineColor(Color)
-     * @return
      */
     public Color getLineColor() {
         return lineColor;
     }
 
     /**
-     * The color of the point marker's outline. When null, the series' or
+     * Sets the color of the point marker's outline. When null, the series' or
      * point's color is used. Defaults to "#FFFFFF".
      * 
      * @param lineColor
@@ -136,11 +127,11 @@ public class Marker extends AbstractConfigurationObject {
     }
 
     /**
-     * A predefined shape or symbol for the marker. When null, the symbol is
-     * pulled from options.symbols. Other possible values are "circle",
-     * "square", "diamond", "triangle" and "triangle-down". Additionally, the
-     * URL to a graphic can be given on this form: "url(graphic.png)". Defaults
-     * to null.
+     * Sets a predefined shape or symbol for the marker. When null, the symbol
+     * is pulled from options.symbols. Defaults to null.
+     * 
+     * @see MarkerSymbolEnum
+     * @see MarkerSymbolUrl
      * 
      * @param symbol
      */
@@ -150,7 +141,6 @@ public class Marker extends AbstractConfigurationObject {
 
     /**
      * @see #setSymbol(MarkerSymbol)
-     * @return
      */
     public MarkerSymbol getSymbol() {
         return symbol;
@@ -158,15 +148,15 @@ public class Marker extends AbstractConfigurationObject {
 
     /**
      * @see #setFillColor(Color)
-     * @return Fill color or null if not defined
+     * @return The fill color or null if not defined
      */
     public Color getFillColor() {
         return fillColor;
     }
 
     /**
-     * The fill color of the point marker. When null, the series' or point's
-     * color is used. Defaults to null.
+     * Sets the fill color of the point marker. When null, the series' or
+     * point's color is used. Defaults to null.
      * 
      * @param fillColor
      */

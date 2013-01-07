@@ -22,25 +22,23 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * A list of numerical values. In this case, the numerical values will be
- * interpreted as y values, and x values will be automatically calculated,
- * either starting at 0 and incrementing by 1, or from pointStart and
- * pointInterval given in the plotOptions. If the axis is has categories, these
- * will be used. This option is not available for range series.
+ * A series consisting of a list of numerical values. In this case, the
+ * numerical values will be interpreted as Y values, and X values will be
+ * automatically calculated, either starting at 0 and incrementing by 1, or from
+ * pointStart and pointInterval given in the plotOptions. If the axis has
+ * categories, these will be used. This option is not available for range
+ * series.
  */
 public class ListSeries extends AbstractSeries {
 
     private List<Number> data = new ArrayList<Number>();
     private Number yAxis;
 
-    /**
-     * Default constructor
-     */
     public ListSeries() {
     }
 
     /**
-     * Constructor with given series name
+     * Constructs a ListSeries with the given series name
      * 
      * @param name
      */
@@ -49,47 +47,46 @@ public class ListSeries extends AbstractSeries {
     }
 
     /**
-     * Constructor with given array of values
+     * Constructs a ListSeries with the given array of values
      * 
-     * @param name
+     * @param values
      */
-    public ListSeries(Number... numbers) {
-        Collections.addAll(data, numbers);
+    public ListSeries(Number... values) {
+        Collections.addAll(data, values);
     }
 
     /**
-     * Constructor with given series name and array of values
+     * Constructs a ListSeries with the given series name and array of values
      * 
      * @param name
+     * @param values
      */
-    public ListSeries(String name, Number... numbers) {
+    public ListSeries(String name, Number... values) {
         this(name);
-        setData(numbers);
+        setData(values);
     }
 
     /**
-     * Return array of numeric values
-     * 
-     * @return
+     * @return An array of the numeric values
      */
     public Number[] getData() {
         return data.toArray(new Number[data.size()]);
     }
 
     /**
-     * Set array of numeric values as values.
+     * Sets the values in the list series to the ones provided.
      * 
-     * @return
+     * @param values
      */
-    public void setData(Number... data) {
+    public void setData(Number... values) {
         this.data.clear();
-        Collections.addAll(this.data, data);
+        Collections.addAll(this.data, values);
     }
 
     /**
-     * Set the given list of numeric values as values.
+     * Sets the given list of numeric values as the values in this list series.
      * 
-     * @return
+     * @param data
      */
     public void setData(List<Number> data) {
         this.data = data;
@@ -101,7 +98,7 @@ public class ListSeries extends AbstractSeries {
      * added to the chart when it is drawn the first time.
      * 
      * @param number
-     *            the number to be added to series
+     *            the number to be added to the series
      */
     public void addData(Number number) {
         addData(number, true);
@@ -111,12 +108,15 @@ public class ListSeries extends AbstractSeries {
      * Adds a given number to the series and optionally immediately updates the
      * chart if it has been drawn.
      * 
-     * Calling this method with false for the second parameter is useful if you
-     * want to add many items without a client/server round-trip for each item
-     * added.
+     * This method is useful if you want to add many items without a
+     * client/server round-trip for each item added. Do this by specifying false
+     * for the updateChartImmediately parameter.
      * 
      * @param number
+     *            the number to be added to the series
      * @param updateChartImmediately
+     *            if true the chart will be dynamically updated, using animation
+     *            if enabled.
      */
     public void addData(Number number, boolean updateChartImmediately) {
         data.add(number);
@@ -128,16 +128,18 @@ public class ListSeries extends AbstractSeries {
 
     /**
      * @see #setyAxis(Number)
-     * @return Y Axis number or null if not defined
+     * @return The index of the Y-axis to which this series is bound or null if
+     *         not defined
      */
     public Number getyAxis() {
         return yAxis;
     }
 
     /**
-     * When using dual or multiple y axes, this number defines which yAxis the
-     * particular series is connected to. It refers to the index of the axis in
-     * the yAxis array, with 0 being the first. Defaults to 0.
+     * Sets the index of the Y-axis to bind to. When using dual or multiple
+     * Y-axes, this number defines which Y-axis the particular series is
+     * connected to. It refers to the index of the axis in the Y-axis array,
+     * with 0 being the first. Defaults to 0.
      * 
      * @param yAxis
      */
@@ -147,10 +149,12 @@ public class ListSeries extends AbstractSeries {
 
     /**
      * Updates the value of the data point at pointIndex to newValue and
-     * immediately update it on the chart.
+     * immediately updates it on the chart using animation if enabled.
      * 
      * @param pointIndex
+     *            the index of the point to update
      * @param newValue
+     *            the new value of the point
      */
     public void updatePoint(int pointIndex, Number newValue) {
         data.remove(pointIndex);

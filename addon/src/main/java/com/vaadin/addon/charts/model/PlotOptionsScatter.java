@@ -20,6 +20,7 @@ package com.vaadin.addon.charts.model;
 /**
  * Plot options that are specific for ChartType.SCATTER charts
  */
+@SuppressWarnings("serial")
 public class PlotOptionsScatter extends AbstractPlotOptions {
 
     @Override

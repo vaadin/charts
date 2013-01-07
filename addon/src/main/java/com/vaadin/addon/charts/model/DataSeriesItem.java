@@ -20,8 +20,9 @@ package com.vaadin.addon.charts.model;
 import com.vaadin.addon.charts.model.style.Color;
 
 /**
- * Single entry of DataSeries
+ * The DataSeriesItem class represents a single entry in a {@link DataSeries}.
  */
+@SuppressWarnings("serial")
 public class DataSeriesItem extends AbstractConfigurationObject {
     protected String name;
     protected Number y;
@@ -34,40 +35,36 @@ public class DataSeriesItem extends AbstractConfigurationObject {
     private String id;
     private Dial dial;
 
-    /**
-     * Default constructor
-     */
     public DataSeriesItem() {
-
     }
 
     /**
-     * Constructs an item with name and y value
+     * Constructs an item with a category name and a Y value
      * 
-     * @param name
+     * @param categoryName
      * @param y
      */
-    public DataSeriesItem(String name, Number y) {
-        this.name = name;
+    public DataSeriesItem(String categoryName, Number y) {
+        this.name = categoryName;
         this.y = y;
     }
 
     /**
-     * Constructs an item with a name and a value on the Y-axis using the
-     * specified color.
+     * Constructs an item with a category name and a value on the Y-axis and
+     * assigns the specified color to the item.
      * 
-     * @param name
+     * @param categoryName
      * @param y
      * @param color
      */
-    public DataSeriesItem(String name, Number y, Color color) {
-        this.name = name;
+    public DataSeriesItem(String categoryName, Number y, Color color) {
+        this.name = categoryName;
         this.y = y;
         setColor(color);
     }
 
     /**
-     * Constructs an item with x and y values
+     * Constructs an item with X and Y values
      * 
      * @param x
      * @param y
@@ -78,8 +75,8 @@ public class DataSeriesItem extends AbstractConfigurationObject {
     }
 
     /**
-     * Constructs an item with numerical values for the X- and Y-axis using the
-     * specified color.
+     * Constructs an item with numerical values for the X- and Y-axis and
+     * assigns the specified color to the item.
      * 
      * @param x
      * @param y
@@ -93,15 +90,15 @@ public class DataSeriesItem extends AbstractConfigurationObject {
 
     /**
      * @see #setName(String)
-     * @return Name of point or null if not defined
+     * @return The category name of the data item or null if not defined
      */
     public String getName() {
         return name;
     }
 
     /**
-     * The name of the point as shown in the legend, tooltip, dataLabel etc.
-     * Defaults to "".
+     * Sets the category name of the data item as shown in the legend, tooltip,
+     * dataLabel etc. Defaults to "".
      * 
      * @param name
      */
@@ -111,14 +108,14 @@ public class DataSeriesItem extends AbstractConfigurationObject {
 
     /**
      * @see #setY(Number)
-     * @return
+     * @return The Y value of this data item.
      */
     public Number getY() {
         return y;
     }
 
     /**
-     * The y value of the point. Defaults to null.
+     * Sets the Y value of this data item. Defaults to null.
      * 
      * @param y
      */
@@ -128,14 +125,14 @@ public class DataSeriesItem extends AbstractConfigurationObject {
 
     /**
      * @see #setX(Number)
-     * @return
+     * @return The X value of this data item.
      */
     public Number getX() {
         return x;
     }
 
     /**
-     * The x value of the point. Defaults to null.
+     * Sets the X value of this data item. Defaults to null.
      * 
      * @param x
      */
@@ -145,15 +142,18 @@ public class DataSeriesItem extends AbstractConfigurationObject {
 
     /**
      * @see #setSliced(Boolean)
-     * @return Slided value or null if not defined
+     * @return Whether this data item is displayed offset from the center in a
+     *         pie chart.
      */
     public boolean getSliced() {
         return sliced == null ? false : sliced;
     }
 
     /**
-     * Pie series only. Whether to display a slice offset from the center.
-     * Defaults to false.
+     * Sets whether to display a slice offset from the center. Defaults to
+     * false.
+     * 
+     * <em>Note</em> This applies to pie charts only.
      * 
      * @param sliced
      */
@@ -163,14 +163,13 @@ public class DataSeriesItem extends AbstractConfigurationObject {
 
     /**
      * @see #setSelected(Boolean)
-     * @return
      */
     public boolean isSelected() {
         return selected == null ? false : selected;
     }
 
     /**
-     * Whether the item (point) is selected or not.
+     * Sets whether the data item is selected or not.
      * 
      * @param selected
      */
@@ -180,15 +179,14 @@ public class DataSeriesItem extends AbstractConfigurationObject {
 
     /**
      * @see #setColor(Color)
-     * @return
      */
     public Color getColor() {
         return color;
     }
 
     /**
-     * Individual color for the point. Defaults to null. Might not work for all
-     * point types, but at least it works for COLUMN charts
+     * Sets the individual color for the point. Defaults to null. This might not
+     * work for all chart types.
      * 
      * @param color
      */
@@ -198,15 +196,18 @@ public class DataSeriesItem extends AbstractConfigurationObject {
 
     /**
      * @see #setLegendIndex(Number)
-     * @return Legend index or null if not defined
+     * @return The index of the legend or null if not defined. Only applicable
+     *         for pie charts.
      */
     public Number getLegendIndex() {
         return legendIndex;
     }
 
     /**
-     * Pies only. The sequential index of the pie slice in the legend. Defaults
-     * to undefined.
+     * Sets the sequential index of the pie slice in the legend. Defaults to
+     * undefined.
+     * 
+     * <em>Note</em> This applies to pie charts only.
      * 
      * @param legendIndex
      */
@@ -215,7 +216,7 @@ public class DataSeriesItem extends AbstractConfigurationObject {
     }
 
     /**
-     * The marker of single data series item
+     * Sets the marker of this data series item
      * 
      * @param marker
      */
@@ -225,7 +226,8 @@ public class DataSeriesItem extends AbstractConfigurationObject {
 
     /**
      * @see #setMarker(Marker)
-     * @return
+     * @return The marker of this data series item. If none is specified a new
+     *         {@link Marker} will be created.
      */
     public Marker getMarker() {
         if (marker == null) {
@@ -237,15 +239,14 @@ public class DataSeriesItem extends AbstractConfigurationObject {
 
     /**
      * @see #setId(String)
-     * @return
      */
     public String getId() {
         return id;
     }
 
     /**
-     * An id for the point. This can be used after render time to get a pointer
-     * to the point object. Defaults to null.
+     * Sets the ID for the point. This can be used after rendering to get a
+     * reference to the point object. Defaults to null.
      * 
      * @param id
      */
@@ -254,7 +255,9 @@ public class DataSeriesItem extends AbstractConfigurationObject {
     }
 
     /**
-     * Dial or arrow pointer of the gauge.
+     * Sets the dial or arrow pointer of the gauge.
+     * 
+     * <em>Note</em> This is only applicable for gauge charts.
      * 
      * @param dial
      */
@@ -264,7 +267,8 @@ public class DataSeriesItem extends AbstractConfigurationObject {
 
     /**
      * @see #setDial(Dial)
-     * @return
+     * @return The dial or arrow pointer of a gauge chart. Only applicable for
+     *         gauge charts.
      */
     public Dial getDial() {
         return dial;

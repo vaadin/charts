@@ -35,14 +35,13 @@ public class Background extends AbstractConfigurationObject {
 
     /**
      * @see #setBackgroundColor(Color)
-     * @return
      */
     public Color getBackgroundColor() {
         return backgroundColor;
     }
 
     /**
-     * Pane's background color
+     * Sets the background color
      * 
      * @param backgroundColor
      */
@@ -52,14 +51,13 @@ public class Background extends AbstractConfigurationObject {
 
     /**
      * @see #setBorderColor(Color)
-     * @return
      */
     public Color getBorderColor() {
         return borderColor;
     }
 
     /**
-     * Pane's border color
+     * Sets the border color
      * 
      * @param borderColor
      */
@@ -69,14 +67,13 @@ public class Background extends AbstractConfigurationObject {
 
     /**
      * @see #setInnerWidth(Number)
-     * @return
      */
     public Number getInnerWidth() {
         return innerWidth;
     }
 
     /**
-     * Pane's inner width
+     * Sets the inner width
      * 
      * @param innerWidth
      */
@@ -86,14 +83,13 @@ public class Background extends AbstractConfigurationObject {
 
     /**
      * @see #setOuterWidth(Number)
-     * @return
      */
     public Number getOuterWidth() {
         return outerWidth;
     }
 
     /**
-     * Pane's outer width
+     * Sets the outer width
      * 
      * @param outerWidth
      */
@@ -103,14 +99,13 @@ public class Background extends AbstractConfigurationObject {
 
     /**
      * @see #setBorderWidth(Number)
-     * @return
      */
     public Number getBorderWidth() {
         return borderWidth;
     }
 
     /**
-     * Pane's border width
+     * Sets the width of the border
      * 
      * @param borderWidth
      */
@@ -119,7 +114,8 @@ public class Background extends AbstractConfigurationObject {
     }
 
     /**
-     * Pane's outer radius in percentage string like "110%"
+     * Sets the outer radius using a string representation of a percentage, e.g.
+     * "110%"
      * 
      * @param outerRadius
      */
@@ -129,14 +125,14 @@ public class Background extends AbstractConfigurationObject {
 
     /**
      * @see #setOuterRadius(String)
-     * @return
      */
     public String getOuterRadius() {
         return outerRadius;
     }
 
     /**
-     * Pane's innner radius in percentage string like "110%"
+     * Sets the inner radius using a string representation of a percentage, e.g.
+     * "110%"
      * 
      * @param outerRadius
      */
@@ -146,7 +142,6 @@ public class Background extends AbstractConfigurationObject {
 
     /**
      * @see #setInnerRadius(String)
-     * @return
      */
     public String getInnerRadius() {
         return innerRadius;

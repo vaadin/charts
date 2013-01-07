@@ -20,17 +20,16 @@ package com.vaadin.addon.charts.model;
 /**
  * Generic plot options that are are used for all chart types.
  */
+@SuppressWarnings("serial")
 public class PlotOptionsSeries extends AbstractPlotOptions {
     private Number groupPadding;
 
-    /**
-     * Default constructor
-     */
     public PlotOptionsSeries() {
     }
 
     /**
-     * Padding between each value groups, in x axis units. Defaults to 0.2.
+     * Sets the padding between each value group, in X-axis units. Defaults to
+     * 0.2.
      * 
      * @param groupPadding
      */
@@ -40,7 +39,7 @@ public class PlotOptionsSeries extends AbstractPlotOptions {
 
     /**
      * @see #setGroupPadding(Number)
-     * @return
+     * @return The padding between each value group.
      */
     public Number getGroupPadding() {
         return groupPadding;

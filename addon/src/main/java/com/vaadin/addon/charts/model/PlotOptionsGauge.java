@@ -20,11 +20,13 @@ package com.vaadin.addon.charts.model;
 /**
  * Plot options that are specific for ChartType.GAUGE charts
  */
+@SuppressWarnings("serial")
 public class PlotOptionsGauge extends AbstractPlotOptions {
     private Dial dial;
 
     /**
-     * Options for the dial or arrow pointer of the gauge.
+     * Sets the configuration options for the dial or arrow pointer of the
+     * gauge.
      * 
      * @param dial
      */
@@ -34,7 +36,7 @@ public class PlotOptionsGauge extends AbstractPlotOptions {
 
     /**
      * @see #setDial(Dial)
-     * @return
+     * @return The configuration for the dial or arrow pointer.
      */
     public Dial getDial() {
         return dial;

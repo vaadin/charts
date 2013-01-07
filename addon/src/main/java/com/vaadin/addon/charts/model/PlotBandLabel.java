@@ -27,7 +27,7 @@ public class PlotBandLabel extends AbstractConfigurationObject {
     private Style style;
 
     /**
-     * Construct a PlotBandLabel from given text
+     * Constructs a PlotBandLabel using the given text
      * 
      * @param text
      */
@@ -36,7 +36,7 @@ public class PlotBandLabel extends AbstractConfigurationObject {
     }
 
     /**
-     * The string text itself. A subset of HTML is supported.
+     * Sets the text string itself. A subset of HTML is supported.
      * 
      * @param text
      */
@@ -46,14 +46,13 @@ public class PlotBandLabel extends AbstractConfigurationObject {
 
     /**
      * @see #setText(String)
-     * @return
      */
     public String getText() {
         return text;
     }
 
     /**
-     * CSS styles for the text label.
+     * Sets the CSS styles for the text label.
      * 
      * @param style
      */
@@ -63,7 +62,6 @@ public class PlotBandLabel extends AbstractConfigurationObject {
 
     /**
      * @see #setStyle(LabelStyle)
-     * @return
      */
     public Style getStyle() {
         return style;

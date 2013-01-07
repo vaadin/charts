@@ -33,10 +33,6 @@ public enum HorizontalAlign implements ChartEnum {
 
     @Override
     public String toString() {
-        return getAlign();
-    }
-
-    public String getAlign() {
         return align;
     }
 }

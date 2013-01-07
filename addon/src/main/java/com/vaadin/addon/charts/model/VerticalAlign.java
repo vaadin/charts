@@ -19,8 +19,7 @@ package com.vaadin.addon.charts.model;
 
 /**
  * Alignment of the title relative to the axis values and more generically
- * vertical alignment. Possible values are BOTTOM("bottom"), LOW("low"),
- * MIDDLE("middle"), HIGH("high"), TOP("top")
+ * vertical alignment.
  */
 public enum VerticalAlign implements ChartEnum {
     BOTTOM("bottom"), LOW("low"), MIDDLE("middle"), HIGH("high"), TOP("top");

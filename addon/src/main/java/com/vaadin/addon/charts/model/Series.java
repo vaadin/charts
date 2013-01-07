@@ -18,19 +18,19 @@ package com.vaadin.addon.charts.model;
  */
 
 /**
- * Series interface for all kind of Series
+ * Series interface for all kinds of Series
  */
 public interface Series {
 
     /**
      * @see #setName(String)
-     * @return
+     * @return The name of the series.
      */
     public String getName();
 
     /**
-     * The name of the series as shown in the legend, tooltip etc. Defaults to
-     * "".
+     * Sets the name of the series as shown in the legend, tooltip etc. Defaults
+     * to "".
      * 
      * @param name
      */

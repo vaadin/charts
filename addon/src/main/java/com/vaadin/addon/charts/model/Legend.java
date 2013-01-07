@@ -48,20 +48,21 @@ public class Legend extends AbstractConfigurationObject {
     /**
      * @see #setItemHoverStyle(Style)
      * 
-     * @return Item style
+     * @return The item style when hovering
      */
     public Style getItemHoverStyle() {
         return itemHoverStyle;
     }
 
     /**
-     * CSS styles for each legend item in hover mode. Properties are inherited
-     * from style unless overridden here. Defaults to:
+     * Sets the CSS styles for each legend item when hovering over it.
+     * Properties are inherited from style unless overridden here. Defaults to:
      * 
+     * <code>
      * itemHoverStyle: { color: '#000' }
+     * </code>
      * 
      * @param itemHoverStyle
-     *            Item style
      */
     public void setItemHoverStyle(Style itemHoverStyle) {
         this.itemHoverStyle = itemHoverStyle;
@@ -70,18 +71,20 @@ public class Legend extends AbstractConfigurationObject {
     /**
      * @see #setItemHiddenStyle(Style)
      * 
-     * @return Item style
+     * @return The item style when the corresponding series or point is hidden
      */
     public Style getItemHiddenStyle() {
         return itemHiddenStyle;
     }
 
     /**
-     * CSS styles for each legend item when the corresponding series or point is
-     * hidden. Properties are inherited from style unless overridden here.
-     * Defaults to:
+     * Sets the CSS styles for each legend item when the corresponding series or
+     * point is hidden. Properties are inherited from style unless overridden
+     * here. Defaults to:
      * 
+     * <code>
      * itemHiddenStyle: { color: '#CCC' }
+     * </code>
      * 
      * @param itemHiddenStyle
      *            Item style
@@ -92,15 +95,14 @@ public class Legend extends AbstractConfigurationObject {
 
     /**
      * @see #setLayout(LayoutDirection)
-     * @return the layout
      */
     public LayoutDirection getLayout() {
         return layout;
     }
 
     /**
-     * The layout of the legend items. Can be one of HORIZONTAL("horizontal") or
-     * VERTICAL("vertical"). Defaults to HORIZONTAL.
+     * Sets the layout of the legend items. Defaults to
+     * {@link LayoutDirection#HORIZONTAL}.
      */
     public void setLayout(LayoutDirection layout) {
         this.layout = layout;
@@ -114,8 +116,8 @@ public class Legend extends AbstractConfigurationObject {
     }
 
     /**
-     * The horizontal alignment of the legend box within the chart area.
-     * Defaults to CENTER.
+     * Sets the horizontal alignment of the legend box within the chart area.
+     * Defaults to {@link HorizontalAlign#CENTER}.
      */
     public void setHorizontalAlign(HorizontalAlign horizontalAlign) {
         align = horizontalAlign;
@@ -129,9 +131,9 @@ public class Legend extends AbstractConfigurationObject {
     }
 
     /**
-     * The vertical alignment of the legend box. Can be one of TOP, MIDDLE or
-     * BOTTOM. Vertical position can be further determined by the y option.
-     * Defaults to BOTTOM.
+     * Sets the vertical alignment of the legend box. The vertical position can
+     * be further determined by the y option. Defaults to
+     * {@link VerticalAlign#BOTTOM}.
      */
     public void setVerticalAlign(VerticalAlign verticalAlign) {
         this.verticalAlign = verticalAlign;
@@ -145,11 +147,13 @@ public class Legend extends AbstractConfigurationObject {
     }
 
     /**
-     * The x offset of the legend relative to it's horizontal alignment align
-     * within chart.spacingLeft and chart.spacingRight. Negative x moves it to
-     * the left, positive x moves it to the right. The default value of 15
-     * together with align: "center" puts it in the center of the plot area.
-     * Defaults to 0.
+     * Sets the X offset of the legend relative to it's horizontal alignment
+     * within chart.spacingLeft and chart.spacingRight. A negative value for X
+     * moves it to the left, positive value moves it to the right. The default
+     * value of 15 together with {@link HorizontalAlign#CENTER} puts it in the
+     * center of the plot area. Defaults to 0.
+     * 
+     * @param x
      */
     public void setX(Number x) {
         this.x = x;
@@ -163,9 +167,12 @@ public class Legend extends AbstractConfigurationObject {
     }
 
     /**
-     * The vertical offset of the legend relative to it's vertical alignment
-     * verticalAlign within chart.spacingTop and chart.spacingBottom. Negative y
-     * moves it up, positive y moves it down. Defaults to 0.
+     * Sets the vertical offset of the legend relative to it's vertical
+     * alignment within chart.spacingTop and chart.spacingBottom. A negative
+     * value for Y moves it up, while a positive value moves it down. Defaults
+     * to 0.
+     * 
+     * @param y
      */
     public void setY(Number y) {
         this.y = y;
@@ -179,8 +186,11 @@ public class Legend extends AbstractConfigurationObject {
     }
 
     /**
-     * When the legend is floating, the plot area ignores it and is allowed to
-     * be placed below it. Defaults to false.
+     * Sets whether the legend is floating or not. When the legend is floating,
+     * the plot area ignores it and is allowed to be placed below it. Defaults
+     * to false.
+     * 
+     * @param floating
      */
     public void setFloating(Boolean floating) {
         this.floating = floating;
@@ -194,7 +204,7 @@ public class Legend extends AbstractConfigurationObject {
     }
 
     /**
-     * The width of the drawn border around the legend. Defaults to 1.
+     * Sets the width of the border drawn around the legend. Defaults to 1.
      */
     public void setBorderWidth(Number borderWidth) {
         this.borderWidth = borderWidth;
@@ -208,16 +218,16 @@ public class Legend extends AbstractConfigurationObject {
     }
 
     /**
-     * The background color of the legend, filling the rounded corner border.
-     * Defaults to null.
+     * Sets the background color of the legend, filling the rounded corner
+     * border. Defaults to null.
      */
     public void setBackgroundColor(Color backgroundColor) {
         this.backgroundColor = backgroundColor;
     }
 
     /**
-     * The background color of the legend, filling the rounded corner border.
-     * Defaults to null.
+     * Sets the background color of the legend, filling the rounded corner
+     * border. Defaults to null.
      */
     public void setBackgroundColor(String backgroundColor) {
         this.backgroundColor = new SolidColor(backgroundColor);
@@ -231,10 +241,8 @@ public class Legend extends AbstractConfigurationObject {
     }
 
     /**
-     * Whether to apply a drop shadow to the legend. A backgroundColor also
-     * needs to be applied for this to take effect. Since 2.3 the shadow can be
-     * an object configuration containing color, offsetX, offsetY, opacity and
-     * width. Defaults to false.
+     * Sets whether to apply a drop shadow to the legend. A backgroundColor also
+     * needs to be applied for this to take effect. Defaults to false.
      */
     public void setShadow(Boolean shadow) {
         this.shadow = shadow;
@@ -243,14 +251,14 @@ public class Legend extends AbstractConfigurationObject {
     /**
      * @see #setBorderColor(SolidColor)
      * 
-     * @return Border color or null if not defined
+     * @return The color of the border or null if not defined
      */
     public SolidColor getBorderColor() {
         return borderColor;
     }
 
     /**
-     * The color of the drawn border around the legend.
+     * Sets the color of the border drawn around the legend.
      * 
      * @param borderColor
      */
@@ -259,7 +267,7 @@ public class Legend extends AbstractConfigurationObject {
     }
 
     /**
-     * The color of the drawn border around the legend.
+     * Sets the color of the border drawn around the legend.
      * 
      * @param borderColor
      */
@@ -269,14 +277,14 @@ public class Legend extends AbstractConfigurationObject {
 
     /**
      * @see #setBorderRadius(Number)
-     * @return Border radius or null if not defined
+     * @return The border radius or null if not defined
      */
     public Number getBorderRadius() {
         return borderRadius;
     }
 
     /**
-     * The border corner radius of the legend. Defaults to 5.
+     * Sets the corner radius of border of the legend. Defaults to 5.
      * 
      * @param borderRadius
      */
@@ -295,7 +303,6 @@ public class Legend extends AbstractConfigurationObject {
 
     /**
      * @see #setEnabled(boolean)
-     * @return
      */
     public boolean isEnabled() {
         return enabled == null ? true : enabled;
@@ -303,16 +310,16 @@ public class Legend extends AbstractConfigurationObject {
 
     /**
      * @see #setReversed()
-     * @return Reversed value or null if not defined
+     * @return true if the order of items is reversed or null if undefined.
      */
     public boolean isReversed() {
         return reversed == null ? false : reversed;
     }
 
     /**
-     * Whether to reverse the order of the legend items compared to the order of
-     * the series or points as defined in the configuration object. Defaults to
-     * false.
+     * Sets whether to reverse the order of the legend items compared to the
+     * order of the series or points as defined in the configuration object.
+     * Defaults to false.
      * 
      * @param reversed
      */
@@ -321,7 +328,7 @@ public class Legend extends AbstractConfigurationObject {
     }
 
     /**
-     * CSS styles for each legend item. Defaults to:
+     * Sets the CSS styles for all legend items. Defaults to:
      * 
      * itemStyle: { cursor: 'pointer', color: '#3E576F' }
      * 
@@ -333,7 +340,6 @@ public class Legend extends AbstractConfigurationObject {
 
     /**
      * @see #setItemStyle(Style)
-     * @return
      */
     public Style getItemStyle() {
         if (itemStyle == null) {
@@ -343,10 +349,10 @@ public class Legend extends AbstractConfigurationObject {
     }
 
     /**
-     * CSS styles for the legend area. In the 1.x versions the position of the
-     * legend area was determined by CSS. In 2.x, the position is determined by
-     * properties like align, verticalAlign, x and y, but the styles are still
-     * parsed for backwards compatibility.
+     * Sets the CSS styles for the legend area. In Highcharts 1.x versions the
+     * position of the legend area was determined by CSS. In 2.x, the position
+     * is determined by properties like align, verticalAlign, x and y, but the
+     * styles are still parsed for backwards compatibility.
      * 
      * @param style
      */
@@ -356,7 +362,6 @@ public class Legend extends AbstractConfigurationObject {
 
     /**
      * @see #setStyle(Style)
-     * @return
      */
     public Style getStyle() {
         if (style == null) {
@@ -364,5 +369,4 @@ public class Legend extends AbstractConfigurationObject {
         }
         return style;
     }
-
 }

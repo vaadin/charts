@@ -25,6 +25,7 @@ import com.vaadin.addon.charts.model.style.Style;
  * columns. In case of an inverted column chart or a bar chart the label is
  * placed to the right of positive bars and to the left of negative bars.
  */
+@SuppressWarnings("serial")
 public class StackLabels extends AbstractConfigurationObject {
 
     private HorizontalAlign align;
@@ -38,17 +39,16 @@ public class StackLabels extends AbstractConfigurationObject {
     private Number y;
 
     /**
-     * Default constructor
+     * Constructs a disabled StackLabels.
      */
     public StackLabels() {
-
     }
 
     /**
-     * Create new StackLabels with enabled state
+     * Constructs a StackLabels that is either enabled or disabled.
      * 
      * @param enabled
-     *            true to enable
+     *            true to enable, false to disable.
      */
     public StackLabels(boolean enabled) {
         setEnabled(enabled);
@@ -56,16 +56,16 @@ public class StackLabels extends AbstractConfigurationObject {
 
     /**
      * @see #setAlign(HorizontalAlign)
-     * @return Align or null if not defined
+     * @return The horizontal alignment or null if not defined
      */
     public HorizontalAlign getAlign() {
         return align;
     }
 
     /**
-     * Defines the horizontal alignment of the stack total label. Can be one of
-     * "left", "center" or "right". The default value is calculated at runtime
-     * and depends on orientation and whether the stack is positive or negative.
+     * Defines the horizontal alignment of the stack total label. The default
+     * value is calculated at runtime and depends on the orientation and whether
+     * the stack is positive or negative.
      * 
      * @param align
      */
@@ -75,14 +75,13 @@ public class StackLabels extends AbstractConfigurationObject {
 
     /**
      * @see #setEnabled(Boolean)
-     * @return
      */
     public boolean isEnabled() {
         return enabled == null ? false : enabled;
     }
 
     /**
-     * Enable or disable the stack total labels. Defaults to false.
+     * Enables or disables the stack total labels. Defaults to disabled.
      * 
      * @param enabled
      */
@@ -92,14 +91,14 @@ public class StackLabels extends AbstractConfigurationObject {
 
     /**
      * @see #setFormatter(String)
-     * @return
+     * @return The JavaScript function to format the label.
      */
     public String getFormatter() {
         return _fn_formatter;
     }
 
     /**
-     * JavaScript function to format the label.
+     * Sets the JavaScript function to format the label.
      * 
      * @param formatter
      */
@@ -109,14 +108,14 @@ public class StackLabels extends AbstractConfigurationObject {
 
     /**
      * @see #setRotation(Number)
-     * @return Rotation or null if not defined
+     * @return The rotation of the labels or null if not defined
      */
     public Number getRotation() {
         return rotation;
     }
 
     /**
-     * Rotation of the labels in degrees. Defaults to 0.
+     * Sets the rotation of the labels in degrees. Defaults to 0.
      * 
      * @param rotation
      */
@@ -126,14 +125,14 @@ public class StackLabels extends AbstractConfigurationObject {
 
     /**
      * @see #setStyle(Style)
-     * @return Style object or null if not defined
+     * @return The style of the labels or null if not defined
      */
     public Style getStyle() {
         return style;
     }
 
     /**
-     * Style object
+     * Sets the style of the labels.
      * 
      * @param style
      */
@@ -143,18 +142,19 @@ public class StackLabels extends AbstractConfigurationObject {
 
     /**
      * @see #setTextAlign(HorizontalAlign)
-     * @return Text align or null if not defined
+     * @return The alignment of the text or null if not defined
      */
     public HorizontalAlign getTextAlign() {
         return textAlign;
     }
 
     /**
-     * The text alignment for the label. While align determines where the texts
-     * anchor point is placed with regards to the stack, textAlign determines
-     * how the text is aligned against its anchor point. Possible values are
-     * "left", "center" and "right". The default value is calculated at runtime
-     * and depends on orientation and whether the stack is positive or negative.
+     * Sets the text alignment for the label. While
+     * {@link #setAlign(HorizontalAlign)} determines where the texts anchor
+     * point is placed with regards to the stack,
+     * {@link #setTextAlign(HorizontalAlign)} determines how the text is aligned
+     * against its anchor point. The default value is calculated at runtime and
+     * depends on orientation and whether the stack is positive or negative.
      * 
      * @param textAlign
      */
@@ -164,16 +164,16 @@ public class StackLabels extends AbstractConfigurationObject {
 
     /**
      * @see #setVerticalAlign(VerticalAlign)
-     * @return Vertical align or null if not defined
+     * @return The vertical alignment or null if not defined
      */
     public VerticalAlign getVerticalAlign() {
         return verticalAlign;
     }
 
     /**
-     * Defines the vertical alignment of the stack total label. Can be one of
-     * "top", "middle" or "bottom". The default value is calculated at runtime
-     * and depends on orientation and whether the stack is positive or negative.
+     * Defines the vertical alignment of the stack total label. The default
+     * value is calculated at runtime and depends on orientation and whether the
+     * stack is positive or negative.
      * 
      * @param verticalAlign
      */
@@ -190,18 +190,17 @@ public class StackLabels extends AbstractConfigurationObject {
 
     /**
      * @see #setX(Number)
-     * @return X value or null if not defined
+     * @return The X position offset of the labels or null if not defined
      */
     public Number getX() {
         return x;
     }
 
     /**
-     * The x position offset of the label relative to the left of the stacked
-     * bar. The default value is calculated at runtime and depends on
+     * Sets the X position offset of the labels relative to the left of the
+     * stacked bar. The default value is calculated at runtime and depends on
      * orientation and whether the stack is positive or negative.
      * 
-     * @see #setX(Number)
      * @param x
      */
     public void setX(Number x) {
@@ -210,15 +209,15 @@ public class StackLabels extends AbstractConfigurationObject {
 
     /**
      * @see #setY(Number)
-     * @return Y value or null if not defined
+     * @return The Y position offset of the labels or null if not defined
      */
     public Number getY() {
         return y;
     }
 
     /**
-     * The y position offset of the label relative to the tick position on the
-     * axis. The default value is calculated at runtime and depends on
+     * Sets the Y position offset of the labels relative to the tick position on
+     * the axis. The default value is calculated at runtime and depends on
      * orientation and whether the stack is positive or negative.
      * 
      * @param y

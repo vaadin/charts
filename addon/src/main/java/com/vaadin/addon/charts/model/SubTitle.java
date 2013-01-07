@@ -20,16 +20,17 @@ package com.vaadin.addon.charts.model;
 /**
  * The chart's subtitle
  */
+@SuppressWarnings("serial")
 public class SubTitle extends AbstractTitle {
+
     /**
-     * Default constructor
+     * Constructs an empty subtitle
      */
     public SubTitle() {
-
     }
 
     /**
-     * Construct from given text
+     * Constructs a subtitle using the given text
      * 
      * @param text
      */

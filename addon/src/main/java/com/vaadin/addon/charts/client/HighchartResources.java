@@ -22,10 +22,10 @@ import com.google.gwt.resources.client.ClientBundle;
 import com.google.gwt.resources.client.TextResource;
 
 /**
- * Client bundle that contains java scripts etc required for Vaadin Charts.
+ * Client bundle that contains the JavaScripts, etc required for Vaadin Charts.
  * <p>
- * Actual injection of these scripts are done by {@link HighchartsScriptLoader},
- * but to e.g. change script versions you can just replace bundle with GWT
+ * Actual injection of these scripts is done by {@link HighchartsScriptLoader},
+ * but to e.g. change script versions you can just replace this bundle with GWT
  * deferred binding.
  */
 public interface HighchartResources extends ClientBundle {

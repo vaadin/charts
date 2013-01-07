@@ -29,14 +29,13 @@ public class MarkerStates extends AbstractConfigurationObject {
 
     /**
      * @see #setHover(State)
-     * @return
      */
     public State getHover() {
         return hover;
     }
 
     /**
-     * Hover state (when mouse is hovered over the marker)
+     * Sets the hover state (when mouse is hovered over the marker)
      * 
      * @param hover
      */

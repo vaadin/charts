@@ -24,20 +24,18 @@ import com.vaadin.addon.charts.model.style.SolidColor;
  * A line stretching across the plot area, marking a specific value on one of
  * the axes.
  */
+@SuppressWarnings("serial")
 public class PlotLine extends AbstractConfigurationObject {
     private Number value;
     private Number width;
     private Color color;
 
-    /**
-     * Default constructor
-     */
     public PlotLine() {
         super();
     }
 
     /**
-     * Construct a PloLine with given value, width and color
+     * Constructs a PlotLine with the given value, width and color
      * 
      * @param value
      * @param width
@@ -52,14 +50,14 @@ public class PlotLine extends AbstractConfigurationObject {
 
     /**
      * @see #setValue(Number)
-     * @return
+     * @return The position of the plot line.
      */
     public Number getValue() {
         return value;
     }
 
     /**
-     * The position of the line in axis units. Defaults to null.
+     * Sets the position of the line in axis units. Defaults to null.
      * 
      * @param value
      */
@@ -69,14 +67,13 @@ public class PlotLine extends AbstractConfigurationObject {
 
     /**
      * @see #setWidth(Number)
-     * @return
      */
     public Number getWidth() {
         return width;
     }
 
     /**
-     * The width or thickness of the plot line. Defaults to null.
+     * Sets the width or thickness of the plot line. Defaults to null.
      * 
      * @param width
      */
@@ -86,14 +83,13 @@ public class PlotLine extends AbstractConfigurationObject {
 
     /**
      * @see #setColor(SolidColor)
-     * @return
      */
     public Color getColor() {
         return color;
     }
 
     /**
-     * The color of the line. Defaults to null.
+     * Sets the color of the line. Defaults to null.
      * 
      * @param color
      */

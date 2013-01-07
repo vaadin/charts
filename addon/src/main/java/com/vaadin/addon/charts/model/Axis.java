@@ -74,7 +74,6 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * @see #setCategories(String...)
-     * @return
      */
     public String[] getCategories() {
         return categories;
@@ -84,9 +83,9 @@ public abstract class Axis extends AbstractConfigurationObject {
      * If categories are present for the Axis, names are used instead of numbers
      * for that axis. Example:
      * 
-     * categories: {"Apples", "Bananas", "Oranges"}
+     * "Apples", "Bananas", "Oranges"
      * 
-     * Defaults to {}.
+     * Defaults to null.
      * 
      * @param categories
      */
@@ -103,7 +102,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * The axis title, showing next to the axis line.
+     * The axis title, which is shown next to it.
      * 
      * @param text
      *            Text of title
@@ -113,7 +112,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * The axis title, showing next to the axis line.
+     * The axis title, which is shown next to it.
      * 
      * @param title
      */
@@ -123,7 +122,7 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * @see #setMin(Number)
-     * @return Minimum value of axis or null
+     * @return the minimum value of the axis or null
      */
     public Number getMin() {
         return min;
@@ -161,9 +160,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * The axis labels show the number or category for each tick.
-     * 
-     * @return
+     * @return The axis labels, showing the number or category for each tick.
      */
     public Labels getLabels() {
         if (labels == null) {
@@ -173,7 +170,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * The axis labels show the number or category for each tick.
+     * Sets the axis labels, showing the number or category for each tick.
      * 
      * @param labels
      */
@@ -183,16 +180,16 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * @see #setTickmarkPlacement(TickmarkPlacement)
-     * @return
      */
     public TickmarkPlacement getTickmarkPlacement() {
         return tickmarkPlacement;
     }
 
     /**
-     * For categorized axes only. If "on" the tick mark is placed in the center
-     * of the category, if "between" the tick mark is placed between categories.
-     * Defaults to "between".
+     * For categorized axes only. If {@link TickmarkPlacement#ON} the tick mark
+     * is placed in the center of the category, if
+     * {@link TickmarkPlacement#BETWEEN} the tick mark is placed between
+     * categories. Defaults to {@link TickmarkPlacement#BETWEEN}.
      * 
      * @param tickmarkPlacement
      */
@@ -202,15 +199,14 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * @see #setPlotBands(PlotBand...)
-     * @return
      */
     public PlotBand[] getPlotBands() {
         return plotBands;
     }
 
     /**
-     * A colored band stretching across the plot area marking an interval on the
-     * axis.
+     * Sets the plot bands of the axis. A plot band is a colored band stretching
+     * across the plot area marking an interval on the axis.
      * 
      * @param plotBands
      */
@@ -219,9 +215,10 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * The type of axis. Can be one of LINEAR, LOGARITMIC, or DATETIME. In a
-     * DATETIME axis, the numbers are given in milliseconds, and tick marks are
-     * placed on appropriate values like full hours or days.
+     * Sets the type of this axis. Can be one of {@link AxisType#LINEAR},
+     * {@link AxisType#LOGARITHMIC}, or {@link AxisType#DATETIME}. In a
+     * {@link AxisType#DATETIME} axis, the numbers are given in milliseconds,
+     * and tick marks are placed on appropriate values like full hours or days.
      * 
      * @param type
      */
@@ -238,8 +235,8 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * Whether to force the axis to start on a tick. Use this option with the
-     * maxPadding option to control the axis start. Defaults to false.
+     * Sets whether to force the axis to start on a tick. Use this option with
+     * the maxPadding option to control the axis start. Defaults to false.
      * 
      * @param startOnTick
      */
@@ -249,14 +246,13 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * @see #setStartOnTick(Boolean)
-     * @return
      */
     public boolean isStartOnTick() {
         return startOnTick == null ? false : startOnTick;
     }
 
     /**
-     * Whether to show the first tick label. Defaults to true.
+     * Sets whether to show the first tick label. Defaults to true.
      * 
      * @param showFirstLabel
      */
@@ -266,7 +262,6 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * @see #setShowFirstLabel(Boolean)
-     * @return
      */
     public boolean isShowFirstLabel() {
         return showFirstLabel == null ? true : showFirstLabel;
@@ -295,7 +290,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     /**
      * The minimum range to display on this axis. The entire axis will not be
      * allowed to span over a smaller interval than this. For example, for a
-     * datetime axis the main unit is milliseconds. If minRange is set to
+     * DATETIME axis the main unit is milliseconds. If minRange is set to
      * 3600000, you can't zoom in more than to one hour.
      * 
      * The default minRange for the x axis is five times the smallest interval
@@ -313,7 +308,6 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * @see #setMinRange(Number)
-     * @return
      */
     public Number getMinRange() {
         return minRange;
@@ -321,16 +315,15 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * @see #setAllowDecimals(Boolean)
-     * @return
      */
     public boolean isAllowDecimals() {
         return allowDecimals == null ? true : allowDecimals;
     }
 
     /**
-     * Whether to allow decimals in this axis' ticks. When counting integers,
-     * like persons or hits on a web page, decimals must be avoided in the axis
-     * tick labels. Defaults to true.
+     * Sets whether to allow decimals in this axis' ticks. When counting
+     * integers, like persons or hits on a web page, decimals must be avoided in
+     * the axis tick labels. Defaults to true.
      * 
      * @param allowDecimals
      */
@@ -339,11 +332,11 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * Whether to reverse the axis so that the highest number is closest to
-     * origo. If the chart is inverted, the x axis is reversed by default.
+     * Sets whether to reverse the axis so that the highest number is closest to
+     * the origin. If the chart is inverted, the x axis is reversed by default.
      * Defaults to false.
      * 
-     * @param b
+     * @param reversed
      */
     public void setReversed(Boolean reversed) {
         this.reversed = reversed;
@@ -351,18 +344,18 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * @see #setReversed(Boolean)
-     * @return
      */
     public boolean isReversed() {
         return reversed == null ? false : reversed;
     }
 
     /**
-     * Padding of the max value relative to the length of the axis. A padding of
-     * 0.05 will make a 100px axis 5px longer. This is useful when you don't
-     * want the highest data value to appear on the edge of the plot area. When
-     * the axis' max option is set or a max extreme is set using
-     * axis.setExtremes(), the maxPadding will be ignored. Defaults to 0.01.
+     * Sets the padding of the max value relative to the length of the axis. A
+     * padding of 0.05 will make a 100px axis 5px longer. This is useful when
+     * you don't want the highest data value to appear on the edge of the plot
+     * area. When the max option is set or a max extreme is set using
+     * axis.setExtremes(), the maxPadding setting will be ignored. Defaults to
+     * 0.01.
      */
     public void setMaxPadding(Number maxPadding) {
         this.maxPadding = maxPadding;
@@ -370,14 +363,13 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * @see #setMaxPadding(Number)
-     * @return
      */
     public Number getMaxPadding() {
         return maxPadding;
     }
 
     /**
-     * Whether to show the last tick label. Defaults to false.
+     * Sets whether to show the last tick label. Defaults to false.
      * 
      * @param showLastLabel
      */
@@ -387,14 +379,13 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * @see #setShowLastLabel(Boolean)
-     * @return
      */
     public boolean isShowLastLabel() {
         return showLastLabel == null ? false : showLastLabel;
     }
 
     /**
-     * The width of the line marking the axis itself. Defaults to 1.
+     * Sets the width of the line marking the axis itself. Defaults to 1.
      * 
      * @param lineWidth
      */
@@ -404,15 +395,13 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * @see #setLineWidth(Number)
-     * 
-     * @return
      */
     public Number getLineWidth() {
         return lineWidth;
     }
 
     /**
-     * Width of the minor, secondary grid lines. Defaults to 1.
+     * Sets the width of the minor, secondary grid lines. Defaults to 1.
      * 
      * @param minorGridLineWidth
      */
@@ -422,15 +411,14 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * @see #setMinorGridLineWidth(Number)
-     * @return
      */
     public Number getMinorGridLineWidth() {
         return minorGridLineWidth;
     }
 
     /**
-     * The width of the grid lines extending the ticks across the plot area.
-     * Defaults to 0.
+     * Sets the width of the grid lines extending the ticks across the plot
+     * area. Defaults to 0.
      * 
      * @param gridLineWidth
      */
@@ -440,7 +428,6 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * @see #setGridLineWidth(Number)
-     * @return
      */
     public Number getGridLineWidth() {
         return gridLineWidth;
@@ -458,7 +445,6 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * @see #setAlternateGridColor(String)
-     * @return
      */
     public Color getAlternateGridColor() {
         return alternateGridColor;
@@ -474,7 +460,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * Color of the minor, secondary grid lines.
+     * Sets the color of the minor, secondary grid lines.
      * 
      * @param minorGridColor
      *            Color
@@ -485,14 +471,15 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * @see #setOpposite(Boolean)
-     * @return Opposite value or null if not defined
+     * @return Whether the axis is shown on the opposite side of the normal.
+     *         null if not defined.
      */
     public boolean isOpposite() {
         return opposite == null ? false : opposite;
     }
 
     /**
-     * Whether to display the axis on the opposite side of the normal. The
+     * Sets whether to display the axis on the opposite side of the normal. The
      * normal is on the left side for vertical axes and bottom for horizontal,
      * so the opposite sides will be right and top respectively. This is
      * typically used with dual or multiple axes. Defaults to false.
@@ -504,10 +491,10 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * For a datetime axis, the scale will automatically adjust to the
+     * For a DATETIME axis, the scale will automatically adjust to the
      * appropriate unit. This member gives the default string representations
      * used for each unit. For an overview of the replacement codes, see
-     * dateFormat. Defaults to:
+     * DateFormat. Defaults to:
      * 
      * { second: '%H:%M:%S', minute: '%H:%M', hour: '%H:%M', day: '%e. %b',
      * week: '%e. %b', month: '%b \'%y', year: '%Y' }
@@ -521,19 +508,18 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * @see #setDateTimeLabelFormats(String)
-     * @return
      */
     public DateTimeLabelFormats getDateTimeLabelFormats() {
         return dateTimeLabelFormats;
     }
 
     /**
-     * The interval of the tick marks in axis units. When null, the tick
-     * interval is computed to approximately follow the tickPixelInterval on
-     * linear and datetime axes. On categorized axes, a null tickInterval will
-     * default to 1, one category. Note that datetime axes are based on
-     * milliseconds, so for example an interval of one day is expressed as 24 *
-     * 3600 * 1000.
+     * Sets the interval of the tick marks in the unit of the axis. When null,
+     * the tick interval is computed to approximately follow the
+     * tickPixelInterval on LINEAR and DATETIME axes. On categorized axes, a
+     * null tickInterval will default to 1, one category. Note that DATETIME
+     * axes are based on milliseconds, so for example an interval of one day is
+     * expressed as 24 * 3600 * 1000.
      * 
      * On logarithmic axes, the tickInterval is based on powers, so a
      * tickInterval of 1 means one tick on each of 0.1, 1, 10, 100 etc. A
@@ -547,23 +533,21 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * @see #setTickInterval(Number)
-     * @return
      */
     public Number getTickInterval() {
         return tickInterval;
     }
 
     /**
-     * Tick interval in scale units for the minor ticks. On a linear axis, if
-     * "auto", the minor tick interval is calculated as a fifth of the
-     * tickInterval. If null, minor ticks are not shown.
+     * Sets the tick interval in scale units for the minor ticks. If null, minor
+     * ticks are not shown.
      * 
      * On logarithmic axes, the unit is the power of the value. For example,
      * setting the minorTickInterval to 1 puts one tick on each of 0.1, 1, 10,
      * 100 etc. Setting the minorTickInterval to 0.1 produces 9 ticks between 1
-     * and 10, 10 and 100 etc. A minorTickInterval of "auto" on a log axis
-     * results in a best guess, attempting to enter approximately 5 minor ticks
-     * between each major tick. . Defaults to null.
+     * and 10, 10 and 100 etc. Defaults to null.
+     * 
+     * @see #setMinorTickInterval(String)
      * 
      * @param minorTickInterval
      */
@@ -573,7 +557,6 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * @see #setMinorTickInterval(Number)
-     * @return
      */
     public Object getMinorTickInterval() {
         return minorTickInterval;
@@ -592,7 +575,6 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * @see #setTickPixelInterval(Number)
-     * @return
      */
     public Number getTickPixelInterval() {
         return tickPixelInterval;
@@ -600,7 +582,8 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * @see #setLinkedTo(Number)
-     * @return Linked to value or null if not defined
+     * @return The index of another axis that this axis is linked to or null if
+     *         undefined.
      */
     public Number getLinkedTo() {
         return linkedTo;
@@ -609,9 +592,10 @@ public abstract class Axis extends AbstractConfigurationObject {
     /**
      * Index of another axis that this axis is linked to. When an axis is linked
      * to a master axis, it will take the same extremes as the master, but as
-     * assigned by min or max or by setExtremes. It can be used to show
-     * additional info, or to ease reading the chart by duplicating the scales.
-     * Defaults to null.
+     * assigned by {@link #setMin(Number)} or {@link #setMax(Number)} or by
+     * {@link #setExtremes(Number, Number)}. It can be used to show additional
+     * info, or to ease reading the chart by duplicating the scales. Defaults to
+     * null.
      * 
      * @param linkedTo
      */
@@ -620,10 +604,10 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * Padding of the min value relative to the length of the axis. A padding of
-     * 0.05 will make a 100px axis 5px longer. This is useful when you don't
-     * want the lowest data value to appear on the edge of the plot area.
-     * Defaults to 0.05.
+     * Sets the padding of the min value relative to the length of the axis. A
+     * padding of 0.05 will make a 100px axis 5px longer. This is useful when
+     * you don't want the lowest data value to appear on the edge of the plot
+     * area. Defaults to 0.05.
      * 
      * @param minPadding
      */
@@ -633,14 +617,13 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * @see #setMinPadding(Number)
-     * @return
      */
     public Number getMinPadding() {
         return minPadding;
     }
 
     /**
-     * Whether to show the last tick label. Defaults to false.
+     * Sets whether to show the last tick label. Defaults to false.
      * 
      * @param showLastTickLabel
      */
@@ -650,22 +633,21 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * @see #setShowLastTickLabel(Boolean)
-     * @return
      */
     public boolean isShowLastTickLabel() {
         return showLastTickLabel == null ? false : showLastTickLabel;
     }
 
     /**
-     * Set the minimum and maximum of the axes after render time. If the
-     * startOnTick and endOnTick options are true,the minimum and maximum values
-     * are rounded off to the nearest tick. To prevent this, these options can
-     * be set to false before calling setExtremes. Parameters
+     * Sets the minimum and maximum of the axes after rendering has finished. If
+     * the startOnTick and endOnTick options are true, the minimum and maximum
+     * values are rounded off to the nearest tick. To prevent this, these
+     * options can be set to false before calling setExtremes.
      * 
      * @param min
-     *            Number The new minimum value
+     *            The new minimum value
      * @param max
-     *            Number The new maximum value
+     *            The new maximum value
      */
     public void setExtremes(Number min, Number max) {
         this.min = min;
@@ -673,7 +655,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * The pixel width of the minor tick mark. Defaults to 0.
+     * Sets the pixel width of the minor tick mark. Defaults to 0.
      * 
      * @param minorTickWidth
      */
@@ -682,7 +664,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * The pixel length of the minor tick marks. Defaults to 2.
+     * Sets the pixel length of the minor tick marks. Defaults to 2.
      * 
      * @param minorTickLength
      */
@@ -691,7 +673,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * The pixel width of the major tick marks. Defaults to 1.
+     * Sets the pixel width of the major tick marks. Defaults to 1.
      * 
      * @param tickWidth
      */
@@ -700,7 +682,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * The pixel length of the main tick marks. Defaults to 5.
+     * Sets the pixel length of the main tick marks. Defaults to 5.
      * 
      * @param tickLength
      */
@@ -709,7 +691,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * Color for the main tick marks. Defaults to #C0D0E0.
+     * Sets the color for the main tick marks. Defaults to #C0D0E0.
      * 
      * @param tickColor
      */
@@ -718,7 +700,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * Color for the minor tick marks. Defaults to #A0A0A0.
+     * Sets the color for the minor tick marks. Defaults to #A0A0A0.
      * 
      * @param minorTickColor
      */
@@ -728,7 +710,6 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * @see #setMinorTickColor(Color)
-     * @return
      */
     public Color getMinorTickColor() {
         return minorTickColor;
@@ -736,7 +717,6 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * @see #setTickColor(Color)
-     * @return
      */
     public Color getTickColor() {
         return tickColor;
@@ -744,7 +724,6 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * @see #setTickLength(int)
-     * @return
      */
     public Number getTickLength() {
         return tickLength;
@@ -752,7 +731,6 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * @see #setTickWidth(Number)
-     * @return
      */
     public Number getTickWidth() {
         return tickWidth;
@@ -760,7 +738,6 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * @see #setMinorTickLength(Number)
-     * @return
      */
     public Number getMinorTickLength() {
         return minorTickLength;
@@ -768,15 +745,14 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * @see #setMinorTickWidth(Number)
-     * @return
      */
     public Number getMinorTickWidth() {
         return minorTickWidth;
     }
 
     /**
-     * The position of the major tick marks relative to the axis line. Can be
-     * one of inside and outside. Defaults to "outside".
+     * Sets the position of the major tick marks relative to the axis line. Can
+     * be either "inside" or "outside". Defaults to "outside".
      * 
      * @param tickPosition
      */
@@ -786,15 +762,14 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * @see #setTickPosition(String)
-     * @return
      */
     public String getTickPosition() {
         return tickPosition;
     }
 
     /**
-     * The position of the minor tick marks relative to the axis line. Can be
-     * one of inside and outside. Defaults to outside.
+     * Sets the position of the minor tick marks relative to the axis line. Can
+     * be either "inside" or "outside". Defaults to "outside".
      * 
      * @param minorTickPosition
      */
@@ -804,15 +779,14 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * @see #setMinorTickPosition(String)
-     * @return
      */
     public String getMinorTickPosition() {
         return minorTickPosition;
     }
 
     /**
-     * Tick interval in scale units for the minor ticks. On a linear axis, if
-     * "auto", the minor tick interval is calculated as a fifth of the
+     * Sets the tick interval in scale units for the minor ticks. On a linear
+     * axis, if "auto", the minor tick interval is calculated as a fifth of the
      * tickInterval. If null, minor ticks are not shown.
      * 
      * On logarithmic axes, the unit is the power of the value. For example,
@@ -824,6 +798,8 @@ public abstract class Axis extends AbstractConfigurationObject {
      * <br />
      * This method is used to set textual interval like "auto"
      * 
+     * @see #setMinorTickInterval(Number)
+     * 
      * @param minorTickInterval
      */
     public void setMinorTickInterval(String minorTickInterval) {
@@ -832,14 +808,14 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * @see #setLineColor(Color)
-     * @return
      */
     public Color getLineColor() {
         return lineColor;
     }
 
     /**
-     * The color of the line marking the axis itself. Defaults to "#C0D0E0".
+     * Sets the color of the line marking the axis itself. Defaults to
+     * "#C0D0E0".
      * 
      * @param lineColor
      */
@@ -849,17 +825,16 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * @see #setOffset(Number)
-     * @return
      */
     public Number getOffset() {
         return offset;
     }
 
     /**
-     * The distance in pixels from the plot area to the axis line. A positive
-     * offset moves the axis with it's line, labels and ticks away from the plot
-     * area. This is typically used when two or more axes are displayed on the
-     * same side of the plot. Defaults to 0.
+     * Sets the distance in pixels from the plot area to the axis line. A
+     * positive offset moves the axis with its line, labels and ticks away from
+     * the plot area. This is typically used when two or more axes are displayed
+     * on the same side of the plot. Defaults to 0.
      * 
      * @param offset
      */
@@ -869,14 +844,13 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * @see #setEndOnTick(Boolean)
-     * @return
      */
     public boolean isEndOnTick() {
         return endOnTick == null ? false : endOnTick;
     }
 
     /**
-     * Whether to force the axis to end on a tick. Use this option with the
+     * Sets whether to force the axis to end on a tick. Use this option with the
      * maxPadding option to control the axis end. Defaults to false.
      * 
      * @param endOnTick

@@ -20,6 +20,7 @@ package com.vaadin.addon.charts.model;
 /**
  * Plot options that are specific for ChartType.COLUMNRANGE charts
  */
+@SuppressWarnings("serial")
 public class PlotOptionsColumnRange extends AbstractPlotOptions {
 
     @Override

@@ -20,7 +20,7 @@ package com.vaadin.addon.charts.model;
 import javax.activation.MimeType;
 
 /**
- * Vaadin Chart's exporting module
+ * Module for exporting Vaadin Charts
  */
 public class Exporting extends AbstractConfigurationObject {
 
@@ -32,9 +32,10 @@ public class Exporting extends AbstractConfigurationObject {
     private Number width;
 
     /**
-     * Construct Exporting with given state
+     * Constructs an Exporting instance that is either enabled or disabled.
      * 
      * @param enabled
+     *            true to enable, false to disable.
      */
     public Exporting(boolean enabled) {
         this.enabled = enabled;
@@ -42,15 +43,14 @@ public class Exporting extends AbstractConfigurationObject {
 
     /**
      * @see #setEnableImages(Boolean)
-     * @return
      */
     public Boolean isEnableImages() {
         return enableImages;
     }
 
     /**
-     * Whether to enable images in the export. Including image point markers,
-     * background images etc. Defaults to false.
+     * Sets whether to enable images in the export. Including image point
+     * markers, background images etc. Defaults to false.
      * 
      * @param enableImages
      */
@@ -60,14 +60,13 @@ public class Exporting extends AbstractConfigurationObject {
 
     /**
      * @see #setEnabled(Boolean)
-     * @return
      */
     public Boolean isEnabled() {
         return enabled;
     }
 
     /**
-     * Whether to enable the exporting module. Defaults to false.
+     * Sets whether to enable the exporting module. Defaults to false.
      * 
      * @param enabled
      */
@@ -77,15 +76,14 @@ public class Exporting extends AbstractConfigurationObject {
 
     /**
      * @see #setFilename(String)
-     * @return
      */
     public String getFilename() {
         return filename;
     }
 
     /**
-     * The filename, without extension, to use for the exported chart. Defaults
-     * to "chart".
+     * Sets the filename, without extension, to use for the exported chart.
+     * Defaults to "chart".
      * 
      * @param filename
      */
@@ -95,16 +93,16 @@ public class Exporting extends AbstractConfigurationObject {
 
     /**
      * @see #setType(MimeType)
-     * @return
      */
     public MimeType getType() {
         return type;
     }
 
     /**
-     * Default MIME type for exporting if chart.exportChart() is called without
-     * specifying a type option. Possible values are image/png, image/jpeg,
-     * application/pdf and image/svg+xml. Defaults to "image/png".
+     * Sets the default MIME type for exporting if chart.exportChart() is called
+     * without specifying a type option. Possible values are "image/png",
+     * "image/jpeg", "application/pdf" and "image/svg+xml". Defaults to
+     * "image/png".
      * 
      * @param type
      */
@@ -114,16 +112,14 @@ public class Exporting extends AbstractConfigurationObject {
 
     /**
      * @see #setUrl(String)
-     * @return
      */
     public String getUrl() {
         return url;
     }
 
     /**
-     * The URL for the server module converting the SVG string to an image
-     * format. By default this points to Highslide Software's free web service.
-     * Defaults to http://export.highcharts.com.
+     * Sets the URL for the server module converting the SVG string to an image
+     * format. Defaults to the free http://export.highcharts.com web service.
      * 
      * @param url
      */
@@ -133,14 +129,13 @@ public class Exporting extends AbstractConfigurationObject {
 
     /**
      * @see #setWidth(Number)
-     * @return
      */
     public Number getWidth() {
         return width;
     }
 
     /**
-     * The pixel width of charts exported to PNG or JPG. Defaults to 800.
+     * Sets the pixel width of charts exported to PNG or JPG. Defaults to 800.
      * 
      * @param width
      */

@@ -18,9 +18,9 @@ package com.vaadin.addon.charts.model;
  */
 
 /**
- * For categorized axes only. If ON("on") the tick mark is placed in the center
- * of the category, if BETWEEN("between") the tick mark is placed between
- * categories. Defaults to BETWEEN("between").
+ * For categorized axes only. If ON the tick mark is placed in the center of the
+ * category, if BETWEEN the tick mark is placed between categories. Defaults to
+ * BETWEEN.
  */
 public enum TickmarkPlacement implements ChartEnum {
     ON("on"), BETWEEN("between");

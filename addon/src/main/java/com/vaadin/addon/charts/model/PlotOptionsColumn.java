@@ -20,6 +20,7 @@ package com.vaadin.addon.charts.model;
 /**
  * Plot options that are specific for ChartType.COLUMN charts
  */
+@SuppressWarnings("serial")
 public class PlotOptionsColumn extends AbstractPlotOptions {
     private Number pointPadding;
     private Number borderWidth;
@@ -27,14 +28,15 @@ public class PlotOptionsColumn extends AbstractPlotOptions {
 
     /**
      * @see #setPointPadding(Number)
-     * @return Padding or null if not set
+     * @return The padding between each column or bar. Returns null if not set.
      */
     public Number getPointPadding() {
         return pointPadding;
     }
 
     /**
-     * Padding between each column or bar, in x axis units. Defaults to 0.1.
+     * Sets the padding between each column or bar, in x axis units. Defaults to
+     * 0.1.
      * 
      * @param pointPadding
      */
@@ -44,14 +46,15 @@ public class PlotOptionsColumn extends AbstractPlotOptions {
 
     /**
      * @see #setBorderWidth(Number)
-     * @return Border with or null if not set
+     * @return The width of the border or null if not set
      */
     public Number getBorderWidth() {
         return borderWidth;
     }
 
     /**
-     * The width of the border surrounding each column or bar. Defaults to 1.
+     * Sets the width of the border surrounding each column or bar. Defaults to
+     * 1.
      * 
      * @param borderWidth
      */
@@ -60,7 +63,8 @@ public class PlotOptionsColumn extends AbstractPlotOptions {
     }
 
     /**
-     * Padding between each value groups, in x axis units. Defaults to 0.2.
+     * Sets the padding between each value group, in X-axis units. Defaults to
+     * 0.2.
      * 
      * @param groupPadding
      */
@@ -70,7 +74,7 @@ public class PlotOptionsColumn extends AbstractPlotOptions {
 
     /**
      * @see #setGroupPadding(Number)
-     * @return
+     * @return The padding between each value group.
      */
     public Number getGroupPadding() {
         return groupPadding;

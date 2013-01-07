@@ -20,6 +20,7 @@ package com.vaadin.addon.charts.model;
 /**
  * Plot options for line graphs
  */
+@SuppressWarnings("serial")
 public class PlotOptionsLine extends AbstractPlotOptions {
 
     @Override

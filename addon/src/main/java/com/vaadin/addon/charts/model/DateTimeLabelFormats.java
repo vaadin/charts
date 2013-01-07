@@ -18,18 +18,22 @@ package com.vaadin.addon.charts.model;
  */
 
 /**
- * For a datetime axis, the scale will automatically adjust to the appropriate
+ * For a DATETIME axis, the scale will automatically adjust to the appropriate
  * unit. This member gives the default string representations used for each
- * unit. For an overview of the replacement codes, see dateFormat. Defaults to:<br />
- * <br />
+ * unit. For an overview of the replacement codes, see
+ * {@link java.text.DateFormat}. Defaults to:
  * 
- * &nbsp;&nbsp;&nbsp;{ second: '%H:%M:%S',<br />
- * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;minute: '%H:%M',<br />
- * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hour: '%H:%M',<br />
- * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;day: '%e. %b',<br />
- * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;week: '%e. %b',<br />
- * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;month: '%b \'%y',<br />
- * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;year: '%Y' }
+ * <code>
+ * { 
+ *   second: '%H:%M:%S',
+ *   minute: '%H:%M',
+ *   hour: '%H:%M',
+ *   day: '%e. %b',
+ *   week: '%e. %b',
+ *   month: '%b \'%y',
+ *   year: '%Y'
+ * }
+ * </code>
  */
 @SuppressWarnings("serial")
 public class DateTimeLabelFormats extends AbstractConfigurationObject {
@@ -42,15 +46,12 @@ public class DateTimeLabelFormats extends AbstractConfigurationObject {
     private String month;
     private String year;
 
-    /**
-     * Default constructor
-     */
     public DateTimeLabelFormats() {
-
     }
 
     /**
-     * Constructor with given format strings for month and year
+     * Constructs a DateTimeLabelFormats with the given format strings for month
+     * and year
      * 
      * @param month
      * @param year
@@ -62,14 +63,14 @@ public class DateTimeLabelFormats extends AbstractConfigurationObject {
 
     /**
      * @see #setSecond(String)
-     * @return
+     * @return The format string for second resolution.
      */
     public String getSecond() {
         return second;
     }
 
     /**
-     * Set format String for second
+     * Sets the format String for second resolution.
      * 
      * @param second
      */
@@ -79,14 +80,14 @@ public class DateTimeLabelFormats extends AbstractConfigurationObject {
 
     /**
      * @see #setMinute(String)
-     * @return
+     * @return The format string for minute resolution.
      */
     public String getMinute() {
         return minute;
     }
 
     /**
-     * Set format String for minute
+     * Sets the format String for minute resolution.
      * 
      * @param minute
      */
@@ -96,14 +97,14 @@ public class DateTimeLabelFormats extends AbstractConfigurationObject {
 
     /**
      * @see #setHour(String)
-     * @return
+     * @return The format string for hour resolution.
      */
     public String getHour() {
         return hour;
     }
 
     /**
-     * Set format String for hour
+     * Sets the format String for hour resolution
      * 
      * @param hour
      */
@@ -113,14 +114,14 @@ public class DateTimeLabelFormats extends AbstractConfigurationObject {
 
     /**
      * @see #setDay(String)
-     * @return
+     * @return The format string for day resolution
      */
     public String getDay() {
         return day;
     }
 
     /**
-     * Set format String for day
+     * Sets the format String for day resolution.
      * 
      * @param day
      */
@@ -130,14 +131,14 @@ public class DateTimeLabelFormats extends AbstractConfigurationObject {
 
     /**
      * @see #setWeek(String)
-     * @return
+     * @return The format string for week resolution.
      */
     public String getWeek() {
         return week;
     }
 
     /**
-     * Set format String for week
+     * Sets the format String for week resolution.
      * 
      * @param week
      */
@@ -147,14 +148,14 @@ public class DateTimeLabelFormats extends AbstractConfigurationObject {
 
     /**
      * @see #setMonth(String)
-     * @return
+     * @return The format string for month resolution.
      */
     public String getMonth() {
         return month;
     }
 
     /**
-     * Set format String for month
+     * Sets the format String for month resolution.
      * 
      * @param month
      */
@@ -164,14 +165,14 @@ public class DateTimeLabelFormats extends AbstractConfigurationObject {
 
     /**
      * @see #setYear(String)
-     * @return
+     * @return The format string for year resolution
      */
     public String getYear() {
         return year;
     }
 
     /**
-     * Set format String for year
+     * Sets the format String for year resolution.
      * 
      * @param year
      */

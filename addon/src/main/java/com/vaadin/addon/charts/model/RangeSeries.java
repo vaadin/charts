@@ -17,23 +17,20 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
-
 /**
  * Series for range type data
  */
+@SuppressWarnings("serial")
 public class RangeSeries extends AbstractSeries {
     private Number[][] data;
 
     private Number yAxis;
 
-    /**
-     * Default constructor
-     */
     public RangeSeries() {
     }
 
     /**
-     * Construct RangeSeries with given name
+     * Constructs a RangeSeries with the given name
      * 
      * @param name
      */
@@ -42,35 +39,34 @@ public class RangeSeries extends AbstractSeries {
     }
 
     /**
-     * Construct RangeSeries with given values
+     * Constructs a RangeSeries with the given values
      * 
-     * @param name
+     * @param values
      */
-    public RangeSeries(Number[]... numbers) {
-        data = numbers;
+    public RangeSeries(Number[]... values) {
+        data = values;
     }
 
     /**
-     * Construct RangeSeries with given name and values
+     * Constructs a RangeSeries with the given name and values
      * 
      * @param name
+     * @param values
      */
-    public RangeSeries(String name, Number[]... numbers) {
+    public RangeSeries(String name, Number[]... values) {
         this(name);
-        data = numbers;
+        data = values;
     }
 
     /**
-     * Get numeric data
-     * 
-     * @return
+     * @return The numeric data of this series.
      */
     public Number[][] getData() {
         return data;
     }
 
     /**
-     * Set numeric data
+     * Sets the numeric data for this series.
      * 
      * @param data
      */
@@ -80,16 +76,18 @@ public class RangeSeries extends AbstractSeries {
 
     /**
      * @see #setyAxis(Number)
-     * @return Y Axis number or null if not defined
+     * @return The index of the Y-axis that this series is bound to or null if
+     *         not defined
      */
     public Number getyAxis() {
         return yAxis;
     }
 
     /**
-     * When using dual or multiple y axes, this number defines which yAxis the
-     * particular series is connected to. It refers to the index of the axis in
-     * the yAxis array, with 0 being the first. Defaults to 0.
+     * Sets the index of the Y-axis that this series should be bound to. When
+     * using dual or multiple Y-axes, this number defines which {@link YAxis}
+     * the particular series is connected to. It refers to the index of the axis
+     * in the Y-axis array, with 0 being the first. Defaults to 0.
      * 
      * @param yAxis
      */

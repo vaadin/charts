@@ -20,6 +20,7 @@ package com.vaadin.addon.charts.model;
 /**
  * Plot options that are specific for ChartType.BAR charts
  */
+@SuppressWarnings("serial")
 public class PlotOptionsBar extends AbstractPlotOptions {
 
     @Override

@@ -20,27 +20,35 @@ package com.vaadin.addon.charts.model;
 /**
  * A wrapper object for all the series options in specific states.
  */
+@SuppressWarnings("serial")
 public class States extends AbstractConfigurationObject {
 
     private State hover;
 
+    /**
+     * Constructs a States object with the given hover state.
+     * 
+     * @param hoverState
+     */
     public States(State hoverState) {
         hover = hoverState;
     }
 
+    /**
+     * Constructs an empty States object
+     */
     public States() {
     }
 
     /**
      * @see #setHover(State)
-     * @return
      */
     public State getHover() {
         return hover;
     }
 
     /**
-     * Set HoverState for mouse hover events
+     * Sets the hover state used for mouse hover events.
      * 
      * @param hover
      */

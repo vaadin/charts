@@ -20,6 +20,7 @@ package com.vaadin.addon.charts.model;
 /**
  * Plot options for ChartType.AREA
  */
+@SuppressWarnings("serial")
 public class PlotOptionsArea extends AbstractPlotOptions {
 
     @Override

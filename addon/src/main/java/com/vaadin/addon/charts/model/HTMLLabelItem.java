@@ -20,15 +20,15 @@ package com.vaadin.addon.charts.model;
 import com.vaadin.addon.charts.model.style.Style;
 
 /**
- * A HTML label that can be positioined anywhere in the chart area.
- * 
+ * A HTML label that can be positioned anywhere in the chart area.
  */
+@SuppressWarnings("serial")
 public class HTMLLabelItem extends AbstractConfigurationObject {
     private String html;
     private Style style;
 
     /**
-     * Constructor with given html content of the label
+     * Constructs a HTMLLabelItem with the given HTML content
      * 
      * @param html
      */
@@ -37,9 +37,10 @@ public class HTMLLabelItem extends AbstractConfigurationObject {
     }
 
     /**
-     * Constructor with given html content and Style of the label
+     * Constructs a HTMLLabelItem with the given HTML content and style
      * 
      * @param html
+     * @param style
      */
     public HTMLLabelItem(String html, Style style) {
         this(html);
@@ -48,14 +49,13 @@ public class HTMLLabelItem extends AbstractConfigurationObject {
 
     /**
      * @see #setHtml(String)
-     * @return
      */
     public String getHtml() {
         return html;
     }
 
     /**
-     * Inner HTML or text for the label. Defaults to "".
+     * Sets the inner HTML or text for the label. Defaults to "".
      * 
      * @param html
      */
@@ -65,14 +65,14 @@ public class HTMLLabelItem extends AbstractConfigurationObject {
 
     /**
      * @see #setStyle(Style)
-     * @return
      */
     public Style getStyle() {
         return style;
     }
 
     /**
-     * CSS styles for each label. To position the label, use left and top.
+     * Sets the CSS style for the label. To position the label, use
+     * {@link Style#setLeft(String)} and {@link Style#setTop(String)}.
      * 
      * @param style
      */

@@ -24,11 +24,11 @@ import java.util.List;
 import com.vaadin.addon.charts.model.style.Color;
 
 /**
- * An array of data points for the series.
+ * An array of data points to be displayed in a chart.
  * <p>
- * The class uses {@link DataSeriesItem} to represent individual data entry. The
- * class also has various helper methods and constructors that allow passing
- * data as arrays and lists.
+ * The class uses {@link DataSeriesItem} to represent individual data points.
+ * The class also has various helper methods and constructors that allow passing
+ * data as arrays or lists.
  * 
  * @see ListSeries
  * @see RangeSeries
@@ -43,14 +43,14 @@ public class DataSeries extends AbstractSeries {
 
     /**
      * Constructs an empty {@link DataSeries}. Developers should then populate
-     * the series with varios addData and setData methods.
+     * the series with various addData and setData methods.
      */
     public DataSeries() {
-
     }
 
     /**
-     * Constructs DataSeries using category names and y-values as input
+     * Constructs a DataSeries instance containing the given category name, Y
+     * value pairs.
      * 
      * @param categories
      * @param ys
@@ -62,32 +62,36 @@ public class DataSeries extends AbstractSeries {
     }
 
     /**
-     * Constructs a new DataSeries with given items.
+     * Constructs a new DataSeries instance with the given items.
      * 
-     * @param dataSeries
-     *            items to be contained in DataSeries
+     * @param items
+     *            items to be contained in the constructed DataSeries
      */
-    public DataSeries(List<DataSeriesItem> dataSeries) {
-        setData(dataSeries);
+    public DataSeries(List<DataSeriesItem> items) {
+        setData(items);
     }
 
     /**
-     * Constructs a new DataSeries with given items.
+     * Constructs a new DataSeries with the given items.
      * 
-     * @param dataSeries
-     *            items to be contained in DataSeries
+     * @param items
+     *            items to be contained in the constructed DataSeries
      */
-    public DataSeries(DataSeriesItem... dataSeries) {
-        setData(Arrays.asList(dataSeries));
+    public DataSeries(DataSeriesItem... items) {
+        setData(Arrays.asList(items));
     }
 
     /**
-     * Shortcut way to add list of (x,y) data pairs<br />
-     * &nbsp;&nbsp;&nbsp;e.g. [[0, 15], [10, -50], [20, -56.5]... <br />
-     * could be inserted as follows<br />
-     * &nbsp;&nbsp;&nbsp;new Number[][] { { 0, 15 }, { 10, -50 }, { 20, -56.5 }
+     * Adds a list of (x,y) data pairs
+     * 
+     * e.g. <code>[[0, 15], [10, -50], [20, -56.5]...</code>
+     * 
+     * could be inserted as follows
+     * 
+     * <code>new Number[][] { { 0, 15 }, { 10, -50 }, { 20, -56.5 }</code>
      * 
      * @param entries
+     *            An array of Numbers representing the (x,y) data pairs.
      */
     public void addData(Number[][] entries) {
         for (Number[] entry : entries) {
@@ -96,57 +100,66 @@ public class DataSeries extends AbstractSeries {
     }
 
     /**
-     * Set data entries, first clearing the old ones, uses given category names
-     * and numeric entries
+     * Sets the data entries, first clearing the old ones. Uses the given
+     * category names and numeric values.
      * 
-     * @param mainCategories
+     * The categoryNames and values arrays must be of equal length.
      * 
-     * @param entries
+     * @param categoryNames
+     *            An array of the category names.
+     * @param values
+     *            An array of the values for each category in the categoryNames
+     *            parameter.
      */
-    public void setData(String[] mainCategories, Number[] entries) {
-        assert (mainCategories.length == entries.length);
+    public void setData(String[] categoryNames, Number[] values) {
+        assert (categoryNames.length == values.length);
         data.clear();
-        for (int i = 0; i < mainCategories.length; i++) {
-            data.add(new DataSeriesItem(mainCategories[i], entries[i]));
+        for (int i = 0; i < categoryNames.length; i++) {
+            data.add(new DataSeriesItem(categoryNames[i], values[i]));
         }
     }
 
     /**
-     * Set data entries, first clearing the old ones, uses given category names
-     * and numeric entries, and colors
+     * Sets the data entries, first clearing the old ones. Uses the given
+     * category names, numeric values, and colors.
      * 
-     * @param mainCategories
-     * @param entries
+     * The categoryNames, values and colors arrays must be of equal length.
+     * 
+     * @param categoryNames
+     *            An array of the category names.
+     * @param values
+     *            An array of the values for each category in the categoryNames
+     *            parameter.
      * @param colors
+     *            An array of colors for each category name, value pair.
      */
-    public void setData(String[] mainCategories, Number[] entries,
-            Color[] colors) {
-        assert (mainCategories.length == entries.length);
-        assert (mainCategories.length == colors.length);
+    public void setData(String[] categoryNames, Number[] values, Color[] colors) {
+        assert (categoryNames.length == values.length);
+        assert (categoryNames.length == colors.length);
         data.clear();
-        for (int i = 0; i < mainCategories.length; i++) {
-            DataSeriesItem item = new DataSeriesItem(mainCategories[i],
-                    entries[i]);
+        for (int i = 0; i < categoryNames.length; i++) {
+            DataSeriesItem item = new DataSeriesItem(categoryNames[i],
+                    values[i]);
             item.setColor(colors[i]);
             data.add(item);
         }
     }
 
     /**
-     * Set data entries, first clearing the old ones, uses same numeric values
-     * for names and y:s
+     * Sets the data entries, first clearing the old ones. Uses the same numeric
+     * value for names (value.toString) and Y-values.
      * 
-     * @param entries
+     * @param values
      */
-    public void setData(Number... numericdata) {
+    public void setData(Number... values) {
         data.clear();
-        for (int i = 0; i < numericdata.length; i++) {
-            data.add(new DataSeriesItem("" + numericdata[i], numericdata[i]));
+        for (int i = 0; i < values.length; i++) {
+            data.add(new DataSeriesItem("" + values[i], values[i]));
         }
     }
 
     /**
-     * Sets whole array of data
+     * Sets the data to the provided list of data items.
      * 
      * @param data
      */
@@ -155,10 +168,10 @@ public class DataSeries extends AbstractSeries {
     }
 
     /**
-     * returns first {@link DataSeriesItem} with matching name returns null if
-     * non is found
-     * 
      * @param name
+     *            The name of the data item to find.
+     * @return The first {@link DataSeriesItem} identified by the specified
+     *         name. Returns null if no matching item is found.
      */
     public DataSeriesItem getDataSeriesItem(String name) {
         for (DataSeriesItem item : data) {
@@ -170,12 +183,15 @@ public class DataSeries extends AbstractSeries {
     }
 
     /**
-     * Return first data series item which x and y match given parameters,
-     * returns null if non is found
+     * Returns the first data series item for which x and y match the given
+     * values within a tolerance of {@value #TOLERANCE}. Returns null if no
+     * matching item is found.
      * 
      * @param x
+     *            The X value of the item to find.
      * @param y
-     * @return
+     *            The Y value of the item to find.
+     * @return The first matching data series item.
      */
     public DataSeriesItem getDataSeriesItem(Number x, Number y) {
         for (DataSeriesItem item : data) {
@@ -200,16 +216,18 @@ public class DataSeries extends AbstractSeries {
     }
 
     /**
-     * Adds a data item and optionally immediately sends an update to the chart,
-     * which causes the chart to dynamically add the data point.
+     * Adds a data item and immediately sends an update to the chart if so
+     * specified. Immediately updating the chart causes it to dynamically add
+     * the data point.
      * 
-     * Calling this method with false for the second parameter is useful if you
-     * want to add many items without a client/server round-trip for each item
-     * added.
+     * This method is useful if you want to add many items without a
+     * client/server round-trip for each item added. Do this by setting the
+     * updateChartImmediately parameter to false.
      * 
      * @param item
+     *            The item to add.
      * @param updateChartImmediately
-     *            automatically updates the chart if true
+     *            Updates the chart immediately if true.
      */
     public void addData(DataSeriesItem item, boolean updateChartImmediately) {
         data.add(item);
@@ -219,9 +237,10 @@ public class DataSeries extends AbstractSeries {
     }
 
     /**
-     * Removes a given item and immediately removes it from the chart
+     * Removes a given item and immediately removes it from the chart.
      * 
      * @param item
+     *            The item to remove.
      */
     public void removeData(DataSeriesItem item) {
         data.remove(item);
@@ -232,18 +251,20 @@ public class DataSeries extends AbstractSeries {
 
     /**
      * @see #setxAxis(Number)
-     * @return X Axis number or null if not defined.
+     * @return The index of the X-axis that this data series is bound to.
+     *         Returns null if undefined.
      */
     public Number getxAxis() {
         return xAxis;
     }
 
     /**
-     * When using dual or multiple x axes, this number defines which xAxis the
+     * When using dual or multiple X-axes, this number defines which X-axis the
      * particular series is connected to. It refers to the index of the axis in
-     * the xAxis array, with 0 being the first. Defaults to 0.
+     * the X-axis array, with 0 being the first. Defaults to 0.
      * 
      * @param xAxis
+     *            The index of the X-axis to bind this data series to.
      */
     public void setxAxis(Number xAxis) {
         this.xAxis = xAxis;
@@ -251,36 +272,34 @@ public class DataSeries extends AbstractSeries {
 
     /**
      * @see #setyAxis(Number)
-     * @return Y Axis number or null if not defined
+     * @return The index of the Y-axis that this data series is bound to.
+     *         Returns null if undefined.
      */
     public Number getyAxis() {
         return yAxis;
     }
 
     /**
-     * When using dual or multiple y axes, this number defines which yAxis the
+     * When using dual or multiple Y-axes, this number defines which Y-axis the
      * particular series is connected to. It refers to the index of the axis in
-     * the yAxis array, with 0 being the first. Defaults to 0.
+     * the Y-axis array, with 0 being the first. Defaults to 0.
      * 
      * @param yAxis
+     *            The index of the Y-axis to bind this data series to.
      */
     public void setyAxis(Number yAxis) {
         this.yAxis = yAxis;
     }
 
     /**
-     * For internal use only, returns internal data
-     * 
-     * @return
+     * For internal use only, returns internal data.
      */
     protected List<DataSeriesItem> getData() {
         return data;
     }
 
     /**
-     * For internal use only, return y-values only
-     * 
-     * @return
+     * For internal use only, returns y-values only
      */
     protected Number[] getNumericData() {
         Number[] nums = new Number[data.size()];
@@ -295,6 +314,7 @@ public class DataSeries extends AbstractSeries {
      * value of the DataSeriesItem is updated.
      * 
      * @param item
+     *            The item to update.
      */
     public void updateData(DataSeriesItem item) {
         if (getConfiguration() != null) {

@@ -30,15 +30,11 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
 
     private transient Configuration configuration;
 
-    /**
-     * Default constructor
-     */
     public AbstractSeries() {
-
     }
 
     /**
-     * Constructor with given series name
+     * Constructs a named series
      */
     public AbstractSeries(String name) {
         setName(name);
@@ -56,7 +52,6 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
 
     /**
      * @see #setStack(String)
-     * @return
      */
     public String getStack() {
         return stack;
@@ -73,7 +68,6 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
         this.stack = stack;
     }
 
-
     @Override
     public void setConfiguration(Configuration configuration) {
         this.configuration = configuration;
@@ -87,8 +81,8 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
     }
 
     /**
-     * Gets plot options related to this specific series. This is needed in
-     * eg.g. "combinded charts".
+     * Gets the plot options related to this specific series. This is needed
+     * e.g. in combined charts.
      * 
      * @return
      */
@@ -97,9 +91,9 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
     }
 
     /**
-     * Sets plot options related to this specific series. This is needed in e.g.
-     * "combined charts". The type of plot options fixes the type used rendering
-     * this series.
+     * Sets the plot options related to this specific series. This is needed
+     * e.g. in combined charts. The type of the given plot options fixes the
+     * chart type used when rendering this series.
      * 
      * @param plotOptions
      */

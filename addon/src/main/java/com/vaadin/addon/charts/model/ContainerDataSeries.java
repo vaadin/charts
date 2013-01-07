@@ -25,7 +25,8 @@ import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.data.Container;
 
 /**
- * Series that wraps Vaadin Container, is mutable only via wrapped container
+ * A series that wraps a Vaadin Container. It is mutable only via the wrapped
+ * container.
  */
 public class ContainerDataSeries extends DataSeries {
 
@@ -41,7 +42,7 @@ public class ContainerDataSeries extends DataSeries {
     private transient final Map<String, Object> attributeToPropertyIdMap;
 
     /**
-     * Construct ContainerDataSeries wrapping the given Container
+     * Constructs a ContainerDataSeries wrapping the given Container
      * 
      * @param container
      */
@@ -51,8 +52,8 @@ public class ContainerDataSeries extends DataSeries {
     }
 
     /**
-     * Add mapping that translates container's property id into chart's x
-     * attribute
+     * Adds mapping that translates a property ID in the container into the
+     * chart's X attribute
      * 
      * @param containerPId
      */
@@ -61,8 +62,8 @@ public class ContainerDataSeries extends DataSeries {
     }
 
     /**
-     * Add mapping that translates container's property id into chart's y
-     * attribute
+     * Adds mapping that translates a property ID in the container into the
+     * chart's Y attribute
      * 
      * @param containerPId
      */
@@ -71,8 +72,8 @@ public class ContainerDataSeries extends DataSeries {
     }
 
     /**
-     * Add mapping that translates container's property id into chart's name
-     * attribute
+     * Adds mapping that translates a property ID in the container into the
+     * chart's name attribute
      * 
      * @param propertyId
      */
@@ -81,8 +82,8 @@ public class ContainerDataSeries extends DataSeries {
     }
 
     /**
-     * Add a mapping between chart attribute (like x, y, name, id ...) and
-     * container's property id
+     * Adds a mapping between a chart attribute (like x, y, name, id ...) and a
+     * property id in the container.
      * 
      * @param chartAttribute
      * @param containerId
@@ -93,60 +94,64 @@ public class ContainerDataSeries extends DataSeries {
     }
 
     /**
-     * Returns wrapped Vaadin container
-     * 
-     * @return
+     * @return the wrapped Vaadin container.
      */
     public Container getVaadinContainer() {
         return vaadinContainer;
     }
 
     /**
-     * Return mappings between chart attributes (keys) and Vaadin container's
-     * property id's (alues)
-     * 
-     * @return
+     * @return mappings between chart attributes (keys) and property IDs
+     *         (values) in the container
      */
     public Map<String, Object> getAttributeToPropertyIdMap() {
         return attributeToPropertyIdMap;
     }
 
+    /** Unsupported operation */
     @Override
     public void addData(Number[][] entries) {
         throw new UnsupportedOperationException();
     }
 
+    /** Unsupported operation */
     @Override
     public void setData(String[] mainCategories, Number[] entries) {
         throw new UnsupportedOperationException();
     }
 
+    /** Unsupported operation */
     @Override
     public void setData(String[] mainCategories, Number[] entries,
             Color[] colors) {
         throw new UnsupportedOperationException();
     }
 
+    /** Unsupported operation */
     @Override
     public void setData(Number... numericdata) {
         throw new UnsupportedOperationException();
     }
 
+    /** Unsupported operation */
     @Override
     public void setData(List<DataSeriesItem> data) {
         throw new UnsupportedOperationException();
     }
 
+    /** Unsupported operation */
     @Override
     public void addData(DataSeriesItem item) {
         throw new UnsupportedOperationException();
     }
 
+    /** Unsupported operation */
     @Override
     public void addData(DataSeriesItem item, boolean updateChartImmediately) {
         throw new UnsupportedOperationException();
     }
 
+    /** Unsupported operation */
     @Override
     public void updateData(DataSeriesItem item) {
         throw new UnsupportedOperationException();

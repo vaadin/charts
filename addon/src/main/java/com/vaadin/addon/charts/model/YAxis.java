@@ -28,18 +28,17 @@ public class YAxis extends Axis {
 
     /**
      * @see #setStackLabels(StackLabels)
-     * @return
      */
     public StackLabels getStackLabels() {
         return stackLabels;
     }
 
     /**
-     * The stack labels show the total value for each bar in a stacked column or
-     * bar chart. The label will be placed on top of positive columns and below
-     * negative columns. In case of an inverted column chart or a bar chart the
-     * label is placed to the right of positive bars and to the left of negative
-     * bars.
+     * Sets the stack labels. The stack labels show the total value for each bar
+     * in a stacked column or bar chart. The label will be placed on top of
+     * positive columns and below negative columns. In case of an inverted
+     * column chart or a bar chart the label is placed to the right of positive
+     * bars and to the left of negative bars.
      * 
      * @param stackLabels
      */
@@ -48,7 +47,7 @@ public class YAxis extends Axis {
     }
 
     /**
-     * PlotLines for yAxis
+     * Sets the plot lines for the Y-axis
      * 
      * @param plotLines
      */
@@ -64,7 +63,7 @@ public class YAxis extends Axis {
     }
 
     /**
-     * The pane index to where this axis is rendered
+     * Sets the index of the pane onto which this axis is rendered.
      * 
      * @param pane
      */
@@ -74,14 +73,14 @@ public class YAxis extends Axis {
 
     /**
      * @see #setPane(Number)
-     * @return
+     * @return The index of the pane onto which this axis is rendered.
      */
     public Number getPane() {
         return pane;
     }
 
     /**
-     * Define polar graph type. E.g. "POLYGON" for spiderweb chart
+     * Defines a polar graph type. E.g. "POLYGON" for a spiderweb chart
      * 
      * @param gridLineInterpolation
      */
@@ -91,7 +90,6 @@ public class YAxis extends Axis {
 
     /**
      * @see #setGridLineInterpolation(String)
-     * @return
      */
     public String getGridLineInterpolation() {
         return gridLineInterpolation;

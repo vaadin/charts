@@ -27,48 +27,45 @@ public class PaneList extends AbstractConfigurationObject {
     private final List<Pane> paneList = new ArrayList<Pane>();
 
     /**
-     * Get number or panes in list
-     * 
-     * @return
+     * @return The number of panes in the list
      */
     public int getNumberOfPanes() {
         return paneList.size();
     }
 
     /**
-     * Get Pane with given index
-     * 
      * @param index
-     *            Index of pane
-     * @return Pane with given index
+     *            Index of the pane
+     * @return The pane with the given index
      */
     public Pane getPane(int index) {
         return paneList.get(index);
     }
 
     /**
-     * Get pane list. Use this only for serialization.
+     * Returns the pane list. Use this only for serialization.
      * 
-     * @return
+     * @return The pane list.
      */
     public List<Pane> getPanes() {
         return paneList;
     }
 
     /**
-     * Add new pane to list
+     * Adds a new pane to the list
      * 
      * @param pane
-     *            Pane added
+     *            The pane to add
      */
     public void addPane(Pane pane) {
         paneList.add(pane);
     }
 
     /**
-     * Add new pane to list
+     * Removes a pane from the list
      * 
      * @param pane
+     *            The pane to remove
      */
     public void removePane(Pane pane) {
         paneList.remove(pane);

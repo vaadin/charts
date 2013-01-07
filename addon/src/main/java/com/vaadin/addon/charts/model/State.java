@@ -18,26 +18,27 @@ package com.vaadin.addon.charts.model;
  */
 
 /**
- * Custom styles for varios states.
+ * Custom styles for various states.
  */
+@SuppressWarnings("serial")
 public class State extends AbstractConfigurationObject {
-    
+
     private Boolean enabled;
     private Number radius;
     private Number lineWidth;
     private MarkerSymbol symbol;
 
     /**
-     * Default constructor
+     * Constructs a disabled State.
      */
     public State() {
-
     }
 
     /**
-     * Constructor with given enabled parameter
+     * Constructs a State that is either enabled or disabled.
      * 
      * @param enabled
+     *            true to enable, false to disable.
      */
     public State(Boolean enabled) {
         this.enabled = enabled;
@@ -45,14 +46,13 @@ public class State extends AbstractConfigurationObject {
 
     /**
      * @see #setEnabled(Boolean)
-     * @return
      */
     public boolean isEnabled() {
-    	return enabled == null ? true : enabled;
+        return enabled == null ? true : enabled;
     }
 
     /**
-     * Enable separate styles for the hovered series to visualize that the user
+     * Enables separate styles for the hovered series to visualize that the user
      * hovers either the series itself or the legend. Defaults to true.
      * 
      * @param enabled
@@ -62,7 +62,7 @@ public class State extends AbstractConfigurationObject {
     }
 
     /**
-     * The radius of the point marker. Defaults to 0.
+     * Sets the radius of the point marker. Defaults to 0.
      * 
      * @param radius
      */
@@ -72,14 +72,14 @@ public class State extends AbstractConfigurationObject {
 
     /**
      * @see #setRadius(Number)
-     * @return
+     * @return The radius of the point marker.
      */
     public Number getRadius() {
         return radius;
     }
 
     /**
-     * The width of the point marker's outline. Defaults to 0.
+     * Sets the width of the point marker's outline. Defaults to 0.
      * 
      * @param lineWidth
      */
@@ -89,18 +89,17 @@ public class State extends AbstractConfigurationObject {
 
     /**
      * @see #setLineWidth(Number)
-     * @return
      */
     public Number getLineWidth() {
         return lineWidth;
     }
 
     /**
-     * A predefined shape or symbol for the marker. When null, the symbol is
-     * pulled from options.symbols. Other possible values are "circle",
-     * "square", "diamond", "triangle" and "triangle-down". Additionally, the
-     * URL to a graphic can be given on this form: "url(graphic.png)". Defaults
-     * to null.
+     * Sets a predefined shape or symbol for the marker. When null, the symbol
+     * is pulled from options.symbols. Defaults to null.
+     * 
+     * @see MarkerSymbolEnum
+     * @see MarkerSymbolUrl
      * 
      * @param symbol
      */
@@ -110,7 +109,6 @@ public class State extends AbstractConfigurationObject {
 
     /**
      * @see #setSymbol(MarkerSymbol)
-     * @return
      */
     public MarkerSymbol getSymbol() {
         return symbol;

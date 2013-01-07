@@ -30,19 +30,19 @@ import com.vaadin.addon.charts.model.gsonhelpers.SolidColorSerializer;
 import com.vaadin.addon.charts.model.style.SolidColor;
 
 /**
- * Abstract base class for model classes to be serialized to json. Mainly
- * com.vaadin.addon.charts.model.Configuration and stuff it uses.
+ * Abstract base class for model classes to be serialized to JSON. Mainly
+ * com.vaadin.addon.charts.model.Configuration and the stuff it uses.
  */
 public abstract class AbstractConfigurationObject implements Serializable {
 
     private static Gson gson;
     static {
-        // GSON is thread safe so we can use shared gson instance
+        // GSON is thread safe so we can use shared GSON instance
         gson = createGsonBuilder().create();
     }
 
     /**
-     * Returns default gson builder for configuration serializer.
+     * Returns default GSON builder for configuration serializer.
      */
     public static GsonBuilder createGsonBuilder() {
         GsonBuilder builder = new GsonBuilder();

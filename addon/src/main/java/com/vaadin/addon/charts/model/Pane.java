@@ -19,8 +19,8 @@ package com.vaadin.addon.charts.model;
 
 /**
  * Applies only to polar charts and angular gauges. This configuration object
- * holds general options for the combined X and Y axes set. Each xAxis or yAxis
- * can reference the pane by index.
+ * holds general options for the combined X- and Y- axes set. Each {@link XAxis}
+ * or {@link YAxis} can reference the pane by index.
  * 
  */
 public class Pane extends AbstractConfigurationObject {
@@ -31,15 +31,11 @@ public class Pane extends AbstractConfigurationObject {
     private Object[] center;
     private Object size;
 
-    /**
-     * Default constructor
-     */
     public Pane() {
-
     }
 
     /**
-     * Construct Pane with given start and end angle
+     * Constructs a Pane with the given start and end angle set in degrees.
      * 
      * @param startAngle
      * @param endAngle
@@ -51,15 +47,14 @@ public class Pane extends AbstractConfigurationObject {
 
     /**
      * @see #setEndAngle(Number)
-     * @return
      */
     public Number getEndAngle() {
         return endAngle;
     }
 
     /**
-     * The end angle of the polar X axis or gauge value axis, given in degrees
-     * where 0 is north. Defaults to startAngle + 360.
+     * Sets the end angle of the polar X-axis or gauge value axis, given in
+     * degrees where 0 is north. Defaults to startAngle + 360.
      * 
      * @param endAngle
      */
@@ -69,15 +64,14 @@ public class Pane extends AbstractConfigurationObject {
 
     /**
      * @see #setStartAngle(Number)
-     * @return
      */
     public Number getStartAngle() {
         return startAngle;
     }
 
     /**
-     * The start angle of the polar X axis or gauge axis, given in degrees where
-     * 0 is north. Defaults to 0.
+     * Sets the start angle of the polar X-axis or gauge axis, given in degrees
+     * where 0 is north. Defaults to 0.
      * 
      * @param startAngle
      */
@@ -87,27 +81,24 @@ public class Pane extends AbstractConfigurationObject {
 
     /**
      * @see #setBackground(Background[])
-     * @return
      */
     public Background[] getBackground() {
         return background;
     }
 
     /**
-     * An object, or array of objects, for backgrounds. Sub options include
-     * backgroundColor (which can be solid or gradient), innerWidth, outerWidth,
-     * borderWidth, borderColor.
+     * Sets the backgrounds of the pane. May be one or several.
      * 
-     * @param background
+     * @param backgrounds
      */
-    public void setBackground(Background[] background) {
-        this.background = background;
+    public void setBackground(Background... backgrounds) {
+        this.background = backgrounds;
     }
 
     /**
-     * The center of a polar chart or angular gauge, given as an array of [x, y]
-     * positions. Positions can be given as integers that transform to pixels,
-     * or as percentages of the plot area size. Defaults to ['50%', '50%'].
+     * Sets the center of a polar chart or angular gauge. Positions can be given
+     * as integers that transform to pixels, or as percentages of the plot area
+     * size. Defaults to ['50%', '50%'].
      * 
      * @param x
      * @param y
@@ -118,14 +109,13 @@ public class Pane extends AbstractConfigurationObject {
 
     /**
      * @see #setCenterXY(Object, Object)
-     * @return
      */
     public Object[] getCenter() {
         return center;
     }
 
     /**
-     * Pane's pixel size (Number) or pecentage size (String)
+     * Sets the size of the Pane in pixels (Number) or percent (String).
      * 
      * @param size
      */
@@ -135,7 +125,6 @@ public class Pane extends AbstractConfigurationObject {
 
     /**
      * @see #setSize(Number)
-     * @return
      */
     public Object getSize() {
         return size;
