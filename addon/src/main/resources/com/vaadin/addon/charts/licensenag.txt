@@ -7,7 +7,7 @@ Commercial Vaadin Add-on License is available at
 https://vaadin.com/license/cval-2.0. 
 
 You may obtain a valid license by subscribing to Vaadin Pro Account at
-https://vaadin.com/pro-signup or by purchasing a perpetual license at
+https://vaadin.com/pro or by purchasing a perpetual license at
 https://vaadin.com/directory.
 
 A valid license key is your perpetual license key purchased from Vaadin
