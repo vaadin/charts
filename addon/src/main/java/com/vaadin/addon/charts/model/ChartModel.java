@@ -263,24 +263,7 @@ public class ChartModel extends AbstractConfigurationObject {
     }
 
     /**
-     * Set all margin parameters like {@link #setMarginTop(Number)} in same call
-     * 
-     * @param margins
-     */
-    public void setMargin(Number[] margins) {
-        if (margins == null || margins.length == 4) {
-            margin = margins;
-        } else if (margins.length == 1) {
-            setMargin(margins[0]);
-        } else if (margin.length == 2) {
-            setMargin(margins[0], margins[1]);
-        } else {
-            throw new IllegalArgumentException("Illegal margins");
-        }
-    }
-
-    /**
-     * Sets all margins to same value
+     * Sets all margins to the same value
      * 
      * @param size
      */
@@ -289,8 +272,8 @@ public class ChartModel extends AbstractConfigurationObject {
     }
 
     /**
-     * Sets horizontal margin for top and right margin and vertical for bottom
-     * and left
+     * Sets the horizontal margin for the right and left margin and the vertical
+     * margin for top and bottom
      * 
      * @param horizontal
      * @param vertical
@@ -300,17 +283,18 @@ public class ChartModel extends AbstractConfigurationObject {
     }
 
     /**
-     * Set all margin parameters like {@link #setMarginTop(Number)} in same call
+     * Set all margins in one call
      * 
      * @param margins
      */
-    public void setMargin(Number left, Number top, Number bottom, Number right) {
-        margin = new Number[] { left, top, bottom, right };
+    public void setMargin(Number top, Number right, Number bottom, Number left) {
+        margin = new Number[] { top, right, bottom, left };
     }
 
     /**
-     * @see #setMargin(Number[])
-     * @return
+     * @see #setMargin(Number)
+     * @see #setMargin(Number, Number)
+     * @see #setMargin(Number, Number, Number, Number)
      */
     public Number[] getMargin() {
         return margin;
