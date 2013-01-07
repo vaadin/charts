@@ -22,13 +22,14 @@ import com.vaadin.addon.charts.model.style.Color;
 /**
  * An object, or array of objects, for backgrounds. Sub options include
  * backgroundColor (which can be solid or gradient), innerWidth, outerWidth,
- * borderWidth, borderColor.
+ * borderWidth, borderColor. <br />
+ * <br />
+ * <b>These configurations applies only to polar and angular gauges trough the
+ * Pane-configuration object.</b>
  */
 public class Background extends AbstractConfigurationObject {
     private Color backgroundColor;
     private Color borderColor;
-    private Number innerWidth;
-    private Number outerWidth;
     private Number borderWidth;
     private String outerRadius;
     private String innerRadius;
@@ -66,38 +67,6 @@ public class Background extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #setInnerWidth(Number)
-     */
-    public Number getInnerWidth() {
-        return innerWidth;
-    }
-
-    /**
-     * Sets the inner width
-     * 
-     * @param innerWidth
-     */
-    public void setInnerWidth(Number innerWidth) {
-        this.innerWidth = innerWidth;
-    }
-
-    /**
-     * @see #setOuterWidth(Number)
-     */
-    public Number getOuterWidth() {
-        return outerWidth;
-    }
-
-    /**
-     * Sets the outer width
-     * 
-     * @param outerWidth
-     */
-    public void setOuterWidth(Number outerWidth) {
-        this.outerWidth = outerWidth;
-    }
-
-    /**
      * @see #setBorderWidth(Number)
      */
     public Number getBorderWidth() {
@@ -114,8 +83,10 @@ public class Background extends AbstractConfigurationObject {
     }
 
     /**
-     * Sets the outer radius using a string representation of a percentage, e.g.
-     * "110%"
+     * Sets the outer radius of the circular shaped background using a string
+     * representation of a percentage, e.g. "110%". This is applicable only for
+     * circular GAUGE type charts. Percentage represent the percentage of the
+     * radius of the chart.
      * 
      * @param outerRadius
      */
@@ -131,8 +102,10 @@ public class Background extends AbstractConfigurationObject {
     }
 
     /**
-     * Sets the inner radius using a string representation of a percentage, e.g.
-     * "110%"
+     * Sets the inner radius of the circular shaped background using a string
+     * representation of a percentage, e.g. "110%". This is applicable only for
+     * circular GAUGE type charts. Percentage represent the percentage of the
+     * radius of the chart.
      * 
      * @param outerRadius
      */
