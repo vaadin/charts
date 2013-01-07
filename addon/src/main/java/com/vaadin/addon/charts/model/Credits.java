@@ -17,6 +17,7 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
+import com.vaadin.addon.charts.model.style.Style;
 import com.vaadin.addon.charts.model.style.StylePosition;
 
 /**
@@ -28,11 +29,9 @@ public class Credits {
     private Boolean enabled;
     private String text;
     private String href;
+    private Style style = new Style();
     private StylePosition position;
 
-    /**
-     * Constructs a disabled Credits object.
-     */
     public Credits() {
     }
 
@@ -125,6 +124,22 @@ public class Credits {
      */
     public void setHref(String href) {
         this.href = href;
+    }
+
+    /**
+     * @return The styles for the credits
+     */
+    public Style getStyle() {
+        return style;
+    }
+
+    /**
+     * Sets the styles for the credits
+     * 
+     * @param style
+     */
+    public void setStyle(Style style) {
+        this.style = style;
     }
 
 }

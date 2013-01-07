@@ -18,6 +18,7 @@ package com.vaadin.addon.charts.model.style;
  */
 
 import com.vaadin.addon.charts.model.AbstractConfigurationObject;
+import com.vaadin.addon.charts.model.Credits;
 import com.vaadin.addon.charts.themes.VaadinTheme;
 
 /**
