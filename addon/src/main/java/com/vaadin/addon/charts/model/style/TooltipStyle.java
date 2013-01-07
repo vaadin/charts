@@ -20,7 +20,7 @@ package com.vaadin.addon.charts.model.style;
 import com.vaadin.addon.charts.model.AbstractConfigurationObject;
 
 /**
- * Style options of Tooltip
+ * Style options for tooltips
  */
 public class TooltipStyle extends AbstractConfigurationObject {
 
@@ -30,54 +30,46 @@ public class TooltipStyle extends AbstractConfigurationObject {
     private Style style = new Style();
 
     /**
-     * Get background color of tooltip
-     * 
-     * @return Background color, null if not defined
+     * @return The background color of tooltips, null if not defined
      */
     public Color getBackgroundColor() {
         return backgroundColor;
     }
 
     /**
-     * Set background color of tooltip
+     * Sets the background color of tooltips
      * 
      * @param backgroundColor
-     *            Background color
      */
     public void setBackgroundColor(Color backgroundColor) {
         this.backgroundColor = backgroundColor;
     }
 
     /**
-     * Get border width of tooltip
-     * 
-     * @return Border width of tooltip, or null if not defined
+     * @return The width of the border of tooltips, or null if not defined
      */
     public Number getBorderWidth() {
         return borderWidth;
     }
 
     /**
-     * Set border width of tooltip
+     * Sets the width of the border of tooltips
      * 
      * @param borderWidth
-     *            Border width
      */
     public void setBorderWidth(Number borderWidth) {
         this.borderWidth = borderWidth;
     }
 
     /**
-     * Get style attributes of tooltip
-     * 
-     * @return Style attributes
+     * @return The style attributes for tooltips
      */
     public Style getStyle() {
         return style;
     }
 
     /**
-     * Set style attributes of tooltip
+     * Sets the style attributes for tooltips
      * 
      * @param style
      *            Style attributes
@@ -87,16 +79,17 @@ public class TooltipStyle extends AbstractConfigurationObject {
     }
 
     /**
-     * @return the border radius of the tooltip element
+     * @return The border radius of tooltips
      */
     public Number getBorderRadius() {
         return borderRadius;
     }
 
     /**
-     * Sets the border radius of the tooltip element
-     *
-     * @param borderRadius the border radius in pixels
+     * Sets the border radius of tooltips
+     * 
+     * @param borderRadius
+     *            the border radius in pixels
      */
     public void setBorderRadius(Number borderRadius) {
         this.borderRadius = borderRadius;

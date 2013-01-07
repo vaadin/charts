@@ -62,25 +62,21 @@ public class GradientColor implements Color {
     }
 
     /**
-     * Return the linearGradient
-     * 
-     * @return
+     * @return The linear gradient
      */
     public LinearGradient getLinearGradient() {
         return linearGradient;
     }
 
     /**
-     * Return the radialGradient
-     * 
-     * @return
+     * @return The radial gradient
      */
     public RadialGradient getRadialGradient() {
         return radialGradient;
     }
 
     /**
-     * Currently for internal use only, make stops typed if opening api is
+     * Currently for internal use only, make stops typed if opening API is
      * required.
      */
     List<List<Object>> getStops() {
@@ -88,35 +84,36 @@ public class GradientColor implements Color {
     }
 
     /**
-     * Adds a color stop to gradient
+     * Adds a color stop to the gradient
      * 
      * @param d
-     *            relative point of the color stop, between 0 and 1
-     * @param c
-     *            the color for color stop
+     *            The relative point of the color stop, between 0 and 1
+     * @param color
+     *            The color at the point defined by d
      */
-    public void addColorStop(double d, SolidColor c) {
+    public void addColorStop(double d, SolidColor color) {
         if (stops == null) {
             stops = new ArrayList<List<Object>>();
         }
         ArrayList<Object> colorStop = new ArrayList<Object>(2);
         colorStop.add(d);
-        colorStop.add(c);
+        colorStop.add(color);
         stops.add(colorStop);
     }
 
     /**
-     * Creates a new linear gradient between given points.
+     * Creates a new linear gradient between two given points. Use
+     * {@link #addColorStop(double, SolidColor)} to define the colors.
      * 
      * @param startX
-     *            relative start point in x axis, 0-1
+     *            The relative start point on the X-axis, 0..1
      * @param startY
-     *            relative start point in y axis, 0-1
+     *            The relative start point on the Y-axis, 0..1
      * @param endX
-     *            relative end point in x axis, 0-1
+     *            The relative end point on the X-axis, 0..1
      * @param endY
-     *            relative end point in y axis, 0-1
-     * @return New linear gradient color
+     *            The relative end point on the Y-axis, 0..1
+     * @return A new linear gradient color
      */
     public static GradientColor createLinear(double startX, double startY,
             double endX, double endY) {
@@ -126,15 +123,17 @@ public class GradientColor implements Color {
     }
 
     /**
-     * Create radial gradient color
+     * Creates a radial gradient color at a specified point with the given
+     * radius. Use {@link #addColorStop(double, SolidColor)} to define the
+     * colors.
      * 
      * @param centerX
-     *            Center X coordinate
+     *            The X coordinate of the center
      * @param centerY
-     *            Center Y coordinate
+     *            The Y coordinate of the center
      * @param radius
-     *            Radius
-     * @return Radial gradient color
+     *            The radius
+     * @return A new radial gradient
      */
     public static GradientColor createRadial(double centerX, double centerY,
             double radius) {

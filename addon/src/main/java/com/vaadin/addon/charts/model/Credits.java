@@ -30,6 +30,9 @@ public class Credits {
     private String href;
     private StylePosition position;
 
+    /**
+     * Constructs a disabled Credits object.
+     */
     public Credits() {
     }
 

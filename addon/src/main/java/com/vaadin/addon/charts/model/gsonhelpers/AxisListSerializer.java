@@ -25,8 +25,8 @@ import com.google.gson.JsonSerializer;
 import com.vaadin.addon.charts.model.AxisList;
 
 /**
- * Serializer for axis containers. Takes care of switching between single
- * item and array.
+ * A serializer for axis containers. Takes care of switching between single
+ * items and arrays.
  */
 public class AxisListSerializer implements JsonSerializer<AxisList> {
 

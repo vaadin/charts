@@ -18,9 +18,8 @@ package com.vaadin.addon.charts.model.style;
  */
 
 /**
- * Highchart by default puts a credits label in the lower right corner of the
- * chart. This can be changed using these options.
- * 
+ * A credits label is put in the lower right corner of the chart by default.
+ * This label can be changed using these options.
  */
 public class Credits extends StyleWrapper {
 
@@ -30,24 +29,24 @@ public class Credits extends StyleWrapper {
     private StylePosition position;
 
     /**
-     * Default constructor
+     * Constructs a disabled Credits object.
      */
     public Credits() {
-
     }
 
     /**
-     * Create credits with enabled state
+     * Constructs a Credits instance that is either enabled or disabled.
      * 
      * @param enabled
-     *            Enabled state of credit made
+     *            True to enable, false to disable.
      */
     public Credits(boolean enabled) {
         setEnabled(enabled);
     }
 
     /**
-     * Create enabled credit with given text
+     * Constructs a Credits instance with the given text. Credits are
+     * automatically enabled.
      * 
      * @param text
      *            Text in credit
@@ -59,14 +58,14 @@ public class Credits extends StyleWrapper {
 
     /**
      * @see #setEnabled(Boolean)
-     * @return enabled
+     * @return true if enabled, false if disabled.
      */
     public boolean isEnabled() {
         return enabled == null ? true : enabled;
     }
 
     /**
-     * Whether to show the credits text. Defaults to true.
+     * Sets whether to show the credits text or not. Defaults to true.
      * 
      * @param enabled
      */
@@ -76,14 +75,14 @@ public class Credits extends StyleWrapper {
 
     /**
      * @see #setText(String)
-     * @return Text or null if not defined
+     * @return The text of the credits label or null if not defined
      */
     public String getText() {
         return text;
     }
 
     /**
-     * The text for the credits label. Defaults to "Vaadin Charts".
+     * Sets the text of the credits label. Defaults to "Vaadin Charts".
      * 
      * @param text
      */
@@ -93,15 +92,15 @@ public class Credits extends StyleWrapper {
 
     /**
      * @see #setPosition(StylePosition)
-     * @return Position or null if not defined
+     * @return The position or null if not defined
      */
     public StylePosition getPosition() {
         return position;
     }
 
     /**
-     * Position configuration for the credits label. Supported properties are
-     * align, verticalAlign, x and y.
+     * Sets the position configuration for the credits label. Supported
+     * properties are align, verticalAlign, x and y.
      * 
      * @param position
      */
@@ -111,15 +110,14 @@ public class Credits extends StyleWrapper {
 
     /**
      * @see #setHref(String)
-     * 
-     * @return
+     * @return the link that the credit text points to.
      */
     public String getHref() {
         return href;
     }
 
     /**
-     * Sets the link where credits text point to
+     * Sets the link where the credits text is to point.
      * 
      * @param href
      */

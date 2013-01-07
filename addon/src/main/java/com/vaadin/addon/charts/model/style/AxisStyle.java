@@ -20,8 +20,9 @@ package com.vaadin.addon.charts.model.style;
 import com.vaadin.addon.charts.model.AbstractConfigurationObject;
 
 /**
- * Styles of Axis
+ * The AxisStyle class contains options for customizing the style of an axis
  */
+@SuppressWarnings("serial")
 public class AxisStyle extends AbstractConfigurationObject {
 
     private TickIntervalStyle minorTickInterval;
@@ -39,23 +40,24 @@ public class AxisStyle extends AbstractConfigurationObject {
 
     /**
      * @see #setMinorTickInterval(TickIntervalStyle)
-     * @return
      */
     public TickIntervalStyle getMinorTickInterval() {
         return minorTickInterval;
     }
 
     /**
-     * Tick interval in scale units for the minor ticks. On a linear axis, if
-     * AUTO, the minor tick interval is calculated as a fifth of the
-     * tickInterval. If null, minor ticks are not shown.
+     * Sets the tick interval in scale units for the minor ticks. On a linear
+     * axis, if {@link TickIntervalStyle#AUTO}, the minor tick interval is
+     * calculated as a fifth of the tickInterval. If null, minor ticks are not
+     * shown.
      * 
      * On logarithmic axes, the unit is the power of the value. For example,
-     * setting the minorTickInterval to 1 puts one tick on each of 0.1, 1, 10,
-     * 100 etc. Setting the minorTickInterval to 0.1 produces 9 ticks between 1
-     * and 10, 10 and 100 etc. A minorTickInterval of AUTO on a log axis results
-     * in a best guess, attempting to enter approximately 5 minor ticks between
-     * each major tick. Defaults to null.
+     * setting the minor tick interval to 1 puts one tick on each of 0.1, 1, 10,
+     * 100 etc. Setting the minor tick interval to 0.1 produces 9 ticks between
+     * 1 and 10, 10 and 100 etc. A minor tick interval of
+     * {@link TickIntervalStyle#AUTO} on a log axis results in a best guess,
+     * attempting to enter approximately 5 minor ticks between each major tick.
+     * Defaults to null.
      * 
      * @param minorTickInterval
      */
@@ -65,14 +67,14 @@ public class AxisStyle extends AbstractConfigurationObject {
 
     /**
      * @see #setLineColor(Color)
-     * @return
      */
     public Color getLineColor() {
         return lineColor;
     }
 
     /**
-     * The color of the line marking the axis itself. Defaults to "#C0D0E0".
+     * Sets the color of the line marking the axis itself. Defaults to
+     * "#C0D0E0".
      * 
      * @param lineColor
      */
@@ -82,14 +84,13 @@ public class AxisStyle extends AbstractConfigurationObject {
 
     /**
      * @see #setLineWidth(Number)
-     * @return
      */
     public Number getLineWidth() {
         return lineWidth;
     }
 
     /**
-     * The width of the line marking the axis itself. Defaults to 1.
+     * Sets the width of the line marking the axis itself. Defaults to 1.
      * 
      * @param lineWidth
      */
@@ -99,14 +100,13 @@ public class AxisStyle extends AbstractConfigurationObject {
 
     /**
      * @see #setTickWidth(Number)
-     * @return
      */
     public Number getTickWidth() {
         return tickWidth;
     }
 
     /**
-     * The pixel width of the major tick marks. Defaults to 1.
+     * Sets the pixel width of the major tick marks. Defaults to 1.
      * 
      * @param tickWidth
      */
@@ -116,14 +116,13 @@ public class AxisStyle extends AbstractConfigurationObject {
 
     /**
      * @see #setTickColor(Color)
-     * @return
      */
     public Color getTickColor() {
         return tickColor;
     }
 
     /**
-     * Color for the main tick marks. Defaults to #C0D0E0.
+     * Sets the color for the main tick marks. Defaults to #C0D0E0.
      * 
      * @param tickColor
      */
@@ -132,35 +131,30 @@ public class AxisStyle extends AbstractConfigurationObject {
     }
 
     /**
-     * Get title style
-     * 
-     * @return Title style
+     * @return The title style
      */
     public Style getTitle() {
         return title.getStyle();
     }
 
     /**
-     * Set title style
+     * Sets the title style
      * 
      * @param style
-     *            Title style
      */
     public void setTitle(Style style) {
         title.setStyle(style);
     }
 
     /**
-     * Get subtitle style
-     * 
-     * @return Subtitle style
+     * @return The subtitle style
      */
     public Style getSubtitle() {
         return subtitle.getStyle();
     }
 
     /**
-     * Set subtitle style
+     * Sets the subtitle style
      * 
      * @param style
      *            Subtitle style
@@ -170,16 +164,14 @@ public class AxisStyle extends AbstractConfigurationObject {
     }
 
     /**
-     * Get labels style
-     * 
-     * @return Labels style
+     * @return The style for labels
      */
     public Style getLabels() {
         return labels.getStyle();
     }
 
     /**
-     * Set labels style
+     * Sets the style for labels
      * 
      * @param style
      *            Labels style
@@ -191,18 +183,17 @@ public class AxisStyle extends AbstractConfigurationObject {
     /**
      * @see #setGridLineWidth(Number)
      * 
-     * @return Grid line width or null if not defined
+     * @return The width of grid lines or null if not defined
      */
     public Number getGridLineWidth() {
         return gridLineWidth;
     }
 
     /**
-     * The width of the grid lines extending the ticks across the plot area.
-     * Defaults to 0.
+     * Sets the width of the grid lines extending the ticks across the plot
+     * area. Defaults to 0.
      * 
      * @param gridLineWidth
-     *            Grid line width
      */
     public void setGridLineWidth(Number gridLineWidth) {
         this.gridLineWidth = gridLineWidth;
@@ -211,18 +202,18 @@ public class AxisStyle extends AbstractConfigurationObject {
     /**
      * @see #setAlternateGridColor(Color)
      * 
-     * @return Alternate grid color, null if not defined
+     * @return The alternate grid color, null if not defined
      */
     public Color getAlternateGridColor() {
         return alternateGridColor;
     }
 
     /**
-     * When using an alternate grid color, a band is painted across the plot
-     * area between every other grid line. Defaults to null.
+     * Sets the alternate grid color. When using an alternate grid color, a band
+     * is painted across the plot area between every other grid line. Defaults
+     * to null.
      * 
      * @param alternateGridColor
-     *            Alternate grid color
      */
     public void setAlternateGridColor(Color alternateGridColor) {
         this.alternateGridColor = alternateGridColor;
@@ -231,15 +222,15 @@ public class AxisStyle extends AbstractConfigurationObject {
     /**
      * @see #setGridLineColor(Color)
      * 
-     * @return Color of grid lines, null if not defined
+     * @return The color of grid lines, null if not defined
      */
     public Color getGridLineColor() {
         return gridLineColor;
     }
 
     /**
-     * Color of the grid lines extending the ticks across the plot area.
-     * Defaults to "#C0C0C0".
+     * Sets the color of the grid lines extending the ticks across the plot
+     * area. Defaults to "#C0C0C0".
      * 
      * @param gridLineColor
      *            Color of grid lines

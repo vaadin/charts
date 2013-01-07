@@ -23,8 +23,9 @@ import com.vaadin.addon.charts.model.style.Style;
 import com.vaadin.addon.charts.model.style.TickIntervalStyle;
 
 /**
- * Theme based on Grid theme on HighCharts demo page
+ * A theme based on the Grid theme on the HighCharts demo page
  */
+@SuppressWarnings("serial")
 public class GridTheme extends HighChartsDefaultTheme {
 
     public final static String FONT_FAMILIES = "\"Trebuchet MS\", Verdana, sans-serif";
@@ -35,7 +36,7 @@ public class GridTheme extends HighChartsDefaultTheme {
                 new SolidColor("#24CBE5"), new SolidColor("#64E572"),
                 new SolidColor("#FF9655"), new SolidColor("#FFF263"),
                 new SolidColor("#6AF9C4"));
-        
+
         Style style = new Style();
         style.setFontFamily(FONT_FAMILIES);
         style.setFontSize("12px");
@@ -69,7 +70,7 @@ public class GridTheme extends HighChartsDefaultTheme {
         getyAxis().getLabels().setFontSize("11px");
         getyAxis().getTitle().setColor(new SolidColor("#333"));
         getyAxis().getTitle().setFontWeight(FontWeight.BOLD);
- 
+
         getLegend().getItemStyle().setColor(new SolidColor("black"));
 
         getLegend().getItemHoverStyle().setColor(new SolidColor("#039"));

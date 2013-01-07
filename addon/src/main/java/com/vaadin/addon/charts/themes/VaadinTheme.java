@@ -26,8 +26,9 @@ import com.vaadin.addon.charts.model.style.Theme;
 import com.vaadin.addon.charts.model.style.TickIntervalStyle;
 
 /**
- * Default Vaadin theme
+ * The default theme for Vaadin Charts
  */
+@SuppressWarnings("serial")
 public class VaadinTheme extends Theme {
 
     protected static final int BORDER_RADIUS = 2;

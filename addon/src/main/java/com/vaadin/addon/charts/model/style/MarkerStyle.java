@@ -27,14 +27,13 @@ public class MarkerStyle extends AbstractConfigurationObject {
 
     /**
      * @see #setLineColor(Color)
-     * @return
      */
     public Color getLineColor() {
         return lineColor;
     }
 
     /**
-     * The color of the point marker's outline. When null, the series' or
+     * Sets the color of the point marker's outline. When null, the series' or
      * point's color is used. Defaults to "#FFFFFF".
      * 
      * @param lineColor

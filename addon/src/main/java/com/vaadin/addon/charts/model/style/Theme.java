@@ -20,7 +20,6 @@ package com.vaadin.addon.charts.model.style;
 import com.vaadin.addon.charts.model.AbstractConfigurationObject;
 import com.vaadin.addon.charts.themes.VaadinTheme;
 
-
 /**
  * Theme class for Chart. This is empty theme, and only defines the structure of
  * Theme. Inherit own Theme class, or use Themes inherited from this class to

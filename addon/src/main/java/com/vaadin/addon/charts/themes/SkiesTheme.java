@@ -23,8 +23,9 @@ import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.charts.model.style.Style;
 
 /**
- * Theme based on Skies theme on HighCharts demo page
+ * A theme based on the Skies theme on the HighCharts demo page
  */
+@SuppressWarnings("serial")
 public class SkiesTheme extends HighChartsDefaultTheme {
 
     public static final String FONT_FAMILIES = "Lucida Grande, Lucida Sans Unicode, Verdana, Arial, Helvetica, sans-serif";

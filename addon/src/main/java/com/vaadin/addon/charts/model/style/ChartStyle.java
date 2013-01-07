@@ -22,6 +22,7 @@ import com.vaadin.addon.charts.model.AbstractConfigurationObject;
 /**
  * Styles of chart
  */
+@SuppressWarnings("serial")
 public class ChartStyle extends AbstractConfigurationObject {
     private Color backgroundColor;
     private Color plotBackgroundColor;
@@ -36,21 +37,21 @@ public class ChartStyle extends AbstractConfigurationObject {
 
     /**
      * @see #setBackgroundColor(Color)
+     * @see #getPlotBackgroundColor()
      * 
-     * @return Background color of component, null if not defined
-     * @see getPlotBackgroundColor
+     * @return The background color of the chart, null if not defined
      */
     public Color getBackgroundColor() {
         return backgroundColor;
     }
 
     /**
-     * The background color or gradient for the outer chart area. Defaults to
-     * "#FFFFFF".
+     * Sets the background color of the outer chart area. May be a gradient.
+     * Defaults to "#FFFFFF".
+     * 
+     * @see #setPlotBackgroundColor(Color)
      * 
      * @param backgroundColor
-     *            Background color
-     * @see setPlotBackgroundColor
      */
     public void setBackgroundColor(Color backgroundColor) {
         this.backgroundColor = backgroundColor;
@@ -58,19 +59,21 @@ public class ChartStyle extends AbstractConfigurationObject {
 
     /**
      * @see #setPlotBackgroundColor(Color)
-     * @return Background color of plot, null if not defined
-     * @see getBackgroundColor
+     * @see #getBackgroundColor()
+     * 
+     * @return The background color of the plot, null if not defined
      */
     public Color getPlotBackgroundColor() {
         return plotBackgroundColor;
     }
 
     /**
-     * The background color or gradient for the plot area. Defaults to null.
+     * Sets the background color of the plot area. May be a gradient. Defaults
+     * to null.
+     * 
+     * @see #setBackgroundColor(Color)
      * 
      * @param plotBackgroundColor
-     *            Background color of plot
-     * @see setBackgroundColor
      */
     public void setPlotBackgroundColor(Color plotBackgroundColor) {
         this.plotBackgroundColor = plotBackgroundColor;
@@ -79,19 +82,19 @@ public class ChartStyle extends AbstractConfigurationObject {
     /**
      * @see #setPlotBackgroundImage(String)
      * 
-     * @return Background image or plot, null if not defined
+     * @return The background image of the plot, null if not defined
      */
     public String getPlotBackgroundImage() {
         return plotBackgroundImage;
     }
 
     /**
-     * The URL for an image to use as the plot background. To set an image as
-     * the background for the entire chart, set a CSS background image to the
-     * container element. Defaults to null.
+     * Sets the background of the plot to an image specified by the provided
+     * URL. To set an image as the background for the entire chart, set a CSS
+     * background image on the container element. Defaults to null.
      * 
      * @param plotBackgroundImage
-     *            Background image (url) of plot
+     *            The URL of the background image
      */
     public void setPlotBackgroundImage(String plotBackgroundImage) {
         this.plotBackgroundImage = plotBackgroundImage;
@@ -99,14 +102,14 @@ public class ChartStyle extends AbstractConfigurationObject {
 
     /**
      * @see #setPlotShadow(Boolean)
-     * @return State of shadow, null if not defined
+     * @return Whether a drop shadow is applied or null if not defined
      */
     public Boolean isPlotShadow() {
         return plotShadow;
     }
 
     /**
-     * Whether to apply a drop shadow to the plot area. Requires that
+     * Sets whether to apply a drop shadow to the plot area. Requires that
      * plotBackgroundColor be set.
      * 
      * @param plotShadow
@@ -118,14 +121,14 @@ public class ChartStyle extends AbstractConfigurationObject {
     /**
      * @see #setPlotBorderWidth(Number)
      * 
-     * @return Border width, null if not defined
+     * @return The width of the plot border or null if not defined
      */
     public Number getPlotBorderWidth() {
         return plotBorderWidth;
     }
 
     /**
-     * The pixel width of the plot area border. Defaults to 0.
+     * Sets the pixel width of the plot area border. Defaults to 0.
      * 
      * @param plotBorderWidth
      *            Width of border
@@ -136,16 +139,14 @@ public class ChartStyle extends AbstractConfigurationObject {
 
     /**
      * @see #setClassName(String)
-     * 
-     * @return
      */
     public String getClassName() {
         return className;
     }
 
     /**
-     * A CSS class name to apply to the charts container div, allowing unique
-     * CSS styling for each chart. Defaults to "".
+     * Sets the CSS class name to apply to the container DIV around the chart,
+     * allowing unique CSS styling for each chart. Defaults to "".
      * 
      * @param className
      */
@@ -156,15 +157,15 @@ public class ChartStyle extends AbstractConfigurationObject {
     /**
      * @see #setBorderWidth(Number)
      * 
-     * @return Border width, null if not defined
+     * @return The width of the chart border, null if not defined
      */
     public Number getBorderWidth() {
         return borderWidth;
     }
 
     /**
-     * The pixel width of the outer chart border. The border is painted using
-     * vector graphic techniques to allow rounded corners. Defaults to 0.
+     * Sets the pixel width of the outer chart border. The border is painted
+     * using vector graphic techniques to allow rounded corners. Defaults to 0.
      * 
      * @param borderWidth
      *            Border width
@@ -176,14 +177,14 @@ public class ChartStyle extends AbstractConfigurationObject {
     /**
      * @see #setBorderRadius(Number)
      * 
-     * @return Radius of border, null if not defined
+     * @return The corner radius of the border, null if not defined
      */
     public Number getBorderRadius() {
         return borderRadius;
     }
 
     /**
-     * Set The corner radius of the outer chart border. Defaults to 5.
+     * Sets the corner radius of the outer chart border. Defaults to 5.
      * 
      * @param borderRadius
      *            Radius or border
@@ -194,15 +195,16 @@ public class ChartStyle extends AbstractConfigurationObject {
 
     /**
      * @see #setPlotBorderColor(Color)
-     * @return Plot border color, null if not defined
+     * @return The color of the plot border, null if not defined
      */
     public Color getPlotBorderColor() {
         return plotBorderColor;
     }
 
     /**
-     * The color of the outer chart border. The border is painted using vector
-     * graphic techniques to allow rounded corners. Defaults to "#4572A7".
+     * Sets the color of the outer chart border. The border is painted using
+     * vector graphic techniques to allow rounded corners. Defaults to
+     * "#4572A7".
      * 
      * @param plotBorderColor
      */
@@ -215,19 +217,23 @@ public class ChartStyle extends AbstractConfigurationObject {
      * default font family.
      * 
      * @see #setStyle(Style)
-     * @return
      */
     public Style getStyle() {
         return style;
     }
 
     /**
-     * Additional CSS styles to apply inline to the container div. Note that
-     * since the default font styles are applied in the renderer, it is ignorant
-     * of the individual chart options and must be set globally. Defaults to:
-     * 
-     * style: { fontFamily: '"Lucida Grande", "Lucida Sans Unicode", Verdana,
-     * Arial, Helvetica, sans-serif', // default font fontSize: '12px' }
+     * Sets additional CSS styles to apply inline to the container div. Note
+     * that since the default font styles are applied in the renderer, it is
+     * ignorant of the individual chart options and must be set globally.
+     * Defaults to:
+     * <p>
+     * <code>
+     * style: {
+     *  fontFamily: '"Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif', // default font fontSize: '12px'
+     * }
+     * </code>
+     * </p>
      * 
      * @param style
      */

@@ -25,13 +25,14 @@ import com.vaadin.addon.charts.model.style.StylePosition;
 import com.vaadin.addon.charts.model.style.Theme;
 import com.vaadin.addon.charts.model.style.TickIntervalStyle;
 
+@SuppressWarnings("serial")
 public class HighChartsDefaultTheme extends Theme {
     private static final SolidColor TITLE_FONT_COLOR = new SolidColor("#3E576F");
     private static final SolidColor GRAY = new SolidColor("#666666");
     private static final SolidColor GRAY2 = new SolidColor("#646464");
     private static final String DEFAULT_FONT = "\"Lucida Grande\", \"Lucida Sans Unicode\", Verdana, Arial, Helvetica, sans-serif";
-    private static final SolidColor PLOT_BORDER_COLOR = new SolidColor("#C0C0C0");
-    
+    private static final SolidColor PLOT_BORDER_COLOR = new SolidColor(
+            "#C0C0C0");
 
     public HighChartsDefaultTheme() {
 
@@ -40,7 +41,7 @@ public class HighChartsDefaultTheme extends Theme {
                 new SolidColor("#3D96AE"), new SolidColor("#DB843D"),
                 new SolidColor("#92A8CD"), new SolidColor("#A47D7C"),
                 new SolidColor("#B5CA92"));
-        
+
         Style style = new Style();
         style.setFontFamily(DEFAULT_FONT);
         style.setFontSize("12px");
@@ -61,7 +62,7 @@ public class HighChartsDefaultTheme extends Theme {
         getSubtitle().setColor(new SolidColor("#6D869F"));
         getSubtitle().setFontSize("12px");
         getSubtitle().setFontWeight(FontWeight.NORMAL);
-        
+
         getCredits().setText("Highcharts.com");
         getCredits().setHref("http://www.highcharts.com/");
 
@@ -69,7 +70,7 @@ public class HighChartsDefaultTheme extends Theme {
 
         setAxisDefaults(getyAxis());
         getyAxis().setLineWidth(0);
-        
+
         getyAxis().setGridLineWidth(1);
         getyAxis().setTickWidth(0);
         getyAxis().setMinorTickInterval(TickIntervalStyle.NONE);
@@ -79,7 +80,7 @@ public class HighChartsDefaultTheme extends Theme {
         getTooltip().getStyle().setColor(new SolidColor("#333333"));
 
         getLegend().setBorderRadius(5);
-        getLegend().setBackgroundColor(new SolidColor(255,255,255,0));
+        getLegend().setBackgroundColor(new SolidColor(255, 255, 255, 0));
         getLegend().setBorderColor(GRAY2);
         getLegend().getItemStyle().setColor(TITLE_FONT_COLOR);
         getLegend().getItemStyle().setPosition(StylePosition.RELATIVE);
@@ -105,6 +106,6 @@ public class HighChartsDefaultTheme extends Theme {
         style.getLabels().setFontSize("11px");
         style.getLabels().setFontWeight(FontWeight.NORMAL);
         style.getLabels().setColor(GRAY);
-        
+
     }
 }

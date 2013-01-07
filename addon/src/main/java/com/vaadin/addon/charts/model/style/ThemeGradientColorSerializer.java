@@ -30,27 +30,26 @@ import com.vaadin.addon.charts.model.style.GradientColor.LinearGradient;
 import com.vaadin.addon.charts.model.style.GradientColor.RadialGradient;
 
 /**
- * Themes use different type of gradient syntax than other API, override json generation to
- * make compatible wit themes.
- * 
+ * Themes use different type of gradient syntax than other API, override JSON
+ * generation to make compatible with themes.
  */
 public class ThemeGradientColorSerializer implements
         JsonSerializer<GradientColor> {
     @Override
     public JsonElement serialize(GradientColor src, Type typeOfSrc,
             JsonSerializationContext context) {
-        
+
         // linearGradient: [0, 0, 250, 500],
         // stops: [
         // [0, 'rgb(48, 96, 48)'],
         // [1, 'rgb(0, 0, 0)']
         // ]
-        
+
         JsonObject jsonObject = new JsonObject();
-        
+
         LinearGradient linearGradient = src.getLinearGradient();
-        
-        if(linearGradient != null) {
+
+        if (linearGradient != null) {
             JsonArray value = new JsonArray();
             value.add(new JsonPrimitive(linearGradient.x1));
             value.add(new JsonPrimitive(linearGradient.y1));
@@ -65,7 +64,7 @@ public class ThemeGradientColorSerializer implements
             value.add(new JsonPrimitive(radialGradient.r));
             jsonObject.add("radialGradient", value);
         }
-        
+
         List<List<Object>> stops = src.getStops();
         jsonObject.add("stops", context.serialize(stops, List.class));
 

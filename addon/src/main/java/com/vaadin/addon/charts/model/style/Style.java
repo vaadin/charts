@@ -20,8 +20,9 @@ package com.vaadin.addon.charts.model.style;
 import com.vaadin.addon.charts.model.AbstractConfigurationObject;
 
 /**
- * Style options for css styling
+ * Style options for CSS styling
  */
+@SuppressWarnings("serial")
 public class Style extends AbstractConfigurationObject {
     private Color color;
     private FontWeight fontWeight;
@@ -34,14 +35,13 @@ public class Style extends AbstractConfigurationObject {
 
     /**
      * @see #setColor(Color)
-     * @return
      */
     public Color getColor() {
         return color;
     }
 
     /**
-     * Style's css color attribute
+     * Sets the <code>color</code> CSS attribute.
      * 
      * @param color
      */
@@ -51,14 +51,13 @@ public class Style extends AbstractConfigurationObject {
 
     /**
      * @see #setFontWeight(FontWeight)
-     * @return
      */
     public FontWeight getFontWeight() {
         return fontWeight;
     }
 
     /**
-     * Style's css fontWeight attribute
+     * Sets the <code>font-weight</code> CSS attribute.
      * 
      * @param fontWeight
      */
@@ -68,14 +67,13 @@ public class Style extends AbstractConfigurationObject {
 
     /**
      * @see #setFontFamily(String)
-     * @return
      */
     public String getFontFamily() {
         return fontFamily;
     }
 
     /**
-     * Style's css fontFamily attribute
+     * Sets the <code>font-family</code> CSS attribute.
      * 
      * @param fontFamily
      */
@@ -85,14 +83,13 @@ public class Style extends AbstractConfigurationObject {
 
     /**
      * @see #setFontSize(String)
-     * @return
      */
     public String getFontSize() {
         return fontSize;
     }
 
     /**
-     * Style's css fontSize attribute
+     * Sets the <code>font-size</code> CSS attribute.
      * 
      * @param fontSize
      */
@@ -102,14 +99,13 @@ public class Style extends AbstractConfigurationObject {
 
     /**
      * @see #setLeft(String)
-     * @return
      */
     public String getLeft() {
         return left;
     }
 
     /**
-     * Style's css left attribute
+     * Sets the <code>left</code> CSS attribute
      * 
      * @param left
      */
@@ -119,14 +115,13 @@ public class Style extends AbstractConfigurationObject {
 
     /**
      * @see #setTop(String)
-     * @return
      */
     public String getTop() {
         return top;
     }
 
     /**
-     * Style's css top attribute
+     * Sets the <code>top</code> CSS attribute
      * 
      * @param top
      */
@@ -135,7 +130,7 @@ public class Style extends AbstractConfigurationObject {
     }
 
     /**
-     * Css position attribute
+     * Sets the <code>position</code> CSS attribute
      * 
      * @param position
      */
@@ -145,14 +140,13 @@ public class Style extends AbstractConfigurationObject {
 
     /**
      * @see #setPosition(StylePosition)
-     * @return
      */
     public StylePosition getPosition() {
         return position;
     }
 
     /**
-     * Css lineHeight attribute
+     * Sets the <code>line-height</code> CSS attribute
      */
     public void setLineHeight(String lineHeight) {
         this.lineHeight = lineHeight;
@@ -160,7 +154,6 @@ public class Style extends AbstractConfigurationObject {
 
     /**
      * @see #setLineHeight(String)
-     * @return
      */
     public String getLineHeight() {
         return lineHeight;

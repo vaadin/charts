@@ -23,8 +23,9 @@ import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.charts.model.style.Style;
 
 /**
- * Theme based on Gray theme on HighCharts demo page
+ * A theme based on the Gray theme on the HighCharts demo page
  */
+@SuppressWarnings("serial")
 public class GrayTheme extends HighChartsDefaultTheme {
 
     public final static String FONT_FAMILIES = "Lucida Grande, Lucida Sans Unicode, Verdana, Arial, Helvetica, sans-serif";
@@ -36,12 +37,11 @@ public class GrayTheme extends HighChartsDefaultTheme {
                 new SolidColor("#eeaaee"), new SolidColor("#55BF3B"),
                 new SolidColor("#DF5353"), new SolidColor("#7798BF"),
                 new SolidColor("#aaeeee"));
-        
+
         Style style = new Style();
         style.setFontFamily(FONT_FAMILIES);
         style.setFontSize("12px");
         getChart().setStyle(style);
-
 
         GradientColor bgColor = GradientColor.createLinear(0, 0, 0, 400);
         bgColor.addColorStop(0, new SolidColor(96, 96, 96));

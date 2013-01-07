@@ -24,6 +24,7 @@ import com.vaadin.addon.charts.model.AbstractConfigurationObject;
 /**
  * Solid (non gradient) colors
  */
+@SuppressWarnings("serial")
 public class SolidColor extends AbstractConfigurationObject implements Color {
 
     public final static SolidColor ALICEBLUE = new SolidColor("#F0F8FF");
@@ -178,7 +179,7 @@ public class SolidColor extends AbstractConfigurationObject implements Color {
     private final String color;
 
     /**
-     * Creates a new color with hex value like "#ff0000" for red.
+     * Constructs a new color from a hex value like "#ff0000" for red.
      * 
      * @param color
      */
@@ -188,7 +189,7 @@ public class SolidColor extends AbstractConfigurationObject implements Color {
     }
 
     /**
-     * Create RGB based color
+     * Constructs a color from RGB values
      * 
      * @param red
      *            Red value (0...255)
@@ -208,7 +209,7 @@ public class SolidColor extends AbstractConfigurationObject implements Color {
     }
 
     /**
-     * Create RGBA based color
+     * Constructs a color from RGBA values
      * 
      * @param red
      *            Red value (0...255)
