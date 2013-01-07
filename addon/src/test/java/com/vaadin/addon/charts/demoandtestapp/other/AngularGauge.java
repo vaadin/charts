@@ -11,6 +11,7 @@ import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.PlotBand;
 import com.vaadin.addon.charts.model.PlotOptionsGauge;
+import com.vaadin.addon.charts.model.TickPosition;
 import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.GradientColor;
@@ -76,12 +77,12 @@ public class AngularGauge extends AbstractVaadinChartExample {
         yAxis.setMinorTickInterval("auto");
         yAxis.setMinorTickWidth(1);
         yAxis.setMinorTickLength(10);
-        yAxis.setMinorTickPosition("inside");
+        yAxis.setMinorTickPosition(TickPosition.INSIDE);
         yAxis.setMinorTickColor(new SolidColor("#666"));
 
         yAxis.setTickPixelInterval(30);
         yAxis.setTickWidth(2);
-        yAxis.setTickPosition("inside");
+        yAxis.setTickPosition(TickPosition.INSIDE);
         yAxis.setTickLength(10);
         yAxis.setTickColor(new SolidColor("#666"));
 

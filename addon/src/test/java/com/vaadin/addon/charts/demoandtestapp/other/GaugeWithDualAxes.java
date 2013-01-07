@@ -10,6 +10,7 @@ import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.PlotOptionsGauge;
+import com.vaadin.addon.charts.model.TickPosition;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
@@ -74,8 +75,8 @@ public class GaugeWithDualAxes extends AbstractVaadinChartExample {
         yAxis2.setTickLength(5);
         yAxis2.setMinorTickLength(5);
         yAxis2.setEndOnTick(false);
-        yAxis2.setTickPosition("outside");
-        yAxis2.setMinorTickPosition("outside");
+        yAxis2.setTickPosition(TickPosition.OUTSIDE);
+        yAxis2.setMinorTickPosition(TickPosition.OUTSIDE);
 
         configuration.addyAxis(yAxis);
         configuration.addyAxis(yAxis2);

@@ -65,8 +65,8 @@ public abstract class Axis extends AbstractConfigurationObject {
     private Number tickWidth;
     private Number minorTickLength;
     private Number minorTickWidth;
-    private String tickPosition;
-    private String minorTickPosition;
+    private TickPosition tickPosition;
+    private TickPosition minorTickPosition;
 
     private Color lineColor;
     private Number offset;
@@ -732,35 +732,35 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * Sets the position of the major tick marks relative to the axis line. Can
-     * be either "inside" or "outside". Defaults to "outside".
+     * be either INSIDE or OUTSIDE. Defaults to OUTSIDE.
      * 
      * @param tickPosition
      */
-    public void setTickPosition(String tickPosition) {
+    public void setTickPosition(TickPosition tickPosition) {
         this.tickPosition = tickPosition;
     }
 
     /**
-     * @see #setTickPosition(String)
+     * @see #setTickPosition(TickPosition)
      */
-    public String getTickPosition() {
+    public TickPosition getTickPosition() {
         return tickPosition;
     }
 
     /**
      * Sets the position of the minor tick marks relative to the axis line. Can
-     * be either "inside" or "outside". Defaults to "outside".
+     * be either INSIDE or OUTSIDE. Defaults to OUTSIDE.
      * 
      * @param minorTickPosition
      */
-    public void setMinorTickPosition(String minorTickPosition) {
+    public void setMinorTickPosition(TickPosition minorTickPosition) {
         this.minorTickPosition = minorTickPosition;
     }
 
     /**
-     * @see #setMinorTickPosition(String)
+     * @see #setMinorTickPosition(TickPosition)
      */
-    public String getMinorTickPosition() {
+    public TickPosition getMinorTickPosition() {
         return minorTickPosition;
     }
 

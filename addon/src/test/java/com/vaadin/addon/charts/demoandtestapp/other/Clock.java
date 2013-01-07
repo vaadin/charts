@@ -13,6 +13,7 @@ import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.Dial;
 import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.PlotOptionsGauge;
+import com.vaadin.addon.charts.model.TickPosition;
 import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.FontWeight;
@@ -70,12 +71,12 @@ public class Clock extends AbstractVaadinChartExample {
         yAxis.setMinorTickInterval("auto");
         yAxis.setMinorTickWidth(1);
         yAxis.setMinorTickLength(5);
-        yAxis.setMinorTickPosition("inside");
+        yAxis.setMinorTickPosition(TickPosition.INSIDE);
         yAxis.setMinorGridLineWidth(0);
         yAxis.setMinorTickColor(new SolidColor("#666"));
         yAxis.setTickInterval(1);
         yAxis.setTickWidth(2);
-        yAxis.setTickPosition("inside");
+        yAxis.setTickPosition(TickPosition.INSIDE);
         yAxis.setTickLength(10);
         yAxis.setTickColor(new SolidColor("#666"));
 
