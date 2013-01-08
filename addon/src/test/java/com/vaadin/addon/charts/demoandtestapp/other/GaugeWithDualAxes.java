@@ -55,7 +55,7 @@ public class GaugeWithDualAxes extends AbstractVaadinChartExample {
         yAxis.setLineWidth(2);
         yAxis.setLabels(new Labels());
         yAxis.getLabels().setDistance(-20);
-        yAxis.getLabels().setRotation("auto");
+        yAxis.getLabels().setRotationPerpendicular();
         yAxis.setTickLength(5);
         yAxis.setMinorTickLength(5);
         yAxis.setEndOnTick(false);
@@ -71,7 +71,7 @@ public class GaugeWithDualAxes extends AbstractVaadinChartExample {
         yAxis2.setLineWidth(2);
         yAxis2.setLabels(new Labels());
         yAxis2.getLabels().setDistance(12);
-        yAxis2.getLabels().setRotation("auto");
+        yAxis2.getLabels().setRotationPerpendicular();
         yAxis2.setTickLength(5);
         yAxis2.setMinorTickLength(5);
         yAxis2.setEndOnTick(false);
@@ -80,21 +80,21 @@ public class GaugeWithDualAxes extends AbstractVaadinChartExample {
 
         configuration.addyAxis(yAxis);
         configuration.addyAxis(yAxis2);
-        
+
         final ListSeries series = new ListSeries("Speed", 80);
-        
+
         PlotOptionsGauge plotOptionsGauge = new PlotOptionsGauge();
         plotOptionsGauge.setDataLabels(new Labels());
-        plotOptionsGauge.getDataLabels()
-        .setFormatter(
-                "function() {return '<span style=\"color:#339\">'+ this.y + ' km/h</span><br/>' + '<span style=\"color:#933\">' + Math.round(this.y * 0.621) + ' mph</span>';}");
+        plotOptionsGauge
+                .getDataLabels()
+                .setFormatter(
+                        "function() {return '<span style=\"color:#339\">'+ this.y + ' km/h</span><br/>' + '<span style=\"color:#933\">' + Math.round(this.y * 0.621) + ' mph</span>';}");
         GradientColor gradient = GradientColor.createLinear(0, 0, 0, 1);
         gradient.addColorStop(0, new SolidColor("#DDD"));
         gradient.addColorStop(1, new SolidColor("#FFF"));
         plotOptionsGauge.getDataLabels().setBackgroundColor(gradient);
         plotOptionsGauge.getTooltip().setValueSuffix(" km/h");
         series.setPlotOptions(plotOptionsGauge);
-        
 
         configuration.setSeries(series);
 
@@ -121,7 +121,7 @@ public class GaugeWithDualAxes extends AbstractVaadinChartExample {
         generator.start();
 
         chart.drawChart(configuration);
-        
+
         return chart;
     }
 

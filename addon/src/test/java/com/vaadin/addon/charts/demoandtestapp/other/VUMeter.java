@@ -78,7 +78,7 @@ public class VUMeter extends AbstractVaadinChartExample {
         yAxis.setMinorTickPosition(TickPosition.OUTSIDE);
         yAxis.setLabels(new Labels());
         yAxis.getLabels().setDistance(20);
-        yAxis.getLabels().setRotation("auto");
+        yAxis.getLabels().setRotationPerpendicular();
         yAxis.setPlotBands(plotBand1);
 
         YAxis yAxis2 = new YAxis();
@@ -91,7 +91,7 @@ public class VUMeter extends AbstractVaadinChartExample {
         yAxis2.setMinorTickPosition(TickPosition.OUTSIDE);
         yAxis2.setLabels(new Labels());
         yAxis2.getLabels().setDistance(20);
-        yAxis2.getLabels().setRotation("auto");
+        yAxis2.getLabels().setRotationPerpendicular();
         yAxis2.setPlotBands(plotBand2);
 
         configuration.addyAxis(yAxis);

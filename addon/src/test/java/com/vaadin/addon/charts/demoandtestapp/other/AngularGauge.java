@@ -87,7 +87,7 @@ public class AngularGauge extends AbstractVaadinChartExample {
         yAxis.setTickColor(new SolidColor("#666"));
 
         yAxis.getLabels().setStep(2);
-        yAxis.getLabels().setRotation("auto");
+        yAxis.getLabels().setRotationPerpendicular();
 
         PlotBand[] plotBands = new PlotBand[3];
         plotBands[0] = new PlotBand(0, 120, new SolidColor("#55BF3B"));

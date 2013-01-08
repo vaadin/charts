@@ -110,14 +110,12 @@ public class Labels extends AbstractConfigurationObject {
     }
 
     /**
-     * Sets the rotation of the labels in degrees. Defaults to 0. Can also be
-     * set to "auto".
+     * Sets the rotation of the labels perpendicular to the axis. This is for
+     * GAUGE type charts.
      * 
-     * @param rotation
-     *            in String format (e.g. "auto") the rotation to set
      */
-    public void setRotation(String rotation) {
-        this.rotation = rotation;
+    public void setRotationPerpendicular() {
+        rotation = "auto";
     }
 
     /**

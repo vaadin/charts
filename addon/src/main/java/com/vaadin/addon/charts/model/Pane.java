@@ -100,26 +100,46 @@ public class Pane extends AbstractConfigurationObject {
      * as integers that transform to pixels, or as percentages of the plot area
      * size. Defaults to ['50%', '50%'].
      * 
-     * @param x
-     * @param y
+     * @param x center's x-coordinate by pixels
+     * @param y center's y-coordinate by pixels
      */
-    public void setCenterXY(Object x, Object y) {
+    public void setCenterXY(String x, String y) {
         center = new Object[] { x, y };
     }
 
     /**
-     * @see #setCenterXY(Object, Object)
+     * Sets the center of a polar chart or angular gauge. Positions can be given
+     * as integers that transform to pixels, or as percentages of the plot area
+     * size. Defaults to ['50%', '50%'].
+     * 
+     * @param x center's x-coordinate by percentages
+     * @param y center's y-coordinate by percentages
+     */
+    public void setCenterXY(Number x, Number y) {
+        center = new Object[] { x, y };
+    }
+    
+    /**
+     * @see #setCenterXY(String, String)
      */
     public Object[] getCenter() {
         return center;
     }
 
     /**
-     * Sets the size of the Pane in pixels (Number) or percent (String).
+     * Sets the size of the Pane in percents (String).
      * 
      * @param size
      */
-    public void setSize(Object size) {
+    public void setSize(String size) {
+        this.size = size;
+    }
+    
+    /**
+     * Sets the size of the Pane in pixels (Number)
+     * @param size
+     */
+    public void setSize(Number size) {
         this.size = size;
     }
 

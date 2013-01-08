@@ -98,14 +98,14 @@ public class Clock extends AbstractVaadinChartExample {
         hour.setDial(new Dial());
         hour.getDial().setRadius("60%");
         hour.getDial().setBaseWidth(4);
-        hour.getDial().setRearLength(0);
+        hour.getDial().setRearLength("0%");
         hour.getDial().setBaseLength("95%");
 
         minute.setId("minute");
         minute.setY(10);
         minute.setDial(new Dial());
         minute.getDial().setBaseLength("95%");
-        minute.getDial().setRearLength(0);
+        minute.getDial().setRearLength("0%");
 
         second.setId("second");
         second.setY(30);
