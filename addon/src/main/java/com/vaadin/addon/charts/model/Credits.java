@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts.model;
 
+import com.vaadin.addon.charts.model.style.Style;
+
 /*
  * #%L
  * Vaadin Charts
@@ -17,9 +19,6 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
-import com.vaadin.addon.charts.model.style.Style;
-import com.vaadin.addon.charts.model.style.StylePosition;
-
 /**
  * A credits label is put in the lower right corner of the chart by default.
  * This label can be changed using these options.
@@ -29,8 +28,8 @@ public class Credits {
     private Boolean enabled;
     private String text;
     private String href;
-    private Style style = new Style();
-    private StylePosition position;
+    private Style style;
+    private CreditPosition position;
 
     public Credits() {
     }
@@ -92,10 +91,10 @@ public class Credits {
     }
 
     /**
-     * @see #setPosition(StylePosition)
+     * @see #setPosition(CreditPosition)
      * @return The position or null if not defined
      */
-    public StylePosition getPosition() {
+    public CreditPosition getPosition() {
         return position;
     }
 
@@ -105,7 +104,7 @@ public class Credits {
      * 
      * @param position
      */
-    public void setPosition(StylePosition position) {
+    public void setPosition(CreditPosition position) {
         this.position = position;
     }
 
