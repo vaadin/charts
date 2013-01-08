@@ -17,6 +17,10 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import com.vaadin.addon.charts.model.style.Color;
 
 /**
@@ -34,7 +38,7 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     private TickmarkPlacement tickmarkPlacement;
 
-    private PlotBand[] plotBands;
+    private List<PlotBand> plotBands;
 
     private AxisType type;
     private Boolean startOnTick;
@@ -200,7 +204,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     /**
      * @see #setPlotBands(PlotBand...)
      */
-    public PlotBand[] getPlotBands() {
+    public List<PlotBand> getPlotBands() {
         return plotBands;
     }
 
@@ -211,7 +215,26 @@ public abstract class Axis extends AbstractConfigurationObject {
      * @param plotBands
      */
     public void setPlotBands(PlotBand... plotBands) {
-        this.plotBands = plotBands;
+        this.plotBands = new ArrayList(Arrays.asList(plotBands));
+    }
+
+    /**
+     * Removes the first plotBand (if at least one exists) that has the given
+     * plotBandId
+     * 
+     * @param plotBand
+     */
+    public void removePlotBand(String plotBandId) {
+        PlotBand toBeRemoved = null;
+        for (PlotBand pb : plotBands) {
+            if (plotBandId.equals(pb.getId())) {
+                toBeRemoved = pb;
+                break;
+            }
+        }
+        if (toBeRemoved != null) {
+            plotBands.remove(toBeRemoved);
+        }
     }
 
     /**
