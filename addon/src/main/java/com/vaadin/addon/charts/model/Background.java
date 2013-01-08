@@ -22,10 +22,10 @@ import com.vaadin.addon.charts.model.style.Color;
 /**
  * An object, or array of objects, for backgrounds. Sub options include
  * backgroundColor (which can be solid or gradient), innerWidth, outerWidth,
- * borderWidth, borderColor. <br />
- * <br />
- * <b>These configurations applies only to polar and angular gauges trough the
- * Pane-configuration object.</b>
+ * borderWidth, borderColor.
+ * <p>
+ * <b>These configuration options apply only to polar and angular gauges trough
+ * the Pane-configuration object.</b>
  */
 public class Background extends AbstractConfigurationObject {
     private Color backgroundColor;
@@ -84,9 +84,10 @@ public class Background extends AbstractConfigurationObject {
 
     /**
      * Sets the outer radius of the circular shaped background using a string
-     * representation of a percentage, e.g. "110%". This is applicable only for
-     * circular GAUGE type charts. Percentage represent the percentage of the
-     * radius of the chart.
+     * representation of a percentage, e.g. "110%". The percentage is relative
+     * to the radius of the chart.
+     * 
+     * <em>This is applicable only to circular {@link ChartType#GAUGE} type charts.</em>
      * 
      * @param outerRadius
      */
@@ -103,9 +104,10 @@ public class Background extends AbstractConfigurationObject {
 
     /**
      * Sets the inner radius of the circular shaped background using a string
-     * representation of a percentage, e.g. "110%". This is applicable only for
-     * circular GAUGE type charts. Percentage represent the percentage of the
-     * radius of the chart.
+     * representation of a percentage, e.g. "110%". The percentage is relative
+     * to the radius of the chart.
+     * 
+     * <em>This is applicable only to circular {@link ChartType#GAUGE} type charts.</em>
      * 
      * @param outerRadius
      */
