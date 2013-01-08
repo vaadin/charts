@@ -100,8 +100,10 @@ public class Pane extends AbstractConfigurationObject {
      * as integers that transform to pixels, or as percentages of the plot area
      * size. Defaults to ['50%', '50%'].
      * 
-     * @param x center's x-coordinate by pixels
-     * @param y center's y-coordinate by pixels
+     * @param x
+     *            The X-coordinate in percent
+     * @param y
+     *            The Y-coordinate in percent
      */
     public void setCenterXY(String x, String y) {
         center = new Object[] { x, y };
@@ -112,13 +114,15 @@ public class Pane extends AbstractConfigurationObject {
      * as integers that transform to pixels, or as percentages of the plot area
      * size. Defaults to ['50%', '50%'].
      * 
-     * @param x center's x-coordinate by percentages
-     * @param y center's y-coordinate by percentages
+     * @param x
+     *            The X-coordinate in pixels
+     * @param y
+     *            The Y-coordinate in pixels
      */
     public void setCenterXY(Number x, Number y) {
         center = new Object[] { x, y };
     }
-    
+
     /**
      * @see #setCenterXY(String, String)
      */
@@ -127,16 +131,18 @@ public class Pane extends AbstractConfigurationObject {
     }
 
     /**
-     * Sets the size of the Pane in percents (String).
+     * Sets the size of the Pane in percent (String). E.g.
+     * <code>setSize("50%")</code>
      * 
      * @param size
      */
     public void setSize(String size) {
         this.size = size;
     }
-    
+
     /**
      * Sets the size of the Pane in pixels (Number)
+     * 
      * @param size
      */
     public void setSize(Number size) {

@@ -48,12 +48,13 @@ public class PlotOptionsPie extends AbstractPlotOptions {
      * 
      * <em>Note</em>: This relevant only for {@link ChartType#PIE}
      * 
-     * @param innerSize by percentages (String)
+     * @param innerSize
+     *            The inner size in percent (String)
      */
     public void setInnerSize(String innerSize) {
         this.innerSize = innerSize;
     }
-    
+
     /**
      * Sets the size of the inner diameter of the pie. A size greater than 0
      * renders a donut chart. Can be a percentage or pixel value. Percentages
@@ -62,7 +63,8 @@ public class PlotOptionsPie extends AbstractPlotOptions {
      * 
      * <em>Note</em>: This relevant only for {@link ChartType#PIE}
      * 
-     * @param innerSize by pixels (Number)
+     * @param innerSize
+     *            The inner size in pixels (Number)
      */
     public void setInnerSize(Number innerSize) {
         this.innerSize = innerSize;
@@ -81,18 +83,20 @@ public class PlotOptionsPie extends AbstractPlotOptions {
      * percentage (String) or pixel value (Number). Pixel values are given as
      * integers. Defaults to "75%".
      * 
-     * @param size by percentages (String)
+     * @param size
+     *            The size in percent (String)
      */
     public void setSize(String size) {
         this.size = size;
     }
-    
+
     /**
      * Sets the diameter of the pie relative to the plot area. Can be a
      * percentage (String) or pixel value (Number). Pixel values are given as
      * integers. Defaults to "75%".
      * 
-     * @param size by pixels (Number)
+     * @param size
+     *            The size in pixels (Number)
      */
     public void setSize(Number size) {
         this.size = size;
@@ -111,8 +115,10 @@ public class PlotOptionsPie extends AbstractPlotOptions {
      * 
      * <em>Note</em>: This relevant only for {@link ChartType#PIE}
      * 
-     * @param left by percentages (String)
-     * @param top by percentages (String)
+     * @param left
+     *            The left offset in percentages (String)
+     * @param top
+     *            The top offset in percentages (String)
      */
     public void setCenter(String left, String top) {
         Object[] array = null;
@@ -121,15 +127,17 @@ public class PlotOptionsPie extends AbstractPlotOptions {
         }
         center = array;
     }
-    
+
     /**
      * Sets the center of the pie chart relative to the plot area. Can be
      * percentages or pixel values. Defaults to "50%", "50%".
      * 
      * <em>Note</em>: This relevant only for {@link ChartType#PIE}
      * 
-     * @param left by pixels (Number)
-     * @param top by pixels (Number)
+     * @param left
+     *            The left offset in pixels (Number)
+     * @param top
+     *            The top offset in pixels (Number)
      */
     public void setCenter(Number left, Number top) {
         Object[] array = null;
