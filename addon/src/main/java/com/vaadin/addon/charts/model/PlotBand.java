@@ -32,7 +32,6 @@ public class PlotBand extends AbstractConfigurationObject {
     private Color color;
     private Number zIndex;
     private PlotBandLabel label;
-    private String id;
     private String innerRadius;
     private String outerRadius;
 
@@ -157,24 +156,6 @@ public class PlotBand extends AbstractConfigurationObject {
      */
     public void setTo(Date date) {
         to = date.getTime();
-    }
-
-    /**
-     * Sets an ID for the plot band. The ID can be used for identifying the plot
-     * band in Axis.removePlotBand. Defaults to null.
-     * 
-     * @param id
-     */
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    /**
-     * @see #setId(String)
-     * @return The ID
-     */
-    public String getId() {
-        return id;
     }
 
     /**

@@ -16,6 +16,8 @@ public class PlotBandTest {
 
     private XAxis axis;
     private PlotBand plotBand1;
+    private PlotBand plotBand2;
+    private PlotBand plotBand3;
 
     @Before
     public void setup() {
@@ -25,11 +27,8 @@ public class PlotBandTest {
         conf.addxAxis(axis);
 
         plotBand1 = new PlotBand(1, 2, SolidColor.ALICEBLUE);
-        PlotBand plotBand2 = new PlotBand(2, 3, SolidColor.ANTIQUEWHITE);
-        PlotBand plotBand3 = new PlotBand(3, 4, SolidColor.AQUA);
-
-        plotBand2.setId("xxx");
-        plotBand3.setId("xxx");
+        plotBand2 = new PlotBand(2, 3, SolidColor.ANTIQUEWHITE);
+        plotBand3 = new PlotBand(3, 4, SolidColor.AQUA);
 
         axis.setPlotBands(plotBand1, plotBand2, plotBand3);
     }
@@ -37,15 +36,13 @@ public class PlotBandTest {
     @Test
     public void testRemovePlotBand() {
         assertTrue(axis.getPlotBands().size() == 3);
-        axis.removePlotBand("xxx");
+        axis.removePlotBand(plotBand1);
         assertTrue(axis.getPlotBands().size() == 2);
-        axis.removePlotBand("xxx");
+        axis.removePlotBand(plotBand2);
         assertTrue(axis.getPlotBands().size() == 1);
-        axis.removePlotBand("xxx");
-        assertTrue(axis.getPlotBands().get(0).getId() == null);
-        assertTrue(axis.getPlotBands().get(0).getColor() == SolidColor.ALICEBLUE);
-        plotBand1.setId("xxx");
-        axis.removePlotBand("xxx");
+        axis.removePlotBand(plotBand2);
+        assertTrue(axis.getPlotBands().get(0).getColor() == SolidColor.AQUA);
+        axis.removePlotBand(plotBand3);
         assertTrue(axis.getPlotBands().size() == 0);
     }
 

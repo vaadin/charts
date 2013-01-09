@@ -316,7 +316,6 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
         configuration.getxAxis().setTitle(new Title(""));
 
         PlotBand mask = new PlotBand();
-        mask.setId("mask-before");
         mask.setColor(new SolidColor(0, 0, 0, 0.2));
         mask.setFrom(DEMO_DATASET_START);
         mask.setTo(DEMO_DATA_INITIAL_DETAIL_START);

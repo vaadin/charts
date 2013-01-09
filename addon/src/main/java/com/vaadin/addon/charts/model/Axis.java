@@ -219,22 +219,14 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * Removes the first plotBand (if at least one exists) that has the given
-     * plotBandId
+     * Removes the given PlotBand if exists. Remember to call
+     * Chart.drawChart(Configuration); after the update if you want to update
+     * visible chart component.
      * 
      * @param plotBand
      */
-    public void removePlotBand(String plotBandId) {
-        PlotBand toBeRemoved = null;
-        for (PlotBand pb : plotBands) {
-            if (plotBandId.equals(pb.getId())) {
-                toBeRemoved = pb;
-                break;
-            }
-        }
-        if (toBeRemoved != null) {
-            plotBands.remove(toBeRemoved);
-        }
+    public void removePlotBand(PlotBand plotBand) {
+        plotBands.remove(plotBand);
     }
 
     /**
