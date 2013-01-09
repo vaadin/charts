@@ -392,29 +392,31 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
+     * Returns all plot options used by this configuration.
+     * 
      * @see #setPlotOptions(AbstractPlotOptions)
      */
-    public AbstractPlotOptions[] getPlotOptions() {
+    public AbstractPlotOptions[] getAllPlotOptions() {
         return plotOptions.values().toArray(
                 new AbstractPlotOptions[plotOptions.size()]);
     }
 
     /**
-     * Sets the configuration options for the series. The options are given in
-     * three levels. Options for all series in a chart are given in the
-     * {@link PlotOptionsSeries} object. Then options for all series of a
-     * specific type are given in the PlotOptions of that type, for example
-     * {@link PlotOptionsLine}. Next, options for one single series are given in
-     * the series array.
+     * Sets component wide default plot options.
+     * <p>
+     * If component contains several chart types, this method be can called with
+     * several plot option types. Subsequent call with same plot type will
+     * replace previous options for that specific chart type i.e only latest
+     * options for each chart type is honored.
+     * <p>
+     * {@link PlotOptionsSeries} is a special plot options type that can be used
+     * to define rules for all chart types.
+     * 
+     * @see AbstractPlotOptions
      * 
      * @param plotOptions
      */
     public void setPlotOptions(AbstractPlotOptions plotOptions) {
-        if (this.plotOptions == null) {
-            this.plotOptions = new HashMap<String, AbstractPlotOptions>();
-        } else {
-            this.plotOptions.clear();
-        }
         addPlotOptions(plotOptions);
     }
 
@@ -425,7 +427,7 @@ public class Configuration extends AbstractConfigurationObject {
      * 
      * @param plotOptions
      */
-    public void addPlotOptions(AbstractPlotOptions plotOptions) {
+    private void addPlotOptions(AbstractPlotOptions plotOptions) {
         if (this.plotOptions == null) {
             this.plotOptions = new HashMap<String, AbstractPlotOptions>();
         }

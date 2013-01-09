@@ -18,9 +18,10 @@ package com.vaadin.addon.charts.model;
  */
 
 /**
- * Plot options for ChartType.AREASPLINERANGE
+ * Plot options for {@link ChartType#AREASPLINERANGE}
+ * 
+ * @see AbstractPlotOptions
  */
-@SuppressWarnings("serial")
 public class PlotOptionsAreaSplineRange extends AbstractPlotOptions {
 
     @Override

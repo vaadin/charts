@@ -18,9 +18,10 @@ package com.vaadin.addon.charts.model;
  */
 
 /**
- * Plot options for line graphs
+ * Plot options for {@link ChartType#LINE} graphs
+ * 
+ * @see AbstractPlotOptions
  */
-@SuppressWarnings("serial")
 public class PlotOptionsLine extends AbstractPlotOptions {
 
     @Override

@@ -52,7 +52,7 @@ public class PolarChart extends AbstractVaadinChartExample {
         column.setGroupPadding(0);
 
         conf.setPlotOptions(series);
-        conf.addPlotOptions(column);
+        conf.setPlotOptions(column);
 
         ListSeries col = new ListSeries(8, 7, 6, 5, 4, 3, 2, 1);
         ListSeries line = new ListSeries(1, 2, 3, 4, 5, 6, 7, 8);

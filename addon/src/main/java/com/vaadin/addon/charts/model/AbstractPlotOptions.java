@@ -19,12 +19,34 @@ package com.vaadin.addon.charts.model;
 
 import java.util.Date;
 
+import com.vaadin.addon.charts.ChartTheme;
 import com.vaadin.addon.charts.model.style.Color;
 
 /**
- * Common plot options shared by all the different PlotOptions classes
+ * Plot options are used to customize the representation of the chart. There are
+ * lots of configurable things like colors, fonts, tooltips etc. Some of these
+ * configurations are applicable for only certain chart types, so be sure to
+ * check relevant subclass.
+ * <p>
+ * These configurations can be set in multiple places. Initial defaults for plot
+ * options are set by the framework and can be customized with
+ * {@link ChartTheme}. The most common method to use plot options is to call
+ * {@link Configuration#setPlotOptions(AbstractPlotOptions)}. Values defined
+ * here will override defaults from the theme. Options that are not defined at
+ * this level will be inherited from the theme defaults. If the chart is a
+ * "combination chart", plot options for different types can be defined.
+ * <p>
+ * Third place where plot options can be used is at series level. If chart has
+ * several series of data, configurations defined at theme and component level
+ * can still by fine tuned with
+ * {@link AbstractSeries#setPlotOptions(AbstractPlotOptions)}. The same method
+ * is also used to define the chart type for the series in "combination charts".
+ * <p>
+ * {@link PlotOptionsSeries} is a special plot options type that can be used to
+ * define default options shared by all chart types.
  */
 public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
+    
     private Labels dataLabels;
 
     private Stacking stacking;

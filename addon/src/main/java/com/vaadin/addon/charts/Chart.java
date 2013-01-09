@@ -23,6 +23,7 @@ import com.vaadin.addon.charts.client.ui.ChartClientRpc;
 import com.vaadin.addon.charts.client.ui.ChartServerRpc;
 import com.vaadin.addon.charts.client.ui.ChartState;
 import com.vaadin.addon.charts.client.ui.HighchartWidget;
+import com.vaadin.addon.charts.model.AbstractSeries;
 import com.vaadin.addon.charts.model.ChartModel;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
@@ -45,8 +46,9 @@ public class Chart extends AbstractComponent {
     private boolean stateDirty = false;
 
     /**
-     * Constructs a chart by setting the dimensions to 100% width and 400px
-     * height and creating an empty {@link Configuration}.
+     * Constructs a chart component with default settings.
+     * <p>
+     * Default dimensions are set to 100% width and 400px height.
      */
     public Chart() {
         setWidth(100, Unit.PERCENTAGE);
@@ -80,9 +82,13 @@ public class Chart extends AbstractComponent {
     }
 
     /**
-     * Constructs a chart of the specified type. {@see ChartType}
+     * Constructs a chart with given default chart type.
+     * <p>
+     * In charts with multiple series, the type can also be defined by
+     * setting series specific plot options.
      * 
      * @see #Chart()
+     * @see AbstractSeries#setPlotOptions(com.vaadin.addon.charts.model.AbstractPlotOptions)
      * @param type
      *            the {@link ChartType}
      */

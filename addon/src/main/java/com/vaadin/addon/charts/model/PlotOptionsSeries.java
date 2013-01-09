@@ -18,10 +18,13 @@ package com.vaadin.addon.charts.model;
  */
 
 /**
- * Generic plot options that are are used for all chart types.
+ * Generic plot options that will be used for all chart types, unless a chart
+ * type specific options are defined.
+ * 
+ * @see AbstractPlotOptions
  */
-@SuppressWarnings("serial")
 public class PlotOptionsSeries extends AbstractPlotOptions {
+
     private Number groupPadding;
 
     public PlotOptionsSeries() {

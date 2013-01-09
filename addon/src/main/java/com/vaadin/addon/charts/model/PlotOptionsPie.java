@@ -18,9 +18,10 @@ package com.vaadin.addon.charts.model;
  */
 
 /**
- * Plot options that are specific for ChartType.PIE charts
+ * Plot options that are specific for {@link ChartType#PIE} charts
+ * 
+ * @see AbstractPlotOptions
  */
-@SuppressWarnings("serial")
 public class PlotOptionsPie extends AbstractPlotOptions {
 
     private Object size;

@@ -18,9 +18,10 @@ package com.vaadin.addon.charts.model;
  */
 
 /**
- * Plot options that are specific for ChartType.COLUMN charts
+ * Plot options that are specific for {@link ChartType#COLUMN} charts
+ * 
+ * @see AbstractPlotOptions
  */
-@SuppressWarnings("serial")
 public class PlotOptionsColumn extends AbstractPlotOptions {
     private Number pointPadding;
     private Number borderWidth;

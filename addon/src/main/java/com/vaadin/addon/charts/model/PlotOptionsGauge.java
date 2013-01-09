@@ -18,9 +18,10 @@ package com.vaadin.addon.charts.model;
  */
 
 /**
- * Plot options that are specific for ChartType.GAUGE charts
+ * Plot options that are specific for {@link ChartType#GAUGE} charts
+ * 
+ * @see AbstractPlotOptions
  */
-@SuppressWarnings("serial")
 public class PlotOptionsGauge extends AbstractPlotOptions {
     private Dial dial;
 

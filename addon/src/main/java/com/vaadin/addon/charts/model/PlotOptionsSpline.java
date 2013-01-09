@@ -18,9 +18,10 @@ package com.vaadin.addon.charts.model;
  */
 
 /**
- * Plot options that are specific for ChartType.SPLINE charts
+ * Plot options that are specific for {@link ChartType#SPLINE} charts
+ * 
+ * @see AbstractPlotOptions
  */
-@SuppressWarnings("serial")
 public class PlotOptionsSpline extends AbstractPlotOptions {
 
     @Override
