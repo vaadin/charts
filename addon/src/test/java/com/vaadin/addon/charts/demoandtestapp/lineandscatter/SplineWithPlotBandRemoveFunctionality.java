@@ -106,6 +106,7 @@ public class SplineWithPlotBandRemoveFunctionality extends
         chart.drawChart(configuration);
 
         final Button removePlotBand = new Button("Remove PlotBands");
+        removePlotBand.setId("vaadin-button");
         removePlotBand.addClickListener(new Button.ClickListener() {
 
             @Override
