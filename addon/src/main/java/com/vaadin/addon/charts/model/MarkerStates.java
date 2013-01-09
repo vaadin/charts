@@ -20,26 +20,14 @@ package com.vaadin.addon.charts.model;
 /**
  * States for markers (like symbols in plot line)
  */
-public class MarkerStates extends AbstractConfigurationObject {
-    private State hover;
-
-    public MarkerStates(State hoverState) {
-        setHover(hoverState);
-    }
-
+public class MarkerStates extends States {
+    
     /**
-     * @see #setHover(State)
-     */
-    public State getHover() {
-        return hover;
-    }
-
-    /**
-     * Sets the hover state (when mouse is hovered over the marker)
+     * Creates new States object with given hoverState
      * 
-     * @param hover
+     * @param hoverState
      */
-    public void setHover(State hover) {
-        this.hover = hover;
+    public MarkerStates(State hoverState) {
+        super(hoverState);
     }
 }
