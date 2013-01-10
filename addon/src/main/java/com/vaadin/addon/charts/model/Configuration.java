@@ -459,15 +459,18 @@ public class Configuration extends AbstractConfigurationObject {
      * Sets whether to enable exporting
      * 
      * @param exporting
+     * @see Exporting
+     * @see #setExporting(Exporting)
      */
     public void setExporting(Boolean exporting) {
         this.exporting.setEnabled(exporting);
     }
 
     /**
-     * Sets the exporting module
+     * Sets the exporting module settings.
      * 
      * @param exporting
+     * @see Exporting
      */
     public void setExporting(Exporting exporting) {
         this.exporting = exporting;

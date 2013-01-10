@@ -2,7 +2,6 @@ package com.vaadin.addon.charts.demoandtestapp.columnandbar;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.HorizontalAlign;
@@ -88,8 +87,6 @@ public class DualAxesLineAndColumn extends AbstractVaadinChartExample {
                 13.9, 9.6);
         plotOptions.setColor(new SolidColor("#89A54E"));
         conf.addSeries(series);
-
-        chart.drawChart(conf);
 
         return chart;
     }

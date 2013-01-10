@@ -17,17 +17,25 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
-import javax.activation.MimeType;
+import java.util.HashMap;
+import java.util.Map;
+
+import com.vaadin.data.util.filter.And;
 
 /**
- * Module for exporting Vaadin Charts
+ * These configurations can be used to downloading and printing of the chart.
+ * <p>
+ * If exporting is enabled both buttons are displayed by default. This can be
+ * further adjusted with {@link #setExportButton(ExportButton)} {@link And}
+ * {@link #setPrintButton(ExportButton)}.
  */
 public class Exporting extends AbstractConfigurationObject {
+
+    private Map<String, ExportButton> buttons;
 
     private Boolean enableImages;
     private Boolean enabled = false;
     private String filename;
-    private MimeType type;
     private String url;
     private Number width;
 
@@ -39,6 +47,31 @@ public class Exporting extends AbstractConfigurationObject {
      */
     public Exporting(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    /**
+     * Sets custom configuration for the export button
+     * 
+     * @param exportButton
+     */
+    public void setExportButton(ExportButton exportButton) {
+        setButton("exportButton", exportButton);
+    }
+
+    /**
+     * Sets custom configuration for the print button
+     * 
+     * @param printButton
+     */
+    public void setPrintButton(ExportButton printButton) {
+        setButton("printButton", printButton);
+    }
+
+    private void setButton(String string, ExportButton exportButton) {
+        if (buttons == null) {
+            buttons = new HashMap<String, ExportButton>();
+        }
+        buttons.put(string, exportButton);
     }
 
     /**
@@ -89,25 +122,6 @@ public class Exporting extends AbstractConfigurationObject {
      */
     public void setFilename(String filename) {
         this.filename = filename;
-    }
-
-    /**
-     * @see #setType(MimeType)
-     */
-    public MimeType getType() {
-        return type;
-    }
-
-    /**
-     * Sets the default MIME type for exporting if chart.exportChart() is called
-     * without specifying a type option. Possible values are "image/png",
-     * "image/jpeg", "application/pdf" and "image/svg+xml". Defaults to
-     * "image/png".
-     * 
-     * @param type
-     */
-    public void setType(MimeType type) {
-        this.type = type;
     }
 
     /**
