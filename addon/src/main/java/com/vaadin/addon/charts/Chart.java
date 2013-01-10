@@ -29,6 +29,7 @@ import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesEventListener;
+import com.vaadin.addon.charts.model.Lang;
 import com.vaadin.addon.charts.model.Series;
 import com.vaadin.ui.AbstractComponent;
 import com.vaadin.util.ReflectTools;
@@ -414,4 +415,15 @@ public class Chart extends AbstractComponent {
         }
 
     };
+
+    /**
+     * Change chart's language to the given one
+     * 
+     * @param lang
+     */
+    public void setLang(Lang lang) {
+        String uidl = "{lang: " + lang.toString() + "}";
+        getRpcProxy(ChartClientRpc.class).setHighchartOptions(uidl);
+        forceStateChange();
+    }
 }

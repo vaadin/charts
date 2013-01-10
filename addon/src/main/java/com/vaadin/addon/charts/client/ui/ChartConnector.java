@@ -64,6 +64,11 @@ public class ChartConnector extends AbstractComponentConnector {
             public void setShiftAfterUpdate(boolean shiftAfterUpdate) {
                 getWidget().setShiftAfterUpdate(shiftAfterUpdate);
             }
+
+            @Override
+            public void setHighchartOptions(String optionsUidl) {
+                getWidget().setHighChartOptions(optionsUidl);
+            }
         });
     }
 

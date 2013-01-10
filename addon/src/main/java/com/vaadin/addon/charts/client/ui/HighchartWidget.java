@@ -18,8 +18,10 @@ package com.vaadin.addon.charts.client.ui;
  */
 
 import com.google.gwt.dom.client.Document;
+import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.user.client.ui.Widget;
 import com.vaadin.addon.charts.client.HighchartsScriptLoader;
+import com.vaadin.client.VConsole;
 
 public class HighchartWidget extends Widget {
 
@@ -73,5 +75,11 @@ public class HighchartWidget extends Widget {
 
     public void setShiftAfterUpdate(boolean shift) {
         this.shift = shift;
+    }
+
+    public void setHighChartOptions(String optionsUidl) {
+        VConsole.log(optionsUidl);
+        jsOverlay.setHighChartOptions(JSONParser.parseLenient(optionsUidl)
+                .isObject().getJavaScriptObject());
     }
 }

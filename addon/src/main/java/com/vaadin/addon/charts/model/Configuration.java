@@ -34,7 +34,6 @@ import com.vaadin.addon.charts.model.DataSeriesEventListener.DataUpdatedEvent;
  */
 public class Configuration extends AbstractConfigurationObject {
 
-    private Lang lang;
     private ChartModel chart;
     private Title title;
     private SubTitle subtitle;
@@ -511,23 +510,6 @@ public class Configuration extends AbstractConfigurationObject {
         }
 
         return null;
-    }
-
-    /**
-     * @see #setLang(Lang)
-     */
-    public Lang getLang() {
-        return lang;
-    }
-
-    /**
-     * Sets the language object. The language object is global and can be set
-     * only once and affects all charts.
-     * 
-     * @param lang
-     */
-    public void setLang(Lang lang) {
-        this.lang = lang;
     }
 
     /**

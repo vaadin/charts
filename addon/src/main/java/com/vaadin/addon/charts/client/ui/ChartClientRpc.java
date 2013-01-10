@@ -72,4 +72,11 @@ public interface ChartClientRpc extends ClientRpc {
      */
     void setShiftAfterUpdate(boolean shiftAfterUpdate);
 
+    /**
+     * Set localizations for Highchart client
+     * 
+     * @param lang
+     */
+    void setHighchartOptions(String optionsUidl);
+
 }

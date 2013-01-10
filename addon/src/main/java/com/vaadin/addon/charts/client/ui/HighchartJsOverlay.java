@@ -86,4 +86,9 @@ public class HighchartJsOverlay extends JavaScriptObject {
     /*-{
         this.redraw();
     }-*/;
+
+    public native final void setHighChartOptions(JavaScriptObject options)
+    /*-{
+        $wnd.Highcharts.setOptions(options);
+    }-*/;
 }
