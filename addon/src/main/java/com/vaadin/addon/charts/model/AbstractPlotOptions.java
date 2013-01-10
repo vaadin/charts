@@ -61,7 +61,6 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     private Number pointInterval;
 
     private Boolean visible;
-    private Boolean selected;
     private Boolean shadow;
     private Boolean allowPointSelect;
     private Boolean showInLegend;
@@ -100,25 +99,6 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
      */
     public void setDataLabels(Labels dataLabels) {
         this.dataLabels = dataLabels;
-    }
-
-    /**
-     * @see #setSelected(Boolean)
-     * @return Selection state, false if not defined.
-     */
-    public boolean isSelected() {
-        return selected == null ? false : selected;
-    }
-
-    /**
-     * Sets whether to select the series initially. If showCheckbox is true, the
-     * checkbox next to the series name will be checked for a selected series.
-     * Defaults to false.
-     * 
-     * @param selected
-     */
-    public void setSelected(Boolean selected) {
-        this.selected = selected;
     }
 
     /**
