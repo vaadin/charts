@@ -72,7 +72,7 @@ import com.vaadin.client.ValueMap;
  * @author John Ahlroos / Vaadin Ltd
  */
 public class VTimelineWidget extends FocusPanel implements Paintable,
-KeyDownHandler, KeyUpHandler, KeyPressHandler, Focusable {
+        KeyDownHandler, KeyUpHandler, KeyPressHandler, Focusable {
 
     // Style names
     public static final String TAGNAME = "timeline-widget";
@@ -460,15 +460,15 @@ KeyDownHandler, KeyUpHandler, KeyPressHandler, Focusable {
                 : 0;
         int modeLegendBarHeight = modeLegendBar.isVisible() ? Util
                 .getRequiredHeight(modeLegendBar) : 0;
-                int browserHeight = browser.isVisible() ? Util
-                        .getRequiredHeight(browser) : 0;
-                        int displayHeight = height - captionHeight - topBarHeight
-                                - modeLegendBarHeight - browserHeight;
-                        display.setHeight(displayHeight + "px");
-                        if (isInitDone()) {
-                            display.redraw();
-                            browser.redraw();
-                        }
+        int browserHeight = browser.isVisible() ? Util
+                .getRequiredHeight(browser) : 0;
+        int displayHeight = height - captionHeight - topBarHeight
+                - modeLegendBarHeight - browserHeight;
+        display.setHeight(displayHeight + "px");
+        if (isInitDone()) {
+            display.redraw();
+            browser.redraw();
+        }
     }
 
     void recalculateWidths(int width) {
@@ -956,8 +956,8 @@ KeyDownHandler, KeyUpHandler, KeyPressHandler, Focusable {
             if (barModeBtn != null) {
                 barModeBtn.setVisible(barChartModeVisible);
                 chartModeBar
-                .setVisible(chartModeVisible
-                        && (lineChartModeVisible || barChartModeVisible || scatterChartModeVisible));
+                        .setVisible(chartModeVisible
+                                && (lineChartModeVisible || barChartModeVisible || scatterChartModeVisible));
             }
         }
     }
@@ -969,8 +969,8 @@ KeyDownHandler, KeyUpHandler, KeyPressHandler, Focusable {
             if (scatterModeBtn != null) {
                 scatterModeBtn.setVisible(scatterChartModeVisible);
                 chartModeBar
-                .setVisible(chartModeVisible
-                        && (lineChartModeVisible || barChartModeVisible || scatterChartModeVisible));
+                        .setVisible(chartModeVisible
+                                && (lineChartModeVisible || barChartModeVisible || scatterChartModeVisible));
             }
         }
     }
@@ -987,10 +987,10 @@ KeyDownHandler, KeyUpHandler, KeyPressHandler, Focusable {
 
     private void setChartMode(UIDL uidl) {
         if (uidl.hasAttribute(TimelineConstants.ATTRIBUTE_CHART_MODE)) {
-            setChartMode(PlotMode
-                    .valueOf(uidl
+            setChartMode(
+                    PlotMode.valueOf(uidl
                             .getStringAttribute(TimelineConstants.ATTRIBUTE_CHART_MODE)),
-                            initStage2Done);
+                    initStage2Done);
         }
     }
 
@@ -1159,8 +1159,8 @@ KeyDownHandler, KeyUpHandler, KeyPressHandler, Focusable {
             if (lineModeBtn != null) {
                 lineModeBtn.setVisible(lineChartModeVisible);
                 chartModeBar
-                .setVisible(chartModeVisible
-                        && (lineChartModeVisible || barChartModeVisible || scatterChartModeVisible));
+                        .setVisible(chartModeVisible
+                                && (lineChartModeVisible || barChartModeVisible || scatterChartModeVisible));
             }
         }
     }
@@ -1526,11 +1526,11 @@ KeyDownHandler, KeyUpHandler, KeyPressHandler, Focusable {
             client.updateVariable(
                     uidlId,
                     TimelineConstants.VARIABLE_DATA_PREFIX + requestCounter,
-                    new Object[] { Long.valueOf(requestCounter),
-                            Integer.valueOf(graphIndex),
-                            Long.valueOf(startDate.getTime()),
-                            Long.valueOf(endDate.getTime()),
-                            Integer.valueOf(density) }, false);
+                    new String[] { String.valueOf(requestCounter),
+                            String.valueOf(graphIndex),
+                            String.valueOf(startDate.getTime()),
+                            String.valueOf(endDate.getTime()),
+                            String.valueOf(density) }, false);
         }
 
         return false;
@@ -2082,8 +2082,9 @@ KeyDownHandler, KeyUpHandler, KeyPressHandler, Focusable {
     private Timer dateRangeChangeEventTimer = new Timer() {
         @Override
         public void run() {
-            Object[] values = new Object[] { selectedStartDate.getTime(),
-                    selectedEndDate.getTime(), };
+            String[] values = new String[] {
+                    String.valueOf(selectedStartDate.getTime()),
+                    String.valueOf(selectedEndDate.getTime()) };
             client.updateVariable(uidlId,
                     TimelineConstants.VARIABLE_DATE_RANGE_CHANGED_EVENT,
                     values, true);
@@ -2111,9 +2112,12 @@ KeyDownHandler, KeyUpHandler, KeyPressHandler, Focusable {
      */
     public void fireEventButtonClickEvent(List<Integer> indexes) {
         if (eventClickListenersEnabled) {
+            String[] ixs = new String[indexes.size()];
+            for (int i = 0; i < indexes.size(); i++) {
+                ixs[i] = String.valueOf(indexes.get(i));
+            }
             client.updateVariable(uidlId,
-                    TimelineConstants.VARIABLE_EVENT_BUTTON_CLICK,
-                    indexes.toArray(), true);
+                    TimelineConstants.VARIABLE_EVENT_BUTTON_CLICK, ixs, true);
         }
     }
 
@@ -2143,8 +2147,7 @@ KeyDownHandler, KeyUpHandler, KeyPressHandler, Focusable {
     public int getWidgetWidth() {
         try {
             int width = Integer.parseInt(DOM
-                    .getAttribute(getElement(),
-                            "width").replaceAll("px", ""));
+                    .getAttribute(getElement(), "width").replaceAll("px", ""));
             return width;
         } catch (Exception e) {
             try {
@@ -2252,12 +2255,12 @@ KeyDownHandler, KeyUpHandler, KeyPressHandler, Focusable {
 
     /**
      * Get the selections start date
+     * 
      * @return
      */
     public Date getSelectedStartDate() {
         return selectedStartDate;
     }
-
 
     /**
      * Get the selects end date
@@ -2290,8 +2293,7 @@ KeyDownHandler, KeyUpHandler, KeyPressHandler, Focusable {
 
     /**
      * 
-     * Returns the date formats used by the timeline
-     * Get date formats
+     * Returns the date formats used by the timeline Get date formats
      */
     public VDateFormatInfo getDateFormats() {
         return dateFormatInfo;
