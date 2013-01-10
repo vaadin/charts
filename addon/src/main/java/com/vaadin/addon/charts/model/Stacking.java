@@ -24,7 +24,7 @@ package com.vaadin.addon.charts.model;
  */
 public enum Stacking implements ChartEnum {
 
-    NORMAL("normal"), PERCENT("percent");
+    NONE(""), NORMAL("normal"), PERCENT("percent");
 
     private Stacking(String type) {
         this.type = type;
