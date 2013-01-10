@@ -60,6 +60,14 @@ public class AxisList extends AbstractConfigurationObject {
      */
     public void addAxis(Axis axis) {
         axesList.add(axis);
+        updateIndexes();
+    }
+
+    private void updateIndexes() {
+        for (int i = 0; i < axesList.size(); i++) {
+            Axis axis = axesList.get(i);
+            axis.setAxisIndex(i);
+        }
     }
 
     /**
@@ -70,5 +78,6 @@ public class AxisList extends AbstractConfigurationObject {
      */
     public void removeAxis(Axis axis) {
         axesList.remove(axis);
+        updateIndexes();
     }
 }

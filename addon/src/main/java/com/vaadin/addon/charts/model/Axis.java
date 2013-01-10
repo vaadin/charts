@@ -60,7 +60,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     private Object minorTickInterval;
     private Boolean opposite;
     private Number tickPixelInterval;
-    private Number linkedTo;
+    private Integer linkedTo;
     private Number minPadding;
     private Boolean showLastTickLabel;
     private Color minorTickColor;
@@ -75,6 +75,10 @@ public abstract class Axis extends AbstractConfigurationObject {
     private Color lineColor;
     private Number offset;
     private Boolean endOnTick;
+    /**
+     * Holds axis index when attached to configuration
+     */
+    private Integer axisIndex;
 
     /**
      * @see #setCategories(String...)
@@ -580,8 +584,29 @@ public abstract class Axis extends AbstractConfigurationObject {
      * @return The index of another axis that this axis is linked to or null if
      *         undefined.
      */
-    public Number getLinkedTo() {
+    public Integer getLinkedTo() {
         return linkedTo;
+    }
+
+    /**
+     * Specifies another axis that this axis is linked to. When an axis is
+     * linked to a master axis, it will take the same extremes as the master,
+     * but as assigned by {@link #setMin(Number)} or {@link #setMax(Number)} or
+     * by {@link #setExtremes(Number, Number)}. It can be used to show
+     * additional info, or to ease reading the chart by duplicating the scales.
+     * Defaults to null.
+     * 
+     * <p>
+     * Note that due to implementation details it is suggested that this method
+     * is called again if axes in the configuration is modified.
+     * 
+     * @param linkedTo
+     */
+    public void setLinkedTo(Axis linkedTo) {
+        if(linkedTo.getAxisIndex() == null) {
+            throw new IllegalStateException("Linked axis must already be attached");
+        }
+        this.linkedTo = linkedTo.getAxisIndex();
     }
 
     /**
@@ -593,8 +618,9 @@ public abstract class Axis extends AbstractConfigurationObject {
      * null.
      * 
      * @param linkedTo
+     * @see #setLinkedTo(Axis)
      */
-    public void setLinkedTo(Number linkedTo) {
+    public void setLinkedTo(Integer linkedTo) {
         this.linkedTo = linkedTo;
     }
 
@@ -852,6 +878,14 @@ public abstract class Axis extends AbstractConfigurationObject {
      */
     public void setEndOnTick(Boolean endOnTick) {
         this.endOnTick = endOnTick;
+    }
+
+    void setAxisIndex(int i) {
+        this.axisIndex = i;
+    }
+
+    Integer getAxisIndex() {
+        return axisIndex;
     }
 
 }

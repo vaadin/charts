@@ -37,16 +37,16 @@ public class BarWithNegativeStack extends AbstractVaadinChartExample {
                 "85-89", "90-94", "95-99", "100 +" };
 
         XAxis x1 = new XAxis();
+        conf.addxAxis(x1);
         x1.setCategories(categories);
         x1.setReversed(false);
-        conf.addxAxis(x1);
 
         XAxis x2 = new XAxis();
+        conf.addxAxis(x2);
         x2.setCategories(categories);
         x2.setOpposite(true);
         x2.setReversed(false);
-        x2.setLinkedTo(0);
-        conf.addxAxis(x2);
+        x2.setLinkedTo(x1);
 
         YAxis y = new YAxis();
         Labels labels = new Labels();
