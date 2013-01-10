@@ -24,7 +24,6 @@ import com.vaadin.event.FieldEvents.TextChangeEvent;
 import com.vaadin.event.FieldEvents.TextChangeListener;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.server.VaadinRequest;
-import com.vaadin.ui.Component;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.Table;
@@ -64,6 +63,7 @@ public class TListUi extends UI {
         listTestClasses(testClassess, "pie");
         listTestClasses(testClassess, "themes");
         listTestClasses(testClassess, "librarydata");
+        listTestClasses(testClassess, "timeline");
 
         Table table = new Table("Test cases", testClassess);
         table.addGeneratedColumn("name", new Table.ColumnGenerator() {
@@ -91,7 +91,7 @@ public class TListUi extends UI {
         });
         table.setSizeFull();
         table.setColumnExpandRatio("description", 1);
-        
+
         VerticalLayout verticalLayout = new VerticalLayout();
         TextField filter = new TextField();
         filter.addTextChangeListener(new TextChangeListener() {
