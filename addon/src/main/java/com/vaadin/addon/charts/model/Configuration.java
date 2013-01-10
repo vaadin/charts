@@ -639,9 +639,13 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * Add data series event listener
+     * Sets data series event listener.
+     * <p>
+     * This method is used by the library internally. Usage by end user may
+     * cause unexpected behavior.
      * 
      * @param listener
+     * @deprecated This method is reserved for internal use only
      */
     public void setDataSeriesEventListener(DataSeriesEventListener listener) {
         dataSeriesEventListener = listener;

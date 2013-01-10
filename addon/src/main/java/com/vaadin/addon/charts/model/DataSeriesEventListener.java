@@ -20,7 +20,8 @@ package com.vaadin.addon.charts.model;
 import java.io.Serializable;
 
 /**
- * Listener interface for events of DataSeries like data add/remove/update
+ * Listener interface for events of DataSeries like data add/remove/update. This
+ * listener is used internally by the library.
  */
 public interface DataSeriesEventListener extends Serializable {
     /** A data point has been added */
