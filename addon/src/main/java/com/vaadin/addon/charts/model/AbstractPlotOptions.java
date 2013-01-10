@@ -68,7 +68,7 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     private Boolean enableMouseTracking;
     private Boolean stickyTracking;
 
-    private Cursor cursor = Cursor.NONE;
+    private Cursor cursor;
 
     private Boolean animation;
 
