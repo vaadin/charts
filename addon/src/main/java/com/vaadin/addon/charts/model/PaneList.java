@@ -58,6 +58,7 @@ public class PaneList extends AbstractConfigurationObject {
      *            The pane to add
      */
     public void addPane(Pane pane) {
+        pane.setPaneIndex(paneList.size());
         paneList.add(pane);
     }
 

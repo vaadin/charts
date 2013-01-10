@@ -23,7 +23,7 @@ package com.vaadin.addon.charts.model;
 public class YAxis extends Axis {
     private StackLabels stackLabels;
     private PlotLine[] plotLines;
-    private Number pane;
+    private Integer pane;
     private String gridLineInterpolation;
 
     /**
@@ -66,8 +66,9 @@ public class YAxis extends Axis {
      * Sets the index of the pane onto which this axis is rendered.
      * 
      * @param pane
+     * @see #setPane(Pane) for better typed API
      */
-    public void setPane(Number pane) {
+    public void setPane(Integer pane) {
         this.pane = pane;
     }
 
@@ -75,7 +76,7 @@ public class YAxis extends Axis {
      * @see #setPane(Number)
      * @return The index of the pane onto which this axis is rendered.
      */
-    public Number getPane() {
+    public Integer getPane() {
         return pane;
     }
 
@@ -93,5 +94,16 @@ public class YAxis extends Axis {
      */
     public String getGridLineInterpolation() {
         return gridLineInterpolation;
+    }
+
+    /**
+     * Sets the pane onto which this axis is rendered.
+     * @param pane
+     */
+    public void setPane(Pane pane) {
+        if(pane.getPaneIndex() == null) {
+            throw new IllegalStateException("Pane must be attached to configuration");
+        }
+        setPane(pane.getPaneIndex());
     }
 }

@@ -30,6 +30,10 @@ public class Pane extends AbstractConfigurationObject {
     private Background[] background;
     private Object[] center;
     private Object size;
+    /**
+     * Holds the index in PaneList when attached, used to achieve better typed java api
+     */
+    private Integer paneIndex;
 
     public Pane() {
     }
@@ -154,5 +158,13 @@ public class Pane extends AbstractConfigurationObject {
      */
     public Object getSize() {
         return size;
+    }
+
+    void setPaneIndex(int index) {
+        this.paneIndex = index;
+    }
+    
+    Integer getPaneIndex() {
+        return paneIndex;
     }
 }

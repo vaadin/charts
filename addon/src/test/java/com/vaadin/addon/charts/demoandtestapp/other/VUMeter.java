@@ -69,7 +69,7 @@ public class VUMeter extends AbstractVaadinChartExample {
         plotBand2.setOuterRadius("105%");
 
         YAxis yAxis = new YAxis();
-        yAxis.setPane(0);
+        yAxis.setPane(pane1);
         yAxis.setTitle("VU<br/><span style=\"font-size:8px\">Channel A</span>");
         yAxis.getTitle().setY(-40);
         yAxis.setMin(-20);
@@ -82,7 +82,7 @@ public class VUMeter extends AbstractVaadinChartExample {
         yAxis.setPlotBands(plotBand1);
 
         YAxis yAxis2 = new YAxis();
-        yAxis2.setPane(1);
+        yAxis2.setPane(pane2);
         yAxis2.setTitle("VU<br/><span style=\"font-size:8px\">Channel B</span>");
         yAxis2.getTitle().setY(-40);
         yAxis2.setMin(-20);
