@@ -23,12 +23,10 @@ package com.vaadin.addon.charts.model;
  * 
  * @see AbstractPlotOptions
  */
-public class PlotOptionsSeries extends AbstractPlotOptions {
+public class PlotOptionsSeries extends AbstractLinePlotOptions {
 
+    // TODO check if this is at correct place in type hierarchy
     private Number groupPadding;
-
-    public PlotOptionsSeries() {
-    }
 
     /**
      * Sets the padding between each value group, in X-axis units. Defaults to

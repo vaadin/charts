@@ -22,7 +22,7 @@ package com.vaadin.addon.charts.model;
  * 
  * @see AbstractPlotOptions
  */
-public class PlotOptionsAreaRange extends AbstractPlotOptions {
+public class PlotOptionsAreaRange extends AbstractAreaPlotOptions {
 
     @Override
     public ChartType getChartType() {

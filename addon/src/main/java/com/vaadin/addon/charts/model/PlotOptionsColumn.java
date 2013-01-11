@@ -22,7 +22,7 @@ package com.vaadin.addon.charts.model;
  * 
  * @see AbstractPlotOptions
  */
-public class PlotOptionsColumn extends AbstractPlotOptions {
+public class PlotOptionsColumn extends AbstractPointPlotOptions {
     private Number pointPadding;
     private Number borderWidth;
     private Number groupPadding;

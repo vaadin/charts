@@ -36,7 +36,7 @@ public class LogarithmicAxis extends AbstractVaadinChartExample {
                 .setHeaderFormat("<b>{series.name}</b><br />");
         configuration.getTooltip().setPointFormat(
                 "x = {point.x}, y = {point.y}");
-        AbstractPlotOptions plotOptions = new PlotOptionsLine();
+        PlotOptionsLine plotOptions = new PlotOptionsLine();
         plotOptions.setPointStart(1);
         configuration.setPlotOptions(plotOptions);
 

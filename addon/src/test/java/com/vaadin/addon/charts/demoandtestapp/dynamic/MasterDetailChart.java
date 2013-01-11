@@ -10,12 +10,14 @@ import com.vaadin.addon.charts.ChartSelectionListener;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.Axis;
 import com.vaadin.addon.charts.model.AxisType;
+import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.Marker;
 import com.vaadin.addon.charts.model.MarkerStates;
 import com.vaadin.addon.charts.model.PlotBand;
 import com.vaadin.addon.charts.model.PlotOptionsArea;
+import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.PlotOptionsSeries;
 import com.vaadin.addon.charts.model.State;
 import com.vaadin.addon.charts.model.States;
@@ -266,7 +268,7 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
                         "function() {var point = this.points[0];return '<b>'+ point.series.name +'</b><br/>'+Highcharts.dateFormat('%A %B %e %Y', this.x) + ':<br/>'+'1 USD = '+ Highcharts.numberFormat(point.y, 2) +' EUR';}");
         configuration.getTooltip().setShared(true);
 
-        PlotOptionsSeries series = new PlotOptionsSeries();
+        PlotOptionsLine series = new PlotOptionsLine();
         series.setPointInterval(DAY_IN_MILLIS);
         configuration.setPlotOptions(series);
 
@@ -280,7 +282,7 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
         series.setAnimation(false);
 
         ListSeries seriesList = new ListSeries();
-        PlotOptionsArea plotOptionsArea = new PlotOptionsArea();
+        PlotOptionsLine plotOptionsArea = new PlotOptionsLine();
         plotOptionsArea.setPointInterval(DAY_IN_MILLIS);
         plotOptionsArea.setPointStart(DEMO_DATA_INITIAL_DETAIL_START);
         seriesList.setPlotOptions(plotOptionsArea);
@@ -295,7 +297,7 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
     }
 
     private Chart getMasterChart() {
-        Chart masterChart = new Chart();
+        Chart masterChart = new Chart(ChartType.AREA);
         masterChart.setHeight("80px");
         masterChart.setWidth("100%");
 
@@ -333,11 +335,7 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
         configuration.getLegend().setEnabled(false);
         configuration.getCredits().setEnabled(false);
 
-        PlotOptionsSeries plotOptions = new PlotOptionsSeries();
-        GradientColor fillColor = GradientColor.createLinear(0, 0, 0, 70);
-        fillColor.addColorStop(0, new SolidColor("#4572A7"));
-        fillColor.addColorStop(1, new SolidColor(0, 0, 0, 0));
-        plotOptions.setFillColor(fillColor);
+        PlotOptionsArea plotOptions = new PlotOptionsArea();
         plotOptions.setLineWidth(1);
         plotOptions.setShadow(false);
         State hover = new State();
@@ -350,11 +348,15 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
         configuration.setPlotOptions(plotOptions);
 
         ListSeries ls = new ListSeries();
-        PlotOptionsArea plotOptions2 = new PlotOptionsArea();
-        plotOptions2.setPointInterval(24 * 3600 * 1000);
-        plotOptions2.setMarker(new Marker(false));
-        plotOptions2.setPointStart(DEMO_DATASET_START);
-        ls.setPlotOptions(plotOptions2);
+        PlotOptionsArea masterPlotOptions = new PlotOptionsArea();
+        GradientColor fillColor = GradientColor.createLinear(0, 0, 0, 1);
+        fillColor.addColorStop(0, new SolidColor(69, 114, 167, 1));
+        fillColor.addColorStop(1, new SolidColor(69, 114, 167, 0.5));
+        masterPlotOptions.setFillColor(fillColor);
+        masterPlotOptions.setPointInterval(24 * 3600 * 1000);
+        masterPlotOptions.setMarker(new Marker(false));
+        masterPlotOptions.setPointStart(DEMO_DATASET_START);
+        ls.setPlotOptions(masterPlotOptions);
         ls.setName("USD to EUR");
         ls.setData(FULL_DEMO_DATA_SET);
         configuration.addSeries(ls);

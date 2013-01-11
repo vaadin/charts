@@ -2,7 +2,9 @@ package com.vaadin.addon.charts.demoandtestapp.combinations;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.model.AbstractLinePlotOptions;
 import com.vaadin.addon.charts.model.AbstractPlotOptions;
+import com.vaadin.addon.charts.model.AbstractPointPlotOptions;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
@@ -53,7 +55,7 @@ public class ColumnLineAndPie extends AbstractVaadinChartExample {
                 "Total fruit consumption", labelStyle)));
 
         DataSeries series = new DataSeries();
-        AbstractPlotOptions plotOptions = new PlotOptionsColumn();
+        PlotOptionsColumn plotOptions = new PlotOptionsColumn();
         plotOptions.setColor(janeColor);
         series.setPlotOptions(plotOptions);
         series.setName("Jane");
@@ -77,14 +79,14 @@ public class ColumnLineAndPie extends AbstractVaadinChartExample {
         conf.addSeries(series);
 
         series = new DataSeries();
-        plotOptions = new PlotOptionsSpline();
+        PlotOptionsSpline splinePlotOptions = new PlotOptionsSpline();
         Marker marker = new Marker();
         marker.setLineWidth(2);
         marker.setLineColor(new SolidColor("black"));
         marker.setFillColor(new SolidColor("white"));
-        plotOptions.setMarker(marker);
-        plotOptions.setColor(new SolidColor("black"));
-        series.setPlotOptions(plotOptions);
+        splinePlotOptions.setMarker(marker);
+        splinePlotOptions.setColor(new SolidColor("black"));
+        series.setPlotOptions(splinePlotOptions);
         series.setName("Average");
         series.setData(3, 2.67, 3, 6.33, 3.33);
         conf.addSeries(series);

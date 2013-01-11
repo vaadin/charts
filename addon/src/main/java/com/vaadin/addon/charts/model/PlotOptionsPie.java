@@ -22,11 +22,28 @@ package com.vaadin.addon.charts.model;
  * 
  * @see AbstractPlotOptions
  */
-public class PlotOptionsPie extends AbstractPlotOptions {
+public class PlotOptionsPie extends AbstractCommonPlotOptions {
 
     private Object size;
     private Object[] center;
     private Object innerSize;
+    private Marker marker;
+
+    /**
+     * @see #setMarker(Marker)
+     */
+    public Marker getMarker() {
+        return marker;
+    }
+
+    /**
+     * Sets the marker used for the plot point items (points/bars/columns)
+     * 
+     * @param marker
+     */
+    public void setMarker(Marker marker) {
+        this.marker = marker;
+    }
 
     @Override
     public ChartType getChartType() {

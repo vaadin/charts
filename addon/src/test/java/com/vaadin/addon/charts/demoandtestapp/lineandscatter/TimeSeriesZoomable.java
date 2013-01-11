@@ -246,6 +246,8 @@ public class TimeSeriesZoomable extends AbstractVaadinChartExample {
         configuration.setSeries(ls);
 
         chart.drawChart(configuration);
+        
+        System.out.println(configuration);
 
         return chart;
     }

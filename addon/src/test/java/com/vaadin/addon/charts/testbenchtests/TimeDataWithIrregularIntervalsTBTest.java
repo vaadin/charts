@@ -1,16 +1,13 @@
 package com.vaadin.addon.charts.testbenchtests;
 
+import com.vaadin.addon.charts.demoandtestapp.lineandscatter.TimeDataWithIrregularIntervals;
+
 public class TimeDataWithIrregularIntervalsTBTest extends
         AbstractSimpleScreenShotTestBenchTest {
 
+    @Override
     protected String getTestViewName() {
-        String simpleName = TimeDataWithIrregularIntervalsTBTest.class
-                .getSimpleName();
-        return simpleName;
+        return TimeDataWithIrregularIntervals.class.getName();
     }
 
-    @Override
-    protected String getPackageName() {
-        return "lineandscatter";
-    }
 }
