@@ -1,7 +1,7 @@
 package com.vaadin.addon.charts.demoandtestapp.themes;
 
 import com.vaadin.addon.charts.Chart;
-import com.vaadin.addon.charts.ChartTheme;
+import com.vaadin.addon.charts.ChartOptions;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.demoandtestapp.area.PercentageArea;
 import com.vaadin.addon.charts.model.style.Theme;
@@ -36,7 +36,7 @@ public class ChangingThemes extends AbstractVaadinChartExample {
 
     @Override
     protected Component getChart() {
-        ChartTheme.get().setTheme(new HighChartsDefaultTheme());
+        ChartOptions.get().setTheme(new HighChartsDefaultTheme());
         HorizontalLayout buttons = new HorizontalLayout();
         content.addComponent(buttons);
 
@@ -77,7 +77,7 @@ public class ChangingThemes extends AbstractVaadinChartExample {
         @Override
         public void buttonClick(ClickEvent event) {
             try {
-                ChartTheme.get().setTheme(themeclass.newInstance());
+                ChartOptions.get().setTheme(themeclass.newInstance());
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

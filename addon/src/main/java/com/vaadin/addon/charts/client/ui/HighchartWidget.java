@@ -76,10 +76,4 @@ public class HighchartWidget extends Widget {
     public void setShiftAfterUpdate(boolean shift) {
         this.shift = shift;
     }
-
-    public void setHighChartOptions(String optionsUidl) {
-        VConsole.log(optionsUidl);
-        jsOverlay.setHighChartOptions(JSONParser.parseLenient(optionsUidl)
-                .isObject().getJavaScriptObject());
-    }
 }

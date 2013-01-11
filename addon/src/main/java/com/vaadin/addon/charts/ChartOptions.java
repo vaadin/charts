@@ -21,8 +21,10 @@ import java.util.Iterator;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.vaadin.addon.charts.client.ui.ChartThemeState;
+import com.vaadin.addon.charts.client.ui.ChartClientRpc;
+import com.vaadin.addon.charts.client.ui.ChartOptionsState;
 import com.vaadin.addon.charts.model.AbstractConfigurationObject;
+import com.vaadin.addon.charts.model.Lang;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.Theme;
 import com.vaadin.addon.charts.model.style.ThemeGradientColorSerializer;
@@ -34,13 +36,14 @@ import com.vaadin.ui.HasComponents;
 import com.vaadin.ui.UI;
 
 /**
- * The ChartTheme extension configures a page local theme for charts. With this
- * extension it is possible to configure e.g. default colors used by all Chart
- * objects displayed in the UI.
+ * The ChartOptions extension configures a page local theme and other global
+ * options like localized texts for charts. With this extension it is possible
+ * to configure e.g. default colors used by all Chart objects displayed in the
+ * UI.
  */
-public class ChartTheme extends AbstractExtension {
+public class ChartOptions extends AbstractExtension {
 
-    protected ChartTheme() {
+    protected ChartOptions() {
     }
 
     private void notifyListeners() {
@@ -87,10 +90,21 @@ public class ChartTheme extends AbstractExtension {
         getState().json = gson.toJson(theme);
         notifyListeners();
     }
-
+    
+    /**
+     * Change chart's language to the given one
+     * 
+     * @param lang
+     */
+    public void setLang(Lang lang) {
+        String uidl = "{lang: " + lang.toString() + "}";
+        getState().json = uidl;
+        notifyListeners();
+    }
+    
     @Override
-    protected ChartThemeState getState() {
-        return (ChartThemeState) super.getState();
+    protected ChartOptionsState getState() {
+        return (ChartOptionsState) super.getState();
     }
 
     void extendConnector(AbstractClientConnector connector) {
@@ -98,41 +112,41 @@ public class ChartTheme extends AbstractExtension {
     }
 
     /**
-     * Returns a ChartTheme extension for the given UI. If a ChartTheme
+     * Returns a ChartOptions extension for the given UI. If a ChartOptions
      * extension has not yet been added, a new one is created and added.
      * 
      * @param ui
-     *            the UI for which the ChartTheme should be returned
-     * @return the ChartTheme instance connected to the given UI
+     *            the UI for which the ChartOptions should be returned
+     * @return the ChartOptions instance connected to the given UI
      */
-    public static ChartTheme get(UI ui) {
-        ChartTheme themer = null;
+    public static ChartOptions get(UI ui) {
+        ChartOptions optioner = null;
 
-        // Search singleton themer
+        // Search singleton optioner
         for (Extension extension : ui.getExtensions()) {
-            if (extension instanceof ChartTheme) {
-                themer = (ChartTheme) extension;
+            if (extension instanceof ChartOptions) {
+                optioner = (ChartOptions) extension;
                 break;
             }
         }
 
-        // Create new themer if not found
-        if (themer == null) {
-            themer = new ChartTheme();
-            themer.extendConnector(ui);
+        // Create new optioner if not found
+        if (optioner == null) {
+            optioner = new ChartOptions();
+            optioner.extendConnector(ui);
         }
 
-        return themer;
+        return optioner;
 
     }
 
     /**
-     * Returns a ChartTheme extension for the current UI. If a ChartTheme
+     * Returns a ChartOptions extension for the current UI. If a ChartOptions
      * extension has not yet been added, a new one is created and added.
      * 
-     * @return a ChartTheme instance connected to the currently active UI
+     * @return a ChartOptions instance connected to the currently active UI
      */
-    public static ChartTheme get() {
+    public static ChartOptions get() {
         UI ui = UI.getCurrent();
 
         if (ui == null) {

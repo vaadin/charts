@@ -1,6 +1,6 @@
 package com.vaadin.addon.charts.demoandtestapp.themes;
 
-import com.vaadin.addon.charts.ChartTheme;
+import com.vaadin.addon.charts.ChartOptions;
 import com.vaadin.addon.charts.demoandtestapp.columnandbar.BarWithNegativeStack;
 import com.vaadin.addon.charts.themes.SkiesTheme;
 import com.vaadin.ui.Component;
@@ -15,7 +15,7 @@ public class SkiesThemedBarChart extends BarWithNegativeStack {
 
     @Override
     protected Component getChart() {
-        ChartTheme.get().setTheme(new SkiesTheme());
+        ChartOptions.get().setTheme(new SkiesTheme());
         return super.getChart();
     }
 

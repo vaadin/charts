@@ -415,15 +415,4 @@ public class Chart extends AbstractComponent {
         }
 
     };
-
-    /**
-     * Change chart's language to the given one
-     * 
-     * @param lang
-     */
-    public void setLang(Lang lang) {
-        String uidl = "{lang: " + lang.toString() + "}";
-        getRpcProxy(ChartClientRpc.class).setHighchartOptions(uidl);
-        forceStateChange();
-    }
 }

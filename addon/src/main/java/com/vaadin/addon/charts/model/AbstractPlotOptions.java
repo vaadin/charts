@@ -19,7 +19,7 @@ package com.vaadin.addon.charts.model;
 
 import java.util.Date;
 
-import com.vaadin.addon.charts.ChartTheme;
+import com.vaadin.addon.charts.ChartOptions;
 import com.vaadin.addon.charts.model.style.Color;
 
 /**
@@ -30,7 +30,7 @@ import com.vaadin.addon.charts.model.style.Color;
  * <p>
  * These configurations can be set in multiple places. Initial defaults for plot
  * options are set by the framework and can be customized with
- * {@link ChartTheme}. The most common method to use plot options is to call
+ * {@link ChartOptions}. The most common method to use plot options is to call
  * {@link Configuration#setPlotOptions(AbstractPlotOptions)}. Values defined
  * here will override defaults from the theme. Options that are not defined at
  * this level will be inherited from the theme defaults. If the chart is a

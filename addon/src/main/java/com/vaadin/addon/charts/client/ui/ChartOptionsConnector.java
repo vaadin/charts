@@ -27,33 +27,33 @@ import com.vaadin.client.extensions.AbstractExtensionConnector;
 import com.vaadin.shared.ui.Connect;
 
 @SuppressWarnings("serial")
-@Connect(com.vaadin.addon.charts.ChartTheme.class)
-public class ChartThemeConnector extends AbstractExtensionConnector {
+@Connect(com.vaadin.addon.charts.ChartOptions.class)
+public class ChartOptionsConnector extends AbstractExtensionConnector {
     
-    public ChartThemeConnector() {
+    public ChartOptionsConnector() {
         HighchartsScriptLoader.ensureInjected();
     }
 
     @Override
     public void onStateChanged(StateChangeEvent event) {
-        VConsole.log("ThemerConnector onStateChange");
+        VConsole.log("OptionsConnector onStateChange");
         super.onStateChanged(event);
 
         if (getState().json != null) {
-            JavaScriptObject theme = JSONParser.parseLenient(getState().json)
+            JavaScriptObject options = JSONParser.parseLenient(getState().json)
                     .isObject().getJavaScriptObject();
-            applyTheme(theme);
+            applyOptions(options);
         }
     }
 
-    private native void applyTheme(JavaScriptObject obj)
+    private native void applyOptions(JavaScriptObject obj)
     /*-{
         $wnd.Highcharts.setOptions(obj);
     }-*/;
 
     @Override
-    public ChartThemeState getState() {
-        return (ChartThemeState) super.getState();
+    public ChartOptionsState getState() {
+        return (ChartOptionsState) super.getState();
     }
 
     @Override

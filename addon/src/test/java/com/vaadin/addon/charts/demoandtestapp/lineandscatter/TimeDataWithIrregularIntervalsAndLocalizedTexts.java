@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.vaadin.addon.charts.Chart;
+import com.vaadin.addon.charts.ChartOptions;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.Axis;
 import com.vaadin.addon.charts.model.AxisType;
@@ -121,7 +122,7 @@ public class TimeDataWithIrregularIntervalsAndLocalizedTexts extends
         enButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(ClickEvent event) {
-                chart.setLang(en);
+                ChartOptions.get().setLang(en);
             }
         });
 
@@ -130,7 +131,7 @@ public class TimeDataWithIrregularIntervalsAndLocalizedTexts extends
         fiButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(ClickEvent event) {
-                chart.setLang(fi);
+                ChartOptions.get().setLang(fi);
             }
         });
 

@@ -1,6 +1,6 @@
 package com.vaadin.addon.charts.demoandtestapp.themes;
 
-import com.vaadin.addon.charts.ChartTheme;
+import com.vaadin.addon.charts.ChartOptions;
 import com.vaadin.addon.charts.demoandtestapp.columnandbar.BarWithNegativeStack;
 import com.vaadin.addon.charts.themes.GrayTheme;
 import com.vaadin.ui.Component;
@@ -15,7 +15,7 @@ public class GrayThemedBarChart extends BarWithNegativeStack {
 
     @Override
     protected Component getChart() {
-        ChartTheme.get().setTheme(new GrayTheme());
+        ChartOptions.get().setTheme(new GrayTheme());
         return super.getChart();
     }
 
