@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.demoandtestapp.SkipFromDemo;
 import com.vaadin.addon.timeline.Timeline;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
@@ -14,6 +15,7 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Component;
 
+@SkipFromDemo
 @SuppressWarnings("serial")
 public class BeanItemContainerWithTimelineTest extends
         AbstractVaadinChartExample {

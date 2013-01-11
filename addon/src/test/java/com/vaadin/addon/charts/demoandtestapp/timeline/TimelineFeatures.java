@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.demoandtestapp.SkipFromDemo;
 import com.vaadin.addon.timeline.Timeline;
 import com.vaadin.addon.timeline.Timeline.EventButtonClickEvent;
 import com.vaadin.data.Container;
@@ -18,6 +19,7 @@ import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 
+@SkipFromDemo
 @SuppressWarnings("serial")
 public class TimelineFeatures extends AbstractVaadinChartExample {
 

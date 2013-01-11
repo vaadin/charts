@@ -8,11 +8,13 @@ import java.io.InputStreamReader;
 import java.util.Date;
 
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.demoandtestapp.SkipFromDemo;
 import com.vaadin.addon.timeline.Timeline;
 import com.vaadin.data.Item;
 import com.vaadin.data.util.IndexedContainer;
 import com.vaadin.ui.Component;
 
+@SkipFromDemo
 @SuppressWarnings("serial")
 public class SparseDataTest extends AbstractVaadinChartExample {
 

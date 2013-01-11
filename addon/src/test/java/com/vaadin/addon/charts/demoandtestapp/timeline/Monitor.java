@@ -11,6 +11,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.demoandtestapp.SkipFromDemo;
 import com.vaadin.addon.timeline.Timeline;
 import com.vaadin.data.Item;
 import com.vaadin.data.Property;
@@ -23,6 +24,7 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.ProgressIndicator;
 
+@SkipFromDemo
 @SuppressWarnings("serial")
 public class Monitor extends AbstractVaadinChartExample {
 

@@ -4,6 +4,7 @@
 package com.vaadin.addon.charts.demoandtestapp.timeline;
 
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.demoandtestapp.SkipFromDemo;
 import com.vaadin.addon.timeline.Timeline;
 import com.vaadin.addon.timeline.Timeline.EventButtonClickEvent;
 import com.vaadin.data.Container;
@@ -12,6 +13,7 @@ import com.vaadin.ui.HorizontalSplitPanel;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalSplitPanel;
 
+@SkipFromDemo
 @SuppressWarnings("serial")
 public class ResizeTest extends AbstractVaadinChartExample {
 

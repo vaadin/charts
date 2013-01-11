@@ -6,12 +6,14 @@ package com.vaadin.addon.charts.demoandtestapp.timeline;
 import java.util.Date;
 
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.demoandtestapp.SkipFromDemo;
 import com.vaadin.addon.timeline.Timeline;
 import com.vaadin.data.Container;
 import com.vaadin.data.util.IndexedContainer;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.GridLayout;
 
+@SkipFromDemo
 @SuppressWarnings("serial")
 public class SanityCheck extends AbstractVaadinChartExample {
 

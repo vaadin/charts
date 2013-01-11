@@ -3,6 +3,7 @@ package com.vaadin.addon.charts.demoandtestapp.timeline;
 import java.util.Date;
 
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.demoandtestapp.SkipFromDemo;
 import com.vaadin.addon.timeline.Timeline;
 import com.vaadin.addon.timeline.Timeline.DateRangeChangedEvent;
 import com.vaadin.addon.timeline.Timeline.DateRangeListener;
@@ -10,6 +11,7 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Component;
 
+@SkipFromDemo
 @SuppressWarnings("serial")
 public class GetSetDateRangeTest extends AbstractVaadinChartExample implements
         DateRangeListener {
