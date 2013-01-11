@@ -53,6 +53,10 @@ public class GetSetDateRangeTest extends AbstractVaadinChartExample implements
 
     @Override
     protected Component getChart() {
-        return timeline;
+        return null;
+    }
+
+    @Override
+    protected void setup() {
     }
 }

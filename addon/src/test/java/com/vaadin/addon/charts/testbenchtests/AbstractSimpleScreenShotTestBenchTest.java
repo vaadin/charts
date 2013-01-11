@@ -20,11 +20,7 @@ public abstract class AbstractSimpleScreenShotTestBenchTest extends
                 pack = pack + "/";
             }
             driver.navigate().to(BASEURL + pack + getTestViewName());
-            try {
-                Thread.sleep(getScreenShotDelay());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            sleep(getScreenShotDelay());
 
             final String imageName = getTestViewName() + ".png";
             final File refImage = getReferenceImage(imageName);

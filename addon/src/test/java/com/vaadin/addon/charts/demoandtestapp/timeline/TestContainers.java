@@ -299,7 +299,7 @@ public class TestContainers implements Serializable {
                 item.getItemProperty(Timeline.PropertyId.TIMESTAMP).setValue(
                         date);
                 item.getItemProperty(Timeline.PropertyId.VALUE).setValue(
-                        dateValue[0]);
+                        Integer.valueOf(dateValue[0]));
             }
         } catch (FileNotFoundException e) {
             System.out.println("FileNotFoundException - " + e.getMessage());

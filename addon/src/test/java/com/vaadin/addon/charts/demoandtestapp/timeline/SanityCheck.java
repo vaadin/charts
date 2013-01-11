@@ -74,7 +74,11 @@ public class SanityCheck extends AbstractVaadinChartExample {
 
     @Override
     protected Component getChart() {
-        return grid;
+        return null;
+    }
+
+    @Override
+    protected void setup() {
     }
 
 }

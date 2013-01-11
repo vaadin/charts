@@ -8,7 +8,6 @@ import org.eclipse.jetty.server.Server;
 import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -17,9 +16,10 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import com.vaadin.addon.charts.demoandtestapp.TServer;
 import com.vaadin.testbench.Parameters;
 import com.vaadin.testbench.TestBench;
+import com.vaadin.testbench.TestBenchTestCase;
 import com.vaadin.testbench.commands.TestBenchCommands;
 
-public abstract class AbstractTestBenchTest {
+public abstract class AbstractTestBenchTest extends TestBenchTestCase {
 
     protected static final int TESTPORT = 5678;
     protected static String BASEURL = "http://localhost:" + TESTPORT + "/";

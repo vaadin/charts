@@ -52,7 +52,11 @@ public class TimelineHelloWorld extends AbstractVaadinChartExample {
 
     @Override
     protected Component getChart() {
-        return timeline;
+        return null;
+    }
+
+    @Override
+    protected void setup() {
     }
 
 }

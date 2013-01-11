@@ -50,7 +50,11 @@ public class ResizeTest extends AbstractVaadinChartExample {
 
     @Override
     protected Component getChart() {
-        return panel;
+        return null;
+    }
+
+    @Override
+    protected void setup() {
     }
 
 }

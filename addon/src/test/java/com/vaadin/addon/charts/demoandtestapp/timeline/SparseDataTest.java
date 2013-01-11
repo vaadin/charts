@@ -45,7 +45,7 @@ public class SparseDataTest extends AbstractVaadinChartExample {
         ds.addContainerProperty(Timeline.PropertyId.VALUE, Float.class, 0f);
 
         InputStream stream = getClass().getClassLoader().getResourceAsStream(
-                "/com/vaadin/addon/timeline/tests/data/points2.txt");
+                "/com/vaadin/addon/charts/demoandtestapp/timeline/points2.txt");
         BufferedReader r = new BufferedReader(new InputStreamReader(stream));
         String line;
         while ((line = r.readLine()) != null) {
@@ -67,6 +67,10 @@ public class SparseDataTest extends AbstractVaadinChartExample {
 
     @Override
     protected Component getChart() {
-        return timeline;
+        return null;
+    }
+
+    @Override
+    protected void setup() {
     }
 }

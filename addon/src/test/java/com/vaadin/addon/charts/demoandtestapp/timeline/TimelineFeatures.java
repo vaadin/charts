@@ -365,9 +365,7 @@ public class TimelineFeatures extends AbstractVaadinChartExample {
 
     private void addCSVDatasource() {
         Indexed c = TestContainers.createCSVContainer(this.getClass()
-                .getClassLoader()
-                .getResource("com/vaadin/addon/timeline/tests/data/test.csv")
-                .getFile());
+                .getResource("test.csv").getFile());
         datasources.add(c);
         timeline.addGraphDataSource(c);
     }

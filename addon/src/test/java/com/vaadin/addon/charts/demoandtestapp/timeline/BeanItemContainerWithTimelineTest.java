@@ -60,6 +60,7 @@ public class BeanItemContainerWithTimelineTest extends
 
         timeline.addGraphDataSource(source, "RTimestamp", "RValue");
         addComponent(timeline);
+        setExpandRatio(timeline, 1);
 
         addComponent(new Button("Invert", new Button.ClickListener() {
             public void buttonClick(ClickEvent event) {
@@ -116,6 +117,10 @@ public class BeanItemContainerWithTimelineTest extends
 
     @Override
     protected Component getChart() {
-        return timeline;
+        return null;
+    }
+
+    @Override
+    protected void setup() {
     }
 }
