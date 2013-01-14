@@ -67,6 +67,7 @@ public class HighChartsDefaultTheme extends Theme {
         getCredits().setHref("http://www.highcharts.com/");
 
         setAxisDefaults(getxAxis());
+        getxAxis().setGridLineWidth(0);
 
         setAxisDefaults(getyAxis());
         getyAxis().setLineWidth(0);

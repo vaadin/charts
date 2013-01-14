@@ -117,6 +117,7 @@ public class VaadinTheme extends Theme {
         getyAxis().setTickWidth(0);
 
         getxAxis().setLineColor(LINE_COLOR);
+        getxAxis().setGridLineWidth(0);
 
         getPlotOptions().getLine().setLineWidth(1);
 
