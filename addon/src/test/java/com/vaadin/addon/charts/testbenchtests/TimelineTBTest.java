@@ -33,9 +33,13 @@ public class TimelineTBTest extends AbstractTestBenchTest {
         File refImage = getReferenceImage(String.format("timeline-%s.png",
                 imageQualifier));
         try {
-            // force focus away
-            click("ROOT::PID_Smenu#item0", 16, 13);
-            click("ROOT::PID_Smenu#item0", 16, 13);
+            try {
+                // force focus away
+                click("ROOT::PID_Smenu#item0", 16, 13);
+                click("ROOT::PID_Smenu#item0", 16, 13);
+            } catch (Exception e) {
+                
+            }
             sleep(2000);
             if (!testBench.compareScreen(refImage)) {
                 screenComparisonErrors.append("Screen comparison failed for ")

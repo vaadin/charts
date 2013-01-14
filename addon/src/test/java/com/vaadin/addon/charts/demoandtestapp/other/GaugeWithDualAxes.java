@@ -101,9 +101,10 @@ public class GaugeWithDualAxes extends AbstractVaadinChartExample {
         generator = new Thread() {
             @Override
             public void run() {
-                Random r = new Random(0);
-                while (isConnectorEnabled()) {
-                    try {
+                try {
+                    sleep(5000);
+                    Random r = new Random(0);
+                    while (isConnectorEnabled()) {
                         sleep(5000);
                         Integer oldValue = series.getData()[0].intValue();
                         Integer newValue = (int) (oldValue + (r.nextDouble() - 0.5) * 20.0);
@@ -113,8 +114,8 @@ public class GaugeWithDualAxes extends AbstractVaadinChartExample {
                         } finally {
                             getSession().unlock();
                         }
-                    } catch (InterruptedException e) {
                     }
+                } catch (InterruptedException e) {
                 }
             }
         };

@@ -7,7 +7,12 @@ public class TimeDataWithIrregularIntervalsTBTest extends
 
     @Override
     protected String getTestViewName() {
-        return TimeDataWithIrregularIntervals.class.getName();
+        return TimeDataWithIrregularIntervals.class.getSimpleName();
+    }
+    
+    @Override
+    protected String getPackageName() {
+        return "lineandscatter";
     }
 
 }
