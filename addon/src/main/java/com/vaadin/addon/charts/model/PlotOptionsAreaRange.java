@@ -21,6 +21,7 @@ package com.vaadin.addon.charts.model;
  * Plot options for {@link ChartType#AREARANGE}
  * 
  * @see AbstractPlotOptions
+ * @see AbstractAreaPlotOptions
  */
 public class PlotOptionsAreaRange extends AbstractAreaPlotOptions {
 

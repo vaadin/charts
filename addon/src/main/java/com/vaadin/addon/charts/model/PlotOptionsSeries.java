@@ -22,6 +22,7 @@ package com.vaadin.addon.charts.model;
  * type specific options are defined.
  * 
  * @see AbstractPlotOptions
+ * @see AbstractLinePlotOptions
  */
 public class PlotOptionsSeries extends AbstractLinePlotOptions {
 

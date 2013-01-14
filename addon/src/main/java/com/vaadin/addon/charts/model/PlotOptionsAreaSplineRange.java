@@ -1,6 +1,5 @@
 package com.vaadin.addon.charts.model;
 
-
 /*
  * #%L
  * Vaadin Charts
@@ -22,6 +21,7 @@ package com.vaadin.addon.charts.model;
  * Plot options for {@link ChartType#AREASPLINERANGE}
  * 
  * @see AbstractPlotOptions
+ * @see PlotOptionsArea
  */
 public class PlotOptionsAreaSplineRange extends PlotOptionsArea {
 

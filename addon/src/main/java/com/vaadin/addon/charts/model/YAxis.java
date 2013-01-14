@@ -66,7 +66,7 @@ public class YAxis extends Axis {
      * Sets the index of the pane onto which this axis is rendered.
      * 
      * @param pane
-     * @see #setPane(Pane) for better typed API
+     * @see #setPane(Pane) for a more strongly typed API
      */
     public void setPane(Integer pane) {
         this.pane = pane;
@@ -98,11 +98,13 @@ public class YAxis extends Axis {
 
     /**
      * Sets the pane onto which this axis is rendered.
+     * 
      * @param pane
      */
     public void setPane(Pane pane) {
-        if(pane.getPaneIndex() == null) {
-            throw new IllegalStateException("Pane must be attached to configuration");
+        if (pane.getPaneIndex() == null) {
+            throw new IllegalStateException(
+                    "Pane must be attached to configuration");
         }
         setPane(pane.getPaneIndex());
     }

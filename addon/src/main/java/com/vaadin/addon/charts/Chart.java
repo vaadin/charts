@@ -29,7 +29,6 @@ import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesEventListener;
-import com.vaadin.addon.charts.model.Lang;
 import com.vaadin.addon.charts.model.Series;
 import com.vaadin.ui.AbstractComponent;
 import com.vaadin.util.ReflectTools;
@@ -37,28 +36,29 @@ import com.vaadin.util.ReflectTools;
 /**
  * Chart is a Vaadin component that is used to visualize data.
  * <p>
- * All configuration and data is given through {@link Configuration} object. A
- * simple usage example below:
+ * All configuration and data is given through a {@link Configuration} object.
+ * Here is a simple usage example:
  * <p>
  * <code><pre>
- Chart chart = new Chart(ChartType.COLUMN);
- Configuration conf = chart.getConfiguration();
- conf.setTitle("My data visualized");
- ListSeries series = new ListSeries("Diameters");
- series.setData(4900,  12100,  12800,
-                6800,  143000, 125000,
-                51100, 49500);
- conf.addSeries(series);
- </pre></code>
+ * Chart chart = new Chart(ChartType.COLUMN);
+ * Configuration conf = chart.getConfiguration();
+ * conf.setTitle("My data visualized");
+ * ListSeries series = new ListSeries("Diameters");
+ * series.setData(4900,  12100,  12800,
+ *                6800,  143000, 125000,
+ *                51100, 49500);
+ * conf.addSeries(series);
+ * </pre></code>
  * <p>
- * Unless otherwise documented, dynamic changes to chart configuration are not
- * eagerly reflected to already drawn component. To redraw the chart developer
- * should call {@link #drawChart()} or {@link #drawChart(Configuration)}.
+ * Unless otherwise documented, dynamic changes to the chart configuration are
+ * not immediately reflected to an already drawn component. To redraw the chart
+ * you should call {@link #drawChart()} or {@link #drawChart(Configuration)}.
  * <p>
- * The implementation relies on HighChart JS library. Developers can also use
- * its raw JS API via {@link #drawChart(String)} method.
+ * The implementation relies on the <a
+ * href="http://www.highcharts.com/">HighCharts JS</a> library. Developers can
+ * also use its raw JS API via the {@link #drawChart(String)} method.
  * <p>
- * See more examples from the Book of Vaadin or from online demos.
+ * See more examples in Book of Vaadin or the online demos.
  * 
  * @see <a href="http://vaadin.com/book">Book of Vaadin</a>
  * @see <a href="https://vaadin.com/add-ons/charts">Vaadin Charts</a>
@@ -78,7 +78,7 @@ public class Chart extends AbstractComponent {
     /**
      * Constructs a chart component with default settings.
      * <p>
-     * Default dimensions are set to 100% width and 400px height.
+     * Default dimensions are 100% width and 400px height.
      * 
      * @See {@link Chart}
      */
@@ -114,7 +114,7 @@ public class Chart extends AbstractComponent {
     }
 
     /**
-     * Constructs a chart with given default chart type.
+     * Constructs a chart with the specified default chart type.
      * <p>
      * In charts with multiple series, the type can also be defined by setting
      * series specific plot options.

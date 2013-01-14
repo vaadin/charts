@@ -21,6 +21,7 @@ package com.vaadin.addon.charts.model;
  * Plot options that are specific for {@link ChartType#COLUMNRANGE} charts
  * 
  * @see AbstractPlotOptions
+ * @see PlotOptionsColumn
  */
 public class PlotOptionsColumnRange extends PlotOptionsColumn {
 

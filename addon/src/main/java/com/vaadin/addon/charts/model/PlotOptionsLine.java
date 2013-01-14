@@ -21,6 +21,7 @@ package com.vaadin.addon.charts.model;
  * Plot options for {@link ChartType#LINE} graphs
  * 
  * @see AbstractPlotOptions
+ * @see AbstractLinePlotOptions
  */
 public class PlotOptionsLine extends AbstractLinePlotOptions {
 

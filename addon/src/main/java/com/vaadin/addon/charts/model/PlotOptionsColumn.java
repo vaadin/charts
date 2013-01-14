@@ -21,6 +21,7 @@ package com.vaadin.addon.charts.model;
  * Plot options that are specific for {@link ChartType#COLUMN} charts
  * 
  * @see AbstractPlotOptions
+ * @see AbstractPointPlotOptions
  */
 public class PlotOptionsColumn extends AbstractPointPlotOptions {
     private Number pointPadding;

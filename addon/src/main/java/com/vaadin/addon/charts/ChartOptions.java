@@ -21,7 +21,6 @@ import java.util.Iterator;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.vaadin.addon.charts.client.ui.ChartClientRpc;
 import com.vaadin.addon.charts.client.ui.ChartOptionsState;
 import com.vaadin.addon.charts.model.AbstractConfigurationObject;
 import com.vaadin.addon.charts.model.Lang;
@@ -90,9 +89,9 @@ public class ChartOptions extends AbstractExtension {
         getState().json = gson.toJson(theme);
         notifyListeners();
     }
-    
+
     /**
-     * Change chart's language to the given one
+     * Changes the language of all charts.
      * 
      * @param lang
      */
@@ -101,7 +100,7 @@ public class ChartOptions extends AbstractExtension {
         getState().json = uidl;
         notifyListeners();
     }
-    
+
     @Override
     protected ChartOptionsState getState() {
         return (ChartOptionsState) super.getState();

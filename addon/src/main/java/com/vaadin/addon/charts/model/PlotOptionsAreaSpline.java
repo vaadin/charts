@@ -21,6 +21,7 @@ package com.vaadin.addon.charts.model;
  * Plot options for {@link ChartType#AREASPLINE}
  * 
  * @see AbstractPlotOptions
+ * @see PlotOptionsArea
  */
 public class PlotOptionsAreaSpline extends PlotOptionsArea {
 

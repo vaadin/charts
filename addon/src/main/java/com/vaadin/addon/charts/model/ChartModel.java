@@ -73,7 +73,7 @@ public class ChartModel extends AbstractConfigurationObject {
     /**
      * Sets the default chart type used to render series. Can be any one of the
      * members of {@link ChartType}. Defaults to {@link ChartType#LINE}. The
-     * type can be be overridden per series using
+     * type can be be overridden per series by using
      * {@link AbstractSeries#setPlotOptions(AbstractPlotOptions)}.
      * 
      * @param type

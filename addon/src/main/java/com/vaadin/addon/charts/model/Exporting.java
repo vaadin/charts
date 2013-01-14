@@ -23,9 +23,10 @@ import java.util.Map;
 import com.vaadin.data.util.filter.And;
 
 /**
- * These configurations can be used to downloading and printing of the chart.
+ * These properties can be used to configure downloading and printing of the
+ * chart.
  * <p>
- * If exporting is enabled both buttons are displayed by default. This can be
+ * If exporting is enabled, both buttons are displayed by default. This can be
  * further adjusted with {@link #setExportButton(ExportButton)} {@link And}
  * {@link #setPrintButton(ExportButton)}.
  */

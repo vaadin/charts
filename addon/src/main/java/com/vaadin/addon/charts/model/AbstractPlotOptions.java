@@ -21,30 +21,30 @@ import com.vaadin.addon.charts.ChartOptions;
 import com.vaadin.addon.charts.model.style.Color;
 
 /**
- * Plot options are used to customize the representation of the chart. There are
- * lots of configurable things like colors, fonts, tooltips etc. Some of these
- * configurations are applicable for only certain chart types, so be sure to
- * check relevant subclass.
+ * Plot options are used to customize the representation of the chart. Many
+ * properties can be configured, including colors, fonts, tooltips, etc. Some of
+ * these properties are applicable only to certain chart types, so be sure to
+ * use the relevant subclass.
  * <p>
- * These configurations can be set in multiple places. Initial defaults for plot
- * options are set by the framework and can be customized with
+ * These configuration properties can be set in multiple places. Initial
+ * defaults for plot options are set by the framework and can be customized with
  * {@link ChartOptions}. The most common method to use plot options is to call
  * {@link Configuration#setPlotOptions(AbstractPlotOptions)}. Values defined
  * here will override defaults from the theme. Options that are not defined at
  * this level will be inherited from the theme defaults. If the chart is a
- * "combination chart", plot options for different types can be defined.
+ * combined chart, plot options for different types can be defined.
  * <p>
- * Third place where plot options can be used is at series level. If chart has
- * several series of data, configurations defined at theme and component level
- * can still by fine tuned with
+ * The third place where plot options can be used is at the series level. If
+ * chart has several series of data, configurations defined in the theme and at
+ * the component level can be fine tuned with
  * {@link AbstractSeries#setPlotOptions(AbstractPlotOptions)}. The same method
- * is also used to define the chart type for the series in "combination charts".
+ * is also used to define the chart type for the series in combined charts.
  * <p>
  * {@link PlotOptionsSeries} is a special plot options type that can be used to
  * define default options shared by all chart types.
  */
 public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
-    
+
     private Labels dataLabels;
     private Number zIndex;
     private Boolean visible;
@@ -80,14 +80,14 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
 
     /**
      * @see #setzIndex(Number)
-     * @return Z index or null if not defined
+     * @return Z-index or null if not defined
      */
     public Number getzIndex() {
         return zIndex;
     }
 
     /**
-     * Define the z index of the series. Defaults to null.
+     * Define the Z-index of the series. Defaults to null.
      * 
      * @param zIndex
      */
@@ -111,7 +111,7 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     public void setVisible(Boolean visible) {
         this.visible = visible;
     }
-    
+
     /**
      * Enables or disables the mouse tracking for a specific series. This
      * includes point tooltips and click events on graphs and points. For large

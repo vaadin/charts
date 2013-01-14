@@ -21,6 +21,7 @@ package com.vaadin.addon.charts.model;
  * Plot options that are specific for {@link ChartType#SPLINE} charts
  * 
  * @see AbstractPlotOptions
+ * @see AbstractLinePlotOptions
  */
 public class PlotOptionsSpline extends AbstractLinePlotOptions {
 

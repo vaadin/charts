@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.model.style.Color;
 
 /**
@@ -76,7 +77,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     private Number offset;
     private Boolean endOnTick;
     /**
-     * Holds axis index when attached to configuration
+     * Holds the axis index when attached to a configuration
      */
     private Integer axisIndex;
 
@@ -94,14 +95,15 @@ public abstract class Axis extends AbstractConfigurationObject {
      * <p>
      * Example:
      * <p>
-     * Data is defined with <code>new ListSeries(2,3,4)</code> or with analog
-     * DataSeries with 0:2,1:3,2:4 value x:y pairs. Index 0 is apples, 1,
-     * bananas and 2 is oranges. Now you can set categories displayed on x axis by calling <code>
+     * Data is defined with <code>new ListSeries(2,3,4)</code> or with a
+     * DataSeries object containing the following (x,y) pairs: (0,2), (1,3),
+     * (2,4). Index 0 is apples, 1 is bananas and 2 is oranges. Now you can set
+     * the categories displayed on the X-axis by calling <code>
      * axis.setCategories("Apples", "Bananas", "Oranges");
      * </code>
      * 
      * <p>
-     * Defaults to null and numbers are displayed.
+     * Defaults to null, which causes numbers to be displayed.
      * 
      * @param categories
      */
@@ -231,9 +233,9 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * Removes the given PlotBand if exists. Remember to call
-     * Chart.drawChart(Configuration); after the update if you want to update
-     * visible chart component.
+     * Removes the given PlotBand, if it exists. Remember to call
+     * {@link Chart#drawChart(Configuration)} after the update if you want to
+     * update an already rendered chart.
      * 
      * @param plotBand
      */
@@ -598,11 +600,11 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * Specifies another axis that this axis is linked to. When an axis is
-     * linked to a master axis, it will take the same extremes as the master,
-     * but as assigned by {@link #setMin(Number)} or {@link #setMax(Number)} or
-     * by {@link #setExtremes(Number, Number)}. It can be used to show
-     * additional info, or to ease reading the chart by duplicating the scales.
-     * Defaults to null.
+     * linked to a master axis, it will take the same extremes as the master, as
+     * assigned by {@link #setMin(Number)} or {@link #setMax(Number)} or by
+     * {@link #setExtremes(Number, Number)}. It can be used to show additional
+     * info, or to ease reading the chart by duplicating the scales. Defaults to
+     * null.
      * 
      * <p>
      * Note that due to implementation details it is suggested that this method

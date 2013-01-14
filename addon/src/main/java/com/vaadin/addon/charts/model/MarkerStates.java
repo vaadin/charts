@@ -21,9 +21,9 @@ package com.vaadin.addon.charts.model;
  * States for markers (like symbols in plot line)
  */
 public class MarkerStates extends States {
-    
+
     /**
-     * Creates new States object with given hoverState
+     * Constructs a new States object with the given hover state.
      * 
      * @param hoverState
      */

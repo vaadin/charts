@@ -34,7 +34,7 @@ public abstract class AbstractCommonPlotOptions extends AbstractPlotOptions {
 
     /**
      * @see #setPointPlacement(PointPlacement)
-     * @return the polar placement or null if none.
+     * @return the point placement or null if none.
      */
     public PointPlacement getPointPlacement() {
         return pointPlacement;

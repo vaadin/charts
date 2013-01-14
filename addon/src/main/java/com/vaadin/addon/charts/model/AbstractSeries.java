@@ -93,11 +93,11 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
     /**
      * Sets the plot options for this specific series. The type of the plot
      * options also explicitly sets the chart type used when rendering this
-     * particular series. If plot options is null the component wide chart type
+     * particular series. If plot options is null, the component wide chart type
      * is used.
      * <p>
-     * Options that are not defined at this level will be inherited from chart
-     * and theme level.
+     * Options that are not defined at this level will be inherited from the
+     * chart and theme levels.
      * 
      * @param plotOptions
      */

@@ -401,12 +401,12 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * Sets component wide default plot options.
+     * Sets component-wide default plot options.
      * <p>
-     * If component contains several chart types, this method be can called with
-     * several plot option types. Subsequent call with same plot type will
-     * replace previous options for that specific chart type i.e only latest
-     * options for each chart type is honored.
+     * If the component contains several chart types, this method can be called
+     * with several plot option types. Subsequent calls with the same plot type
+     * will replace previous options for that specific chart type i.e only the
+     * latest options for each chart type is honored.
      * <p>
      * {@link PlotOptionsSeries} is a special plot options type that can be used
      * to define rules for all chart types.
@@ -624,9 +624,9 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * Sets data series event listener.
+     * Sets the data series event listener.
      * <p>
-     * This method is used by the library internally. Usage by end user may
+     * This method is used internally by the library. Usage by the end user will
      * cause unexpected behavior.
      * 
      * @param listener

@@ -85,12 +85,13 @@ public class Lang extends AbstractConfigurationObject {
     }
 
     /**
-     * An array containing the months names. Corresponds to the %B format in
-     * Highcharts.dateFormat(). Defaults to {"January", "February", "March",
-     * "April", "May", "June", "July", "August", "September", "October",
-     * "November", "December"}
+     * Sets the name of the months in the current language. Corresponds to the
+     * <code>%B</code> format in <code>Highcharts.dateFormat()</code>. Defaults
+     * to <code>{"January", "February", "March", "April", "May", "June", "July",
+     * "August", "September", "October", "November", "December"}</code>
      * 
      * @param months
+     *            An array containing the names of the months.
      */
     public void setMonths(String[] months) {
         this.months = months;
@@ -105,10 +106,12 @@ public class Lang extends AbstractConfigurationObject {
     }
 
     /**
-     * An array containing the weekday names. Defaults to {"Sunday", "Monday",
-     * "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"}.
+     * Sets the name of the days in the current language. Defaults to
+     * <code>{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
+     * "Friday", "Saturday"}</code>.
      * 
      * @param weekdays
+     *            An array containing the weekday names.
      */
     public void setWeekdays(String[] weekdays) {
         this.weekdays = weekdays;
@@ -123,10 +126,12 @@ public class Lang extends AbstractConfigurationObject {
     }
 
     /**
-     * An array containing the months' short names. Defaults {"Jan", "Feb",
-     * "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"}
+     * Sets the short name for the months in the current language. Defaults
+     * <code>{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep",
+     * "Oct", "Nov", "Dec"}</code>.
      * 
      * @param shortMonths
+     *            An array containing the abbreviated names of the months.
      */
     public void setShortMonths(String[] shortMonths) {
         this.shortMonths = shortMonths;
@@ -141,10 +146,11 @@ public class Lang extends AbstractConfigurationObject {
     }
 
     /**
-     * An array containing the numeric symbols. Defaults to {"k", "M", "G", "T",
-     * "P", "E"}
+     * Sets numeric symbols for the current language. Defaults to
+     * <code>{"k", "M", "G", "T", "P", "E"}</code>.
      * 
-     * @param shortMonths
+     * @param numericSymbols
+     *            An array containing the numeric symbols.
      */
     public void setNumericSymbols(String[] numericSymbols) {
         this.numericSymbols = numericSymbols;
@@ -159,7 +165,7 @@ public class Lang extends AbstractConfigurationObject {
     }
 
     /**
-     * Caption of the zoom reseting button. Defaults to "Reset zoom"
+     * Sets the title of the zoom resetting button. Defaults to "Reset zoom".
      * 
      * @param resetZoom
      */
@@ -176,7 +182,7 @@ public class Lang extends AbstractConfigurationObject {
     }
 
     /**
-     * Title of reset zoom button. Defaults to Reset zoom level 1:1.
+     * Title of the zoom resetting button. Defaults to "Reset zoom level 1:1".
      * 
      * @param resetZoomTitle
      */

@@ -21,6 +21,7 @@ package com.vaadin.addon.charts.model;
  * Plot options that are specific for {@link ChartType#SCATTER} charts
  * 
  * @see AbstractPlotOptions
+ * @see AbstractLinePlotOptions
  */
 public class PlotOptionsScatter extends AbstractLinePlotOptions {
 

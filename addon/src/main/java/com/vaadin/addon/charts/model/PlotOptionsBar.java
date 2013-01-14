@@ -21,6 +21,7 @@ package com.vaadin.addon.charts.model;
  * Plot options that are specific for {@link ChartType#BAR} charts
  * 
  * @see AbstractPlotOptions
+ * @see PlotOptionsColumn
  */
 public class PlotOptionsBar extends PlotOptionsColumn {
 
