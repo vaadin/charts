@@ -89,11 +89,19 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * If categories are present for the Axis, names are used instead of numbers
-     * for that axis. Example:
+     * for that axis.
      * 
-     * "Apples", "Bananas", "Oranges"
+     * <p>
+     * Example:
+     * <p>
+     * Data is defined with <code>new ListSeries(2,3,4)</code> or with analog
+     * DataSeries with 0:2,1:3,2:4 value x:y pairs. Index 0 is apples, 1,
+     * bananas and 2 is oranges. Now you can set categories displayed on x axis by calling <code>
+     * axis.setCategories("Apples", "Bananas", "Oranges");
+     * </code>
      * 
-     * Defaults to null.
+     * <p>
+     * Defaults to null and numbers are displayed.
      * 
      * @param categories
      */
@@ -603,8 +611,9 @@ public abstract class Axis extends AbstractConfigurationObject {
      * @param linkedTo
      */
     public void setLinkedTo(Axis linkedTo) {
-        if(linkedTo.getAxisIndex() == null) {
-            throw new IllegalStateException("Linked axis must already be attached");
+        if (linkedTo.getAxisIndex() == null) {
+            throw new IllegalStateException(
+                    "Linked axis must already be attached");
         }
         this.linkedTo = linkedTo.getAxisIndex();
     }
