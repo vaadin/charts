@@ -129,6 +129,7 @@ public class Chart extends AbstractComponent {
         configuration.setChart(new ChartModel(type));
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void beforeClientResponse(boolean initial) {
         super.beforeClientResponse(initial);
@@ -175,6 +176,7 @@ public class Chart extends AbstractComponent {
      * @param jsonConfig
      *            the chart configuration as a JSON string
      */
+    @SuppressWarnings("deprecation")
     public void drawChart(String jsonConfig) {
         this.jsonConfig = jsonConfig;
         configuration.setDataSeriesEventListener(null);

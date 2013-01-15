@@ -22,7 +22,7 @@ public class TServer {
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        Server server = startServer(PORT);
+        startServer(PORT);
     }
 
     public static Server startServer(int port) throws Exception {

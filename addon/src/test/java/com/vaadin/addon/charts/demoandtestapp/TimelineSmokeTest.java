@@ -24,7 +24,7 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextField;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({"serial", "deprecation", "unchecked"})
 public class TimelineSmokeTest extends AbstractVaadinChartExample {
 
     Container.Indexed firstDataSource;

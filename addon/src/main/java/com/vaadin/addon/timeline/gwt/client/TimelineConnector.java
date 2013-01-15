@@ -24,6 +24,7 @@ import com.vaadin.client.communication.StateChangeEvent;
 import com.vaadin.client.ui.LegacyConnector;
 import com.vaadin.shared.ui.Connect;
 
+@SuppressWarnings("deprecation")
 @Connect(Timeline.class)
 public class TimelineConnector extends LegacyConnector implements
 DirectionalManagedLayout {

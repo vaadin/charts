@@ -20,7 +20,7 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 
 @SkipFromDemo
-@SuppressWarnings("serial")
+@SuppressWarnings({"serial", "deprecation"})
 public class TimelineFeatures extends AbstractVaadinChartExample {
 
     private VerticalLayout layout;

@@ -101,7 +101,6 @@ public class Image {
 	/**
 	 * Invokes the {@link Image.ImageListener} instance, if any.
 	 */
-	@SuppressWarnings("unused")
 	private void invokeCallback() {
 		loaded = true;
 		if (loadingListener != null) {

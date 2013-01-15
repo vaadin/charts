@@ -14,7 +14,7 @@ import com.vaadin.data.util.IndexedContainer;
 import com.vaadin.ui.Component;
 
 @SkipFromDemo
-@SuppressWarnings("serial")
+@SuppressWarnings({"serial", "deprecation"})
 public class TimelineHelloWorld extends AbstractVaadinChartExample {
 
     private Timeline timeline;
@@ -46,6 +46,7 @@ public class TimelineHelloWorld extends AbstractVaadinChartExample {
         return ic;
     }
 
+    @SuppressWarnings("unchecked")
     private void addPoint(Indexed graph, Date date, Float value) {
         Item item = graph.getItem(graph.addItem());
         item.getItemProperty(Timeline.PropertyId.TIMESTAMP).setValue(date);

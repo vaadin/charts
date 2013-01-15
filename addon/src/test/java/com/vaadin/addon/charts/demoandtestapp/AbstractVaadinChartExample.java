@@ -68,6 +68,7 @@ public abstract class AbstractVaadinChartExample extends VerticalLayout implemen
 
     private Item sampleItem;
 
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public Item getSampleItem() {
         if (sampleItem == null) {

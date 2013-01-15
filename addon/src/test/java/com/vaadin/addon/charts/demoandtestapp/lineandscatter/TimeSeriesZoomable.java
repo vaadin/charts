@@ -18,6 +18,7 @@ import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.ZoomType;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
+import com.vaadin.server.Page;
 import com.vaadin.ui.Component;
 
 public class TimeSeriesZoomable extends AbstractVaadinChartExample {
@@ -185,8 +186,8 @@ public class TimeSeriesZoomable extends AbstractVaadinChartExample {
 
         configuration.getTitle().setText(
                 "USD to EUR exchange rate from 2006 through 2008");
-
-        String title = getSession().getBrowser().isTouchDevice() ? "Drag your finger over the plot to zoom in"
+        
+        String title = Page.getCurrent().getWebBrowser().isTouchDevice() ? "Drag your finger over the plot to zoom in"
                 : "Click and drag in the plot area to zoom in";
         configuration.getSubTitle().setText(title);
 

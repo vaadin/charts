@@ -34,6 +34,7 @@ public class SplineWithPlotBands extends AbstractVaadinChartExample {
         return "Spline With Plot Bands";
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     protected Component getChart() {
         Chart chart = new Chart();

@@ -30,7 +30,7 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextField;
 
 @SkipFromDemo
-@SuppressWarnings("serial")
+@SuppressWarnings({"serial", "deprecation", "unchecked"})
 public class MyTimelineDemo extends AbstractVaadinChartExample {
 
     Container.Indexed firstDataSource;

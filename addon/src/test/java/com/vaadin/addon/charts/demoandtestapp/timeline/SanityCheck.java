@@ -14,7 +14,7 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.GridLayout;
 
 @SkipFromDemo
-@SuppressWarnings("serial")
+@SuppressWarnings({"serial", "deprecation"})
 public class SanityCheck extends AbstractVaadinChartExample {
 
     private GridLayout grid;

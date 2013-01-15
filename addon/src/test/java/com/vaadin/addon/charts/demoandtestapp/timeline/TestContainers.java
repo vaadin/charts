@@ -20,7 +20,7 @@ import com.vaadin.data.Container.Indexed;
 import com.vaadin.data.Item;
 import com.vaadin.data.util.IndexedContainer;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({"serial", "deprecation", "unchecked"})
 public class TestContainers implements Serializable {
 
     /**
@@ -182,7 +182,6 @@ public class TestContainers implements Serializable {
      * 
      * @return
      */
-    @SuppressWarnings("deprecation")
     public static Container.Indexed createSanityCheckContainer(
             boolean onePoint, boolean multiple) {
 
@@ -301,6 +300,7 @@ public class TestContainers implements Serializable {
                 item.getItemProperty(Timeline.PropertyId.VALUE).setValue(
                         Integer.valueOf(dateValue[0]));
             }
+            bufferedReader.close();
         } catch (FileNotFoundException e) {
             System.out.println("FileNotFoundException - " + e.getMessage());
         } catch (IOException e) {

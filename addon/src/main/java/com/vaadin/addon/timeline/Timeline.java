@@ -61,7 +61,7 @@ import com.vaadin.ui.LegacyComponent;
  * @author John Ahlroos / Vaadin Ltd 2010-2012
  * @since 1.0
  */
-@SuppressWarnings({ "unchecked", "serial" })
+@SuppressWarnings({ "unchecked", "serial", "deprecation" })
 public class Timeline extends AbstractComponent implements LegacyComponent {
 
     // Graph containers
@@ -979,7 +979,7 @@ public class Timeline extends AbstractComponent implements LegacyComponent {
      * java.util.Map)
      */
     @Override
-    public void changeVariables(Object source, Map variables) {
+    public void changeVariables(Object source, @SuppressWarnings("rawtypes") Map variables) {
 
         if (dirty) {
             /*
@@ -1884,7 +1884,7 @@ public class Timeline extends AbstractComponent implements LegacyComponent {
                 if (item != null
                         && item.getItemPropertyIds().contains(
                                 timestampPropertyId)) {
-                    Property property = item
+                    Property<?> property = item
                             .getItemProperty(timestampPropertyId);
                     Date d1 = (Date) property.getValue();
                     if (minDate == null || minDate.after(d1)) {
@@ -1919,7 +1919,7 @@ public class Timeline extends AbstractComponent implements LegacyComponent {
                 if (item != null
                         && item.getItemPropertyIds().contains(
                                 timestampPropertyId)) {
-                    Property property = cont.getItem(cont.lastItemId())
+                    Property<?> property = cont.getItem(cont.lastItemId())
                             .getItemProperty(timestampPropertyId);
                     Date d2 = (Date) property.getValue();
                     if (maxDate == null || maxDate.before(d2)) {
@@ -2620,7 +2620,7 @@ public class Timeline extends AbstractComponent implements LegacyComponent {
             Object id) {
         TimelineDatasourceProperties ds = getDatasourceProperties(dataSource);
         if (ds != null) {
-            Class clazz = dataSource.getType(id);
+            Class<?> clazz = dataSource.getType(id);
             if (java.util.Date.class.isAssignableFrom(clazz)) {
                 ds.setTimestampProperty(id);
             } else {
@@ -2755,7 +2755,7 @@ public class Timeline extends AbstractComponent implements LegacyComponent {
     public void setGraphValuePropertyId(Container.Indexed dataSource, Object id) {
         TimelineDatasourceProperties ds = getDatasourceProperties(dataSource);
         if (ds != null) {
-            Class clazz = dataSource.getType(id);
+            Class<?> clazz = dataSource.getType(id);
             if (Number.class.isAssignableFrom(clazz)) {
                 ds.setValueProperty(id);
             } else {
@@ -3576,7 +3576,7 @@ public class Timeline extends AbstractComponent implements LegacyComponent {
             int startIndex, int endIndex, int density, Indexed cont,
             List<String> values, List<Item> items) {
         Date lastDate = null;
-        Date firstDate = null;
+        //        Date firstDate = null;
         Long lastIncrement = null;
         StringBuilder valueString = null;
 

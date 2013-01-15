@@ -18,6 +18,7 @@ public class AbstractContainerSeriesSerializerTest {
     private ContainerDataSeries container;
     private ContainerDataSeriesSerializer serializer;
 
+    @SuppressWarnings("unchecked")
     @Before
     public void setup() {
         serializer = new ContainerDataSeriesSerializer();
@@ -43,6 +44,7 @@ public class AbstractContainerSeriesSerializerTest {
         ie.getItemProperty("z").setValue(20);
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     public void test() {
         JsonElement json = serializer.serialize(container, null, null);

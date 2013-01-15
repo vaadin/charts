@@ -69,10 +69,10 @@ import com.vaadin.client.VConsole;
  * @author John Ahlroos / Vaadin Ltd
  * 
  */
-public class VTimelineDisplay extends VTimelineCanvasComponent implements VDataListener,
-MouseDownHandler, MouseMoveHandler, MouseWheelHandler,
-NativePreviewHandler, PlottingListener, TouchStartHandler,
-TouchMoveHandler {
+public class VTimelineDisplay extends VTimelineCanvasComponent implements
+        VDataListener, MouseDownHandler, MouseMoveHandler, MouseWheelHandler,
+        NativePreviewHandler, PlottingListener, TouchStartHandler,
+        TouchMoveHandler {
 
     private static final String CLASSNAME_BOTTOMBAR = VTimelineWidget.DISPLAY_CLASSNAME
             + "-bottombar";
@@ -364,65 +364,65 @@ TouchMoveHandler {
                 .getShortDateFormatter(unitTime) : widget.getDateFormats()
                 .getLongDateFormatter(unitTime);
 
-                if (gridColor != null) {
-                    canvas.setStrokeStyle(gridColor);
-                    canvas.setLineWidth(0.5);
-                    canvas.beginPath();
-                }
+        if (gridColor != null) {
+            canvas.setStrokeStyle(gridColor);
+            canvas.setLineWidth(0.5);
+            canvas.beginPath();
+        }
 
-                long stepsUntilInRange = (startTime - time) / unitTime;
-                time += stepsUntilInRange * unitTime;
+        long stepsUntilInRange = (startTime - time) / unitTime;
+        time += stepsUntilInRange * unitTime;
 
-                while (time <= endTime) {
-                    if (time >= startTime - unitTime && time <= endTime + unitTime) {
-                        Label lbl = new Label();
-                        lbl.setStyleName(leftAlign ? CLASSNAME_SCALEDATE_LEFT
-                                : CLASSNAME_SCALEDATE);
-                        lbl.setWidth(width + "px");
-                        Date date = new Date(time);
+        while (time <= endTime) {
+            if (time >= startTime - unitTime && time <= endTime + unitTime) {
+                Label lbl = new Label();
+                lbl.setStyleName(leftAlign ? CLASSNAME_SCALEDATE_LEFT
+                        : CLASSNAME_SCALEDATE);
+                lbl.setWidth(width + "px");
+                Date date = new Date(time);
 
-                        lbl.setText(widget.getDateTimeService().formatDate(date,
-                                formatter.getPattern()));
+                lbl.setText(widget.getDateTimeService().formatDate(date,
+                        formatter.getPattern()));
 
-                        long timeFromStart = time - startTime;
-                        float x = timeFromStart * xUnit;
-
-                        if (gridColor != null) {
-                            canvas.moveTo(x, 0);
-                            canvas.lineTo(x, canvas.getHeight());
-                        }
-
-                        displayComponentPanel.add(lbl, (int) x,
-                                displayComponentPanel.getOffsetHeight() - 15);
-                        horizontalScaleComponents.add(lbl);
-                    }
-
-                    if (unitTime == VDateFormatInfo.MONTH) {
-                        /*
-                         * Month resolution is not so easy since it changes depending on
-                         * the month. We use the Date to resolve the new time
-                         */
-                        time += DateTimeService.getNumberOfDaysInMonth(new Date(time))
-                                * VDateFormatInfo.DAY;
-                    } else if (unitTime == VDateFormatInfo.YEAR) {
-                        /*
-                         * Take leap years into account
-                         */
-                        if (DateTimeService.isLeapYear(new Date(time))) {
-                            time += unitTime + VDateFormatInfo.DAY;
-                        } else {
-                            time += unitTime;
-                        }
-
-                    } else {
-                        time += unitTime;
-                    }
-                }
+                long timeFromStart = time - startTime;
+                float x = timeFromStart * xUnit;
 
                 if (gridColor != null) {
-                    canvas.closePath();
-                    canvas.stroke();
+                    canvas.moveTo(x, 0);
+                    canvas.lineTo(x, canvas.getHeight());
                 }
+
+                displayComponentPanel.add(lbl, (int) x,
+                        displayComponentPanel.getOffsetHeight() - 15);
+                horizontalScaleComponents.add(lbl);
+            }
+
+            if (unitTime == VDateFormatInfo.MONTH) {
+                /*
+                 * Month resolution is not so easy since it changes depending on
+                 * the month. We use the Date to resolve the new time
+                 */
+                time += DateTimeService.getNumberOfDaysInMonth(new Date(time))
+                        * VDateFormatInfo.DAY;
+            } else if (unitTime == VDateFormatInfo.YEAR) {
+                /*
+                 * Take leap years into account
+                 */
+                if (DateTimeService.isLeapYear(new Date(time))) {
+                    time += unitTime + VDateFormatInfo.DAY;
+                } else {
+                    time += unitTime;
+                }
+
+            } else {
+                time += unitTime;
+            }
+        }
+
+        if (gridColor != null) {
+            canvas.closePath();
+            canvas.stroke();
+        }
     }
 
     /**
@@ -753,12 +753,12 @@ TouchMoveHandler {
      * Redraws the canvas area
      */
     private boolean lazyPlottingImminent = false;
+
     public void redraw() {
         lazyPlottingImminent = true;
         forcePlot = true;
         lazyRedrawTimer.schedule(500);
     }
-
 
     private void plotData(boolean force) {
 
@@ -887,11 +887,11 @@ TouchMoveHandler {
     /**
      * Removes all in memory items
      */
-    public void clearCache(){
+    public void clearCache() {
 
         // Remove markers
         Set<String> markers = new HashSet<String>(markerMap.keySet());
-        for(String mark : markers){
+        for (String mark : markers) {
             removeMarker(mark);
         }
 
@@ -929,8 +929,7 @@ TouchMoveHandler {
             String caption = m[1];
             String description = m[2];
 
-            lbl = new HTML("<span class=\"" + CLASSNAME_MARKER
-                    + "-text\">"
+            lbl = new HTML("<span class=\"" + CLASSNAME_MARKER + "-text\">"
                     + caption + "</span>");
             lbl.setStyleName(CLASSNAME_MARKER);
             lbl.addStyleName(CLASSNAME_MARKER + "-" + caption);
@@ -1343,8 +1342,6 @@ TouchMoveHandler {
         return true;
     }
 
-
-
     /**
      * Set the range to display
      * 
@@ -1710,18 +1707,19 @@ TouchMoveHandler {
 
     int dragX = 0;
 
-    /**
-     * A timer for scrolling the canvas left or right
-     */
-    private Timer scrollTimer = new Timer() {
-        @Override
-        public void run() {
-            lastTouchFingerDistance = 0;
-            refresh();
-            widget.setBrowserRange(getSelectionStartDate(),
-                    getSelectionEndDate());
-        }
-    };
+    // TODO investigate it this is needed, not used
+    // /**
+    // * A timer for scrolling the canvas left or right
+    // */
+    // private Timer scrollTimer = new Timer() {
+    // @Override
+    // public void run() {
+    // lastTouchFingerDistance = 0;
+    // refresh();
+    // widget.setBrowserRange(getSelectionStartDate(),
+    // getSelectionEndDate());
+    // }
+    // };
 
     /**
      * Called when a user is dragging the canvas with the mouse
@@ -1729,6 +1727,8 @@ TouchMoveHandler {
      * @param event
      *            The mouse event
      */
+    // TODO investigate it this is needed, not used
+    @SuppressWarnings("unused")
     private boolean lastDragWasToTheRight = false;
 
     private void moveDragging(NativeEvent event) {
@@ -1768,7 +1768,6 @@ TouchMoveHandler {
         dragX = lastMouseX;
         mouseDownX = dragX;
     }
-
 
     /*
      * (non-Javadoc)
@@ -2222,22 +2221,25 @@ TouchMoveHandler {
      */
     private class Dot extends HTML {
 
-        private double value;
+        // TODO check where if this value is needed somewhere!? Commented out as
+        // not used.
+        // private double value;
 
         public Dot(List<Integer> colors) {
             super(" ");
             setStyleName(CLASSNAME_DOT);
-            getElement().getStyle().setBackgroundColor("rgb(" + colors.get(0) + "," + colors.get(1) + ","
-                    + colors.get(2) + ")");
+            getElement().getStyle().setBackgroundColor(
+                    "rgb(" + colors.get(0) + "," + colors.get(1) + ","
+                            + colors.get(2) + ")");
         }
 
-        public double getValue() {
-            return value;
-        }
-
-        public void setValue(double value) {
-            this.value = value;
-        }
+        // public double getValue() {
+        // return value;
+        // }
+        //
+        // public void setValue(double value) {
+        // this.value = value;
+        // }
     }
 
     /**
@@ -2291,7 +2293,7 @@ TouchMoveHandler {
         // Plot the horizontal scale
         plotHorizontalScale(getCanvasXUnit(),
                 getSelectionStartDate().getTime(), getSelectionEndDate()
-                .getTime());
+                        .getTime());
 
         // Plot vertical scale (if stacked)
         if (widget.isGraphsStacked()) {

@@ -10,7 +10,7 @@ import com.vaadin.data.Container;
 import com.vaadin.ui.Component;
 
 @SkipFromDemo
-@SuppressWarnings("serial")
+@SuppressWarnings({"serial", "deprecation"})
 public class InterpolationTest extends AbstractVaadinChartExample {
 
     private Timeline timeline;

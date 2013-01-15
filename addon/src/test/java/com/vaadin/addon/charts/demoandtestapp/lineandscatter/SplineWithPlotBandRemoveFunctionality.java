@@ -39,6 +39,7 @@ public class SplineWithPlotBandRemoveFunctionality extends
         return "Spline With Plot Bands";
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     protected Component getChart() {
         final Chart chart = new Chart();

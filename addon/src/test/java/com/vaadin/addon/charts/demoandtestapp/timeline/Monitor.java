@@ -25,7 +25,7 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.ProgressIndicator;
 
 @SkipFromDemo
-@SuppressWarnings("serial")
+@SuppressWarnings({"serial", "deprecation"})
 public class Monitor extends AbstractVaadinChartExample {
 
     private IndexedContainer ds;
@@ -105,6 +105,7 @@ public class Monitor extends AbstractVaadinChartExample {
         setExpandRatio(timeline, 1);
     }
 
+    @SuppressWarnings("unchecked")
     private void updateDataContainer() {
         getSession().lock();
         try {

@@ -154,7 +154,7 @@ public class ContainerDataSeriesSerializer implements
         return true;
     }
 
-    private void addAnonymousTypedValue(JsonArray data, Property itemProperty) {
+    private void addAnonymousTypedValue(JsonArray data, Property<?> itemProperty) {
         if (itemProperty != null && itemProperty.getValue() != null) {
             if (Number.class.isAssignableFrom(itemProperty.getType())) {
                 Number pNum = (Number) itemProperty.getValue();
@@ -170,7 +170,7 @@ public class ContainerDataSeriesSerializer implements
     }
 
     private void addNamedAndTypedValue(JsonObject entryObject, String name,
-            Property itemProperty) {
+            Property<?> itemProperty) {
         if (itemProperty != null && itemProperty.getValue() != null) {
             if (Number.class.isAssignableFrom(itemProperty.getType())) {
                 Number pNum = (Number) itemProperty.getValue();

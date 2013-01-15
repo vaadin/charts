@@ -8,7 +8,7 @@ import com.vaadin.data.Container;
 import com.vaadin.ui.Component;
 
 @SkipFromDemo
-@SuppressWarnings("serial")
+@SuppressWarnings({"serial", "deprecation"})
 public class DateFormatTest extends AbstractVaadinChartExample {
 
     private Timeline timeline;

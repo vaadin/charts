@@ -49,6 +49,7 @@ public class ChartWithContainerMuchData extends AbstractVaadinChartExample {
         return lo;
     }
 
+    @SuppressWarnings("unchecked")
     private ContainerDataSeries createContainer() {
         IndexedContainer vaadinContainer = new IndexedContainer();
         ContainerDataSeries container = new ContainerDataSeries(vaadinContainer);

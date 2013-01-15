@@ -36,9 +36,7 @@ public class Events extends AbstractVaadinChartExample {
         chart.addChartClickListener(new ChartClickListener() {
             @Override
             public void onClick(ChartClickEvent event) {
-                double getxAxisValue = event.getxAxisValue();
                 double getyAxisValue = event.getyAxisValue();
-
                 series.addData(getyAxisValue);
             }
         });

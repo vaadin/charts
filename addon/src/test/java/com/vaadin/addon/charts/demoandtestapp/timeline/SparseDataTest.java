@@ -15,7 +15,7 @@ import com.vaadin.data.util.IndexedContainer;
 import com.vaadin.ui.Component;
 
 @SkipFromDemo
-@SuppressWarnings("serial")
+@SuppressWarnings({"serial", "deprecation"})
 public class SparseDataTest extends AbstractVaadinChartExample {
 
     private Timeline timeline;
@@ -41,6 +41,7 @@ public class SparseDataTest extends AbstractVaadinChartExample {
         addComponent(timeline);
     }
 
+    @SuppressWarnings("unchecked")
     private IndexedContainer getDatasource() throws IOException {
         IndexedContainer ds = new IndexedContainer();
         ds.addContainerProperty(Timeline.PropertyId.TIMESTAMP, Date.class, null);

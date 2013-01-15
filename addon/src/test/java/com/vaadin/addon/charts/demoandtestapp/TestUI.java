@@ -23,6 +23,7 @@ public class TestUI extends UI {
                     className = getClass().getPackage().getName() + "."
                             + name.replace("/", ".");
                 }
+                @SuppressWarnings("unchecked")
                 Class<? extends ComponentContainer> forName = (Class<? extends ComponentContainer>) Class
                         .forName(className);
                 if (forName != null) {

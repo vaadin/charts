@@ -71,6 +71,7 @@ import com.vaadin.client.ValueMap;
  * @author Peter Lehto / Vaadin Ltd
  * @author John Ahlroos / Vaadin Ltd
  */
+@SuppressWarnings("deprecation")
 public class VTimelineWidget extends FocusPanel implements Paintable,
         KeyDownHandler, KeyUpHandler, KeyPressHandler, Focusable {
 
@@ -224,8 +225,6 @@ public class VTimelineWidget extends FocusPanel implements Paintable,
     private boolean graphShadows = true;
 
     private List<HandlerRegistration> handlers = new LinkedList<HandlerRegistration>();
-
-    private String currentHeight = null;
 
     public VTimelineWidget() {
         setWidget(root);
@@ -1800,7 +1799,6 @@ public class VTimelineWidget extends FocusPanel implements Paintable,
     /**
      * Get the ISO week date week number
      */
-    @SuppressWarnings("deprecation")
     public static int getWeek(Date date) {
         Date onejan = new Date(date.getYear(), 0, 1);
         Long t1 = onejan.getTime();
@@ -1821,7 +1819,6 @@ public class VTimelineWidget extends FocusPanel implements Paintable,
      *            The year
      * @return Days in the month
      */
-    @SuppressWarnings("deprecation")
     public static int getDaysInMonth(int month, int year) {
         return 32 - new Date(year, month, 32).getDate();
     }
@@ -2126,7 +2123,6 @@ public class VTimelineWidget extends FocusPanel implements Paintable,
      * 
      * @return A pixel height
      */
-    @SuppressWarnings("deprecation")
     public int getWidgetHeight() {
         try {
             int height = Integer.parseInt(DOM.getAttribute(getElement(),
@@ -2143,7 +2139,6 @@ public class VTimelineWidget extends FocusPanel implements Paintable,
         }
     }
 
-    @SuppressWarnings("deprecation")
     public int getWidgetWidth() {
         try {
             int width = Integer.parseInt(DOM

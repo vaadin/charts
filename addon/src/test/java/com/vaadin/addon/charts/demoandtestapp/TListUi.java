@@ -134,6 +134,7 @@ public class TListUi extends UI {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private void addTest(Container indexedContainer, String simpleName,
             Class<?> forName, String subpackage) throws InstantiationException,
             IllegalAccessException {

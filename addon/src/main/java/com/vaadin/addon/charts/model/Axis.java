@@ -44,7 +44,6 @@ public abstract class Axis extends AbstractConfigurationObject {
     private AxisType type;
     private Boolean startOnTick;
     private Boolean showFirstLabel;
-    private Number maxZoom;
     private Number minRange;
 
     private Boolean allowDecimals;
@@ -229,7 +228,7 @@ public abstract class Axis extends AbstractConfigurationObject {
      * @param plotBands
      */
     public void setPlotBands(PlotBand... plotBands) {
-        this.plotBands = new ArrayList(Arrays.asList(plotBands));
+        this.plotBands = new ArrayList<PlotBand>(Arrays.asList(plotBands));
     }
 
     /**
