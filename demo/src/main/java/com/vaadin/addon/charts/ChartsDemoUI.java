@@ -118,7 +118,7 @@ public class ChartsDemoUI extends UI {
         CssLayout logoc = new CssLayout() {
         @Override
         protected String getCss(Component c) {
-            return "background: #4a7093; border-bottom: 1px solid #004e68;";
+            return "background: #4a7093; border-bottom: 1px solid #004e68;padding-left:6px;";
         }};
         CssLayout logow = new CssLayout();
         logoc.addComponent(logow);
