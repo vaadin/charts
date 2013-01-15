@@ -59,13 +59,15 @@ public class AbstractSeriesTypeAdapterFactory implements TypeAdapterFactory {
                 if (value.getPlotOptions() != null) {
                     JsonObject plotOptionsJson = (JsonObject) tree
                             .remove("plotOptions");
-                    Set<Entry<String, JsonElement>> entrySet = plotOptionsJson
-                            .entrySet();
-                    for (Entry<String, JsonElement> entry : entrySet) {
-                        tree.add(entry.getKey(), entry.getValue());
+                    if(plotOptionsJson != null) {
+                        Set<Entry<String, JsonElement>> entrySet = plotOptionsJson
+                                .entrySet();
+                        for (Entry<String, JsonElement> entry : entrySet) {
+                            tree.add(entry.getKey(), entry.getValue());
+                        }
+                        tree.addProperty("type", value.getPlotOptions()
+                                .getChartType().toString());
                     }
-                    tree.addProperty("type", value.getPlotOptions()
-                            .getChartType().toString());
                 }
                 elementAdapter.write(out, tree);
             }
