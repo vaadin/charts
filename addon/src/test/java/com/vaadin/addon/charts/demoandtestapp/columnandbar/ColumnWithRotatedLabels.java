@@ -60,7 +60,8 @@ public class ColumnWithRotatedLabels extends AbstractVaadinChartExample {
         conf.setLegend(legend);
 
         Tooltip tooltip = new Tooltip();
-        tooltip.setFormatter("'<b>'+ this.x +'</b><br/>'+'Population in 2008: '+ Highcharts.numberFormat(this.y, 1) +' millions'");
+        tooltip.setFormatter("'<b>'+ this.x +'</b><br/>'+'Population in 2008: '"
+                + "+ Highcharts.numberFormat(this.y, 1) +' millions'");
         conf.setTooltip(tooltip);
 
         ListSeries serie = new ListSeries("Population", new Number[] { 34.4,

@@ -49,12 +49,18 @@ public class ColumnWithDrilldown extends AbstractVaadinChartExample {
         column.setDataLabels(new Labels(true));
         column.getDataLabels().setColor(colors[0]);
         column.getDataLabels().getStyle().setFontWeight(FontWeight.BOLD);
-        column.getDataLabels().setFormatter("function() {return this.y +'%';}");
+        column.getDataLabels().setFormatter("this.y +'%'");
 
         conf.setPlotOptions(column);
 
         Tooltip tooltip = new Tooltip();
-        tooltip.setFormatter("function() { var point = this.point, s = this.x +':<b>'+ this.y +'% market share</b><br/>'; if (!point.drilldown) { s += 'Click to view '+ point.category +' versions'; } else { s += 'Click to return to browser brands'; } return s; }");
+        tooltip.setFormatter("function() {"
+                + " var point = this.point, s = this.x +':<b>'+ this.y +'% "
+                + "market share</b><br/>'; " + "if (!point.drilldown) { "
+                + "s += 'Click to view '+ point.category +' versions'; "
+                + "} else { " + "s += 'Click to return to browser brands'; "
+                + "} " //
+                + "return s; }");
         conf.setTooltip(tooltip);
 
         final DrilldownSeries series = new DrilldownSeries(conf, 55.11, 21.63,

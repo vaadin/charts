@@ -48,7 +48,8 @@ public class OverrideStackingForSpecificSeries extends
         conf.addyAxis(yAxis);
 
         Tooltip tooltip = new Tooltip();
-        tooltip.setFormatter("function() { return '<b>'+ this.x +'</b><br/>'+this.series.name +': '+ this.y +'<br/>'+'Total: '+ this.point.stackTotal;}");
+        tooltip.setFormatter("'<b>'+ this.x +'</b><br/>'+this.series.name +': '"
+                + "+ this.y +'<br/>'+'Total: '+ this.point.stackTotal");
         conf.setTooltip(tooltip);
 
         PlotOptionsColumn plotOptions = new PlotOptionsColumn();
@@ -62,13 +63,15 @@ public class OverrideStackingForSpecificSeries extends
         conf.addSeries(new ListSeries("John", new Number[] { 5, 3, 4, 7, 2 }));
         conf.addSeries(new ListSeries("Jane", new Number[] { 2, 2, 3, 2, 1 }));
 
-        ListSeries series = new ListSeries("Joe", new Number[] { 3, 4, 4, 2, 5 });
+        ListSeries series = new ListSeries("Joe",
+                new Number[] { 3, 4, 4, 2, 5 });
         PlotOptionsColumn joePlotOptions = new PlotOptionsColumn();
         joePlotOptions.setStacking(Stacking.NONE);
         series.setPlotOptions(joePlotOptions);
         conf.addSeries(series);
 
-        chart.drawChart(conf);        
-        return chart;    }
+        chart.drawChart(conf);
+        return chart;
+    }
 
 }

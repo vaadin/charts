@@ -58,7 +58,7 @@ public class DualAxesLineAndColumn extends AbstractVaadinChartExample {
         conf.addyAxis(snd);
 
         Tooltip tooltip = new Tooltip();
-        tooltip.setFormatter("function() { return ''+ this.x +': '+ this.y + (this.series.name == 'Rainfall' ? ' mm' : '°C'); }");
+        tooltip.setFormatter("this.x +': '+ this.y + (this.series.name == 'Rainfall' ? ' mm' : '°C')");
         conf.setTooltip(tooltip);
 
         Legend legend = new Legend();

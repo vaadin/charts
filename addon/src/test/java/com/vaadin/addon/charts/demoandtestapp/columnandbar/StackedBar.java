@@ -43,7 +43,7 @@ public class StackedBar extends AbstractVaadinChartExample {
         legend.setReversed(true);
 
         Tooltip tooltip = new Tooltip();
-        tooltip.setFormatter("function() { return ''+  this.series.name +': '+ this.y +''; }");
+        tooltip.setFormatter("this.series.name +': '+ this.y");
         conf.setTooltip(tooltip);
 
         PlotOptionsSeries plot = new PlotOptionsSeries();

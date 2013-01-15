@@ -61,15 +61,13 @@ public class StackedColumn extends AbstractVaadinChartExample {
         legend.setY(20);
         legend.setBorderWidth(1);
         legend.setBorderColor("#CCC");
-        // TODO: js code to background color
-        // (Highcharts.theme && Highcharts.theme.legendBackgroundColorSolid) ||
-        // 'white',
         legend.setBackgroundColor("white");
         legend.setShadow(false);
         conf.setLegend(legend);
 
         Tooltip tooltip = new Tooltip();
-        tooltip.setFormatter("function() { return '<b>'+ this.x +'</b><br/>'+this.series.name +': '+ this.y +'<br/>'+'Total: '+ this.point.stackTotal;}");
+        tooltip.setFormatter("function() { return '<b>'+ this.x +'</b><br/>"
+                + "'+this.series.name +': '+ this.y +'<br/>'+'Total: '+ this.point.stackTotal;}");
         conf.setTooltip(tooltip);
 
         PlotOptionsColumn plotOptions = new PlotOptionsColumn();
@@ -84,7 +82,7 @@ public class StackedColumn extends AbstractVaadinChartExample {
         conf.addSeries(new ListSeries("Jane", new Number[] { 2, 2, 3, 2, 1 }));
         conf.addSeries(new ListSeries("Joe", new Number[] { 3, 4, 4, 2, 5 }));
 
-        chart.drawChart(conf);        
+        chart.drawChart(conf);
         return chart;
     }
 }
