@@ -4,6 +4,7 @@ public abstract class AbstractLinePlotOptions extends AbstractPointPlotOptions {
 
     private Number lineWidth;
     private Marker marker;
+    private DashStyle dashStyle;
 
     /**
      * @see #setMarker(Marker)
@@ -36,6 +37,21 @@ public abstract class AbstractLinePlotOptions extends AbstractPointPlotOptions {
      */
     public void setLineWidth(Number lineWidth) {
         this.lineWidth = lineWidth;
+    }
+
+    public DashStyle getDashStyle() {
+        return dashStyle;
+    }
+
+    /**
+     * Sets the dash style used to render lines.
+     * 
+     * @see DashStyle
+     * 
+     * @param dashStyle the dash style
+     */
+    public void setDashStyle(DashStyle dashStyle) {
+        this.dashStyle = dashStyle;
     }
 
 
