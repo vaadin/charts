@@ -34,7 +34,7 @@ public class ColumnLineAndPie extends AbstractVaadinChartExample {
         Chart chart = new Chart();
         Configuration conf = chart.getConfiguration();
 
-        conf.setTitle("Combination chart");
+        conf.setTitle("Combined Chart");
 
         conf.setExporting(true);
         conf.getExporting().setWidth(800);
