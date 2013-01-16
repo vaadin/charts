@@ -33,7 +33,7 @@
 		<project.organization>Vaadin Ltd</project.organization>
 		<highcharts.version>2.3.5</highcharts.version>
 		<vaadin.charts.version>1.0.0-SNAPSHOT</vaadin.charts.version>
-		<vaadin.version.maven>7.0-SNAPSHOT</vaadin.version.maven>
+		<vaadin.version.maven>7.0.0.rc1</vaadin.version.maven>
 		<snapshot.repository.url>http://oss.sonatype.org/content/repositories/vaadin-snapshots/</snapshot.repository.url>
 	</properties>
 
@@ -212,7 +212,7 @@
 				<plugin>
 					<groupId>com.vaadin</groupId>
 					<artifactId>vaadin-maven-plugin</artifactId>
-					<version>${vaadin.version.maven}</version>
+					<version>7.0-SNAPSHOT</version>
 					<configuration>
 						<webappDirectory>${project.build.directory}/testwebapp/VAADIN/widgetsets</webappDirectory>
 						<extraJvmArgs>-Xmx1g -Xms1g -XX:MaxPermSize=512m</extraJvmArgs>
@@ -285,7 +285,7 @@
 											vaadin-maven-plugin
 										</artifactId>
 										<versionRange>
-											[${vaadin.version.maven},)
+											[7.0-SNAPSHOT,)
 										</versionRange>
 										<goals>
 											<goal>compile</goal>
@@ -307,7 +307,7 @@
 	<repositories>
 		<repository>
 			<id>Vaadin releases</id>
-			<url>http://oss.sonatype.org/content/repositories/vaadin-releases/</url>
+			<url>http://oss.sonatype.org/content/repositories/vaadin-releases</url>
 		</repository>
 		<repository>
 			<id>vaadin-addons</id>
