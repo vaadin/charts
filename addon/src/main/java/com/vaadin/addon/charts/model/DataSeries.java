@@ -297,18 +297,6 @@ public class DataSeries extends AbstractSeries {
     protected List<DataSeriesItem> getData() {
         return data;
     }
-
-    /**
-     * For internal use only, returns y-values only
-     */
-    protected Number[] getNumericData() {
-        Number[] nums = new Number[data.size()];
-        for (int i = 0; i < data.size(); i++) {
-            nums[i] = data.get(i).getY();
-        }
-        return nums;
-    }
-
     /**
      * Triggers an update of the chart for the specified data item. Only the Y
      * value of the DataSeriesItem is updated.
