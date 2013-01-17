@@ -42,6 +42,8 @@ import com.vaadin.ui.UI;
  */
 public class ChartOptions extends AbstractExtension {
 
+    private Theme theme;
+
     protected ChartOptions() {
     }
 
@@ -86,8 +88,19 @@ public class ChartOptions extends AbstractExtension {
      * @param theme
      */
     public void setTheme(Theme theme) {
+        this.theme = theme;
         getState().json = gson.toJson(theme);
         notifyListeners();
+    }
+
+    /**
+     * Returns the {@link Theme} in use or {@code null} if no theme has been
+     * set.
+     * 
+     * @return the {@link Theme} in use or {@code null}.
+     */
+    public Theme getTheme() {
+        return theme;
     }
 
     /**
