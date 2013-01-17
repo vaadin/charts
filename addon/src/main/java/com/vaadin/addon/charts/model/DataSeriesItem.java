@@ -34,6 +34,11 @@ public class DataSeriesItem extends AbstractConfigurationObject {
     private Marker marker;
     private String id;
     private Dial dial;
+    /*
+     * Flag to indicate if this item can be passed in optimized form to rendering
+     * library.
+     */
+    private boolean customized = false;
 
     public DataSeriesItem() {
     }
@@ -47,6 +52,7 @@ public class DataSeriesItem extends AbstractConfigurationObject {
     public DataSeriesItem(String categoryName, Number y) {
         this.name = categoryName;
         this.y = y;
+        customized = true;
     }
 
     /**
@@ -61,6 +67,7 @@ public class DataSeriesItem extends AbstractConfigurationObject {
         this.name = categoryName;
         this.y = y;
         setColor(color);
+        customized = true;
     }
 
     /**
@@ -86,6 +93,7 @@ public class DataSeriesItem extends AbstractConfigurationObject {
         this.x = x;
         this.y = y;
         setColor(color);
+        customized = true;
     }
 
     /**
@@ -104,6 +112,7 @@ public class DataSeriesItem extends AbstractConfigurationObject {
      */
     public void setName(String name) {
         this.name = name;
+        customized = true;
     }
 
     /**
@@ -159,6 +168,7 @@ public class DataSeriesItem extends AbstractConfigurationObject {
      */
     public void setSliced(Boolean sliced) {
         this.sliced = sliced;
+        customized = true;
     }
 
     /**
@@ -175,6 +185,7 @@ public class DataSeriesItem extends AbstractConfigurationObject {
      */
     public void setSelected(Boolean selected) {
         this.selected = selected;
+        customized = true;
     }
 
     /**
@@ -192,6 +203,7 @@ public class DataSeriesItem extends AbstractConfigurationObject {
      */
     public void setColor(Color color) {
         this.color = color;
+        customized = true;
     }
 
     /**
@@ -213,6 +225,7 @@ public class DataSeriesItem extends AbstractConfigurationObject {
      */
     public void setLegendIndex(Number legendIndex) {
         this.legendIndex = legendIndex;
+        customized = true;
     }
 
     /**
@@ -222,6 +235,7 @@ public class DataSeriesItem extends AbstractConfigurationObject {
      */
     public void setMarker(Marker marker) {
         this.marker = marker;
+        customized = true;
     }
 
     /**
@@ -252,6 +266,7 @@ public class DataSeriesItem extends AbstractConfigurationObject {
      */
     public void setId(String id) {
         this.id = id;
+        customized = true;
     }
 
     /**
@@ -263,6 +278,7 @@ public class DataSeriesItem extends AbstractConfigurationObject {
      */
     public void setDial(Dial dial) {
         this.dial = dial;
+        customized = true;
     }
 
     /**
@@ -274,4 +290,10 @@ public class DataSeriesItem extends AbstractConfigurationObject {
         return dial;
     }
 
+    /**
+     * @return true if the data series item can be rendered in optimized manner
+     */
+    public boolean isCustomized() {
+        return customized;
+    }
 }

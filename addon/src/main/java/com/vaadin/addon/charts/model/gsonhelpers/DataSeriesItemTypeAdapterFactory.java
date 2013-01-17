@@ -1,0 +1,73 @@
+package com.vaadin.addon.charts.model.gsonhelpers;
+
+/*
+ * #%L
+ * Vaadin Charts
+ * %%
+ * Copyright (C) 2012 Vaadin Ltd
+ * %%
+ * This program is available under Commercial Vaadin Add-On License 2.0
+ * (CVALv2).
+ * 
+ * See the file licensing.txt distributed with this software for more
+ * information about licensing.
+ * 
+ * You should have received a copy of the CVALv2 along with this program.
+ * If not, see <http://vaadin.com/license/cval-2.0>.
+ * #L%
+ */
+
+import java.io.IOException;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import com.vaadin.addon.charts.model.DataSeriesItem;
+
+public class DataSeriesItemTypeAdapterFactory implements TypeAdapterFactory {
+
+    public DataSeriesItemTypeAdapterFactory() {
+    }
+
+    @SuppressWarnings("unchecked")
+    public final <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+        return DataSeriesItem.class.isAssignableFrom(type.getRawType()) ? (TypeAdapter<T>) customizeMyClassAdapter(
+                gson, (TypeToken<DataSeriesItem>) type) : null;
+    }
+
+    private TypeAdapter<DataSeriesItem> customizeMyClassAdapter(Gson gson,
+            TypeToken<DataSeriesItem> type) {
+        final TypeAdapter<DataSeriesItem> delegate = gson.getDelegateAdapter(
+                this, type);
+        final TypeAdapter<JsonElement> elementAdapter = gson
+                .getAdapter(JsonElement.class);
+        return new TypeAdapter<DataSeriesItem>() {
+            @Override
+            public void write(JsonWriter out, DataSeriesItem value)
+                    throws IOException {
+                if(value.isCustomized()) {
+                    elementAdapter.write(out, delegate.toJsonTree(value));
+                } else {
+                    JsonArray jsonArray = new JsonArray();
+                    jsonArray.add(new JsonPrimitive(value.getX()));
+                    jsonArray.add(new JsonPrimitive(value.getY()));
+                    elementAdapter.write(out, jsonArray);
+                }
+            }
+
+            // This is never used
+            @Override
+            public DataSeriesItem read(JsonReader in) throws IOException {
+                JsonElement tree = elementAdapter.read(in);
+                return delegate.fromJsonTree(tree);
+            }
+        };
+    }
+
+}

@@ -30,7 +30,7 @@ public class TimeSeriesZoomable extends AbstractVaadinChartExample {
     /**
      * Daily USD to EUR exchange rates from 2006 through 2008
      */
-    private static final Number[] USD_TO_EUR_EXCHANGE_RATES = new Number[] {
+    public static final Number[] USD_TO_EUR_EXCHANGE_RATES = new Number[] {
             0.8446, 0.8445, 0.8444, 0.8451, 0.8418, 0.8264, 0.8258, 0.8232,
             0.8233, 0.8258, 0.8283, 0.8278, 0.8256, 0.8292, 0.8239, 0.8239,
             0.8245, 0.8265, 0.8261, 0.8269, 0.8273, 0.8244, 0.8244, 0.8172,
