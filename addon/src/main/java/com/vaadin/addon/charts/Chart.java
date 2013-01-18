@@ -110,6 +110,14 @@ public class Chart extends AbstractComponent {
                         Chart.this, selectionStart, selectionEnd);
                 fireEvent(selectionEvent);
             }
+
+            @Override
+            public void onLegendItemClick(String seriesName) {
+                LegendItemClickEvent itemClickEvent = new LegendItemClickEvent(
+                        Chart.this, seriesName);
+                fireEvent(itemClickEvent);
+
+            }
         });
     }
 
@@ -247,6 +255,10 @@ public class Chart extends AbstractComponent {
             ChartSelectionListener.class, "onSelection",
             ChartSelectionEvent.class);
 
+    private final static Method legendItemClickMethod = ReflectTools
+            .findMethod(LegendItemClickListener.class, "onClick",
+                    LegendItemClickEvent.class);
+
     /**
      * Adds chart click listener, which will be notified of clicks on the chart
      * area
@@ -338,6 +350,28 @@ public class Chart extends AbstractComponent {
     public void removeChartSelectionListener(ChartSelectionListener listener) {
         this.removeListener(HighchartWidget.CHART_SELECTION_EVENT_ID,
                 ChartSelectionEvent.class, listener);
+    }
+
+    /**
+     * Adds a legend item click listener, which will be notified of clicks on
+     * the legend's items
+     * 
+     * @param listener
+     */
+    public void addLegendItemClickListener(LegendItemClickListener listener) {
+        this.addListener(HighchartWidget.LEGENDITEM_CLICK_EVENT_ID,
+                LegendItemClickEvent.class, listener, legendItemClickMethod);
+    }
+
+    /**
+     * Removes a legend item click listener.
+     * 
+     * @see #addLegendItemClickListener(LegendItemClickListener)
+     * @param listener
+     */
+    public void removeLegendItemClickListener(LegendItemClickListener listener) {
+        this.removeListener(HighchartWidget.LEGENDITEM_CLICK_EVENT_ID,
+                LegendItemClickEvent.class, listener);
     }
 
     /**

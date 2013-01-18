@@ -112,6 +112,16 @@ public class HighchartConfig extends JavaScriptObject {
         };
     }-*/;
 
+    public final native void setLegendItemClickHandler(
+            LegendItemClickHandler handler)
+    /*-{
+        @com.vaadin.addon.charts.client.ui.HighchartConfig::ensureObjectStructure(Lcom/google/gwt/core/client/JavaScriptObject;Ljava/lang/String;)(this,"plotOptions.series.events");
+               
+        this.plotOptions.series.events.legendItemClick = function(e) {
+            $entry(handler.@com.vaadin.addon.charts.client.ui.LegendItemClickHandler::onClick(Lcom/vaadin/addon/charts/client/ui/LegendItemClickEvent;)(e));
+        };
+    }-*/;
+
     public static final native void ensureObjectStructure(JavaScriptObject obj,
             String path)
     /*-{

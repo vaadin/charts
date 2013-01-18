@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.List;
 
 import com.vaadin.addon.charts.Chart;
+import com.vaadin.addon.charts.LegendItemClickEvent;
+import com.vaadin.addon.charts.LegendItemClickListener;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
@@ -25,15 +27,16 @@ import com.vaadin.ui.OptionGroup;
 @SuppressWarnings("serial")
 public class ToggledSeriesVisibility extends AbstractVaadinChartExample {
 
-    private  final ListSeries berlin = new ListSeries("Berlin", 42.4, 33.2, 34.5, 39.7, 52.6,
-            75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1);
-    private final ListSeries london = new ListSeries("London", 48.9, 38.8, 39.3, 41.4, 47.0,
-            48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2);
-    private final ListSeries newYork = new ListSeries("New York", 83.6, 78.8, 98.5, 93.4,
-            106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3);
-    private final ListSeries tokyo = new ListSeries("Tokyo", 49.9, 71.5, 106.4, 129.2, 144.0,
-            176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4);
+    private final ListSeries berlin = new ListSeries("Berlin", 42.4, 33.2,
+            34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1);
+    private final ListSeries london = new ListSeries("London", 48.9, 38.8,
+            39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2);
+    private final ListSeries newYork = new ListSeries("New York", 83.6, 78.8,
+            98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3);
+    private final ListSeries tokyo = new ListSeries("Tokyo", 49.9, 71.5, 106.4,
+            129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4);
     private Chart chart;
+    private OptionGroup optionGroup;
 
     @Override
     public String getDescription() {
@@ -83,17 +86,33 @@ public class ToggledSeriesVisibility extends AbstractVaadinChartExample {
         conf.addSeries(berlin);
         conf.addSeries(london);
 
+        chart.addLegendItemClickListener(new LegendItemClickListener() {
+
+            @Override
+            public void onClick(LegendItemClickEvent event) {
+                if ("Berlin".equals(event.getSeriesName())) {
+                    optionGroup.unselect(berlin);
+                } else if ("London".equals(event.getSeriesName())) {
+                    optionGroup.unselect(london);
+                } else if ("New York".equals(event.getSeriesName())) {
+                    optionGroup.unselect(newYork);
+                } else if ("Tokyo".equals(event.getSeriesName())) {
+                    optionGroup.unselect(tokyo);
+                }
+            }
+        });
+
         chart.drawChart(conf);
         return chart;
     }
-    
+
     @Override
     protected void setup() {
         super.setup();
-        OptionGroup optionGroup = new OptionGroup();
+        optionGroup = new OptionGroup();
         optionGroup.setImmediate(true);
         optionGroup.setMultiSelect(true);
-        
+
         List<Series> series = chart.getConfiguration().getSeries();
         for (Series series2 : series) {
             optionGroup.addItem(series2);
@@ -105,9 +124,11 @@ public class ToggledSeriesVisibility extends AbstractVaadinChartExample {
             @Override
             public void valueChange(ValueChangeEvent event) {
                 @SuppressWarnings("unchecked")
-                Collection<Series> value = (Collection<Series>) event.getProperty().getValue();
-                if(value != null) {
-                    chart.getConfiguration().setSeries(value.toArray(new Series[value.size()]));
+                Collection<Series> value = (Collection<Series>) event
+                        .getProperty().getValue();
+                if (value != null) {
+                    chart.getConfiguration().setSeries(
+                            value.toArray(new Series[value.size()]));
                 } else {
                     chart.getConfiguration().setSeries();
                 }

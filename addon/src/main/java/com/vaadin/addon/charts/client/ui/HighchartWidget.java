@@ -27,6 +27,7 @@ public class HighchartWidget extends Widget {
     public static final String CHART_SELECTION_EVENT_ID = "cs";
     public static final String POINT_CLICK_EVENT_ID = "pcl";
     public static final String COLUMN_CLICK_EVENT_ID = "ccl";
+    public static final String LEGENDITEM_CLICK_EVENT_ID = "lic";
 
     private HighchartJsOverlay jsOverlay;
 

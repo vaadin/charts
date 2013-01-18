@@ -132,6 +132,19 @@ public class ChartConnector extends AbstractComponentConnector {
             });
         }
 
+        if (getState().registeredEventListeners != null
+                && getState().registeredEventListeners
+                        .contains(HighchartWidget.LEGENDITEM_CLICK_EVENT_ID)) {
+            cfg.setLegendItemClickHandler(new LegendItemClickHandler() {
+
+                @Override
+                public void onClick(LegendItemClickEvent event) {
+                    rpc.onLegendItemClick(event.getSeriesName());
+                    event.preventDefault();
+                }
+            });
+        }
+
         Scheduler.get().scheduleDeferred(new ScheduledCommand() {
             @Override
             public void execute() {
