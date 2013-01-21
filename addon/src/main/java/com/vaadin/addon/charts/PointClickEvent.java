@@ -29,6 +29,7 @@ public class PointClickEvent extends com.vaadin.ui.Component.Event {
     private final Double y;
     private final String category;
     private final Series series;
+    private int pointIndex;
 
     /**
      * Construct a PointClickEvent
@@ -38,14 +39,16 @@ public class PointClickEvent extends com.vaadin.ui.Component.Event {
      * @param y
      * @param series
      * @param category
+     * @param pointIndex 
      */
     public PointClickEvent(Chart source, double x, double y, Series series,
-            String category) {
+            String category, int pointIndex) {
         super(source);
         this.x = x;
         this.y = y;
         this.series = series;
         this.category = category;
+        this.pointIndex = pointIndex;
     }
 
     /**
@@ -74,6 +77,13 @@ public class PointClickEvent extends com.vaadin.ui.Component.Event {
      */
     public String getCategory() {
         return category;
+    }
+
+    /**
+     * @return the index of the point in its series that was clicked
+     */
+    public int getPointIndex() {
+        return pointIndex;
     }
 
 }

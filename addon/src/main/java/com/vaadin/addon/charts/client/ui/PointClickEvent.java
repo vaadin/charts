@@ -48,9 +48,9 @@ public class PointClickEvent extends JavaScriptObject {
         return this.point.id;
     }-*/;
 
-    public native final HighchartSeries getSeries()
+    public native final HighchartPoint getPoint() 
     /*-{
-        return this.point.series;
+        return this.point;
     }-*/;
 
 }

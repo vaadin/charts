@@ -32,7 +32,6 @@ public class ChartConnector extends AbstractComponentConnector {
     ChartServerRpc rpc = RpcProxy.create(ChartServerRpc.class, this);
     public static final String POINT_CLICK_EVENT_ID = "pcl";
     public static final String LEGENDITEM_CLICK_EVENT_ID = "lic";
-    public static final String COLUMN_CLICK_EVENT_ID = "ccl";
     public static final String CHART_SELECTION_EVENT_ID = "cs";
     public static final String CHART_CLICK_EVENT_ID = "cl";
 
@@ -98,23 +97,12 @@ public class ChartConnector extends AbstractComponentConnector {
 
                 @Override
                 public void onClick(PointClickEvent event) {
-                    int seriesIndex = getWidget().getSeriesIndex(event.getSeries());
+                    HighchartPoint point = event.getPoint();
+                    HighchartSeries series = point.getSeries();
+                    int seriesIndex = getWidget().getSeriesIndex(series);
+                    int pointIndex = series.indexOf(point);
                     rpc.onPointClick(event.getX(), event.getY(),
-                            seriesIndex, event.getCategory());
-                }
-            });
-        }
-
-        if (getState().registeredEventListeners != null
-                && getState().registeredEventListeners
-                        .contains(COLUMN_CLICK_EVENT_ID)) {
-            cfg.setSeriesPointClickHandler(new PointClickHandler() {
-
-                @Override
-                public void onClick(PointClickEvent event) {
-                    int seriesIndex = getWidget().getSeriesIndex(event.getSeries());
-                    rpc.onPointClick(event.getX(), event.getY(),
-                            seriesIndex, event.getCategory());
+                            seriesIndex, event.getCategory(), pointIndex);
                 }
             });
         }

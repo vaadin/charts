@@ -36,7 +36,6 @@ import com.vaadin.addon.charts.model.style.Color;
  */
 public class DataSeries extends AbstractSeries {
 
-    private static final double TOLERANCE = 0.0001;
     private List<DataSeriesItem> data = new ArrayList<DataSeriesItem>();
 
     /**
@@ -174,28 +173,6 @@ public class DataSeries extends AbstractSeries {
     public DataSeriesItem get(String name) {
         for (DataSeriesItem item : data) {
             if (item.getName().equals(name)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * Returns the first data series item for which x and y match the given
-     * values within a tolerance of {@value #TOLERANCE}. Returns null if no
-     * matching item is found.
-     * 
-     * @param x
-     *            The X value of the item to find.
-     * @param y
-     *            The Y value of the item to find.
-     * @return The first matching data series item.
-     */
-    public DataSeriesItem get(Number x, Number y) {
-        for (DataSeriesItem item : data) {
-
-            if (Math.abs(x.doubleValue() - item.getX().doubleValue()) < TOLERANCE
-                    && Math.abs(y.doubleValue() - item.getY().doubleValue()) < TOLERANCE) {
                 return item;
             }
         }

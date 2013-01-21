@@ -101,11 +101,11 @@ public class Chart extends AbstractComponent {
 
             @Override
             public void onPointClick(double x, double y, int seriesIndex,
-                    String category) {
+                    String category, int pointIndex) {
 
                 Series series = getSeriesBasedOnIndex(seriesIndex);
                 PointClickEvent pointClickEvent = new PointClickEvent(
-                        Chart.this, x, y, series, category);
+                        Chart.this, x, y, series, category, pointIndex);
                 fireEvent(pointClickEvent);
             }
 
@@ -291,7 +291,7 @@ public class Chart extends AbstractComponent {
 
     /**
      * Adds a point click listener, which will be notified of clicks on the
-     * points in the chart
+     * points, bars or columns in the chart
      * 
      * @param listener
      */
@@ -308,28 +308,6 @@ public class Chart extends AbstractComponent {
      */
     public void removePointClickListener(ChartClickListener listener) {
         this.removeListener(ChartConnector.POINT_CLICK_EVENT_ID,
-                PointClickEvent.class, listener);
-    }
-
-    /**
-     * Adds a column click listener, which will be notified of clicks on the
-     * chart's columns
-     * 
-     * @param listener
-     */
-    public void addColumnClickListener(PointClickListener listener) {
-        this.addListener(ChartConnector.COLUMN_CLICK_EVENT_ID,
-                PointClickEvent.class, listener, pointClickMethod);
-    }
-
-    /**
-     * Removes a column click listener.
-     * 
-     * @see #addColumnClickListener(PointClickListener)
-     * @param listener
-     */
-    public void removeColumnClickListener(ChartClickListener listener) {
-        this.removeListener(ChartConnector.COLUMN_CLICK_EVENT_ID,
                 PointClickEvent.class, listener);
     }
 

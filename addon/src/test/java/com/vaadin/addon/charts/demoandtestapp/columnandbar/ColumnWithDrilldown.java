@@ -113,7 +113,7 @@ public class ColumnWithDrilldown extends AbstractVaadinChartExample {
         conf.setSeries(series);
         conf.setExporting(false);
 
-        chart.addColumnClickListener(new PointClickListener() {
+        chart.addPointClickListener(new PointClickListener() {
             @Override
             public void onClick(PointClickEvent event) {
                 if (!series.isDrilldown()) {

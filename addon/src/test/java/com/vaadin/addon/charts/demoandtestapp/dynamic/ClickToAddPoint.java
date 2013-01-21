@@ -74,10 +74,7 @@ public class ClickToAddPoint extends AbstractVaadinChartExample {
             public void onClick(ChartClickEvent event) {
                 double x = Math.round(event.getxAxisValue());
                 double y = Math.round(event.getyAxisValue());
-                DataSeriesItem item = series.get(x, y);
-                if (item == null) {
-                    series.add(new DataSeriesItem(x, y));
-                }
+                series.add(new DataSeriesItem(x, y));
             }
         });
 
@@ -85,15 +82,9 @@ public class ClickToAddPoint extends AbstractVaadinChartExample {
 
             @Override
             public void onClick(PointClickEvent event) {
-                double x = event.getX();
-                double y = event.getY();
-                
                 DataSeries ds = (DataSeries) event.getSeries();
-                // FIXME event should contain the actual item and/or index
-                DataSeriesItem dataSeriesItem = ds.get(x, y);
-                if(dataSeriesItem != null) {
-                    ds.remove(dataSeriesItem);
-                }
+                DataSeriesItem dataSeriesItem2 = ds.get(event.getPointIndex());
+                ds.remove(dataSeriesItem2);
             }
         });
         return chart;

@@ -42,7 +42,7 @@ public interface ChartServerRpc extends ServerRpc {
 
     void onChartClick(double x, double y);
 
-    void onPointClick(double x, double y, int seriesIndex, String category);
+    void onPointClick(double x, double y, int seriesIndex, String category, int pointIndex);
 
     void onSelection(double selectionStart, double selectionEnd);
 
