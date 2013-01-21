@@ -75,6 +75,6 @@ public interface ChartClientRpc extends ClientRpc {
     /**
      * Disables or enables series with given seriesName
      */
-    void setSeriesEnabled(String seriesName, boolean enabled);
+    void setSeriesEnabled(int seriesIndex, boolean enabled);
 
 }

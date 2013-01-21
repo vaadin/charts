@@ -20,9 +20,9 @@ package com.vaadin.addon.charts;
 import java.lang.reflect.Method;
 
 import com.vaadin.addon.charts.client.ui.ChartClientRpc;
+import com.vaadin.addon.charts.client.ui.ChartConnector;
 import com.vaadin.addon.charts.client.ui.ChartServerRpc;
 import com.vaadin.addon.charts.client.ui.ChartState;
-import com.vaadin.addon.charts.client.ui.HighchartWidget;
 import com.vaadin.addon.charts.model.AbstractSeries;
 import com.vaadin.addon.charts.model.ChartModel;
 import com.vaadin.addon.charts.model.ChartType;
@@ -97,11 +97,18 @@ public class Chart extends AbstractComponent {
             }
 
             @Override
-            public void onPointClick(double x, double y, String seriesName,
+            public void onPointClick(double x, double y, int seriesIndex,
                     String category) {
+                
+                Series series = getSeriesBasedOnIndex(seriesIndex);
                 PointClickEvent pointClickEvent = new PointClickEvent(
-                        Chart.this, x, y, seriesName, category);
+                        Chart.this, x, y, series, category);
                 fireEvent(pointClickEvent);
+            }
+
+            private Series getSeriesBasedOnIndex(int seriesIndex) {
+                Series series = getConfiguration().getSeries().get(seriesIndex);
+                return series;
             }
 
             @Override
@@ -112,9 +119,9 @@ public class Chart extends AbstractComponent {
             }
 
             @Override
-            public void onLegendItemClick(String seriesName) {
+            public void onLegendItemClick(int seriesIndex) {
                 LegendItemClickEvent itemClickEvent = new LegendItemClickEvent(
-                        Chart.this, seriesName);
+                        Chart.this, getSeriesBasedOnIndex(seriesIndex));
                 fireEvent(itemClickEvent);
 
             }
@@ -266,7 +273,7 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void addChartClickListener(ChartClickListener listener) {
-        this.addListener(HighchartWidget.CHART_CLICK_EVENT_ID,
+        this.addListener(ChartConnector.CHART_CLICK_EVENT_ID,
                 ChartClickEvent.class, listener, chartClickMethod);
     }
 
@@ -277,7 +284,7 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void removeChartClickListener(ChartClickListener listener) {
-        this.removeListener(HighchartWidget.CHART_CLICK_EVENT_ID,
+        this.removeListener(ChartConnector.CHART_CLICK_EVENT_ID,
                 ChartClickEvent.class, listener);
     }
 
@@ -288,7 +295,7 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void addPointClickListener(PointClickListener listener) {
-        this.addListener(HighchartWidget.POINT_CLICK_EVENT_ID,
+        this.addListener(ChartConnector.POINT_CLICK_EVENT_ID,
                 PointClickEvent.class, listener, pointClickMethod);
     }
 
@@ -299,7 +306,7 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void removePointClickListener(ChartClickListener listener) {
-        this.removeListener(HighchartWidget.POINT_CLICK_EVENT_ID,
+        this.removeListener(ChartConnector.POINT_CLICK_EVENT_ID,
                 PointClickEvent.class, listener);
     }
 
@@ -310,7 +317,7 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void addColumnClickListener(PointClickListener listener) {
-        this.addListener(HighchartWidget.COLUMN_CLICK_EVENT_ID,
+        this.addListener(ChartConnector.COLUMN_CLICK_EVENT_ID,
                 PointClickEvent.class, listener, pointClickMethod);
     }
 
@@ -321,7 +328,7 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void removeColumnClickListener(ChartClickListener listener) {
-        this.removeListener(HighchartWidget.COLUMN_CLICK_EVENT_ID,
+        this.removeListener(ChartConnector.COLUMN_CLICK_EVENT_ID,
                 PointClickEvent.class, listener);
     }
 
@@ -337,7 +344,7 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void addChartSelectionListener(ChartSelectionListener listener) {
-        this.addListener(HighchartWidget.CHART_SELECTION_EVENT_ID,
+        this.addListener(ChartConnector.CHART_SELECTION_EVENT_ID,
                 ChartSelectionEvent.class, listener, chartSelectionMethod);
     }
 
@@ -348,7 +355,7 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void removeChartSelectionListener(ChartSelectionListener listener) {
-        this.removeListener(HighchartWidget.CHART_SELECTION_EVENT_ID,
+        this.removeListener(ChartConnector.CHART_SELECTION_EVENT_ID,
                 ChartSelectionEvent.class, listener);
     }
 
@@ -359,7 +366,7 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void addLegendItemClickListener(LegendItemClickListener listener) {
-        this.addListener(HighchartWidget.LEGENDITEM_CLICK_EVENT_ID,
+        this.addListener(ChartConnector.LEGENDITEM_CLICK_EVENT_ID,
                 LegendItemClickEvent.class, listener, legendItemClickMethod);
     }
 
@@ -370,7 +377,7 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void removeLegendItemClickListener(LegendItemClickListener listener) {
-        this.removeListener(HighchartWidget.LEGENDITEM_CLICK_EVENT_ID,
+        this.removeListener(ChartConnector.LEGENDITEM_CLICK_EVENT_ID,
                 LegendItemClickEvent.class, listener);
     }
 
@@ -452,10 +459,10 @@ public class Chart extends AbstractComponent {
 
         @Override
         public void seriesEnablation(SeriesEnablationEvent event) {
-            if (event.getSeries() != null) {
-                getRpcProxy(ChartClientRpc.class).setSeriesEnabled(
-                        event.getSeries().getName(), event.isEnabled());
-            }
+            int seriesIndex = getConfiguration().getSeries().indexOf(
+                    event.getSeries());
+            getRpcProxy(ChartClientRpc.class).setSeriesEnabled(seriesIndex,
+                    event.isEnabled());
         }
 
     };

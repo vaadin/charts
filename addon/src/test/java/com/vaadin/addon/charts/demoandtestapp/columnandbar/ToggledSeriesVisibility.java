@@ -7,7 +7,6 @@ import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.LegendItemClickEvent;
 import com.vaadin.addon.charts.LegendItemClickListener;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.model.AbstractSeries;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.HorizontalAlign;
@@ -41,7 +40,7 @@ public class ToggledSeriesVisibility extends AbstractVaadinChartExample {
 
     @Override
     public String getDescription() {
-        return "Column chart with Vaadin component to control displayed series";
+        return "Column chart with Vaadin component to control displayed series. Note, that visibility can also be toggled by clicking on legend.";
     }
 
     @Override
@@ -91,14 +90,25 @@ public class ToggledSeriesVisibility extends AbstractVaadinChartExample {
 
             @Override
             public void onClick(LegendItemClickEvent event) {
-                if ("Berlin".equals(event.getSeriesName())) {
-                    optionGroup.unselect(berlin);
-                } else if ("London".equals(event.getSeriesName())) {
-                    optionGroup.unselect(london);
-                } else if ("New York".equals(event.getSeriesName())) {
-                    optionGroup.unselect(newYork);
-                } else if ("Tokyo".equals(event.getSeriesName())) {
-                    optionGroup.unselect(tokyo);
+                /*
+                 * Visibility of the series is also toggled from legend clicks
+                 * by default. Still developers might wish to override this
+                 * behavior if the visibility is also controlled by other
+                 * components like here or if e.g. multiple charts are bound
+                 * together (hiding series in one chart should hide related data
+                 * in other chart as well).
+                 */
+
+                ListSeries series = (ListSeries) event.getSeries();
+                /*
+                 * Toggle checked in option group. As a side effect (via value
+                 * change listener, see setup method) the visibility will change
+                 * in the chart as well.
+                 */
+                if (series.isVisible()) {
+                    optionGroup.unselect(series);
+                } else {
+                    optionGroup.select(series);
                 }
             }
         });
@@ -126,12 +136,11 @@ public class ToggledSeriesVisibility extends AbstractVaadinChartExample {
             @Override
             public void valueChange(ValueChangeEvent event) {
                 @SuppressWarnings("unchecked")
-                Collection<Series> value = (Collection<Series>) event
+                Collection<ListSeries> value = (Collection<ListSeries>) event
                         .getProperty().getValue();
                 for (Series s : series) {
-                    ((AbstractSeries) s).setEnabled((value.contains(s)));
+                    ((ListSeries) s).setVisible(value.contains(s));
                 }
-                // chart.drawChart();
             }
         });
     }

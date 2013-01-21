@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts.model;
 
+import com.vaadin.addon.charts.Chart;
+
 /*
  * #%L
  * Vaadin Charts
@@ -108,14 +110,49 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
     }
 
     /**
-     * Enable or disable series
+     * Control the visibility of the series. Although the series is invisible in
+     * the client it is still "cached" there and thus setting it visible happens
+     * quickly.
      * 
-     * @param enabled
+     * @see #setVisible(boolean, boolean)
+     * 
+     * @param visible
+     *            true if the series should be displayed, false if not
      */
-    public void setEnabled(boolean enabled) {
-        if (getConfiguration() != null && enabled != visible) {
-            visible = enabled;
-            getConfiguration().fireSeriesEnabled(this, enabled);
-        }
+    public void setVisible(boolean visible) {
+        setVisible(visible, true);
     }
+
+    /**
+     * Control the visibility of the series.
+     * <p>
+     * With this version of the method developer can disable immediate chart
+     * update for already rendered chart, if e.g. multiple changes to the chart
+     * configuration are wished to be applied at once.
+     * 
+     * @see #setVisible(boolean)
+     * @see Chart#drawChart()
+     * 
+     * @param visible
+     *            true if the series should be displayed, false if not
+     * @param updateChartImmediately
+     *            Updates the chart immediately if true.
+     */
+    public void setVisible(boolean visible, boolean updateChartImmediately) {
+        boolean doDynamicChange = updateChartImmediately
+                && getConfiguration() != null && this.visible != visible;
+        this.visible = visible;
+        if (doDynamicChange) {
+            getConfiguration().fireSeriesEnabled(this, visible);
+        }
+
+    }
+    
+    /**
+     * @return true if the series is displayed on the client
+     */
+    public boolean isVisible() {
+        return visible;
+    }
+
 }

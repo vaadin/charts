@@ -18,6 +18,7 @@ package com.vaadin.addon.charts.client.ui;
  */
 
 import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.core.client.JsArray;
 
 /**
  * JS overlay for Chart chart. Needed for dynamic modifications, e.g.
@@ -79,19 +80,14 @@ public class HighchartJsOverlay extends JavaScriptObject {
         }
     }-*/;
 
-    public native final void setSeriesEnabled(String seriesName, boolean enabled)
+    public native final void setSeriesEnabled(int index, boolean enabled)
     /*-{
-        for (var i=0; i<this.series.length; i++) {
-            if (this.series[i].name.localeCompare(seriesName)==0) {
-                if (enabled) {
-                    this.series[i].show();
-                } else {
-                    this.series[i].hide();
-                }
-                break;
-            }
+        var ser = this.series[index];
+        if(enabled) {
+            ser.show();
+        } else {
+            ser.hide();
         }
-        // TODO throw exception?
     }-*/;
 
     /**
@@ -100,5 +96,10 @@ public class HighchartJsOverlay extends JavaScriptObject {
     public native final void redraw()
     /*-{
         this.redraw();
+    }-*/;
+
+    public final native JsArray<HighchartSeries> getSeries() 
+    /*-{
+        return this.series;
     }-*/;
 }

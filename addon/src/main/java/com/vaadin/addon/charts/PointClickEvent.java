@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts;
 
+import com.vaadin.addon.charts.model.Series;
+
 /*
  * #%L
  * Vaadin Charts
@@ -25,8 +27,8 @@ public class PointClickEvent extends com.vaadin.ui.Component.Event {
 
     private final Double x;
     private final Double y;
-    private final String seriesName;
     private final String category;
+    private final Series series;
 
     /**
      * Construct a PointClickEvent
@@ -34,15 +36,15 @@ public class PointClickEvent extends com.vaadin.ui.Component.Event {
      * @param source
      * @param x
      * @param y
-     * @param seriesName
+     * @param series
      * @param category
      */
-    public PointClickEvent(Chart source, double x, double y, String seriesName,
+    public PointClickEvent(Chart source, double x, double y, Series series,
             String category) {
         super(source);
         this.x = x;
         this.y = y;
-        this.seriesName = seriesName;
+        this.series = series;
         this.category = category;
     }
 
@@ -59,12 +61,12 @@ public class PointClickEvent extends com.vaadin.ui.Component.Event {
     public double getY() {
         return y;
     }
-
+    
     /**
-     * @return the name of the series containing the point that was clicked.
+     * @return the series containing the point that was clicked
      */
-    public String getSeriesName() {
-        return seriesName;
+    public Series getSeries() {
+        return series;
     }
 
     /**

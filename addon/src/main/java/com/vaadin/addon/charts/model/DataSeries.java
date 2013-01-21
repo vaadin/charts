@@ -219,7 +219,7 @@ public class DataSeries extends AbstractSeries {
      * Adds a data item and immediately sends an update to the chart if so
      * specified. Immediately updating the chart causes it to dynamically add
      * the data point.
-     * 
+     * <p>
      * This method is useful if you want to add many items without a
      * client/server round-trip for each item added. Do this by setting the
      * updateChartImmediately parameter to false.

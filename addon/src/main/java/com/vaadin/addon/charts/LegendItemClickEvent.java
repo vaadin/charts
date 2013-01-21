@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts;
 
+import com.vaadin.addon.charts.model.Series;
+
 /*
  * #%L
  * Vaadin Charts
@@ -23,7 +25,7 @@ package com.vaadin.addon.charts;
  */
 public class LegendItemClickEvent extends com.vaadin.ui.Component.Event {
 
-    private final String seriesName;
+    private Series series;
 
     /**
      * Constructs a LegendItemClickEvent
@@ -31,16 +33,16 @@ public class LegendItemClickEvent extends com.vaadin.ui.Component.Event {
      * @param source
      * @param seriesName
      */
-    public LegendItemClickEvent(Chart source, String seriesName) {
+    public LegendItemClickEvent(Chart source, Series series) {
         super(source);
-        this.seriesName = seriesName;
+        this.series = series;
     }
 
     /**
-     * @return the name of the series which legend item was clicked
+     * @return the series which legend item was clicked
      */
-    public String getSeriesName() {
-        return seriesName;
+    public Series getSeries() {
+        return series;
     }
 
 }

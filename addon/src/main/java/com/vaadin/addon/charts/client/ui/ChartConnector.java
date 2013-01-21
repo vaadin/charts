@@ -30,6 +30,11 @@ import com.vaadin.shared.ui.Connect;
 public class ChartConnector extends AbstractComponentConnector {
 
     ChartServerRpc rpc = RpcProxy.create(ChartServerRpc.class, this);
+    public static final String POINT_CLICK_EVENT_ID = "pcl";
+    public static final String LEGENDITEM_CLICK_EVENT_ID = "lic";
+    public static final String COLUMN_CLICK_EVENT_ID = "ccl";
+    public static final String CHART_SELECTION_EVENT_ID = "cs";
+    public static final String CHART_CLICK_EVENT_ID = "cl";
 
     public ChartConnector() {
         registerRpc(ChartClientRpc.class, new ChartClientRpc() {
@@ -66,8 +71,8 @@ public class ChartConnector extends AbstractComponentConnector {
             }
 
             @Override
-            public void setSeriesEnabled(String seriesName, boolean enabled) {
-                getWidget().setSeriesEnabled(seriesName, enabled);
+            public void setSeriesEnabled(int seriesIndex, boolean enabled) {
+                getWidget().setSeriesEnabled(seriesIndex, enabled);
             }
         });
     }
@@ -89,7 +94,7 @@ public class ChartConnector extends AbstractComponentConnector {
                 .createFromServerSideString(getState().jsonState);
         if (getState().registeredEventListeners != null
                 && getState().registeredEventListeners
-                        .contains(HighchartWidget.CHART_CLICK_EVENT_ID)) {
+                        .contains(CHART_CLICK_EVENT_ID)) {
             cfg.setClickHandler(new ChartClickHandler() {
                 @Override
                 public void onClick(ChartClickEvent event) {
@@ -99,33 +104,35 @@ public class ChartConnector extends AbstractComponentConnector {
         }
         if (getState().registeredEventListeners != null
                 && getState().registeredEventListeners
-                        .contains(HighchartWidget.POINT_CLICK_EVENT_ID)) {
+                        .contains(POINT_CLICK_EVENT_ID)) {
             cfg.setSeriesPointClickHandler(new PointClickHandler() {
 
                 @Override
                 public void onClick(PointClickEvent event) {
+                    int seriesIndex = getWidget().getSeriesIndex(event.getSeries());
                     rpc.onPointClick(event.getX(), event.getY(),
-                            event.getSeriesName(), event.getCategory());
+                            seriesIndex, event.getCategory());
                 }
             });
         }
 
         if (getState().registeredEventListeners != null
                 && getState().registeredEventListeners
-                        .contains(HighchartWidget.COLUMN_CLICK_EVENT_ID)) {
+                        .contains(COLUMN_CLICK_EVENT_ID)) {
             cfg.setSeriesPointClickHandler(new PointClickHandler() {
 
                 @Override
                 public void onClick(PointClickEvent event) {
+                    int seriesIndex = getWidget().getSeriesIndex(event.getSeries());
                     rpc.onPointClick(event.getX(), event.getY(),
-                            event.getSeriesName(), event.getCategory());
+                            seriesIndex, event.getCategory());
                 }
             });
         }
 
         if (getState().registeredEventListeners != null
                 && getState().registeredEventListeners
-                        .contains(HighchartWidget.CHART_SELECTION_EVENT_ID)) {
+                        .contains(CHART_SELECTION_EVENT_ID)) {
             cfg.setChartSelectionHandler(new ChartSelectionHandler() {
 
                 @Override
@@ -139,12 +146,13 @@ public class ChartConnector extends AbstractComponentConnector {
 
         if (getState().registeredEventListeners != null
                 && getState().registeredEventListeners
-                        .contains(HighchartWidget.LEGENDITEM_CLICK_EVENT_ID)) {
+                        .contains(LEGENDITEM_CLICK_EVENT_ID)) {
             cfg.setLegendItemClickHandler(new LegendItemClickHandler() {
 
                 @Override
                 public void onClick(LegendItemClickEvent event) {
-                    rpc.onLegendItemClick(event.getSeriesName());
+                    int seriesIndex = getWidget().getSeriesIndex(event.getSeries());
+                    rpc.onLegendItemClick(seriesIndex);
                     event.preventDefault();
                 }
             });

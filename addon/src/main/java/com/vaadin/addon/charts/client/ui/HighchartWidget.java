@@ -17,17 +17,12 @@ package com.vaadin.addon.charts.client.ui;
  * #L%
  */
 
+import com.google.gwt.core.client.JsArray;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.user.client.ui.Widget;
 import com.vaadin.addon.charts.client.HighchartsScriptLoader;
 
 public class HighchartWidget extends Widget {
-
-    public static final String CHART_CLICK_EVENT_ID = "cl";
-    public static final String CHART_SELECTION_EVENT_ID = "cs";
-    public static final String POINT_CLICK_EVENT_ID = "pcl";
-    public static final String COLUMN_CLICK_EVENT_ID = "ccl";
-    public static final String LEGENDITEM_CLICK_EVENT_ID = "lic";
 
     private HighchartJsOverlay jsOverlay;
 
@@ -75,7 +70,17 @@ public class HighchartWidget extends Widget {
         this.shift = shift;
     }
 
-    public void setSeriesEnabled(String seriesName, boolean enabled) {
-        jsOverlay.setSeriesEnabled(seriesName, enabled);
+    public void setSeriesEnabled(int seriesIndex, boolean enabled) {
+        jsOverlay.setSeriesEnabled(seriesIndex, enabled);
+    }
+
+    public int getSeriesIndex(HighchartSeries series) {
+        JsArray<HighchartSeries> serA = jsOverlay.getSeries();
+        for(int i = 0; i< serA.length(); i++) {
+            if(serA.get(i) == series) {
+                return i;
+            }
+        }
+        return -1;
     }
 }

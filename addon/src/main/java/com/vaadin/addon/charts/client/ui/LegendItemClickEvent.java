@@ -25,14 +25,14 @@ public class LegendItemClickEvent extends JavaScriptObject {
 
     }
 
-    public native final String getSeriesName()
-    /*-{
-         return this.target.name;
-    }-*/;
-
     public native final void preventDefault()
     /*-{
         this.preventDefault();
+    }-*/;
+
+    public native final HighchartSeries getSeries() 
+    /*-{
+         return this.target;
     }-*/;
 
 }
