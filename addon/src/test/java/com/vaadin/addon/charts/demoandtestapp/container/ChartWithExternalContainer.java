@@ -2,10 +2,10 @@ package com.vaadin.addon.charts.demoandtestapp.container;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.model.AbstractSeries;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.ContainerDataSeries;
-import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
 import com.vaadin.addon.charts.model.PlotOptionsPie;
 import com.vaadin.addon.charts.model.Series;
@@ -98,7 +98,7 @@ public class ChartWithExternalContainer extends AbstractVaadinChartExample {
         return chart;
     }
 
-    public static Chart createChart2(DataSeries container) {
+    public static Chart createChart2(AbstractSeries container) {
         final Chart chart = new Chart();
 
         final Configuration configuration = new Configuration();

@@ -39,9 +39,6 @@ public class DataSeries extends AbstractSeries {
     private static final double TOLERANCE = 0.0001;
     private List<DataSeriesItem> data = new ArrayList<DataSeriesItem>();
 
-    private Number xAxis;
-    private Number yAxis;
-
     /**
      * Constructs an empty {@link DataSeries}. Developers should then populate
      * the series with various addData and setData methods.
@@ -58,7 +55,7 @@ public class DataSeries extends AbstractSeries {
      */
     public DataSeries(String[] categories, Number[] ys) {
         for (int i = 0; i < categories.length; i++) {
-            addData(new DataSeriesItem(categories[i], ys[i]));
+            add(new DataSeriesItem(categories[i], ys[i]));
         }
     }
 
@@ -174,7 +171,7 @@ public class DataSeries extends AbstractSeries {
      * @return The first {@link DataSeriesItem} identified by the specified
      *         name. Returns null if no matching item is found.
      */
-    public DataSeriesItem getData(String name) {
+    public DataSeriesItem get(String name) {
         for (DataSeriesItem item : data) {
             if (item.getName().equals(name)) {
                 return item;
@@ -194,7 +191,7 @@ public class DataSeries extends AbstractSeries {
      *            The Y value of the item to find.
      * @return The first matching data series item.
      */
-    public DataSeriesItem getData(Number x, Number y) {
+    public DataSeriesItem get(Number x, Number y) {
         for (DataSeriesItem item : data) {
 
             if (Math.abs(x.doubleValue() - item.getX().doubleValue()) < TOLERANCE
@@ -210,12 +207,12 @@ public class DataSeries extends AbstractSeries {
      * drawn. If the chart has not yet been drawn, all items added will be added
      * to the chart when the chart is drawn.
      * 
-     * @see #addData(DataSeriesItem, boolean, boolean)
+     * @see #add(DataSeriesItem, boolean, boolean)
      * @param item
      *            the data item to be added
      */
-    public void addData(DataSeriesItem item) {
-        addData(item, true, false);
+    public void add(DataSeriesItem item) {
+        add(item, true, false);
     }
 
     /**
@@ -236,7 +233,7 @@ public class DataSeries extends AbstractSeries {
      *            dynamically adjusting adding points and fixed amount of points
      *            should be kept visible.
      */
-    public void addData(DataSeriesItem item, boolean updateChartImmediately,
+    public void add(DataSeriesItem item, boolean updateChartImmediately,
             boolean shift) {
         if(shift) {
             data.remove(0);
@@ -253,53 +250,11 @@ public class DataSeries extends AbstractSeries {
      * @param item
      *            The item to remove.
      */
-    public void removeData(DataSeriesItem item) {
+    public void remove(DataSeriesItem item) {
         data.remove(item);
         if (getConfiguration() != null) {
             getConfiguration().fireDataRemoved(this, item);
         }
-    }
-
-    /**
-     * @see #setxAxis(Number)
-     * @return The index of the X-axis that this data series is bound to.
-     *         Returns null if undefined.
-     */
-    public Number getxAxis() {
-        return xAxis;
-    }
-
-    /**
-     * When using dual or multiple X-axes, this number defines which X-axis the
-     * particular series is connected to. It refers to the index of the axis in
-     * the X-axis array, with 0 being the first. Defaults to 0.
-     * 
-     * @param xAxis
-     *            The index of the X-axis to bind this data series to.
-     */
-    public void setxAxis(Number xAxis) {
-        this.xAxis = xAxis;
-    }
-
-    /**
-     * @see #setyAxis(Number)
-     * @return The index of the Y-axis that this data series is bound to.
-     *         Returns null if undefined.
-     */
-    public Number getyAxis() {
-        return yAxis;
-    }
-
-    /**
-     * When using dual or multiple Y-axes, this number defines which Y-axis the
-     * particular series is connected to. It refers to the index of the axis in
-     * the Y-axis array, with 0 being the first. Defaults to 0.
-     * 
-     * @param yAxis
-     *            The index of the Y-axis to bind this data series to.
-     */
-    public void setyAxis(Number yAxis) {
-        this.yAxis = yAxis;
     }
 
     /**
@@ -316,7 +271,7 @@ public class DataSeries extends AbstractSeries {
      * @param item
      *            The item to update.
      */
-    public void updateData(DataSeriesItem item) {
+    public void update(DataSeriesItem item) {
         if (getConfiguration() != null) {
             getConfiguration().fireDataUpdated(this, item.getY(),
                     data.indexOf(item));
@@ -331,7 +286,7 @@ public class DataSeries extends AbstractSeries {
      * @throws IndexOutOfBoundsException
      *             if data series don't have item at given index
      */
-    public DataSeriesItem getData(int index) {
+    public DataSeriesItem get(int index) {
         return data.get(index);
     }
 

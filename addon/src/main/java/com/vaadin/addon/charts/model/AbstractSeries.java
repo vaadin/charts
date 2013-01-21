@@ -33,6 +33,9 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
     private boolean visible = true;
 
     private transient Configuration configuration;
+    
+    private Number xAxis;
+    private Number yAxis;
 
     public AbstractSeries() {
     }
@@ -154,5 +157,48 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
     public boolean isVisible() {
         return visible;
     }
+        
+    /**
+     * @see #setxAxis(Number)
+     * @return The index of the X-axis that this data series is bound to.
+     *         Returns null if undefined.
+     */
+    public Number getxAxis() {
+        return xAxis;
+    }
+
+    /**
+     * When using dual or multiple X-axes, this number defines which X-axis the
+     * particular series is connected to. It refers to the index of the axis in
+     * the X-axis array, with 0 being the first. Defaults to 0.
+     * 
+     * @param xAxis
+     *            The index of the X-axis to bind this data series to.
+     */
+    public void setxAxis(Number xAxis) {
+        this.xAxis = xAxis;
+    }
+
+    /**
+     * @see #setyAxis(Number)
+     * @return The index of the Y-axis that this data series is bound to.
+     *         Returns null if undefined.
+     */
+    public Number getyAxis() {
+        return yAxis;
+    }
+
+    /**
+     * When using dual or multiple Y-axes, this number defines which Y-axis the
+     * particular series is connected to. It refers to the index of the axis in
+     * the Y-axis array, with 0 being the first. Defaults to 0.
+     * 
+     * @param yAxis
+     *            The index of the Y-axis to bind this data series to.
+     */
+    public void setyAxis(Number yAxis) {
+        this.yAxis = yAxis;
+    }
+
 
 }

@@ -97,7 +97,7 @@ public class TimeDataWithIrregularIntervalsAndLocalizedTexts extends
             Object[] ds = data3[i];
             DataSeriesItem item = new DateDataSeriesItem((Date) ds[0],
                     (Double) ds[1]);
-            ls.addData(item);
+            ls.add(item);
         }
         configuration.addSeries(ls);
         chart.drawChart(configuration);

@@ -63,8 +63,8 @@ public class ClickToAddPoint extends AbstractVaadinChartExample {
         configuration.setPlotOptions(opt);
 
         final DataSeries series = new DataSeries();
-        series.addData(new DataSeriesItem(20, 20));
-        series.addData(new DataSeriesItem(80, 80));
+        series.add(new DataSeriesItem(20, 20));
+        series.add(new DataSeriesItem(80, 80));
         configuration.setSeries(series);
 
         chart.drawChart(configuration);
@@ -74,10 +74,9 @@ public class ClickToAddPoint extends AbstractVaadinChartExample {
             public void onClick(ChartClickEvent event) {
                 double x = Math.round(event.getxAxisValue());
                 double y = Math.round(event.getyAxisValue());
-                DataSeriesItem item = configuration.getDataSeriesItem(null, x,
-                        y);
+                DataSeriesItem item = series.get(x, y);
                 if (item == null) {
-                    series.addData(new DataSeriesItem(x, y));
+                    series.add(new DataSeriesItem(x, y));
                 }
             }
         });
@@ -88,17 +87,18 @@ public class ClickToAddPoint extends AbstractVaadinChartExample {
             public void onClick(PointClickEvent event) {
                 double x = event.getX();
                 double y = event.getY();
-
-                DataSeriesItem item = configuration.getDataSeriesItem(null, x,
-                        y);
-                if (item != null) {
-                    series.removeData(item);
+                
+                DataSeries ds = (DataSeries) event.getSeries();
+                // FIXME event should contain the actual item and/or index
+                DataSeriesItem dataSeriesItem = ds.get(x, y);
+                if(dataSeriesItem != null) {
+                    ds.remove(dataSeriesItem);
                 }
             }
         });
         return chart;
     }
-    
+
     @Override
     protected void setup() {
         super.setup();
@@ -108,7 +108,8 @@ public class ClickToAddPoint extends AbstractVaadinChartExample {
         checkbox.addValueChangeListener(new ValueChangeListener() {
             @Override
             public void valueChange(ValueChangeEvent event) {
-                chart.getConfiguration().getChart().setAnimation(checkbox.getValue());
+                chart.getConfiguration().getChart()
+                        .setAnimation(checkbox.getValue());
             }
         });
         addComponentAsFirst(checkbox);

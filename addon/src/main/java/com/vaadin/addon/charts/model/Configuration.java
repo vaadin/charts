@@ -496,31 +496,6 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * Auxiliary search method for finding point/DataSeriesItem with given
-     * series name and X,Y coordinates
-     * 
-     * @param serieName
-     * @param x
-     * @param y
-     * @return the data series item identified by the parameters.
-     */
-    public DataSeriesItem getDataSeriesItem(String serieName, double x, double y) {
-        DataSeriesItem item = null;
-
-        // go trough all series
-        for (Series serie : series) {
-            if (serieName == null || serieName.equals(serie.getName())) {
-                item = ((DataSeries) serie).getData(x, y);
-                if (item != null) {
-                    return item;
-                }
-            }
-        }
-
-        return null;
-    }
-
-    /**
      * @see #addPane(Pane)
      */
     public Pane getPane() {

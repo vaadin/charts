@@ -58,9 +58,9 @@ public class ColumnLineAndPie extends AbstractVaadinChartExample {
 
         // Colors for the pie
         DataSeries pieSeries = ((DataSeries) series.get(4));
-        pieSeries.getData("Jane").setColor(janeColor);
-        pieSeries.getData("John").setColor(johnColor);
-        pieSeries.getData("Joe").setColor(joeColor);
+        pieSeries.get("Jane").setColor(janeColor);
+        pieSeries.get("John").setColor(johnColor);
+        pieSeries.get("Joe").setColor(joeColor);
     }
 
     @Override
@@ -128,11 +128,11 @@ public class ColumnLineAndPie extends AbstractVaadinChartExample {
         series.setPlotOptions(new PlotOptionsPie());
         series.setName("Total consumption");
         DataSeriesItem item = new DataSeriesItem("Jane", 13);
-        series.addData(item);
+        series.add(item);
         item = new DataSeriesItem("John", 23);
-        series.addData(item);
+        series.add(item);
         item = new DataSeriesItem("Joe", 19);
-        series.addData(item);
+        series.add(item);
 
         PlotOptionsPie plotOptionsPie = new PlotOptionsPie();
         plotOptionsPie.setSize(100);

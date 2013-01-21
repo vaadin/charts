@@ -223,7 +223,7 @@ public class Chart extends AbstractComponent {
      * will automatically be updated to reflect this unless explicitly told not
      * to. The methods listed below can be used as an example.
      * 
-     * @see DataSeries#addData(com.vaadin.addon.charts.model.DataSeriesItem)
+     * @see DataSeries#add(com.vaadin.addon.charts.model.DataSeriesItem)
      * @see DataSeries#addData(com.vaadin.addon.charts.model.DataSeriesItem,
      *      boolean)
      * @see DataSeries#removeData(com.vaadin.addon.charts.model.DataSeriesItem)

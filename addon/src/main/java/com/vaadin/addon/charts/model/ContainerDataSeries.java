@@ -18,17 +18,15 @@ package com.vaadin.addon.charts.model;
  */
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.data.Container;
 
 /**
  * A series that wraps a Vaadin Container. It is mutable only via the wrapped
  * container.
  */
-public class ContainerDataSeries extends DataSeries {
+public class ContainerDataSeries extends AbstractSeries {
 
     private transient final Container vaadinContainer;
 
@@ -108,52 +106,4 @@ public class ContainerDataSeries extends DataSeries {
         return attributeToPropertyIdMap;
     }
 
-    /** Unsupported operation */
-    @Override
-    public void addData(Number[][] entries) {
-        throw new UnsupportedOperationException();
-    }
-
-    /** Unsupported operation */
-    @Override
-    public void setData(String[] mainCategories, Number[] entries) {
-        throw new UnsupportedOperationException();
-    }
-
-    /** Unsupported operation */
-    @Override
-    public void setData(String[] mainCategories, Number[] entries,
-            Color[] colors) {
-        throw new UnsupportedOperationException();
-    }
-
-    /** Unsupported operation */
-    @Override
-    public void setData(Number... numericdata) {
-        throw new UnsupportedOperationException();
-    }
-
-    /** Unsupported operation */
-    @Override
-    public void setData(List<DataSeriesItem> data) {
-        throw new UnsupportedOperationException();
-    }
-
-    /** Unsupported operation */
-    @Override
-    public void addData(DataSeriesItem item) {
-        throw new UnsupportedOperationException();
-    }
-
-    /** Unsupported operation */
-    @Override
-    public void addData(DataSeriesItem item, boolean updateChartImmediately, boolean shift) {
-        throw new UnsupportedOperationException();
-    }
-
-    /** Unsupported operation */
-    @Override
-    public void updateData(DataSeriesItem item) {
-        throw new UnsupportedOperationException();
-    }
 }

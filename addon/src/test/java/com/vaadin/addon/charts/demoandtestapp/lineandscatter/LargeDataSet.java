@@ -46,7 +46,7 @@ public class LargeDataSet extends AbstractVaadinChartExample {
                  * example below.
                  */
                 // item.setName("x " + x);
-                series.addData(item);
+                series.add(item);
 
             }
         }

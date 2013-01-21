@@ -47,15 +47,15 @@ public class PieChart extends AbstractVaadinChartExample {
         conf.setPlotOptions(plotOptions);
 
         DataSeries series = new DataSeries();
-        series.addData(new DataSeriesItem("Firefox", 45.0));
-        series.addData(new DataSeriesItem("IE", 26.8));
+        series.add(new DataSeriesItem("Firefox", 45.0));
+        series.add(new DataSeriesItem("IE", 26.8));
         DataSeriesItem chrome = new DataSeriesItem("Chrome", 12.8);
         chrome.setSliced(true);
         chrome.setSelected(true);
-        series.addData(chrome);
-        series.addData(new DataSeriesItem("Safari", 8.5));
-        series.addData(new DataSeriesItem("Opera", 6.2));
-        series.addData(new DataSeriesItem("Others", 0.7));
+        series.add(chrome);
+        series.add(new DataSeriesItem("Safari", 8.5));
+        series.add(new DataSeriesItem("Opera", 6.2));
+        series.add(new DataSeriesItem("Others", 0.7));
         conf.setSeries(series);
 
         chart.drawChart(conf);

@@ -114,9 +114,9 @@ public class Clock extends AbstractVaadinChartExample {
         second.getDial().setBaseWidth(1);
         second.getDial().setRearLength("20%");
 
-        series.addData(hour);
-        series.addData(minute);
-        series.addData(second);
+        series.add(hour);
+        series.add(minute);
+        series.add(second);
 
         PlotOptionsGauge plotOptionsGauge = new PlotOptionsGauge();
         plotOptionsGauge.setDataLabels(new Labels(false));
@@ -150,9 +150,9 @@ public class Clock extends AbstractVaadinChartExample {
                     second.setY(secs * (12.0 / 60.0));
                     getSession().lock();
                     try {
-                        series.updateData(hour);
-                        series.updateData(minute);
-                        series.updateData(second);
+                        series.update(hour);
+                        series.update(minute);
+                        series.update(second);
                     } finally {
                         getSession().unlock();
                     }
