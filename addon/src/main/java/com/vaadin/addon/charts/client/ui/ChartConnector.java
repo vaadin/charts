@@ -55,14 +55,13 @@ public class ChartConnector extends AbstractComponentConnector {
             }
 
             @Override
-            public void setAnimationAfterUpdate(boolean animationAfterUpdate) {
-                getWidget().setAnimationAfterUpdate(animationAfterUpdate);
-
+            public void setSeriesEnabled(int seriesIndex, boolean enabled) {
+                getWidget().setSeriesEnabled(seriesIndex, enabled);
             }
 
             @Override
-            public void setSeriesEnabled(int seriesIndex, boolean enabled) {
-                getWidget().setSeriesEnabled(seriesIndex, enabled);
+            public void setAnimationEnabled(boolean animation) {
+                getWidget().setAnimation(animation);
             }
         });
     }

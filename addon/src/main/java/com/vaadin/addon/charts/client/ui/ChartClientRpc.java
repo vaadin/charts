@@ -49,16 +49,10 @@ public interface ChartClientRpc extends ClientRpc {
     void updatePointValue(int seriesIndex, int pointIndex, double newValue);
 
     /**
-     * When true, updates will be animated using the default animation options.
-     * Default is true.
-     * 
-     * @param animationAfterUpdate
-     */
-    void setAnimationAfterUpdate(boolean animationAfterUpdate);
-
-    /**
      * Disables or enables series with given seriesName
      */
     void setSeriesEnabled(int seriesIndex, boolean enabled);
+
+    void setAnimationEnabled(boolean animation);
 
 }

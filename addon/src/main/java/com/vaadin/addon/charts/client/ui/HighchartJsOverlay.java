@@ -36,9 +36,9 @@ public class HighchartJsOverlay extends JavaScriptObject {
      * @param doubleAttribute
      */
     public native final void addPoint(double xValue, double yValue,
-            int seriesIndex, boolean redraw, boolean shift, boolean animation)
+            int seriesIndex, boolean redraw, boolean shift)
     /*-{
-        this.series[seriesIndex].addPoint([xValue, yValue],redraw,shift,animation);
+        this.series[seriesIndex].addPoint([xValue, yValue],redraw,shift);
     }-*/;
 
     /**
@@ -49,9 +49,9 @@ public class HighchartJsOverlay extends JavaScriptObject {
      * @param newValue
      */
     public native final void updatePointValue(int seriesIndex, int pointIndex,
-            double newValue, boolean redraw, boolean animation)
+            double newValue, boolean redraw)
     /*-{
-        this.series[seriesIndex].data[pointIndex].update(newValue,redraw,animation);
+        this.series[seriesIndex].data[pointIndex].update(newValue,redraw);
     }-*/;
 
     public native final void removePoint(double xValue, double yValue,
@@ -90,16 +90,13 @@ public class HighchartJsOverlay extends JavaScriptObject {
         }
     }-*/;
 
-    /**
-     * Doesn't work?
-     */
-    public native final void redraw()
-    /*-{
-        this.redraw();
-    }-*/;
-
     public final native JsArray<HighchartSeries> getSeries() 
     /*-{
         return this.series;
+    }-*/;
+
+    public final native void setAnimation(boolean animation) 
+    /*-{
+        this.animation = animation;
     }-*/;
 }

@@ -17,6 +17,8 @@ package com.vaadin.addon.charts;
  * #L%
  */
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.lang.reflect.Method;
 
 import com.vaadin.addon.charts.client.ui.ChartClientRpc;
@@ -27,8 +29,8 @@ import com.vaadin.addon.charts.model.AbstractSeries;
 import com.vaadin.addon.charts.model.ChartModel;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.ConfigurationMutationListener;
 import com.vaadin.addon.charts.model.DataSeries;
-import com.vaadin.addon.charts.model.DataSeriesEventListener;
 import com.vaadin.addon.charts.model.Series;
 import com.vaadin.ui.AbstractComponent;
 import com.vaadin.util.ReflectTools;
@@ -63,6 +65,7 @@ import com.vaadin.util.ReflectTools;
  * @see <a href="http://vaadin.com/book">Book of Vaadin</a>
  * @see <a href="https://vaadin.com/add-ons/charts">Vaadin Charts</a>
  */
+@SuppressWarnings("deprecation")
 public class Chart extends AbstractComponent {
 
     static {
@@ -141,10 +144,9 @@ public class Chart extends AbstractComponent {
      */
     public Chart(ChartType type) {
         this();
-        configuration.setChart(new ChartModel(type));
+        configuration.setChart(new ChartModel(configuration, type));
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public void beforeClientResponse(boolean initial) {
         super.beforeClientResponse(initial);
@@ -155,7 +157,7 @@ public class Chart extends AbstractComponent {
         if (initial && configuration != null) {
             // Start listening to data series events once the chart has been
             // drawn.
-            configuration.setDataSeriesEventListener(dataSeriesEventListener);
+            configuration.setMutationListener(dataSeriesEventListener);
         }
     }
 
@@ -191,10 +193,9 @@ public class Chart extends AbstractComponent {
      * @param jsonConfig
      *            the chart configuration as a JSON string
      */
-    @SuppressWarnings("deprecation")
     public void drawChart(String jsonConfig) {
         this.jsonConfig = jsonConfig;
-        configuration.setDataSeriesEventListener(null);
+        configuration.setMutationListener(null);
         configuration = null;
         stateDirty = true;
     }
@@ -382,29 +383,10 @@ public class Chart extends AbstractComponent {
     }
 
     /**
-     * Set client side chart rendering parameters
-     * 
-     * @param animationAfterUpdate
-     *            Defaults to true. When true, the graph will be animated with
-     *            the default animation options. The animation can also be a
-     *            configuration object with the properties duration and easing. <br />
-     *            <b>Only a boolean value is currently supported by Vaadin
-     *            Charts</b>
-     * 
-     * <br />
-     * <br />
-     *            TODO: Add animation easing support
-     */
-    public void setClientSideRenderingParams(boolean animationAfterUpdate) {
-        getRpcProxy(ChartClientRpc.class).setAnimationAfterUpdate(
-                animationAfterUpdate);
-    }
-
-    /**
      * Listens to events on the series attached to the chart and redraws as
      * necessary.
      */
-    private final DataSeriesEventListener dataSeriesEventListener = new DataSeriesEventListener() {
+    private final ConfigurationMutationListener dataSeriesEventListener = new ConfigurationMutationListener() {
         // TODO: add support for DataSeriesItems with name,y pairs
 
         @Override
@@ -451,5 +433,17 @@ public class Chart extends AbstractComponent {
                     event.isEnabled());
         }
 
+        @Override
+        public void animationChanged(boolean animation) {
+            getRpcProxy(ChartClientRpc.class).setAnimationEnabled(animation);
+        }
+
     };
+    
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        in.defaultReadObject();
+        if(getUI() != null) {
+            configuration.setMutationListener(dataSeriesEventListener);
+        }
+    }
 }

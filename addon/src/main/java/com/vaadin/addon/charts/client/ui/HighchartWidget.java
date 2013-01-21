@@ -26,8 +26,6 @@ public class HighchartWidget extends Widget {
 
     private HighchartJsOverlay jsOverlay;
 
-    private boolean animation = true;
-
     public HighchartWidget() {
         HighchartsScriptLoader.ensureInjected();
         setElement(Document.get().createDivElement());
@@ -39,7 +37,7 @@ public class HighchartWidget extends Widget {
     }
 
     public void addPoint(double x, double y, int seriesIndex, boolean shift) {
-        jsOverlay.addPoint(x, y, seriesIndex, true, shift, animation);
+        jsOverlay.addPoint(x, y, seriesIndex, true, shift);
     }
 
     public void removePoint(double x, double y) {
@@ -48,16 +46,11 @@ public class HighchartWidget extends Widget {
 
     public void updatePointValue(int seriesIndex, int pointIndex,
             double newValue) {
-        jsOverlay.updatePointValue(seriesIndex, pointIndex, newValue, true,
-                animation);
+        jsOverlay.updatePointValue(seriesIndex, pointIndex, newValue, true);
     }
 
     public void removePoint(double x, double y, int seriesIndex) {
         jsOverlay.removePoint(x, y, seriesIndex, 0.01);
-    }
-
-    public void setAnimationAfterUpdate(boolean animationAfterUpdate) {
-        animation = animationAfterUpdate;
     }
 
     public void setSeriesEnabled(int seriesIndex, boolean enabled) {
@@ -72,5 +65,9 @@ public class HighchartWidget extends Widget {
             }
         }
         return -1;
+    }
+
+    public void setAnimation(boolean animation) {
+        jsOverlay.setAnimation(animation);
     }
 }

@@ -17,6 +17,8 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,15 +26,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.vaadin.addon.charts.model.DataSeriesEventListener.DataAddedEvent;
-import com.vaadin.addon.charts.model.DataSeriesEventListener.DataRemovedEvent;
-import com.vaadin.addon.charts.model.DataSeriesEventListener.DataUpdatedEvent;
-import com.vaadin.addon.charts.model.DataSeriesEventListener.SeriesEnablationEvent;
+import com.vaadin.addon.charts.model.ConfigurationMutationListener.DataAddedEvent;
+import com.vaadin.addon.charts.model.ConfigurationMutationListener.DataRemovedEvent;
+import com.vaadin.addon.charts.model.ConfigurationMutationListener.DataUpdatedEvent;
+import com.vaadin.addon.charts.model.ConfigurationMutationListener.SeriesEnablationEvent;
 
 /**
  * Chart's configuration root object containing all the child objects that are
  * used to configure chart, axes, legend, titles etc.
  */
+@SuppressWarnings("deprecation")
 public class Configuration extends AbstractConfigurationObject {
 
     private ChartModel chart;
@@ -50,14 +53,14 @@ public class Configuration extends AbstractConfigurationObject {
 
     private PaneList pane;
     private Exporting exporting = new Exporting(false);
-    private transient DataSeriesEventListener dataSeriesEventListener;
+    private transient ConfigurationMutationListener configurationMutationListener;
 
     /**
      * @see #setChart(ChartModel)
      */
     public ChartModel getChart() {
         if (chart == null) {
-            chart = new ChartModel();
+            setChart(new ChartModel());
         }
         return chart;
     }
@@ -70,6 +73,7 @@ public class Configuration extends AbstractConfigurationObject {
      */
     public void setChart(ChartModel chart) {
         this.chart = chart;
+        chart.configuration = this;
     }
 
     /**
@@ -575,67 +579,75 @@ public class Configuration extends AbstractConfigurationObject {
 
     /** Notifies listeners that a data point has been added */
     void fireDataAdded(Series series, Number value) {
-        if (dataSeriesEventListener == null) {
+        if (configurationMutationListener == null) {
             return;
         }
-        dataSeriesEventListener.dataAdded(new DataAddedEvent(series, value));
+        configurationMutationListener.dataAdded(new DataAddedEvent(series, value));
     }
 
     /** Notifies listeners that a data point has been added 
      * @param shift */
     void fireDataAdded(Series series, DataSeriesItem item, boolean shift) {
-        if (dataSeriesEventListener == null) {
+        if (configurationMutationListener == null) {
             return;
         }
-        dataSeriesEventListener.dataAdded(new DataAddedEvent(series, item, shift));
+        configurationMutationListener.dataAdded(new DataAddedEvent(series, item, shift));
     }
 
     /** Notifies listeners that a data point has been removed */
     void fireDataRemoved(Series series, Number value) {
-        if (dataSeriesEventListener == null) {
+        if (configurationMutationListener == null) {
             return;
         }
-        dataSeriesEventListener
+        configurationMutationListener
                 .dataRemoved(new DataRemovedEvent(series, value));
     }
 
     /** Notifies listeners that a data point has been removed */
     void fireDataRemoved(Series series, DataSeriesItem item) {
-        if (dataSeriesEventListener == null) {
+        if (configurationMutationListener == null) {
             return;
         }
-        dataSeriesEventListener.dataRemoved(new DataRemovedEvent(series, item));
+        configurationMutationListener.dataRemoved(new DataRemovedEvent(series, item));
     }
 
     /** Notifies listeners that a data point has been updated */
     void fireDataUpdated(Series series, Number value, int pointIndex) {
-        if (dataSeriesEventListener == null) {
+        if (configurationMutationListener == null) {
             return;
         }
-        dataSeriesEventListener.dataUpdated(new DataUpdatedEvent(series, value,
+        configurationMutationListener.dataUpdated(new DataUpdatedEvent(series, value,
                 pointIndex));
     }
 
     /** Notifies listeners that a data point has been updated */
     void fireDataUpdated(Series series, DataSeriesItem item, int pointIndex) {
-        if (dataSeriesEventListener == null) {
+        if (configurationMutationListener == null) {
             return;
         }
-        dataSeriesEventListener.dataUpdated(new DataUpdatedEvent(series, item,
+        configurationMutationListener.dataUpdated(new DataUpdatedEvent(series, item,
                 pointIndex));
     }
 
     /** Notifies listeners that a series is enabled or disabled */
     void fireSeriesEnabled(Series series, boolean enabled) {
-        if (dataSeriesEventListener == null) {
+        if (configurationMutationListener == null) {
             return;
         }
-        dataSeriesEventListener.seriesEnablation(new SeriesEnablationEvent(
+        configurationMutationListener.seriesEnablation(new SeriesEnablationEvent(
                 series, enabled));
     }
+    
+    public void fireAnimationChanged(boolean animation) {
+        if (configurationMutationListener == null) {
+            return;
+        }
+        configurationMutationListener.animationChanged(animation);
+    }
+
 
     /**
-     * Sets the data series event listener.
+     * Sets the listener to be notified of e.g. data series changes
      * <p>
      * This method is used internally by the library. Usage by the end user will
      * cause unexpected behavior.
@@ -643,7 +655,15 @@ public class Configuration extends AbstractConfigurationObject {
      * @param listener
      * @deprecated This method is reserved for internal use only
      */
-    public void setDataSeriesEventListener(DataSeriesEventListener listener) {
-        dataSeriesEventListener = listener;
+    public void setMutationListener(ConfigurationMutationListener listener) {
+        configurationMutationListener = listener;
     }
+    
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        in.defaultReadObject();
+        if(chart != null) {
+            chart.configuration = this;
+        }
+    }
+
 }

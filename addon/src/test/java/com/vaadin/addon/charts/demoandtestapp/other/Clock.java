@@ -143,7 +143,7 @@ public class Clock extends AbstractVaadinChartExample {
 
                     // disable animation when the second dial reaches 0
                     boolean animation = secs == 0 ? false : true;
-                    chart.setClientSideRenderingParams(animation);
+                    configuration.getChart().setAnimation(animation);
 
                     hour.setY(hours + (mins / 60.0));
                     minute.setY(mins * (12.0 / 60.0) + secs * (12.0 / 3600.0));

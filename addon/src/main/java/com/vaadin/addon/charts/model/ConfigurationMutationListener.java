@@ -20,10 +20,14 @@ package com.vaadin.addon.charts.model;
 import java.io.Serializable;
 
 /**
- * Listener interface for events triggered in DataSeries, like data
- * add/remove/update. This listener is used internally by the library.
+ * Listener interface for events triggered in Configuration. E.g. in DataSeries,
+ * events like data add/remove/update. This listener is used internally by the
+ * library.
+ * 
+ * @deprecated usage of this interface is currently reserved for internal use of
+ *             the library
  */
-public interface DataSeriesEventListener extends Serializable {
+public interface ConfigurationMutationListener extends Serializable {
     /** A data point has been added */
     void dataAdded(DataAddedEvent event);
 
@@ -35,15 +39,41 @@ public interface DataSeriesEventListener extends Serializable {
 
     /** The series is enabled or disabled */
     void seriesEnablation(SeriesEnablationEvent event);
+    
+    void animationChanged(boolean animation);
 
-    public static class DataAddedEvent {
+    public static abstract class SeriesEvent implements Serializable {
         /** The affected series */
-        private final Series series;
-        /** The value added. May be null if item != null */
-        private Number value;
+        protected Series series;
+
+        /** The affected series */
+        public Series getSeries() {
+            return series;
+        }
+
+    }
+
+    public static abstract class SeriesItemEvent extends SeriesEvent {
         /** The item added. May be null if value != null */
-        private DataSeriesItem item;
-        
+        protected DataSeriesItem item;
+
+        /** The item added. May be null if value != null */
+        public DataSeriesItem getItem() {
+            return item;
+        }
+
+        /** The value added. May be null if item != null */
+        protected Number value;
+
+        /** The value added. May be null if item != null */
+        public Number getValue() {
+            return value;
+        }
+
+    }
+
+    public static class DataAddedEvent extends SeriesItemEvent {
+
         /** true if the data addition was a shift and first item was removed */
         private boolean shift = false;
 
@@ -66,46 +96,35 @@ public interface DataSeriesEventListener extends Serializable {
             this.shift = shift;
         }
 
-        /** The value added. May be null if item != null */
-        public Number getValue() {
-            return value;
-        }
-
-        /** The item added. May be null if value != null */
-        public DataSeriesItem getItem() {
-            return item;
-        }
-
-        /** The affected series */
-        public Series getSeries() {
-            return series;
-        }
-        
         public boolean isShift() {
             return shift;
         }
     }
 
-    public static class DataRemovedEvent extends DataAddedEvent {
+    public static class DataRemovedEvent extends SeriesItemEvent {
         DataRemovedEvent(Series series, Number value) {
-            super(series, value);
+            this.series = series;
+            this.value = value;
         }
 
         DataRemovedEvent(Series series, DataSeriesItem item) {
-            super(series, item, false);
+            this.series = series;
+            this.item = item;
         }
     }
 
-    public static class DataUpdatedEvent extends DataAddedEvent {
+    public static class DataUpdatedEvent extends SeriesItemEvent {
         int pointIndex;
 
         DataUpdatedEvent(Series series, Number value, int pointIndex) {
-            super(series, value);
+            this.series = series;
+            this.value = value;
             this.pointIndex = pointIndex;
         }
 
         DataUpdatedEvent(Series series, DataSeriesItem item, int pointIndex) {
-            super(series, item, false);
+            this.series = series;
+            this.item = item;
             this.pointIndex = pointIndex;
         }
 
@@ -118,12 +137,10 @@ public interface DataSeriesEventListener extends Serializable {
      * Listener class for Series enabling and disabling events. This listener is
      * used internally by the library.
      */
-    public static class SeriesEnablationEvent {
+    public static class SeriesEnablationEvent extends SeriesEvent {
 
         /** Series was enabled */
         private final boolean enabled;
-        /** Series which was enabled or disabled */
-        private final Series series;
 
         SeriesEnablationEvent(Series series, boolean enabled) {
             if (series == null || series.getName() == null) {
@@ -141,11 +158,6 @@ public interface DataSeriesEventListener extends Serializable {
             return enabled;
         }
 
-        /**
-         * @return the altered series
-         */
-        public Series getSeries() {
-            return series;
-        }
     }
+
 }

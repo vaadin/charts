@@ -49,6 +49,8 @@ public class ChartModel extends AbstractConfigurationObject {
     private Boolean alignTicks;
     private Boolean polar;
 
+    transient Configuration configuration;
+
     public ChartModel() {
     }
 
@@ -58,7 +60,7 @@ public class ChartModel extends AbstractConfigurationObject {
      * @param type
      *            The type of chart to create
      */
-    public ChartModel(ChartType type) {
+    public ChartModel(Configuration conf, ChartType type) {
         this.type = type;
     }
 
@@ -458,8 +460,9 @@ public class ChartModel extends AbstractConfigurationObject {
     }
 
     /**
-     * Sets the overall animation for all chart updates. Animation can be
-     * disabled throughout the chart by setting it to false here.
+     * Some updates to existing charts can be animated. This method sets the
+     * overall animation for all chart updates. Animation can be disabled
+     * throughout the chart by setting it to false here. The default is true.
      * <p>
      * Note, that animation for the initial rendering (or redraw) is controlled
      * by the plot options.
@@ -468,6 +471,7 @@ public class ChartModel extends AbstractConfigurationObject {
      */
     public void setAnimation(Boolean animation) {
         this.animation = animation;
+        configuration.fireAnimationChanged(animation);
     }
 
     /**
