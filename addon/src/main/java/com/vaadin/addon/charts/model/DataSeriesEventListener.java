@@ -33,6 +33,9 @@ public interface DataSeriesEventListener extends Serializable {
     /** A data point has been updated */
     void dataUpdated(DataUpdatedEvent event);
 
+    /** The series is enabled or disabled */
+    void seriesEnablation(SeriesEnablationEvent event);
+
     public static class DataAddedEvent {
         /** The affected series */
         private final Series series;
@@ -103,4 +106,38 @@ public interface DataSeriesEventListener extends Serializable {
         }
     }
 
+    /**
+     * Listener class for Series enabling and disabling events. This listener is
+     * used internally by the library.
+     */
+    public static class SeriesEnablationEvent {
+
+        /** Series was enabled */
+        private final boolean enabled;
+        /** Series which was enabled or disabled */
+        private final Series series;
+
+        SeriesEnablationEvent(Series series, boolean enabled) {
+            if (series == null || series.getName() == null) {
+                throw new IllegalArgumentException(
+                        "Series or its name may not be null");
+            }
+            this.series = series;
+            this.enabled = enabled;
+        }
+
+        /**
+         * @return is given series now enabled
+         */
+        public boolean isEnabled() {
+            return enabled;
+        }
+
+        /**
+         * @return the altered series
+         */
+        public Series getSeries() {
+            return series;
+        }
+    }
 }

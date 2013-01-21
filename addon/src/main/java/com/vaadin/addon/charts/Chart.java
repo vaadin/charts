@@ -450,5 +450,13 @@ public class Chart extends AbstractComponent {
             }
         }
 
+        @Override
+        public void seriesEnablation(SeriesEnablationEvent event) {
+            if (event.getSeries() != null) {
+                getRpcProxy(ChartClientRpc.class).setSeriesEnabled(
+                        event.getSeries().getName(), event.isEnabled());
+            }
+        }
+
     };
 }

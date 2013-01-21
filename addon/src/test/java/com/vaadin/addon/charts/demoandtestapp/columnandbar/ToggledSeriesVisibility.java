@@ -7,6 +7,7 @@ import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.LegendItemClickEvent;
 import com.vaadin.addon.charts.LegendItemClickListener;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.model.AbstractSeries;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.HorizontalAlign;
@@ -110,10 +111,11 @@ public class ToggledSeriesVisibility extends AbstractVaadinChartExample {
     protected void setup() {
         super.setup();
         optionGroup = new OptionGroup();
+        optionGroup.setId("vaadin-optiongroup");
         optionGroup.setImmediate(true);
         optionGroup.setMultiSelect(true);
 
-        List<Series> series = chart.getConfiguration().getSeries();
+        final List<Series> series = chart.getConfiguration().getSeries();
         for (Series series2 : series) {
             optionGroup.addItem(series2);
             optionGroup.setItemCaption(series2, series2.getName());
@@ -126,13 +128,10 @@ public class ToggledSeriesVisibility extends AbstractVaadinChartExample {
                 @SuppressWarnings("unchecked")
                 Collection<Series> value = (Collection<Series>) event
                         .getProperty().getValue();
-                if (value != null) {
-                    chart.getConfiguration().setSeries(
-                            value.toArray(new Series[value.size()]));
-                } else {
-                    chart.getConfiguration().setSeries();
+                for (Series s : series) {
+                    ((AbstractSeries) s).setEnabled((value.contains(s)));
                 }
-                chart.drawChart();
+                // chart.drawChart();
             }
         });
     }

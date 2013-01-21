@@ -72,4 +72,9 @@ public interface ChartClientRpc extends ClientRpc {
      */
     void setShiftAfterUpdate(boolean shiftAfterUpdate);
 
+    /**
+     * Disables or enables series with given seriesName
+     */
+    void setSeriesEnabled(String seriesName, boolean enabled);
+
 }

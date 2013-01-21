@@ -27,6 +27,7 @@ import java.util.Map;
 import com.vaadin.addon.charts.model.DataSeriesEventListener.DataAddedEvent;
 import com.vaadin.addon.charts.model.DataSeriesEventListener.DataRemovedEvent;
 import com.vaadin.addon.charts.model.DataSeriesEventListener.DataUpdatedEvent;
+import com.vaadin.addon.charts.model.DataSeriesEventListener.SeriesEnablationEvent;
 
 /**
  * Chart's configuration root object containing all the child objects that are
@@ -621,6 +622,15 @@ public class Configuration extends AbstractConfigurationObject {
         }
         dataSeriesEventListener.dataUpdated(new DataUpdatedEvent(series, item,
                 pointIndex));
+    }
+
+    /** Notifies listeners that a series is enabled or disabled */
+    void fireSeriesEnabled(Series series, boolean enabled) {
+        if (dataSeriesEventListener == null) {
+            return;
+        }
+        dataSeriesEventListener.seriesEnablation(new SeriesEnablationEvent(
+                series, enabled));
     }
 
     /**

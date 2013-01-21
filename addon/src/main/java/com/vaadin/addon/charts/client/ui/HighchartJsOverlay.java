@@ -79,6 +79,21 @@ public class HighchartJsOverlay extends JavaScriptObject {
         }
     }-*/;
 
+    public native final void setSeriesEnabled(String seriesName, boolean enabled)
+    /*-{
+        for (var i=0; i<this.series.length; i++) {
+            if (this.series[i].name.localeCompare(seriesName)==0) {
+                if (enabled) {
+                    this.series[i].show();
+                } else {
+                    this.series[i].hide();
+                }
+                break;
+            }
+        }
+        // TODO throw exception?
+    }-*/;
+
     /**
      * Doesn't work?
      */

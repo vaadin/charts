@@ -28,6 +28,8 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
 
     private AbstractPlotOptions plotOptions;
 
+    private boolean visible = true;
+
     private transient Configuration configuration;
 
     public AbstractSeries() {
@@ -103,5 +105,17 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
      */
     public void setPlotOptions(AbstractPlotOptions plotOptions) {
         this.plotOptions = plotOptions;
+    }
+
+    /**
+     * Enable or disable series
+     * 
+     * @param enabled
+     */
+    public void setEnabled(boolean enabled) {
+        if (getConfiguration() != null && enabled != visible) {
+            visible = enabled;
+            getConfiguration().fireSeriesEnabled(this, enabled);
+        }
     }
 }

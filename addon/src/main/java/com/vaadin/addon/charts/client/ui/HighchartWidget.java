@@ -57,7 +57,6 @@ public class HighchartWidget extends Widget {
             double newValue) {
         jsOverlay.updatePointValue(seriesIndex, pointIndex, newValue, redraw,
                 animation);
-
     }
 
     public void removePoint(double x, double y, int seriesIndex) {
@@ -74,5 +73,9 @@ public class HighchartWidget extends Widget {
 
     public void setShiftAfterUpdate(boolean shift) {
         this.shift = shift;
+    }
+
+    public void setSeriesEnabled(String seriesName, boolean enabled) {
+        jsOverlay.setSeriesEnabled(seriesName, enabled);
     }
 }
