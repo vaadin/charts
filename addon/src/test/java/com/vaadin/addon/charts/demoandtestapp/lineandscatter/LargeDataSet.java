@@ -55,8 +55,11 @@ public class LargeDataSet extends AbstractVaadinChartExample {
         PlotOptionsLine plotOptionsLine = new PlotOptionsLine();
 
         // Showing points with thousands of data items looks odd (on top of each
-        // other)
+        // other), also renders faster without markers
         plotOptionsLine.setMarker(new Marker(false));
+        // To render shadow, library must create additional element, without it
+        // performance will be better
+        plotOptionsLine.setShadow(false);
         plotOptionsLine.setAnimation(false);
 
         /*
