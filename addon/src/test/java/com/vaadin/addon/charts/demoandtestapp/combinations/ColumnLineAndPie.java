@@ -58,9 +58,9 @@ public class ColumnLineAndPie extends AbstractVaadinChartExample {
 
         // Colors for the pie
         DataSeries pieSeries = ((DataSeries) series.get(4));
-        pieSeries.getDataSeriesItem("Jane").setColor(janeColor);
-        pieSeries.getDataSeriesItem("John").setColor(johnColor);
-        pieSeries.getDataSeriesItem("Joe").setColor(joeColor);
+        pieSeries.getData("Jane").setColor(janeColor);
+        pieSeries.getData("John").setColor(johnColor);
+        pieSeries.getData("Joe").setColor(joeColor);
     }
 
     @Override

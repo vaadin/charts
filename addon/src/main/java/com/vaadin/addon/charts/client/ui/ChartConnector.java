@@ -39,8 +39,8 @@ public class ChartConnector extends AbstractComponentConnector {
     public ChartConnector() {
         registerRpc(ChartClientRpc.class, new ChartClientRpc() {
             @Override
-            public void addPoint(double x, double y, int seriesIndex) {
-                getWidget().addPoint(x, y, seriesIndex);
+            public void addPoint(double x, double y, int seriesIndex, boolean shift) {
+                getWidget().addPoint(x, y, seriesIndex, shift);
             }
 
             @Override
@@ -55,19 +55,9 @@ public class ChartConnector extends AbstractComponentConnector {
             }
 
             @Override
-            public void setRedrawAfterUpdate(boolean redraw) {
-                getWidget().setRedrawAfterUpdate(redraw);
-            }
-
-            @Override
             public void setAnimationAfterUpdate(boolean animationAfterUpdate) {
                 getWidget().setAnimationAfterUpdate(animationAfterUpdate);
 
-            }
-
-            @Override
-            public void setShiftAfterUpdate(boolean shiftAfterUpdate) {
-                getWidget().setShiftAfterUpdate(shiftAfterUpdate);
             }
 
             @Override

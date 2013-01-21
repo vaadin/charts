@@ -43,6 +43,9 @@ public interface DataSeriesEventListener extends Serializable {
         private Number value;
         /** The item added. May be null if value != null */
         private DataSeriesItem item;
+        
+        /** true if the data addition was a shift and first item was removed */
+        private boolean shift = false;
 
         DataAddedEvent(Series series, Number value) {
             if (series == null || value == null) {
@@ -53,13 +56,14 @@ public interface DataSeriesEventListener extends Serializable {
             this.value = value;
         }
 
-        DataAddedEvent(Series series, DataSeriesItem item) {
+        DataAddedEvent(Series series, DataSeriesItem item, boolean shift) {
             if (series == null || item == null) {
                 throw new IllegalArgumentException(
                         "Series or item may not be null");
             }
             this.series = series;
             this.item = item;
+            this.shift = shift;
         }
 
         /** The value added. May be null if item != null */
@@ -76,6 +80,10 @@ public interface DataSeriesEventListener extends Serializable {
         public Series getSeries() {
             return series;
         }
+        
+        public boolean isShift() {
+            return shift;
+        }
     }
 
     public static class DataRemovedEvent extends DataAddedEvent {
@@ -84,7 +92,7 @@ public interface DataSeriesEventListener extends Serializable {
         }
 
         DataRemovedEvent(Series series, DataSeriesItem item) {
-            super(series, item);
+            super(series, item, false);
         }
     }
 
@@ -97,7 +105,7 @@ public interface DataSeriesEventListener extends Serializable {
         }
 
         DataUpdatedEvent(Series series, DataSeriesItem item, int pointIndex) {
-            super(series, item);
+            super(series, item, false);
             this.pointIndex = pointIndex;
         }
 

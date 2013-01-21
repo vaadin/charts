@@ -101,7 +101,7 @@ public class ListSeries extends AbstractSeries {
      *            the number to be added to the series
      */
     public void addData(Number number) {
-        addData(number, true);
+        addData(number, true, false);
     }
 
     /**
@@ -117,12 +117,20 @@ public class ListSeries extends AbstractSeries {
      * @param updateChartImmediately
      *            if true the chart will be dynamically updated, using animation
      *            if enabled.
+     * @param shift
+     *            If true, the first item from the series is removed. Handy if
+     *            dynamically adjusting adding points and fixed amount of points
+     *            should be kept visible.
      */
-    public void addData(Number number, boolean updateChartImmediately) {
+    public void addData(Number number, boolean updateChartImmediately,
+            boolean shift) {
+        if(shift) {
+            data.remove(0);
+        }
         data.add(number);
         if (updateChartImmediately && getConfiguration() != null) {
             getConfiguration().fireDataAdded(this,
-                    new DataSeriesItem(data.size() - 1, number));
+                    new DataSeriesItem(data.size() - 1, number), shift);
         }
     }
 

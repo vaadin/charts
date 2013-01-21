@@ -99,7 +99,7 @@ public class Chart extends AbstractComponent {
             @Override
             public void onPointClick(double x, double y, int seriesIndex,
                     String category) {
-                
+
                 Series series = getSeriesBasedOnIndex(seriesIndex);
                 PointClickEvent pointClickEvent = new PointClickEvent(
                         Chart.this, x, y, series, category);
@@ -384,16 +384,6 @@ public class Chart extends AbstractComponent {
     /**
      * Set client side chart rendering parameters
      * 
-     * @param redrawAfterUpdate
-     *            Defaults to true. Whether to redraw the chart after a point is
-     *            added/removed/altered. When adding more than one point, it is
-     *            highly recommended that the redraw option be set to false, and
-     *            instead chart.redraw() is explicitly called after the adding
-     *            of points is finished.
-     * @param shiftAfterUpdate
-     *            Defaults to false. When true, a point is shifted off the start
-     *            of the series as one is appended to the end. Use this option
-     *            for live charts monitoring a value over time.
      * @param animationAfterUpdate
      *            Defaults to true. When true, the graph will be animated with
      *            the default animation options. The animation can also be a
@@ -405,11 +395,7 @@ public class Chart extends AbstractComponent {
      * <br />
      *            TODO: Add animation easing support
      */
-    public void setClientSideRenderingParams(boolean redrawAfterUpdate,
-            boolean shiftAfterUpdate, boolean animationAfterUpdate) {
-        getRpcProxy(ChartClientRpc.class).setRedrawAfterUpdate(
-                redrawAfterUpdate);
-        getRpcProxy(ChartClientRpc.class).setShiftAfterUpdate(shiftAfterUpdate);
+    public void setClientSideRenderingParams(boolean animationAfterUpdate) {
         getRpcProxy(ChartClientRpc.class).setAnimationAfterUpdate(
                 animationAfterUpdate);
     }
@@ -430,7 +416,7 @@ public class Chart extends AbstractComponent {
                             event.getItem().getX().doubleValue(),
                             event.getItem().getY().doubleValue(),
                             getConfiguration().getSeries().indexOf(
-                                    event.getSeries()));
+                                    event.getSeries()), event.isShift());
                 }
             }
         }

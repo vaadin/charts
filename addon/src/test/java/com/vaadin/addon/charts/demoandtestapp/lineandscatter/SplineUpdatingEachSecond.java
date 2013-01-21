@@ -68,8 +68,7 @@ public class SplineUpdatingEachSecond extends AbstractVaadinChartExample {
                             double y = random.nextDouble();
                             getSession().lock();
                             try {
-                                series.addData(new DataSeriesItem(x, y));
-                                // chart.addPoint(x, y, 0);
+                                series.addData(new DataSeriesItem(x, y), true, true);
                             } finally {
                                 getSession().unlock();
                             }

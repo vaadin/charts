@@ -147,7 +147,7 @@ public class ContainerDataSeries extends DataSeries {
 
     /** Unsupported operation */
     @Override
-    public void addData(DataSeriesItem item, boolean updateChartImmediately) {
+    public void addData(DataSeriesItem item, boolean updateChartImmediately, boolean shift) {
         throw new UnsupportedOperationException();
     }
 

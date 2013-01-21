@@ -27,8 +27,9 @@ public interface ChartClientRpc extends ClientRpc {
      * @param x
      * @param y
      * @param seriesIndex
+     * @param shift 
      */
-    void addPoint(double x, double y, int seriesIndex);
+    void addPoint(double x, double y, int seriesIndex, boolean shift);
 
     /**
      * Removes the first point found at the given coordinates
@@ -48,29 +49,12 @@ public interface ChartClientRpc extends ClientRpc {
     void updatePointValue(int seriesIndex, int pointIndex, double newValue);
 
     /**
-     * Sets whether to redraw the chart after a point is altered. Default is
-     * true.
-     * 
-     * @param redraw
-     */
-    void setRedrawAfterUpdate(boolean redraw);
-
-    /**
      * When true, updates will be animated using the default animation options.
      * Default is true.
      * 
      * @param animationAfterUpdate
      */
     void setAnimationAfterUpdate(boolean animationAfterUpdate);
-
-    /**
-     * When shift is true, one point is shifted off the start of the series as
-     * one is appended to the end. Use this option for live charts monitoring a
-     * value over time. Default is false.
-     * 
-     * @param shiftAfterUpdate
-     */
-    void setShiftAfterUpdate(boolean shiftAfterUpdate);
 
     /**
      * Disables or enables series with given seriesName

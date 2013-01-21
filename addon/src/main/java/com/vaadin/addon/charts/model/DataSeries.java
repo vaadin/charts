@@ -19,6 +19,7 @@ package com.vaadin.addon.charts.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import com.vaadin.addon.charts.model.style.Color;
@@ -173,7 +174,7 @@ public class DataSeries extends AbstractSeries {
      * @return The first {@link DataSeriesItem} identified by the specified
      *         name. Returns null if no matching item is found.
      */
-    public DataSeriesItem getDataSeriesItem(String name) {
+    public DataSeriesItem getData(String name) {
         for (DataSeriesItem item : data) {
             if (item.getName().equals(name)) {
                 return item;
@@ -193,7 +194,7 @@ public class DataSeries extends AbstractSeries {
      *            The Y value of the item to find.
      * @return The first matching data series item.
      */
-    public DataSeriesItem getDataSeriesItem(Number x, Number y) {
+    public DataSeriesItem getData(Number x, Number y) {
         for (DataSeriesItem item : data) {
 
             if (Math.abs(x.doubleValue() - item.getX().doubleValue()) < TOLERANCE
@@ -209,10 +210,12 @@ public class DataSeries extends AbstractSeries {
      * drawn. If the chart has not yet been drawn, all items added will be added
      * to the chart when the chart is drawn.
      * 
+     * @see #addData(DataSeriesItem, boolean, boolean)
      * @param item
+     *            the data item to be added
      */
     public void addData(DataSeriesItem item) {
-        addData(item, true);
+        addData(item, true, false);
     }
 
     /**
@@ -228,11 +231,19 @@ public class DataSeries extends AbstractSeries {
      *            The item to add.
      * @param updateChartImmediately
      *            Updates the chart immediately if true.
+     * @param shift
+     *            If true, the first item from the series is removed. Handy if
+     *            dynamically adjusting adding points and fixed amount of points
+     *            should be kept visible.
      */
-    public void addData(DataSeriesItem item, boolean updateChartImmediately) {
+    public void addData(DataSeriesItem item, boolean updateChartImmediately,
+            boolean shift) {
+        if(shift) {
+            data.remove(0);
+        }
         data.add(item);
         if (updateChartImmediately && getConfiguration() != null) {
-            getConfiguration().fireDataAdded(this, item);
+            getConfiguration().fireDataAdded(this, item, shift);
         }
     }
 
@@ -292,11 +303,12 @@ public class DataSeries extends AbstractSeries {
     }
 
     /**
-     * For internal use only, returns internal data.
+     * Return an unmodifiable list of the data items in this series.
      */
     protected List<DataSeriesItem> getData() {
-        return data;
+        return Collections.unmodifiableList(data);
     }
+
     /**
      * Triggers an update of the chart for the specified data item. Only the Y
      * value of the DataSeriesItem is updated.
@@ -307,7 +319,26 @@ public class DataSeries extends AbstractSeries {
     public void updateData(DataSeriesItem item) {
         if (getConfiguration() != null) {
             getConfiguration().fireDataUpdated(this, item.getY(),
-                    getData().indexOf(item));
+                    data.indexOf(item));
         }
+    }
+
+    /**
+     * Returns {@link DataSeriesItem} at given index
+     * 
+     * @param index
+     * @return the Item
+     * @throws IndexOutOfBoundsException
+     *             if data series don't have item at given index
+     */
+    public DataSeriesItem getData(int index) {
+        return data.get(index);
+    }
+
+    /**
+     * @return the number of data items in the series
+     */
+    public int size() {
+        return data.size();
     }
 }

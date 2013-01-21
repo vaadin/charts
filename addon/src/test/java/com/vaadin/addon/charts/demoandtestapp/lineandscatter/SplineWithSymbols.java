@@ -64,7 +64,7 @@ public class SplineWithSymbols extends AbstractVaadinChartExample {
 
         ls.setData(7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3,
                 13.9, 9.6);
-        ls.getDataSeriesItem("26.5")
+        ls.getData("26.5")
                 .getMarker()
                 .setSymbol(
                         new MarkerSymbolUrl(
@@ -81,7 +81,7 @@ public class SplineWithSymbols extends AbstractVaadinChartExample {
         ls.setName("London");
         ls.setData(3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6,
                 4.8);
-        ls.getDataSeriesItem("3.9")
+        ls.getData("3.9")
                 .getMarker()
                 .setSymbol(
                         new MarkerSymbolUrl(

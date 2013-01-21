@@ -195,7 +195,7 @@ public class ColumnWithDrilldown extends AbstractVaadinChartExample {
         public void drillDown(String category) {
             if (mainData == null) {
                 
-                mainData = new Number[getData().size()];
+                mainData = new Number[size()];
                 
                 List<DataSeriesItem> data = getData();
                 for (int i = 0; i < data.size(); i++) {

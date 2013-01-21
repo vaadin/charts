@@ -506,7 +506,7 @@ public class Configuration extends AbstractConfigurationObject {
         // go trough all series
         for (Series serie : series) {
             if (serieName == null || serieName.equals(serie.getName())) {
-                item = ((DataSeries) serie).getDataSeriesItem(x, y);
+                item = ((DataSeries) serie).getData(x, y);
                 if (item != null) {
                     return item;
                 }
@@ -581,12 +581,13 @@ public class Configuration extends AbstractConfigurationObject {
         dataSeriesEventListener.dataAdded(new DataAddedEvent(series, value));
     }
 
-    /** Notifies listeners that a data point has been added */
-    void fireDataAdded(Series series, DataSeriesItem item) {
+    /** Notifies listeners that a data point has been added 
+     * @param shift */
+    void fireDataAdded(Series series, DataSeriesItem item, boolean shift) {
         if (dataSeriesEventListener == null) {
             return;
         }
-        dataSeriesEventListener.dataAdded(new DataAddedEvent(series, item));
+        dataSeriesEventListener.dataAdded(new DataAddedEvent(series, item, shift));
     }
 
     /** Notifies listeners that a data point has been removed */
