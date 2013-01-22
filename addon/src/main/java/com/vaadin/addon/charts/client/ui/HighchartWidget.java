@@ -21,6 +21,7 @@ import com.google.gwt.core.client.JsArray;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.user.client.ui.Widget;
 import com.vaadin.addon.charts.client.HighchartsScriptLoader;
+import com.vaadin.client.VConsole;
 
 public class HighchartWidget extends Widget {
 
@@ -69,5 +70,10 @@ public class HighchartWidget extends Widget {
 
     public void setAnimation(boolean animation) {
         jsOverlay.setAnimation(animation);
+    }
+
+    public void updateSize() {
+        VConsole.error("updatesize" + getOffsetWidth() + " " + getOffsetHeight());
+        jsOverlay.setSize(getOffsetWidth(), getOffsetHeight(), false, true);
     }
 }

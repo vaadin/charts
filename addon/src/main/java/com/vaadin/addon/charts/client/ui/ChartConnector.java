@@ -19,10 +19,17 @@ package com.vaadin.addon.charts.client.ui;
 
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
+import com.google.gwt.user.client.Timer;
 import com.vaadin.addon.charts.Chart;
+import com.vaadin.client.BrowserInfo;
+import com.vaadin.client.ServerConnector;
 import com.vaadin.client.communication.RpcProxy;
 import com.vaadin.client.communication.StateChangeEvent;
 import com.vaadin.client.ui.AbstractComponentConnector;
+import com.vaadin.client.ui.VWindow;
+import com.vaadin.client.ui.layout.ElementResizeEvent;
+import com.vaadin.client.ui.layout.ElementResizeListener;
+import com.vaadin.client.ui.window.WindowConnector;
 import com.vaadin.shared.ui.Connect;
 
 @SuppressWarnings("serial")
@@ -30,6 +37,7 @@ import com.vaadin.shared.ui.Connect;
 public class ChartConnector extends AbstractComponentConnector {
 
     ChartServerRpc rpc = RpcProxy.create(ChartServerRpc.class, this);
+    protected ElementResizeListener resizeListener;
     public static final String POINT_CLICK_EVENT_ID = "pcl";
     public static final String LEGENDITEM_CLICK_EVENT_ID = "lic";
     public static final String CHART_SELECTION_EVENT_ID = "cs";
@@ -38,7 +46,8 @@ public class ChartConnector extends AbstractComponentConnector {
     public ChartConnector() {
         registerRpc(ChartClientRpc.class, new ChartClientRpc() {
             @Override
-            public void addPoint(double x, double y, int seriesIndex, boolean shift) {
+            public void addPoint(double x, double y, int seriesIndex,
+                    boolean shift) {
                 getWidget().addPoint(x, y, seriesIndex, shift);
             }
 
@@ -101,8 +110,8 @@ public class ChartConnector extends AbstractComponentConnector {
                     HighchartSeries series = point.getSeries();
                     int seriesIndex = getWidget().getSeriesIndex(series);
                     int pointIndex = series.indexOf(point);
-                    rpc.onPointClick(event.getX(), event.getY(),
-                            seriesIndex, event.getCategory(), pointIndex);
+                    rpc.onPointClick(event.getX(), event.getY(), seriesIndex,
+                            event.getCategory(), pointIndex);
                 }
             });
         }
@@ -128,7 +137,8 @@ public class ChartConnector extends AbstractComponentConnector {
 
                 @Override
                 public void onClick(LegendItemClickEvent event) {
-                    int seriesIndex = getWidget().getSeriesIndex(event.getSeries());
+                    int seriesIndex = getWidget().getSeriesIndex(
+                            event.getSeries());
                     rpc.onLegendItemClick(seriesIndex);
                     event.preventDefault();
                 }
@@ -139,6 +149,38 @@ public class ChartConnector extends AbstractComponentConnector {
             @Override
             public void execute() {
                 getWidget().init(cfg);
+
+                // Add resize listener lazily here. If done in init like in
+                // examples it will be called
+                // way too early, like before the wiget is not even rendered yet
+                if (resizeListener == null) {
+                    resizeListener = new ElementResizeListener() {
+
+                        @Override
+                        public void onElementResize(ElementResizeEvent e) {
+                            getWidget().updateSize();
+                        }
+                    };
+                    getLayoutManager().addElementResizeListener(
+                            getWidget().getElement(), resizeListener);
+                }
+
+                if (BrowserInfo.get().isIE()) {
+                    // Workaround for Vaadin bug in IE (?), scrollbars...
+                    ServerConnector parent2 = getParent();
+                    if (parent2 instanceof WindowConnector) {
+                        final WindowConnector w = (WindowConnector) parent2;
+                        new Timer() {
+
+                            @Override
+                            public void run() {
+                                VWindow widget2 = w.getWidget();
+                                widget2.setWidth(widget2.getOffsetWidth() + "px");
+                                widget2.setHeight(widget2.getOffsetHeight() + "px");
+                            }
+                        }.schedule(10);
+                    }
+                }
             }
         });
     }

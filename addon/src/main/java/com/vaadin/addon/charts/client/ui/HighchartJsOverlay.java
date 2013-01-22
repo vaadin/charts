@@ -99,4 +99,12 @@ public class HighchartJsOverlay extends JavaScriptObject {
     /*-{
         this.animation = animation;
     }-*/;
+
+    public final native void setSize(int offsetWidth, int offsetHeight, boolean animate, boolean clearUserSize) 
+    /*-{
+        this.setSize(offsetWidth,offsetHeight,animate);
+        if(clearUserSize) {
+            this.hasUserSize = null;
+        }
+    }-*/;
 }
