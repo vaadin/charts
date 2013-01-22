@@ -57,7 +57,8 @@ public class ResizeInsideVaadinComponent extends AbstractVaadinChartExample {
             }
         });
 
-        horizontalSplitPanel.setFirstComponent(button);
+        verticalLayout.addComponent(button);
+        horizontalSplitPanel.setFirstComponent(verticalLayout);
 
         return horizontalSplitPanel;
     }
