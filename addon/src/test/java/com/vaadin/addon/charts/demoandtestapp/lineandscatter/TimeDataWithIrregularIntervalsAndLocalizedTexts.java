@@ -15,7 +15,6 @@ import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
-import com.vaadin.addon.charts.model.DateDataSeriesItem;
 import com.vaadin.addon.charts.model.DateTimeLabelFormats;
 import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.Lang;
@@ -95,7 +94,7 @@ public class TimeDataWithIrregularIntervalsAndLocalizedTexts extends
         Object[][] data3 = getData3();
         for (int i = 0; i < data3.length; i++) {
             Object[] ds = data3[i];
-            DataSeriesItem item = new DateDataSeriesItem((Date) ds[0],
+            DataSeriesItem item = new DataSeriesItem((Date) ds[0],
                     (Double) ds[1]);
             ls.add(item);
         }

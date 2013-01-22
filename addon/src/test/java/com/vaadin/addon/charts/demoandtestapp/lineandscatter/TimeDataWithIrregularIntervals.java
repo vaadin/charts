@@ -13,7 +13,6 @@ import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
-import com.vaadin.addon.charts.model.DateDataSeriesItem;
 import com.vaadin.addon.charts.model.DateTimeLabelFormats;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
 import com.vaadin.addon.charts.model.Title;
@@ -62,7 +61,7 @@ public class TimeDataWithIrregularIntervals extends AbstractVaadinChartExample {
         Object[][] data1 = getData1();
         for (int i = 0; i < data1.length; i++) {
             Object[] ds = data1[i];
-            DataSeriesItem item = new DateDataSeriesItem((Date) ds[0],
+            DataSeriesItem item = new DataSeriesItem((Date) ds[0],
                     (Double) ds[1]);
             ls.add(item);
         }
@@ -76,7 +75,7 @@ public class TimeDataWithIrregularIntervals extends AbstractVaadinChartExample {
         Object[][] data2 = getData2();
         for (int i = 0; i < data2.length; i++) {
             Object[] ds = data2[i];
-            DataSeriesItem item = new DateDataSeriesItem((Date) ds[0],
+            DataSeriesItem item = new DataSeriesItem((Date) ds[0],
                     (Double) ds[1]);
             ls.add(item);
         }
@@ -89,7 +88,7 @@ public class TimeDataWithIrregularIntervals extends AbstractVaadinChartExample {
         Object[][] data3 = getData3();
         for (int i = 0; i < data3.length; i++) {
             Object[] ds = data3[i];
-            DataSeriesItem item = new DateDataSeriesItem((Date) ds[0],
+            DataSeriesItem item = new DataSeriesItem((Date) ds[0],
                     (Double) ds[1]);
             ls.add(item);
         }

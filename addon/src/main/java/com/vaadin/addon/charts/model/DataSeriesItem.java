@@ -17,6 +17,8 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
+import java.util.Date;
+
 import com.vaadin.addon.charts.model.style.Color;
 
 /**
@@ -35,8 +37,8 @@ public class DataSeriesItem extends AbstractConfigurationObject {
     private String id;
     private Dial dial;
     /*
-     * Flag to indicate if this item can be passed in optimized form to rendering
-     * library.
+     * Flag to indicate if this item can be passed in optimized form to
+     * rendering library.
      */
     private boolean customized = false;
 
@@ -94,6 +96,19 @@ public class DataSeriesItem extends AbstractConfigurationObject {
         this.y = y;
         setColor(color);
         customized = true;
+    }
+
+    /**
+     * Constructs a DataSeriesItem with the given date as X value and Y value.
+     * <p>
+     * Internally the Date value is stored as an "epoch timestamp" with {@link Date#getTime()}.
+     * 
+     * @param date
+     * @param y
+     */
+    public DataSeriesItem(Date date, Number y) {
+        setX(date.getTime());
+        setY(y);
     }
 
     /**
