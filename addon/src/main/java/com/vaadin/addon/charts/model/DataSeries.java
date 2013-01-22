@@ -212,7 +212,7 @@ public class DataSeries extends AbstractSeries {
      */
     public void add(DataSeriesItem item, boolean updateChartImmediately,
             boolean shift) {
-        if(shift) {
+        if (shift) {
             data.remove(0);
         }
         data.add(item);
@@ -272,5 +272,12 @@ public class DataSeries extends AbstractSeries {
      */
     public int size() {
         return data.size();
+    }
+
+    /**
+     * Removes all items from the series.
+     */
+    public void clear() {
+        data.clear();
     }
 }

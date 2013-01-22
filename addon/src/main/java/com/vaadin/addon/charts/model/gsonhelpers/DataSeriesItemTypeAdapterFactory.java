@@ -22,6 +22,7 @@ import java.io.IOException;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonNull;
 import com.google.gson.JsonPrimitive;
 import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
@@ -51,13 +52,36 @@ public class DataSeriesItemTypeAdapterFactory implements TypeAdapterFactory {
             @Override
             public void write(JsonWriter out, DataSeriesItem value)
                     throws IOException {
-                if(value.isCustomized()) {
+                if (value.isCustomized()) {
                     elementAdapter.write(out, delegate.toJsonTree(value));
                 } else {
-                    JsonArray jsonArray = new JsonArray();
-                    jsonArray.add(new JsonPrimitive(value.getX()));
-                    jsonArray.add(new JsonPrimitive(value.getY()));
-                    elementAdapter.write(out, jsonArray);
+                    Number x = value.getX();
+                    Number y = value.getY();
+                    if (x != null) {
+                        JsonArray jsonArray = new JsonArray();
+                        jsonArray.add(new JsonPrimitive(x));
+                        if (y != null) {
+                            jsonArray.add(new JsonPrimitive(y));
+                        } else if(value.getLow() != null) {
+                            jsonArray.add(new JsonPrimitive(value.getLow()));
+                            jsonArray.add(new JsonPrimitive(value.getHigh()));
+                        } else {
+                            jsonArray.add(JsonNull.INSTANCE);
+                            jsonArray.add(JsonNull.INSTANCE);
+                        }
+                        elementAdapter.write(out, jsonArray);
+                    } else {
+                        // If no x set, make it like list series, just number or
+                        // min-max pairs
+                        if (y != null) {
+                            elementAdapter.write(out, new JsonPrimitive(y));
+                        } else {
+                            JsonArray jsonArray = new JsonArray();
+                            jsonArray.add(new JsonPrimitive(value.getLow()));
+                            jsonArray.add(new JsonPrimitive(value.getHigh()));
+                            elementAdapter.write(out, jsonArray);
+                        }
+                    }
                 }
             }
 

@@ -4,9 +4,10 @@ import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.DataSeries;
+import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.PlotOptionsColumnRange;
-import com.vaadin.addon.charts.model.RangeSeries;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
@@ -50,11 +51,20 @@ public class ColumnRange extends AbstractVaadinChartExample {
 
         conf.getLegend().setEnabled(false);
 
-        RangeSeries data = new RangeSeries("Temperatures", getRawData());
+        // RangeSeries has some helper constructors of which example below, but
+        // here we use the raw DataSeries API
+        // RangeSeries data = new RangeSeries("Temperatures", getRawData());
+        DataSeries data = new DataSeries();
+        data.setName("Temperatures");
+        for (Number[] minMaxPair : getRawData()) {
+            DataSeriesItem item = new DataSeriesItem();
+            item.setLow(minMaxPair[0]);
+            item.setHigh(minMaxPair[1]);
+            data.add(item);
+        }
 
         conf.setSeries(data);
 
-        chart.drawChart(conf);
         return chart;
     }
 

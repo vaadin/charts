@@ -26,9 +26,11 @@ import com.vaadin.addon.charts.model.style.Color;
  */
 @SuppressWarnings("serial")
 public class DataSeriesItem extends AbstractConfigurationObject {
-    protected String name;
-    protected Number y;
+    private String name;
+    private Number y;
     private Number x;
+    private Number low;
+    private Number high;
     private Boolean sliced;
     private Boolean selected;
     private Color color;
@@ -101,7 +103,8 @@ public class DataSeriesItem extends AbstractConfigurationObject {
     /**
      * Constructs a DataSeriesItem with the given date as X value and Y value.
      * <p>
-     * Internally the Date value is stored as an "epoch timestamp" with {@link Date#getTime()}.
+     * Internally the Date value is stored as an "epoch timestamp" with
+     * {@link Date#getTime()}.
      * 
      * @param date
      * @param y
@@ -111,6 +114,38 @@ public class DataSeriesItem extends AbstractConfigurationObject {
         setY(y);
     }
 
+    /**
+     * Constructs a DataSeriesItem with the given date as X value with min and
+     * max values for use in range visualizations.
+     * <p>
+     * Internally the Date value is stored as an "epoch timestamp" with
+     * {@link Date#getTime()}.
+     * 
+     * @param date
+     * @param min
+     * @param max
+     */
+    public DataSeriesItem(Date date, Number min, Number max) {
+        setX(date.getTime());
+        setLow(min);
+        setHigh(max);
+    }
+
+    /**
+     * Constructs a DataSeriesItem with the given X, min and
+     * max values for use in range visualizations.
+     * 
+     * @param x
+     * @param min
+     * @param max
+     */
+    public DataSeriesItem(Number x, Number min, Number max) {
+        setX(x);
+        setLow(min);
+        setHigh(max);
+    }
+
+    
     /**
      * @see #setName(String)
      * @return The category name of the data item or null if not defined
@@ -310,5 +345,21 @@ public class DataSeriesItem extends AbstractConfigurationObject {
      */
     public boolean isCustomized() {
         return customized;
+    }
+
+    public Number getLow() {
+        return low;
+    }
+
+    public void setLow(Number low) {
+        this.low = low;
+    }
+
+    public Number getHigh() {
+        return high;
+    }
+
+    public void setHigh(Number high) {
+        this.high = high;
     }
 }
