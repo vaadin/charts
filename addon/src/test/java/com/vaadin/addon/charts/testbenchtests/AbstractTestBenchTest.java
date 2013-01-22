@@ -8,6 +8,7 @@ import org.eclipse.jetty.server.Server;
 import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -87,7 +88,8 @@ public abstract class AbstractTestBenchTest extends TestBenchTestCase {
             try {
                 BASEURL = InetAddress.getLocalHost().getHostName() + ":"
                         + TESTPORT + "/";
-                Capabilities cap = DesiredCapabilities.firefox();
+                DesiredCapabilities cap = DesiredCapabilities.firefox();
+                cap.setPlatform(Platform.MAC);
                 URL remoteAddress = new URL("http://" + hubhost
                         + ":4444/wd/hub");
                 driver = TestBench.createDriver(new RemoteWebDriver(
