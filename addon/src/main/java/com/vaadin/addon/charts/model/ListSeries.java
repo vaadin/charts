@@ -32,7 +32,6 @@ import java.util.List;
 public class ListSeries extends AbstractSeries {
 
     private List<Number> data = new ArrayList<Number>();
-    private Number yAxis;
 
     public ListSeries() {
     }
@@ -132,27 +131,6 @@ public class ListSeries extends AbstractSeries {
             getConfiguration().fireDataAdded(this,
                     new DataSeriesItem(data.size() - 1, number), shift);
         }
-    }
-
-    /**
-     * @see #setyAxis(Number)
-     * @return The index of the Y-axis to which this series is bound or null if
-     *         not defined
-     */
-    public Number getyAxis() {
-        return yAxis;
-    }
-
-    /**
-     * Sets the index of the Y-axis to bind to. When using dual or multiple
-     * Y-axes, this number defines which Y-axis the particular series is
-     * connected to. It refers to the index of the axis in the Y-axis array,
-     * with 0 being the first. Defaults to 0.
-     * 
-     * @param yAxis
-     */
-    public void setyAxis(Number yAxis) {
-        this.yAxis = yAxis;
     }
 
     /**
