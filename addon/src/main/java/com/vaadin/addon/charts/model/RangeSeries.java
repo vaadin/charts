@@ -24,8 +24,6 @@ package com.vaadin.addon.charts.model;
 public class RangeSeries extends AbstractSeries {
     private Number[][] data;
 
-    private Number yAxis;
-
     public RangeSeries() {
     }
 
@@ -74,24 +72,4 @@ public class RangeSeries extends AbstractSeries {
         this.data = data;
     }
 
-    /**
-     * @see #setyAxis(Number)
-     * @return The index of the Y-axis that this series is bound to or null if
-     *         not defined
-     */
-    public Number getyAxis() {
-        return yAxis;
-    }
-
-    /**
-     * Sets the index of the Y-axis that this series should be bound to. When
-     * using dual or multiple Y-axes, this number defines which {@link YAxis}
-     * the particular series is connected to. It refers to the index of the axis
-     * in the Y-axis array, with 0 being the first. Defaults to 0.
-     * 
-     * @param yAxis
-     */
-    public void setyAxis(Number yAxis) {
-        this.yAxis = yAxis;
-    }
 }
