@@ -27,6 +27,7 @@ public class ChartWithExternalContainer extends AbstractVaadinChartExample {
     @Override
     protected Component getChart() {
         HorizontalLayout lo = new HorizontalLayout();
+        lo.setSpacing(true);
         Container vaadinContainer = ExampleUtil.getOrderContainer();
 
         ContainerDataSeries container1 = createContainerView1(vaadinContainer);

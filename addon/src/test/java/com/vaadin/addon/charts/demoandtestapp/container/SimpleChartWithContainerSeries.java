@@ -13,7 +13,7 @@ import com.vaadin.data.Container;
 import com.vaadin.data.Item;
 import com.vaadin.data.util.IndexedContainer;
 import com.vaadin.ui.Component;
-import com.vaadin.ui.CssLayout;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Table;
 
 public class SimpleChartWithContainerSeries extends AbstractVaadinChartExample {
@@ -25,15 +25,13 @@ public class SimpleChartWithContainerSeries extends AbstractVaadinChartExample {
 
     @Override
     protected Component getChart() {
-        CssLayout lo = new CssLayout();
+        HorizontalLayout lo = new HorizontalLayout();
         ContainerDataSeries container = createContainer();
         Component table = createTable(container.getVaadinContainer());
         Component chart = createChart(container);
 
-        table.setWidth("50%");
-        table.setHeight("100%");
-        chart.setWidth("50%");
-        chart.setHeight("100%");
+        table.setSizeFull();
+        chart.setSizeFull();
 
         lo.setWidth("100%");
         lo.setHeight("450px");

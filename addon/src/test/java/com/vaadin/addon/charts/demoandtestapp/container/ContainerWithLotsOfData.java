@@ -20,10 +20,10 @@ import com.vaadin.data.Item;
 import com.vaadin.data.util.IndexedContainer;
 import com.vaadin.ui.AbstractSelect.ItemCaptionMode;
 import com.vaadin.ui.Component;
-import com.vaadin.ui.CssLayout;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Table;
 
-public class ChartWithContainerMuchData extends AbstractVaadinChartExample {
+public class ContainerWithLotsOfData extends AbstractVaadinChartExample {
 
     @Override
     public String getDescription() {
@@ -32,20 +32,19 @@ public class ChartWithContainerMuchData extends AbstractVaadinChartExample {
 
     @Override
     protected Component getChart() {
-        CssLayout lo = new CssLayout();
+        HorizontalLayout lo = new HorizontalLayout();
         ContainerDataSeries container = createContainer();
         Component table = createTable(container.getVaadinContainer());
         Component chart = createChart(container);
-
-        table.setWidth("10%");
-        table.setHeight("100%");
-        chart.setWidth("90%");
-        chart.setHeight("100%");
-
-        lo.setWidth("100%");
-        lo.setHeight("450px");
+        
         lo.addComponents(table);
         lo.addComponent(chart);
+        
+        table.setSizeFull();
+        chart.setSizeFull();
+        lo.setSizeFull();
+        lo.setExpandRatio(table, 1);
+        lo.setExpandRatio(chart, 5);
         return lo;
     }
 
