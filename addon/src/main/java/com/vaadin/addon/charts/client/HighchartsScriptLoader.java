@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts.client;
 
+import com.google.gwt.core.client.GWT;
+
 /*
  * #%L
  * Vaadin Charts
@@ -22,6 +24,9 @@ package com.vaadin.addon.charts.client;
  */
 public class HighchartsScriptLoader {
 
+    private static final HighchartsScriptLoader INSTANCE = GWT
+            .create(HighchartsScriptLoader.class);
+
     private static boolean injected;
 
     /**
@@ -30,28 +35,31 @@ public class HighchartsScriptLoader {
      */
     public static void ensureInjected() {
         if (!injected) {
-            // As jquery is so popular, inject it conditionally
-            if (!hasJQuery()) {
-                inject(HighchartResources.INSTANCE.jquery().getText());
-            }
-            inject(HighchartResources.INSTANCE.highcharts().getText());
-            inject(HighchartResources.INSTANCE.highchartsMore().getText());
-            inject(HighchartResources.INSTANCE.exporting().getText());
-            inject(HighchartResources.INSTANCE.defaultTheme().getText());
+            INSTANCE.injectResources();
             injected = true;
         }
     }
 
-    private native static boolean hasJQuery()
+    protected void injectResources() {
+        // As jquery is so popular, inject it conditionally
+        if (!hasJQuery()) {
+            inject(HighchartResources.INSTANCE.jquery().getText());
+        }
+        inject(HighchartResources.INSTANCE.highcharts().getText());
+        inject(HighchartResources.INSTANCE.defaultTheme().getText());
+        inject(HighchartResources.INSTANCE.highchartsMore().getText());
+        inject(HighchartResources.INSTANCE.exporting().getText());
+    }
+
+    protected native static boolean hasJQuery()
     /*-{
         if($wnd.jQuery)
             return true;
         return false;
     }-*/;
 
-    private static native void inject(String script)
+    protected static native void inject(String script)
     /*-{
         $wnd.eval(script);
     }-*/;
-
 }
