@@ -119,7 +119,7 @@ Highcharts.setOptions({
 	},
 	"credits" : {
 		"text" : "Vaadin Charts",
-		"href" : "http://vaadin.com",
+		"href" : "https://vaadin.com/add-ons/charts",
 		"style" : {
 			"color" : "#808080",
 			"fontSize" : "10px"

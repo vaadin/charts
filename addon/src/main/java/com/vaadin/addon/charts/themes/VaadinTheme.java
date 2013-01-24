@@ -108,7 +108,7 @@ public class VaadinTheme extends Theme {
         getCredits().getStyle().setFontSize("10px");
         getCredits().getStyle().setColor(new SolidColor(128, 128, 128));
         getCredits().setText("Vaadin Charts");
-        getCredits().setHref("http://vaadin.com");
+        getCredits().setHref("https://vaadin.com/add-ons/charts");
 
         getyAxis().setMinorTickInterval(TickIntervalStyle.NONE);
         getyAxis().setAlternateGridColor(BGCOLOR_LIGHT_GRAY);
