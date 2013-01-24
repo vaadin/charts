@@ -46,9 +46,9 @@ public class HighchartsScriptLoader {
             inject(HighchartResources.INSTANCE.jquery().getText());
         }
         inject(HighchartResources.INSTANCE.highcharts().getText());
-        inject(HighchartResources.INSTANCE.defaultTheme().getText());
         inject(HighchartResources.INSTANCE.highchartsMore().getText());
         inject(HighchartResources.INSTANCE.exporting().getText());
+        inject(HighchartResources.INSTANCE.defaultTheme().getText());
     }
 
     protected native static boolean hasJQuery()
