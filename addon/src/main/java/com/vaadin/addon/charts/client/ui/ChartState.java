@@ -21,11 +21,12 @@ import com.vaadin.shared.AbstractComponentState;
 
 public class ChartState extends AbstractComponentState {
 
-    public String jsonState;
+    public String confState;
     /**
      * Hacky helper field that can be used to force state change event. TODO
      * figure out a better method.
      */
     public int paintCount;
+    public String jsonState;
 
 }

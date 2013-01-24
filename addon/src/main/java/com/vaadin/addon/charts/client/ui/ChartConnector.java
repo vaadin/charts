@@ -88,7 +88,7 @@ public class ChartConnector extends AbstractComponentConnector {
     public void onStateChanged(StateChangeEvent stateChangeEvent) {
         super.onStateChanged(stateChangeEvent);
         final HighchartConfig cfg = HighchartConfig
-                .createFromServerSideString(getState().jsonState);
+                .createFromServerSideString(getState().confState, getState().jsonState);
         if (getState().registeredEventListeners != null
                 && getState().registeredEventListeners
                         .contains(CHART_CLICK_EVENT_ID)) {

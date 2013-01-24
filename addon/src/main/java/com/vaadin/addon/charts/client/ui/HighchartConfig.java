@@ -26,12 +26,28 @@ public class HighchartConfig extends JavaScriptObject {
     protected HighchartConfig() {
     };
 
-    public static HighchartConfig createFromServerSideString(String jsonstr) {
-        HighchartConfig conf = (HighchartConfig) JSONParser
-                .parseLenient(jsonstr).isObject().getJavaScriptObject();
-        conf.prepare();
+    public static HighchartConfig createFromServerSideString(String confStr,
+            String jsonState) {
+        HighchartConfig conf;
+        if (confStr != null) {
+            conf = (HighchartConfig) JSONParser.parseLenient(confStr)
+                    .isObject().getJavaScriptObject();
+            conf.prepare();
+        } else {
+            conf = JavaScriptObject.createObject().cast();
+        }
+        if (jsonState != null) {
+            merge(conf, jsonState);
+        }
+
         return conf;
     }
+
+    private static native void merge(HighchartConfig conf, String jsonState)
+    /*-{
+        var cfg = $wnd.eval('('+jsonState+')');
+        $wnd.jQuery.extend(true, conf, cfg);
+    }-*/;
 
     /**
      * Searches all fields with _fn_ prefix and generates new field without
@@ -136,11 +152,7 @@ public class HighchartConfig extends JavaScriptObject {
     /*-{
         if(!this.chart) this.chart = {};
         this.chart.renderTo = element;
-        try {
-            return new $wnd.Highcharts.Chart(this);
-        } catch(e) {
-            // debugger;
-        }
+        return new $wnd.Highcharts.Chart(this);
     }-*/;
 
 }

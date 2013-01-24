@@ -151,10 +151,12 @@ public class Chart extends AbstractComponent {
     public void beforeClientResponse(boolean initial) {
         super.beforeClientResponse(initial);
         if (initial || stateDirty) {
-            getState().jsonState = getChartConfig();
+            getState().confState = configuration == null ? null : configuration
+                    .toString();
+            getState().jsonState = jsonConfig;
             stateDirty = false;
         }
-        if (initial && configuration != null) {
+        if (configuration != null) {
             // Start listening to data series events once the chart has been
             // drawn.
             configuration.setMutationListener(dataSeriesEventListener);
@@ -167,37 +169,30 @@ public class Chart extends AbstractComponent {
     }
 
     /**
-     * @return the configuration for the chart in Highcharts compatible JSON
-     *         format.
-     */
-    private String getChartConfig() {
-        if (jsonConfig != null) {
-            return jsonConfig;
-        }
-        return configuration.toString();
-    }
-
-    /**
-     * Draws chart with the given configuration as a starting point. The
-     * configuration is given in Highcharts configuration format (JSON).
+     * Draws chart with the given configuration. The configuration is given in
+     * Highcharts configuration format (JavaScript) and it overrides settings
+     * done via the standard {@link Configuration} object.
      * <p>
-     * JavaScript is not allowed in the configuration. An exception is formatter
-     * functions. Those must be given by prepending the special
-     * <code>_fn_</code> prefix to the property name. The client side will
-     * evaluate these into functions. Otherwise the configuration is evaluated
-     * safely with a JSON parser.
+     * Although using strictly typed Java API (via {@link #getConfiguration()}
+     * is highly encouraged, using the low level Highcharts configuration may be
+     * handy in some occasions.
+     * <p>
+     * Note, that this configuration is evaluated as JavaScript and the config
+     * may contain JavaScript functions. Thus developers should pay attention to
+     * data that is passed to this function.
      * <p>
      * Note, that if further modifications are done to the configuration, the
      * method must be called again to redraw the UI.
+     * 
+     * @see #getConfiguration()
+     * @see #drawChart(Configuration)
      * 
      * @param jsonConfig
      *            the chart configuration as a JSON string
      */
     public void drawChart(String jsonConfig) {
-        this.jsonConfig = jsonConfig;
-        configuration.setMutationListener(null);
-        configuration = null;
-        stateDirty = true;
+        setJsonConfig(jsonConfig);
+        forceStateChange();
     }
 
     /**
@@ -232,9 +227,7 @@ public class Chart extends AbstractComponent {
      * @param configuration
      */
     public void drawChart(Configuration configuration) {
-        this.configuration = configuration;
-        jsonConfig = null;
-        stateDirty = true;
+        setConfiguration(configuration);
         forceStateChange();
     }
 
@@ -417,11 +410,46 @@ public class Chart extends AbstractComponent {
         }
 
     };
-    
-    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+
+    private void readObject(ObjectInputStream in) throws IOException,
+            ClassNotFoundException {
         in.defaultReadObject();
-        if(getUI() != null) {
+        if (getUI() != null) {
             configuration.setMutationListener(dataSeriesEventListener);
         }
+    }
+
+    /**
+     * Sets the jsonConfig used to render this chart.
+     * <p>
+     * Note, that calling this method on already displayed component don't
+     * necessary update it. Developer should call {@link #drawChart()} or
+     * {@link #drawChart(String)} method to force re draw.
+     * 
+     * @see #drawChart(String)
+     * 
+     * @param jsonConf
+     */
+    public void setJsonConfig(String jsonConf) {
+        jsonConfig = jsonConf;
+        stateDirty = true;
+    }
+
+    /**
+     * Sets the configuration object used to render this chart.
+     * <p>
+     * Note, that calling this method on already displayed component don't
+     * necessary update it. Developer should call {@link #drawChart()} or
+     * {@link #drawChart(Configuration)} method to force re draw.
+     * 
+     * @param configuration
+     */
+    public void setConfiguration(Configuration configuration) {
+        if (this.configuration != null) {
+            // unbound old configuration
+            this.configuration.setMutationListener(null);
+        }
+        this.configuration = configuration;
+        stateDirty = true;
     }
 }
