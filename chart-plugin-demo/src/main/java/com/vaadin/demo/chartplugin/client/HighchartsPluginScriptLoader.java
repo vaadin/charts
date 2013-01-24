@@ -33,8 +33,8 @@ public class HighchartsPluginScriptLoader extends HighchartsScriptLoader {
         inject(HighchartPluginResources.INSTANCE.worldMapShapes().getText());
         inject(HighchartPluginResources.INSTANCE.mapSrcJs().getText());
 
-        inject(HighchartResources.INSTANCE.defaultTheme().getText());
         inject(HighchartResources.INSTANCE.highchartsMore().getText());
         inject(HighchartResources.INSTANCE.exporting().getText());
+        inject(HighchartResources.INSTANCE.defaultTheme().getText());
     }
 }
