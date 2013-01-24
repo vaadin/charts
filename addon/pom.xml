@@ -33,7 +33,7 @@
 		<project.organization>Vaadin Ltd</project.organization>
 		<highcharts.version>2.3.5</highcharts.version>
 		<vaadin.charts.version>1.0.0-SNAPSHOT</vaadin.charts.version>
-		<vaadin.version.maven>7.0.0.rc1</vaadin.version.maven>
+		<vaadin.version.maven>7.0.0.rc2</vaadin.version.maven>
 		<snapshot.repository.url>http://oss.sonatype.org/content/repositories/vaadin-snapshots/</snapshot.repository.url>
 	</properties>
 
