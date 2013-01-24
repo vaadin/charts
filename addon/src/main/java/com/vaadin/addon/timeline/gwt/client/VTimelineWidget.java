@@ -1203,7 +1203,7 @@ public class VTimelineWidget extends FocusPanel implements Paintable,
     public void updateFromUIDL(UIDL uidl, ApplicationConnection client) {
 
         // Check parent components
-        if (client.updateComponent(this, uidl, false)) {
+        if (client.updateComponent(this, uidl, true)) {
             return;
         }
 
