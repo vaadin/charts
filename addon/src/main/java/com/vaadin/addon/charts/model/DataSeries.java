@@ -250,7 +250,7 @@ public class DataSeries extends AbstractSeries {
      */
     public void update(DataSeriesItem item) {
         if (getConfiguration() != null) {
-            getConfiguration().fireDataUpdated(this, item.getY(),
+            getConfiguration().fireDataUpdated(this, item,
                     data.indexOf(item));
         }
     }

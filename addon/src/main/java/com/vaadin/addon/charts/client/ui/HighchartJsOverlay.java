@@ -41,19 +41,6 @@ public class HighchartJsOverlay extends JavaScriptObject {
         this.series[seriesIndex].addPoint([xValue, yValue],redraw,shift);
     }-*/;
 
-    /**
-     * Updates the value of the specific point of given series
-     * 
-     * @param seriesIndex
-     * @param pointIndex
-     * @param newValue
-     */
-    public native final void updatePointValue(int seriesIndex, int pointIndex,
-            double newValue, boolean redraw)
-    /*-{
-        this.series[seriesIndex].data[pointIndex].update(newValue,redraw);
-    }-*/;
-
     public native final void removePoint(double xValue, double yValue,
             double threshold)
     /*-{
@@ -107,4 +94,5 @@ public class HighchartJsOverlay extends JavaScriptObject {
             this.hasUserSize = null;
         }
     }-*/;
+
 }

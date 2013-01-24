@@ -47,7 +47,16 @@ public class HighchartWidget extends Widget {
 
     public void updatePointValue(int seriesIndex, int pointIndex,
             double newValue) {
-        jsOverlay.updatePointValue(seriesIndex, pointIndex, newValue, true);
+        HighchartSeries highchartSeries = jsOverlay.getSeries().get(seriesIndex);
+        HighchartPoint highchartPoint = highchartSeries.getData().get(pointIndex);
+        highchartPoint.update(newValue);
+    }
+    
+
+    public void updatePointValue(int seriesIndex, int pointIndex, String json) {
+        HighchartSeries highchartSeries = jsOverlay.getSeries().get(seriesIndex);
+        HighchartPoint highchartPoint = highchartSeries.getData().get(pointIndex);
+        highchartPoint.update(json);
     }
 
     public void removePoint(double x, double y, int seriesIndex) {

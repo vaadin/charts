@@ -55,4 +55,6 @@ public interface ChartClientRpc extends ClientRpc {
 
     void setAnimationEnabled(boolean animation);
 
+    void updatePoint(int indexOf, int pointIndex, String json);
+
 }

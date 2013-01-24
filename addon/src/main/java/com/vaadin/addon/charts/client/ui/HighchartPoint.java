@@ -12,4 +12,15 @@ public class HighchartPoint extends JavaScriptObject {
         return this.series;
     }-*/;
 
+    public native final void update(String json) 
+    /*-{
+        var newPointData = $wnd.eval('('+json+')');
+        this.update(newPointData);
+    }-*/;
+
+    public native final void update(double newValue) 
+    /*-{
+        this.update(newValue);
+    }-*/;
+
 }

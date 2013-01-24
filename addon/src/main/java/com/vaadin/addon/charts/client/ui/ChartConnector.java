@@ -71,6 +71,12 @@ public class ChartConnector extends AbstractComponentConnector {
             public void setAnimationEnabled(boolean animation) {
                 getWidget().setAnimation(animation);
             }
+
+            @Override
+            public void updatePoint(int seriesIndex, int pointIndex, String json) {
+                getWidget().updatePointValue(seriesIndex, pointIndex, json);
+                
+            }
         });
     }
 

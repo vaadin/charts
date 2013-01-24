@@ -393,6 +393,11 @@ public class Chart extends AbstractComponent {
                         getConfiguration().getSeries().indexOf(
                                 event.getSeries()), event.getPointIndex(),
                         event.getValue().doubleValue());
+            } else {
+                getRpcProxy(ChartClientRpc.class).updatePoint(
+                        getConfiguration().getSeries().indexOf(
+                                event.getSeries()), event.getPointIndex(),
+                        event.getItem().toString());
             }
         }
 

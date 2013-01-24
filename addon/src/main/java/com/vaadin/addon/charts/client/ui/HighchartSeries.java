@@ -24,7 +24,7 @@ public class HighchartSeries extends JavaScriptObject {
         return -1;
     }
 
-    private final native JsArray<HighchartPoint> getData() 
+    public final native JsArray<HighchartPoint> getData() 
     /*-{
         return this.data;
     }-*/;
