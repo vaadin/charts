@@ -87,19 +87,19 @@ public class ForumTrends extends AbstractVaadinChartExample {
 
         // Add data sources
         timeline.addGraphDataSource(posts);
-        timeline.setGraphLegend(posts, "Total Posts");
+        timeline.setGraphCaption(posts, "Total Posts");
         timeline.setGraphOutlineColor(posts, new Color(0x00, 0xb4, 0xf0));
         timeline.setGraphFillColor(posts, null);
         timeline.setVerticalAxisLegendUnit(posts, "posts");
 
         timeline.addGraphDataSource(newThreads);
-        timeline.setGraphLegend(newThreads, "New threads");
+        timeline.setGraphCaption(newThreads, "New threads");
         timeline.setGraphOutlineColor(newThreads, new Color(0xee, 0x7c, 0x08));
         timeline.setGraphFillColor(newThreads, null);
         timeline.setVerticalAxisLegendUnit(newThreads, "threads");
 
         timeline.addGraphDataSource(vaadinPosts);
-        timeline.setGraphLegend(vaadinPosts, "Vaadin Posts");
+        timeline.setGraphCaption(vaadinPosts, "Vaadin Posts");
         timeline.setGraphOutlineColor(vaadinPosts, new Color(0xe6, 0x1e, 0x6e));
         timeline.setGraphFillColor(vaadinPosts, null);
         timeline.setVerticalAxisLegendUnit(vaadinPosts, "posts");

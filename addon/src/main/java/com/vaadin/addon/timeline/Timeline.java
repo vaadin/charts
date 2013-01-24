@@ -2299,6 +2299,14 @@ public class Timeline extends AbstractComponent implements LegacyComponent {
     }
 
     /**
+     * @deprecated use {@link #setGraphCaption(Indexed, String)} instead
+     */
+    @Deprecated
+    public void setGraphLegend(Container.Indexed dataSource, String caption) {
+        setGraphCaption(dataSource, caption);
+    }
+    
+    /**
      * Set a specific graphs caption in the legend
      * 
      * @param dataSource
@@ -2306,7 +2314,7 @@ public class Timeline extends AbstractComponent implements LegacyComponent {
      * @param caption
      *            The caption to be shown in the legend
      */
-    public void setGraphLegend(Container.Indexed dataSource, String caption) {
+    public void setGraphCaption(Container.Indexed dataSource, String caption) {
         TimelineDatasourceProperties ds = getDatasourceProperties(dataSource);
         if (ds != null) {
             int index = datasources.indexOf(ds);
@@ -2327,13 +2335,14 @@ public class Timeline extends AbstractComponent implements LegacyComponent {
 
     }
 
+
     /**
      * Get a graphs legend caption
      * 
      * @param dataSource
      *            The data source of the graph
      */
-    public String getGraphLegend(Container.Indexed dataSource) {
+    public String getGraphCaption(Container.Indexed dataSource) {
         TimelineDatasourceProperties ds = getDatasourceProperties(dataSource);
         if (ds != null) {
             return ds.getCaption();
