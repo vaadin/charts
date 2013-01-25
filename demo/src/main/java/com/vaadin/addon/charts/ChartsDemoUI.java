@@ -1,5 +1,6 @@
 package com.vaadin.addon.charts;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -9,6 +10,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 
 import org.apache.commons.io.IOUtils;
@@ -16,13 +18,13 @@ import org.reflections.Reflections;
 
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.demoandtestapp.SkipFromDemo;
-import com.vaadin.addon.charts.model.style.Theme;
 import com.vaadin.addon.charts.themes.GrayTheme;
 import com.vaadin.addon.charts.themes.GridTheme;
 import com.vaadin.addon.charts.themes.HighChartsDefaultTheme;
 import com.vaadin.addon.charts.themes.SkiesTheme;
 import com.vaadin.addon.charts.themes.VaadinTheme;
 import com.vaadin.annotations.JavaScript;
+import com.vaadin.annotations.Theme;
 import com.vaadin.data.Item;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
@@ -30,6 +32,7 @@ import com.vaadin.data.util.HierarchicalContainer;
 import com.vaadin.event.MouseEvents.ClickEvent;
 import com.vaadin.event.MouseEvents.ClickListener;
 import com.vaadin.server.ClassResource;
+import com.vaadin.server.ExternalResource;
 import com.vaadin.server.Page;
 import com.vaadin.server.Page.UriFragmentChangedEvent;
 import com.vaadin.server.Page.UriFragmentChangedListener;
@@ -37,9 +40,11 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.CssLayout;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.HorizontalSplitPanel;
 import com.vaadin.ui.Image;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.Link;
 import com.vaadin.ui.OptionGroup;
 import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.TabSheet.SelectedTabChangeEvent;
@@ -54,6 +59,21 @@ import com.vaadin.ui.VerticalLayout;
 @SuppressWarnings("serial")
 @JavaScript("prettify.js")
 public class ChartsDemoUI extends UI {
+
+    static final Properties prop = new Properties();
+    static {
+        try {
+            // load a properties file
+            prop.load(ChartsDemoUI.class
+                    .getResourceAsStream("config.properties"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    static String getVersion() {
+        return (String) prop.get("charts.version");
+    }
 
     private static Map<String, List<Class<? extends AbstractVaadinChartExample>>> tests;
 
@@ -85,16 +105,19 @@ public class ChartsDemoUI extends UI {
                 grouped.put(name, list);
             }
             list.add(class1);
-            Collections.sort(list, new Comparator<Class<? extends AbstractVaadinChartExample>>(){
+            Collections
+                    .sort(list,
+                            new Comparator<Class<? extends AbstractVaadinChartExample>>() {
 
-                @Override
-                public int compare(
-                        Class<? extends AbstractVaadinChartExample> o1,
-                        Class<? extends AbstractVaadinChartExample> o2) {
-                    String simpleName = o1.getSimpleName();
-                    String simpleName2 = o2.getSimpleName();
-                    return simpleName.compareTo(simpleName2);
-                }});
+                                @Override
+                                public int compare(
+                                        Class<? extends AbstractVaadinChartExample> o1,
+                                        Class<? extends AbstractVaadinChartExample> o2) {
+                                    String simpleName = o1.getSimpleName();
+                                    String simpleName2 = o2.getSimpleName();
+                                    return simpleName.compareTo(simpleName2);
+                                }
+                            });
         }
         tests = grouped;
     }
@@ -114,12 +137,31 @@ public class ChartsDemoUI extends UI {
             }
         });
         tabSheet.setSizeFull();
-        
+
         CssLayout logoc = new CssLayout() {
-        @Override
-        protected String getCss(Component c) {
-            return "background: #007ea8; border-bottom: 1px solid #004e68;padding-left:6px;";
-        }};
+            @Override
+            protected String getCss(Component c) {
+                if (c instanceof CssLayout) {
+                    return "background: #007ea8; border-bottom: 1px solid #004e68;padding-left:6px;";
+                }
+                return null;
+            }
+        };
+        logoc.setId("logoc");
+
+        String cssString = "#logoc {position:relative; width:100%} #links {position:absolute; top:5px; right: 5px;}  #links a span {text-decoration: none;} #links .v-icon {height:25px;}";
+
+        String script = "if ('\\v'=='v') /* ie only */ {\n"
+                + "        document.createStyleSheet().cssText = '"
+                + cssString
+                + "';\n"
+                + "    } else {var tag = document.createElement('style'); tag.type = 'text/css';"
+                + " document.getElementsByTagName('head')[0].appendChild(tag);tag[ (typeof "
+                + "document.body.style.WebkitAppearance=='string') /* webkit only */ ? 'innerText' "
+                + ": 'innerHTML'] = '" + cssString + "';}";
+
+        com.vaadin.ui.JavaScript.eval(script);
+
         CssLayout logow = new CssLayout();
         logoc.addComponent(logow);
         Image logo = new Image();
@@ -127,13 +169,29 @@ public class ChartsDemoUI extends UI {
         logo.setSource(new ClassResource("header.png"));
         logo.setHeight("60px");
         logo.addClickListener(new ClickListener() {
-            
+
             @Override
             public void click(ClickEvent event) {
-                Page.getCurrent().setLocation("https://vaadin.com/add-ons/charts");
+                Page.getCurrent().setLocation(
+                        "https://vaadin.com/add-ons/charts");
             }
         });
         logow.addComponent(logo);
+
+        Link homepage = new Link(null, new ExternalResource(
+                "https://vaadin.com/add-ons/charts"));
+        homepage.setIcon(new ClassResource("links_homepage.png"));
+        Link javadoc = new Link(null, new ExternalResource(
+                "http://demo.vaadin.com/javadoc/com.vaadin.addon/vaadin-charts/"
+                        + getVersion() + "/"));
+        javadoc.setIcon(new ClassResource("links_javadoc.png"));
+        Link manula = new Link(null, new ExternalResource(
+                "https://vaadin.com/book/vaadin7/-/page/charts.html"));
+        manula.setIcon(new ClassResource("links_manual.png"));
+        HorizontalLayout links = new HorizontalLayout(homepage, javadoc, manula);
+        links.setSpacing(true);
+        links.setId("links");
+        logoc.addComponent(links);
 
         HorizontalSplitPanel horizontalSplitPanel = new HorizontalSplitPanel();
         horizontalSplitPanel.setSecondComponent(tabSheet);
@@ -155,7 +213,8 @@ public class ChartsDemoUI extends UI {
         themeSelector.addItem(GrayTheme.class);
         themeSelector.setItemCaption(GrayTheme.class, "Gray");
         themeSelector.addItem(HighChartsDefaultTheme.class);
-        themeSelector.setItemCaption(HighChartsDefaultTheme.class, "Highcharts");
+        themeSelector
+                .setItemCaption(HighChartsDefaultTheme.class, "Highcharts");
         themeSelector.setImmediate(true);
         themeSelector.select(VaadinTheme.class);
         themeSelector.addValueChangeListener(new ValueChangeListener() {
@@ -165,7 +224,9 @@ public class ChartsDemoUI extends UI {
                 Class<? extends Theme> value = (Class<? extends Theme>) event
                         .getProperty().getValue();
                 try {
-                    ChartOptions.get().setTheme(value.newInstance());
+                    ChartOptions.get().setTheme(
+                            (com.vaadin.addon.charts.model.style.Theme) value
+                                    .newInstance());
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
@@ -176,11 +237,11 @@ public class ChartsDemoUI extends UI {
         tree.setImmediate(true);
         tree.setContainerDataSource(getContainer());
         tree.setItemCaptionPropertyId("displayName");
-        
+
         VerticalLayout content = new VerticalLayout();
         content.setMargin(true);
         content.setSpacing(true);
-        
+
         content.addComponent(tree);
         content.addComponent(themeSelector);
         horizontalSplitPanel.setFirstComponent(content);
