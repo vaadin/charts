@@ -128,7 +128,7 @@ public class Chart extends AbstractComponent {
                 fireEvent(itemClickEvent);
 
             }
-        });
+        }, ChartServerRpc.class);
     }
 
     /**
