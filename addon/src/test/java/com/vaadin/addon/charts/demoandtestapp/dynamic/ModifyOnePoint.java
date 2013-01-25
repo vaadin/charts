@@ -37,7 +37,7 @@ public class ModifyOnePoint extends AbstractVaadinChartExample {
     @Override
     protected Component getChart() {
         final Chart chart = new Chart();
-        chart.setHeight("450px");
+        chart.setHeight("300px");
         chart.setWidth("100%");
 
         final Configuration configuration = new Configuration();
