@@ -20,7 +20,8 @@
 		HIGHCHARTS: 'highcharts.js',
 		HIGHCHARTS_MORE: 'highcharts-more',
 		JQUERY: 'jquery.min.js',
-		VAADINTHEME: 'vaadintheme.js'
+		VAADINTHEME: 'vaadintheme.js',
+		VAADINCHARTSFORMATTER: 'vaadin-charts-formatter.js'
 	},
 	/* Internal */
 		page = require('webpage').create(),
@@ -140,7 +141,8 @@
 			page.injectJs(config.HIGHCHARTS);
 			page.injectJs(config.HIGHCHARTS_MORE);
 			page.injectJs(config.VAADINTHEME);
-
+			page.injectJs(config.VAADINCHARTSFORMATTER);
+			
 			// load options
 			if (inputjson !== undefined) {
 				optionsStr = inputjson;
@@ -198,6 +200,8 @@
 
 				if (optionsStr !== 'undefined') {
 					loadScript('options', optionsStr);
+					// formatJsJson is needed to fix javascript formatters in json
+					formatJsJson(options);
 				}
 
 				if (callbackStr !== 'undefined') {

@@ -16,7 +16,8 @@
 		HIGHCHARTS: 'highcharts.js',
 		HIGHCHARTS_MORE: 'highcharts-more',
 		JQUERY: 'jquery.min.js',
-		VAADINTHEME: 'vaadintheme.js'
+		VAADINTHEME: 'vaadintheme.js',
+		VAADINCHARTSFORMATTER: 'vaadin-charts-formatter.js'
 	},
 	/* Internal */
 		page = require('webpage').create(),
@@ -79,7 +80,7 @@
 		}
 		return map;
 	};
-
+	
 	/* scale and clip the page */
 	scaleAndClipPage = function (svg, pdf) {
 		/*	param: svg: The scg configuration object
@@ -144,10 +145,12 @@
 			page.injectJs(config.HIGHCHARTS);
 			page.injectJs(config.HIGHCHARTS_MORE);
 			page.injectJs(config.VAADINTHEME);
+			page.injectJs(config.VAADINCHARTSFORMATTER);
 
 			// load options from file
 			if (input !== undefined) {
 				optionsStr = fs.read(input);
+				
 			} else {
 				console.log('No options file specified!');
 				phantom.exit();
@@ -199,9 +202,11 @@
 						console.log(imagesLoadedMsg);
 					}
 				}
-
+			    
 				if (optionsStr !== 'undefined') {
 					loadScript('options', optionsStr);
+					// formatJsJson is needed to fix javascript formatters in json
+					formatJsJson(options);
 				}
 
 				if (callbackStr !== 'undefined') {

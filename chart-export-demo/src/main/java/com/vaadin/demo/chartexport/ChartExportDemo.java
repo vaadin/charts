@@ -2,6 +2,8 @@ package com.vaadin.demo.chartexport;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.concurrent.TimeoutException;
@@ -30,6 +32,7 @@ import com.vaadin.addon.charts.model.gsonhelpers.DataSeriesItemTypeAdapterFactor
 import com.vaadin.addon.charts.model.gsonhelpers.PaneListSerializer;
 import com.vaadin.addon.charts.model.gsonhelpers.SolidColorSerializer;
 import com.vaadin.addon.charts.model.style.SolidColor;
+import com.vaadin.demo.chartexport.util.PdfExportDemo;
 import com.vaadin.demo.chartexport.util.SVGCreatorDemo;
 import com.vaadin.server.FileDownloader;
 import com.vaadin.server.StreamResource;
@@ -40,31 +43,51 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
-public class ChartExportDemo extends HorizontalLayout {
+/**
+ * Demo class to show how Vaadin Charts can be exported to image/PDF in the
+ * server side. Demonstrates also how to render charts completely in the server.
+ * Basically you can just get the json formatted chart options from the Chart
+ * component and run Highcharts library in the server with these options. This
+ * demo uses PhantomJs to run javascript in server.</br></br> This also
+ * demonstrates how to embed chart SVG image to PDF. iText 2.1.7 <i>(notice that
+ * this is old version, but it's open source licensed)</i> is used to generate
+ * PDF. Batik is used to render SVG.
+ * 
+ */
+public class ChartExportDemo extends VerticalLayout {
 
     private static String exportingServiceUrl = "http://localhost:8080/chart-export-demo/exporting-service";
 
     private Button exportButton1;
     private Button exportButton2;
+    private Button exportButton3;
 
+    private final HorizontalLayout layout;
     private final Chart chart;
 
     public ChartExportDemo() {
-        setSizeFull();
-        setSpacing(true);
         setMargin(true);
 
-        chart = createChart();
-        addComponent(chart);
+        layout = new HorizontalLayout();
+        layout.setSizeFull();
+        layout.setSpacing(true);
 
-        createRightSide();
+        chart = createChart();
+        layout.addComponent(chart);
+
+        createRightSideLayout();
+
+        addComponent(new Label(
+                "<h1>Demo of Vaadin Charts server side exporting<h1>",
+                ContentMode.HTML));
+        addComponent(layout);
     }
 
-    private StreamSource createStreamSource(final boolean writeToFile) {
+    private StreamSource createSVGStreamSource(final boolean writeToFile) {
         return new StreamSource() {
             @Override
             public InputStream getStream() {
-                String result = doExport(writeToFile);
+                String result = doExportSVG(writeToFile);
                 if (result != null) {
                     return new ByteArrayInputStream(result.getBytes());
                 }
@@ -73,13 +96,32 @@ public class ChartExportDemo extends HorizontalLayout {
         };
     }
 
-    private void createRightSide() {
+    private StreamSource createPdfStreamSource() {
+        return new StreamSource() {
+            @Override
+            public InputStream getStream() {
+                File result = doExportPDF();
+                if (result != null) {
+                    try {
+                        return new FileInputStream(result);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
+                return null;
+            }
+        };
+    }
+
+    private void createRightSideLayout() {
         VerticalLayout l = new VerticalLayout();
 
         exportButton1 = createExportButton("Export chart - cache to file",
-                createStreamSource(true));
-        exportButton2 = createExportButton("Export chart",
-                createStreamSource(false));
+                "chart.svg", createSVGStreamSource(true));
+        exportButton2 = createExportButton("Export chart", "chart.svg",
+                createSVGStreamSource(false));
+        exportButton3 = createExportButton("Embed the chart to PDF",
+                "chart.pdf", createPdfStreamSource());
 
         l.addComponent(new Label(
                 String.format(
@@ -91,7 +133,7 @@ public class ChartExportDemo extends HorizontalLayout {
         l.addComponent(new Label("<hr></hr>", ContentMode.HTML));
         l.addComponent(new Label(
                 String.format(
-                        "<p>Click the button below to export the chart to a SVG file <u>completely in the server side</u>. Chart will be rendered in the server by using %s which is a headless WebKit. %s is used as a PhantomJs script.</p><p>Result SVG gets downloaded.</p>",
+                        "<p>Click the button below to export the chart to a SVG file <u>completely in the server side</u>. Chart will be rendered in the server by using %s which is a headless WebKit. %s is used as a PhantomJs script.</p><p>Result SVG will be downloaded.</p>",
                         getLink("Phantomjs", "http://phantomjs.org/"),
                         getLink("highcharts-convert.js",
                                 "https://github.com/highslide-software/highcharts.com/tree/master/exporting-server/phantomjs")),
@@ -99,20 +141,28 @@ public class ChartExportDemo extends HorizontalLayout {
         l.addComponent(exportButton1);
         l.addComponent(new Label("<hr></hr>", ContentMode.HTML));
         l.addComponent(new Label(
-                "<p>Click the button below to achieve the same result than with the button above but without any needs to write the SVG in a file.</p><p>This uses a slightly modified highcharts-convert.js.",
+                "<p>Click the button below to achieve the same result than with the button above but without any needs to cache the json and SVG in to a file.</p><p>This uses a slightly modified highcharts-convert.js.",
                 ContentMode.HTML));
         l.addComponent(exportButton2);
-        addComponent(l);
+
+        l.addComponent(new Label("<hr></hr>", ContentMode.HTML));
+        l.addComponent(new Label(
+                "<p>Click to create PDF and embed the chart in it.</p>",
+                ContentMode.HTML));
+        l.addComponent(exportButton3);
+
+        layout.addComponent(l);
     }
 
     private String getLink(String caption, String url) {
         return "<a target=\"blank\" href=\"" + url + "\">" + caption + "</a>";
     }
 
-    private Button createExportButton(String caption, StreamSource ss) {
+    private Button createExportButton(String caption, String filename,
+            StreamSource ss) {
         Button b = new Button(caption);
         FileDownloader downloader = new FileDownloader(new StreamResource(ss,
-                "chart.svg"));
+                filename));
         downloader.extend(b);
         return b;
     }
@@ -124,7 +174,7 @@ public class ChartExportDemo extends HorizontalLayout {
      *            If true, write the result SVG to a file.
      * @return SVG String
      */
-    private String doExport(boolean writeToFile) {
+    private String doExportSVG(boolean writeToFile) {
         try {
             String location = getUI().getSession().getService()
                     .getBaseDirectory().getPath()
@@ -145,6 +195,31 @@ public class ChartExportDemo extends HorizontalLayout {
         return null;
     }
 
+    /**
+     * Export chart's options into a SVG String and then embed it into a PDF
+     * document.
+     * 
+     * @return PDF file
+     */
+    private File doExportPDF() {
+        try {
+            String location = getUI().getSession().getService()
+                    .getBaseDirectory().getPath()
+                    + File.separator + "WEB-INF";
+
+            String svg = SVGCreatorDemo.getInstance().createSVG(location,
+                    chart.getConfiguration().toString(), false);
+            return new PdfExportDemo().writePdf("chart", svg);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (TimeoutException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static Chart createChart() {
         Chart chart = new Chart(ChartType.PIE);
 
@@ -154,7 +229,7 @@ public class ChartExportDemo extends HorizontalLayout {
         AbstractConfigurationObject.setGsonInstance(createGsonBuilder());
 
         Exporting exporting = new Exporting(true);
-        // Let's override the default exporting service with out own one
+        // Let's override the default exporting service with our own one
         exporting.setUrl(exportingServiceUrl);
         conf.setExporting(exporting);
 
