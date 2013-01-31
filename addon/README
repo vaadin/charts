@@ -36,6 +36,47 @@ a modern build system.
 Note, that the package also has client side extensions, so make sure that you
 compile your widgetset after installation!
 
+Licensing
+=========
+
+Vaadin Charts is a commercial product. After 30 days of evaluation use,
+you must either acquire a license or stop using it. More information about
+Commercial Vaadin Add-on License is available in LICENSE file or at 
+https://vaadin.com/license/cval-2.0. 
+
+You may obtain a valid license by subscribing to Vaadin Pro Account at
+https://vaadin.com/pro or by purchasing a perpetual license at
+https://vaadin.com/directory.
+
+A valid license key is your perpetual license key purchased from Vaadin
+Directory or alternatively the email address you use to login to an active
+Vaadin Pro Account.   
+
+Register your copy of Vaadin Charts by creating a file named
+.vaadin.charts.developer.license containing the license key in your home 
+directory or by setting the vaadin.charts.developer.license=license_key
+system property to disable this message.
+
+Third Party Licensing
+=====================
+
+This Add-on component and related documentation is a derivative work of 
+Highcharts JS product ("Highchart JS").
+
+Highsoft Solutions AS retains all rights, title and interest in and to the
+Highchart JS (resource files: highcharts.js, highcharts-more.js and
+highcharts.src.js)
+
+Using Vaadin Charts Add-on does not require a separate Highcharts JS license
+purchase. 
+
+Please note that; 
+- A valid Highcharts JS license does not entitle you to use Vaadin Charts Add-on under the terms of CVALv2.
+- The Vaadin Charts Add-on (CVALv2) license does not entitle you to use the 
+Highcharts JS product in other ways than through the Vaadin Charts Add-on API.
+
+Vaadin Charts also requires Gson library licensed under liberal Apache 2 license.
+
 Links
 =====
 
