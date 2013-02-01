@@ -9,7 +9,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.Augmenter;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -28,6 +29,7 @@ public abstract class AbstractTestBenchTest extends TestBenchTestCase {
     protected WebDriver driver;
     protected TestBenchCommands testBench;
     private Server server;
+    protected WebDriver rawDriver;
     protected static final String ERROR_IMAGE_ROOT = "target/testbench/errors/";
 
     public AbstractTestBenchTest() {
@@ -77,6 +79,7 @@ public abstract class AbstractTestBenchTest extends TestBenchTestCase {
         // dimension includes browser chrome, use TestBench utility to fix
         // actual viewport size -> survive from browser upgrades and varying
         // settings
+        driver.get("about:blank");
         testBench.resizeViewPortTo(800, 513);
 
     }
@@ -85,20 +88,22 @@ public abstract class AbstractTestBenchTest extends TestBenchTestCase {
         String hubhost = System.getProperty("tb.hub");
         if (hubhost != null && !hubhost.isEmpty()) {
             try {
-                BASEURL = InetAddress.getLocalHost().getHostName() + ":"
+                BASEURL = "http://" + InetAddress.getLocalHost().getHostName() + ":"
                         + TESTPORT + "/";
-                DesiredCapabilities cap = DesiredCapabilities.firefox();
+                System.out.println("DD " + BASEURL);
+                DesiredCapabilities cap = DesiredCapabilities.chrome();
                 cap.setPlatform(Platform.MAC);
                 URL remoteAddress = new URL("http://" + hubhost
                         + ":4444/wd/hub");
-                driver = TestBench.createDriver(new RemoteWebDriver(
-                        remoteAddress, cap));
+                rawDriver = new RemoteWebDriver(remoteAddress, cap);
+                driver = new Augmenter().augment(TestBench.createDriver(rawDriver));
             } catch (Exception e1) {
                 // TODO Auto-generated catch block
                 throw new RuntimeException(e1);
             }
         } else {
-            driver = TestBench.createDriver(new FirefoxDriver());
+            rawDriver = new ChromeDriver();
+            driver = new Augmenter().augment(TestBench.createDriver(rawDriver));
         }
     }
 

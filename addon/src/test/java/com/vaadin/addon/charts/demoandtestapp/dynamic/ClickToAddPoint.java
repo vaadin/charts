@@ -34,6 +34,7 @@ public class ClickToAddPoint extends AbstractVaadinChartExample {
     @Override
     protected Component getChart() {
         chart = new Chart();
+        chart.setId("chart");
         chart.setWidth("500px");
 
         final Configuration configuration = new Configuration();

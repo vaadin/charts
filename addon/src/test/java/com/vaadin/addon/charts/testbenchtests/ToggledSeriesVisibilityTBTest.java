@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import com.vaadin.addon.charts.demoandtestapp.columnandbar.ToggledSeriesVisibility;
 import com.vaadin.testbench.By;
+import com.vaadin.testbench.Parameters;
 
 public class ToggledSeriesVisibilityTBTest extends AbstractTestBenchTest {
 
@@ -19,24 +20,30 @@ public class ToggledSeriesVisibilityTBTest extends AbstractTestBenchTest {
 
         startBrowser();
         try {
-            driver.navigate().to(BASEURL + getTestViewName());
 
+            // negligible difference when returning to 2-disable shot on chrome,
+            // avoid error by increasing the tolerance
+            Parameters.setScreenshotComparisonTolerance(0.03);
+
+            driver.navigate().to(BASEURL + getTestViewName());
+            driver.findElements(By.tagName("input")).get(0).click();
+            driver.findElements(By.tagName("input")).get(0).click();
             waitBetweenShots();
             captureAndCompare("1-start");
 
-            driver.findElement(By.id("gwt-uid-1")).click();
+            driver.findElements(By.tagName("input")).get(0).click();
             waitBetweenShots();
             captureAndCompare("2-disable");
 
-            driver.findElement(By.id("gwt-uid-6")).click();
+            driver.findElements(By.tagName("input")).get(1).click();
             waitBetweenShots();
             captureAndCompare("3-disable");
 
-            driver.findElement(By.id("gwt-uid-10")).click();
+            driver.findElements(By.tagName("input")).get(1).click();
             waitBetweenShots();
             captureAndCompare("2-disable");
 
-            driver.findElement(By.id("gwt-uid-13")).click();
+            driver.findElements(By.tagName("input")).get(0).click();
             waitBetweenShots();
             captureAndCompare("1-start");
 

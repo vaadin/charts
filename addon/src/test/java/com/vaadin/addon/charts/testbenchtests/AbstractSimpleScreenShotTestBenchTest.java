@@ -20,6 +20,7 @@ public abstract class AbstractSimpleScreenShotTestBenchTest extends
                 pack = pack + "/";
             }
             driver.navigate().to(BASEURL + pack + getTestViewName());
+            testCustomStuff();
             sleep(getScreenShotDelay());
 
             final String imageName = getTestViewName() + ".png";
@@ -33,6 +34,12 @@ public abstract class AbstractSimpleScreenShotTestBenchTest extends
         } finally {
             driver.quit();
         }
+    }
+
+    /**
+     * This is executed before taking the screenshot
+     */
+    protected void testCustomStuff() {
     }
 
     protected String getPackageName() {

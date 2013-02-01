@@ -6,6 +6,9 @@ import java.io.IOException;
 import junit.framework.Assert;
 
 import org.junit.Test;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import com.vaadin.addon.charts.demoandtestapp.lineandscatter.SplineWithPlotBandRemoveFunctionality;
 import com.vaadin.testbench.By;
@@ -21,15 +24,20 @@ public class SplineWithPlotBandRemoveFunctionalityTBTest extends
         startBrowser();
         try {
             driver.navigate().to(BASEURL + getTestViewName());
+            WebElement button = driver.findElement(By.id("vaadin-button"));
+            // toggle first to give focus for button
+            button.click();
+            button.click();
 
             waitBetweenShots();
             captureAndCompare("1-start");
 
-            driver.findElement(By.id("vaadin-button")).click();
+            button.click();
             waitBetweenShots();
             captureAndCompare("2-removed");
 
-            driver.findElement(By.id("vaadin-button")).click();
+            button.click();
+            
             waitBetweenShots();
             captureAndCompare("1-start");
 
