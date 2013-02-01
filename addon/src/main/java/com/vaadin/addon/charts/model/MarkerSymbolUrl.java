@@ -41,14 +41,14 @@ public class MarkerSymbolUrl extends AbstractConfigurationObject implements
      * @param url
      */
     public void setUrl(String url) {
-        this.url = url;
+        this.url = "url(" + url + ")";
     }
 
     /**
      * @see #setUrl(String)
      */
     public String getUrl() {
-        return url;
+        return url.substring("url(".length(), url.length() - 1);
     }
 
     @Override
