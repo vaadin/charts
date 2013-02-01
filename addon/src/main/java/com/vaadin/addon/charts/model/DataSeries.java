@@ -237,7 +237,7 @@ public class DataSeries extends AbstractSeries {
     /**
      * Return an unmodifiable list of the data items in this series.
      */
-    protected List<DataSeriesItem> getData() {
+    public List<DataSeriesItem> getData() {
         return Collections.unmodifiableList(data);
     }
 
