@@ -118,9 +118,9 @@ public class PdfExportDemo {
         File file = null;
         try {
             file = File.createTempFile(filename, ".pdf");
+            file.deleteOnExit();
             FileOutputStream fileOut = new FileOutputStream(file);
             writer = PdfWriter.getInstance(document, fileOut);
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -145,11 +145,11 @@ public class PdfExportDemo {
         paragraph = new Paragraph();
         paragraph
                 .add(new Chunk(
-                        "Chart below is SVG image created with Highcharts and rendered with Batik SVG Toolkit.",
+                        "Chart below is originally an SVG image created with Vaadin Charts and rendered with help of Batik SVG Toolkit.",
                         normalFont));
         document.add(paragraph);
 
-        document.add(createSvgImage(writer.getDirectContent(), svgStr, 400, 400));
+        document.add(createSvgImage(writer.getDirectContent(), 400, 400));
 
         document.add(createExampleTable());
     }
@@ -203,11 +203,11 @@ public class PdfExportDemo {
         return cell;
     }
 
-    private Image drawUnscaledSvg(PdfContentByte contentByte, String svg)
+    private Image drawUnscaledSvg(PdfContentByte contentByte)
             throws IOException {
 
         // First, lets create a graphics node for the SVG image.
-        GraphicsNode imageGraphics = buildBatikGraphicsNode(svg);
+        GraphicsNode imageGraphics = buildBatikGraphicsNode(svgStr);
 
         // SVG's width and height
         float width = (float) imageGraphics.getBounds().getWidth();
@@ -276,9 +276,9 @@ public class PdfExportDemo {
         return svgdoc;
     }
 
-    private Image createSvgImage(PdfContentByte contentByte, String svg,
+    private Image createSvgImage(PdfContentByte contentByte,
             float maxPointWidth, float maxPointHeight) throws IOException {
-        Image image = drawUnscaledSvg(contentByte, svg);
+        Image image = drawUnscaledSvg(contentByte);
         image.scaleToFit(maxPointWidth, maxPointHeight);
         return image;
     }

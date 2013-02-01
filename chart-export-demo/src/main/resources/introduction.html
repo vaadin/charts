@@ -1,0 +1,32 @@
+
+<p>As you might have noticed, Vaadin Chart and the under embedded
+	Highcharts library support buttons via the chart can be downloaded in
+	various file formats or printed. In real life this approach is bit
+	naive feature. If the user wishes to print the document, he/she
+	probably just uses the browsers default print feature and prints the
+	whole document. And if the chart should be re-used, it most likely
+	happens in the very same application on the server side - not in end
+	users device.</p>
+</p>
+
+<p>
+	Although the chart rendering happens using JavaScript in the browser,
+	modern web technologies also make it possible to use the exact same
+	chart image on the server side - e.g. to create PDF reports. Vaadin
+	Charts contains a helper that uses <a href="http://phantomjs.org/"></a>PhantomJS</a>
+	tool in your server to render the chart into SVG. From SVG onwards,
+	practically everything is possible with cool tools like <a
+		href="http://xmlgraphics.apache.org/batik/">Batik SVG Toolkit</a> and
+	countless Java document handling libraries. The setup is closely
+	related to Highcharts very own export server, which can also be used
+	with Vaadin Charts.
+</p>
+<p>As an example you can try SVG and PDF buttons. In both of them
+	the chart on this page is first rendered into SVG format using the
+	built-in helper in Vaadin Charts. The SVG button downloads the raw SVG
+	as a file, the PDF button further uses iText library to embed it into
+	PDF file.</p>
+
+<hr />
+
+
