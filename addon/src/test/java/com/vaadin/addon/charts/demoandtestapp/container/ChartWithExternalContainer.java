@@ -94,7 +94,7 @@ public class ChartWithExternalContainer extends AbstractVaadinChartExample {
         configuration.setPlotOptions(plotOptions);
 
         configuration.setSeries(container);
-        System.out.println(configuration.toString());
+//        System.out.println(configuration.toString());
         chart.drawChart(configuration);
         return chart;
     }
@@ -115,7 +115,7 @@ public class ChartWithExternalContainer extends AbstractVaadinChartExample {
         configuration.setPlotOptions(plotOptions);
 
         configuration.setSeries(container);
-        System.out.println(configuration.toString());
+//        System.out.println(configuration.toString());
         chart.drawChart(configuration);
 
         return chart;
