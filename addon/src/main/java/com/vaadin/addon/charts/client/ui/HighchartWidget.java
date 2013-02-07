@@ -34,7 +34,11 @@ public class HighchartWidget extends Widget {
     }
 
     public void init(HighchartConfig config) {
+        HighchartJsOverlay old = jsOverlay;
         jsOverlay = config.renderTo(getElement());
+        if(old != null) {
+            old.destroy();
+        }
     }
 
     public void addPoint(double x, double y, int seriesIndex, boolean shift) {
@@ -84,5 +88,9 @@ public class HighchartWidget extends Widget {
     public void updateSize() {
         VConsole.error("updatesize" + getOffsetWidth() + " " + getOffsetHeight());
         jsOverlay.setSize(getOffsetWidth(), getOffsetHeight(), false, true);
+    }
+
+    public void destroy() {
+        jsOverlay.destroy();
     }
 }

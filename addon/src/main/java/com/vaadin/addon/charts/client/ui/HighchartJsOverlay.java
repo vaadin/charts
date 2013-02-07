@@ -95,4 +95,9 @@ public class HighchartJsOverlay extends JavaScriptObject {
         }
     }-*/;
 
+    public final native void destroy() 
+    /*-{
+        this.destroy();
+    }-*/;
+
 }

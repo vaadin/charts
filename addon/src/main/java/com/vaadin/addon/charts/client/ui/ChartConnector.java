@@ -167,6 +167,7 @@ public class ChartConnector extends AbstractComponentConnector {
                             getWidget().updateSize();
                         }
                     };
+                    
                     getLayoutManager().addElementResizeListener(
                             getWidget().getElement(), resizeListener);
                 }
@@ -190,4 +191,15 @@ public class ChartConnector extends AbstractComponentConnector {
             }
         });
     }
+
+    @Override
+    public void onUnregister() {
+        getWidget().destroy();
+        if(resizeListener != null) {
+            getLayoutManager().removeElementResizeListener(getWidget().getElement(), resizeListener);
+        }
+        super.onUnregister();
+    }
+    
+    
 }
