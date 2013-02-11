@@ -2,6 +2,8 @@ package com.vaadin.addon.charts.model;
 
 import java.util.Date;
 
+import com.vaadin.addon.charts.util.Util;
+
 public abstract class AbstractPointPlotOptions extends
         AbstractCommonPlotOptions {
 
@@ -34,7 +36,7 @@ public abstract class AbstractPointPlotOptions extends
      * @param pointStart
      */
     public void setPointStart(Date date) {
-        pointStart = date.getTime();
+        pointStart = Util.toHighchartsTS(date);
     }
 
     /**

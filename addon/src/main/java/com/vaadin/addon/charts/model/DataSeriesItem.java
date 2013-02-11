@@ -20,6 +20,7 @@ package com.vaadin.addon.charts.model;
 import java.util.Date;
 
 import com.vaadin.addon.charts.model.style.Color;
+import com.vaadin.addon.charts.util.Util;
 
 /**
  * The DataSeriesItem class represents a single entry in a {@link DataSeries}.
@@ -102,38 +103,45 @@ public class DataSeriesItem extends AbstractConfigurationObject {
 
     /**
      * Constructs a DataSeriesItem with the given date as X value and Y value.
-     * <p>
-     * Internally the Date value is stored as an "epoch timestamp" with
-     * {@link Date#getTime()}.
      * 
      * @param date
      * @param y
      */
     public DataSeriesItem(Date date, Number y) {
-        setX(date.getTime());
+        setX(date);
         setY(y);
+    }
+
+    /**
+     * Sets the given date as the x value.
+     * <p>
+     * Note, that internally the Date value is stored as an "epoch timestamp",
+     * adjusted by timezone offset. So when calling {@link #getX()} you might
+     * get a bit odd result.
+     * 
+     * @param date
+     */
+    public void setX(Date date) {
+        setX(Util.toHighchartsTS(date));
     }
 
     /**
      * Constructs a DataSeriesItem with the given date as X value with min and
      * max values for use in range visualizations.
-     * <p>
-     * Internally the Date value is stored as an "epoch timestamp" with
-     * {@link Date#getTime()}.
      * 
      * @param date
      * @param min
      * @param max
      */
     public DataSeriesItem(Date date, Number min, Number max) {
-        setX(date.getTime());
+        setX(date);
         setLow(min);
         setHigh(max);
     }
 
     /**
-     * Constructs a DataSeriesItem with the given X, min and
-     * max values for use in range visualizations.
+     * Constructs a DataSeriesItem with the given X, min and max values for use
+     * in range visualizations.
      * 
      * @param x
      * @param min
@@ -145,7 +153,6 @@ public class DataSeriesItem extends AbstractConfigurationObject {
         setHigh(max);
     }
 
-    
     /**
      * @see #setName(String)
      * @return The category name of the data item or null if not defined

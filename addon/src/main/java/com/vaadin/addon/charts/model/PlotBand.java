@@ -21,6 +21,7 @@ import java.util.Date;
 
 import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.SolidColor;
+import com.vaadin.addon.charts.util.Util;
 
 /**
  * A colored band stretching across the plot area marking an interval on the
@@ -146,16 +147,16 @@ public class PlotBand extends AbstractConfigurationObject {
      * @param date
      */
     public void setFrom(Date date) {
-        from = date.getTime();
+        from = Util.toHighchartsTS(date);
     }
-
+    
     /**
      * Sets the end position of the plot band in axis units. Defaults to null.
      * 
      * @return To value
      */
     public void setTo(Date date) {
-        to = date.getTime();
+        to = Util.toHighchartsTS(date);
     }
 
     /**

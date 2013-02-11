@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
@@ -147,6 +148,7 @@ public class TimeDataWithIrregularIntervals extends AbstractVaadinChartExample {
      * @return
      */
     private Date d(String dateString) {
+        df.setTimeZone(TimeZone.getTimeZone("EET"));
         try {
             return df.parse(dateString);
         } catch (ParseException e) {
