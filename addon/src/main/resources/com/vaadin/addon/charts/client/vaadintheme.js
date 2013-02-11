@@ -126,3 +126,24 @@ Highcharts.setOptions({
 		}
 	}
 });
+
+// Workaround for #10999, TODO check if this is generic Vaadin layout issue
+if (window.matchMedia && /chrom(e|ium)/.test(navigator.userAgent.toLowerCase())) {
+	var mediaQueryList = window.matchMedia('print');
+	var inprintmode = false;
+	mediaQueryList.addListener(function(mql) {
+		if (mql.matches) {
+			inprintmode = true;
+		} else {
+			if (inprintmode) {
+				setTimeout(function() {
+					// Force layout phase just after HC has returned from print mode
+					// Without this Vaadin breaks layouts in Chrome, layout
+					// phase is once executed with 0,0 size and then not fixed
+					// afterwards
+					vaadin.forceLayout();
+				}, 1010);
+			}
+		}
+	});
+}
