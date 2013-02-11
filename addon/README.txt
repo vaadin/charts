@@ -10,9 +10,10 @@ This version is built against Vaadin ${vaadin.version.maven}.
 
 Installation
 ============
-Vaadin Charts is a standard Vaadin Add-on package. To use it, drag the jar file 
-in this package (and required dependencies) to your project or use the following
-Maven module:
+Vaadin Charts is a standard Vaadin Add-on package. To use it, add the 
+vaadin-charts-${project.version}.jar file in this package (and 
+required dependencies) to your projects classpath 
+or use the following Maven module:
 
 <dependency>
 	<groupId>com.vaadin.addon</groupId>
