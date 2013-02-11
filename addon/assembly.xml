@@ -42,11 +42,11 @@
 			<filtered>true</filtered>
 		</file>
 		<file>
-			<source>README</source>
+			<source>README.txt</source>
 			<filtered>true</filtered>
 		</file>
 		<file>
-			<source>LICENSE</source>
+			<source>LICENSE.txt</source>
 			<filtered>true</filtered>
 		</file>
 	</files>
