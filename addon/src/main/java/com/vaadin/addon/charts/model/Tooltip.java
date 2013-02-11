@@ -32,6 +32,7 @@ public class Tooltip extends AbstractConfigurationObject {
     private Boolean enabled;
     private String valueSuffix;
     private String valuePrefix;
+    private String xDateFormat;
 
     /**
      * Sets a JavaScript function to format the text of the tooltip. Setting the
@@ -254,6 +255,27 @@ public class Tooltip extends AbstractConfigurationObject {
      */
     public String getValuePrefix() {
         return valuePrefix;
+    }
+
+    /**
+     * @see #setxDateFormat(String)
+     * 
+     * @return the xDateFormat string
+     */
+    public String getxDateFormat() {
+        return xDateFormat;
+    }
+
+    /**
+     * The format for the date in the tooltip header if the X axis is a datetime
+     * axis. The default is a best guess based on the smallest distance between
+     * points in the chart.
+     * 
+     * @see Axis#setDateTimeLabelFormats(DateTimeLabelFormats)
+     * @param xDateFormat
+     */
+    public void setxDateFormat(String xDateFormat) {
+        this.xDateFormat = xDateFormat;
     }
 
 }
