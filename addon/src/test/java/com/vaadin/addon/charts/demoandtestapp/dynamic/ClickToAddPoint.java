@@ -21,10 +21,13 @@ import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.Component;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.VerticalLayout;
 
 public class ClickToAddPoint extends AbstractVaadinChartExample {
 
     private Chart chart;
+    private Label lastAction = new Label();
 
     @Override
     public String getDescription() {
@@ -33,6 +36,7 @@ public class ClickToAddPoint extends AbstractVaadinChartExample {
 
     @Override
     protected Component getChart() {
+        lastAction.setId("lastAction");
         chart = new Chart();
         chart.setId("chart");
         chart.setWidth("500px");
@@ -76,6 +80,7 @@ public class ClickToAddPoint extends AbstractVaadinChartExample {
                 double x = Math.round(event.getxAxisValue());
                 double y = Math.round(event.getyAxisValue());
                 series.add(new DataSeriesItem(x, y));
+                lastAction.setValue("Added point " + x + "," + y);
             }
         });
 
@@ -86,9 +91,13 @@ public class ClickToAddPoint extends AbstractVaadinChartExample {
                 DataSeries ds = (DataSeries) event.getSeries();
                 DataSeriesItem dataSeriesItem2 = ds.get(event.getPointIndex());
                 ds.remove(dataSeriesItem2);
+                lastAction.setValue("Removed point at index " + event.getPointIndex());
             }
         });
-        return chart;
+        VerticalLayout verticalLayout = new VerticalLayout();
+        verticalLayout.addComponent(chart);
+        verticalLayout.addComponent(lastAction);
+        return verticalLayout;
     }
 
     @Override
