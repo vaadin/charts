@@ -91,13 +91,13 @@ Highcharts JS Homepage:
 http://www.highcharts.com
  
 Code and usage examples:
-http://demo.vaadin.com/charts-demo/
+http://demo.vaadin.com/charts/
 
 Issue tracker:
 http://dev.vaadin.com/
 
 Documentation:
-http://vaadin.com/download/book-of-vaadin/vaadin-charts/pdf/book-of-vaadin.pdf
+https://vaadin.com/book/vaadin7/-/page/charts.html
 
 SCM (SVN):
 http://dev.vaadin.com/svn/addons/vaadin-charts
