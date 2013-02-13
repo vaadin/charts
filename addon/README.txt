@@ -10,10 +10,15 @@ This version is built against Vaadin ${vaadin.version.maven}.
 
 Installation
 ============
-Vaadin Charts is a standard Vaadin Add-on package. To use it, add the 
-vaadin-charts-${project.version}.jar file in this package (and 
-required dependencies) to your projects classpath 
-or use the following Maven module:
+
+The add-on works like normal Vaadin Add-ons. Note, that the package also has 
+client side extensions, so make sure that you compile your widgetset after 
+installation!
+
+Maven
+-----
+
+Dependency snippet for Maven users:
 
 <dependency>
 	<groupId>com.vaadin.addon</groupId>
@@ -21,24 +26,31 @@ or use the following Maven module:
 	<version>${project.version}</version>
 </dependency>
 
-Maven users also need to have Vaadin Add-ons repository defined or install add-on 
-jar the their local repository:
+The add-on is available in Vaadin Add-Ons repository:
 
 <repository>
 	<id>vaadin-addons</id>
 	<url>http://maven.vaadin.com/vaadin-addons</url>
 </repository>
 
-The add-on also depends on following Apache 2 licensed libraries: 
+Ivy
+---
+
+IVY dependency snippet:
+
+<dependency org="com.vaadin.addon" name="vaadin-charts" rev="${project.version}" />
+
+
+Using plain Jar
+---------------
+
+If you wan't to use the add-on jar directly, add it to your classpath. The add-on 
+also depends on following Apache 2 licensed libraries: 
  * gson
  * commons-io 
 
-These dependencies are defined in the pom.xml and will be automatically 
-resolved for e.g. Maven and IVY users. They are also included in this zip 
-package in the "lib" directory.
-
-Note, that the package also has client side extensions, so make sure that you
-compile your widgetset after installation!
+Unless you are already using them in your project add them also. They are also 
+included in this zip package in the "lib" directory.
 
 Licensing
 =========
