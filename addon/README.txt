@@ -71,7 +71,7 @@ Vaadin Pro Account.
 Register your copy of Vaadin Charts by creating a file named
 .vaadin.charts.developer.license containing the license key in your home 
 directory or by setting the vaadin.charts.developer.license=license_key
-system property to disable this message.
+system property to disable license warning message.
 
 Third Party Licensing
 =====================
