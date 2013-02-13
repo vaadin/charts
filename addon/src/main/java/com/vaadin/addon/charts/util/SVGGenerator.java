@@ -24,7 +24,7 @@ import com.vaadin.addon.charts.model.Configuration;
  * <p>
  * The implementation uses PhantomJS to render the chart on server side. Install
  * it separately from <a href="http://phantomjs.org/">phantomjs.org</a>. After
- * installation, if not installed so that it is available on you path, set
+ * installation, if not installed so that it is available on your path, set
  * "phantom.exec" system property to point to your phantomjs binary.
  * <p>
  * The solution is derived form Highchart's exporting-server code: <a href=
