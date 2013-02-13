@@ -33,8 +33,6 @@ import com.google.gwt.i18n.client.DateTimeFormat.PredefinedFormat;
 /**
  * Cache implementation for caching points on the client side
  * 
- * @author "John Ahlroos / Vaadin Ltd"
- * 
  */
 public class VClientCache {
 

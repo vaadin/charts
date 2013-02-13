@@ -23,8 +23,6 @@ import com.vaadin.client.VConsole;
 /**
  * Internet Explorer 8 fix for VML.
  * 
- * @author John Ahlroos / Vaadin Ltd
- * 
  */
 public class CanvasImplIE8 extends CanvasImplIE {
 

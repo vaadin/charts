@@ -58,8 +58,6 @@ import com.vaadin.ui.LegacyComponent;
 /**
  * Vaadin Timeline implementation.
  * 
- * @author John Ahlroos / Vaadin Ltd 2010-2012
- * @since 1.0
  */
 @SuppressWarnings({ "unchecked", "serial", "deprecation" })
 public class Timeline extends AbstractComponent implements LegacyComponent {

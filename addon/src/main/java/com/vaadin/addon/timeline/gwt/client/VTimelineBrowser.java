@@ -69,8 +69,6 @@ import com.vaadin.client.Util;
 /**
  * VTimelineBrowser
  * 
- * @author Peter Lehto / Vaadin Ltd
- * @author John Ahlroos / Vaadin Ltd
  */
 
 public class VTimelineBrowser extends VTimelineCanvasComponent implements

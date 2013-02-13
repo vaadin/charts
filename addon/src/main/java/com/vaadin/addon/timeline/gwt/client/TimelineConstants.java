@@ -20,7 +20,6 @@ package com.vaadin.addon.timeline.gwt.client;
 /**
  * Constants used in server - client data transfer
  * 
- * @author "John Ahlroos / Vaadin Ltd"
  * @since 1.2.4
  */
 public final class TimelineConstants {

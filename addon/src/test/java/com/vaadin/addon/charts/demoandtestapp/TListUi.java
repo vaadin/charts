@@ -33,7 +33,6 @@ import com.vaadin.ui.VerticalLayout;
 
 /**
  * 
- * @author mattitahvonenitmill
  */
 public class TListUi extends UI {
     private IndexedContainer testClassess;

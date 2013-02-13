@@ -68,8 +68,6 @@ import com.vaadin.client.ValueMap;
 /**
  * VTimelineWidget
  * 
- * @author Peter Lehto / Vaadin Ltd
- * @author John Ahlroos / Vaadin Ltd
  */
 @SuppressWarnings("deprecation")
 public class VTimelineWidget extends FocusPanel implements Paintable,

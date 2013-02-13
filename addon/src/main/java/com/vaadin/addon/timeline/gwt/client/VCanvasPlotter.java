@@ -36,8 +36,6 @@ import com.vaadin.client.VConsole;
 /**
  * Plotting algorithms
  * 
- * @author John Ahlroos / Vaadin Ltd
- * 
  */
 public class VCanvasPlotter {
 

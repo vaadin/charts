@@ -28,8 +28,6 @@ import com.vaadin.client.Util;
 /**
  * VTimelineBrowserScroller is the scroller widget in timeline browser.
  * 
- * @author Peter Lehto / Vaadin Ltd
- * @author John Ahlroos / Vaadin Ltd
  */
 public class VTimelineBrowserScroller extends Widget {
     private static final String CLASSNAME_SCROLLAREA_CONTAINER = VTimelineWidget.BROWSER_CLASSNAME

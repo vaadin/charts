@@ -37,7 +37,6 @@ import com.vaadin.client.VConsole;
  * plotting
  * 
  * @since 1.2.4
- * @author John Ahlroos / Vaadin Ltd 2011
  * 
  */
 public abstract class VTimelineCanvasComponent extends Widget {

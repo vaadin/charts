@@ -26,9 +26,6 @@ import com.vaadin.data.Container;
  * Class for storing graph related properties like color,thickness etc. Used
  * internally by the Timeline
  * 
- * @author "John Ahlroos / Vaadin Ltd"
- * @since 1.2.4
- * 
  */
 @SuppressWarnings("serial")
 public class TimelineDatasourceProperties implements Serializable {

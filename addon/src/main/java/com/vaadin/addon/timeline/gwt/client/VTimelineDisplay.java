@@ -66,8 +66,6 @@ import com.vaadin.client.VConsole;
 /**
  * VTimelineDisplay
  * 
- * @author John Ahlroos / Vaadin Ltd
- * 
  */
 public class VTimelineDisplay extends VTimelineCanvasComponent implements
         VDataListener, MouseDownHandler, MouseMoveHandler, MouseWheelHandler,

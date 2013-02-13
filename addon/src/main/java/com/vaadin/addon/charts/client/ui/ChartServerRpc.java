@@ -36,7 +36,6 @@ import com.vaadin.shared.communication.ServerRpc;
 
 /**
  * 
- * @author mattitahvonenitmill
  */
 public interface ChartServerRpc extends ServerRpc {
 
