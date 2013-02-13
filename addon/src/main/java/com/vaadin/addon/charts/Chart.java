@@ -68,6 +68,45 @@ import com.vaadin.util.ReflectTools;
 @SuppressWarnings("deprecation")
 public class Chart extends AbstractComponent {
 
+    private final class ChartServerRpcImplementation implements ChartServerRpc {
+        @Override
+        public void onChartClick(final double x, final double y) {
+            final ChartClickEvent chartClickEvent = new ChartClickEvent(
+                    Chart.this, x, y);
+            fireEvent(chartClickEvent);
+        }
+
+        @Override
+        public void onPointClick(final double x, final double y, final int seriesIndex,
+                final String category, final int pointIndex) {
+
+            final Series series = getSeriesBasedOnIndex(seriesIndex);
+            final PointClickEvent pointClickEvent = new PointClickEvent(
+                    Chart.this, x, y, series, category, pointIndex);
+            fireEvent(pointClickEvent);
+        }
+
+        private Series getSeriesBasedOnIndex(final int seriesIndex) {
+            final Series series = getConfiguration().getSeries().get(seriesIndex);
+            return series;
+        }
+
+        @Override
+        public void onSelection(final double selectionStart, final double selectionEnd) {
+            final ChartSelectionEvent selectionEvent = new ChartSelectionEvent(
+                    Chart.this, selectionStart, selectionEnd);
+            fireEvent(selectionEvent);
+        }
+
+        @Override
+        public void onLegendItemClick(final int seriesIndex) {
+            final LegendItemClickEvent itemClickEvent = new LegendItemClickEvent(
+                    Chart.this, getSeriesBasedOnIndex(seriesIndex));
+            fireEvent(itemClickEvent);
+
+        }
+    }
+
     static {
         LicenseChecker.nag();
     }
@@ -90,45 +129,7 @@ public class Chart extends AbstractComponent {
         setHeight(400, Unit.PIXELS);
         configuration = new Configuration();
 
-        registerRpc(new ChartServerRpc() {
-
-            @Override
-            public void onChartClick(double x, double y) {
-                ChartClickEvent chartClickEvent = new ChartClickEvent(
-                        Chart.this, x, y);
-                fireEvent(chartClickEvent);
-            }
-
-            @Override
-            public void onPointClick(double x, double y, int seriesIndex,
-                    String category, int pointIndex) {
-
-                Series series = getSeriesBasedOnIndex(seriesIndex);
-                PointClickEvent pointClickEvent = new PointClickEvent(
-                        Chart.this, x, y, series, category, pointIndex);
-                fireEvent(pointClickEvent);
-            }
-
-            private Series getSeriesBasedOnIndex(int seriesIndex) {
-                Series series = getConfiguration().getSeries().get(seriesIndex);
-                return series;
-            }
-
-            @Override
-            public void onSelection(double selectionStart, double selectionEnd) {
-                ChartSelectionEvent selectionEvent = new ChartSelectionEvent(
-                        Chart.this, selectionStart, selectionEnd);
-                fireEvent(selectionEvent);
-            }
-
-            @Override
-            public void onLegendItemClick(int seriesIndex) {
-                LegendItemClickEvent itemClickEvent = new LegendItemClickEvent(
-                        Chart.this, getSeriesBasedOnIndex(seriesIndex));
-                fireEvent(itemClickEvent);
-
-            }
-        }, ChartServerRpc.class);
+        registerRpc(new ChartServerRpcImplementation(), ChartServerRpc.class);
     }
 
     /**
