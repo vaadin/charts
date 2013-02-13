@@ -6,9 +6,7 @@ import java.io.IOException;
 import junit.framework.Assert;
 
 import org.junit.Test;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 
 import com.vaadin.addon.charts.demoandtestapp.lineandscatter.SplineWithPlotBandRemoveFunctionality;
 import com.vaadin.testbench.By;
