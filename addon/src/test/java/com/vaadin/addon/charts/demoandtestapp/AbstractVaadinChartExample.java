@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts.demoandtestapp;
 
+import java.util.List;
+
 import com.vaadin.data.Item;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.demo.sampler.sample.Sample;
@@ -32,11 +34,6 @@ public abstract class AbstractVaadinChartExample extends VerticalLayout implemen
     }
     
     @Override
-    public boolean isResingSamplePanelEnabled() {
-        return true;
-    }
-
-    @Override
     public Component getWrappedComponent() {
         setup();
         return content;
@@ -47,24 +44,17 @@ public abstract class AbstractVaadinChartExample extends VerticalLayout implemen
         // TODO Auto-generated method stub
         return null;
     }
-
+    
     @Override
-    public Object[] getPropertyEditorExcludeList() {
+    public List getPropertyEditorExcludedList() {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Field<? extends Object>[] getExtraFieldsForPropertyEditor() {
-        // TODO Auto-generated method stub
+    public List getExtraComponentsForPropertyEditor() {
         return null;
-    }
-
-    @Override
-    public Component getConfiguratorComponentToShowBelowPanel() {
-        // TODO Auto-generated method stub
-        return null;
-    }
+    };
 
     private Item sampleItem;
 
@@ -76,4 +66,12 @@ public abstract class AbstractVaadinChartExample extends VerticalLayout implemen
         }
         return sampleItem;
     }
+    
+    @Override
+    public void sampleOpened() {
+        // TODO Auto-generated method stub
+        
+    }
+
+
 }
