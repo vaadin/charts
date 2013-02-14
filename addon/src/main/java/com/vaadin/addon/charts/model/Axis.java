@@ -19,10 +19,12 @@ package com.vaadin.addon.charts.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.model.style.Color;
+import com.vaadin.addon.charts.util.Util;
 
 /**
  * Abstract Axis class.
@@ -157,6 +159,16 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
+     * The minimum value of the axis as Date.
+     * 
+     * @param min
+     * @see #setMin(Number)
+     */
+    public void setMin(Date min) {
+        this.min = Util.toHighchartsTS(min);
+    }
+
+    /**
      * @see #setMax(Number)
      * @return Maximum value of axis or null
      */
@@ -174,6 +186,16 @@ public abstract class Axis extends AbstractConfigurationObject {
      */
     public void setMax(Number max) {
         this.max = max;
+    }
+    
+    /**
+     * The maximum value of the axis as Date.
+     * 
+     * @param max
+     * @see #setMax(Number)
+     */
+    public void setMax(Date max) {
+        this.max = Util.toHighchartsTS(max);
     }
 
     /**
