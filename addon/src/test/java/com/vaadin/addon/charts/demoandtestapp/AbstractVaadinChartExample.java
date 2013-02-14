@@ -10,19 +10,14 @@ import com.vaadin.ui.Field;
 import com.vaadin.ui.VerticalLayout;
 
 @SuppressWarnings("serial")
-public abstract class AbstractVaadinChartExample extends VerticalLayout implements Sample {
+public abstract class AbstractVaadinChartExample extends VerticalLayout
+        implements Sample {
 
     private final VerticalLayout content;
 
     public AbstractVaadinChartExample() {
         content = this;
         content.setSizeFull();
-    }
-
-    protected void setup() {
-        Component map = getChart();
-        content.addComponent(map);
-        content.setExpandRatio(map, 1);
     }
 
     protected abstract Component getChart();
@@ -32,19 +27,13 @@ public abstract class AbstractVaadinChartExample extends VerticalLayout implemen
         super.attach();
         setup();
     }
-    
-    @Override
-    public Component getWrappedComponent() {
-        setup();
-        return content;
-    }
 
     @Override
     public Component getComponentUsedByPropertyEditor() {
         // TODO Auto-generated method stub
         return null;
     }
-    
+
     @Override
     public List getPropertyEditorExcludedList() {
         // TODO Auto-generated method stub
@@ -66,12 +55,26 @@ public abstract class AbstractVaadinChartExample extends VerticalLayout implemen
         }
         return sampleItem;
     }
-    
+
     @Override
     public void sampleOpened() {
         // TODO Auto-generated method stub
-        
+
     }
 
+    @Override
+    public Component getWrappedComponent() {
+        setup();
+        content.setSizeFull();
+        return content;
+    }
+
+    protected void setup() {
+        if (content.getComponentCount() == 0) {
+            final Component map = getChart();
+            content.addComponent(map);
+            content.setExpandRatio(map, 1);
+        }
+    }
 
 }
