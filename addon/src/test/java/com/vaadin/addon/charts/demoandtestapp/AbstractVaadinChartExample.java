@@ -65,7 +65,7 @@ public abstract class AbstractVaadinChartExample extends VerticalLayout
     @Override
     public Component getWrappedComponent() {
         setup();
-        content.setSizeFull();
+        content.getComponent(0).setSizeFull();
         return content;
     }
 
