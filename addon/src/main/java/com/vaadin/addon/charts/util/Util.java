@@ -15,7 +15,7 @@ public class Util {
      */
     @SuppressWarnings("deprecation")
     public static long toHighchartsTS(Date date) {
-        return date.getTime() + date.getTimezoneOffset() * 60000;
+        return date.getTime() - date.getTimezoneOffset() * 60000;
     }
 
 }
