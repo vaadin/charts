@@ -29,6 +29,9 @@ public class ClickToAddPointTBTest extends
                 .moveToElement(findElement, 200, 200).click().build();
         
         click.perform();
+        
+        sleep(1000); // FIXME investigate why randomly fails without this
+        
         Assert.assertTrue(eventLogText().startsWith("Added"));
 
         click.perform();
