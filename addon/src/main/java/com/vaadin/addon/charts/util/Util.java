@@ -1,6 +1,8 @@
 package com.vaadin.addon.charts.util;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 public class Util {
 
@@ -16,6 +18,23 @@ public class Util {
     @SuppressWarnings("deprecation")
     public static long toHighchartsTS(Date date) {
         return date.getTime() - date.getTimezoneOffset() * 60000;
+    }
+
+    /**
+     * Converts UTC based raw date value from the client side rendering library
+     * to a Date value in JVM's default time zone.
+     * 
+     * @param rawClientSideValue
+     *            the raw value from the client side
+     * @return a Date value in JVM's default time zone
+     */
+    public static Date toServerDate(double rawClientSideValue) {
+        Calendar instance = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+        instance.setTimeInMillis((long) rawClientSideValue);
+        // fix one field to force calendar re-adjust the value
+        instance.set(Calendar.MINUTE, instance.get(Calendar.MINUTE));
+        instance.setTimeZone(TimeZone.getDefault());
+        return instance.getTime();
     }
 
 }

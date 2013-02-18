@@ -1,6 +1,7 @@
 package com.vaadin.addon.charts;
 
 import com.vaadin.addon.charts.model.Series;
+import com.vaadin.addon.charts.util.Util;
 
 /*
  * #%L
@@ -39,7 +40,7 @@ public class PointClickEvent extends com.vaadin.ui.Component.Event {
      * @param y
      * @param series
      * @param category
-     * @param pointIndex 
+     * @param pointIndex
      */
     public PointClickEvent(Chart source, double x, double y, Series series,
             String category, int pointIndex) {
@@ -52,6 +53,14 @@ public class PointClickEvent extends com.vaadin.ui.Component.Event {
     }
 
     /**
+     * Gets the X coordinate of the point that was clicked.
+     * <p>
+     * Note, that if the axis type is Date, the value is "unix timestamp" which
+     * is shifted to UTF time zone that is used by the client side
+     * implementation. If you have used Date object as value, you most likely
+     * want to pass the value thru {@link Util#toServerDate(double)} method
+     * before actually using the value.
+     * 
      * @return the X coordinate of the point that was clicked.
      */
     public double getX() {
@@ -64,7 +73,7 @@ public class PointClickEvent extends com.vaadin.ui.Component.Event {
     public double getY() {
         return y;
     }
-    
+
     /**
      * @return the series containing the point that was clicked
      */

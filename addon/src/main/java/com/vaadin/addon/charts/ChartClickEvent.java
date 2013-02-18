@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts;
 
+import com.vaadin.addon.charts.util.Util;
+
 /*
  * #%L
  * Vaadin Charts
@@ -40,6 +42,14 @@ public class ChartClickEvent extends com.vaadin.ui.Component.Event {
     }
 
     /**
+     * Gets the x axis value of the clicked point.
+     * <p>
+     * Note, that if the axis type is Date, the value is "unix timestamp" which
+     * is shifted to UTF time zone that is used by the client side
+     * implementation. If you have used Date object as value, you most likely
+     * want to pass the value thru {@link Util#toServerDate(double)} method
+     * before actually using the value.
+     * 
      * @return the X coordinate of the click.
      */
     public double getxAxisValue() {
