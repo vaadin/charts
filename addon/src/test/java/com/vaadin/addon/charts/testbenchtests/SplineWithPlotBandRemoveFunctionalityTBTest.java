@@ -43,7 +43,7 @@ public class SplineWithPlotBandRemoveFunctionalityTBTest extends
             driver.quit();
         }
         if (screenshotErrors) {
-            Assert.fail("There are differences in creenshots");
+            Assert.fail("There are differences in screenshots");
         }
     }
 

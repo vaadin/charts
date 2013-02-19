@@ -39,7 +39,7 @@ public class TimeDataWithLocalizationsTBTest extends AbstractTestBenchTest {
             driver.quit();
         }
         if (screenshotErrors) {
-            Assert.fail("There are differences in creenshots");
+            Assert.fail("There are differences in screenshots");
         }
     }
 
