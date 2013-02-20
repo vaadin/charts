@@ -50,7 +50,7 @@ public class TitleTypeAdapterFactory implements TypeAdapterFactory {
             public void write(JsonWriter out, Title value) throws IOException {
                 // null for text is significant, else there will be
                 // "Chart Title" as default
-                if (value.getText() == null) {
+                if (value != null && value.getText() == null) {
                     boolean serializeNulls = out.getSerializeNulls();
                     out.setSerializeNulls(true);
                     out.beginObject();
@@ -59,8 +59,7 @@ public class TitleTypeAdapterFactory implements TypeAdapterFactory {
                     out.endObject();
                     out.setSerializeNulls(serializeNulls);
                 } else {
-                    elementAdapter.write(out,
-                            (JsonObject) delegate.toJsonTree(value));
+                    elementAdapter.write(out, delegate.toJsonTree(value));
                 }
             }
 
