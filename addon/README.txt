@@ -38,7 +38,7 @@ Ivy
 
 IVY dependency snippet:
 
-<dependency org="com.vaadin.addon" name="vaadin-charts" rev="${project.version}" />
+<dependency org="com.vaadin.addon" name="vaadin-charts" rev="${project.version}" conf="default->default" />
 
 
 Using plain Jar
