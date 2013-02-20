@@ -28,6 +28,7 @@ import com.vaadin.addon.charts.model.gsonhelpers.ContainerDataSeriesSerializer;
 import com.vaadin.addon.charts.model.gsonhelpers.DataSeriesItemTypeAdapterFactory;
 import com.vaadin.addon.charts.model.gsonhelpers.PaneListSerializer;
 import com.vaadin.addon.charts.model.gsonhelpers.SolidColorSerializer;
+import com.vaadin.addon.charts.model.gsonhelpers.TitleTypeAdapterFactory;
 import com.vaadin.addon.charts.model.style.SolidColor;
 
 /**
@@ -61,6 +62,7 @@ public abstract class AbstractConfigurationObject implements Serializable {
                 new ContainerDataSeriesSerializer());
         builder.registerTypeAdapterFactory(new DataSeriesItemTypeAdapterFactory());
         builder.registerTypeAdapterFactory(new AbstractSeriesTypeAdapterFactory());
+        builder.registerTypeAdapterFactory(new TitleTypeAdapterFactory());
         return builder;
     }
 
