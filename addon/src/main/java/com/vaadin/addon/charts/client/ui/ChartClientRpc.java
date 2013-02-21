@@ -24,12 +24,11 @@ public interface ChartClientRpc extends ClientRpc {
     /**
      * Adds a new point into the series identified by seriesIndex
      * 
-     * @param x
-     * @param y
+     * @param pointJson
      * @param seriesIndex
      * @param shift 
      */
-    void addPoint(double x, double y, int seriesIndex, boolean shift);
+    void addPoint(String pointJson, int seriesIndex, boolean shift);
 
     /**
      * Removes the first point found at the given coordinates

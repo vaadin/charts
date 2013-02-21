@@ -46,9 +46,9 @@ public class ChartConnector extends AbstractComponentConnector {
     public ChartConnector() {
         registerRpc(ChartClientRpc.class, new ChartClientRpc() {
             @Override
-            public void addPoint(double x, double y, int seriesIndex,
+            public void addPoint(String pointJson, int seriesIndex,
                     boolean shift) {
-                getWidget().addPoint(x, y, seriesIndex, shift);
+                getWidget().addPoint(pointJson, seriesIndex, shift);
             }
 
             @Override

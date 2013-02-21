@@ -77,8 +77,9 @@ public class Chart extends AbstractComponent {
         }
 
         @Override
-        public void onPointClick(final double x, final double y, final int seriesIndex,
-                final String category, final int pointIndex) {
+        public void onPointClick(final double x, final double y,
+                final int seriesIndex, final String category,
+                final int pointIndex) {
 
             final Series series = getSeriesBasedOnIndex(seriesIndex);
             final PointClickEvent pointClickEvent = new PointClickEvent(
@@ -87,12 +88,14 @@ public class Chart extends AbstractComponent {
         }
 
         private Series getSeriesBasedOnIndex(final int seriesIndex) {
-            final Series series = getConfiguration().getSeries().get(seriesIndex);
+            final Series series = getConfiguration().getSeries().get(
+                    seriesIndex);
             return series;
         }
 
         @Override
-        public void onSelection(final double selectionStart, final double selectionEnd) {
+        public void onSelection(final double selectionStart,
+                final double selectionEnd) {
             final ChartSelectionEvent selectionEvent = new ChartSelectionEvent(
                     Chart.this, selectionStart, selectionEnd);
             fireEvent(selectionEvent);
@@ -367,8 +370,7 @@ public class Chart extends AbstractComponent {
                 if (event.getItem().getX() != null) {
                     // x,y type data
                     getRpcProxy(ChartClientRpc.class).addPoint(
-                            event.getItem().getX().doubleValue(),
-                            event.getItem().getY().doubleValue(),
+                            event.getItem().toString(),
                             getConfiguration().getSeries().indexOf(
                                     event.getSeries()), event.isShift());
                 }

@@ -41,8 +41,8 @@ public class HighchartWidget extends Widget {
         }
     }
 
-    public void addPoint(double x, double y, int seriesIndex, boolean shift) {
-        jsOverlay.addPoint(x, y, seriesIndex, true, shift);
+    public void addPoint(String pointJson, int seriesIndex, boolean shift) {
+        jsOverlay.addPoint(pointJson, seriesIndex, true, shift);
     }
 
     public void removePoint(double x, double y) {

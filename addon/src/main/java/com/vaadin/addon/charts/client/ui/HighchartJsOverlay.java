@@ -30,15 +30,14 @@ public class HighchartJsOverlay extends JavaScriptObject {
     }
 
     /**
-     * This is currently overly simplified (only y value possible), just a
-     * prototype.
      * 
      * @param doubleAttribute
      */
-    public native final void addPoint(double xValue, double yValue,
+    public native final void addPoint(String pointJson,
             int seriesIndex, boolean redraw, boolean shift)
     /*-{
-        this.series[seriesIndex].addPoint([xValue, yValue],redraw,shift);
+        var newPointData = $wnd.eval('('+pointJson+')');
+        this.series[seriesIndex].addPoint(newPointData,redraw,shift);
     }-*/;
 
     public native final void removePoint(double xValue, double yValue,
