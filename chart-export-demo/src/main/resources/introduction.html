@@ -1,21 +1,20 @@
 
-<p>As you might have noticed, Vaadin Chart and the under embedded
-	Highcharts library support buttons via the chart can be downloaded in
-	various file formats or printed. In real life this approach is bit
-	naive feature. If the user wishes to print the document, he/she
-	probably just uses the browsers default print feature and prints the
-	whole document. And if the chart should be re-used, it most likely
-	happens in the very same application on the server side - not in end
-	users device.</p>
+<p>As you might have noticed, Vaadin Charts support print and save
+	buttons like the underlaying Highcharts library. In typical Vaadin apps
+	this approach is bit naive. If the user wishes to print the document,
+	he/she can probably just use the browsers default print feature and
+	print the whole document instead of just the chart. And if the same
+	chart should be used in e.g. a PDF report, the generation of the report
+	most likely happens in the very same JVM on the server side - not in
+	end users device.</p>
 </p>
-
 <p>
 	Although the chart rendering happens using JavaScript in the browser,
 	modern web technologies also make it possible to use the exact same
-	chart image on the server side - e.g. to create PDF reports. Vaadin
-	Charts contains a helper that uses <a href="http://phantomjs.org/"></a>PhantomJS</a>
-	tool in your server to render the chart into SVG. From SVG onwards,
-	practically everything is possible with cool tools like <a
+	chart image on the server side. Vaadin Charts contains a helper that
+	uses <a href="http://phantomjs.org/">PhantomJS</a> tool in your server
+	to render the chart into SVG format. The generated SVG can then be
+	handled with cool tools like <a
 		href="http://xmlgraphics.apache.org/batik/">Batik SVG Toolkit</a> and
 	countless Java document handling libraries. The setup is closely
 	related to Highcharts very own export server, which can also be used
@@ -26,6 +25,10 @@
 	built-in helper in Vaadin Charts. The SVG button downloads the raw SVG
 	as a file, the PDF button further uses iText library to embed it into
 	PDF file.</p>
+<p>The third button renders the same chart using Swing UI library.
+	Naturally the window containing the chart will be displayed on the
+	server, so you can see something only if running the this example app
+	on your local environment.</p>
 
 <hr />
 

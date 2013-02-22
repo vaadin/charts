@@ -25,6 +25,8 @@ import com.vaadin.server.StreamResource;
 import com.vaadin.server.StreamResource.StreamSource;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
@@ -47,21 +49,24 @@ public class ChartExportDemo extends VerticalLayout {
 
     private final HorizontalLayout layout;
     private final Chart chart;
+    private final Configuration conf = createChartConf();
 
     public ChartExportDemo() {
         setMargin(true);
 
         layout = new HorizontalLayout();
-        layout.setSizeFull();
+        layout.setWidth("100%");
         layout.setSpacing(true);
 
-        chart = createChart();
+        chart = new Chart();
+        chart.setConfiguration(conf);
+
         layout.addComponent(chart);
 
         createRightSideLayout();
 
         addComponent(new Label(
-                "<h1>Demo of Vaadin Charts server side exporting<h1>",
+                "<h1>Vaadin Charts - not <u>just</u> for browsers<h1>",
                 ContentMode.HTML));
         addComponent(layout);
     }
@@ -70,8 +75,7 @@ public class ChartExportDemo extends VerticalLayout {
         return new StreamSource() {
             @Override
             public InputStream getStream() {
-                String svg = SVGGenerator.getInstance().generate(
-                        chart.getConfiguration());
+                String svg = SVGGenerator.getInstance().generate(conf);
                 if (svg != null) {
                     return new ByteArrayInputStream(svg.getBytes());
                 }
@@ -114,6 +118,15 @@ public class ChartExportDemo extends VerticalLayout {
 
         l.addComponent(exportButton2);
         l.addComponent(exportButton3);
+        Button jPanelButton = new Button("Show JPanel with chart (needs server running in localhost)");
+        jPanelButton.addClickListener(new ClickListener() {
+            @Override
+            public void buttonClick(ClickEvent event) {
+                SwingDemo.display(conf);
+            }
+        });
+        l.addComponent(jPanelButton);
+        l.setWidth("100%");
 
         layout.addComponent(l);
     }
@@ -134,15 +147,13 @@ public class ChartExportDemo extends VerticalLayout {
      * @return PDF file
      */
     private File doExportPDF() {
-        String svg = SVGGenerator.getInstance().generate(
-                chart.getConfiguration());
+        String svg = SVGGenerator.getInstance().generate(conf);
         return new PdfExportDemo().writePdf("chart", svg);
     }
 
-    public static Chart createChart() {
-        Chart chart = new Chart(ChartType.PIE);
-
-        Configuration conf = chart.getConfiguration();
+    private static Configuration createChartConf() {
+        Configuration conf = new Configuration();
+        conf.getChart().setType(ChartType.PIE);
 
         conf.setTitle("Browser market shares at a specific website, 2010");
 
@@ -168,10 +179,7 @@ public class ChartExportDemo extends VerticalLayout {
         series.add(new DataSeriesItem("Opera", 6.2));
         series.add(new DataSeriesItem("Others", 0.7));
         conf.setSeries(series);
-
-        chart.drawChart(conf);
-
-        return chart;
+        return conf;
     }
 
 }

@@ -10,9 +10,9 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<vaadin.version>7.0.0.rc2</vaadin.version>
+		<vaadin.version>7.0.1</vaadin.version>
 		<vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
-		<vaadin.charts.version>1.0.0-SNAPSHOT</vaadin.charts.version>
+		<vaadin.charts.version>1.0.0</vaadin.charts.version>
 		<batik.version>1.7</batik.version>
 	</properties>
 	<repositories>
@@ -75,6 +75,17 @@
 			<groupId>com.vaadin.addon</groupId>
 			<artifactId>vaadin-charts</artifactId>
 			<version>${vaadin.charts.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.xmlgraphics</groupId>
+			<artifactId>batik-swing</artifactId>
+			<version>${batik.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-io</artifactId>
+					<groupId>commons-io</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.xmlgraphics</groupId>
