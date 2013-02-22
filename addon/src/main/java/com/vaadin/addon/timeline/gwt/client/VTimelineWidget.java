@@ -46,6 +46,7 @@ import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlowPanel;
@@ -2301,8 +2302,19 @@ public class VTimelineWidget extends FocusPanel implements Paintable,
      */
     @Override
     public void onKeyPress(KeyPressEvent event) {
-        event.preventDefault();
-        handleKeyboardEvent(event);
+        if (!inTextBoxes(event)) {
+            event.preventDefault();
+            handleKeyboardEvent(event);
+        }
+    }
+
+    private boolean inTextBoxes(KeyEvent<?> event) {
+        Element eventTarget = event.getNativeEvent().getEventTarget().cast();
+        if (eventTarget == dateFrom.getElement()
+                || eventTarget == dateTo.getElement()) {
+            return true;
+        }
+        return false;
     }
 
     /*
@@ -2314,8 +2326,10 @@ public class VTimelineWidget extends FocusPanel implements Paintable,
      */
     @Override
     public void onKeyUp(KeyUpEvent event) {
-        event.preventDefault();
-        handleKeyboardEvent(event);
+        if (!inTextBoxes(event)) {
+            event.preventDefault();
+            handleKeyboardEvent(event);
+        }
     }
 
     /*
@@ -2327,8 +2341,10 @@ public class VTimelineWidget extends FocusPanel implements Paintable,
      */
     @Override
     public void onKeyDown(KeyDownEvent event) {
-        event.preventDefault();
-        handleKeyboardEvent(event);
+        if (!inTextBoxes(event)) {
+            event.preventDefault();
+            handleKeyboardEvent(event);
+        }
     }
 
     /*
