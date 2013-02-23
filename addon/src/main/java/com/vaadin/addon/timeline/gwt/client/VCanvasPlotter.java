@@ -46,6 +46,7 @@ public class VCanvasPlotter {
         public int x, y;
         public Graph g;
         public int width;
+        public double value;
 
         /**
          * Constructor
@@ -59,12 +60,16 @@ public class VCanvasPlotter {
          * @param width
          *            The width of the point (used by bar charts to measure the
          *            width of the bar)
+         * @param value
+         *            real value of the point
+         * @param value
          */
-        public Point(int x, int y, Graph g, int width) {
+        public Point(int x, int y, Graph g, int width, double value) {
             this.x = x;
             this.y = y;
             this.g = g;
             this.width = width;
+            this.value = value;
         }
 
         /*
@@ -82,7 +87,7 @@ public class VCanvasPlotter {
      * A comparator for comparing to points in a graph
      */
     public static class GraphPointComparator implements
-    Comparator<Map.Entry<Graph, Point>> {
+            Comparator<Map.Entry<Graph, Point>> {
         @Override
         public int compare(Entry<Graph, Point> o1, Entry<Graph, Point> o2) {
             return o1.getValue().compareTo(o2.getValue());
@@ -406,6 +411,7 @@ public class VCanvasPlotter {
                 graphs);
         RepeatingCommand rc = new Scheduler.RepeatingCommand() {
             int counter = 0;
+
             @Override
             public boolean execute() {
                 Graph g = renderGraphs.get(counter);
@@ -413,7 +419,6 @@ public class VCanvasPlotter {
                     listener.plottingStarts();
                     rendering = true;
                 }
-
 
                 counter++;
 
@@ -822,6 +827,7 @@ public class VCanvasPlotter {
         final long start = new Date().getTime();
         RepeatingCommand rc = new RepeatingCommand() {
             private int counter = 0;
+
             @Override
             public boolean execute() {
                 if (counter == 0 && listener != null) {
@@ -846,8 +852,7 @@ public class VCanvasPlotter {
                 if (counter == graphs.size() && listener != null) {
                     long end = new Date().getTime();
                     VConsole.log("VCanvasPlotter: Plotting scatter graph took "
-                            + (end - start)
-                            + "ms");
+                            + (end - start) + "ms");
                     listener.plottingEnds();
                 }
 
@@ -875,7 +880,7 @@ public class VCanvasPlotter {
         }
         for (Graph g : graphs) {
             while (g.getPoints().size() < maxSize) {
-                g.addPoint(new Point(0, 0, g, 0));
+                g.addPoint(new Point(0, 0, g, 0,0));
             }
         }
 

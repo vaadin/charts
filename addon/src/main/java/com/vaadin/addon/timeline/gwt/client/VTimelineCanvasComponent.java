@@ -267,7 +267,7 @@ public abstract class VTimelineCanvasComponent extends Widget {
                          * Special behaviour for a graph with one point since we
                          * cannot calculate the width for it
                          */
-                        p = new Point(Math.round(x), Math.round(y), graph, 1);
+                        p = new Point(Math.round(x), Math.round(y), graph, 1, value);
                         lastWidth = 1;
 
                     } else if (i == 0) {
@@ -278,7 +278,7 @@ public abstract class VTimelineCanvasComponent extends Widget {
                         timeFromStart = d.getTime() - startTime;
                         lastWidth = 0;
                         p = new Point(Math.round(x), Math.round(y), graph,
-                                lastWidth);
+                                lastWidth, value);
 
                     } else {
                         /*
@@ -288,7 +288,7 @@ public abstract class VTimelineCanvasComponent extends Widget {
                         if (diff > 2) {
                             lastWidth = diff;
                             p = new Point(Math.round(x), Math.round(y), graph,
-                                    lastWidth);
+                                    lastWidth, value);
                         } else {
                             p = null;
                         }
