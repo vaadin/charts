@@ -39,6 +39,9 @@ public class TimelineWithSpike extends AbstractVaadinChartExample {
         }
 
         timeline.addGraphDataSource(graph1);
+        
+        // To test #11176
+        timeline.setVerticalAxisNumberFormat("000.00");
 
         addComponent(timeline);
     }
