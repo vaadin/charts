@@ -72,7 +72,7 @@ public class HighchartConfig extends JavaScriptObject {
                                 }
                                 script = "function() {" + script + "}";
                             }
-                            obj[actualPropName] = eval('(' + script + ')');
+                            obj[actualPropName] = eval('(0 || ' + script + ')');
                             obj[prop] = null;
                         } catch (e) {
                             // TODO report on VConsole before release
