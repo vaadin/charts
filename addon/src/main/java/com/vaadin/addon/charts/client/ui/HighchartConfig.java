@@ -72,6 +72,7 @@ public class HighchartConfig extends JavaScriptObject {
                                 }
                                 script = "function() {" + script + "}";
                             }
+                            // "0 ||" to bypass IE8 bug
                             obj[actualPropName] = eval('(0 || ' + script + ')');
                             obj[prop] = null;
                         } catch (e) {
