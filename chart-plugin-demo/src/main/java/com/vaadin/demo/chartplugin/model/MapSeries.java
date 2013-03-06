@@ -12,7 +12,7 @@ import com.vaadin.addon.charts.model.DataSeries;
  */
 public class MapSeries extends DataSeries {
 
-    private MapChartType type;
+    private CustomChartTypes type;
     private final List<ValueRange> valueRanges = new ArrayList<ValueRange>();
 
     public void addValueRange(ValueRange valuerange) {
@@ -23,11 +23,11 @@ public class MapSeries extends DataSeries {
         return valueRanges;
     }
 
-    public MapChartType getType() {
+    public CustomChartTypes getType() {
         return type;
     }
 
-    public void setType(MapChartType type) {
+    public void setType(CustomChartTypes type) {
         this.type = type;
     }
 }

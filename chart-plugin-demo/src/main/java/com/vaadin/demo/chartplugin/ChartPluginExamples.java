@@ -6,6 +6,7 @@ import java.util.Random;
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.model.ChartModel;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.HorizontalAlign;
 import com.vaadin.addon.charts.model.LayoutDirection;
@@ -15,21 +16,52 @@ import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.ZoomType;
 import com.vaadin.addon.charts.model.style.SolidColor;
-import com.vaadin.demo.chartplugin.model.MapChartType;
+import com.vaadin.demo.chartplugin.model.CustomChartTypes;
 import com.vaadin.demo.chartplugin.model.MapSeries;
 import com.vaadin.demo.chartplugin.model.ValueRange;
+import com.vaadin.shared.ui.label.ContentMode;
+import com.vaadin.ui.Component;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
 @SuppressWarnings("serial")
-public class MapChartPlugin extends VerticalLayout {
+public class ChartPluginExamples extends VerticalLayout {
 
-    public MapChartPlugin() {
-        setSizeFull();
-        addComponent(createChart());
+    public ChartPluginExamples() {
+        setMargin(true);
+        setSpacing(true);
+        addComponent(new Label(
+                "<h1>Chart plugins</h1>This example shows how to use custom version of Highcharts and custom Highcharts plugin. Example uses Vaadin Charts 1.0.0 with Highcharts 3 (with funnel chart module) and custom heat map chart type",ContentMode.HTML));
+        addComponent(createHeatMap());
+        addComponent(createFunnelChart());
     }
 
-    public static Chart createChart() {
-        final Chart chart = new Chart(MapChartType.MAP);
+    private Component createFunnelChart() {
+        final Chart chart = new Chart(CustomChartTypes.FUNNEL);
+        chart.setWidth("800px");
+        chart.setHeight("500px");
+
+        final Configuration configuration = chart.getConfiguration();
+
+        configuration.getTitle().setText("Funnel chart");
+
+        DataSeries dataSeries = new DataSeries();
+        for (int i = 1; i < 5; i++) {
+            DataSeriesItem item = new DataSeriesItem();
+            item.setY(6 - i);
+            item.setName("Slice " + i);
+            dataSeries.add(item);
+        }
+
+        configuration.addSeries(dataSeries);
+
+        chart.drawChart(configuration);
+
+        return chart;
+    }
+
+    public static Chart createHeatMap() {
+        final Chart chart = new Chart(CustomChartTypes.MAP);
         chart.setWidth("800px");
         chart.setHeight("500px");
 
@@ -37,7 +69,7 @@ public class MapChartPlugin extends VerticalLayout {
         ChartModel model = new ChartModel();
         configuration.setChart(model);
 
-        model.setType(MapChartType.MAP);
+        model.setType(CustomChartTypes.MAP);
         model.setBorderWidth(1);
         model.setZoomType(ZoomType.XY);
         model.setInverted(false);
@@ -100,8 +132,6 @@ public class MapChartPlugin extends VerticalLayout {
         configuration.addSeries(series);
 
         chart.drawChart(configuration);
-
-        // System.out.println(configuration.toString());
         return chart;
     }
 }

@@ -26,15 +26,23 @@ public class HighchartsPluginScriptLoader extends HighchartsScriptLoader {
         if (!hasJQuery()) {
             inject(HighchartResources.INSTANCE.jquery().getText());
         }
-        inject(HighchartResources.INSTANCE.highcharts().getText());
+        // This would be default, but we also demo using newer highcharts version
+//        inject(HighchartResources.INSTANCE.highcharts().getText());
 
+        inject(HighchartPluginResources.INSTANCE.highcharts3().getText());
+        
         // Map plugin needs to be injected before defaultTheme and after jquery
         // and highcharts
         inject(HighchartPluginResources.INSTANCE.worldMapShapes().getText());
         inject(HighchartPluginResources.INSTANCE.mapSrcJs().getText());
 
-        inject(HighchartResources.INSTANCE.highchartsMore().getText());
-        inject(HighchartResources.INSTANCE.exporting().getText());
+        // This is new extra module in HC3
+        inject(HighchartPluginResources.INSTANCE.funnel().getText());
+        
+        // inject(HighchartResources.INSTANCE.highchartsMore().getText());
+        // inject(HighchartResources.INSTANCE.exporting().getText());
+        inject(HighchartPluginResources.INSTANCE.more3().getText());
+        inject(HighchartPluginResources.INSTANCE.exporting3().getText());
         inject(HighchartResources.INSTANCE.defaultTheme().getText());
     }
 }
