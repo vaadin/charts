@@ -12,6 +12,8 @@ public abstract class AbstractPointPlotOptions extends
     private Integer turboThreshold;
     private Number pointStart;
     private Number pointInterval;
+    private Number pointRange;
+    private Number pointWidth;
 
     /**
      * Sets the start value on the X-axis.
@@ -107,6 +109,51 @@ public abstract class AbstractPointPlotOptions extends
      */
     public void setTurboThreshold(Integer turboThreshold) {
         this.turboThreshold = turboThreshold;
+    }
+
+    /**
+     * @return the point range used for this chart type
+     * @see #setPointRange(Number)
+     */
+    public Number getPointRange() {
+        return pointRange;
+    }
+
+    /**
+     * Sets the X axis range that each point is valid for, determining the width
+     * of the column.
+     * <p>
+     * On a categorized axis, the range will be 1 (one category unit) by
+     * default. On linear and datetime eaxes, the range will be computed as the
+     * distance between the two closest data points.
+     * 
+     * @param pointRange
+     *            the x axis range each point is valid for
+     */
+    public void setPointRange(Number pointRange) {
+        this.pointRange = pointRange;
+    }
+
+    /**
+     * @return the point width used for this chart type
+     * @see #setPointWidth(Number)
+     */
+    public Number getPointWidth() {
+        return pointWidth;
+    }
+
+    /**
+     * Sets the pixel value specifying a fixed width for each column or bar.
+     * <p>
+     * Default null. If not set, the width is calculated from
+     * {@link PlotOptionsColumn#setPointPadding(Number) pointPadding} and
+     * {@link PlotOptionsColumn#setGroupPadding(Number) groupPadding}.
+     * 
+     * @param pointWidth
+     *            the pixel value specifying the width for each column or bar.
+     */
+    public void setPointWidth(Number pointWidth) {
+        this.pointWidth = pointWidth;
     }
 
 }
