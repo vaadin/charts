@@ -21,6 +21,8 @@ import java.lang.reflect.Type;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -28,6 +30,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
+import com.vaadin.addon.charts.model.AbstractPlotOptions;
 import com.vaadin.addon.charts.model.ContainerDataSeries;
 import com.vaadin.data.Container;
 import com.vaadin.data.Item;
@@ -50,24 +53,22 @@ public class ContainerDataSeriesSerializer implements
         JsonArray data = new JsonArray();
 
         if (context != null) {
-            // FIXME serialize custom Plot options stuff or verify this works
-//            series.add("size", context.serialize(src.getSize()));
-//            series.add("center", context.serialize(src.getCenter()));
-//            series.add("dataLabels", context.serialize(src.getDataLabels()));
-//            series.add("type", context.serialize(src.getType()));
-//            series.add("innerSize", context.serialize(src.getInnerSize()));
-//            series.add("showInLegend", context.serialize(src.isShowInLegend()));
-//            series.add("pointPlacement",
-//                    context.serialize(src.getPointPlacement()));
-//            series.add("marker", context.serialize(src.getMarker()));
-//            series.add("tooltip", context.serialize(src.getTooltip()));
-//            series.add("color", context.serialize(src.getColor()));
-//            series.add("states", context.serialize(src.getStates()));
-//            series.add("enableMouseTracking",
-//                    context.serialize(src.isEnableMouseTracking()));
+            AbstractPlotOptions plotOptions = src.getPlotOptions();
+            JsonObject po = context.serialize(plotOptions).getAsJsonObject();
+            Set<Entry<String, JsonElement>> entrySet = po.entrySet();
+            for (Entry<String, JsonElement> entry : entrySet) {
+                series.add(entry.getKey(), entry.getValue());
+            }
             series.add("name", context.serialize(src.getName()));
             series.add("stack", context.serialize(src.getStack()));
-
+            Number xAxis = src.getxAxis();
+            if(xAxis != null) {
+                series.add("xAxis", new JsonPrimitive(xAxis));
+            }
+            Number yAxis = src.getyAxis();
+            if(yAxis != null) {
+                series.add("yAxis", new JsonPrimitive(yAxis));
+            }
         }
         series.add("data", data);
 
