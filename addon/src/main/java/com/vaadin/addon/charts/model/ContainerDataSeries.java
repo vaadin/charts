@@ -28,16 +28,14 @@ import com.vaadin.data.Container;
  */
 public class ContainerDataSeries extends AbstractSeries {
 
-    private transient final Container vaadinContainer;
+    private final Container vaadinContainer;
 
-    public transient static final String SERIES_DEFAULT_ATTRIBUTE1 = "x";
-    public transient static final String SERIES_DEFAULT_ATTRIBUTE2 = "y";
+    public static final String SERIES_DEFAULT_ATTRIBUTE1 = "x";
+    public static final String SERIES_DEFAULT_ATTRIBUTE2 = "y";
 
-    private transient static final String XATTRIBUTE = "x";
-    private transient static final String YATTRIBUTE = "y";
-    private transient static final String NAMEATTRIBUTE = "name";
+    private static final String NAMEATTRIBUTE = "name";
 
-    private transient final Map<String, Object> attributeToPropertyIdMap;
+    private final Map<String, Object> attributeToPropertyIdMap;
 
     /**
      * Constructs a ContainerDataSeries wrapping the given Container
@@ -56,7 +54,7 @@ public class ContainerDataSeries extends AbstractSeries {
      * @param containerPId
      */
     public void setXPropertyId(Object containerPId) {
-        attributeToPropertyIdMap.put(XATTRIBUTE, containerPId);
+        attributeToPropertyIdMap.put(SERIES_DEFAULT_ATTRIBUTE1, containerPId);
     }
 
     /**
@@ -66,7 +64,7 @@ public class ContainerDataSeries extends AbstractSeries {
      * @param containerPId
      */
     public void setYPropertyId(Object containerPId) {
-        attributeToPropertyIdMap.put(YATTRIBUTE, containerPId);
+        attributeToPropertyIdMap.put(SERIES_DEFAULT_ATTRIBUTE2, containerPId);
     }
 
     /**

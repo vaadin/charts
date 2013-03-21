@@ -18,6 +18,7 @@ package com.vaadin.addon.charts.model.gsonhelpers;
  */
 
 import java.lang.reflect.Type;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -37,6 +38,10 @@ import com.vaadin.data.Property;
  */
 public class ContainerDataSeriesSerializer implements
         JsonSerializer<ContainerDataSeries> {
+    
+    private enum Mode {
+        ONLY_Y, XY, OBJECT
+    }
 
     @Override
     public JsonElement serialize(ContainerDataSeries src, Type typeOfSrc,
@@ -68,100 +73,94 @@ public class ContainerDataSeriesSerializer implements
 
         Map<String, Object> pidMap = src.getAttributeToPropertyIdMap();
 
-        Object defaultId1 = pidMap
+        
+        Mode mode = null;
+        for(Object o : pidMap.keySet()) {
+            if(!(o.equals(ContainerDataSeries.SERIES_DEFAULT_ATTRIBUTE1) 
+                    || o.equals(ContainerDataSeries.SERIES_DEFAULT_ATTRIBUTE2))) {
+                mode = Mode.OBJECT;
+                break;
+            }
+        }
+        Object xProperty = pidMap
                 .get(ContainerDataSeries.SERIES_DEFAULT_ATTRIBUTE1);
-        Object defaultId2 = pidMap
+        if(xProperty == null) {
+            xProperty = ContainerDataSeries.SERIES_DEFAULT_ATTRIBUTE1;
+        }
+        Object yProperty = pidMap
                 .get(ContainerDataSeries.SERIES_DEFAULT_ATTRIBUTE2);
-
+        if(yProperty == null) {
+            yProperty = ContainerDataSeries.SERIES_DEFAULT_ATTRIBUTE2;
+        }
         Container container = src.getVaadinContainer();
+        if(mode != Mode.OBJECT) {
+            if(container.getContainerPropertyIds().contains(xProperty)) {
+                mode = Mode.XY;
+            } else {
+                mode = Mode.ONLY_Y;
+            }
+        }
 
         for (Object iid : container.getItemIds()) {
             Item item = container.getItem(iid);
-            boolean hasFirstDefault = defaultId1 != null
-                    && item.getItemProperty(defaultId1) != null;
-            boolean hasSecondDefault = defaultId2 != null
-                    && item.getItemProperty(defaultId2) != null;
+            switch (mode) {
+            case ONLY_Y:
+                addAnonymousTypedValue(
+                        data,
+                        item.getItemProperty(yProperty));
+                break;
+            case XY:
+                JsonArray entryArray = new JsonArray();
+                data.add(entryArray);
+                addAnonymousTypedValue(entryArray, item.getItemProperty(xProperty));
+                addAnonymousTypedValue(entryArray, item.getItemProperty(yProperty));
+                break;
 
-            if (((hasFirstDefault && !hasSecondDefault || !hasFirstDefault
-                    && hasSecondDefault) && pidMap.keySet().size() == 1)
-                    || (hasFirstDefault && hasSecondDefault && pidMap.keySet()
-                            .size() == 2)
-                    || (nonDefaultIdsAreNull(item, container, pidMap))) {
-                // render simplified since there is only default ids
-
-                if (pidMap.keySet().size() == 1) {
-                    addAnonymousTypedValue(
-                            data,
-                            item.getItemProperty(pidMap.keySet().iterator()
-                                    .next()));
-                } else {
-                    JsonArray entryArray = new JsonArray();
-                    data.add(entryArray);
-
-                    Iterator<String> iter = pidMap.keySet().iterator();
-                    while (iter.hasNext()) {
-                        addAnonymousTypedValue(entryArray,
-                                item.getItemProperty(iter.next()));
-                    }
-                }
-
-            } else {
+            default:
                 // render as json object
                 JsonObject entryObject = new JsonObject();
-                if (hasFirstDefault) {
+                Property x = item.getItemProperty(xProperty);
+                if (x != null) {
                     addNamedAndTypedValue(entryObject,
                             ContainerDataSeries.SERIES_DEFAULT_ATTRIBUTE1,
-                            item.getItemProperty(defaultId1));
+                            x);
                 }
-                if (hasSecondDefault) {
+                Property y = item.getItemProperty(yProperty);
+                if (y != null) {
                     addNamedAndTypedValue(entryObject,
                             ContainerDataSeries.SERIES_DEFAULT_ATTRIBUTE2,
-                            item.getItemProperty(defaultId2));
+                            y);
                 }
 
                 Iterator<String> iter = pidMap.keySet().iterator();
                 while (iter.hasNext()) {
                     String name = iter.next();
                     Object id = pidMap.get(name);
-                    if (!id.equals(defaultId1) && !id.equals(defaultId2)) {
+                    if (!id.equals(xProperty) && !id.equals(yProperty)) {
                         addNamedAndTypedValue(entryObject, name,
                                 item.getItemProperty(id));
                     }
                 }
                 data.add(entryObject);
-
+                
+                break;
             }
-
         }
         return series;
     }
 
-    private boolean nonDefaultIdsAreNull(Item item, Container container,
-            Map<String, Object> pidMap) {
-        Object defaultId1 = pidMap
-                .get(ContainerDataSeries.SERIES_DEFAULT_ATTRIBUTE1);
-        Object defaultId2 = pidMap
-                .get(ContainerDataSeries.SERIES_DEFAULT_ATTRIBUTE2);
-        for (Object propertyId : container.getContainerPropertyIds()) {
-            if (!propertyId.equals(defaultId1)
-                    && !propertyId.equals(defaultId2)) {
-                if (item.getItemProperty(propertyId) != null
-                        && item.getItemProperty(propertyId).getValue() != null) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
     private void addAnonymousTypedValue(JsonArray data, Property<?> itemProperty) {
-        if (itemProperty != null && itemProperty.getValue() != null) {
+        Object value = itemProperty.getValue();
+        if (itemProperty != null && value != null) {
             if (Number.class.isAssignableFrom(itemProperty.getType())) {
                 Number pNum = (Number) itemProperty.getValue();
                 data.add(new JsonPrimitive(pNum));
             } else if (Boolean.class.isAssignableFrom(itemProperty.getType())) {
                 Boolean pBool = (Boolean) itemProperty.getValue();
                 data.add(new JsonPrimitive(pBool));
+            } else if (Date.class.isAssignableFrom(itemProperty.getType())) {
+                Date date = (Date) itemProperty.getValue();
+                data.add(new JsonPrimitive(date.getTime()));
             } else {
                 String pStr = itemProperty.getValue().toString();
                 data.add(new JsonPrimitive(pStr));
