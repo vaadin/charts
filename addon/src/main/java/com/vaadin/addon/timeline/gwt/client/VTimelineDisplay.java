@@ -1822,42 +1822,6 @@ public class VTimelineDisplay extends VTimelineCanvasComponent implements
             return;
         }
 
-        // WTF is this loop ?? MT 23.2.2013
-//        for (int g = 0; g < currentGraphs.size(); g++) {
-//            Graph graph = currentGraphs.get(g);
-//
-//            // Ensure we have some points to search in
-//            if (!widget.graphIsVisible(g) || graph.getPoints().size() == 0) {
-//                continue;
-//            }
-//
-//            // Iterate through all points and find the closes one
-//            float distance = Float.MAX_VALUE;
-//            for (Point p : graph.getPoints()) {
-//
-//                // If point is not visible on canvas, ignore it
-//                if (p.x < 0 || p.x > canvas.getWidth()) {
-//                    continue;
-//                }
-//
-//                // Get the diff between the mouse pointer and the point on the
-//                // canvas
-//                float diff = Math.abs(x - p.x);
-//                if (currentMode == PlotMode.BAR) {
-//                    // Barchart renders to the left of the point so we have to
-//                    // adjust
-//                    diff = Math.abs(x - (p.x - p.width / 2f));
-//                }
-//
-//                if (diff < distance) {
-//                    distance = diff;
-//
-//                }
-//
-//            }
-//
-//        }
-
         for (int g = 0; g < currentGraphs.size(); g++) {
             Graph graph = currentGraphs.get(g);
 
