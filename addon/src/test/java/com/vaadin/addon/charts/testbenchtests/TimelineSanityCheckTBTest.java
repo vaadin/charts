@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts.testbenchtests;
 
+import com.vaadin.addon.charts.demoandtestapp.timeline.SanityCheck;
+
 
 public class TimelineSanityCheckTBTest extends
         AbstractSimpleScreenShotTestBenchTest {
@@ -12,7 +14,7 @@ public class TimelineSanityCheckTBTest extends
 
     @Override
     protected String getTestViewName() {
-        return "SanityCheck";
+        return SanityCheck.class.getSimpleName();
     }
 
     @Override
