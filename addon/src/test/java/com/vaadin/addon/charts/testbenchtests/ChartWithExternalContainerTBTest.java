@@ -1,13 +1,13 @@
 package com.vaadin.addon.charts.testbenchtests;
 
-import com.vaadin.addon.charts.demoandtestapp.container.ContainerSeriesWithSpline;
+import com.vaadin.addon.charts.demoandtestapp.container.ChartWithExternalContainer;
 
 
 public class ChartWithExternalContainerTBTest extends AbstractSimpleScreenShotTestBenchTest {
 
     @Override
     protected String getTestViewName() {
-        return ContainerSeriesWithSpline.class.getName();
+        return ChartWithExternalContainer.class.getName();
     }
     
 }
