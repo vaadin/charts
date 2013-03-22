@@ -5,6 +5,7 @@ import java.util.Date;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.demoandtestapp.SkipFromDemo;
 import com.vaadin.addon.charts.model.AxisType;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
@@ -14,6 +15,7 @@ import com.vaadin.data.Item;
 import com.vaadin.data.util.IndexedContainer;
 import com.vaadin.ui.Component;
 
+@SkipFromDemo
 public class ContainerSeriesWithSpline extends AbstractVaadinChartExample {
 
     @Override
@@ -58,8 +60,6 @@ public class ContainerSeriesWithSpline extends AbstractVaadinChartExample {
                                         
         // Add points to series
         config.addSeries(cds); 
-        
-        System.out.println(config);
         
         // Create chart and render
         Chart chart = new Chart();              
