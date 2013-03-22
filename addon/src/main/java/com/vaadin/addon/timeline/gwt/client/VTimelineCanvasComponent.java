@@ -267,7 +267,8 @@ public abstract class VTimelineCanvasComponent extends Widget {
                          * Special behaviour for a graph with one point since we
                          * cannot calculate the width for it
                          */
-                        p = new Point(Math.round(x), Math.round(y), graph, 1, value);
+                        p = new Point(Math.round(x), Math.round(y), graph, 1,
+                                value);
                         lastWidth = 1;
 
                     } else if (i == 0) {
@@ -281,17 +282,26 @@ public abstract class VTimelineCanvasComponent extends Widget {
                                 lastWidth, value);
 
                     } else {
-//                        /*
-//                         * Other points calculate backwards
-//                         */
-//                        int diff = Math.round(x - lastX);
-//                        if (diff > 2) {
-//                            lastWidth = diff;
+                        /*
+                         * Other points calculate backwards
+                         */
+                        if (getPlotMode() == PlotMode.BAR) {
+                            // MT 22.3.2013: I have no idea why some points are
+                            // ignored. Without this bars get totally messed,
+                            // but without essential points may be dropped in
+                            // lines (no 1 priority)
+                            int diff = Math.round(x - lastX);
+                            if (diff > 2) {
+                                lastWidth = diff;
+                                p = new Point(Math.round(x), Math.round(y),
+                                        graph, lastWidth, value);
+                            } else {
+                                p = null;
+                            }
+                        } else {
                             p = new Point(Math.round(x), Math.round(y), graph,
                                     lastWidth, value);
-//                        } else {
-//                            p = null;
-//                        }
+                        }
 
                     }
                     if (p != null) {
