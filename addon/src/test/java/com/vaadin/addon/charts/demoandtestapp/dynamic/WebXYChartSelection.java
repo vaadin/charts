@@ -44,7 +44,7 @@ public class WebXYChartSelection extends AbstractVaadinChartExample {
         series.setPlotOptions(scatterOptions);
         series.setName("Original");
 
-        Random random = new Random();
+        Random random = new Random(0);
 
         for (int i = 0; i < 20; i++) {
             DataSeriesItem dsi = new DataSeriesItem();
