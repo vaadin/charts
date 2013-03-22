@@ -29,10 +29,12 @@ public class Tooltip extends AbstractConfigurationObject {
     private Boolean shared;
     private Boolean crosshairs;
     private String headerFormat;
+    private String footerFormat;
     private Boolean enabled;
     private String valueSuffix;
     private String valuePrefix;
     private String xDateFormat;
+    private Boolean useHTML;
 
     /**
      * Sets a JavaScript function to format the text of the tooltip. Setting the
@@ -276,6 +278,47 @@ public class Tooltip extends AbstractConfigurationObject {
      */
     public void setxDateFormat(String xDateFormat) {
         this.xDateFormat = xDateFormat;
+    }
+
+    /**
+     * @see #setUseHTML(Boolean)
+     * @return true if "html mode" should be used for displaying the Tooltip
+     */
+    public Boolean getUseHTML() {
+        return useHTML;
+    }
+
+    /**
+     * Use HTML to render the contents of the tooltip instead of SVG. SVG
+     * tooltips support a smaller subset of html tags. Using HTML allows
+     * advanced formatting like tables and images in the tooltip. It is also
+     * recommended for rtl languages as it works around rtl bugs in early
+     * Firefox. Defaults to false.
+     * 
+     * @param useHTML
+     */
+    public void setUseHTML(Boolean useHTML) {
+        this.useHTML = useHTML;
+    }
+
+    /**
+     * @return the last format string to append to tooltips
+     * @see #setPointFormat(String)
+     */
+    public String getFooterFormat() {
+        return footerFormat;
+    }
+
+    /**
+     * Sets the string to append to the tooltip format.
+     * 
+     * @see #setPointFormat(String)
+     * @see #setHeaderFormat(String)
+     * 
+     * @param footerFormat
+     */
+    public void setFooterFormat(String footerFormat) {
+        this.footerFormat = footerFormat;
     }
 
 }
