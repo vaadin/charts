@@ -95,9 +95,9 @@ public class Chart extends AbstractComponent {
 
         @Override
         public void onSelection(final double selectionStart,
-                final double selectionEnd) {
+                final double selectionEnd, final double valueStart, final double valueEnd) {
             final ChartSelectionEvent selectionEvent = new ChartSelectionEvent(
-                    Chart.this, selectionStart, selectionEnd);
+                    Chart.this, selectionStart, selectionEnd, valueStart, valueEnd);
             fireEvent(selectionEvent);
         }
 

@@ -130,7 +130,7 @@ public class ChartConnector extends AbstractComponentConnector {
                 @Override
                 public void onSelection(ChartSelectionEvent event) {
                     rpc.onSelection(event.getSelectionStart(),
-                            event.getSelectionEnd());
+                            event.getSelectionEnd(), event.getValueStart(), event.getValueEnd());
                     event.preventDefault();
                 }
             });

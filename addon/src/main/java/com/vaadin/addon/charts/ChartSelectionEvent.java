@@ -19,12 +19,14 @@ package com.vaadin.addon.charts;
 
 /**
  * The ChartSelectionEvent class stores information on selection events on the
- * chart's area. Only selections along the X axis are supported.
+ * chart's area.
  */
 public class ChartSelectionEvent extends com.vaadin.ui.Component.Event {
 
     private final Double selectionStart;
     private final Double selectionEnd;
+    private final Double valueStart; 
+    private final Double valueEnd; 
 
     /**
      * Construct a ChartSelectionEvent
@@ -32,12 +34,16 @@ public class ChartSelectionEvent extends com.vaadin.ui.Component.Event {
      * @param source
      * @param selectionStart
      * @param selectionEnd
+     * @param valueStart
+     * @param valueEnd
      */
     public ChartSelectionEvent(Chart source, double selectionStart,
-            double selectionEnd) {
+            double selectionEnd, double valueStart, double valueEnd) {
         super(source);
         this.selectionStart = selectionStart;
         this.selectionEnd = selectionEnd;
+        this.valueStart = valueStart; 
+        this.valueEnd = valueEnd;
     }
 
     /**
@@ -53,4 +59,18 @@ public class ChartSelectionEvent extends com.vaadin.ui.Component.Event {
     public Double getSelectionEnd() {
         return selectionEnd;
     }
+    
+    /**
+     * @return the Y coordinate where the selection started.
+     */
+    public Double getValueStart() {
+		return valueStart;
+	}
+    
+    /**
+     * @return the Y coordinate where the selection ended.
+     */
+    public Double getValueEnd() {
+		return valueEnd;
+	}
 }
