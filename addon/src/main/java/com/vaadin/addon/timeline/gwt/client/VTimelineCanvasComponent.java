@@ -281,17 +281,17 @@ public abstract class VTimelineCanvasComponent extends Widget {
                                 lastWidth, value);
 
                     } else {
-                        /*
-                         * Other points calculate backwards
-                         */
-                        int diff = Math.round(x - lastX);
-                        if (diff > 2) {
-                            lastWidth = diff;
+//                        /*
+//                         * Other points calculate backwards
+//                         */
+//                        int diff = Math.round(x - lastX);
+//                        if (diff > 2) {
+//                            lastWidth = diff;
                             p = new Point(Math.round(x), Math.round(y), graph,
                                     lastWidth, value);
-                        } else {
-                            p = null;
-                        }
+//                        } else {
+//                            p = null;
+//                        }
 
                     }
                     if (p != null) {

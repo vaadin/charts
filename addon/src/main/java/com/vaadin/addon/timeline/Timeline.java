@@ -3558,29 +3558,199 @@ public class Timeline extends AbstractComponent implements LegacyComponent {
         return evnts;
     }
 
-    /**
-     * Serializes the data points into provided values and items lists.
-     * 
-     * @param start
-     *            The start date when the date range starts
-     * @param end
-     *            The end date when the date range ends
-     * @param startIndex
-     *            The index of the first date in the container
-     * @param endIndex
-     *            The index of the last date int the container
-     * @param density
-     *            The density of the points
-     * @param cont
-     *            The container where the search should be made
-     * @param values
-     *            The values list where the serialized values should be put
-     * @param items
-     *            The items list where found items should be put
-     */
+    public enum ReducingAlgorithm {
+
+        /**
+         * The legacy method. Fast but may drop essential details from the
+         * graph.
+         */
+        SIMPLE,
+        /**
+         * Makes better looking charts, but consumes more CPU.
+         */
+        ADVANCED
+    }
+
+    private ReducingAlgorithm reducingAlgorithm = ReducingAlgorithm.SIMPLE;
+
     private void serializeDataPointsTostrings(Date start, Date end,
             int startIndex, int endIndex, int density, Indexed cont,
             List<String> values, List<Item> items) {
+        switch (reducingAlgorithm) {
+        case ADVANCED:
+            reduceModifiedRDP(startIndex, endIndex, density, cont, values,
+                    items);
+            break;
+        case SIMPLE:
+            reduceLegacy(startIndex, endIndex, density, cont, values, items);
+            break;
+        }
+    }
+
+    private void reduceModifiedRDP(int startIndex, int endIndex, int density,
+            Indexed cont, List<String> values, List<Item> items) {
+        startIndex -= offscreenPoints;
+        if (startIndex < 0) {
+            startIndex = 0;
+        }
+
+        int containerSize = cont.size();
+        endIndex += offscreenPoints;
+        if (endIndex > containerSize) {
+            endIndex = containerSize - 1;
+        }
+
+        double min = 0, max = 0;
+
+        List<DataPoint> points = new ArrayList<Timeline.DataPoint>();
+
+        // Get the points
+        for (int i = startIndex; i <= endIndex; i++) {
+            Object id = cont.getIdByIndex(i);
+            Item item = cont.getItem(id);
+            Date date = (Date) item.getItemProperty(
+                    getGraphTimestampPropertyId(cont)).getValue();
+
+            DataPoint dataPoint = new DataPoint();
+            dataPoint.value = (Number) item.getItemProperty(
+                    getGraphValueProperyId(cont)).getValue();
+            dataPoint.item = item;
+            double doubleValue = dataPoint.value.doubleValue();
+            if (i == startIndex) {
+                min = max = doubleValue;
+            } else {
+                if (doubleValue > max) {
+                    max = doubleValue;
+                } else if (doubleValue < min) {
+                    min = doubleValue;
+                }
+            }
+            dataPoint.ts = date.getTime();
+            points.add(dataPoint);
+        }
+        int s = points.size();
+        if (s > 1000) {
+            long deltaX = points.get(points.size() - 1).ts - points.get(0).ts;
+            double xyRatio = deltaX / (max - min);
+
+            // rough estimate for sane epsilon (1px)
+            double epsilon = (deltaX) / 1000;
+
+            points = ramerDouglasPeucker(points, epsilon, xyRatio);
+        }
+
+        // Cacl stuff for X that is sent to client, see DataPoint
+        Long d = null;
+        DataPoint previous = null;
+        for (DataPoint point : points) {
+            long delta = -1;
+            if (previous == null) {
+                point.d = point.ts;
+            } else {
+                delta = point.ts - previous.ts;
+                if (!d.equals(delta)) {
+                    point.d = delta;
+                    d = delta;
+                }
+            }
+            d = delta;
+            values.add(point.toString());
+            items.add(point.item);
+            previous = point;
+        }
+    }
+
+    /**
+     * 
+     * @see http://en.wikipedia.org/wiki/Ramer–Douglas–Peucker_algorithm
+     * 
+     * @param points
+     * @param epsilon
+     * @param xyRatio
+     *            y values are multiplied with this to make distance calculation
+     *            in algorithm sane
+     * @return
+     */
+    private static List<DataPoint> ramerDouglasPeucker(List<DataPoint> points,
+            double epsilon, final double xyRatio) {
+        // Find the point with the maximum distance
+        double dmax = 0;
+        int index = 0;
+        DataPoint start = points.get(0);
+        DataPoint end = points.get(points.size() - 1);
+
+        for (int i = 1; i < points.size() - 1; i++) {
+            DataPoint point = points.get(i);
+            double d = pointRelevance(start, end, point, xyRatio);
+            if (d > dmax) {
+                index = i;
+                dmax = d;
+            }
+        }
+
+        ArrayList<DataPoint> reduced = new ArrayList<DataPoint>();
+        if (dmax >= epsilon) {
+            // max distance is greater than epsilon, keep the most relevant
+            // point and recursively simplify
+            List<DataPoint> startToRelevant = ramerDouglasPeucker(
+                    points.subList(0, index + 1), epsilon, xyRatio);
+            reduced.addAll(startToRelevant);
+            List<DataPoint> relevantToEnd = ramerDouglasPeucker(
+                    points.subList(index, points.size()), epsilon, xyRatio);
+            reduced.addAll(relevantToEnd.subList(1, relevantToEnd.size()));
+        } else {
+            // no relevant points, drop all but ends
+            reduced.add(start);
+            reduced.add(end);
+        }
+
+        return reduced;
+    }
+
+    private static double pointRelevance(DataPoint start, DataPoint end,
+            DataPoint point, final double xyRatio) {
+        double bY = end.value.doubleValue() * xyRatio;
+        double aY = start.value.doubleValue() * xyRatio;
+        double pY = point.value.doubleValue() * xyRatio;
+        double normalLength = Math.hypot(end.ts - start.ts, bY - aY);
+
+        /*
+         * Modification to ramerDouglasPeucker algorithm.
+         * 
+         * Instead of just distance from line, we promote "points" far from line
+         * ends. This will add some non relevant x points from flat areas.
+         * Otherwise this kind of graphs might get just like 5 points or
+         * something -> hovering wouldn't provide any info.
+         */
+        double xDistanceFromStart = point.ts - start.ts;
+        double xDistanceFromEnd = end.ts - point.ts;
+        double xDistance = Math.min(xDistanceFromStart, xDistanceFromEnd) / 100;
+
+        double distanceFromLine = Math.abs((point.ts - start.ts) * (bY - aY)
+                - (pY - aY) * (end.ts - start.ts))
+                / normalLength;
+        return Math.max(xDistance, distanceFromLine);
+    }
+
+    private static class DataPoint {
+        public long d = -1;
+        public Item item;
+        long ts;
+        Number value;
+
+        @Override
+        public String toString() {
+            // values in form of VALUE_X, where X (d fieldin this helper object)
+            // is timestamp (for first
+            // point), difference to previous or empty if difference is same as
+            // with previous point.
+            return value + (d == -1 ? "" : "_" + d);
+        }
+
+    }
+
+    private void reduceLegacy(int startIndex, int endIndex, int density,
+            Indexed cont, List<String> values, List<Item> items) {
         Date lastDate = null;
         // Date firstDate = null;
         Long lastIncrement = null;
@@ -4048,5 +4218,27 @@ public class Timeline extends AbstractComponent implements LegacyComponent {
      */
     public DuplicateHandler getDuplicateHandler() {
         return duplicateHandler;
+    }
+
+    /**
+     * @return current point reducing algorithm
+     * @see #setReducingAlgorithm(ReducingAlgorithm)
+     */
+    public ReducingAlgorithm getReducingAlgorithm() {
+        return reducingAlgorithm;
+    }
+
+    /**
+     * Timeline optimizes the data set sent to client when large data sets are
+     * used. This method can be used choose from available algorithms. The
+     * default is SIMPLE, which just pics every n:th point. ADVANCED more
+     * intelligently maintain the data, but uses more CPU power and memory on
+     * the server. If you have relevant peaks in you data, the ADVANCED is
+     * highly encouraged.
+     * 
+     * @param reducingAlgorithm
+     */
+    public void setReducingAlgorithm(ReducingAlgorithm reducingAlgorithm) {
+        this.reducingAlgorithm = reducingAlgorithm;
     }
 }
