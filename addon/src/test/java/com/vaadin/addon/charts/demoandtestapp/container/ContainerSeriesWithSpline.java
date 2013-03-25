@@ -31,6 +31,9 @@ public class ContainerSeriesWithSpline extends AbstractVaadinChartExample {
         indexedContainer.addContainerProperty("Date", Date.class, new Date());
         
         Calendar cal = Calendar.getInstance();
+        cal.set(2013, 2, 22, 12, 00);
+        cal.set(Calendar.MILLISECOND, 0);
+        cal.set(Calendar.SECOND, 0);
         
         Item item = indexedContainer.addItem("p1");
         item.getItemProperty("Date").setValue(cal.getTime());
