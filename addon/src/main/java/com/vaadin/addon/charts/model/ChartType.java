@@ -38,6 +38,7 @@ public class ChartType implements ChartEnum {
     public static final ChartType AREARANGE = new ChartType("arearange");
     public static final ChartType COLUMNRANGE = new ChartType("columnrange");
     public static final ChartType AREASPLINERANGE = new ChartType("areasplinerange");
+    public static final ChartType BOXPLOT = new ChartType("boxplot");
     
     private final String type;
 

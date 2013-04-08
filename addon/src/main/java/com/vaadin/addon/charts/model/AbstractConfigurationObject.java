@@ -49,7 +49,7 @@ public abstract class AbstractConfigurationObject implements Serializable {
     public static GsonBuilder createGsonBuilder() {
         GsonBuilder builder = new GsonBuilder();
         // uncomment if you wish to debug generated json
-        // builder.setPrettyPrinting();
+         builder.setPrettyPrinting();
         builder.registerTypeHierarchyAdapter(ChartEnum.class,
                 new ChartEnumSerializer());
         builder.registerTypeHierarchyAdapter(SolidColor.class,

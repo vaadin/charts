@@ -29,6 +29,7 @@ public class PlotLine extends AbstractConfigurationObject {
     private Number value;
     private Number width;
     private Color color;
+    private PlotBandLabel label;
 
     public PlotLine() {
         super();
@@ -95,6 +96,23 @@ public class PlotLine extends AbstractConfigurationObject {
      */
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    /**
+     * see {@link #setLabel(PlotBandLabel)}
+     * @return
+     */
+    public PlotBandLabel getLabel() {
+        return label;
+    }
+
+    /**
+     * Sets the label displayed for plot line. Default is null.
+     * 
+     * @param label
+     */
+    public void setLabel(PlotBandLabel label) {
+        this.label = label;
     }
 
 }

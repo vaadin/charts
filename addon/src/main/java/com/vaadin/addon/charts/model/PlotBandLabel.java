@@ -23,6 +23,7 @@ import com.vaadin.addon.charts.model.style.Style;
  * Text labels for the plot bands
  */
 public class PlotBandLabel extends AbstractConfigurationObject {
+    private HorizontalAlign align;
     private String text;
     private Style style;
 
@@ -65,5 +66,22 @@ public class PlotBandLabel extends AbstractConfigurationObject {
      */
     public Style getStyle() {
         return style;
+    }
+
+    /**
+     * @see #setAlign(HorizontalAlign)
+     */
+    public HorizontalAlign getAlign() {
+        return align;
+    }
+
+    /**
+     * Sets horizontal alignment of the label. Can be one of LEFT, CENTER or
+     * RIGHT. Defaults to center.
+     * 
+     * @param align
+     */
+    public void setAlign(HorizontalAlign align) {
+        this.align = align;
     }
 }
