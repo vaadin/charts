@@ -41,6 +41,7 @@ public class ChartType implements ChartEnum {
     public static final ChartType BOXPLOT = new ChartType("boxplot");
     public static final ChartType ERRORBAR = new ChartType("errorbar");
     public static final ChartType BUBBLE = new ChartType("bubble");
+    public static final ChartType FUNNEL = new ChartType("funnel");
     
     private final String type;
 

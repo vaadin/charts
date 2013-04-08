@@ -35,8 +35,10 @@ public class Labels extends AbstractConfigurationObject {
     private Number x;
     private Number y;
     private String _fn_formatter;
+    private String format;
     private Color color;
     private Color connectorColor;
+    private Boolean softConnector;
     private Number distance;
     private Color backgroundColor;
 
@@ -305,6 +307,47 @@ public class Labels extends AbstractConfigurationObject {
      */
     public Color getBackgroundColor() {
         return backgroundColor;
+    }
+
+    /**
+     * @see #setFormat(String)
+     * @return the format
+     */
+    public String getFormat() {
+        return format;
+    }
+
+    /**
+     * A format string for the data label. Available variables are the same as
+     * for formatter. Defaults to {y}.
+     * 
+     * @see #setFormatter(String)
+     * 
+     * @param format
+     *            the format to set
+     */
+    public void setFormat(String format) {
+        this.format = format;
+    }
+
+    /**
+     * @see #setSoftConnector(Boolean)
+     * 
+     * @return false if connectors don't use soft arc
+     */
+    public Boolean getSoftConnector() {
+        return softConnector;
+    }
+
+    /**
+     * Sets whether to render the connector as a soft arc or a line with sharp
+     * break. Defaults to true.
+     * 
+     * @param softConnector
+     *            the softConnector flag to set
+     */
+    public void setSoftConnector(Boolean softConnector) {
+        this.softConnector = softConnector;
     }
 
 }
