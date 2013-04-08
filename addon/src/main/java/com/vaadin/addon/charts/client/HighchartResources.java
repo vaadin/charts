@@ -46,4 +46,7 @@ public interface HighchartResources extends ClientBundle {
 
     @Source("highcharts-more.js")
     TextResource highchartsMore();
+
+    @Source("funnel.js")
+    TextResource funnel();
 }

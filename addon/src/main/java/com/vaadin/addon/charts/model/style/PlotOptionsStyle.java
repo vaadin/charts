@@ -20,6 +20,9 @@ package com.vaadin.addon.charts.model.style;
 import com.vaadin.addon.charts.model.AbstractConfigurationObject;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.PlotOptionsArea;
+import com.vaadin.addon.charts.model.PlotOptionsAreaRange;
+import com.vaadin.addon.charts.model.PlotOptionsAreaSpline;
+import com.vaadin.addon.charts.model.PlotOptionsAreaSplineRange;
 import com.vaadin.addon.charts.model.PlotOptionsBar;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
@@ -34,6 +37,9 @@ import com.vaadin.addon.charts.model.PlotOptionsSpline;
 public class PlotOptionsStyle extends AbstractConfigurationObject {
     private PlotOptionsBar bar = new PlotOptionsBar();
     private PlotOptionsArea area = new PlotOptionsArea();
+    private PlotOptionsAreaRange arearange = new PlotOptionsAreaRange();
+    private PlotOptionsAreaSpline areaspline = new PlotOptionsAreaSpline();
+    private PlotOptionsAreaSplineRange areasplinerange = new PlotOptionsAreaSplineRange();
     private PlotOptionsPie pie = new PlotOptionsPie();
     private PlotOptionsLine line = new PlotOptionsLine();
     private PlotOptionsColumn column = new PlotOptionsColumn();
@@ -150,6 +156,30 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
      */
     public void setSeries(PlotOptionsSeries series) {
         this.series = series;
+    }
+
+    public PlotOptionsAreaRange getArearange() {
+        return arearange;
+    }
+
+    public void setArearange(PlotOptionsAreaRange arearange) {
+        this.arearange = arearange;
+    }
+
+    public PlotOptionsAreaSplineRange getAreasplinerange() {
+        return areasplinerange;
+    }
+
+    public void setAreasplinerange(PlotOptionsAreaSplineRange areasplinerange) {
+        this.areasplinerange = areasplinerange;
+    }
+
+    public PlotOptionsAreaSpline getAreaspline() {
+        return areaspline;
+    }
+
+    public void setAreaspline(PlotOptionsAreaSpline areaspline) {
+        this.areaspline = areaspline;
     }
 
 }

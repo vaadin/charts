@@ -92,8 +92,22 @@ public class GrayTheme extends HighChartsDefaultTheme {
         getTooltip().setBorderWidth(0);
         getTooltip().getStyle().setColor(new SolidColor("#FFF"));
 
+        
+        /* Shadows on by default, off in range stuff */
+        getPlotOptions().getArearange().setShadow(false);
+        getPlotOptions().getAreasplinerange().setShadow(false);
+        
+        getPlotOptions().getLine().setShadow(true);
+        getPlotOptions().getSpline().setShadow(true);
+        getPlotOptions().getBar().setShadow(true);
+        getPlotOptions().getColumn().setShadow(true);
+        getPlotOptions().getArea().setShadow(true);
+        getPlotOptions().getPie().setShadow(true);
+
         // TODO: Add missing parts to theme
         // URL: http://www.highcharts.com/demo/bar-negative-stack/gray
+        
+        
     }
 
 }

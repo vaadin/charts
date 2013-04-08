@@ -107,15 +107,27 @@ Highcharts.setOptions({
 		}
 	},
 	"plotOptions" : {
-		"bar" : {},
-		"area" : {},
-		"pie" : {},
-		"line" : {
-			"lineWidth" : 1
+		"series" : {},
+		"bar" : {
+			"shadow" : true
 		},
-		"column" : {},
-		"spline" : {},
-		"series" : {}
+		"area" : {"shadow" : true},
+		"arearange" : { "shadow" : false},
+		"areaspline" : { "shadow" : true},
+		"areasplinerange" : { "shadow" : false},
+		"pie" : {
+			"shadow" : true
+		},
+		"line" : {
+			"lineWidth" : 1,
+			"shadow" : true
+		},
+		"column" : {
+			"shadow" : true
+		},
+		"spline" : {
+			"shadow" : true
+		}
 	},
 	"credits" : {
 		"text" : "Vaadin Charts",

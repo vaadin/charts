@@ -36,11 +36,11 @@ public class HighChartsDefaultTheme extends Theme {
 
     public HighChartsDefaultTheme() {
 
-        setColors(new SolidColor("#4572A7"), new SolidColor("#AA4643"),
-                new SolidColor("#89A54E"), new SolidColor("#80699B"),
-                new SolidColor("#3D96AE"), new SolidColor("#DB843D"),
-                new SolidColor("#92A8CD"), new SolidColor("#A47D7C"),
-                new SolidColor("#B5CA92"));
+        setColors(new SolidColor("#2f7ed8"), new SolidColor("#0d233a"),
+                new SolidColor("#8bbc21"), new SolidColor("#910000"),
+                new SolidColor("#1aadce"), new SolidColor("#492970"),
+                new SolidColor("#f28f43"), new SolidColor("#77a1e5"),
+                new SolidColor("#c42525"), new SolidColor("#a6c96a"));
 
         Style style = new Style();
         style.setFontFamily(DEFAULT_FONT);
@@ -91,6 +91,17 @@ public class HighChartsDefaultTheme extends Theme {
 
         getLegend().setItemHiddenStyle(new Style());
         getLegend().getItemHiddenStyle().setColor(new SolidColor("#CCC"));
+        
+        getPlotOptions().getArearange().setShadow(false);
+        getPlotOptions().getAreasplinerange().setShadow(false);
+        
+        getPlotOptions().getLine().setShadow(false);
+        getPlotOptions().getSpline().setShadow(false);
+        getPlotOptions().getBar().setShadow(false);
+        getPlotOptions().getColumn().setShadow(false);
+        getPlotOptions().getArea().setShadow(false);
+        getPlotOptions().getPie().setShadow(false);
+
     }
 
     protected void setAxisDefaults(AxisStyle style) {
