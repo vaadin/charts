@@ -60,6 +60,11 @@ public class ChangingThemes extends AbstractVaadinChartExample {
         gray.setId("gray-button");
         buttons.addComponent(gray);
 
+        Button highchart = new Button("Highcharts", new ThemeChangeListener(
+                HighChartsDefaultTheme.class));
+        highchart.setId("hs-button");
+        buttons.addComponent(highchart);
+
         chart = PercentageArea.createNewChart();
         chart.setWidth("100%");
         chart.setHeight("400px");
