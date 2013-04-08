@@ -33,7 +33,7 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
     private boolean visible = true;
 
     private transient Configuration configuration;
-    
+
     private Number xAxis;
     private Number yAxis;
 
@@ -150,14 +150,14 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
         }
 
     }
-    
+
     /**
      * @return true if the series is displayed on the client
      */
     public boolean isVisible() {
         return visible;
     }
-        
+
     /**
      * @see #setxAxis(Number)
      * @return The index of the X-axis that this data series is bound to.
@@ -200,5 +200,29 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
         this.yAxis = yAxis;
     }
 
+    /**
+     * * When using dual or multiple Y-axes, this number defines which Y-axis
+     * the particular series is connected to.
+     * 
+     * <p>
+     * Note, that this method cannot be used until series and axis are both
+     * attached to same configuration object.
+     * 
+     * @see #setyAxis(Number)
+     * 
+     * @param secondaryAxis
+     */
+    public void setyAxis(YAxis secondaryAxis) {
+        if (configuration == null) {
+            throw new IllegalStateException(
+                    "This method must be called only when series is attached to configuration options");
+        }
+        int indexOf = configuration.getyAxes().getAxes().indexOf(secondaryAxis);
+        if (indexOf == -1) {
+            throw new IllegalStateException(
+                    "This method can only be used if axis is already attached to the same configuration object");
+        }
+        setyAxis(indexOf);
+    }
 
 }

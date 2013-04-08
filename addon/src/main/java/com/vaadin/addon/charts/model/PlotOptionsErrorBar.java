@@ -2,12 +2,11 @@ package com.vaadin.addon.charts.model;
 
 import com.vaadin.addon.charts.model.style.Color;
 
-public abstract class PlotOptionsErrorBar extends AbstractLinePlotOptions {
+public class PlotOptionsErrorBar extends AbstractLinePlotOptions {
 
     @Override
     public ChartType getChartType() {
-        // TODO type
-        return null;
+        return ChartType.ERRORBAR;
     }
 
     /**

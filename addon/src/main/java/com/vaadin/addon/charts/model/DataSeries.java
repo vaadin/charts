@@ -59,6 +59,14 @@ public class DataSeries extends AbstractSeries {
     }
 
     /**
+     * Constructs a new DataSeries instance with the given name.
+     * 
+     */
+    public DataSeries(String name) {
+        setName(name);
+    }
+
+    /**
      * Constructs a new DataSeries instance with the given items.
      * 
      * @param items
