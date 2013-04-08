@@ -42,6 +42,7 @@ public class ChartType implements ChartEnum {
     public static final ChartType ERRORBAR = new ChartType("errorbar");
     public static final ChartType BUBBLE = new ChartType("bubble");
     public static final ChartType FUNNEL = new ChartType("funnel");
+    public static final ChartType WATERFALL = new ChartType("waterfall");
     
     private final String type;
 

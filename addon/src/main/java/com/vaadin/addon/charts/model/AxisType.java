@@ -18,13 +18,13 @@ package com.vaadin.addon.charts.model;
  */
 
 /**
- * Enum representing different axis types. Can be one of LINEAR, LOGARITHMIC or
+ * Enum representing different axis types. Can be one of LINEAR, LOGARITHMIC, CATEGORY or
  * DATETIME. In a DATETIME axis, the numbers are given in milliseconds, and tick
  * marks are placed on appropriate values like full hours or days. The default
  * for new axes is LINEAR.
  */
 public enum AxisType implements ChartEnum {
-    LINEAR("linear"), LOGARITHMIC("logarithmic"), DATETIME("datetime");
+    LINEAR("linear"), LOGARITHMIC("logarithmic"), DATETIME("datetime"), CATEGORY("category");
 
     private String type;
 
