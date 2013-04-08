@@ -2,6 +2,7 @@ package com.vaadin.addon.charts.model;
 
 import java.util.Date;
 
+import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.util.Util;
 
 public abstract class AbstractPointPlotOptions extends
@@ -14,6 +15,8 @@ public abstract class AbstractPointPlotOptions extends
     private Number pointInterval;
     private Number pointRange;
     private Number pointWidth;
+    private Color negativeColor;
+    private Number threshold;
 
     /**
      * Sets the start value on the X-axis.
@@ -154,6 +157,47 @@ public abstract class AbstractPointPlotOptions extends
      */
     public void setPointWidth(Number pointWidth) {
         this.pointWidth = pointWidth;
+    }
+
+    /**
+     * @see #setNegativeColor(Color)
+     * 
+     * @return the negative color
+     */
+    public Color getNegativeColor() {
+        return negativeColor;
+    }
+
+    /**
+     * Sets the color for the parts of the graph or points that are below the
+     * threshold defined by {@link #setThreshold(Number)}. Defaults to null.
+     * 
+     * @param negativeColor
+     *            the color to use below threshold
+     */
+    public void setNegativeColor(Color negativeColor) {
+        this.negativeColor = negativeColor;
+    }
+
+    /**
+     * @see #setThreshold(Number)
+     * 
+     * @return the threshold
+     */
+    public Number getThreshold() {
+        return threshold;
+    }
+
+    /**
+     * Sets the threshold, also called zero level or base level. For line type
+     * series this is only used in conjunction with the color defined in
+     * {@link #setNegativeColor(Color)}. Defaults to 0.
+     * 
+     * @param threshold
+     *            the threshold to set
+     */
+    public void setThreshold(Number threshold) {
+        this.threshold = threshold;
     }
 
 }
