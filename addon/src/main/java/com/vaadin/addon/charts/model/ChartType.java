@@ -40,6 +40,7 @@ public class ChartType implements ChartEnum {
     public static final ChartType AREASPLINERANGE = new ChartType("areasplinerange");
     public static final ChartType BOXPLOT = new ChartType("boxplot");
     public static final ChartType ERRORBAR = new ChartType("errorbar");
+    public static final ChartType BUBBLE = new ChartType("bubble");
     
     private final String type;
 
