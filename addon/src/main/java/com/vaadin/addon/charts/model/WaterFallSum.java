@@ -1,9 +1,9 @@
 package com.vaadin.addon.charts.model;
 
 /**
- * DataSeriesItem that can hold booleas relevant for waterfall charts. Note tha
- * sums don't support all standard point features and their value don't need be
- * be set.
+ * DataSeriesItem that can be used as sum or intermediate sum in waterfall
+ * charts. Note that sums don't support all standard point features and their
+ * value don't need be be set (automatically calculated).
  */
 public class WaterFallSum extends DataSeriesItem {
 
@@ -16,10 +16,11 @@ public class WaterFallSum extends DataSeriesItem {
     }
 
     /**
-     * @param intermediate true if the sum is should be intermediate
+     * @param intermediate
+     *            true if the sum is should be intermediate
      */
     public void setIntermediate(boolean intermediate) {
-        if(intermediate) {
+        if (intermediate) {
             this.isIntermediateSum = Boolean.TRUE;
             this.isSum = null;
         } else {
@@ -27,7 +28,7 @@ public class WaterFallSum extends DataSeriesItem {
             this.isSum = Boolean.TRUE;
         }
     }
-    
+
     public boolean isIntermediate() {
         return isIntermediateSum != null;
     }
