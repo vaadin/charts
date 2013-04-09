@@ -34,8 +34,8 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
 
     private transient Configuration configuration;
 
-    private Number xAxis;
-    private Number yAxis;
+    private Integer xAxis;
+    private Integer yAxis;
 
     public AbstractSeries() {
     }
@@ -163,7 +163,7 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
      * @return The index of the X-axis that this data series is bound to.
      *         Returns null if undefined.
      */
-    public Number getxAxis() {
+    public Integer getxAxis() {
         return xAxis;
     }
 
@@ -175,7 +175,7 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
      * @param xAxis
      *            The index of the X-axis to bind this data series to.
      */
-    public void setxAxis(Number xAxis) {
+    public void setxAxis(Integer xAxis) {
         this.xAxis = xAxis;
     }
 
@@ -184,7 +184,7 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
      * @return The index of the Y-axis that this data series is bound to.
      *         Returns null if undefined.
      */
-    public Number getyAxis() {
+    public Integer getyAxis() {
         return yAxis;
     }
 
@@ -196,7 +196,7 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
      * @param yAxis
      *            The index of the Y-axis to bind this data series to.
      */
-    public void setyAxis(Number yAxis) {
+    public void setyAxis(Integer yAxis) {
         this.yAxis = yAxis;
     }
 
