@@ -26,6 +26,9 @@ public class ToggledSeriesVisibilityTBTest extends AbstractTestBenchTest {
             Parameters.setScreenshotComparisonTolerance(0.03);
 
             driver.navigate().to(BASEURL + getTestViewName());
+            
+            waitBetweenShots();
+            
             driver.findElements(By.tagName("input")).get(0).click();
             driver.findElements(By.tagName("input")).get(0).click();
             waitBetweenShots();
