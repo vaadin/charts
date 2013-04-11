@@ -120,13 +120,13 @@ public class ContainerDataSeriesSerializer implements
             default:
                 // render as json object
                 JsonObject entryObject = new JsonObject();
-                Property x = item.getItemProperty(xProperty);
+                Property<?> x = item.getItemProperty(xProperty);
                 if (x != null) {
                     addNamedAndTypedValue(entryObject,
                             ContainerDataSeries.SERIES_DEFAULT_ATTRIBUTE1,
                             x);
                 }
-                Property y = item.getItemProperty(yProperty);
+                Property<?> y = item.getItemProperty(yProperty);
                 if (y != null) {
                     addNamedAndTypedValue(entryObject,
                             ContainerDataSeries.SERIES_DEFAULT_ATTRIBUTE2,
