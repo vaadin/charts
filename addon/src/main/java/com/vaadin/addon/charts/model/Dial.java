@@ -21,7 +21,7 @@ package com.vaadin.addon.charts.model;
  * The Dial class contains options for the dial or arrow pointer of a gauge
  * chart.
  */
-public class Dial {
+public class Dial extends AbstractConfigurationObject {
 
     private String radius;
     private Number baseWidth;

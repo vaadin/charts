@@ -23,7 +23,7 @@ import com.vaadin.addon.charts.model.style.Style;
  * A credits label is put in the lower right corner of the chart by default.
  * This label can be changed using these options.
  */
-public class Credits {
+public class Credits extends AbstractConfigurationObject {
 
     private Boolean enabled;
     private String text;
