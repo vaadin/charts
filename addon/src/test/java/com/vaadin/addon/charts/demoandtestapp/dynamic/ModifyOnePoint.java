@@ -75,7 +75,8 @@ public class ModifyOnePoint extends AbstractVaadinChartExample {
     
     @Override
     protected void setup() {
-        
+        super.setup();
+
         FormLayout formLayout = new FormLayout();
         formLayout.setCaption("Special point settings, only updated point state is sent to client.");
         formLayout.setMargin(true);
@@ -142,8 +143,7 @@ public class ModifyOnePoint extends AbstractVaadinChartExample {
         c.setId("random");
         formLayout.addComponent(c);
         
-        addComponent(formLayout);
-        super.setup();
+        addComponentAsFirst(formLayout);
         
         
     }
