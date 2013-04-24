@@ -17,11 +17,10 @@ package com.vaadin.addon.charts;
  * #L%
  */
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
-
-import org.apache.commons.io.IOUtils;
+import java.io.InputStreamReader;
 
 /**
  * This class nags about license information whenever Charts usage is started
@@ -47,11 +46,12 @@ class LicenseChecker {
 
     private static void printCVALInformationAndHowToGetRidOfThisInformation() {
         try {
-            List<String> readLines = IOUtils.readLines(
-                    LicenseChecker.class.getResourceAsStream("licensenag.txt"),
-                    "UTF-8");
-            for (String line : readLines) {
-                System.err.println(line);
+            BufferedReader bufferedReader = new BufferedReader(
+                    new InputStreamReader(LicenseChecker.class
+                            .getResourceAsStream("licensenag.txt"), "UTF-8"));
+            String l;
+            while((l = bufferedReader.readLine()) != null) {
+                System.err.println(l);
             }
         } catch (IOException e) {
             System.err
