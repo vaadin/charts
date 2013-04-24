@@ -35,6 +35,8 @@ public class Tooltip extends AbstractConfigurationObject {
     private String valuePrefix;
     private String xDateFormat;
     private Boolean useHTML;
+    private Boolean followTouchMove;
+    private Boolean followPointer;
 
     /**
      * Sets a JavaScript function to format the text of the tooltip. Setting the
@@ -319,6 +321,53 @@ public class Tooltip extends AbstractConfigurationObject {
      */
     public void setFooterFormat(String footerFormat) {
         this.footerFormat = footerFormat;
+    }
+
+    /**
+     * @see #setFollowTouchMove(Boolean)
+     * @return true if tooltips should follow touch moves
+     */
+    public Boolean getFollowTouchMove() {
+        return followTouchMove;
+    }
+
+    /**
+     * Controls whether the tooltip should follow the finger as it moves on a
+     * touch device. The default value of false causes a touch move to scroll
+     * the web page, as is default behavior on touch devices. Setting it to true
+     * may cause the user to be trapped inside the chart and unable to scroll
+     * away, so it should be used with care. Defaults to false.
+     * 
+     * @param followTouchMove
+     *            the followTouchMove to set
+     */
+    public void setFollowTouchMove(Boolean followTouchMove) {
+        this.followTouchMove = followTouchMove;
+    }
+
+    /**
+     * @see #setFollowTouchMove(Boolean)
+     */
+    public Boolean getFollowPointer() {
+        return followPointer;
+    }
+
+    /**
+     * Controls whether the tooltip should follow the mouse as it moves across
+     * columns, pie slices and other point types with an extent. By default it
+     * behaves this way for scatter, bubble and pie series.
+     * <p>
+     * For touch moves to behave the same way, followTouchMove must be true
+     * also.
+     * <p>
+     * Defaults to false.
+     * 
+     * @see Tooltip#setFollowTouchMove(Boolean)
+     * @param followPointer
+     *            true if tooltips should follow pointer
+     */
+    public void setFollowPointer(Boolean followPointer) {
+        this.followPointer = followPointer;
     }
 
 }

@@ -95,9 +95,11 @@ public class Chart extends AbstractComponent {
 
         @Override
         public void onSelection(final double selectionStart,
-                final double selectionEnd, final double valueStart, final double valueEnd) {
+                final double selectionEnd, final double valueStart,
+                final double valueEnd) {
             final ChartSelectionEvent selectionEvent = new ChartSelectionEvent(
-                    Chart.this, selectionStart, selectionEnd, valueStart, valueEnd);
+                    Chart.this, selectionStart, selectionEnd, valueStart,
+                    valueEnd);
             fireEvent(selectionEvent);
         }
 
@@ -370,46 +372,39 @@ public class Chart extends AbstractComponent {
                 if (event.getItem().getX() != null) {
                     // x,y type data
                     getRpcProxy(ChartClientRpc.class).addPoint(
-                            event.getItem().toString(),
-                            getConfiguration().getSeries().indexOf(
-                                    event.getSeries()), event.isShift());
+                            event.getItem().toString(), getSeriesIndex(event),
+                            event.isShift());
                 }
             }
         }
 
+        private int getSeriesIndex(SeriesEvent event) {
+            return getConfiguration().getSeries().indexOf(event.getSeries());
+        }
+
         @Override
         public void dataRemoved(DataRemovedEvent event) {
-            if (event.getItem() != null) {
-                if (event.getItem().getX() != null) {
-                    // x,y type data
-                    getRpcProxy(ChartClientRpc.class).removePoint(
-                            event.getItem().getX().doubleValue(),
-                            event.getItem().getY().doubleValue());
-                }
-            }
+            getRpcProxy(ChartClientRpc.class).removePoint(event.getIndex(),
+                    getSeriesIndex(event));
         }
 
         @Override
         public void dataUpdated(DataUpdatedEvent event) {
             if (event.getValue() != null) {
                 getRpcProxy(ChartClientRpc.class).updatePointValue(
-                        getConfiguration().getSeries().indexOf(
-                                event.getSeries()), event.getPointIndex(),
+                        getSeriesIndex(event), event.getPointIndex(),
                         event.getValue().doubleValue());
             } else {
                 getRpcProxy(ChartClientRpc.class).updatePoint(
-                        getConfiguration().getSeries().indexOf(
-                                event.getSeries()), event.getPointIndex(),
+                        getSeriesIndex(event), event.getPointIndex(),
                         event.getItem().toString());
             }
         }
 
         @Override
         public void seriesEnablation(SeriesEnablationEvent event) {
-            int seriesIndex = getConfiguration().getSeries().indexOf(
-                    event.getSeries());
-            getRpcProxy(ChartClientRpc.class).setSeriesEnabled(seriesIndex,
-                    event.isEnabled());
+            getRpcProxy(ChartClientRpc.class).setSeriesEnabled(
+                    getSeriesIndex(event), event.isEnabled());
         }
 
         @Override

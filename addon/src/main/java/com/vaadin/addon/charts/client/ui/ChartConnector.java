@@ -52,8 +52,8 @@ public class ChartConnector extends AbstractComponentConnector {
             }
 
             @Override
-            public void removePoint(double x, double y) {
-                getWidget().removePoint(x, y);
+            public void removePoint(int pointIndex, int seriesIndex) {
+                getWidget().removePoint(pointIndex, seriesIndex);
             }
 
             @Override

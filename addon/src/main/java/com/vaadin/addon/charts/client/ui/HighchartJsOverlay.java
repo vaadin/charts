@@ -40,30 +40,10 @@ public class HighchartJsOverlay extends JavaScriptObject {
         this.series[seriesIndex].addPoint(newPointData,redraw,shift);
     }-*/;
 
-    public native final void removePoint(double xValue, double yValue,
-            double threshold)
+    public native final void removePoint(int pointIndex,
+            int seriesIndex)
     /*-{
-        for (var i=0; i<this.series[0].data.length; i++) {
-            if (this.series[0].data[i].x && this.series[0].data[i].y) {
-                if (Math.abs(this.series[0].data[i].x-xValue)<threshold && Math.abs(this.series[0].data[i].y-yValue)<threshold) {
-                    this.series[0].data[i].remove();
-                    break;
-                }
-            }
-        }
-    }-*/;
-
-    public native final void removePoint(double xValue, double yValue,
-            int seriesIndex, double threshold)
-    /*-{
-        for (var i=0; i<this.series[seriesIndex].data.length; i++) {
-            if (this.series[seriesIndex].data[i].x && this.series[seriesIndex].data[i].y) {
-                if (Math.abs(this.series[seriesIndex].data[i].x-xValue)<threshold && Math.abs(this.series[seriesIndex].data[i].y-yValue)<threshold) {
-                    this.series[seriesIndex].data[i].remove();
-                    break;
-                }
-            }
-        }
+        this.series[seriesIndex].data[pointIndex].remove();
     }-*/;
 
     public native final void setSeriesEnabled(int index, boolean enabled)

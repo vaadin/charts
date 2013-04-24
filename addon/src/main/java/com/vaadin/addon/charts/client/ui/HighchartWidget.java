@@ -45,10 +45,6 @@ public class HighchartWidget extends Widget {
         jsOverlay.addPoint(pointJson, seriesIndex, true, shift);
     }
 
-    public void removePoint(double x, double y) {
-        jsOverlay.removePoint(x, y, 0.01);
-    }
-
     public void updatePointValue(int seriesIndex, int pointIndex,
             double newValue) {
         HighchartSeries highchartSeries = jsOverlay.getSeries().get(seriesIndex);
@@ -63,8 +59,8 @@ public class HighchartWidget extends Widget {
         highchartPoint.update(json);
     }
 
-    public void removePoint(double x, double y, int seriesIndex) {
-        jsOverlay.removePoint(x, y, seriesIndex, 0.01);
+    public void removePoint(int pointIndex, int seriesIndex) {
+        jsOverlay.removePoint(pointIndex, seriesIndex);
     }
 
     public void setSeriesEnabled(int seriesIndex, boolean enabled) {

@@ -554,72 +554,61 @@ public class Configuration extends AbstractConfigurationObject {
 
     /** Notifies listeners that a data point has been added */
     void fireDataAdded(Series series, Number value) {
-        if (configurationMutationListener == null) {
-            return;
+        if (configurationMutationListener != null) {
+            configurationMutationListener.dataAdded(new DataAddedEvent(series,
+                    value));
         }
-        configurationMutationListener.dataAdded(new DataAddedEvent(series, value));
     }
 
-    /** Notifies listeners that a data point has been added 
-     * @param shift */
+    /**
+     * Notifies listeners that a data point has been added
+     * 
+     * @param shift
+     */
     void fireDataAdded(Series series, DataSeriesItem item, boolean shift) {
-        if (configurationMutationListener == null) {
-            return;
+        if (configurationMutationListener != null) {
+            configurationMutationListener.dataAdded(new DataAddedEvent(series,
+                    item, shift));
         }
-        configurationMutationListener.dataAdded(new DataAddedEvent(series, item, shift));
     }
 
     /** Notifies listeners that a data point has been removed */
-    void fireDataRemoved(Series series, Number value) {
-        if (configurationMutationListener == null) {
-            return;
+    void fireDataRemoved(Series series, int index) {
+        if (configurationMutationListener != null) {
+            configurationMutationListener.dataRemoved(new DataRemovedEvent(
+                    series, index));
         }
-        configurationMutationListener
-                .dataRemoved(new DataRemovedEvent(series, value));
-    }
-
-    /** Notifies listeners that a data point has been removed */
-    void fireDataRemoved(Series series, DataSeriesItem item) {
-        if (configurationMutationListener == null) {
-            return;
-        }
-        configurationMutationListener.dataRemoved(new DataRemovedEvent(series, item));
     }
 
     /** Notifies listeners that a data point has been updated */
     void fireDataUpdated(Series series, Number value, int pointIndex) {
-        if (configurationMutationListener == null) {
-            return;
+        if (configurationMutationListener != null) {
+            configurationMutationListener.dataUpdated(new DataUpdatedEvent(
+                    series, value, pointIndex));
         }
-        configurationMutationListener.dataUpdated(new DataUpdatedEvent(series, value,
-                pointIndex));
     }
 
     /** Notifies listeners that a data point has been updated */
     void fireDataUpdated(Series series, DataSeriesItem item, int pointIndex) {
-        if (configurationMutationListener == null) {
-            return;
+        if (configurationMutationListener != null) {
+            configurationMutationListener.dataUpdated(new DataUpdatedEvent(
+                    series, item, pointIndex));
         }
-        configurationMutationListener.dataUpdated(new DataUpdatedEvent(series, item,
-                pointIndex));
     }
 
     /** Notifies listeners that a series is enabled or disabled */
     void fireSeriesEnabled(Series series, boolean enabled) {
-        if (configurationMutationListener == null) {
-            return;
+        if (configurationMutationListener != null) {
+            configurationMutationListener
+                    .seriesEnablation(new SeriesEnablationEvent(series, enabled));
         }
-        configurationMutationListener.seriesEnablation(new SeriesEnablationEvent(
-                series, enabled));
-    }
-    
-    public void fireAnimationChanged(boolean animation) {
-        if (configurationMutationListener == null) {
-            return;
-        }
-        configurationMutationListener.animationChanged(animation);
     }
 
+    public void fireAnimationChanged(boolean animation) {
+        if (configurationMutationListener != null) {
+            configurationMutationListener.animationChanged(animation);
+        }
+    }
 
     /**
      * Sets the listener to be notified of e.g. data series changes
@@ -633,10 +622,11 @@ public class Configuration extends AbstractConfigurationObject {
     public void setMutationListener(ConfigurationMutationListener listener) {
         configurationMutationListener = listener;
     }
-    
-    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+
+    private void readObject(ObjectInputStream in) throws IOException,
+            ClassNotFoundException {
         in.defaultReadObject();
-        if(chart != null) {
+        if (chart != null) {
             chart.configuration = this;
         }
     }

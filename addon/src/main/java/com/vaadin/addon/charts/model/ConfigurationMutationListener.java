@@ -102,15 +102,20 @@ public interface ConfigurationMutationListener extends Serializable {
     }
 
     public static class DataRemovedEvent extends SeriesItemEvent {
-        DataRemovedEvent(Series series, Number value) {
+        private int index;
+
+        DataRemovedEvent(Series series, int index) {
             this.series = series;
-            this.value = value;
+            this.index = index;
+        }
+        
+        /**
+         * @return index of the removed data point
+         */
+        public int getIndex() {
+            return index;
         }
 
-        DataRemovedEvent(Series series, DataSeriesItem item) {
-            this.series = series;
-            this.item = item;
-        }
     }
 
     public static class DataUpdatedEvent extends SeriesItemEvent {

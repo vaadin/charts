@@ -236,9 +236,10 @@ public class DataSeries extends AbstractSeries {
      *            The item to remove.
      */
     public void remove(DataSeriesItem item) {
-        data.remove(item);
+        int index = data.indexOf(item);
+        data.remove(index);
         if (getConfiguration() != null) {
-            getConfiguration().fireDataRemoved(this, item);
+            getConfiguration().fireDataRemoved(this, index);
         }
     }
 
