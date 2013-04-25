@@ -32,6 +32,7 @@ import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 import com.vaadin.addon.charts.model.AbstractPlotOptions;
 import com.vaadin.addon.charts.model.ContainerDataSeries;
+import com.vaadin.addon.charts.model.PlotOptionsSeries;
 import com.vaadin.data.Container;
 import com.vaadin.data.Item;
 import com.vaadin.data.Property;
@@ -54,6 +55,12 @@ public class ContainerDataSeriesSerializer implements
 
         if (context != null) {
             AbstractPlotOptions plotOptions = src.getPlotOptions();
+            if(plotOptions != null) {
+                if(!(plotOptions instanceof PlotOptionsSeries)) {
+                    series.addProperty("type", plotOptions
+                            .getChartType().toString());
+                }
+            }
             JsonObject po = context.serialize(plotOptions).getAsJsonObject();
             Set<Entry<String, JsonElement>> entrySet = po.entrySet();
             for (Entry<String, JsonElement> entry : entrySet) {
@@ -178,6 +185,9 @@ public class ContainerDataSeriesSerializer implements
             } else if (Boolean.class.isAssignableFrom(itemProperty.getType())) {
                 Boolean pBool = (Boolean) itemProperty.getValue();
                 entryObject.add(name, new JsonPrimitive(pBool));
+            } else if (Date.class.isAssignableFrom(itemProperty.getType())) {
+                Date date = (Date) itemProperty.getValue();
+                entryObject.add(name,new JsonPrimitive(date.getTime()));
             } else {
                 String pStr = itemProperty.getValue().toString();
                 entryObject.add(name, new JsonPrimitive(pStr));

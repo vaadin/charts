@@ -51,7 +51,6 @@ public class ContainerSeriesWithSpline extends AbstractVaadinChartExample {
        
         // Create chart config
         Configuration config = new Configuration();
-        config.getChart().setType(ChartType.SPLINE);
         
         config.getxAxis().setType(AxisType.DATETIME);
                         
