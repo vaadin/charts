@@ -42,7 +42,7 @@ import com.vaadin.data.Property;
  */
 public class ContainerDataSeriesSerializer implements
         JsonSerializer<ContainerDataSeries> {
-    
+
     private enum Mode {
         ONLY_Y, XY, OBJECT
     }
@@ -55,54 +55,54 @@ public class ContainerDataSeriesSerializer implements
 
         if (context != null) {
             AbstractPlotOptions plotOptions = src.getPlotOptions();
-            if(plotOptions != null) {
-                if(!(plotOptions instanceof PlotOptionsSeries)) {
-                    series.addProperty("type", plotOptions
-                            .getChartType().toString());
+            if (plotOptions != null) {
+                if (!(plotOptions instanceof PlotOptionsSeries)) {
+                    series.addProperty("type", plotOptions.getChartType()
+                            .toString());
                 }
-            }
-            JsonObject po = context.serialize(plotOptions).getAsJsonObject();
-            Set<Entry<String, JsonElement>> entrySet = po.entrySet();
-            for (Entry<String, JsonElement> entry : entrySet) {
-                series.add(entry.getKey(), entry.getValue());
-            }
-            series.add("name", context.serialize(src.getName()));
-            series.add("stack", context.serialize(src.getStack()));
-            Number xAxis = src.getxAxis();
-            if(xAxis != null) {
-                series.add("xAxis", new JsonPrimitive(xAxis));
-            }
-            Number yAxis = src.getyAxis();
-            if(yAxis != null) {
-                series.add("yAxis", new JsonPrimitive(yAxis));
+                JsonObject po = context.serialize(plotOptions)
+                        .getAsJsonObject();
+                Set<Entry<String, JsonElement>> entrySet = po.entrySet();
+                for (Entry<String, JsonElement> entry : entrySet) {
+                    series.add(entry.getKey(), entry.getValue());
+                }
+                series.add("name", context.serialize(src.getName()));
+                series.add("stack", context.serialize(src.getStack()));
+                Number xAxis = src.getxAxis();
+                if (xAxis != null) {
+                    series.add("xAxis", new JsonPrimitive(xAxis));
+                }
+                Number yAxis = src.getyAxis();
+                if (yAxis != null) {
+                    series.add("yAxis", new JsonPrimitive(yAxis));
+                }
             }
         }
         series.add("data", data);
 
         Map<String, Object> pidMap = src.getAttributeToPropertyIdMap();
 
-        
         Mode mode = null;
-        for(Object o : pidMap.keySet()) {
-            if(!(o.equals(ContainerDataSeries.SERIES_DEFAULT_ATTRIBUTE1) 
-                    || o.equals(ContainerDataSeries.SERIES_DEFAULT_ATTRIBUTE2))) {
+        for (Object o : pidMap.keySet()) {
+            if (!(o.equals(ContainerDataSeries.SERIES_DEFAULT_ATTRIBUTE1) || o
+                    .equals(ContainerDataSeries.SERIES_DEFAULT_ATTRIBUTE2))) {
                 mode = Mode.OBJECT;
                 break;
             }
         }
         Object xProperty = pidMap
                 .get(ContainerDataSeries.SERIES_DEFAULT_ATTRIBUTE1);
-        if(xProperty == null) {
+        if (xProperty == null) {
             xProperty = ContainerDataSeries.SERIES_DEFAULT_ATTRIBUTE1;
         }
         Object yProperty = pidMap
                 .get(ContainerDataSeries.SERIES_DEFAULT_ATTRIBUTE2);
-        if(yProperty == null) {
+        if (yProperty == null) {
             yProperty = ContainerDataSeries.SERIES_DEFAULT_ATTRIBUTE2;
         }
         Container container = src.getVaadinContainer();
-        if(mode != Mode.OBJECT) {
-            if(container.getContainerPropertyIds().contains(xProperty)) {
+        if (mode != Mode.OBJECT) {
+            if (container.getContainerPropertyIds().contains(xProperty)) {
                 mode = Mode.XY;
             } else {
                 mode = Mode.ONLY_Y;
@@ -113,15 +113,15 @@ public class ContainerDataSeriesSerializer implements
             Item item = container.getItem(iid);
             switch (mode) {
             case ONLY_Y:
-                addAnonymousTypedValue(
-                        data,
-                        item.getItemProperty(yProperty));
+                addAnonymousTypedValue(data, item.getItemProperty(yProperty));
                 break;
             case XY:
                 JsonArray entryArray = new JsonArray();
                 data.add(entryArray);
-                addAnonymousTypedValue(entryArray, item.getItemProperty(xProperty));
-                addAnonymousTypedValue(entryArray, item.getItemProperty(yProperty));
+                addAnonymousTypedValue(entryArray,
+                        item.getItemProperty(xProperty));
+                addAnonymousTypedValue(entryArray,
+                        item.getItemProperty(yProperty));
                 break;
 
             default:
@@ -130,14 +130,12 @@ public class ContainerDataSeriesSerializer implements
                 Property<?> x = item.getItemProperty(xProperty);
                 if (x != null) {
                     addNamedAndTypedValue(entryObject,
-                            ContainerDataSeries.SERIES_DEFAULT_ATTRIBUTE1,
-                            x);
+                            ContainerDataSeries.SERIES_DEFAULT_ATTRIBUTE1, x);
                 }
                 Property<?> y = item.getItemProperty(yProperty);
                 if (y != null) {
                     addNamedAndTypedValue(entryObject,
-                            ContainerDataSeries.SERIES_DEFAULT_ATTRIBUTE2,
-                            y);
+                            ContainerDataSeries.SERIES_DEFAULT_ATTRIBUTE2, y);
                 }
 
                 Iterator<String> iter = pidMap.keySet().iterator();
@@ -150,7 +148,7 @@ public class ContainerDataSeriesSerializer implements
                     }
                 }
                 data.add(entryObject);
-                
+
                 break;
             }
         }
@@ -187,7 +185,7 @@ public class ContainerDataSeriesSerializer implements
                 entryObject.add(name, new JsonPrimitive(pBool));
             } else if (Date.class.isAssignableFrom(itemProperty.getType())) {
                 Date date = (Date) itemProperty.getValue();
-                entryObject.add(name,new JsonPrimitive(date.getTime()));
+                entryObject.add(name, new JsonPrimitive(date.getTime()));
             } else {
                 String pStr = itemProperty.getValue().toString();
                 entryObject.add(name, new JsonPrimitive(pStr));

@@ -49,7 +49,6 @@ public class SimpleChartWithContainerSeries extends AbstractVaadinChartExample {
         vaadinContainer.addContainerProperty("color", Color.class, null);
 
         container.setName("Browser share");
-        container.setPlotOptions(new PlotOptionsPie());
 
         container.setYPropertyId("y");
         container.setNamePropertyId("name");
