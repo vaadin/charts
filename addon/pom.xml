@@ -100,6 +100,7 @@
 				<version>2.3.1</version>
 				<configuration>
 					<archive>
+						<manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
 						<index>true</index>
 						<manifest>
 							<addClasspath>true</addClasspath>
@@ -125,6 +126,31 @@
 						<!-- Remove resources included due to gwt compilation -->
 						<exclude>**/demoandtestapp/*</exclude>
 					</excludes>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>bundle-manifest</id>
+						<phase>process-classes</phase>
+						<goals>
+							<goal>manifest</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<excludeDependencies>*;scope=provided|runtime</excludeDependencies>
+					<!-- <excludeDependencies>vaadin-client,vaadin-server</excludeDependencies> -->
+					<instructions>
+						<Export-Package>com.vaadin.addon.charts,com.vaadin.addon.charts.model,com.vaadin.addon.charts.model.styles,com.vaadin.addon.charts.themes,com.vaadin.addon.charts.utilcom.vaadin.addon.timeline
+							com.vaadin.addon.timeline</Export-Package>
+						<!-- Ignore GWT dirt, not needed in osgi bundles, gwt compilation seldom 
+							happens in such -->
+						<Import-Package>!com.google.gwt.*, !com.vaadin.client.*, *</Import-Package>
+					</instructions>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -440,11 +466,10 @@
 			<version>4.10</version>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
-			<version>2.2</version>
+			<version>1.4</version>
 		</dependency>
 	</dependencies>
 
