@@ -1,0 +1,573 @@
+/*
+ * #%L
+ * Vaadin Charts
+ * %%
+ * Copyright (C) 2012 Vaadin Ltd
+ * %%
+ * This program is available under Commercial Vaadin Add-On License 2.0
+ * (CVALv2).
+ * 
+ * See the file licensing.txt distributed with this software for more
+ * information about licensing.
+ * 
+ * You should have received a copy of the CVALv2 along with this program.
+ * If not, see <http://vaadin.com/license/cval-2.0>.
+ * #L%
+ */
+.v-timeline-widget {	
+	overflow:hidden;
+}
+
+.v-caption-v-timeline{
+	height: 0px;	
+}
+
+.v-timeline-widget-caption{
+	height:25px;	
+	line-height:25px;
+	font-size:1.5em;
+	font-weight: normal;
+	background: transparent url(vertical-sprites.png) repeat-x scroll left -1802px;
+	color: #EEEEEE;
+	text-shadow: #20009;	
+	padding-left: 5px;
+}
+
+.v-caption-v-timeline .v-captiontext{
+	margin-left: 5px;
+}
+
+.v-timeline-widget-daterange{
+	float:right;
+	height:100%;
+	line-height: 25px;
+	margin-right: 5px;	
+	font-size: 24px !important;
+	color:white;
+}
+
+.v-timeline-widget-datefield{	
+	text-align: center;
+	width:100px;
+	line-height:25px;
+	margin-top:5px;
+	font-size: 14px !important;
+	border: 0px solid white;
+	background:transparent;;
+	color:white !important;
+}
+
+.v-timeline-widget-datefield-edit{
+	border: 0px solid silver;
+	background: #ffff87;
+	text-align: center;
+	width:100px;
+	line-height:25px;
+	margin-top:5px;
+	font-size: 14px !important;
+}
+
+.v-timeline-widget-browser {
+	position: relative;
+	background: #eeeeee;	
+	width: 100%;		
+}
+
+.v-timeline-widget-browser-scale-label {
+	color: gray;
+}
+
+.v-timeline-widget-browser-canvas {
+	margin-left:14px;	
+	background:white;
+	border: 1px solid silver;
+	margin-top: 3px;
+	position: absolute !important;
+}
+
+.v-ie6 .v-timeline-widget-browser-canvas,
+.v-ie7 .v-timeline-widget-browser-canvas {
+	margin-left:0;
+}
+
+.v-timeline-widget-browser-scrollbar {
+	position: absolute;
+	margin-top:2px;
+	width: 100%;
+	height: 14px;
+	top: 48px;
+	left:0px;
+	background: url('scrollbar-area-bg.png');
+	background-repeat: repeat-x;
+}
+
+.v-timeline-widget-browser-scrollarea {
+	position: absolute;	
+	top: 0px;
+	left: 50px;	
+	width: 48px;
+	height: 64px;
+}
+
+.v-timeline-widget-browser-scrollarea-content {
+	position: absolute;	
+	top: 0px;
+	left: 0px;	
+	height: 48px;
+	width: 46px;		
+	border:1px solid #000000; 
+	border-radius: 5px 5px 0 0;
+	box-shadow: 0 2px #AAAAAA inset;
+}
+
+.v-timeline-widget-browser-scrollarea-bar {
+	position: absolute;	
+	left: 0px;
+	bottom: 0px;	
+	height: 14px;
+	width: 100%;
+	background: url('scrollbar-bg.png');
+	background-repeat: repeat-x;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	border-radius: 0 0 5px 5px;
+}
+
+.v-timeline-widget-browser-scrollarea-bar-grip {		
+	height: 14px;
+	width: 8px;	
+	background: url('scroll-grip.png');
+	position:absolute;
+	left:49.999999999%;
+	top:0px;
+	margin-left: -4px;
+}
+
+.v-timeline-widget-browser-scrollarea-bar-left{
+	float:left;
+	width:49.999999999%;
+	height:14px;	
+}
+
+.v-timeline-widget-browser-scrollarea-bar-right{
+	float:left;
+	width:49.999999999%;
+	height:14px;	
+}
+
+.v-size-adjuster {
+	position: absolute;	
+	top: 17px;	
+	width: 9px;
+	height: 16px;	
+	background: url('scroller.png') no-repeat;	
+}
+
+.v-size-adjuster:hover {
+	background: url('scroller_hover.png') no-repeat;	
+}
+
+.v-size-adjuster-left  {
+	left: -5px;	
+	cursor: w-resize;
+}
+
+.v-size-adjuster-left.v-size-adjuster-left-mobile{
+	left:5px;
+    top: 5px;
+    background: url('scroll-left-mobile.gif') no-repeat;        
+    opacity: 0.3;   
+    width:31px;
+    height:31px        
+} 
+
+.v-size-adjuster-right {
+	right: -5px;	
+	cursor: e-resize;
+}
+
+.v-size-adjuster-right.v-size-adjuster-right-mobile{
+	right:5px;
+    top: 5px;
+    background: url('scroll-right-mobile.gif') no-repeat;       
+    opacity: 0.3;   
+    width:31px;
+    height:31px      
+}
+
+.v-timeline-widget-browser-scrollbar-left {
+	position: absolute;	
+	bottom: 0px;
+	left: 0px;	
+	width: 14px;
+	height: 15px;		
+	background-image: url('arrow-left.png');
+}
+
+.v-timeline-widget-browser-scrollbar-right {
+	position: absolute;	
+	bottom: 0px;
+	right: 0px;	
+	width: 14px;
+	height: 15px;	
+	background-image: url('arrow-right.png');
+}
+
+.v-timeline-widget-browser-scrollbar-fade{
+	position: absolute;
+	height:50px;
+	background:white;
+	top:0px;
+	opacity:0.5;
+	filter:alpha(opacity=50);		
+}
+
+.v-timeline-widget-display {		
+	height:100%;
+}
+
+.v-timeline-widget-topbar{
+	width:100%;	
+	background: #343434;
+	color:white;
+}
+
+.v-timeline-widget-topbar .gwt-TextBox{
+	float: right;			
+	margin-right:5px;
+	width:80px;
+	margin-top: 3px;
+}
+
+.v-timeline-widget-display-bottombar{
+	width:100%;	
+	background: transparent url(vertical-sprites.png) repeat-x scroll left -1854px;
+	height: 15px;
+	line-height: normal;
+}
+
+.v-timeline-widget-display-bottombar .gwt-Label{
+	white-space: nowrap;	
+	border-left: 1px solid gray;
+	overflow:hidden;
+	text-align: center;
+}
+
+.v-timeline-widget-display-rightbar{
+	width:40px;	
+	position:absolute !important;	
+}
+
+.v-timeline-widget-display-rightbar .gwt-Label{
+	width:100%;
+	text-align: right;	
+}
+
+.v-timeline-widget-display-canvas{
+	background:white;
+	cursor: url('./move.cur'),default !important;
+	cursor: -moz-grab; 
+	cursor: expression("cursors/move.cur"), default !important;
+}
+
+.v-timeline-widget-display-canvas-drag{
+	background:white;
+	cursor: url('./hold.cur'),default !important;
+}
+
+.v-timeline-widget-zoombar{
+	float:left;	
+	height:100%;
+	line-height:25px;
+	margin-left:5px;
+}
+
+.v-timeline-widget-zoombar .zoom-level{
+    color:white;
+    text-decoration: underline;
+    padding-right:5px;   
+}
+.v-timeline-widget .zoom-level:hover{
+    cursor: pointer;
+}
+
+.v-timeline-widget-zoombar-label{
+	font-weight: bold;	
+	display:inline;        
+    padding-right:10px;
+}
+
+.v-timeline-widget-valuebar{
+	float: right;	
+	height:100%;
+	line-height:25px;
+	margin-right:5px;
+}
+
+.v-timeline-widget-display-popup{
+	position:absolute;		
+	background:transparent url('popup_bg.png') no-repeat scroll bottom left;	
+	display:block;
+	cursor: url('./move.cur'),default !important;
+	cursor: expression("cursors/move.cur"), default !important;
+	cursor: -moz-grab; 
+}
+
+.v-timeline-widget-display-popup-label{		
+	background:white;
+	border:1px solid silver;
+	white-space:nowrap;
+	padding-left:3px;
+	padding-right:3px;
+	padding-top:2px;
+	cursor: url('./move.cur'),default !important;
+	cursor: expression("cursors/move.cur"), default !important;
+	cursor: -moz-grab; 
+	margin-left:10px;
+	margin-right:10px;
+	margin-bottom:13px;
+}
+
+.v-timeline-widget-display-popup-label-loading{	
+	border:1px solid silver;
+	white-space:nowrap;
+	padding-left:3px;
+	padding-right:3px;
+	padding-top:2px;
+	cursor: url('./move.cur'),default !important;
+	cursor: -moz-grab; 
+	cursor: expression("cursors/move.cur"), default !important;
+	margin-left:10px;
+	margin-right:10px;
+	margin-bottom:13px;	
+	background: white url('ajax-loader.gif') no-repeat;
+	width:11px;
+	height:11px;	
+}
+
+.v-timeline-widget-display-preloader{
+	background: transparent url('ajax-loader.gif') no-repeat;
+	width:40px;
+	height:11px;
+	text-align: right;
+	color: #cccccc;
+	line-height: 11px;	
+}
+
+.v-timeline-widget-display-curtain{
+	background: white;
+	opacity: 0.5;
+	filter:alpha(opacity=50);
+	position: absolute;	
+	z-index:1;
+}
+
+.v-timeline-widget-browser-curtain{
+	background: white;
+	opacity: 0.5;
+	filter:alpha(opacity=50);
+	position: absolute;	
+	top:0;
+	left:0;
+}
+
+.v-timeline-widget-display-vscale,
+.v-timeline-widget-display-vscale-drag{
+	text-align: right;
+	color: #555;
+	text-shadow: 1px 1px white;
+	right:4px;
+	font-size:12px;
+	line-height:normal;
+}
+
+.v-timeline-widget-display-hscale,
+.v-timeline-widget-display-hscale-left{
+	white-space: nowrap;	
+	border-left: 1px solid gray;
+	overflow:hidden;
+	text-align: center;
+	line-height: normal;
+}
+.v-timeline-widget-display-hscale-left{
+	text-align: left;	
+}
+
+.v-timeline-widget-legend{		
+	float:right;
+	margin-top: 5px;
+	height: auto !important;
+}
+
+.v-timeline-widget-legend-label{
+	margin-right: 10px;
+	overflow: hidden;
+	white-space: nowrap;	
+	line-height: normal;
+	text-shadow: 1px 1px #eee;
+}
+
+.v-timeline-widget-legend-label-marker{
+	height: 2px;
+	width: 10px;
+	float:left;
+	margin-top:6px;
+	margin-right:2px;	
+}
+
+.v-timeline-widget-chartmode{
+	margin-left: 5px;	
+	line-height:30px;
+	overflow:hidden;
+	white-space: nowrap;
+	text-shadow: 1px 1px #eee;
+}
+
+.v-timeline-widget-chartmode-line{
+	width:20px;
+	height:20px;
+	margin-top: 5px;
+	background: url('lineChart.png');	
+	background-repeat: no-repeat;	
+	border: 0px solid silver;
+	cursor: pointer;
+}
+
+.v-timeline-widget-chartmode-bar{
+	width:20px;
+	height:20px;
+	margin-top: 5px;
+	background: url('barChart.png');
+	background-repeat: no-repeat;	
+	border: 0px solid silver;
+	cursor: pointer;
+}
+
+.v-timeline-widget-chartmode-scatter{
+	width:20px;
+	height:20px;
+	margin-top: 5px;
+	background: url('scatterChart.png');
+	background-repeat: no-repeat;	
+	border: 0px solid silver;
+	cursor: pointer;
+}
+
+.v-timeline-widget-modelegend{
+	background: transparent url(vertical-sprites.png) repeat-x scroll left -1400px;	
+	height: 31px;
+	line-height: normal;
+}
+
+.v-timeline-widget-marker{
+	height:20px;
+	background: url(marker.png) no-repeat;
+	color: white;
+	font-weight: bold;
+	cursor:pointer;		
+}
+
+.v-timeline-widget-marker-tooltip{	
+}
+
+.v-timeline-widget-marker-tooltip .top{	
+}
+
+.v-timeline-widget-marker-tooltip .top .topLeft{	
+	background: url(tooltipLeftTop.png) no-repeat;	
+	width:8px;
+	height:7px;
+}
+
+.v-timeline-widget-marker-tooltip .top .topMiddle{	
+	background: url(tooltipTop.png) repeat-x;		
+}
+
+.v-timeline-widget-marker-tooltip .top .topRight{	
+	background: url(tooltipRightTop.png) no-repeat;		
+	width:8px;
+	height:7px;
+}
+
+.v-timeline-widget-marker-tooltip .middle{}
+
+.v-timeline-widget-marker-tooltip .middle .middleLeft{
+	background:url(tooltipLeft.png) repeat-y;		
+	width: 8px;
+}
+
+.v-timeline-widget-marker-tooltip .middle .content{	
+	background: #202325;
+	color: #fff;
+}
+
+.v-timeline-widget-marker-tooltip .middle .content .date{
+	color: #00B4F0;
+	font-weight: bold;	
+	text-decoration: underline;
+}
+
+.v-timeline-widget-marker-tooltip .middle .middleRight{	
+	background:url(tooltipRight.png) repeat-y;		
+	width:8px;
+}
+
+.v-timeline-widget-marker-tooltip .bottom{	}
+
+.v-timeline-widget-marker-tooltip .bottom .bottomLeft{	
+	background: url(tooltipLeftBottom.png) no-repeat;	
+	width:8px;
+	height:8px;
+}
+
+.v-timeline-widget-marker-tooltip .bottom .bottomMiddle{		
+	background: url(tooltipBottom.png) repeat-x;			
+}
+
+.v-timeline-widget-marker-tooltip .bottom .bottomRight{	
+	background: url(tooltipRightBottom.png) no-repeat;	
+	width:8px;
+	height:8px;
+}
+
+.v-timeline-widget-browser-scale{
+	position: absolute;
+	top: 0px;
+	left:0px;
+	height: 100%;
+	margin-left:14px;
+	margin-right:14px;	
+}
+
+.v-timeline-widget-display-dot{
+	border: 2px solid white;
+	-moz-border-radius: 10px; /* Firefox */
+  	-webkit-border-radius: 10px; /* Safari, Chrome */
+  	border-radius: 10px; /* CSS3 */
+	height: 10px;
+	width: 10px;
+}
+
+.v-timeline-widget-display-bar{
+	background: white;
+	filter:alpha(opacity=10);
+	-moz-opacity:0.10;
+	-khtml-opacity: 0.10;
+	opacity: 0.10;	
+}
+
+.v-timeline-widget-legend-value{
+	font-size: 9px;	
+	color: #690928;
+	height: auto !important;
+}
+
+.v-timeline-widget-marker-text {
+    background: #2b2d2f;
+    border-radius: 3px;
+    padding: 0px 2px 1px 2px;
+}
+
+
+
+

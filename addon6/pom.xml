@@ -1,0 +1,469 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.vaadin.addon</groupId>
+	<version>1.1.0-SNAPSHOT</version>
+	<artifactId>vaadin-charts-v6</artifactId>
+	<packaging>jar</packaging>
+	<name>Vaadin Charts</name>
+	<inceptionYear>2012</inceptionYear>
+
+	<profiles>
+		<profile>
+			<id>test-on-hub</id>
+			<properties>
+				<!-- Intra net address for TB3 hub -->
+				<tb.hub>matin-vehje</tb.hub>
+			</properties>
+		</profile>
+	</profiles>
+
+	<organization>
+		<name>Vaadin Ltd</name>
+		<url>http://vaadin.com/</url>
+	</organization>
+	<url>http://vaadin.com/</url>
+	<scm>
+		<connection>scm:svn:http://dev.vaadin.com/svn/incubator/highchartsthingclient</connection>
+		<developerConnection>scm:svn:http://dev.vaadin.com/svn/incubator/highchartsthingclient</developerConnection>
+	</scm>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.organization>Vaadin Ltd</project.organization>
+		<highcharts.version>3.0.1</highcharts.version>
+		<vaadin.version.maven>6.8.10</vaadin.version.maven>
+		<snapshot.repository.url>http://oss.sonatype.org/content/repositories/vaadin-snapshots/</snapshot.repository.url>
+	</properties>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>vaadin-snapshots</id>
+			<name>Vaadin snapshot repository</name>
+			<url>${snapshot.repository.url}</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<licenses>
+		<license>
+			<name>CVALv2</name>
+			<url>https://vaadin.com/license/cval-2.0</url>
+		</license>
+	</licenses>
+
+	<build>
+		<resources>
+			<!-- These are also needed for the sources required by the GWT compiler 
+				to be included in the produced JARs -->
+			<resource>
+				<directory>src/main/java</directory>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+
+		</resources>
+
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<configuration>
+					<licenseName>cval2</licenseName>
+					<licenseResolver>file://${basedir}/src/license</licenseResolver>
+					<includes>
+						<include>**/main/**/*.java</include>
+					</includes>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.3.1</version>
+				<configuration>
+					<archive>
+						<manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+						<index>true</index>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<!-- Implementation-Title and Implementation-Version come from the 
+								POM by default -->
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+						</manifest>
+						<manifestEntries>
+							<!-- Package format version - do not change -->
+							<Vaadin-Package-Version>1</Vaadin-Package-Version>
+
+							<!-- Add-on specific fields to update -->
+
+							<!-- Implementation-Title and Implementation-Version come from the 
+								POM by default -->
+							<Implementation-Title>Vaadin Charts</Implementation-Title>
+
+							<!-- Comma-separated list of widgetsets in the package -->
+							<Vaadin-Widgetsets>com.vaadin.addon.charts.Widgetset,com.vaadin.addon.timeline.gwt.TimelineWidgetSet</Vaadin-Widgetsets>
+						</manifestEntries>
+					</archive>
+					<excludes>
+						<!-- Remove resources included due to gwt compilation -->
+						<exclude>**/demoandtestapp/*</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>bundle-manifest</id>
+						<phase>process-classes</phase>
+						<goals>
+							<goal>manifest</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<excludeDependencies>*;scope=provided|runtime</excludeDependencies>
+					<!-- <excludeDependencies>vaadin-client,vaadin-server</excludeDependencies> -->
+					<instructions>
+						<Export-Package>com.vaadin.addon.charts,com.vaadin.addon.charts.model,com.vaadin.addon.charts.model.styles,com.vaadin.addon.charts.themes,com.vaadin.addon.charts.utilcom.vaadin.addon.timeline
+							com.vaadin.addon.timeline</Export-Package>
+						<!-- Ignore GWT dirt, not needed in osgi bundles, gwt compilation seldom 
+							happens in such -->
+						<Import-Package>!com.google.gwt.*, !com.vaadin.client.*, *</Import-Package>
+					</instructions>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.1.2</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<includeScope>runtime</includeScope>
+							<outputDirectory>target/libs</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+
+			<!-- This creates a zip file of jar and sources jar. When publishing in 
+				the Directory this makes sources available to maven users automatically. 
+				We could also use this to package required dependecies for those poor developer 
+				souls that still dont know how to use a build system that supports transient 
+				dependencies... -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<finalName>${project.artifactId}-${project.version}</finalName>
+					<appendAssemblyId>false</appendAssemblyId>
+					<descriptors>
+						<descriptor>assembly.xml</descriptor>
+					</descriptors>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.vaadin</groupId>
+				<artifactId>vaadin-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>test-compile</phase>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+						<configuration>
+							<skip>${skipTests}</skip>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<configuration>
+					<instrumentation>
+						<ignores>
+							<ignore>com.vaadin.addon.charts.client.*</ignore>
+							<ignore>com.vaadin.addon.timeline.gwt.*</ignore>
+							<ignore>com.vaadin.addon.charts.model.*.get*</ignore>
+							<ignore>com.vaadin.addon.charts.model.*.is*</ignore>
+							<ignoreMethod>com.vaadin.addon.charts.model.*.get*</ignoreMethod>
+							<ignoreMethod>com.vaadin.addon.charts.model.*.is*</ignoreMethod>
+						</ignores>
+						<excludes>
+							<exclude>com/vaadin/addon/charts/client/**/*.class</exclude>
+							<exclude>com/vaadin/addon/timeline/gwt/**/*.class</exclude>
+						</excludes>
+					</instrumentation>
+				</configuration>
+				<executions>
+				</executions>
+			</plugin>
+
+		</plugins>
+
+		<pluginManagement>
+			<plugins>
+				<!-- Compile widget set for integration testing -->
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>gwt-maven-plugin</artifactId>
+					<version>2.3.0-1</version>
+					<configuration>
+						<webappDirectory>${project.build.directory}/testwebapp/VAADIN/widgetsets</webappDirectory>
+						<extraJvmArgs>-Xmx1g -Xms1g -XX:MaxPermSize=512m</extraJvmArgs>
+						<hostedWebapp>${project.build.directory}/testwebapp</hostedWebapp>
+						<noServer>true</noServer>
+						<runTarget>http://localhost:9998/</runTarget>
+						<draftCompile>true</draftCompile>
+						<style>PRETTY</style>
+						<module>com.vaadin.addon.charts.ChartsWithTimelineWidgetset</module>
+
+						<!-- Skip in default phase, we only gwt compile for tests -->
+						<!--<skip>true</skip> -->
+						<!-- <attachDebugger>true</attachDebugger> -->
+						<strict>true</strict>
+					</configuration>
+
+				</plugin>
+				<plugin>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<configuration>
+						<excludes>
+							<!-- Files here might match to naming convetions, but the are just 
+								vaadin apps containing you add-on components in varios setups. We can ignore 
+								them from test. -->
+							<exclude>**/demoandtestapp/**/*</exclude>
+							<exclude>**/Abstract*</exclude>
+						</excludes>
+						<systemProperties>
+							<property>
+								<name>tb.hub</name>
+								<value>${tb.hub}</value>
+							</property>
+						</systemProperties>
+					</configuration>
+				</plugin>
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.apache.maven.plugins
+										</groupId>
+										<artifactId>
+											maven-dependency-plugin
+										</artifactId>
+										<versionRange>
+											[2.0.0,)
+										</versionRange>
+										<goals>
+											<goal>
+												copy-dependencies
+											</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>com.vaadin</groupId>
+										<artifactId>
+											vaadin-maven-plugin
+										</artifactId>
+										<versionRange>
+											[7.0-SNAPSHOT,)
+										</versionRange>
+										<goals>
+											<goal>compile</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<configuration>
+					<instrumentation>
+						<ignores>
+							<ignore>com.vaadin.addon.charts.client.*</ignore>
+							<ignore>com.vaadin.addon.timeline.gwt.*</ignore>
+							<ignore>com.vaadin.addon.charts.model.*.get*</ignore>
+							<ignore>com.vaadin.addon.charts.model.*.is*</ignore>
+							<ignoreMethod>com.vaadin.addon.charts.model.*.get*</ignoreMethod>
+							<ignoreMethod>com.vaadin.addon.charts.model.*.is*</ignoreMethod>
+						</ignores>
+						<excludes>
+							<exclude>com/vaadin/addon/charts/client/**/*.class</exclude>
+							<exclude>com/vaadin/addon/timeline/gwt/**/*.class</exclude>
+						</excludes>
+					</instrumentation>
+				</configuration>
+			</plugin>
+		</plugins>
+	</reporting>
+
+	<repositories>
+		<repository>
+			<id>Vaadin releases</id>
+			<url>http://oss.sonatype.org/content/repositories/vaadin-releases</url>
+		</repository>
+		<repository>
+			<id>vaadin-addons</id>
+			<url>http://maven.vaadin.com/vaadin-addons</url>
+		</repository>
+		<repository>
+			<id>vaadin-snapshots</id>
+			<url>${snapshot.repository.url}</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>maven2-repository.dev.java.net</id>
+			<name>Java.net Maven 2 Repository</name>
+			<url>http://download.java.net/maven/2</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>vaadin-snapshots</id>
+			<url>${snapshot.repository.url}</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+
+	</pluginRepositories>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin</artifactId>
+			<version>${vaadin.version.maven}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-user</artifactId>
+			<version>2.3.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-webapp</artifactId>
+			<version>7.2.2.v20101205</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-testbench</artifactId>
+			<version>3.0.4</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.10</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>1.4</version>
+		</dependency>
+	</dependencies>
+
+</project>

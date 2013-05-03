@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 1.7.0//EN" "http://google-web-toolkit.googlecode.com/svn/tags/1.7.0/distro-source/core/src/gwt-module.dtd">
+<!--
+  #%L
+  Vaadin Charts
+  %%
+  Copyright (C) 2012 Vaadin Ltd
+  %%
+  This program is available under Commercial Vaadin Add-On License 2.0
+  (CVALv2).
+  
+  See the file licensing.txt distributed with this software for more
+  information about licensing.
+  
+  You should have received a copy of the CVALv2 along with this program.
+  If not, see <http://vaadin.com/license/cval-2.0>.
+  #L%
+  -->
+
+<module>
+    <inherits name="com.vaadin.addon.charts.Widgetset" />
+    <inherits name="com.vaadin.addon.timeline.gwt.TimelineWidgetSet" />
+</module>
