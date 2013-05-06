@@ -47,7 +47,6 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
 
     private Labels dataLabels;
     private Number zIndex;
-    private Boolean visible;
     private Boolean showInLegend;
     private Boolean enableMouseTracking;
     private Boolean stickyTracking;
@@ -93,23 +92,6 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
      */
     public void setzIndex(Number zIndex) {
         this.zIndex = zIndex;
-    }
-
-    /**
-     * @see #setVisible(Boolean)
-     * @return the visibility, true if undefined.
-     */
-    public boolean isVisible() {
-        return visible == null ? true : visible;
-    }
-
-    /**
-     * Set the initial visibility of the series. Defaults to true.
-     * 
-     * @param visible
-     */
-    public void setVisible(Boolean visible) {
-        this.visible = visible;
     }
 
     /**
