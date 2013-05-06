@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.vaadin.addon.charts.Chart;
+import com.vaadin.addon.charts.ChartOptions;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.demoandtestapp.SkipFromDemo;
 import com.vaadin.addon.charts.model.Axis;
@@ -22,7 +23,6 @@ import com.vaadin.addon.charts.model.Title;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Component;
-import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.VerticalLayout;
 
 @SkipFromDemo
@@ -37,6 +37,8 @@ public class TimeDataWithIrregularIntervalsAndLocalizedTexts extends
 
     @Override
     protected Component getChart() {
+        final ChartOptions chartOptions = new ChartOptions();
+        addComponent(chartOptions);
         // localizations
         final Lang fi = new Lang();
         fi.setDecimalPoint(",");
@@ -105,7 +107,7 @@ public class TimeDataWithIrregularIntervalsAndLocalizedTexts extends
         enButton.addListener(new Button.ClickListener() {
             @Override
             public void buttonClick(ClickEvent event) {
-//                ChartOptions.get().setLang(en);
+                chartOptions.setLang(en);
             }
         });
 
@@ -114,7 +116,7 @@ public class TimeDataWithIrregularIntervalsAndLocalizedTexts extends
         fiButton.addListener(new Button.ClickListener() {
             @Override
             public void buttonClick(ClickEvent event) {
-//                ChartOptions.get().setLang(fi);
+                chartOptions.setLang(fi);
             }
         });
         
@@ -122,6 +124,7 @@ public class TimeDataWithIrregularIntervalsAndLocalizedTexts extends
         VerticalLayout verticalLayout = new VerticalLayout();
         verticalLayout.addComponent(enButton);
         verticalLayout.addComponent(fiButton);
+        verticalLayout.addComponent(chart);
         return verticalLayout;
     }
 

@@ -37,6 +37,7 @@ public class ChangingThemes extends AbstractVaadinChartExample {
 
     @Override
     protected Component getChart() {
+        content.addComponent(options);
         options.setTheme(new HighChartsDefaultTheme());
         HorizontalLayout buttons = new HorizontalLayout();
         content.addComponent(buttons);

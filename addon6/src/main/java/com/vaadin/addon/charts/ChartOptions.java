@@ -21,44 +21,53 @@ import java.util.Iterator;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.vaadin.addon.charts.client.ui.ChartOptionsWidget;
 import com.vaadin.addon.charts.model.AbstractConfigurationObject;
 import com.vaadin.addon.charts.model.Lang;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.Theme;
 import com.vaadin.addon.charts.model.style.ThemeGradientColorSerializer;
+import com.vaadin.terminal.PaintException;
+import com.vaadin.terminal.PaintTarget;
 import com.vaadin.ui.AbstractComponent;
+import com.vaadin.ui.ClientWidget;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.ComponentContainer;
 import com.vaadin.ui.Window;
 
 /**
  * The ChartOptions extension configures a page local theme and other global
- * options like localized texts for charts. With this extension it is possible
- * to configure e.g. default colors used by all Chart objects displayed in the
- * UI.
+ * options like localized texts for charts. With this invisible component it is
+ * possible to configure e.g. default colors used by all Chart objects displayed
+ * in the Window. Developers should add only one of these components to window
+ * and add it before any {@link Chart} components.
  */
+@ClientWidget(ChartOptionsWidget.class)
 public class ChartOptions extends AbstractComponent {
 
     private Theme theme;
+    private Lang lang;
 
     public ChartOptions() {
     }
 
     private void notifyListeners() {
-    	Window w = getWindow();
-    	if (w == null) {
-    		return;
-    	}
-    	if(w.getParent() != null) {
-    		w = w.getParent();
-    	}
+        requestRepaint();
+        Window w = getWindow();
+        if (w == null) {
+            return;
+        }
+        if (w.getParent() != null) {
+            w = w.getParent();
+        }
 
         searchAndNotifyListeners(w);
     }
 
     private void searchAndNotifyListeners(Component component) {
         if (component instanceof ComponentContainer) {
-        	ComponentContainer container = (ComponentContainer) component;
+            ComponentContainer container = (ComponentContainer) component;
             Iterator<Component> iter = container.getComponentIterator();
             while (iter.hasNext()) {
                 searchAndNotifyListeners(iter.next());
@@ -88,8 +97,6 @@ public class ChartOptions extends AbstractComponent {
      */
     public void setTheme(Theme theme) {
         this.theme = theme;
-        // TODO
-//        getState().json = gson.toJson(theme);
         notifyListeners();
     }
 
@@ -109,20 +116,23 @@ public class ChartOptions extends AbstractComponent {
      * @param lang
      */
     public void setLang(Lang lang) {
-    	// TODO
-//        String uidl = "{lang: " + lang.toString() + "}";
-//        getState().json = uidl;
+        this.lang = lang;
         notifyListeners();
     }
-
-//    @Override
-//    protected ChartOptionsState getState() {
-//        return (ChartOptionsState) super.getState();
-//    }
-//
-//    void extendConnector(AbstractClientConnector connector) {
-//        super.extend(connector);
-//    }
-
     
+    @Override
+    public void paintContent(PaintTarget target) throws PaintException {
+        super.paintContent(target);
+        JsonObject json;
+        if(theme != null) {
+            json = (JsonObject) gson.toJsonTree(theme);
+        } else {
+            json = new JsonObject();
+        }
+        if(lang != null) {
+            json.add("lang", gson.toJsonTree(lang));
+        }
+        target.addAttribute("json", json.toString());
+    }
+
 }
