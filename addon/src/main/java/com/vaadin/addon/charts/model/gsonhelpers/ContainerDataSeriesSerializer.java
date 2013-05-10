@@ -116,12 +116,15 @@ public class ContainerDataSeriesSerializer implements
                 addAnonymousTypedValue(data, item.getItemProperty(yProperty));
                 break;
             case XY:
-                JsonArray entryArray = new JsonArray();
-                data.add(entryArray);
-                addAnonymousTypedValue(entryArray,
-                        item.getItemProperty(xProperty));
-                addAnonymousTypedValue(entryArray,
-                        item.getItemProperty(yProperty));
+                Property itemPropertyX = item.getItemProperty(xProperty);
+                Property itemPropertyY = item.getItemProperty(yProperty);
+                if (itemPropertyX.getValue() != null
+                        && itemPropertyY.getValue() != null) {
+                    JsonArray entryArray = new JsonArray();
+                    data.add(entryArray);
+                    addAnonymousTypedValue(entryArray, itemPropertyX);
+                    addAnonymousTypedValue(entryArray, itemPropertyY);
+                }
                 break;
 
             default:
