@@ -24,8 +24,8 @@
 	</organization>
 	<url>http://vaadin.com/</url>
 	<scm>
-		<connection>scm:svn:http://dev.vaadin.com/svn/incubator/highchartsthingclient</connection>
-		<developerConnection>scm:svn:http://dev.vaadin.com/svn/incubator/highchartsthingclient</developerConnection>
+		<connection>scm:svn:http://dev.vaadin.com/svn/addons/vaadin-charts/addon/</connection>
+		<developerConnection>scm:svn:http://dev.vaadin.com/svn/addons/vaadin-charts/addon/</developerConnection>
 	</scm>
 
 	<properties>
@@ -33,16 +33,7 @@
 		<project.organization>Vaadin Ltd</project.organization>
 		<highcharts.version>3.0.1</highcharts.version>
 		<vaadin.version.maven>7.0.4</vaadin.version.maven>
-		<snapshot.repository.url>http://oss.sonatype.org/content/repositories/vaadin-snapshots/</snapshot.repository.url>
 	</properties>
-
-	<distributionManagement>
-		<snapshotRepository>
-			<id>vaadin-snapshots</id>
-			<name>Vaadin snapshot repository</name>
-			<url>${snapshot.repository.url}</url>
-		</snapshotRepository>
-	</distributionManagement>
 
 	<licenses>
 		<license>
@@ -206,7 +197,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<configuration>
-					<finalName>${project.artifactId}-${project.version}</finalName>
+					<finalName>directorystuff</finalName>
 					<appendAssemblyId>false</appendAssemblyId>
 					<descriptors>
 						<descriptor>assembly.xml</descriptor>

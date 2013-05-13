@@ -6,7 +6,7 @@
 	<id>addon</id>
 
 	<formats>
-		<format>dir</format>
+		<format>zip</format>
 	</formats>
 
 	<!-- Do not use because we must put META-INF/MANIFEST.MF there. -->
@@ -14,22 +14,12 @@
 
 	<fileSets>
 		<fileSet>
-			<directory>target</directory>
-			<outputDirectory>./</outputDirectory>
-			<includes>
-				<include>*-${project.version}*.jar</include>
-			</includes>
+			<directory>addon/target/directorystuff</directory>
+			<outputDirectory>./vaadin7</outputDirectory>
 		</fileSet>
 		<fileSet>
-			<directory>target/libs</directory>
-			<outputDirectory>lib</outputDirectory>
-			<includes>
-				<include>*.jar</include>
-			</includes>
-		</fileSet>
-		<fileSet>
-			<directory>target/apidocs</directory>
-			<outputDirectory>apidocs</outputDirectory>
+			<directory>addon6/target/directorystuff</directory>
+			<outputDirectory>./vaadin6</outputDirectory>
 		</fileSet>
 	</fileSets>
 
@@ -39,14 +29,6 @@
 		<file>
 			<source>MANIFEST.MF</source>
 			<outputDirectory>META-INF</outputDirectory>
-			<filtered>true</filtered>
-		</file>
-		<file>
-			<source>README.txt</source>
-			<filtered>true</filtered>
-		</file>
-		<file>
-			<source>LICENSE.txt</source>
 			<filtered>true</filtered>
 		</file>
 	</files>
