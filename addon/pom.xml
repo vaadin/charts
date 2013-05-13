@@ -31,7 +31,6 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.organization>Vaadin Ltd</project.organization>
-		<highcharts.version>3.0.1</highcharts.version>
 		<vaadin.version.maven>7.0.4</vaadin.version.maven>
 	</properties>
 

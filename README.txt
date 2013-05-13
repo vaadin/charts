@@ -5,8 +5,6 @@ Vaadin Charts is based on popular Highcharts ${highcharts.version} JavaScript
 library. Vaadin Charts also  includes the previously separate Vaadin Timeline
 add-on, which uses the HTML5 canvas for drawing.
 
-This version is built against Vaadin ${vaadin.version.maven}.
-
 Installation
 ============
 
@@ -25,6 +23,8 @@ Dependency snippet for Maven users:
 	<version>${project.version}</version>
 </dependency>
 
+For Vaadin 6 compatible version the artifactId is vaadin-charts-v6.
+
 The add-on is available in Vaadin Add-Ons repository:
 
 <repository>
@@ -39,6 +39,7 @@ IVY dependency snippet:
 
 <dependency org="com.vaadin.addon" name="vaadin-charts" rev="${project.version}" conf="default->default" />
 
+For Vaadin 6 compatible version the name is vaadin-charts-v6.
 
 Using plain Jar
 ---------------
