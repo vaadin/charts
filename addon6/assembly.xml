@@ -32,22 +32,4 @@
 			<outputDirectory>apidocs</outputDirectory>
 		</fileSet>
 	</fileSets>
-
-	<files>
-		<!-- Use a MANIFEST.MF file in zip, required by vaadin.com/directory. The 
-			file draws required details automatically from pom.xml -->
-		<file>
-			<source>MANIFEST.MF</source>
-			<outputDirectory>META-INF</outputDirectory>
-			<filtered>true</filtered>
-		</file>
-		<file>
-			<source>README.txt</source>
-			<filtered>true</filtered>
-		</file>
-		<file>
-			<source>LICENSE.txt</source>
-			<filtered>true</filtered>
-		</file>
-	</files>
 </assembly>

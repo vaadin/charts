@@ -37,7 +37,36 @@
 					</descriptors>
 				</configuration>
 			</plugin>
+			<plugin>
+          <groupId>com.github.zch</groupId>
+          <artifactId>pdfsplit-maven-plugin</artifactId>
+          <version>1.0.1</version>
+          <executions>
+              <execution>
+                  <id>pdfsplit</id>
+                  <phase>package</phase>
+                  <goals>
+                      <goal>split</goal>
+                  </goals>
+                  <configuration>
+                      <inputUrl>https://vaadin.com/download/book-of-vaadin/vaadin-7/pdf/book-of-vaadin.pdf</inputUrl>
+                      <chapter>Chapter 19. Vaadin Charts</chapter>
+                      <outFile>${project.build.directory}/vaadin-charts-manual-${project.version}.pdf</outFile>
+                  </configuration>
+              </execution>
+          </executions>
+      </plugin>
+      
 		</plugins>
+		
 	</build>
+	
+	<pluginRepositories>
+        <pluginRepository>
+            <id>pdfsplit-plugin</id>
+            <url>https://raw.github.com/zch/maven/releases/</url>
+        </pluginRepository>
+    </pluginRepositories>
+	
 
 </project>
