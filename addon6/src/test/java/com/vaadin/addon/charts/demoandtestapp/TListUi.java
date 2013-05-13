@@ -144,7 +144,7 @@ public class TListUi extends Window {
         				newInstance.getDescription());
         		item.getItemProperty("package").setValue(subpackage);
         	} catch (Throwable e) {
-        		e.printStackTrace();
+//        		e.printStackTrace();
         	}
         }
     }
