@@ -23,6 +23,7 @@ import com.vaadin.addon.charts.model.Title;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Component;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.VerticalLayout;
 
 @SkipFromDemo
@@ -122,8 +123,10 @@ public class TimeDataWithIrregularIntervalsAndLocalizedTexts extends
         
         
         VerticalLayout verticalLayout = new VerticalLayout();
-        verticalLayout.addComponent(enButton);
-        verticalLayout.addComponent(fiButton);
+        HorizontalLayout horizontalLayout = new HorizontalLayout();
+        horizontalLayout.addComponent(enButton);
+        horizontalLayout.addComponent(fiButton);
+        verticalLayout.addComponent(horizontalLayout);
         verticalLayout.addComponent(chart);
         return verticalLayout;
     }

@@ -88,6 +88,7 @@ public class PlotBoxExample extends AbstractVaadinChartExample {
     protected void setup() {
         useCustomStyles = new CheckBox("Use custom styling");
         useCustomStyles.setDebugId("styles");
+        useCustomStyles.setImmediate(true);
         super.setup();
         addComponentAsFirst(useCustomStyles);
         useCustomStyles.addListener(new ValueChangeListener() {
