@@ -58,7 +58,7 @@ public class DonutChart extends AbstractVaadinChartExample {
         innerSeries.setName("Browsers");
         PlotOptionsPie innerPieOptions = new PlotOptionsPie();
         innerSeries.setPlotOptions(innerPieOptions);
-        innerPieOptions.setSize("60%");
+        innerPieOptions.setSize(237);
         innerPieOptions.setDataLabels(new Labels());
         innerPieOptions.getDataLabels().setFormatter(
                 "this.y > 5 ? this.point.name : null");
@@ -74,7 +74,8 @@ public class DonutChart extends AbstractVaadinChartExample {
         outerSeries.setName("Versions");
         PlotOptionsPie outerSeriesOptions = new PlotOptionsPie();
         outerSeries.setPlotOptions(outerSeriesOptions);
-        outerSeriesOptions.setInnerSize("60%");
+        outerSeriesOptions.setInnerSize(237);
+        outerSeriesOptions.setSize(318);
         outerSeriesOptions.setDataLabels(new Labels());
         outerSeriesOptions
                 .getDataLabels()
