@@ -31,6 +31,8 @@ public class PointClickEvent extends com.vaadin.ui.Component.Event {
     private final String category;
     private final Series series;
     private int pointIndex;
+    private final int absoluteX;
+    private final int absoluteY;
 
     /**
      * Construct a PointClickEvent
@@ -43,13 +45,15 @@ public class PointClickEvent extends com.vaadin.ui.Component.Event {
      * @param pointIndex
      */
     public PointClickEvent(Chart source, double x, double y, Series series,
-            String category, int pointIndex) {
+            String category, int pointIndex, int absoluteX, int absoluteY) {
         super(source);
         this.x = x;
         this.y = y;
         this.series = series;
         this.category = category;
         this.pointIndex = pointIndex;
+        this.absoluteX = absoluteX;
+        this.absoluteY = absoluteY;
     }
 
     /**
@@ -93,6 +97,20 @@ public class PointClickEvent extends com.vaadin.ui.Component.Event {
      */
     public int getPointIndex() {
         return pointIndex;
+    }
+    
+    /**
+     * @return the absolute x position of the clicked point in browser client area in pixels
+     */
+    public int getAbsoluteX() {
+    	return absoluteX;
+    }
+    
+    /**
+     * @return the absolute y position of the clicked point in browser client area in pixels
+     */
+    public int getAbsoluteY() {
+    	return absoluteY;
     }
 
 }

@@ -27,6 +27,8 @@ public class ChartClickEvent extends com.vaadin.ui.Component.Event {
 
     private final Double xAxisValue;
     private final Double yAxisValue;
+    private final int absoluteX;
+    private final int absoluteY;
 
     /**
      * Constructs a ChartClickEvent
@@ -35,10 +37,12 @@ public class ChartClickEvent extends com.vaadin.ui.Component.Event {
      * @param xAxis
      * @param yAxis
      */
-    public ChartClickEvent(Chart source, double xAxis, double yAxis) {
+    public ChartClickEvent(Chart source, double xAxis, double yAxis, int absoluteX, int absoluteY) {
         super(source);
         xAxisValue = xAxis;
         yAxisValue = yAxis;
+        this.absoluteX = absoluteX;
+        this.absoluteY = absoluteY;
     }
 
     /**
@@ -61,6 +65,20 @@ public class ChartClickEvent extends com.vaadin.ui.Component.Event {
      */
     public double getyAxisValue() {
         return yAxisValue;
+    }
+
+    /**
+     * @return the absolute x position of the clicked point in browser client area in pixels
+     */
+    public int getAbsoluteX() {
+        return absoluteX;
+    }
+
+    /**
+     * @return the absolute x position of the clicked point in browser client area in pixels
+     */
+    public int getAbsoluteY() {
+        return absoluteY;
     }
 
 }

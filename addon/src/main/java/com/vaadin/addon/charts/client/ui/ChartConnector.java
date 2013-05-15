@@ -75,7 +75,7 @@ public class ChartConnector extends AbstractComponentConnector {
             @Override
             public void updatePoint(int seriesIndex, int pointIndex, String json) {
                 getWidget().updatePointValue(seriesIndex, pointIndex, json);
-                
+
             }
         });
     }
@@ -93,15 +93,27 @@ public class ChartConnector extends AbstractComponentConnector {
     @Override
     public void onStateChanged(StateChangeEvent stateChangeEvent) {
         super.onStateChanged(stateChangeEvent);
-        final HighchartConfig cfg = HighchartConfig
-                .createFromServerSideString(getState().confState, getState().jsonState);
+        final HighchartConfig cfg = HighchartConfig.createFromServerSideString(
+                getState().confState, getState().jsonState);
         if (getState().registeredEventListeners != null
                 && getState().registeredEventListeners
                         .contains(CHART_CLICK_EVENT_ID)) {
             cfg.setClickHandler(new ChartClickHandler() {
                 @Override
                 public void onClick(ChartClickEvent event) {
-                    rpc.onChartClick(event.getX(), event.getY());
+                    
+                    ValueAxisPair xPair = event.getXPairs().get(0);
+                    ValueAxisPair yPair = event.getYPairs().get(0);
+                    double x = xPair.getValue();
+                    double y = yPair.getValue();
+                    int absoluteX = getWidget().getAbsoluteLeft()
+                            + new Double(xPair.getAxis().toPixels(
+                                    x, false)).intValue();
+                    int absoluteY = getWidget().getAbsoluteTop()
+                            + new Double(yPair.getAxis().toPixels(
+                                    y, false)).intValue();
+                    rpc.onChartClick(x, y, absoluteX,
+                            absoluteY);
                 }
             });
         }
@@ -116,8 +128,15 @@ public class ChartConnector extends AbstractComponentConnector {
                     HighchartSeries series = point.getSeries();
                     int seriesIndex = getWidget().getSeriesIndex(series);
                     int pointIndex = series.indexOf(point);
+                    int absoluteX = getWidget().getAbsoluteLeft()
+                            + new Double(event.getXAxis().toPixels(
+                                    event.getX(), false)).intValue();
+                    int absoluteY = getWidget().getAbsoluteTop()
+                            + new Double(event.getYAxis().toPixels(
+                                    event.getY(), false)).intValue();
                     rpc.onPointClick(event.getX(), event.getY(), seriesIndex,
-                            event.getCategory(), pointIndex);
+                            event.getCategory(), pointIndex, absoluteX,
+                            absoluteY);
                 }
             });
         }
@@ -130,7 +149,8 @@ public class ChartConnector extends AbstractComponentConnector {
                 @Override
                 public void onSelection(ChartSelectionEvent event) {
                     rpc.onSelection(event.getSelectionStart(),
-                            event.getSelectionEnd(), event.getValueStart(), event.getValueEnd());
+                            event.getSelectionEnd(), event.getValueStart(),
+                            event.getValueEnd());
                     event.preventDefault();
                 }
             });
@@ -167,7 +187,7 @@ public class ChartConnector extends AbstractComponentConnector {
                             getWidget().updateSize();
                         }
                     };
-                    
+
                     getLayoutManager().addElementResizeListener(
                             getWidget().getElement(), resizeListener);
                 }
@@ -182,8 +202,10 @@ public class ChartConnector extends AbstractComponentConnector {
                             @Override
                             public void run() {
                                 VWindow widget2 = w.getWidget();
-                                widget2.setWidth(widget2.getOffsetWidth() + "px");
-                                widget2.setHeight(widget2.getOffsetHeight() + "px");
+                                widget2.setWidth(widget2.getOffsetWidth()
+                                        + "px");
+                                widget2.setHeight(widget2.getOffsetHeight()
+                                        + "px");
                             }
                         }.schedule(10);
                     }
@@ -195,11 +217,11 @@ public class ChartConnector extends AbstractComponentConnector {
     @Override
     public void onUnregister() {
         getWidget().destroy();
-        if(resizeListener != null) {
-            getLayoutManager().removeElementResizeListener(getWidget().getElement(), resizeListener);
+        if (resizeListener != null) {
+            getLayoutManager().removeElementResizeListener(
+                    getWidget().getElement(), resizeListener);
         }
         super.onUnregister();
     }
-    
-    
+
 }

@@ -18,23 +18,17 @@ package com.vaadin.addon.charts.client.ui;
  */
 
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.core.client.JsArray;
 
-/**
- * Client side ChartClickEvent
- */
-public class ChartClickEvent extends JavaScriptObject {
-    protected ChartClickEvent() {
+public class ValueAxisPair extends JavaScriptObject {
+    protected ValueAxisPair() {
     }
-
-    public native final JsArray<ValueAxisPair> getXPairs()
+    public native final double getValue()
     /*-{
-        return this.xAxis;
+        return this.value;
     }-*/;
     
-    public native final JsArray<ValueAxisPair> getYPairs()
+    public native final HighchartAxis getAxis()
     /*-{
-        return this.yAxis;
+        return this.axis;
     }-*/;
-    
 }

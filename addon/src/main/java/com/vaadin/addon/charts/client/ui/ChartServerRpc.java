@@ -39,9 +39,9 @@ import com.vaadin.shared.communication.ServerRpc;
  */
 public interface ChartServerRpc extends ServerRpc {
 
-    void onChartClick(double x, double y);
+    void onChartClick(double x, double y, int absoluteX, int absoluteY);
 
-    void onPointClick(double x, double y, int seriesIndex, String category, int pointIndex);
+    void onPointClick(double x, double y, int seriesIndex, String category, int pointIndex, int absoluteX, int absoluteY);
 
     void onSelection(double selectionStart, double selectionEnd, double valueStart, double valueEnd);
 
