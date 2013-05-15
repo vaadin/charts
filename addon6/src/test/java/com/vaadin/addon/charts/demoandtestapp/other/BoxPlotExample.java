@@ -7,7 +7,7 @@ import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.HorizontalAlign;
 import com.vaadin.addon.charts.model.Legend;
 import com.vaadin.addon.charts.model.PlotBandLabel;
-import com.vaadin.addon.charts.model.PlotBoxItem;
+import com.vaadin.addon.charts.model.BoxPlotItem;
 import com.vaadin.addon.charts.model.PlotLine;
 import com.vaadin.addon.charts.model.PlotOptionsBoxPlot;
 import com.vaadin.addon.charts.model.XAxis;
@@ -20,7 +20,7 @@ import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.Component;
 
 @SuppressWarnings("serial")
-public class PlotBoxExample extends AbstractVaadinChartExample {
+public class BoxPlotExample extends AbstractVaadinChartExample {
 
     private CheckBox useCustomStyles;
     private Chart chart;
@@ -64,10 +64,10 @@ public class PlotBoxExample extends AbstractVaadinChartExample {
         observations.setName("Observations");
 
         // Add PlotBoxItems contain all fields relevant for plot box chart
-        observations.add(new PlotBoxItem(760, 801, 848, 895, 965));
+        observations.add(new BoxPlotItem(760, 801, 848, 895, 965));
 
         // Example with no arg constructor
-        PlotBoxItem plotBoxItem = new PlotBoxItem();
+        BoxPlotItem plotBoxItem = new BoxPlotItem();
         plotBoxItem.setLow(733);
         plotBoxItem.setLowerQuartile(853);
         plotBoxItem.setMedian(939);
@@ -75,9 +75,9 @@ public class PlotBoxExample extends AbstractVaadinChartExample {
         plotBoxItem.setHigh(1080);
         observations.add(plotBoxItem);
 
-        observations.add(new PlotBoxItem(714, 762, 817, 870, 918));
-        observations.add(new PlotBoxItem(724, 802, 806, 871, 950));
-        observations.add(new PlotBoxItem(834, 836, 864, 882, 910));
+        observations.add(new BoxPlotItem(714, 762, 817, 870, 918));
+        observations.add(new BoxPlotItem(724, 802, 806, 871, 950));
+        observations.add(new BoxPlotItem(834, 836, 864, 882, 910));
         observations.setPlotOptions(getPlotBoxOptions());
         chart.getConfiguration().addSeries(observations);
 
