@@ -8,7 +8,7 @@ package com.vaadin.addon.charts.model;
  * @see PlotOptionsBoxPlot
  * 
  */
-public class PlotBoxItem extends DataSeriesItem {
+public class BoxPlotItem extends DataSeriesItem {
     // high/low already defined in DataSeriesItem
 
     private Number q1;
@@ -18,7 +18,7 @@ public class PlotBoxItem extends DataSeriesItem {
     /**
      * Constructs an empty data item suitable for box plot chart
      */
-    public PlotBoxItem() {
+    public BoxPlotItem() {
         makeCustomized();
     }
 
@@ -33,7 +33,7 @@ public class PlotBoxItem extends DataSeriesItem {
      *            upper quartile
      * @param high
      */
-    public PlotBoxItem(Number low, Number q1, Number median, Number q3,
+    public BoxPlotItem(Number low, Number q1, Number median, Number q3,
             Number high) {
         this();
         setLow(low);

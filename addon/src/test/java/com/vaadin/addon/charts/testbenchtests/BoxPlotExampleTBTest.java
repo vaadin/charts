@@ -2,14 +2,14 @@ package com.vaadin.addon.charts.testbenchtests;
 
 import org.openqa.selenium.By;
 
-import com.vaadin.addon.charts.demoandtestapp.other.PlotBoxExample;
+import com.vaadin.addon.charts.demoandtestapp.other.BoxPlotExample;
 
 
-public class PlotBoxExampleTBTest extends AbstractSimpleScreenShotTestBenchTest {
+public class BoxPlotExampleTBTest extends AbstractSimpleScreenShotTestBenchTest {
 
     @Override
     protected String getTestViewName() {
-        return PlotBoxExample.class.getName();
+        return BoxPlotExample.class.getName();
     }
     
     @Override
