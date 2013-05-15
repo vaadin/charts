@@ -35,6 +35,7 @@ public class BasicLineGettingMousePointerPosition extends
     @Override
     protected Component getChart() {
         Chart chart = new Chart();
+        chart.setId("chart");
 
         Configuration conf = chart.getConfiguration();
 
