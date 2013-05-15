@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts.model.style;
 
+import java.io.Serializable;
+
 /*
  * #%L
  * Vaadin Charts
@@ -21,6 +23,6 @@ package com.vaadin.addon.charts.model.style;
  * Identifier interface for different type of colors used in HighCharts model
  * and theme
  */
-public interface Color {
+public interface Color extends Serializable {
 
 }
