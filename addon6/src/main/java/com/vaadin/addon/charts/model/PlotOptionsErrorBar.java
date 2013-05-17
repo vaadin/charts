@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts.model;
 
+import java.io.Serializable;
+
 import com.vaadin.addon.charts.model.style.Color;
 
 public class PlotOptionsErrorBar extends AbstractLinePlotOptions {
@@ -85,22 +87,38 @@ public class PlotOptionsErrorBar extends AbstractLinePlotOptions {
 
     /**
      * @see #setWhiskerLength(Number)
-     * @return the whiskerLength
+     * @return the whiskerLength as percentage string or as a number of pixels
      */
-    public Number getWhiskerLength() {
+    public Serializable getWhiskerLength() {
         return whiskerLength;
     }
 
     /**
      * The length of the whiskers, the horizontal lines marking low and high
-     * values. It can be a numerical pixel value, or a percentage value of the
-     * box width. Set 0 to disable whiskers. Defaults to 50%.
+     * values. This method sets it as a numerical pixel value. Set 0 to disable
+     * whiskers. Defaults to 50%.
+     * 
+     * @see #setWhiskerLengthAsPercentage(Number)
+     * 
+     * @param whiskerLength
+     *            the whisker length to set in pixels
+     */
+    public void setWhiskerLength(Number whiskerLengthInPixels) {
+        this.whiskerLength = whiskerLengthInPixels;
+    }
+
+    /**
+     * The length of the whiskers, the horizontal lines marking low and high
+     * values. The value is given as a percentage value of the box width. Set 0
+     * to disable whiskers. Defaults to 50%.
+     * 
+     * @see #setWhiskerLength(Number)
      * 
      * @param whiskerLength
      *            the whisker length to set
      */
-    public void setWhiskerLength(Number whiskerLength) {
-        this.whiskerLength = whiskerLength;
+    public void setWhiskerLengthAsPercentage(Number whiskerLengthAsPercentage) {
+        this.whiskerLength = whiskerLengthAsPercentage + "%";
     }
 
     /**
@@ -114,7 +132,7 @@ public class PlotOptionsErrorBar extends AbstractLinePlotOptions {
 
     /**
      * Sets the line width of the whiskers, the horizontal lines marking low and
-     * high values. When null, the general lineWidth applies. 
+     * high values. When null, the general lineWidth applies.
      * 
      * Defaults to 2.
      * 
@@ -133,7 +151,7 @@ public class PlotOptionsErrorBar extends AbstractLinePlotOptions {
 
     private Color whiskerColor;
 
-    private Number whiskerLength;
+    private Serializable whiskerLength;
 
     private Number whiskerWidth;
 
