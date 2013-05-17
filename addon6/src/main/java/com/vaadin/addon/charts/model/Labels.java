@@ -27,6 +27,7 @@ import com.vaadin.addon.charts.model.style.Style;
 public class Labels extends AbstractConfigurationObject {
 
     private HorizontalAlign align;
+    private VerticalAlign verticalAlign;
     private Boolean enabled;
     private Object rotation;
     private Number staggerLines;
@@ -348,6 +349,28 @@ public class Labels extends AbstractConfigurationObject {
      */
     public void setSoftConnector(Boolean softConnector) {
         this.softConnector = softConnector;
+    }
+
+    /**
+     * @see #setVerticalAlign(VerticalAlign)
+     * @return the verticalAlign
+     */
+    public VerticalAlign getVerticalAlign() {
+        return verticalAlign;
+    }
+
+    /**
+     * Sets the vertical alignment of a data label. Can be one of
+     * {@link VerticalAlign#TOP}, {@link VerticalAlign#MIDDLE} or
+     * {@link VerticalAlign#BOTTOM}. The default value depends on the data, for
+     * instance in a column chart, the label is above positive values and below
+     * negative values.
+     * 
+     * @param verticalAlign
+     *            the verticalAlign to set
+     */
+    public void setVerticalAlign(VerticalAlign verticalAlign) {
+        this.verticalAlign = verticalAlign;
     }
 
 }
