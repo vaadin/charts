@@ -148,9 +148,9 @@ public interface ConfigurationMutationListener extends Serializable {
         private final boolean enabled;
 
         SeriesEnablationEvent(Series series, boolean enabled) {
-            if (series == null || series.getName() == null) {
+            if (series == null) {
                 throw new IllegalArgumentException(
-                        "Series or its name may not be null");
+                        "Series may not be null");
             }
             this.series = series;
             this.enabled = enabled;
