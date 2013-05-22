@@ -21,6 +21,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URL;
 
 /**
  * This class nags about license information whenever Charts usage is started
@@ -36,9 +37,19 @@ class LicenseChecker {
         String userAccount = System
                 .getProperty("vaadin.charts.developer.license");
         if (userAccount == null) {
+            boolean licenseFileFound = false;
             String homedir = System.getProperty("user.home");
             File file = new File(homedir + "/.vaadin.charts.developer.license");
-            if (!file.exists()) {
+            licenseFileFound = file.exists();
+            if(!licenseFileFound) {
+                // Still check if license file is added to war files class path
+                URL resource = LicenseChecker.class.getResource("/vaadin.charts.developer.license");
+                if(resource == null) {
+                    resource = LicenseChecker.class.getResource("/.vaadin.charts.developer.license");
+                }
+                licenseFileFound = resource != null;
+            }
+            if (!licenseFileFound) {
                 printCVALInformationAndHowToGetRidOfThisInformation();
             }
         }
