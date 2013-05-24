@@ -23,7 +23,7 @@ Dependency snippet for Maven users:
 	<version>${project.version}</version>
 </dependency>
 
-For Vaadin 6 compatible version the artifactId is vaadin-charts-v6.
+For Vaadin 6 compatible version the artifactId is vaadin-charts-vaadin6.
 
 The add-on is available in Vaadin Add-Ons repository:
 
@@ -39,7 +39,7 @@ IVY dependency snippet:
 
 <dependency org="com.vaadin.addon" name="vaadin-charts" rev="${project.version}" conf="default->default" />
 
-For Vaadin 6 compatible version the name is vaadin-charts-v6.
+For Vaadin 6 compatible version the name is vaadin-charts-vaadin6.
 
 Using plain Jar
 ---------------
