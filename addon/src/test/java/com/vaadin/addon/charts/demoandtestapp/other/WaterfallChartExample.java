@@ -10,6 +10,7 @@ import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.DataSeriesItem3d;
 import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.PlotOptionsWaterfall;
+import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.WaterFallSum;
 import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.FontWeight;
@@ -56,6 +57,9 @@ public class WaterfallChartExample extends AbstractVaadinChartExample {
         opts.setColor(color);
         opts.setUpColor(upColor);
         Labels dataLabels = new Labels(true);
+        dataLabels.setVerticalAlign(VerticalAlign.TOP);
+        dataLabels.setY(-30);
+        dataLabels.setColor(new SolidColor("black"));
         dataLabels
                 .setFormatter("this.y / 1000 + 'k'");
         Style style = new Style();
