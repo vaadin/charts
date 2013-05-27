@@ -44,6 +44,9 @@ public class BubbleChartExample extends AbstractVaadinChartExample {
 
         PlotOptionsBubble opts = new PlotOptionsBubble();
         opts.setNegativeColor(new VaadinTheme().getColors()[3]);
+        opts.setMaxSize(120);
+        opts.setMinSize(3);
+        
         conf.setPlotOptions(opts);
 
         conf.addSeries(dataSeries);
@@ -53,11 +56,9 @@ public class BubbleChartExample extends AbstractVaadinChartExample {
         dataSeries2.add(item(23, 20, -10));
         dataSeries2.add(item(23, 40, 10));
         opts = new PlotOptionsBubble();
-        // This currently throws, thus commented out, see
-        // https://github.com/highslide-software/highcharts.com/issues/1691
-        // opts.setDisplayNegative(false);
-        // dataSeries2.setPlotOptions(opts);
-        // conf.addSeries(dataSeries2);
+        opts.setDisplayNegative(false);
+        dataSeries2.setPlotOptions(opts);
+        conf.addSeries(dataSeries2);
 
         return chart;
     }
