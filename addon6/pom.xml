@@ -31,7 +31,6 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.organization>Vaadin Ltd</project.organization>
-		<vaadin.version.maven>6.8.10</vaadin.version.maven>
 	</properties>
 
 	<licenses>
@@ -433,7 +432,7 @@
 		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin</artifactId>
-			<version>${vaadin.version.maven}</version>
+			<version>6.8.10</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
