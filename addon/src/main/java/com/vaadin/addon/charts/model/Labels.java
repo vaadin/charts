@@ -29,6 +29,7 @@ public class Labels extends AbstractConfigurationObject {
     private HorizontalAlign align;
     private VerticalAlign verticalAlign;
     private Boolean enabled;
+    private Boolean inside;
     private Object rotation;
     private Number staggerLines;
     private Number step;
@@ -371,6 +372,26 @@ public class Labels extends AbstractConfigurationObject {
      */
     public void setVerticalAlign(VerticalAlign verticalAlign) {
         this.verticalAlign = verticalAlign;
+    }
+
+    /**
+     * @return the inside
+     * @see #setInside(Boolean)
+     */
+    public Boolean getInside() {
+        return inside;
+    }
+
+    /**
+     * For points with an extent, like columns, inside property defines whether
+     * to align the data label inside the box or to the actual value point.
+     * Defaults to false in most cases, true in stacked columns.
+     * 
+     * @param inside
+     *            the explicit inside value to set
+     */
+    public void setInside(Boolean inside) {
+        this.inside = inside;
     }
 
 }
