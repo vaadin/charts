@@ -9,8 +9,11 @@ import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
+import com.vaadin.addon.charts.model.HorizontalAlign;
+import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.PlotOptionsColumnRange;
 import com.vaadin.addon.charts.model.Tooltip;
+import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
@@ -48,6 +51,12 @@ public class ColumnRangeResourceUsage extends AbstractVaadinChartExample {
 
         PlotOptionsColumnRange columnRange = new PlotOptionsColumnRange();
         columnRange.setGrouping(false);
+        Labels dataLabels = new Labels(true);
+        dataLabels.setFormatter("this.y == this.point.low ? '' : this.series.name");
+        dataLabels.setInside(true);
+        dataLabels.setColor(new SolidColor("white"));
+        columnRange.setDataLabels(dataLabels);
+        
         
         conf.setPlotOptions(columnRange);
         
