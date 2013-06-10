@@ -27,6 +27,7 @@ public class PlotOptionsColumn extends AbstractPointPlotOptions {
     private Number pointPadding;
     private Number borderWidth;
     private Number groupPadding;
+    private Boolean grouping;
 
     /**
      * @see #setPointPadding(Number)
@@ -85,5 +86,25 @@ public class PlotOptionsColumn extends AbstractPointPlotOptions {
     @Override
     public ChartType getChartType() {
         return ChartType.COLUMN;
+    }
+
+    /**
+     * @return the explicit grouping value
+     * @see #setGrouping(Boolean)
+     */
+    public Boolean getGrouping() {
+        return grouping;
+    }
+
+    /**
+     * Grouping defines whether to group non-stacked columns or to let them
+     * render independent of each other. Non-grouped columns will be laid out
+     * individually and overlap each other. Defaults to true.
+     * 
+     * @param grouping
+     *            the grouping to set
+     */
+    public void setGrouping(Boolean grouping) {
+        this.grouping = grouping;
     }
 }
