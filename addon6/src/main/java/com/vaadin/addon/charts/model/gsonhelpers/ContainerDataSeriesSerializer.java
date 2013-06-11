@@ -66,17 +66,17 @@ public class ContainerDataSeriesSerializer implements
                 for (Entry<String, JsonElement> entry : entrySet) {
                     series.add(entry.getKey(), entry.getValue());
                 }
-                series.add("name", context.serialize(src.getName()));
-                series.add("stack", context.serialize(src.getStack()));
-                Number xAxis = src.getxAxis();
-                if (xAxis != null) {
-                    series.add("xAxis", new JsonPrimitive(xAxis));
-                }
-                Number yAxis = src.getyAxis();
-                if (yAxis != null) {
-                    series.add("yAxis", new JsonPrimitive(yAxis));
-                }
             }
+        }
+        series.add("name", context.serialize(src.getName()));
+        series.add("stack", context.serialize(src.getStack()));
+        Number xAxis = src.getxAxis();
+        if (xAxis != null) {
+            series.add("xAxis", new JsonPrimitive(xAxis));
+        }
+        Number yAxis = src.getyAxis();
+        if (yAxis != null) {
+            series.add("yAxis", new JsonPrimitive(yAxis));
         }
         series.add("data", data);
 
