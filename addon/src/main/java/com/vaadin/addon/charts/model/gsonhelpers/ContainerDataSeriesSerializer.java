@@ -68,9 +68,9 @@ public class ContainerDataSeriesSerializer implements
                     series.add(entry.getKey(), entry.getValue());
                 }
             }
+            series.add("name", context.serialize(src.getName()));
+            series.add("stack", context.serialize(src.getStack()));
         }
-        series.add("name", context.serialize(src.getName()));
-        series.add("stack", context.serialize(src.getStack()));
         Number xAxis = src.getxAxis();
         if (xAxis != null) {
             series.add("xAxis", new JsonPrimitive(xAxis));
