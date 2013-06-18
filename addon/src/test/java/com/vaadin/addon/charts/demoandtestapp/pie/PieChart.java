@@ -1,6 +1,8 @@
 package com.vaadin.addon.charts.demoandtestapp.pie;
 
 import com.vaadin.addon.charts.Chart;
+import com.vaadin.addon.charts.PointClickEvent;
+import com.vaadin.addon.charts.PointClickListener;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
@@ -11,6 +13,7 @@ import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.PlotOptionsPie;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
+import com.vaadin.ui.Notification;
 
 @SuppressWarnings("serial")
 public class PieChart extends AbstractVaadinChartExample {
@@ -46,7 +49,7 @@ public class PieChart extends AbstractVaadinChartExample {
         plotOptions.setDataLabels(dataLabels);
         conf.setPlotOptions(plotOptions);
 
-        DataSeries series = new DataSeries();
+        final DataSeries series = new DataSeries();
         series.add(new DataSeriesItem("Firefox", 45.0));
         series.add(new DataSeriesItem("IE", 26.8));
         DataSeriesItem chrome = new DataSeriesItem("Chrome", 12.8);
@@ -57,6 +60,14 @@ public class PieChart extends AbstractVaadinChartExample {
         series.add(new DataSeriesItem("Opera", 6.2));
         series.add(new DataSeriesItem("Others", 0.7));
         conf.setSeries(series);
+        
+        chart.addPointClickListener(new PointClickListener() {
+            
+            @Override
+            public void onClick(PointClickEvent event) {
+                Notification.show("Click: " + series.get(event.getPointIndex()).getName());
+            }
+        });
 
         chart.drawChart(conf);
 

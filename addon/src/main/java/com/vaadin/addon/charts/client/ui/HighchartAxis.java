@@ -26,6 +26,10 @@ public class HighchartAxis extends JavaScriptObject {
 	
 	public native final double toPixels(double axisValue, boolean paneCoordinates)
 	/*-{
-		return this.toPixels(axisValue, paneCoordinates);
+            try {
+    	        return this.toPixels(axisValue, paneCoordinates);
+            } catch (e) {
+                return -1;
+            }
 	}-*/;
 }

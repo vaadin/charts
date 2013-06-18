@@ -68,14 +68,14 @@ public class ChartClickEvent extends com.vaadin.ui.Component.Event {
     }
 
     /**
-     * @return the absolute x position of the clicked point in browser client area in pixels
+     * @return the absolute x position of the clicked point in browser client area in pixels or -1 if chart type (like pie) don't have relevant point
      */
     public int getAbsoluteX() {
         return absoluteX;
     }
 
     /**
-     * @return the absolute x position of the clicked point in browser client area in pixels
+     * @return the absolute x position of the clicked point in browser client area in pixels or -1 if chart type (like pie) don't have relevant point
      */
     public int getAbsoluteY() {
         return absoluteY;
