@@ -25,9 +25,30 @@ package com.vaadin.addon.charts.model;
  */
 public class PlotOptionsLine extends AbstractLinePlotOptions {
 
+    private StepType step;
+
     @Override
     public ChartType getChartType() {
         return ChartType.LINE;
+    }
+
+    /**
+     * @see #setStepType(StepType)
+     * 
+     * @return the stepType
+     */
+    public StepType getStepType() {
+        return step;
+    }
+
+    /**
+     * Sets the step type used in the line. Defaults to normal line.
+     * 
+     * @param stepType
+     *            the stepType to set
+     */
+    public void setStepType(StepType stepType) {
+        this.step = stepType;
     }
 
 }
