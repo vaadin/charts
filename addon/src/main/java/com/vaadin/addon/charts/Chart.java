@@ -307,7 +307,7 @@ public class Chart extends AbstractComponent {
      * @see #addPointClickListener(PointClickListener)
      * @param listener
      */
-    public void removePointClickListener(ChartClickListener listener) {
+    public void removePointClickListener(PointClickListener listener) {
         this.removeListener(ChartConnector.POINT_CLICK_EVENT_ID,
                 PointClickEvent.class, listener);
     }
