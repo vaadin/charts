@@ -21,6 +21,7 @@ import java.util.Iterator;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import com.vaadin.addon.charts.client.ui.ChartOptionsState;
 import com.vaadin.addon.charts.model.AbstractConfigurationObject;
 import com.vaadin.addon.charts.model.Lang;
@@ -43,6 +44,7 @@ import com.vaadin.ui.UI;
 public class ChartOptions extends AbstractExtension {
 
     private Theme theme;
+    private Lang lang;
 
     protected ChartOptions() {
     }
@@ -89,8 +91,23 @@ public class ChartOptions extends AbstractExtension {
      */
     public void setTheme(Theme theme) {
         this.theme = theme;
-        getState().json = gson.toJson(theme);
+        buildOptionsJson();
         notifyListeners();
+    }
+
+    private void buildOptionsJson() {
+        JsonObject json;
+        if(theme != null) {
+            json = gson.toJsonTree(theme).getAsJsonObject();
+        } else {
+            json = new JsonObject();
+        }
+        
+        if(lang != null) {
+            json.add("lang", Lang.createGsonBuilder().create().toJsonTree(lang));
+        }
+
+        getState().json = json.toString();
     }
 
     /**
@@ -109,8 +126,8 @@ public class ChartOptions extends AbstractExtension {
      * @param lang
      */
     public void setLang(Lang lang) {
-        String uidl = "{lang: " + lang.toString() + "}";
-        getState().json = uidl;
+        this.lang = lang;
+        buildOptionsJson();
         notifyListeners();
     }
 
