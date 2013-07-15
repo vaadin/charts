@@ -1,5 +1,8 @@
 package com.vaadin.addon.charts.model;
 
+import com.vaadin.addon.charts.model.style.Color;
+import com.vaadin.addon.charts.model.style.SolidColor;
+
 /*
  * #%L
  * Vaadin Charts
@@ -29,6 +32,42 @@ public class PlotOptionsPie extends AbstractCommonPlotOptions {
     private Object[] center;
     private Object innerSize;
     private Marker marker;
+    private SolidColor borderColor;
+    private Number borderWidth;
+
+    /**
+     * @see #setBorderColor(Color)
+     */
+    public SolidColor getBorderColor() {
+        return borderColor;
+    }
+
+    /**
+     * The color of the border surronding each slice. Defaults to white.
+     * 
+     * @param borderColor
+     */
+    public void setBorderColor(SolidColor borderColor) {
+        this.borderColor = borderColor;
+    }
+
+    /**
+     * @see #setBorderWidth(Number)
+     * @return the borderWidth
+     */
+    public Number getBorderWidth() {
+        return borderWidth;
+    }
+
+    /**
+     * Sets the width of the border surrounding each slice. Defaults to 1.
+     * 
+     * @param borderWidth
+     *            the borderWidth to set
+     */
+    public void setBorderWidth(Number borderWidth) {
+        this.borderWidth = borderWidth;
+    }
 
     /**
      * @see #setMarker(Marker)
