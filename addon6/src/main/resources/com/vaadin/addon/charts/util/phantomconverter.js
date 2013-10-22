@@ -223,7 +223,7 @@ var service = server.listen('127.0.0.1:' + args.port, function(request,
 	try {
 		response.write(render(configstr));
 	} catch (e) {
-		response.write("failed");
+		response.write("Render failed:\n" + e);
 	}
 	response.close();
 });

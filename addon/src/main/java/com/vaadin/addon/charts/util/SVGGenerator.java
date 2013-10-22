@@ -51,7 +51,8 @@ public class SVGGenerator {
             JS_STUFF.deleteOnExit();
             FileOutputStream out = new FileOutputStream(JS_STUFF);
             String[] scripts = new String[] { "jquery.min.js", "highcharts.js",
-                    "highcharts-more.js", "exporting.js", "vaadintheme.js" };
+                    "highcharts-more.js", "funnel.js", "exporting.js",
+                    "vaadintheme.js" };
             for (String string : scripts) {
                 InputStream resourceAsStream = Chart.class
                         .getResourceAsStream("/com/vaadin/addon/charts/client/"
@@ -85,7 +86,7 @@ public class SVGGenerator {
 
     private Process process;
 
-    private int port;
+    private final int port;
 
     /**
      * Creates in new {@link SVGGenerator} instance. The preferred way to get an
@@ -186,7 +187,7 @@ public class SVGGenerator {
                 process.destroy();
                 process = null;
                 INSTANCE = null;
-                throw new RuntimeException("SVG generation failed!!");
+                throw new RuntimeException("SVG generation failed: " + line);
             }
             return line;
         } catch (Exception e) {

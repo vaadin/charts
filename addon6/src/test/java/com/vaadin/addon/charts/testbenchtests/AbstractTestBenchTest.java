@@ -88,15 +88,19 @@ public abstract class AbstractTestBenchTest extends TestBenchTestCase {
         String hubhost = System.getProperty("tb.hub");
         if (hubhost != null && !hubhost.isEmpty()) {
             try {
-                BASEURL = "http://" + InetAddress.getLocalHost().getHostName() + ":"
-                        + TESTPORT + "/";
+                String ip = System.getProperty("host.ip");
+                if (ip == null || ip.isEmpty()) {
+                    ip = InetAddress.getLocalHost().getHostName();
+                }
+                BASEURL = "http://" + ip + ":" + TESTPORT + "/";
                 System.out.println("DD " + BASEURL);
                 DesiredCapabilities cap = DesiredCapabilities.chrome();
                 cap.setPlatform(Platform.MAC);
                 URL remoteAddress = new URL("http://" + hubhost
                         + ":4444/wd/hub");
                 rawDriver = new RemoteWebDriver(remoteAddress, cap);
-                driver = new Augmenter().augment(TestBench.createDriver(rawDriver));
+                driver = new Augmenter().augment(TestBench
+                        .createDriver(rawDriver));
             } catch (Exception e1) {
                 // TODO Auto-generated catch block
                 throw new RuntimeException(e1);
