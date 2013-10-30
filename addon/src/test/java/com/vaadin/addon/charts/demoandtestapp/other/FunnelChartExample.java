@@ -26,7 +26,7 @@ public class FunnelChartExample extends AbstractVaadinChartExample {
         dataSeries.add(new DataSeriesItem("Requested price list", 1987));
         dataSeries.add(new DataSeriesItem("Invoice sent", 976));
         dataSeries.add(new DataSeriesItem("Finalized", 846));
-        
+
         Chart chart = new Chart();
 
         Configuration conf = chart.getConfiguration();
@@ -39,6 +39,10 @@ public class FunnelChartExample extends AbstractVaadinChartExample {
         // options.setNeckWidth(20); // in pixels
         options.setNeckHeightPercentage(30);
         // options.setNeckHeight(100); // in pixels
+
+        options.setWidthPercentage(70); // With default (90%), long labels in
+                                        // this example may be cut
+        // options.setWidth(400); // in pixels
 
         Labels dataLabels = new Labels();
         dataLabels.setFormat("<b>{point.name}</b> ({point.y:,.0f})");
