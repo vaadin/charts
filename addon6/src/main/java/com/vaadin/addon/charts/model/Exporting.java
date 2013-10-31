@@ -17,22 +17,22 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
-import java.util.HashMap;
-import java.util.Map;
-
-import com.vaadin.data.util.filter.And;
+import com.vaadin.addon.charts.Chart;
+import com.vaadin.addon.charts.util.SVGGenerator;
 
 /**
  * These properties can be used to configure downloading and printing of the
  * chart.
  * <p>
- * If exporting is enabled, both buttons are displayed by default. This can be
- * further adjusted with {@link #setExportButton(ExportButton)} {@link And}
- * {@link #setPrintButton(ExportButton)}.
+ * Some of the configurations that are not supported directly via Java API can
+ * be configured using {@link Chart#setJsonConfig(String)}.
+ * <p>
+ * Note, that using this feature may cause your charts to be sent to a third
+ * party export server. It is in most cases better to use {@link SVGGenerator}
+ * instead.
+ * 
  */
 public class Exporting extends AbstractConfigurationObject {
-
-    private Map<String, ExportButton> buttons;
 
     private Boolean enableImages;
     private Boolean enabled = false;
@@ -48,31 +48,6 @@ public class Exporting extends AbstractConfigurationObject {
      */
     public Exporting(boolean enabled) {
         this.enabled = enabled;
-    }
-
-    /**
-     * Sets custom configuration for the export button
-     * 
-     * @param exportButton
-     */
-    public void setExportButton(ExportButton exportButton) {
-        setButton("exportButton", exportButton);
-    }
-
-    /**
-     * Sets custom configuration for the print button
-     * 
-     * @param printButton
-     */
-    public void setPrintButton(ExportButton printButton) {
-        setButton("printButton", printButton);
-    }
-
-    private void setButton(String string, ExportButton exportButton) {
-        if (buttons == null) {
-            buttons = new HashMap<String, ExportButton>();
-        }
-        buttons.put(string, exportButton);
     }
 
     /**

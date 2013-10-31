@@ -2,40 +2,43 @@ package com.vaadin.addon.charts.demoandtestapp.other;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.demoandtestapp.columnandbar.DualAxesLineAndColumn;
-import com.vaadin.addon.charts.model.ExportButton;
 import com.vaadin.addon.charts.model.Exporting;
 import com.vaadin.ui.Component;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.VerticalLayout;
 
 @SuppressWarnings("serial")
 public class ExportingExample extends DualAxesLineAndColumn {
 
     @Override
     public String getDescription() {
-        return "An example demonstrating how exporting feature is used.";
+        return "An example demonstrating how exporting feature is used."
+                + "Note that using this feature your charts may visit "
+                + "Highsofts export server, unless you customize the feature "
+                + "to use your own export server. In most cases it is better "
+                + "idea to use com.vaadin.addon.charts.util.SVGGenerator in "
+                + "that works completely in your own servers.";
     }
 
     @Override
     protected Component getChart() {
+        VerticalLayout verticalLayout = new VerticalLayout();
+        verticalLayout.addComponent(new Label(getDescription()));
         Chart chart = (Chart) super.getChart();
         // Enabling exporting adds a button to UI via users can download the
         // chart e.g. for printing
         Exporting exporting = new Exporting(true);
-        
+
         // One can customize the filename
         exporting.setFilename("mychartfile.pdf");
 
         // and choose whether to post raster images to exporting server
         exporting.setEnableImages(true);
-        
+
         // Exporting is by default done on highcharts public servers, but you
         // can also use your own server
         // exporting.setUrl("http://my.own.server.com");
-        
-        // Some options can be set per button, here we disable the print button.
-        ExportButton printButton = new ExportButton();
-        printButton.setEnabled(false);
-        exporting.setPrintButton(printButton);
-        
+
         // Actually use these settings in the chart
         chart.getConfiguration().setExporting(exporting);
 
@@ -43,7 +46,8 @@ public class ExportingExample extends DualAxesLineAndColumn {
         // on/off
         // chart.getConfiguration().setExporting(true);
 
-        return chart;
+        verticalLayout.addComponent(chart);
+        return verticalLayout;
 
     }
 }
