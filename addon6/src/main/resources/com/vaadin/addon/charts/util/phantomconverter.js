@@ -214,18 +214,26 @@ function render(configstr) {
 
 }
 
-// FIXME implement with STDIN/OUT when PhantomJS 1.9 is out
-var server = require('webserver').create();
-var service = server.listen('127.0.0.1:' + args.port, function(request,
-		response) {
-	var configstr = request.post;
-	response.statusCode = 200;
-	try {
-		response.write(render(configstr));
-	} catch (e) {
-		response.write("Render failed:\n" + e);
+function serve() {
+	var configstr = system.stdin.readLine();
+	if(configstr) {
+		var line;
+		while((line = system.stdin.readLine()) != "___VaadinSVGGenerator:run") {
+			configstr += line;
+		}
+		try {
+			var svgresponse = render(configstr);
+			console.log(svgresponse);
+			setTimeout(serve(), 5);
+		} catch (e) {
+			console.log("Render failed:\n" + e);
+		}
+	} else {
+		setTimeout(serve(), 5);
 	}
-	response.close();
-});
+}
 
 console.log("OK, ready.");
+
+serve();
+

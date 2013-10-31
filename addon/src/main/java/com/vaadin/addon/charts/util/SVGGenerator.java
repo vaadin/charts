@@ -1,15 +1,12 @@
 package com.vaadin.addon.charts.util;
 
 import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 
 import org.apache.commons.io.IOUtils;
@@ -86,31 +83,36 @@ public class SVGGenerator {
 
     private Process process;
 
-    private final int port;
-
     /**
      * Creates in new {@link SVGGenerator} instance. The preferred way to get an
      * instance is to use {@link #getInstance()} method.
      * 
      * @param port
      *            the port used by the PhantomJS service
+     * @deprecated use the constructor without port as the implementation
+     *             nowadays uses stdin/out instead of tcp-ip to localhost
      */
+    @Deprecated
     public SVGGenerator(int port) {
-        // TODO create free port search
-        this.port = port;
+        this();
+    }
+
+    /**
+     * Creates in new {@link SVGGenerator} instance. The preferred way to get an
+     * instance is to use {@link #getInstance()} method.
+     * 
+     */
+    public SVGGenerator() {
         try {
             ArrayList<String> commands = new ArrayList<String>();
             commands.add(PHANTOM_EXEC);
             // comment out for debugging
-            // commands.add("--remote-debugger-port=9001");
+//            commands.add("--remote-debugger-port=9001");
 
             commands.add(JS_CONVERTER.getAbsolutePath());
 
             commands.add("-jsstuff");
             commands.add(JS_STUFF.getAbsolutePath());
-
-            commands.add("-port");
-            commands.add("" + port);
 
             process = new ProcessBuilder(commands).start();
             final BufferedReader bufferedReader = new BufferedReader(
@@ -132,7 +134,6 @@ public class SVGGenerator {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     /**
@@ -169,30 +170,38 @@ public class SVGGenerator {
      */
     public synchronized String generate(String options) {
         // long exportStartTime = System.currentTimeMillis();
-        URL url;
         try {
-            url = new URL("http://127.0.0.1:" + port + "/");
-            URLConnection connection = url.openConnection();
-            connection.setDoOutput(true);
 
-            OutputStream out = connection.getOutputStream();
+            OutputStream out = process.getOutputStream();
             out.write(options.getBytes());
-            out.close();
-            InputStream in = connection.getInputStream();
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            IOUtils.copy(in, baos);
-            in.close();
-            String line = new String(baos.toByteArray());
-            if (line == null || !line.startsWith("<svg")) {
-                process.destroy();
-                process = null;
-                INSTANCE = null;
-                throw new RuntimeException("SVG generation failed: " + line);
+            out.write("\n___VaadinSVGGenerator:run\n".getBytes());
+            out.flush();
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(
+                    process.getInputStream()));
+
+            String line = reader.readLine();
+            while (!line.startsWith("<svg")) {
+                if (line.startsWith("Render failed")) {
+                    destroyPhantomInstanse(line);
+                }
+                if(line.startsWith("[object ") || line.startsWith("Highcharts")) {
+                    line = reader.readLine();
+                } else {
+                    destroyPhantomInstanse(line);
+                }
             }
             return line;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private void destroyPhantomInstanse(String line) {
+        process.destroy();
+        process = null;
+        INSTANCE = null;
+        throw new RuntimeException("SVG generation failed: " + line);
     }
 
     public void destroy() {
