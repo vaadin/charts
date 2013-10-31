@@ -43,7 +43,7 @@ public class HighchartsScriptLoader {
     protected void injectResources() {
         // As jquery is so popular, inject it conditionally
         if (!hasJQuery()) {
-            inject(HighchartResources.INSTANCE.jquery().getText());
+            inject(HighchartResources.INSTANCE.standaloneframework().getText());
         }
         inject(HighchartResources.INSTANCE.highcharts().getText());
         inject(HighchartResources.INSTANCE.highchartsMore().getText());

@@ -32,14 +32,22 @@ public interface HighchartResources extends ClientBundle {
     public static final HighchartResources INSTANCE = GWT
             .create(HighchartResources.class);
 
-    @Source("highcharts.src.js")
+    @Source("highcharts.js")
     TextResource highcharts();
 
     @Source("vaadintheme.js")
     TextResource defaultTheme();
 
+    /**
+     * @return
+     * @deprecated use {@link #standaloneframework()} instead
+     */
     @Source("jquery.min.js")
+    @Deprecated
     TextResource jquery();
+
+    @Source("standalone-framework.js")
+    TextResource standaloneframework();
 
     @Source("exporting.js")
     TextResource exporting();

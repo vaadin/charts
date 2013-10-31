@@ -46,7 +46,20 @@ public class HighchartConfig extends JavaScriptObject {
     private static native void merge(HighchartConfig conf, String jsonState)
     /*-{
         var cfg = $wnd.eval('('+jsonState+')');
-        $wnd.jQuery.extend(true, conf, cfg);
+        var merge = function(dst, src) {
+          for (var property in src) {
+            if (src[property] && typeof src[property] === "object") {
+              if(!dst[property]) {
+                  dst[property] = src[property];
+              } else {
+                  arguments.callee(dst[property], src[property]);
+              }
+            } else {
+              dst[property] = src[property];
+            }
+          }
+        };
+        merge(conf, cfg);
     }-*/;
 
     /**
