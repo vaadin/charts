@@ -20,9 +20,10 @@ import com.vaadin.addon.charts.model.Configuration;
  * transferred to virtually any graphic format.
  * <p>
  * The implementation uses PhantomJS to render the chart on server side. Install
- * it separately from <a href="http://phantomjs.org/">phantomjs.org</a>. After
- * installation, if not installed so that it is available on your path, set
- * "phantom.exec" system property to point to your phantomjs binary.
+ * at least version 1.9 separately from <a
+ * href="http://phantomjs.org/">phantomjs.org</a>. After installation, if not
+ * installed so that it is available on your path, set "phantom.exec" system
+ * property to point to your phantomjs binary.
  * <p>
  * The solution is derived form Highchart's exporting-server code: <a href=
  * "https://github.com/highslide-software/highcharts.com/blob/master/exporting-server/java/highcharts-export/src/main/java/com/highcharts/export/util/SVGCreator.java"
@@ -107,7 +108,7 @@ public class SVGGenerator {
             ArrayList<String> commands = new ArrayList<String>();
             commands.add(PHANTOM_EXEC);
             // comment out for debugging
-//            commands.add("--remote-debugger-port=9001");
+            // commands.add("--remote-debugger-port=9001");
 
             commands.add(JS_CONVERTER.getAbsolutePath());
 
@@ -185,7 +186,8 @@ public class SVGGenerator {
                 if (line.startsWith("Render failed")) {
                     destroyPhantomInstanse(line);
                 }
-                if(line.startsWith("[object ") || line.startsWith("Highcharts")) {
+                if (line.startsWith("[object ")
+                        || line.startsWith("Highcharts")) {
                     line = reader.readLine();
                 } else {
                     destroyPhantomInstanse(line);
