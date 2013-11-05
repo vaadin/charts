@@ -29,6 +29,11 @@ public class PieChartTBTest extends AbstractSimpleScreenShotTestBenchTest {
         Action click = new Actions(driver).moveToElement(chart, 400 + 20, 200)
                 .click().build();
 
+        // Ensure animation has finished before clicking
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+        }
         click.perform();
 
         boolean containsFirefox = driver
