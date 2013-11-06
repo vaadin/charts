@@ -46,12 +46,15 @@ import com.vaadin.ui.Image;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.OptionGroup;
+import com.vaadin.ui.TextField;
 import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.TabSheet.SelectedTabChangeEvent;
 import com.vaadin.ui.TabSheet.SelectedTabChangeListener;
 import com.vaadin.ui.Tree;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.event.FieldEvents.TextChangeListener;
+import com.vaadin.event.FieldEvents.TextChangeEvent;
 
 /**
  * The Application's "main" class
@@ -235,13 +238,30 @@ public class ChartsDemoUI extends UI {
 
         tree = new Tree("Chart examples");
         tree.setImmediate(true);
-        tree.setContainerDataSource(getContainer());
-        tree.setItemCaptionPropertyId("displayName");
+        final HierarchicalContainer container = getContainer();
+        tree.setContainerDataSource(container);        tree.setItemCaptionPropertyId("displayName");
 
         VerticalLayout content = new VerticalLayout();
         content.setMargin(true);
         content.setSpacing(true);
 
+        TextField textField = new TextField();
+        textField.setId("search");
+        textField.setInputPrompt("Filter examples");
+        textField.addTextChangeListener(new TextChangeListener() {
+            
+            @Override
+            public void textChange(TextChangeEvent event) {
+                container.removeAllContainerFilters();
+                String text = event.getText();
+                if(text != null && !text.isEmpty()) {
+                    container.addContainerFilter("displayName", text, true, false);
+                }
+            }
+        });
+        
+        com.vaadin.ui.JavaScript.eval("document.getElementById('search').type = 'search';");
+        content.addComponent(textField);
         content.addComponent(tree);
         content.addComponent(themeSelector);
         horizontalSplitPanel.setFirstComponent(content);

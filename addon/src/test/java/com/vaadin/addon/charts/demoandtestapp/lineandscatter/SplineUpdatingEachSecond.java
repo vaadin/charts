@@ -4,7 +4,6 @@ import java.util.Random;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.demoandtestapp.dynamic.Refresher;
 import com.vaadin.addon.charts.model.Axis;
 import com.vaadin.addon.charts.model.AxisType;
 import com.vaadin.addon.charts.model.ChartType;
@@ -29,9 +28,6 @@ public class SplineUpdatingEachSecond extends AbstractVaadinChartExample {
     protected Component getChart() {
         final Random random = new Random();
 
-        Refresher refresher = new Refresher();
-        addComponent(refresher);
-
         final Chart chart = new Chart();
         chart.setWidth("500px");
 
@@ -54,34 +50,19 @@ public class SplineUpdatingEachSecond extends AbstractVaadinChartExample {
         series.setPlotOptions(new PlotOptionsSpline());
         series.setName("Random data");
         for (int i = -19; i <= 0; i++) {
-            series.add(new DataSeriesItem(System.currentTimeMillis() + i
-                    * 1000, random.nextDouble()));
+            series.add(new DataSeriesItem(
+                    System.currentTimeMillis() + i * 1000, random.nextDouble()));
         }
-        Thread randomDataGenerator = new Thread() {
+        runWhileAttached(chart, new Runnable() {
+            
             @Override
             public void run() {
-                while (true) {
-                    try {
-                        sleep(1000);
-                        if (chart.isConnectorEnabled()) {
-                            long x = System.currentTimeMillis();
-                            double y = random.nextDouble();
-                            getSession().lock();
-                            try {
-                                series.add(new DataSeriesItem(x, y), true, true);
-                            } finally {
-                                getSession().unlock();
-                            }
-                        } else {
-                            break;
-                        }
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
+                final long x = System.currentTimeMillis();
+                final double y = random.nextDouble();
+                series.add(new DataSeriesItem(x, y), true,
+                        true);
             }
-        };
-        randomDataGenerator.start();
+        }, 1000, 1000);
 
         configuration.setSeries(series);
 

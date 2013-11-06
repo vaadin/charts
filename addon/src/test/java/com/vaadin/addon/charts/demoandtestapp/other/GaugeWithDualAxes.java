@@ -4,7 +4,6 @@ import java.util.Random;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.demoandtestapp.dynamic.Refresher;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.Labels;
@@ -18,8 +17,6 @@ import com.vaadin.ui.Component;
 
 public class GaugeWithDualAxes extends AbstractVaadinChartExample {
 
-    private Thread generator;
-
     @Override
     public String getDescription() {
         return "Gauge with dual axes";
@@ -29,9 +26,6 @@ public class GaugeWithDualAxes extends AbstractVaadinChartExample {
     protected Component getChart() {
         final Chart chart = new Chart();
         chart.setWidth("500px");
-
-        Refresher refresher = new Refresher();
-        addComponent(refresher);
 
         final Configuration configuration = new Configuration();
         configuration.getChart().setType(ChartType.GAUGE);
@@ -98,28 +92,17 @@ public class GaugeWithDualAxes extends AbstractVaadinChartExample {
 
         configuration.setSeries(series);
 
-        generator = new Thread() {
+        runWhileAttached(chart, new Runnable() {
+
+            Random r = new Random(0);
+
             @Override
             public void run() {
-                try {
-                    sleep(5000);
-                    Random r = new Random(0);
-                    while (isConnectorEnabled()) {
-                        sleep(5000);
-                        Integer oldValue = series.getData()[0].intValue();
-                        Integer newValue = (int) (oldValue + (r.nextDouble() - 0.5) * 20.0);
-                        getSession().lock();
-                        try {
-                            series.updatePoint(0, newValue);
-                        } finally {
-                            getSession().unlock();
-                        }
-                    }
-                } catch (InterruptedException e) {
-                }
+                Integer oldValue = series.getData()[0].intValue();
+                Integer newValue = (int) (oldValue + (r.nextDouble() - 0.5) * 20.0);
+                series.updatePoint(0, newValue);
             }
-        };
-        generator.start();
+        }, 5000, 5000);
 
         chart.drawChart(configuration);
 

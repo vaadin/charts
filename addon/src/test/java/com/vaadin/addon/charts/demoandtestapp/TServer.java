@@ -26,16 +26,12 @@ public class TServer {
     }
 
     public static Server startServer(int port) throws Exception {
-        Server server = new Server();
-
-        final Connector connector = new SelectChannelConnector();
-
-        connector.setPort(port);
-        server.setConnectors(new Connector[] { connector });
-
+        Server server = new Server(port);
+        
         WebAppContext context = new WebAppContext();
         VaadinServlet vaadinServlet = new VaadinServlet();
         ServletHolder servletHolder = new ServletHolder(vaadinServlet);
+        servletHolder.setInitParameter("heartbeatInterval", "10");
         servletHolder.setInitParameter("widgetset",
                 "com.vaadin.addon.charts.ChartsWithTimelineWidgetset");
         servletHolder.setInitParameter("UIProvider",

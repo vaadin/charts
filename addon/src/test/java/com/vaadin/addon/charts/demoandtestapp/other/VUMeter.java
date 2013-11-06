@@ -4,7 +4,6 @@ import java.util.Random;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.demoandtestapp.dynamic.Refresher;
 import com.vaadin.addon.charts.model.Background;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
@@ -32,9 +31,6 @@ public class VUMeter extends AbstractVaadinChartExample {
         final Chart chart = new Chart();
         chart.setWidth("600px");
         chart.setHeight("200px");
-
-        Refresher refresher = new Refresher();
-        addComponent(refresher);
 
         GradientColor gradient = GradientColor.createLinear(0, 0, 0, 1);
         gradient.addColorStop(0, new SolidColor("#FFF4C6"));
@@ -110,48 +106,29 @@ public class VUMeter extends AbstractVaadinChartExample {
         series2.setyAxis(1);
         configuration.setSeries(series1, series2);
 
-        Thread generator = new Thread() {
+        runWhileAttached(chart, new Runnable() {
+
+            final Random r = new Random(0);
+
             @Override
             public void run() {
-                Random r = new Random(0);
-                try {
-                    // for testbench
-                    sleep(8000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                double left = series1.getData()[0].doubleValue();
+                double inc = (r.nextDouble() - 0.5) * 3;
+                double leftVal = left + inc;
+                double rightVal = leftVal + inc / 3;
+                if (leftVal < -20 || leftVal > 6) {
+                    leftVal = left - inc;
                 }
-                while (isConnectorEnabled()) {
-                    try {
-                        sleep(500);
-
-                        double left = series1.getData()[0].doubleValue();
-                        double inc = (r.nextDouble() - 0.5) * 3;
-                        double leftVal = left + inc;
-                        double rightVal = leftVal + inc / 3;
-                        if (leftVal < -20 || leftVal > 6) {
-                            leftVal = left - inc;
-                        }
-                        if (rightVal < -20 || rightVal > 6) {
-                            rightVal = leftVal;
-                        }
-
-                        getSession().lock();
-                        try {
-                            series1.updatePoint(0, leftVal);
-                            series2.updatePoint(0, rightVal);
-                        } finally {
-                            getSession().unlock();
-                        }
-
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                if (rightVal < -20 || rightVal > 6) {
+                    rightVal = leftVal;
                 }
+
+                series1.updatePoint(0, leftVal);
+                series2.updatePoint(0, rightVal);
             }
-        };
+        }, 500, 8000);
 
         chart.drawChart(configuration);
-        generator.start();
         return chart;
     }
 }

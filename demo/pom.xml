@@ -10,9 +10,9 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<vaadin.version>7.0.0.rc2</vaadin.version>
+		<vaadin.version>7.1.7</vaadin.version>
 		<vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
-		<vaadin.charts.version>1.0.0-beta2</vaadin.charts.version>
+		<vaadin.charts.version>1.1.3-SNAPSHOT</vaadin.charts.version>
 	</properties>
 	<repositories>
 		<repository>
@@ -78,7 +78,7 @@
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-webapp</artifactId>
-			<version>7.2.2.v20101205</version>
+			<version>8.1.13.v20130916</version>
 			<scope>provided</scope>
 		</dependency>
 

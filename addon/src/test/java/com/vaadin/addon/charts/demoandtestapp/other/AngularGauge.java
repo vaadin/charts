@@ -4,7 +4,6 @@ import java.util.Random;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.demoandtestapp.dynamic.Refresher;
 import com.vaadin.addon.charts.model.Background;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
@@ -29,9 +28,6 @@ public class AngularGauge extends AbstractVaadinChartExample {
     protected Component getChart() {
         final Chart chart = new Chart();
         chart.setWidth("500px");
-
-        Refresher refresher = new Refresher();
-        addComponent(refresher);
 
         final Configuration configuration = new Configuration();
         configuration.getChart().setType(ChartType.GAUGE);
@@ -101,34 +97,16 @@ public class AngularGauge extends AbstractVaadinChartExample {
         series.setPlotOptions(plotOptions);
         configuration.setSeries(series);
 
-        Thread generator = new Thread() {
+        runWhileAttached(chart, new Runnable() {
+            Random r = new Random(0);
+
             @Override
             public void run() {
-                // Extra sleep in the beginning to make TB tests more reliable
-                try {
-                    sleep(8000);
-                } catch (InterruptedException e1) {
-                    e1.printStackTrace();
-                }
-                Random r = new Random(0);
-                while (isConnectorEnabled()) {
-                    try {
-                        sleep(3000);
-                        Integer oldValue = series.getData()[0].intValue();
-                        Integer newValue = (int) (oldValue + (r.nextDouble() - 0.5) * 20.0);
-                        getSession().lock();
-                        try {
-                            series.updatePoint(0, newValue);
-                        } finally {
-                            getSession().unlock();
-                        }
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
+                Integer oldValue = series.getData()[0].intValue();
+                Integer newValue = (int) (oldValue + (r.nextDouble() - 0.5) * 20.0);
+                series.updatePoint(0, newValue);
             }
-        };
-        generator.start();
+        }, 3000, 8000);
 
         chart.drawChart(configuration);
         return chart;

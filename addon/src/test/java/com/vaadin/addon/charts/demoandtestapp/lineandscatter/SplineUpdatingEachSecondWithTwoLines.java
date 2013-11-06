@@ -5,7 +5,6 @@ import java.util.Random;
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.demoandtestapp.SkipFromDemo;
-import com.vaadin.addon.charts.demoandtestapp.dynamic.Refresher;
 import com.vaadin.addon.charts.model.Axis;
 import com.vaadin.addon.charts.model.AxisType;
 import com.vaadin.addon.charts.model.ChartType;
@@ -20,7 +19,8 @@ import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
 
 @SkipFromDemo
-public class SplineUpdatingEachSecondWithTwoLines extends AbstractVaadinChartExample {
+public class SplineUpdatingEachSecondWithTwoLines extends
+        AbstractVaadinChartExample {
 
     @Override
     public String getDescription() {
@@ -30,9 +30,6 @@ public class SplineUpdatingEachSecondWithTwoLines extends AbstractVaadinChartExa
     @Override
     protected Component getChart() {
         final Random random = new Random();
-
-        Refresher refresher = new Refresher();
-        addComponent(refresher);
 
         final Chart chart = new Chart();
         chart.setWidth("500px");
@@ -56,8 +53,8 @@ public class SplineUpdatingEachSecondWithTwoLines extends AbstractVaadinChartExa
         series.setPlotOptions(new PlotOptionsSpline());
         series.setName("Random data");
         for (int i = -19; i <= 0; i++) {
-            series.add(new DataSeriesItem(System.currentTimeMillis() + i
-                    * 1000, random.nextDouble()));
+            series.add(new DataSeriesItem(
+                    System.currentTimeMillis() + i * 1000, random.nextDouble()));
         }
         final DataSeries series2 = new DataSeries();
         series2.setPlotOptions(new PlotOptionsSpline());
@@ -66,33 +63,19 @@ public class SplineUpdatingEachSecondWithTwoLines extends AbstractVaadinChartExa
             series2.add(new DataSeriesItem(System.currentTimeMillis() + i
                     * 1000, random.nextDouble()));
         }
-        Thread randomDataGenerator = new Thread() {
+        runWhileAttached(chart, new Runnable() {
             @Override
             public void run() {
-                while (true) {
-                    try {
-                        sleep(1000);
-                        if (chart.isConnectorEnabled()) {
-                            long x = System.currentTimeMillis();
-                            getSession().lock();
-                            try {
-                                series.add(new DataSeriesItem(x, random.nextDouble()), true, true);
-                                series2.add(new DataSeriesItem(x, random.nextDouble()), true, true);
-                            } finally {
-                                getSession().unlock();
-                            }
-                        } else {
-                            break;
-                        }
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        };
-        randomDataGenerator.start();
+                long x = System.currentTimeMillis();
+                series.add(new DataSeriesItem(x, random.nextDouble()), true,
+                        true);
+                series2.add(new DataSeriesItem(x, random.nextDouble()), true,
+                        true);
 
-        configuration.setSeries(series,series2);
+            }
+        }, 1000, 1000);
+
+        configuration.setSeries(series, series2);
 
         chart.drawChart(configuration);
         return chart;

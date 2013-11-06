@@ -38,7 +38,7 @@ public class TimelineTBTest extends AbstractTestBenchTest {
                 click("ROOT::PID_Smenu#item0", 16, 13);
                 click("ROOT::PID_Smenu#item0", 16, 13);
             } catch (Exception e) {
-                
+
             }
             sleep(2000);
             if (!testBench.compareScreen(refImage)) {
@@ -107,7 +107,12 @@ public class TimelineTBTest extends AbstractTestBenchTest {
     public void testTimelineMoonwalking() throws Exception {
         driver.get(concatUrl(BASEURL,
                 "/timeline/GetSetDateRangeTest?restartApplication"));
+
         driver.findElement(By.xpath("//div[@class=\"zoom-level\"]")).click();
+
+        // for some reason V update 7.0.x -> 7.1.7 seems to make this unstable
+        // without extra pause
+        sleep(2000);
 
         WebElement reset = driver.findElement(By
                 .vaadin("ROOT::PID_Sreset-button/domChild[0]/domChild[0]"));

@@ -4,7 +4,6 @@ import java.util.Calendar;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.demoandtestapp.dynamic.Refresher;
 import com.vaadin.addon.charts.model.Background;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
@@ -34,9 +33,6 @@ public class Clock extends AbstractVaadinChartExample {
         final Chart chart = new Chart();
         chart.setWidth("500px");
         chart.setHeight("200px");
-
-        Refresher refresher = new Refresher();
-        addComponent(refresher);
 
         final Configuration configuration = new Configuration();
         configuration.getChart().setType(ChartType.GAUGE);
@@ -124,48 +120,28 @@ public class Clock extends AbstractVaadinChartExample {
 
         configuration.setSeries(series);
 
-        Thread clockEngine = new Thread() {
-            final Calendar cal = Calendar.getInstance();
+        final Calendar cal = Calendar.getInstance();
+        runWhileAttached(chart, new Runnable() {
 
             @Override
             public void run() {
-                try {
-                    // for testbench test
-                    sleep(12000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                while (isConnectorEnabled()) {
-                    cal.setTimeInMillis(System.currentTimeMillis());
-                    double hours = cal.get(Calendar.HOUR);
-                    double mins = cal.get(Calendar.MINUTE);
-                    double secs = cal.get(Calendar.SECOND);
+                cal.setTimeInMillis(System.currentTimeMillis());
+                double hours = cal.get(Calendar.HOUR);
+                double mins = cal.get(Calendar.MINUTE);
+                double secs = cal.get(Calendar.SECOND);
 
-                    // disable animation when the second dial reaches 0
-                    boolean animation = secs == 0 ? false : true;
-                    configuration.getChart().setAnimation(animation);
+                // disable animation when the second dial reaches 0
+                boolean animation = secs == 0 ? false : true;
+                configuration.getChart().setAnimation(animation);
 
-                    hour.setY(hours + (mins / 60.0));
-                    minute.setY(mins * (12.0 / 60.0) + secs * (12.0 / 3600.0));
-                    second.setY(secs * (12.0 / 60.0));
-                    getSession().lock();
-                    try {
-                        series.update(hour);
-                        series.update(minute);
-                        series.update(second);
-                    } finally {
-                        getSession().unlock();
-                    }
-                    try {
-                        sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-
+                hour.setY(hours + (mins / 60.0));
+                minute.setY(mins * (12.0 / 60.0) + secs * (12.0 / 3600.0));
+                second.setY(secs * (12.0 / 60.0));
+                series.update(hour);
+                series.update(minute);
+                series.update(second);
             }
-        };
-        clockEngine.start();
+        }, 1000, 12000);
 
         chart.drawChart(configuration);
         return chart;
