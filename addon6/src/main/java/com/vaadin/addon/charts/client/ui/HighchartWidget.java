@@ -99,8 +99,6 @@ public class HighchartWidget extends Widget implements Paintable,
 
     public void updateSize() {
         if (jsOverlay != null) {
-            VConsole.error("updatesize" + getOffsetWidth() + " "
-                    + getOffsetHeight());
             jsOverlay.setSize(getOffsetWidth(), getOffsetHeight(), false, true);
         }
     }

@@ -82,7 +82,6 @@ public class HighchartWidget extends Widget {
     }
 
     public void updateSize() {
-        VConsole.error("updatesize" + getOffsetWidth() + " " + getOffsetHeight());
         jsOverlay.setSize(getOffsetWidth(), getOffsetHeight(), false, true);
     }
 
