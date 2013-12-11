@@ -161,19 +161,48 @@ public class SVGGenerator {
      * @return String containing SVG graphics
      * @see SVGGenerator
      */
-    public synchronized String generate(Configuration conf) {
+    public String generate(Configuration conf) {
         return generate(conf.toString());
     }
 
     /**
-     * @param options
-     * @return SVG generated from options json
+     * Generates SVG file using given Vaadin Chart {@link Configuration}.
+     * 
+     * @param conf
+     *            the configuration that will be plotted as an SVG graphics
+     * @param targetWidth
+     *            the target width in pixels for the the chart
+     * @param targetHeight
+     *            the target height in pixels for the chart
+     * @return String containing SVG graphics
+     * @see SVGGenerator
      */
-    public synchronized String generate(String options) {
+    public String generate(Configuration conf, int targetWidth, int targetHeight) {
+        return generate(conf.toString(), targetWidth, targetHeight);
+    }
+
+    /**
+     * Generates SVG file using given JSON configuration object
+     * 
+     * @param options
+     *            the json options string that will be plotted as an SVG
+     *            graphics
+     * @param targetWidth
+     *            the target width in pixels for the the chart
+     * @param targetHeight
+     *            the target height in pixels for the chart
+     * @return String containing SVG graphics
+     * @see SVGGenerator
+     * @see #generate(Configuration, int, int)
+     */
+    public synchronized String generate(String options, int targetWidth,
+            int targetHeight) {
         // long exportStartTime = System.currentTimeMillis();
         try {
 
             OutputStream out = process.getOutputStream();
+            out.write((targetWidth + "\n").getBytes());
+            out.write((targetHeight + "\n").getBytes());
             out.write(options.getBytes());
             out.write("\n___VaadinSVGGenerator:run\n".getBytes());
             out.flush();
@@ -197,6 +226,16 @@ public class SVGGenerator {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    /**
+     * Generates SVG from given json string containing chart options
+     * 
+     * @param options
+     * @return SVG generated from options json
+     */
+    public String generate(String options) {
+        return generate(options, -1, -1);
     }
 
     private void destroyPhantomInstanse(String line) {

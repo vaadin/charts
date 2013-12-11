@@ -1,14 +1,20 @@
 package com.vaadin.addon.charts.utils;
 
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import junit.framework.Assert;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.DataSeries;
+import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.HorizontalAlign;
 import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.LayoutDirection;
@@ -30,7 +36,7 @@ public class SVGGeneratorTest {
     public void test() {
 
         Configuration conf = createConf();
-
+        
         String generatedSVG = SVGGenerator.getInstance().generate(conf);
 
         validateSvg(generatedSVG);
@@ -118,5 +124,38 @@ public class SVGGeneratorTest {
         conf.setSeries(series);
         return conf;
     }
+    
+    @Test
+    @Ignore("Phantomjs not installed on our build server")
+    public void testWide() throws InterruptedException, URISyntaxException {
+
+        Configuration conf = new Configuration();
+        conf.getChart().setType(ChartType.COLUMN);
+        conf.getChart().setMarginRight(200);
+        Legend legend = conf.getLegend();
+        legend.setLayout(LayoutDirection.VERTICAL);
+        legend.setHorizontalAlign(HorizontalAlign.RIGHT);
+        legend.setVerticalAlign(VerticalAlign.MIDDLE);
+        legend.setBorderWidth(0);
+        
+        Random r = new Random();
+        
+        for(int i = 0; i < 20; i++) {
+            String name = RandomStringUtils.randomAlphabetic(r.nextInt(20));
+            DataSeries dataSeries = new DataSeries(name);
+            dataSeries.add(new DataSeriesItem(name, r.nextInt(100)));
+            conf.addSeries(dataSeries);
+        }
+
+        SVGGenerator instance = SVGGenerator.getInstance();
+        String generatedSVG = instance.generate(conf,1200, 400);
+        
+        Assert.assertTrue(generatedSVG.contains("width=\"1200\""));
+        Assert.assertTrue(generatedSVG.contains("height=\"400\""));
+ 
+        SVGGenerator.getInstance().destroy();
+
+    }
+
 
 }

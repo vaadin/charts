@@ -23,9 +23,9 @@ for ( var i = 0; i < system.args.length; i += 1) {
 
 var fs = require('fs');
 
-function render(configstr) {
+function render(configstr, width, height) {
 
-	var page = require('webpage').create(), HC = {}, pick, scaleAndClipPage, input, constr, callback, width, callbackStr, optionsStr, output, outputExtension, pdfOutput, svg, svgFile, svgElem, timer;
+	var page = require('webpage').create(), HC = {}, pick, scaleAndClipPage, input, constr, callback, callbackStr, optionsStr, output, outputExtension, pdfOutput, svg, svgFile, svgElem, timer;
 
 	HC.imagesLoaded = 'Highcharts.imagesLoaded:7a7dfcb5df73aaa51e67c9f38c5b07cb';
 	window.imagesLoaded = false;
@@ -105,7 +105,6 @@ function render(configstr) {
 	};
 
 	callback = args.callback;
-	width = args.width;
 
 	// load necessary libraries
 	page.injectJs(args["jsstuff"]);
@@ -115,7 +114,7 @@ function render(configstr) {
 		callbackStr = fs.read(callback);
 	}
 
-	var renderer = function(width, str, callbackStr) {
+	var renderer = function(width, height, str, callbackStr) {
 		opt = JSON.parse(str);
 
 		var imagesLoadedMsg = 'Highcharts.imagesLoaded:7a7dfcb5df73aaa51e67c9f38c5b07cb', chart, nodes, nodeIter, elem, opacity;
@@ -184,15 +183,8 @@ function render(configstr) {
 		// check if width is set. Order of precedence:
 		// args.width, options.chart.width and 600px
 
-		// OLD. options.chart.width = width ||
-		// options.chart.width || 600;
-		// Notice we don't use commandline parameter width
-		// here. Commandline parameter width is used for
-		// scaling.
-		opt.chart.width = (opt.exporting && opt.exporting.sourceWidth)
-				|| opt.chart.width || 600;
-		opt.chart.height = (opt.exporting && opt.exporting.sourceHeight)
-				|| opt.chart.height || 400;
+		opt.chart.width = width;
+		opt.chart.height = height;
 
 		chart = new Highcharts.Chart(opt, callback);
 
@@ -207,22 +199,34 @@ function render(configstr) {
 
 	};
 	// load chart in page and return svg height and width
-	svg = page.evaluate(renderer, width, configstr, callbackStr);
+	svg = page.evaluate(renderer, width, height, configstr, callbackStr);
 
 	page.close();
 	return svg.html;
 
 }
 
+// TODO change this to use asynchronous api when phantomjs supports it
+// https://github.com/ariya/phantomjs/issues/10980
+
 function serve() {
 	var configstr = system.stdin.readLine();
 	if(configstr) {
 		var line;
+		var width = parseInt(configstr);
+		var height = parseInt(system.stdin.readLine());
+		if(width < 0) {
+			width = 600;
+		}
+		if(height < 0) {
+			height = 400;
+		}
+		configstr = system.stdin.readLine();
 		while((line = system.stdin.readLine()) != "___VaadinSVGGenerator:run") {
 			configstr += line;
 		}
 		try {
-			var svgresponse = render(configstr);
+			var svgresponse = render(configstr, width, height);
 			console.log(svgresponse);
 			setTimeout(serve(), 5);
 		} catch (e) {
