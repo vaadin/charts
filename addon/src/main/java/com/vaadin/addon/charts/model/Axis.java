@@ -24,6 +24,7 @@ import java.util.List;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.model.style.Color;
+import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.charts.util.Util;
 
 /**
@@ -54,6 +55,8 @@ public abstract class Axis extends AbstractConfigurationObject {
     private Boolean showLastLabel;
     private Number lineWidth;
     private Number gridLineWidth;
+    private SolidColor gridLineColor;
+    private DashStyle gridLineDashStyle;
     private Number minorGridLineWidth;
     private Color alternateGridColor;
     private String minorGridColor;
@@ -187,7 +190,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     public void setMax(Number max) {
         this.max = max;
     }
-    
+
     /**
      * The maximum value of the axis as Date.
      * 
@@ -918,6 +921,41 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     Integer getAxisIndex() {
         return axisIndex;
+    }
+
+    /**
+     * @return the explicit grid line color or null if not specified
+     * @see #setGridLineColor(SolidColor)
+     */
+    public SolidColor getGridLineColor() {
+        return gridLineColor;
+    }
+
+    /**
+     * Sets the color of the grid lines extending the ticks across the plot
+     * area.
+     * 
+     * @param gridLineColor
+     */
+    public void setGridLineColor(SolidColor gridLineColor) {
+        this.gridLineColor = gridLineColor;
+    }
+
+    /**
+     * @return the dash style for grid lines or null if default should be used
+     */
+    public DashStyle getGridLineDashStyle() {
+        return gridLineDashStyle;
+    }
+
+    /**
+     * Sets the dash or dot style of the grid lines. For possible values, see
+     * this {@link DashStyle}. Defaults to {@link DashStyle#SOLID}.
+     * 
+     * @param gridLineDashStyle
+     */
+    public void setGridLineDashStyle(DashStyle gridLineDashStyle) {
+        this.gridLineDashStyle = gridLineDashStyle;
     }
 
 }
