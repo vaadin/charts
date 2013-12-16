@@ -7,6 +7,7 @@ import java.net.URL;
 import org.eclipse.jetty.server.Server;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,14 +17,19 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import com.vaadin.addon.charts.demoandtestapp.TServer;
 import com.vaadin.testbench.Parameters;
+import com.vaadin.testbench.ScreenshotOnFailureRule;
 import com.vaadin.testbench.TestBench;
 import com.vaadin.testbench.TestBenchTestCase;
 import com.vaadin.testbench.commands.TestBenchCommands;
 
 public abstract class AbstractTestBenchTest extends TestBenchTestCase {
 
-    protected static final int TESTPORT = 5678;
-    protected static String BASEURL = "http://localhost:" + TESTPORT + "/";
+    protected static int TESTPORT = 5678;
+    protected static String BASEURL = setTestUrl();
+
+    private static String setTestUrl() {
+        return "http://localhost:" + TESTPORT + "/";
+    }
     private static final File REF_IMAGE_ROOT = new File(
             "src/test/resources/screenshots/reference");
     protected WebDriver driver;
@@ -32,6 +38,8 @@ public abstract class AbstractTestBenchTest extends TestBenchTestCase {
     protected WebDriver rawDriver;
     protected static final String ERROR_IMAGE_ROOT = "target/testbench/errors/";
 
+    @Rule public ScreenshotOnFailureRule screenshotOnFailure = new ScreenshotOnFailureRule(this, true);
+    
     public AbstractTestBenchTest() {
         super();
     }
@@ -41,9 +49,10 @@ public abstract class AbstractTestBenchTest extends TestBenchTestCase {
         new File(ERROR_IMAGE_ROOT).mkdirs();
         Parameters.setScreenshotErrorDirectory(ERROR_IMAGE_ROOT);
         Parameters.setScreenshotComparisonTolerance(0.01);
-        Parameters.setCaptureScreenshotOnFailure(true);
         try {
-            server = TServer.startServer(TESTPORT);
+            server = TServer.startServer(null);
+            TESTPORT = server.getConnectors()[0].getLocalPort();
+            setTestUrl();
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -86,6 +95,7 @@ public abstract class AbstractTestBenchTest extends TestBenchTestCase {
 
     protected void prepareDriver() {
         String hubhost = System.getProperty("tb.hub");
+
         if (hubhost != null && !hubhost.isEmpty()) {
             try {
                 String ip = System.getProperty("host.ip");

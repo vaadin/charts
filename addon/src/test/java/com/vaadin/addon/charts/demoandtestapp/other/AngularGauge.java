@@ -106,7 +106,7 @@ public class AngularGauge extends AbstractVaadinChartExample {
                 Integer newValue = (int) (oldValue + (r.nextDouble() - 0.5) * 20.0);
                 series.updatePoint(0, newValue);
             }
-        }, 3000, 8000);
+        }, 3000, 12000);
 
         chart.drawChart(configuration);
         return chart;

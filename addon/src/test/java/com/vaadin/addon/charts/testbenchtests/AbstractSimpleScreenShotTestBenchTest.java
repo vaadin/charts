@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 
 import org.junit.Test;
+import org.openqa.selenium.By;
 
 public abstract class AbstractSimpleScreenShotTestBenchTest extends
         AbstractTestBenchTest {
@@ -40,6 +41,8 @@ public abstract class AbstractSimpleScreenShotTestBenchTest extends
      * This is executed before taking the screenshot
      */
     protected void testCustomStuff() {
+        // This ensures UI is rendered before timeout for animations is started
+        driver.findElement(By.className("v-ui"));
     }
 
     protected String getPackageName() {

@@ -131,7 +131,7 @@ public class Clock extends AbstractVaadinChartExample {
             public void run() {
                 try {
                     // for testbench test
-                    sleep(12000);
+                    sleep(15000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

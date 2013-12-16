@@ -106,7 +106,7 @@ public class AngularGauge extends AbstractVaadinChartExample {
             public void run() {
                 // Extra sleep in the beginning to make TB tests more reliable
                 try {
-                    sleep(8000);
+                    sleep(12000);
                 } catch (InterruptedException e1) {
                     e1.printStackTrace();
                 }

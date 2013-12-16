@@ -25,12 +25,14 @@ public class TServer {
         startServer(PORT);
     }
 
-    public static Server startServer(int port) throws Exception {
+    public static Server startServer(Integer port) throws Exception {
         Server server = new Server();
 
         final Connector connector = new SelectChannelConnector();
 
-        connector.setPort(port);
+        if(port != null) {
+            connector.setPort(port);
+        }
         server.setConnectors(new Connector[] { connector });
 
         WebAppContext context = new WebAppContext();

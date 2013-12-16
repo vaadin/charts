@@ -102,7 +102,7 @@ public class GaugeWithDualAxes extends AbstractVaadinChartExample {
             @Override
             public void run() {
                 try {
-                    sleep(5000);
+                    sleep(12000);
                     Random r = new Random(0);
                     while (getApplication() != null) {
                         sleep(5000);

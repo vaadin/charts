@@ -102,7 +102,7 @@ public class GaugeWithDualAxes extends AbstractVaadinChartExample {
                 Integer newValue = (int) (oldValue + (r.nextDouble() - 0.5) * 20.0);
                 series.updatePoint(0, newValue);
             }
-        }, 5000, 5000);
+        }, 5000, 12000);
 
         chart.drawChart(configuration);
 

@@ -116,7 +116,7 @@ public class VUMeter extends AbstractVaadinChartExample {
                 Random r = new Random(0);
                 try {
                     // for testbench
-                    sleep(8000);
+                    sleep(12000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

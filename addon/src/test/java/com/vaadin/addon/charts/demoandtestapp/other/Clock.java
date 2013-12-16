@@ -141,7 +141,7 @@ public class Clock extends AbstractVaadinChartExample {
                 series.update(minute);
                 series.update(second);
             }
-        }, 1000, 12000);
+        }, 1000, 15000);
 
         chart.drawChart(configuration);
         return chart;

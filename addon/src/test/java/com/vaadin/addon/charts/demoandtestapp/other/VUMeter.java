@@ -126,7 +126,7 @@ public class VUMeter extends AbstractVaadinChartExample {
                 series1.updatePoint(0, leftVal);
                 series2.updatePoint(0, rightVal);
             }
-        }, 500, 8000);
+        }, 500, 12000);
 
         chart.drawChart(configuration);
         return chart;
