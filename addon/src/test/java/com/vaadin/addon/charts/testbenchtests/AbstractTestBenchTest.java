@@ -25,9 +25,9 @@ import com.vaadin.testbench.commands.TestBenchCommands;
 public abstract class AbstractTestBenchTest extends TestBenchTestCase {
 
     protected static int TESTPORT;
-    protected static String BASEURL = setTestUrl();
+    protected static String BASEURL = getTestUrl();
 
-    private static String setTestUrl() {
+    private static String getTestUrl() {
         return "http://localhost:" + TESTPORT + "/";
     }
     
@@ -53,7 +53,7 @@ public abstract class AbstractTestBenchTest extends TestBenchTestCase {
         try {
             server = TServer.startServer(null);
             TESTPORT = server.getConnectors()[0].getLocalPort();
-            setTestUrl();
+            BASEURL = getTestUrl();
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

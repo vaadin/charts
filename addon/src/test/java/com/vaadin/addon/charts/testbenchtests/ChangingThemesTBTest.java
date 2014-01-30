@@ -22,6 +22,7 @@ public class ChangingThemesTBTest extends AbstractTestBenchTest {
             driver.navigate().to(BASEURL + getTestViewName());
 
             waitBetweenShots();
+            waitBetweenShots();
             
             captureAndCompare("1-start");
 

@@ -24,12 +24,13 @@ import com.vaadin.testbench.commands.TestBenchCommands;
 
 public abstract class AbstractTestBenchTest extends TestBenchTestCase {
 
-    protected static int TESTPORT = 5678;
-    protected static String BASEURL = setTestUrl();
+    protected int TESTPORT;
+    protected String BASEURL = getTestUrl();
 
-    private static String setTestUrl() {
+    private String getTestUrl() {
         return "http://localhost:" + TESTPORT + "/";
     }
+    
     private static final File REF_IMAGE_ROOT = new File(
             "src/test/resources/screenshots/reference");
     protected WebDriver driver;
@@ -37,9 +38,9 @@ public abstract class AbstractTestBenchTest extends TestBenchTestCase {
     private Server server;
     protected WebDriver rawDriver;
     protected static final String ERROR_IMAGE_ROOT = "target/testbench/errors/";
-
     @Rule public ScreenshotOnFailureRule screenshotOnFailure = new ScreenshotOnFailureRule(this, true);
-    
+
+
     public AbstractTestBenchTest() {
         super();
     }
@@ -52,7 +53,7 @@ public abstract class AbstractTestBenchTest extends TestBenchTestCase {
         try {
             server = TServer.startServer(null);
             TESTPORT = server.getConnectors()[0].getLocalPort();
-            setTestUrl();
+            BASEURL = getTestUrl();
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

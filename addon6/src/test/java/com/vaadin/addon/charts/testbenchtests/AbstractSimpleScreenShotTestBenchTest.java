@@ -48,7 +48,7 @@ public abstract class AbstractSimpleScreenShotTestBenchTest extends
      */
     protected void testCustomStuff() {
         // This ensures UI is rendered before timeout for animations is started
-        driver.findElement(By.className("v-ui"));
+        driver.findElement(By.className("v-app"));
     }
 
     protected String getPackageName() {
