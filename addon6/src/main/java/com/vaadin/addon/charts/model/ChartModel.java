@@ -18,6 +18,7 @@ package com.vaadin.addon.charts.model;
  */
 
 import com.vaadin.addon.charts.model.style.Color;
+import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.charts.model.style.Style;
 
 /**
@@ -38,6 +39,8 @@ public class ChartModel extends AbstractConfigurationObject {
     private Style style;
     private Boolean reflow;
     private Number borderWidth;
+    private Number borderRadius;
+    private SolidColor borderColor;
     private Color backgroundColor;
     private Number[] margin;
     private Number marginBottom;
@@ -536,5 +539,39 @@ public class ChartModel extends AbstractConfigurationObject {
      */
     public boolean isPolar() {
         return polar == null ? false : polar;
+    }
+
+    /**
+     * @return The color of the outer chart border
+     */
+    public SolidColor getBorderColor() {
+        return borderColor;
+    }
+
+    /**
+     * Sets the color of the outer chart border.
+     * 
+     * @param borderColor
+     *            The color of the outer chart border.
+     */
+    public void setBorderColor(SolidColor borderColor) {
+        this.borderColor = borderColor;
+    }
+
+    /**
+     * @return the corner radius of the outer chart border
+     */
+    public Number getBorderRadius() {
+        return borderRadius;
+    }
+
+    /**
+     * The corner radius of the outer chart border. Defaults to 5.
+     * 
+     * @param borderRadius
+     *            the border radius in pixels
+     */
+    public void setBorderRadius(Number borderRadius) {
+        this.borderRadius = borderRadius;
     }
 }
