@@ -284,7 +284,7 @@
 								<value>${tb.hub}</value>
 							</property>
 						</systemProperties>
-						<forkCount>5</forkCount>
+						<forkCount>30</forkCount>
 					</configuration>
 				</plugin>
 				<!--This plugin's configuration is used to store Eclipse m2e settings 
