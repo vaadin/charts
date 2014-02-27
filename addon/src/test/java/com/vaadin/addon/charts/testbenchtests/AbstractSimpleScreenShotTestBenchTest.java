@@ -31,7 +31,8 @@ public abstract class AbstractSimpleScreenShotTestBenchTest extends
                 System.err.println("Reference image "
                         + refImage.getAbsolutePath() + " is missing!");
             }
-            assertTrue(testBench.compareScreen(refImage));
+            assertTrue("Image " + refImage.getAbsolutePath()
+                    + " does not match", testBench.compareScreen(refImage));
         } finally {
             driver.quit();
         }
