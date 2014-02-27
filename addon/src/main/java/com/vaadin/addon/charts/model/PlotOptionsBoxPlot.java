@@ -60,7 +60,8 @@ public class PlotOptionsBoxPlot extends PlotOptionsErrorBar {
     /**
      * Sets the pixel width of the median line. If null, the lineWidth is used.
      * 
-     * @param medianWidth the pixel width of median line
+     * @param medianWidth
+     *            the pixel width of median line
      */
     public void setMedianWidth(Number medianWidth) {
         this.medianWidth = medianWidth;
@@ -68,6 +69,5 @@ public class PlotOptionsBoxPlot extends PlotOptionsErrorBar {
 
     private Color medianColor;
     private Number medianWidth;
-
 
 }

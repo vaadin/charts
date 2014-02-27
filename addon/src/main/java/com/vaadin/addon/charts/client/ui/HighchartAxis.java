@@ -21,15 +21,16 @@ import com.google.gwt.core.client.JavaScriptObject;
 
 public class HighchartAxis extends JavaScriptObject {
 
-	protected HighchartAxis() {
-	}
-	
-	public native final double toPixels(double axisValue, boolean paneCoordinates)
-	/*-{
+    protected HighchartAxis() {
+    }
+
+    public native final double toPixels(double axisValue,
+            boolean paneCoordinates)
+    /*-{
             try {
     	        return this.toPixels(axisValue, paneCoordinates);
             } catch (e) {
                 return -1;
             }
-	}-*/;
+    }-*/;
 }

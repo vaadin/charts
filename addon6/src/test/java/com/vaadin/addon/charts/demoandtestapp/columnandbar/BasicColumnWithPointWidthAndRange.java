@@ -36,7 +36,7 @@ public class BasicColumnWithPointWidthAndRange extends
         Configuration conf = chart.getConfiguration();
 
         plotOptions = new PlotOptionsColumn();
-//         plotOptions.setPointRange(10);
+        // plotOptions.setPointRange(10);
         plotOptions.setPointWidth(100);
         conf.setPlotOptions(plotOptions);
 
@@ -58,12 +58,12 @@ public class BasicColumnWithPointWidthAndRange extends
         final Slider slider = new Slider("Value (1-100)", 1, 100);
         slider.setWidth("200px");
         try {
-			slider.setValue(100d);
-		} catch (ValueOutOfBoundsException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
+            slider.setValue(100d);
+        } catch (ValueOutOfBoundsException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
         final NativeSelect option = new NativeSelect();
         option.setCaption("Option");
         option.setNullSelectionAllowed(true);
@@ -77,20 +77,21 @@ public class BasicColumnWithPointWidthAndRange extends
                 slider.setEnabled(event.getProperty().getValue() != null);
             }
         });
-        
-        
+
         horizontalLayout.addComponent(option);
         horizontalLayout.addComponent(slider);
         Button button = new Button("Apply");
         button.addListener(new ClickListener() {
             @Override
             public void buttonClick(ClickEvent event) {
-                if(slider.isEnabled()) {
-                    if(option.getValue().equals("pointWidth")) {
-                        plotOptions.setPointWidth(Double.parseDouble(slider.getValue().toString()));
+                if (slider.isEnabled()) {
+                    if (option.getValue().equals("pointWidth")) {
+                        plotOptions.setPointWidth(Double.parseDouble(slider
+                                .getValue().toString()));
                         plotOptions.setPointRange(null);
                     } else {
-                        plotOptions.setPointRange(Double.parseDouble(slider.getValue().toString()));
+                        plotOptions.setPointRange(Double.parseDouble(slider
+                                .getValue().toString()));
                         plotOptions.setPointWidth(null);
                     }
                 } else {

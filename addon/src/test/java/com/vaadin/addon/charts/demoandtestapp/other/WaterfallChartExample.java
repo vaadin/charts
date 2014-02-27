@@ -59,8 +59,7 @@ public class WaterfallChartExample extends AbstractVaadinChartExample {
         dataLabels.setVerticalAlign(VerticalAlign.TOP);
         dataLabels.setY(-30);
         dataLabels.setColor(new SolidColor("black"));
-        dataLabels
-                .setFormatter("this.y / 1000 + 'k'");
+        dataLabels.setFormatter("this.y / 1000 + 'k'");
         Style style = new Style();
         style.setColor(new SolidColor("#ffffff"));
         style.setFontWeight(FontWeight.BOLD);

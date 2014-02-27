@@ -2,7 +2,8 @@ package com.vaadin.addon.charts.testbenchtests;
 
 import com.vaadin.addon.charts.demoandtestapp.columnandbar.BasicBarNoTitle;
 
-public class BasicBarNoTitleTBTest extends AbstractSimpleScreenShotTestBenchTest {
+public class BasicBarNoTitleTBTest extends
+        AbstractSimpleScreenShotTestBenchTest {
 
     @Override
     protected String getTestViewName() {

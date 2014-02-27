@@ -24,7 +24,7 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextField;
 
-@SuppressWarnings({"serial", "deprecation", "unchecked"})
+@SuppressWarnings({ "serial", "deprecation", "unchecked" })
 public class TimelineSmokeTest extends AbstractVaadinChartExample {
 
     Container.Indexed firstDataSource;
@@ -37,7 +37,7 @@ public class TimelineSmokeTest extends AbstractVaadinChartExample {
 
     @Override
     protected Component getChart() {
-        
+
         // Create the timeline
         final Timeline timeline = new Timeline("My graph");
         timeline.setSizeFull();
@@ -137,28 +137,28 @@ public class TimelineSmokeTest extends AbstractVaadinChartExample {
 
         Button addGraphDataSource = new Button("Add graph data source",
                 new Button.ClickListener() {
-            @Override
-            public void buttonClick(ClickEvent event) {
-                Container.Indexed ds = createGraphDataSource();
-                datasourcesList.add(ds);
-                timeline.addGraphDataSource(ds);
-                timeline.setGraphFillColor(ds, Color.BLACK);
-            }
-        });
+                    @Override
+                    public void buttonClick(ClickEvent event) {
+                        Container.Indexed ds = createGraphDataSource();
+                        datasourcesList.add(ds);
+                        timeline.addGraphDataSource(ds);
+                        timeline.setGraphFillColor(ds, Color.BLACK);
+                    }
+                });
         addComponent(addGraphDataSource);
 
         Button removeGraphDataSource = new Button("Remove graph data source",
                 new Button.ClickListener() {
-            @Override
-            public void buttonClick(ClickEvent event) {
-                if (datasourcesList.size() > 1) {
-                    Container.Indexed ds = datasourcesList
-                            .get(datasourcesList.size() - 1);
-                    timeline.removeGraphDataSource(ds);
-                    datasourcesList.remove(ds);
-                }
-            }
-        });
+                    @Override
+                    public void buttonClick(ClickEvent event) {
+                        if (datasourcesList.size() > 1) {
+                            Container.Indexed ds = datasourcesList
+                                    .get(datasourcesList.size() - 1);
+                            timeline.removeGraphDataSource(ds);
+                            datasourcesList.remove(ds);
+                        }
+                    }
+                });
         addComponent(removeGraphDataSource);
 
         CheckBox stacked = new CheckBox("Stacked graphs", false);

@@ -33,15 +33,14 @@ public class HighchartJsOverlay extends JavaScriptObject {
      * 
      * @param doubleAttribute
      */
-    public native final void addPoint(String pointJson,
-            int seriesIndex, boolean redraw, boolean shift)
+    public native final void addPoint(String pointJson, int seriesIndex,
+            boolean redraw, boolean shift)
     /*-{
         var newPointData = $wnd.eval('('+pointJson+')');
         this.series[seriesIndex].addPoint(newPointData,redraw,shift);
     }-*/;
 
-    public native final void removePoint(int pointIndex,
-            int seriesIndex)
+    public native final void removePoint(int pointIndex, int seriesIndex)
     /*-{
         this.series[seriesIndex].data[pointIndex].remove();
     }-*/;
@@ -56,17 +55,18 @@ public class HighchartJsOverlay extends JavaScriptObject {
         }
     }-*/;
 
-    public final native JsArray<HighchartSeries> getSeries() 
+    public final native JsArray<HighchartSeries> getSeries()
     /*-{
         return this.series;
     }-*/;
 
-    public final native void setAnimation(boolean animation) 
+    public final native void setAnimation(boolean animation)
     /*-{
         this.animation = animation;
     }-*/;
 
-    public final native void setSize(int offsetWidth, int offsetHeight, boolean animate, boolean clearUserSize) 
+    public final native void setSize(int offsetWidth, int offsetHeight,
+            boolean animate, boolean clearUserSize)
     /*-{
         this.setSize(offsetWidth,offsetHeight,animate);
         if(clearUserSize) {
@@ -74,7 +74,7 @@ public class HighchartJsOverlay extends JavaScriptObject {
         }
     }-*/;
 
-    public final native void destroy() 
+    public final native void destroy()
     /*-{
         this.destroy();
     }-*/;

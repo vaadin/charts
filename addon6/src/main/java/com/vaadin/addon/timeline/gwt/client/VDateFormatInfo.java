@@ -71,8 +71,7 @@ public class VDateFormatInfo {
     public void setDateFormatInfo(UIDL uidl) {
         if (uidl.hasAttribute(TimelineConstants.ATTRIBUTE_DATE_FORMATS)) {
             String[] formats = uidl.getStringAttribute(
-                    TimelineConstants.ATTRIBUTE_DATE_FORMATS).split(
-                    "\\|");
+                    TimelineConstants.ATTRIBUTE_DATE_FORMATS).split("\\|");
             displayFormat = DateTimeFormat.getFormat(formats[0]);
             editFormat = DateTimeFormat.getFormat(formats[1]);
             yearFormatShort = DateTimeFormat.getFormat(formats[2]);

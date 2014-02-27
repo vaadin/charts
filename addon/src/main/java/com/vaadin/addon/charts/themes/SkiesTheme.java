@@ -81,11 +81,11 @@ public class SkiesTheme extends HighChartsDefaultTheme {
         getLegend().getItemHiddenStyle().setColor(new SolidColor("silver"));
 
         getLabels().setColor(new SolidColor("#3E576F"));
-        
+
         /* Shadows on by default, off in range stuff */
         getPlotOptions().getArearange().setShadow(false);
         getPlotOptions().getAreasplinerange().setShadow(false);
-        
+
         getPlotOptions().getLine().setShadow(true);
         getPlotOptions().getSpline().setShadow(true);
         getPlotOptions().getBar().setShadow(true);

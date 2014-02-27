@@ -36,7 +36,7 @@ public class SVGGeneratorTest {
     public void test() {
 
         Configuration conf = createConf();
-        
+
         String generatedSVG = SVGGenerator.getInstance().generate(conf);
 
         validateSvg(generatedSVG);
@@ -124,7 +124,7 @@ public class SVGGeneratorTest {
         conf.setSeries(series);
         return conf;
     }
-    
+
     @Test
     @Ignore("Phantomjs not installed on our build server")
     public void testWide() throws InterruptedException, URISyntaxException {
@@ -137,10 +137,10 @@ public class SVGGeneratorTest {
         legend.setHorizontalAlign(HorizontalAlign.RIGHT);
         legend.setVerticalAlign(VerticalAlign.MIDDLE);
         legend.setBorderWidth(0);
-        
+
         Random r = new Random();
-        
-        for(int i = 0; i < 20; i++) {
+
+        for (int i = 0; i < 20; i++) {
             String name = RandomStringUtils.randomAlphabetic(r.nextInt(20));
             DataSeries dataSeries = new DataSeries(name);
             dataSeries.add(new DataSeriesItem(name, r.nextInt(100)));
@@ -148,14 +148,13 @@ public class SVGGeneratorTest {
         }
 
         SVGGenerator instance = SVGGenerator.getInstance();
-        String generatedSVG = instance.generate(conf,1200, 400);
-        
+        String generatedSVG = instance.generate(conf, 1200, 400);
+
         Assert.assertTrue(generatedSVG.contains("width=\"1200\""));
         Assert.assertTrue(generatedSVG.contains("height=\"400\""));
- 
+
         SVGGenerator.getInstance().destroy();
 
     }
-
 
 }

@@ -14,5 +14,5 @@ public class GaugeWithDualAxesTBTest extends
     protected String getPackageName() {
         return "other";
     }
-    
+
 }

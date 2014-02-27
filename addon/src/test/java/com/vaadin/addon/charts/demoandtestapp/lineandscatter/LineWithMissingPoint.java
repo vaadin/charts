@@ -63,24 +63,24 @@ public class LineWithMissingPoint extends AbstractVaadinChartExample {
         legend.setX(-10d);
         legend.setY(100d);
         legend.setBorderWidth(0);
-        
+
         DataSeries ds = new DataSeries();
-        DataSeriesItem item = new DataSeriesItem(1,2);
+        DataSeriesItem item = new DataSeriesItem(1, 2);
         item.setName("a");
         ds.add(item);
-        item = new DataSeriesItem(2,2);
+        item = new DataSeriesItem(2, 2);
         item.setName("b");
         ds.add(item);
-        item = new DataSeriesItem(3,2);
+        item = new DataSeriesItem(3, 2);
         item.setName("c");
         ds.add(item);
-        item = new DataSeriesItem(4,null);
+        item = new DataSeriesItem(4, null);
         item.setName("d");
         ds.add(item);
-        item = new DataSeriesItem(5,2);
+        item = new DataSeriesItem(5, 2);
         item.setName("e");
         ds.add(item);
-        item = new DataSeriesItem(6,2);
+        item = new DataSeriesItem(6, 2);
         item.setName("f");
         ds.add(item);
 

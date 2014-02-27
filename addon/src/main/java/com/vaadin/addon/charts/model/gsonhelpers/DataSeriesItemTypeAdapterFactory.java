@@ -62,7 +62,7 @@ public class DataSeriesItemTypeAdapterFactory implements TypeAdapterFactory {
                         jsonArray.add(new JsonPrimitive(x));
                         if (y != null) {
                             jsonArray.add(new JsonPrimitive(y));
-                        } else if(value.getLow() != null) {
+                        } else if (value.getLow() != null) {
                             jsonArray.add(new JsonPrimitive(value.getLow()));
                             jsonArray.add(new JsonPrimitive(value.getHigh()));
                         } else {

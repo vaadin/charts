@@ -98,19 +98,21 @@ public class PointClickEvent extends com.vaadin.ui.Component.Event {
     public int getPointIndex() {
         return pointIndex;
     }
-    
+
     /**
-     * @return the absolute x position of the clicked point in browser client area in pixels
+     * @return the absolute x position of the clicked point in browser client
+     *         area in pixels
      */
     public int getAbsoluteX() {
-    	return absoluteX;
+        return absoluteX;
     }
-    
+
     /**
-     * @return the absolute y position of the clicked point in browser client area in pixels
+     * @return the absolute y position of the clicked point in browser client
+     *         area in pixels
      */
     public int getAbsoluteY() {
-    	return absoluteY;
+        return absoluteY;
     }
 
 }

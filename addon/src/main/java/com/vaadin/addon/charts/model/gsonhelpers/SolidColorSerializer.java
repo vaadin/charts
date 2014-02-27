@@ -28,8 +28,7 @@ import com.vaadin.addon.charts.model.style.SolidColor;
 /**
  * Serializer for SolidColors
  */
-public class SolidColorSerializer implements
-        JsonSerializer<SolidColor> {
+public class SolidColorSerializer implements JsonSerializer<SolidColor> {
     @Override
     public JsonElement serialize(SolidColor src, Type typeOfSrc,
             JsonSerializationContext context) {

@@ -149,7 +149,7 @@ public class PlotBand extends AbstractConfigurationObject {
     public void setFrom(Date date) {
         from = Util.toHighchartsTS(date);
     }
-    
+
     /**
      * Sets the end position of the plot band in axis units. Defaults to null.
      * 

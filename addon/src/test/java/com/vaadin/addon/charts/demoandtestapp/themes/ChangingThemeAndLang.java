@@ -93,7 +93,7 @@ public class ChangingThemeAndLang extends AbstractVaadinChartExample {
                 ChartOptions.get().setTheme(themeclass.newInstance());
                 i++;
                 Lang l = b;
-                if(i%2==0) {
+                if (i % 2 == 0) {
                     l = a;
                 }
                 ChartOptions.get().setLang(l);

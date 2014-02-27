@@ -54,7 +54,7 @@ public class VCanvasPlotter {
             this.y = y;
             this.g = g;
             this.width = width;
-            this.value = value; 
+            this.value = value;
         }
 
         /*
@@ -71,7 +71,7 @@ public class VCanvasPlotter {
      * A comparator for comparing to points in a graph
      */
     public static class GraphPointComparator implements
-    Comparator<Map.Entry<Graph, Point>> {
+            Comparator<Map.Entry<Graph, Point>> {
         public int compare(Entry<Graph, Point> o1, Entry<Graph, Point> o2) {
             return o1.getValue().compareTo(o2.getValue());
         }
@@ -395,13 +395,13 @@ public class VCanvasPlotter {
                 graphs);
         RepeatingCommand rc = new Scheduler.RepeatingCommand() {
             int counter = 0;
+
             public boolean execute() {
                 Graph g = renderGraphs.get(counter);
                 if (counter == 0 && listener != null) {
                     listener.plottingStarts();
                     rendering = true;
                 }
-
 
                 counter++;
 
@@ -807,6 +807,7 @@ public class VCanvasPlotter {
         final long start = new Date().getTime();
         RepeatingCommand rc = new RepeatingCommand() {
             private int counter = 0;
+
             public boolean execute() {
                 if (counter == 0 && listener != null) {
                     listener.plottingStarts();
@@ -830,8 +831,7 @@ public class VCanvasPlotter {
                 if (counter == graphs.size() && listener != null) {
                     long end = new Date().getTime();
                     VConsole.log("VCanvasPlotter: Plotting scatter graph took "
-                            + (end - start)
-                            + "ms");
+                            + (end - start) + "ms");
                     listener.plottingEnds();
                 }
 

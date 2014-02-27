@@ -66,7 +66,7 @@ public class Spiderweb extends AbstractVaadinChartExample {
         plotOptions.setPointPlacement(PointPlacement.ON);
         line1.setPlotOptions(plotOptions);
         line1.setName("Allocated Budget");
-        
+
         plotOptions = new PlotOptionsLine();
         plotOptions.setPointPlacement(PointPlacement.ON);
         line2.setPlotOptions(plotOptions);
@@ -75,7 +75,7 @@ public class Spiderweb extends AbstractVaadinChartExample {
         conf.setSeries(line1, line2);
 
         chart.drawChart(conf);
-        
+
         return chart;
     }
 }

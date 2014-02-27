@@ -27,34 +27,34 @@ import com.google.gwt.core.client.JavaScriptObject;
  */
 public class JSOStack<T> extends JavaScriptObject {
 
-	public static native <M> JSOStack<M> create() /*-{
-		return [];
-	}-*/;
+    public static native <M> JSOStack<M> create() /*-{
+                                                  return [];
+                                                  }-*/;
 
-	protected JSOStack() {
-	}
+    protected JSOStack() {
+    }
 
-	public final native void clear() /*-{
-		this.length = 0;
-	}-*/;
+    public final native void clear() /*-{
+                                     this.length = 0;
+                                     }-*/;
 
-	public final native boolean isEmpty() /*-{
-		return (this.length == 0);
-	}-*/;
+    public final native boolean isEmpty() /*-{
+                                          return (this.length == 0);
+                                          }-*/;
 
-	public final native String join() /*-{
-		return this.join("");
-	}-*/;
+    public final native String join() /*-{
+                                      return this.join("");
+                                      }-*/;
 
-	public final native T pop() /*-{
-		return this.pop();
-	}-*/;
+    public final native T pop() /*-{
+                                return this.pop();
+                                }-*/;
 
-	public final native void push(T pathStr) /*-{
-		this[this.length] = pathStr;
-	}-*/;
+    public final native void push(T pathStr) /*-{
+                                             this[this.length] = pathStr;
+                                             }-*/;
 
-	public final native int size() /*-{
-		return this.length;
-	}-*/;
+    public final native int size() /*-{
+                                   return this.length;
+                                   }-*/;
 }

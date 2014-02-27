@@ -7,7 +7,7 @@ public class HighchartSeries extends JavaScriptObject {
 
     protected HighchartSeries() {
     }
-    
+
     public native final String getName()
     /*-{
         return this.name;
@@ -17,17 +17,16 @@ public class HighchartSeries extends JavaScriptObject {
         JsArray<HighchartPoint> data = getData();
         for (int i = 0; i < data.length(); i++) {
             HighchartPoint p = data.get(i);
-            if(p == point) {
+            if (p == point) {
                 return i;
             }
         }
         return -1;
     }
 
-    public final native JsArray<HighchartPoint> getData() 
+    public final native JsArray<HighchartPoint> getData()
     /*-{
         return this.data;
     }-*/;
-
 
 }

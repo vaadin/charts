@@ -31,10 +31,10 @@ public class ChartClickEvent extends JavaScriptObject {
     /*-{
         return this.xAxis;
     }-*/;
-    
+
     public native final JsArray<ValueAxisPair> getYPairs()
     /*-{
         return this.yAxis;
     }-*/;
-    
+
 }

@@ -29,45 +29,45 @@ public class ContainerSeriesWithSpline extends AbstractVaadinChartExample {
         IndexedContainer indexedContainer = new IndexedContainer();
         indexedContainer.addContainerProperty("Count", Integer.class, 0);
         indexedContainer.addContainerProperty("Date", Date.class, new Date());
-        
+
         Calendar cal = Calendar.getInstance();
         cal.set(2013, 2, 22, 12, 00);
         cal.set(Calendar.MILLISECOND, 0);
         cal.set(Calendar.SECOND, 0);
-        
+
         Item item = indexedContainer.addItem("p1");
         item.getItemProperty("Date").setValue(cal.getTime());
         item.getItemProperty("Count").setValue(5);
-        
+
         cal.add(Calendar.DATE, 1);
         item = indexedContainer.addItem("p2");
         item.getItemProperty("Date").setValue(cal.getTime());
         item.getItemProperty("Count").setValue(10);
-       
+
         cal.add(Calendar.DATE, 1);
         item = indexedContainer.addItem("p3");
         item.getItemProperty("Date").setValue(cal.getTime());
         item.getItemProperty("Count").setValue(5);
-       
+
         // Create chart config
         Configuration config = new Configuration();
-        
+
         config.getxAxis().setType(AxisType.DATETIME);
-                        
+
         // Wrap container in a container data series
-        ContainerDataSeries cds = new ContainerDataSeries(indexedContainer);                            
+        ContainerDataSeries cds = new ContainerDataSeries(indexedContainer);
         cds.setPlotOptions(new PlotOptionsSpline());
         cds.setYPropertyId("Count");
-        cds.setXPropertyId("Date");            
-                                        
+        cds.setXPropertyId("Date");
+
         // Add points to series
-        config.addSeries(cds); 
-        
+        config.addSeries(cds);
+
         // Create chart and render
-        Chart chart = new Chart();              
-        chart.setSizeFull();                                                            
+        Chart chart = new Chart();
+        chart.setSizeFull();
         chart.drawChart(config);
-                
+
         return chart;
     }
 }

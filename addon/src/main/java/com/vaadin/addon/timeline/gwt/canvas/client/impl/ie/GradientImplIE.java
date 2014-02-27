@@ -29,20 +29,20 @@ import com.vaadin.addon.timeline.gwt.canvas.client.Gradient;
  */
 public abstract class GradientImplIE extends Gradient {
 
-	public ArrayList<ColorStop> colorStops = new ArrayList<ColorStop>();
+    public ArrayList<ColorStop> colorStops = new ArrayList<ColorStop>();
 
-	public GradientImplIE(double x0, double y0, double x1, double y1) {
-	}
+    public GradientImplIE(double x0, double y0, double x1, double y1) {
+    }
 
-	public void addColorStop(double offset, String color) {
-		ColorStop colorStop = new ColorStop(offset, color);
-		for (int i = 0; i < colorStops.size(); ++i) {
-			ColorStop cs = colorStops.get(i);
-			if (offset < cs.offset) {
-				colorStops.add(i, colorStop);
-				return;
-			}
-		}
-		colorStops.add(colorStop);
-	}
+    public void addColorStop(double offset, String color) {
+        ColorStop colorStop = new ColorStop(offset, color);
+        for (int i = 0; i < colorStops.size(); ++i) {
+            ColorStop cs = colorStops.get(i);
+            if (offset < cs.offset) {
+                colorStops.add(i, colorStop);
+                return;
+            }
+        }
+        colorStops.add(colorStop);
+    }
 }

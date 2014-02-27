@@ -72,9 +72,9 @@ import com.vaadin.client.Util;
  */
 
 public class VTimelineBrowser extends VTimelineCanvasComponent implements
-VDataListener, MouseDownHandler, MouseMoveHandler, MouseUpHandler,
-MouseWheelHandler, DoubleClickHandler, NativePreviewHandler,
-TouchStartHandler, TouchMoveHandler, TouchEndHandler {
+        VDataListener, MouseDownHandler, MouseMoveHandler, MouseUpHandler,
+        MouseWheelHandler, DoubleClickHandler, NativePreviewHandler,
+        TouchStartHandler, TouchMoveHandler, TouchEndHandler {
 
     private static final String CLASSNAME_CANVAS = VTimelineWidget.BROWSER_CLASSNAME
             + "-canvas";
@@ -453,61 +453,61 @@ TouchStartHandler, TouchMoveHandler, TouchEndHandler {
         DateTimeFormat formatter = shortDateFormat ? timelineWidget
                 .getDateFormats().getShortDateFormatter(unitTime)
                 : timelineWidget.getDateFormats()
-                .getLongDateFormatter(unitTime);
+                        .getLongDateFormatter(unitTime);
 
-                canvas.setLineWidth(1);
-                canvas.setStrokeStyle("rgb(200,200,200)");
-                canvas.beginPath();
+        canvas.setLineWidth(1);
+        canvas.setStrokeStyle("rgb(200,200,200)");
+        canvas.beginPath();
 
-                long stepsUntilInRange = (startTime - time) / unitTime;
-                time += stepsUntilInRange * unitTime;
+        long stepsUntilInRange = (startTime - time) / unitTime;
+        time += stepsUntilInRange * unitTime;
 
-                while (time <= endTime) {
-                    if (time >= startTime - unitTime && time <= endTime + unitTime) {
-                        Label lbl = new Label();
-                        lbl.setStyleName(CLASSNAME_SCALELABEL);
-                        lbl.setWidth(width + "px");
-                        Date date = new Date(time);
-                        lbl.setText(formatter.format(date));
+        while (time <= endTime) {
+            if (time >= startTime - unitTime && time <= endTime + unitTime) {
+                Label lbl = new Label();
+                lbl.setStyleName(CLASSNAME_SCALELABEL);
+                lbl.setWidth(width + "px");
+                Date date = new Date(time);
+                lbl.setText(formatter.format(date));
 
-                        long timeFromStart = time - startTime;
-                        float x = timeFromStart * xUnit;
+                long timeFromStart = time - startTime;
+                float x = timeFromStart * xUnit;
 
-                        canvas.moveTo(x, 0);
-                        canvas.lineTo(x, canvas.getHeight());
+                canvas.moveTo(x, 0);
+                canvas.lineTo(x, canvas.getHeight());
 
-                        horizontalScalePanel.add(
-                                lbl,
-                                (int) x + 2,
-                                horizontalScalePanel.getOffsetHeight()
+                horizontalScalePanel.add(
+                        lbl,
+                        (int) x + 2,
+                        horizontalScalePanel.getOffsetHeight()
                                 - scrollBar.getOffsetHeight() - 13);
-                        horizontalScaleComponents.add(lbl);
-                    }
+                horizontalScaleComponents.add(lbl);
+            }
 
-                    if (unitTime == VDateFormatInfo.MONTH) {
-                        /*
-                         * Month resolution is not so easy since it changes depending on
-                         * the month. We use the Date to resolve the new time
-                         */
-                        time += DateTimeService.getNumberOfDaysInMonth(new Date(time))
-                                * VDateFormatInfo.DAY;
-                    } else if (unitTime == VDateFormatInfo.YEAR) {
-                        /*
-                         * Take leap years into account
-                         */
-                        if (DateTimeService.isLeapYear(new Date(time))) {
-                            time += unitTime + VDateFormatInfo.DAY;
-                        } else {
-                            time += unitTime;
-                        }
-
-                    } else {
-                        time += unitTime;
-                    }
+            if (unitTime == VDateFormatInfo.MONTH) {
+                /*
+                 * Month resolution is not so easy since it changes depending on
+                 * the month. We use the Date to resolve the new time
+                 */
+                time += DateTimeService.getNumberOfDaysInMonth(new Date(time))
+                        * VDateFormatInfo.DAY;
+            } else if (unitTime == VDateFormatInfo.YEAR) {
+                /*
+                 * Take leap years into account
+                 */
+                if (DateTimeService.isLeapYear(new Date(time))) {
+                    time += unitTime + VDateFormatInfo.DAY;
+                } else {
+                    time += unitTime;
                 }
 
-                canvas.closePath();
-                canvas.stroke();
+            } else {
+                time += unitTime;
+            }
+        }
+
+        canvas.closePath();
+        canvas.stroke();
     }
 
     /**
@@ -525,8 +525,7 @@ TouchStartHandler, TouchMoveHandler, TouchEndHandler {
         plotter.setListener(new PlottingListener() {
             @Override
             public void plottingStarts() {
-                GWT.log(VTimelineBrowser.class.getName()
-                        + ": Plotting start");
+                GWT.log(VTimelineBrowser.class.getName() + ": Plotting start");
 
                 // Plot the horizontal scale if some graphs have been plotted
                 if (timelineWidget.getNumGraphs() > 0) {
@@ -539,8 +538,7 @@ TouchStartHandler, TouchMoveHandler, TouchEndHandler {
             @Override
             public void plottingEnds() {
                 // // Nothing to do
-                GWT.log(VTimelineBrowser.class.getName()
-                        + ": Plotting ends");
+                GWT.log(VTimelineBrowser.class.getName() + ": Plotting ends");
             }
         });
 
@@ -638,7 +636,6 @@ TouchStartHandler, TouchMoveHandler, TouchEndHandler {
 
         Float time = selectorLeftPixel * timeUnit;
         Date date = new Date(start.getTime() + time.longValue());
-
 
         return date;
     }
@@ -891,9 +888,9 @@ TouchStartHandler, TouchMoveHandler, TouchEndHandler {
 
         } else if (sizeAdjustRight
                 && scroller.getRightPosition() + adjustment < scrollBar
-                .getOffsetWidth()
-                - 2
-                * VTimelineBrowserScroller.CANVAS_OFFSET_LEFT_PIXELS) {
+                        .getOffsetWidth()
+                        - 2
+                        * VTimelineBrowserScroller.CANVAS_OFFSET_LEFT_PIXELS) {
             /*
              * Adjusting right edge
              */
@@ -1486,4 +1483,3 @@ TouchStartHandler, TouchMoveHandler, TouchEndHandler {
         }
     }
 }
-

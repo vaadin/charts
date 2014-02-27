@@ -25,7 +25,7 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.ProgressIndicator;
 
 @SkipFromDemo
-@SuppressWarnings({"serial", "deprecation"})
+@SuppressWarnings({ "serial", "deprecation" })
 public class Monitor extends AbstractVaadinChartExample {
 
     private IndexedContainer ds;

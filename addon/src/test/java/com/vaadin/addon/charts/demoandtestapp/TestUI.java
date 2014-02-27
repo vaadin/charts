@@ -4,7 +4,6 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.ComponentContainer;
 import com.vaadin.ui.UI;
 
-
 public class TestUI extends UI {
 
     @Override

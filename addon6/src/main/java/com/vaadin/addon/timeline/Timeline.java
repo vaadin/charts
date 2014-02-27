@@ -824,8 +824,8 @@ public class Timeline extends AbstractComponent {
      * containers and updates the container accordingly
      */
     private class DataSourceListener extends DirtyDataSourceListener implements
-    ItemSetChangeListener, PropertySetChangeListener,
-    ValueChangeListener {
+            ItemSetChangeListener, PropertySetChangeListener,
+            ValueChangeListener {
 
         @Override
         public void valueChange(ValueChangeEvent event) {
@@ -886,7 +886,7 @@ public class Timeline extends AbstractComponent {
      * able to listen to changes in the container
      */
     private class DirtyDataSourceListener implements ItemSetChangeListener,
-    PropertySetChangeListener, ValueChangeListener {
+            PropertySetChangeListener, ValueChangeListener {
 
         public void valueChange(ValueChangeEvent event) {
             dirty = true;
@@ -978,16 +978,14 @@ public class Timeline extends AbstractComponent {
         // The width of the canvas area. Used in measuring density.
         if (variables.containsKey(TimelineConstants.VARIABLE_CANVAS_WIDTH)) {
             canvasWidth = Integer.parseInt(variables.get(
-                    TimelineConstants.VARIABLE_CANVAS_WIDTH)
-                    .toString());
+                    TimelineConstants.VARIABLE_CANVAS_WIDTH).toString());
             getLogger().finest("Canvas width is " + canvasWidth);
         }
 
         // The currently selected chart mode
         if (variables.containsKey(TimelineConstants.VARIABLE_CHART_MODE)) {
             currentChartMode = ChartMode.valueOf(variables.get(
-                    TimelineConstants.VARIABLE_CHART_MODE)
-                    .toString());
+                    TimelineConstants.VARIABLE_CHART_MODE).toString());
             getLogger().finest("Current chart mode is " + currentChartMode);
         }
 
@@ -1018,7 +1016,7 @@ public class Timeline extends AbstractComponent {
                     dataToSend.put(requestID, values);
                     getLogger().finest(
                             "Skipping graph with index " + graph
-                            + ". Index too big.");
+                                    + ". Index too big.");
                     continue;
                 }
 
@@ -1031,9 +1029,9 @@ public class Timeline extends AbstractComponent {
                     List<String> values = new ArrayList<String>();
                     dataToSend.put(requestID, values);
                     getLogger()
-                    .finest("Graph with index "
-                            + graph
-                            + " is not visible. Sending empty point array.");
+                            .finest("Graph with index "
+                                    + graph
+                                    + " is not visible. Sending empty point array.");
                     continue;
                 }
 
@@ -1259,7 +1257,7 @@ public class Timeline extends AbstractComponent {
         if (dataToSend.keySet().size() > 0 && sendDataPoints) {
             getLogger().finest(
                     "Sending " + dataToSend.keySet().size()
-                    + " data points to client");
+                            + " data points to client");
 
             // Concatenate the graph data into a semicolon separated string and
             // put
@@ -1288,7 +1286,7 @@ public class Timeline extends AbstractComponent {
             if (markersToSend.size() > 0) {
                 getLogger().finest(
                         "Sending " + markersToSend.size()
-                        + " markers to client");
+                                + " markers to client");
                 target.addVariable(this, TimelineConstants.VARIABLE_MARKERS,
                         markersToSend.toArray(new String[markersToSend.size()]));
             }
@@ -1307,8 +1305,9 @@ public class Timeline extends AbstractComponent {
 
             // Notify client of changed densities
             if (changedDensities.size() > 0) {
-                getLogger().finest("Notifying client of new density "
-                        + changedDensities.size() + "");
+                getLogger().finest(
+                        "Notifying client of new density "
+                                + changedDensities.size() + "");
                 target.addAttribute(TimelineConstants.ATTRIBUTE_DENSITIES,
                         changedDensities);
             }
@@ -1413,7 +1412,7 @@ public class Timeline extends AbstractComponent {
             }
             getLogger().finest(
                     "Sending graph legend captions " + captionsToSend
-                    + " to client");
+                            + " to client");
             target.addVariable(this, TimelineConstants.VARIABLE_CAPTIONS,
                     captionsToSend.toArray(new String[captionsToSend.size()]));
             sendCaptions = false;
@@ -1427,7 +1426,7 @@ public class Timeline extends AbstractComponent {
             }
             getLogger().finest(
                     "Sending graph vertical units " + unitsToSend
-                    + " to client");
+                            + " to client");
             target.addVariable(this, TimelineConstants.VARIABLE_VERTICAL_UNIT,
                     unitsToSend.toArray(new String[unitsToSend.size()]));
             sendVUnit = false;
@@ -1523,7 +1522,7 @@ public class Timeline extends AbstractComponent {
             }
             getLogger().finest(
                     "Sending graph line thicknesses " + thicknesses
-                    + " to client");
+                            + " to client");
             target.addVariable(this,
                     TimelineConstants.VARIABLE_LINE_GRAPH_THICKNESS,
                     thicknesses.toArray(new String[thicknesses.size()]));
@@ -1597,8 +1596,8 @@ public class Timeline extends AbstractComponent {
             getLogger().finest("Grid color is " + graphGridColor);
             target.addAttribute(
                     TimelineConstants.ATTRIBUTE_GRID_COLOR,
-                    graphGridColor == null ? ""
-                            : colorToString(graphGridColor, ";", true));
+                    graphGridColor == null ? "" : colorToString(graphGridColor,
+                            ";", true));
             sendGraphGrid = false;
         }
 
@@ -1608,10 +1607,9 @@ public class Timeline extends AbstractComponent {
                     chartModeCaption);
             getLogger().finest("Chart mode caption is " + chartModeCaption);
             target.addAttribute(TimelineConstants.ATTRIBUTE_ZOOM_LEVEL_CAPTION,
-                    zoomLevelCaption == null ? ""
-                            : zoomLevelCaption);
+                    zoomLevelCaption == null ? "" : zoomLevelCaption);
             getLogger()
-            .finest("Zoom level mode caption is " + zoomLevelCaption);
+                    .finest("Zoom level mode caption is " + zoomLevelCaption);
             target.addAttribute(TimelineConstants.ATTRIBUTE_NO_DS_CAPTION,
                     noDataSourceCaption == null ? "" : noDataSourceCaption);
             sendUICaptions = false;
@@ -1625,7 +1623,7 @@ public class Timeline extends AbstractComponent {
         }
 
         // Send vertical axis number format if needed
-        if(sendVerticalAxisNumberFormat){
+        if (sendVerticalAxisNumberFormat) {
             target.addAttribute(
                     TimelineConstants.ATTRIBUTE_VERTICAL_NUMBER_FORMAT,
                     verticalAxisNumberFormat);
@@ -1780,8 +1778,8 @@ public class Timeline extends AbstractComponent {
             setGraphValuePropertyId(dataSource, valuePropertyId);
         } catch (IllegalArgumentException e) {
             getLogger()
-            .warning(
-                    "Failed to set properties for graph, rolling back datasource addition");
+                    .warning(
+                            "Failed to set properties for graph, rolling back datasource addition");
             datasources.remove(ds);
             throw e;
         }
@@ -1807,16 +1805,16 @@ public class Timeline extends AbstractComponent {
         // Remove listeners
         if (ds.getDatasource() instanceof ItemSetChangeNotifier) {
             ((ItemSetChangeNotifier) ds.getDatasource())
-            .removeListener(dataSourceListener);
+                    .removeListener(dataSourceListener);
 
         }
         if (ds.getDatasource() instanceof PropertySetChangeNotifier) {
             ((PropertySetChangeNotifier) ds.getDatasource())
-            .removeListener(dataSourceListener);
+                    .removeListener(dataSourceListener);
         }
         if (ds.getDatasource() instanceof ValueChangeNotifier) {
             ((ValueChangeNotifier) ds.getDatasource())
-            .removeListener(dataSourceListener);
+                    .removeListener(dataSourceListener);
         }
 
         datasources.remove(ds);
@@ -1881,11 +1879,11 @@ public class Timeline extends AbstractComponent {
                     }
                 } else {
                     getLogger()
-                    .warning(
-                            "Item not found or timestamp property was NULL "
-                                    + "when searching for first date in graph. Check that "
-                                    + "the container is sorted and that the timestamp property "
-                                    + "is correctly given.");
+                            .warning(
+                                    "Item not found or timestamp property was NULL "
+                                            + "when searching for first date in graph. Check that "
+                                            + "the container is sorted and that the timestamp property "
+                                            + "is correctly given.");
                 }
             }
         }
@@ -1916,11 +1914,11 @@ public class Timeline extends AbstractComponent {
                     }
                 } else {
                     getLogger()
-                    .warning(
-                            "Item not found or timestamp property was NULL "
-                                    + "when searching for last date in graph. Check that "
-                                    + "the container is sorted and that the timestamp property "
-                                    + "is correctly given.");
+                            .warning(
+                                    "Item not found or timestamp property was NULL "
+                                            + "when searching for last date in graph. Check that "
+                                            + "the container is sorted and that the timestamp property "
+                                            + "is correctly given.");
                 }
             }
         }
@@ -2936,10 +2934,12 @@ public class Timeline extends AbstractComponent {
 
     /**
      * Sets the outline graph thickness.
+     * 
      * @param graph
-     *          The graph to set the thickness to
+     *            The graph to set the thickness to
      * @param thickness
-     *          The thickness of the graph in pixels (must be a positive value)
+     *            The thickness of the graph in pixels (must be a positive
+     *            value)
      */
     public void setGraphOutlineThickness(Container.Indexed graph,
             double thickness) {
@@ -3092,7 +3092,6 @@ public class Timeline extends AbstractComponent {
     public String getNoDataSourceCaption() {
         return noDataSourceCaption;
     }
-
 
     /**
      * Show the date select.<br/>
@@ -3540,33 +3539,34 @@ public class Timeline extends AbstractComponent {
         }
         return evnts;
     }
-    
+
     public enum ReducingAlgorithm {
-    	
-    	/**
-    	 * The legacy method. Fast but may drop essential details from the graph.
-    	 */
-    	SIMPLE, 
-    	/**
-    	 * Makes better looking charts, but consumes more CPU.
-    	 */
-    	MODIFIED_RAMER_DOUGLAS_PEUCKER
+
+        /**
+         * The legacy method. Fast but may drop essential details from the
+         * graph.
+         */
+        SIMPLE,
+        /**
+         * Makes better looking charts, but consumes more CPU.
+         */
+        MODIFIED_RAMER_DOUGLAS_PEUCKER
     }
-    
+
     private ReducingAlgorithm reducingAlgorithm = ReducingAlgorithm.SIMPLE;
 
     private void serializeDataPointsTostrings(Date start, Date end,
             int startIndex, int endIndex, int density, Indexed cont,
             List<String> values, List<Item> items) {
-    	switch (reducingAlgorithm) {
-		case MODIFIED_RAMER_DOUGLAS_PEUCKER:
-			reduceModifiedRDP(startIndex, endIndex, density, cont, values,
-					items);
-			break;
-		case SIMPLE:
-			reduceLegacy(startIndex, endIndex, density, cont, values, items);
-			break;
-		}
+        switch (reducingAlgorithm) {
+        case MODIFIED_RAMER_DOUGLAS_PEUCKER:
+            reduceModifiedRDP(startIndex, endIndex, density, cont, values,
+                    items);
+            break;
+        case SIMPLE:
+            reduceLegacy(startIndex, endIndex, density, cont, values, items);
+            break;
+        }
     }
 
     private void reduceModifiedRDP(int startIndex, int endIndex, int density,
@@ -3882,7 +3882,7 @@ public class Timeline extends AbstractComponent {
             }
             if (dataSource instanceof PropertySetChangeNotifier) {
                 getLogger()
-                .finest("Attaching PropertySetChangeListener to graph datasource");
+                        .finest("Attaching PropertySetChangeListener to graph datasource");
                 PropertySetChangeNotifier pscn = (PropertySetChangeNotifier) dataSource;
 
                 // Ensure we not already are listening to the events
@@ -4203,15 +4203,15 @@ public class Timeline extends AbstractComponent {
         return duplicateHandler;
     }
 
-	public ReducingAlgorithm getReducingAlgorithm() {
-		return reducingAlgorithm;
-	}
+    public ReducingAlgorithm getReducingAlgorithm() {
+        return reducingAlgorithm;
+    }
 
-	public void setReducingAlgorithm(ReducingAlgorithm reducingAlgorithm) {
-		this.reducingAlgorithm = reducingAlgorithm;
-	}
+    public void setReducingAlgorithm(ReducingAlgorithm reducingAlgorithm) {
+        this.reducingAlgorithm = reducingAlgorithm;
+    }
 
-	public void setGraphCaption(IndexedContainer dataSource, String caption) {
-		setGraphLegend(dataSource, caption);
-	}
+    public void setGraphCaption(IndexedContainer dataSource, String caption) {
+        setGraphLegend(dataSource, caption);
+    }
 }

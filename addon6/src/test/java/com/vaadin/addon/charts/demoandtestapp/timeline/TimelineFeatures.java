@@ -19,7 +19,7 @@ import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.VerticalLayout;
 
 @SkipFromDemo
-@SuppressWarnings({"serial", "deprecation"})
+@SuppressWarnings({ "serial", "deprecation" })
 public class TimelineFeatures extends AbstractVaadinChartExample {
 
     private VerticalLayout layout;

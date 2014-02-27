@@ -26,7 +26,7 @@ public class FunnelChartExample extends AbstractVaadinChartExample {
         dataSeries.add(new DataSeriesItem("Requested price list", 1987));
         dataSeries.add(new DataSeriesItem("Invoice sent", 976));
         dataSeries.add(new DataSeriesItem("Finalized", 846));
-        
+
         Chart chart = new Chart();
 
         Configuration conf = chart.getConfiguration();

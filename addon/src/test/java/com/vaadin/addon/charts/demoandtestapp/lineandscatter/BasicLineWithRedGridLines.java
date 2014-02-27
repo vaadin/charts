@@ -49,7 +49,7 @@ public class BasicLineWithRedGridLines extends AbstractVaadinChartExample {
         yAxis.setGridLineColor(new SolidColor("red"));
         yAxis.setGridLineDashStyle(DashStyle.DASHDOT);
         yAxis.setGridLineWidth(3);
-        
+
         XAxis xAxis = configuration.getxAxis();
         xAxis.setGridLineColor(new SolidColor(0, 255, 0, 0.5));
         xAxis.setGridLineWidth(4);

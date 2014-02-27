@@ -101,19 +101,18 @@ public class ChartConnector extends AbstractComponentConnector {
             cfg.setClickHandler(new ChartClickHandler() {
                 @Override
                 public void onClick(ChartClickEvent event) {
-                    
+
                     ValueAxisPair xPair = event.getXPairs().get(0);
                     ValueAxisPair yPair = event.getYPairs().get(0);
                     double x = xPair.getValue();
                     double y = yPair.getValue();
                     int absoluteX = getWidget().getAbsoluteLeft()
-                            + new Double(xPair.getAxis().toPixels(
-                                    x, false)).intValue();
+                            + new Double(xPair.getAxis().toPixels(x, false))
+                                    .intValue();
                     int absoluteY = getWidget().getAbsoluteTop()
-                            + new Double(yPair.getAxis().toPixels(
-                                    y, false)).intValue();
-                    rpc.onChartClick(x, y, absoluteX,
-                            absoluteY);
+                            + new Double(yPair.getAxis().toPixels(y, false))
+                                    .intValue();
+                    rpc.onChartClick(x, y, absoluteX, absoluteY);
                 }
             });
         }

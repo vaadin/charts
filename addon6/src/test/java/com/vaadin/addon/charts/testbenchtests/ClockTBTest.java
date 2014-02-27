@@ -13,7 +13,7 @@ public class ClockTBTest extends AbstractSimpleScreenShotTestBenchTest {
     protected String getPackageName() {
         return "other";
     }
-    
+
     @Override
     protected int getScreenShotDelay() {
         return 4000;

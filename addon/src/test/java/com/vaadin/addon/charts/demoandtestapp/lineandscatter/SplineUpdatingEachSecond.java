@@ -54,13 +54,12 @@ public class SplineUpdatingEachSecond extends AbstractVaadinChartExample {
                     System.currentTimeMillis() + i * 1000, random.nextDouble()));
         }
         runWhileAttached(chart, new Runnable() {
-            
+
             @Override
             public void run() {
                 final long x = System.currentTimeMillis();
                 final double y = random.nextDouble();
-                series.add(new DataSeriesItem(x, y), true,
-                        true);
+                series.add(new DataSeriesItem(x, y), true, true);
             }
         }, 1000, 1000);
 

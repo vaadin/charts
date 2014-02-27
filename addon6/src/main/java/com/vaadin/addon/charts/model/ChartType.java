@@ -25,7 +25,7 @@ package com.vaadin.addon.charts.model;
  * Own custom extensions can be made by extending this class.
  */
 public class ChartType implements ChartEnum {
-    
+
     public static final ChartType AREA = new ChartType("area");
     public static final ChartType LINE = new ChartType("line");
     public static final ChartType SPLINE = new ChartType("spline");
@@ -37,19 +37,21 @@ public class ChartType implements ChartEnum {
     public static final ChartType GAUGE = new ChartType("gauge");
     public static final ChartType AREARANGE = new ChartType("arearange");
     public static final ChartType COLUMNRANGE = new ChartType("columnrange");
-    public static final ChartType AREASPLINERANGE = new ChartType("areasplinerange");
+    public static final ChartType AREASPLINERANGE = new ChartType(
+            "areasplinerange");
     public static final ChartType BOXPLOT = new ChartType("boxplot");
     public static final ChartType ERRORBAR = new ChartType("errorbar");
     public static final ChartType BUBBLE = new ChartType("bubble");
     public static final ChartType FUNNEL = new ChartType("funnel");
     public static final ChartType WATERFALL = new ChartType("waterfall");
-    
+
     private final String type;
 
     /**
      * Constructs a new Chart type.
      * 
-     * @param type the actual type string passed for client side
+     * @param type
+     *            the actual type string passed for client side
      */
     protected ChartType(String type) {
         this.type = type;

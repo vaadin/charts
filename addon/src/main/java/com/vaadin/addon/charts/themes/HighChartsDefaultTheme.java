@@ -91,10 +91,10 @@ public class HighChartsDefaultTheme extends Theme {
 
         getLegend().setItemHiddenStyle(new Style());
         getLegend().getItemHiddenStyle().setColor(new SolidColor("#CCC"));
-        
+
         getPlotOptions().getArearange().setShadow(false);
         getPlotOptions().getAreasplinerange().setShadow(false);
-        
+
         getPlotOptions().getLine().setShadow(false);
         getPlotOptions().getSpline().setShadow(false);
         getPlotOptions().getBar().setShadow(false);

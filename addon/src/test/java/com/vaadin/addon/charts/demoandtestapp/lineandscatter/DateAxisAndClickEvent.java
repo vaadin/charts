@@ -71,9 +71,9 @@ public class DateAxisAndClickEvent extends AbstractVaadinChartExample {
                         + Util.toServerDate(timeStampShiftedToUc).toString());
             }
         });
-        
+
         chart.addPointClickListener(new PointClickListener() {
-            
+
             @Override
             public void onClick(PointClickEvent event) {
                 /*
@@ -84,8 +84,6 @@ public class DateAxisAndClickEvent extends AbstractVaadinChartExample {
                         + Util.toServerDate(timeStampShiftedToUc).toString());
             }
         });
-        
-        
 
         return chart;
     }

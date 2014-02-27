@@ -40,14 +40,14 @@ import com.google.gwt.core.client.JavaScriptObject;
  */
 public class LinearGradientImpl extends GradientImpl {
 
-	public LinearGradientImpl(double x0, double y0, double x1, double y1,
-			JavaScriptObject context) {
-		createNativeGradientObject(x0, y0, x1, y1, context);
-	}
+    public LinearGradientImpl(double x0, double y0, double x1, double y1,
+            JavaScriptObject context) {
+        createNativeGradientObject(x0, y0, x1, y1, context);
+    }
 
-	private native void createNativeGradientObject(double x0, double y0, double x1, double y1,
-			JavaScriptObject context) /*-{
-		this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.GradientImpl::gradient =
-			context.createLinearGradient(x0, y0, x1, y1);
-	}-*/;
+    private native void createNativeGradientObject(double x0, double y0,
+            double x1, double y1, JavaScriptObject context) /*-{
+                                                            this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.GradientImpl::gradient =
+                                                            context.createLinearGradient(x0, y0, x1, y1);
+                                                            }-*/;
 }

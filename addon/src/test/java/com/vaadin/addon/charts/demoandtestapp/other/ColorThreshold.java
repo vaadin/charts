@@ -6,7 +6,7 @@ import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
 
 public class ColorThreshold extends AreaRange {
-    
+
     @Override
     protected Component getChart() {
         Chart chart = (Chart) super.getChart();

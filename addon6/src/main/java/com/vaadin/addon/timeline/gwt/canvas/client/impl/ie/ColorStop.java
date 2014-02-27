@@ -21,17 +21,17 @@ package com.vaadin.addon.timeline.gwt.canvas.client.impl.ie;
  */
 
 /**
- * Internet Explorer specific storage object for an offset and color
- * combination corresponding to a color stop for color gradients.
+ * Internet Explorer specific storage object for an offset and color combination
+ * corresponding to a color stop for color gradients.
  */
 public class ColorStop {
 
-	public double offset;
+    public double offset;
 
-	public String color;
+    public String color;
 
-	public ColorStop(double offset, String color) {
-		this.offset = offset;
-		this.color = color;
-	}
+    public ColorStop(double offset, String color) {
+        this.offset = offset;
+        this.color = color;
+    }
 }

@@ -14,7 +14,7 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalSplitPanel;
 
 @SkipFromDemo
-@SuppressWarnings({"serial", "deprecation"})
+@SuppressWarnings({ "serial", "deprecation" })
 public class ResizeTest extends AbstractVaadinChartExample {
 
     private VerticalSplitPanel panel;

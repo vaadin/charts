@@ -11,7 +11,7 @@ import com.vaadin.addon.charts.demoandtestapp.themes.ChangingThemes;
 import com.vaadin.testbench.By;
 
 public class ChangingThemesTBTest extends AbstractTestBenchTest {
-    
+
     boolean screenshotErrors = false;
 
     @Test
@@ -22,7 +22,7 @@ public class ChangingThemesTBTest extends AbstractTestBenchTest {
             driver.navigate().to(BASEURL + getTestViewName());
 
             waitBetweenShots();
-            
+
             captureAndCompare("1-start");
 
             driver.findElement(By.id("vaadin-button")).click();
@@ -58,7 +58,7 @@ public class ChangingThemesTBTest extends AbstractTestBenchTest {
         } finally {
             driver.quit();
         }
-        if(screenshotErrors) {
+        if (screenshotErrors) {
             Assert.fail("There are differences in screenshots");
         }
     }
@@ -71,7 +71,7 @@ public class ChangingThemesTBTest extends AbstractTestBenchTest {
             System.err.println("Reference image " + refImage.getAbsolutePath()
                     + " is missing!");
         }
-        if(!testBench.compareScreen(refImage)) {
+        if (!testBench.compareScreen(refImage)) {
             screenshotErrors = true;
         }
     }

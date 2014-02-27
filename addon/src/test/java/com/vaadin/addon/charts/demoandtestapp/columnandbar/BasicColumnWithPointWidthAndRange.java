@@ -35,7 +35,7 @@ public class BasicColumnWithPointWidthAndRange extends
         Configuration conf = chart.getConfiguration();
 
         plotOptions = new PlotOptionsColumn();
-//         plotOptions.setPointRange(10);
+        // plotOptions.setPointRange(10);
         plotOptions.setPointWidth(100);
         conf.setPlotOptions(plotOptions);
 
@@ -57,7 +57,7 @@ public class BasicColumnWithPointWidthAndRange extends
         final Slider slider = new Slider("Value (1-100)", 1, 100);
         slider.setWidth("200px");
         slider.setValue(100d);
-        
+
         final NativeSelect option = new NativeSelect();
         option.setCaption("Option");
         option.setNullSelectionAllowed(true);
@@ -71,16 +71,15 @@ public class BasicColumnWithPointWidthAndRange extends
                 slider.setEnabled(event.getProperty().getValue() != null);
             }
         });
-        
-        
+
         horizontalLayout.addComponent(option);
         horizontalLayout.addComponent(slider);
         Button button = new Button("Apply");
         button.addClickListener(new ClickListener() {
             @Override
             public void buttonClick(ClickEvent event) {
-                if(slider.isEnabled()) {
-                    if(option.getValue().equals("pointWidth")) {
+                if (slider.isEnabled()) {
+                    if (option.getValue().equals("pointWidth")) {
                         plotOptions.setPointWidth(slider.getValue());
                         plotOptions.setPointRange(null);
                     } else {

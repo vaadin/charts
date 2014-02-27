@@ -65,12 +65,12 @@ public class CanvasImplSafari extends CanvasImpl {
     }
 
     // TODO investigate further
-    //	protected native void cancelSelections() /*-{
-    //		var s = $wnd.getSelection();
-    //		if (s.removeAllRanges) {
-    //			s.removeAllRanges();
-    //		} else {
-    //			s.collapse();
-    //		}
-    //	}-*/;
+    // protected native void cancelSelections() /*-{
+    // var s = $wnd.getSelection();
+    // if (s.removeAllRanges) {
+    // s.removeAllRanges();
+    // } else {
+    // s.collapse();
+    // }
+    // }-*/;
 }

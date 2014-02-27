@@ -18,7 +18,7 @@ public class GridThemedBarChart extends BarWithNegativeStack {
     protected Component getChart() {
         ChartOptions.get().setTheme(new GridTheme());
         Chart chart = (Chart) super.getChart();
-//        chart.getConfiguration().getyAxis().setMinorTickInterval("auto");
+        // chart.getConfiguration().getyAxis().setMinorTickInterval("auto");
         return chart;
     }
 

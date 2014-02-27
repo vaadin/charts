@@ -18,11 +18,12 @@ public class BorderTest extends AbstractVaadinChartExample {
         Chart chart = new Chart(ChartType.BAR);
         chart.setHeight("450px");
         chart.setWidth("100%");
-        
-        chart.getConfiguration().addSeries(new ListSeries(1,2,3));
-        
+
+        chart.getConfiguration().addSeries(new ListSeries(1, 2, 3));
+
         chart.getConfiguration().getChart().setBorderWidth(5);
-        chart.getConfiguration().getChart().setBorderColor(new SolidColor("green"));
+        chart.getConfiguration().getChart()
+                .setBorderColor(new SolidColor("green"));
         chart.getConfiguration().getChart().setBorderRadius(25);
 
         return chart;

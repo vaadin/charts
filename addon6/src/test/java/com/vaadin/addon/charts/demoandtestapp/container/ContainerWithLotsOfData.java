@@ -35,10 +35,10 @@ public class ContainerWithLotsOfData extends AbstractVaadinChartExample {
         ContainerDataSeries container = createContainer();
         Component table = createTable(container.getVaadinContainer());
         Component chart = createChart(container);
-        
+
         lo.addComponent(table);
         lo.addComponent(chart);
-        
+
         table.setSizeFull();
         chart.setSizeFull();
         lo.setSizeFull();

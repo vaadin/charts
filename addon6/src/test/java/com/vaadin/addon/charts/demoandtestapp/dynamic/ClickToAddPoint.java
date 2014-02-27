@@ -91,7 +91,8 @@ public class ClickToAddPoint extends AbstractVaadinChartExample {
                 DataSeries ds = (DataSeries) event.getSeries();
                 DataSeriesItem dataSeriesItem2 = ds.get(event.getPointIndex());
                 ds.remove(dataSeriesItem2);
-                lastAction.setValue("Removed point at index " + event.getPointIndex());
+                lastAction.setValue("Removed point at index "
+                        + event.getPointIndex());
             }
         });
         VerticalLayout verticalLayout = new VerticalLayout();

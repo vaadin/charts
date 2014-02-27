@@ -59,7 +59,7 @@ import com.vaadin.terminal.gwt.client.ValueMap;
  * @author John Ahlroos / Vaadin Ltd
  */
 public class VTimelineWidget extends FocusPanel implements Paintable,
-KeyDownHandler, KeyUpHandler, KeyPressHandler, Focusable {
+        KeyDownHandler, KeyUpHandler, KeyPressHandler, Focusable {
 
     // Style names
     public static final String TAGNAME = "timeline-widget";
@@ -431,7 +431,6 @@ KeyDownHandler, KeyUpHandler, KeyPressHandler, Focusable {
         handlers.clear();
     }
 
-
     @Override
     public void setHeight(String height) {
         super.setHeight(height);
@@ -455,11 +454,11 @@ KeyDownHandler, KeyUpHandler, KeyPressHandler, Focusable {
                 : 0;
         int modeLegendBarHeight = modeLegendBar.isVisible() ? Util
                 .getRequiredHeight(modeLegendBar) : 0;
-                int browserHeight = browser.isVisible() ? Util
-                        .getRequiredHeight(browser) : 0;
-                        int displayHeight = getWidgetHeight() - captionHeight - topBarHeight
-                                - modeLegendBarHeight - browserHeight;
-                        display.setHeight(displayHeight + "px");
+        int browserHeight = browser.isVisible() ? Util
+                .getRequiredHeight(browser) : 0;
+        int displayHeight = getWidgetHeight() - captionHeight - topBarHeight
+                - modeLegendBarHeight - browserHeight;
+        display.setHeight(displayHeight + "px");
     }
 
     private String currentWidth = null;
@@ -501,8 +500,7 @@ KeyDownHandler, KeyUpHandler, KeyPressHandler, Focusable {
             if (updateToServer) {
                 client.updateVariable(uidlId,
                         TimelineConstants.ATTRIBUTE_CHART_MODE,
-                        mode.toString(),
-                        true);
+                        mode.toString(), true);
             }
         }
     }
@@ -987,8 +985,8 @@ KeyDownHandler, KeyUpHandler, KeyPressHandler, Focusable {
             if (barModeBtn != null) {
                 barModeBtn.setVisible(barChartModeVisible);
                 chartModeBar
-                .setVisible(chartModeVisible
-                        && (lineChartModeVisible || barChartModeVisible || scatterChartModeVisible));
+                        .setVisible(chartModeVisible
+                                && (lineChartModeVisible || barChartModeVisible || scatterChartModeVisible));
             }
         }
     }
@@ -1000,8 +998,8 @@ KeyDownHandler, KeyUpHandler, KeyPressHandler, Focusable {
             if (scatterModeBtn != null) {
                 scatterModeBtn.setVisible(scatterChartModeVisible);
                 chartModeBar
-                .setVisible(chartModeVisible
-                        && (lineChartModeVisible || barChartModeVisible || scatterChartModeVisible));
+                        .setVisible(chartModeVisible
+                                && (lineChartModeVisible || barChartModeVisible || scatterChartModeVisible));
             }
         }
     }
@@ -1018,8 +1016,9 @@ KeyDownHandler, KeyUpHandler, KeyPressHandler, Focusable {
 
     private void setChartMode(UIDL uidl) {
         if (uidl.hasAttribute(TimelineConstants.ATTRIBUTE_CHART_MODE)) {
-            initPlotMode = PlotMode.valueOf(uidl
-                    .getStringAttribute(TimelineConstants.ATTRIBUTE_CHART_MODE));
+            initPlotMode = PlotMode
+                    .valueOf(uidl
+                            .getStringAttribute(TimelineConstants.ATTRIBUTE_CHART_MODE));
             display.setChartMode(initPlotMode, initStage2Done);
             browser.setChartMode(initPlotMode, initStage2Done);
         }
@@ -1185,8 +1184,8 @@ KeyDownHandler, KeyUpHandler, KeyPressHandler, Focusable {
             if (lineModeBtn != null) {
                 lineModeBtn.setVisible(lineChartModeVisible);
                 chartModeBar
-                .setVisible(chartModeVisible
-                        && (lineChartModeVisible || barChartModeVisible || scatterChartModeVisible));
+                        .setVisible(chartModeVisible
+                                && (lineChartModeVisible || barChartModeVisible || scatterChartModeVisible));
             }
         }
     }
@@ -2168,8 +2167,7 @@ KeyDownHandler, KeyUpHandler, KeyPressHandler, Focusable {
     public int getWidgetWidth() {
         try {
             int width = Integer.parseInt(DOM
-                    .getAttribute(getElement(),
-                            "width").replaceAll("px", ""));
+                    .getAttribute(getElement(), "width").replaceAll("px", ""));
             return width;
         } catch (Exception e) {
             try {
@@ -2286,12 +2284,12 @@ KeyDownHandler, KeyUpHandler, KeyPressHandler, Focusable {
 
     /**
      * Get the selections start date
+     * 
      * @return
      */
     public Date getSelectedStartDate() {
         return selectedStartDate;
     }
-
 
     /**
      * Get the selects end date
@@ -2324,21 +2322,20 @@ KeyDownHandler, KeyUpHandler, KeyPressHandler, Focusable {
 
     /**
      * 
-     * Returns the date formats used by the timeline
-     * Get date formats
+     * Returns the date formats used by the timeline Get date formats
      */
     public VDateFormatInfo getDateFormats() {
         return dateFormatInfo;
     }
-    
-	private boolean inTextBoxes(KeyEvent<?> event) {
-		Element eventTarget = event.getNativeEvent().getEventTarget().cast();
-		if (eventTarget == dateFrom.getElement()
-				|| eventTarget == dateTo.getElement()) {
-			return true;
-		}
-		return false;
-	}
+
+    private boolean inTextBoxes(KeyEvent<?> event) {
+        Element eventTarget = event.getNativeEvent().getEventTarget().cast();
+        if (eventTarget == dateFrom.getElement()
+                || eventTarget == dateTo.getElement()) {
+            return true;
+        }
+        return false;
+    }
 
     /*
      * (non-Javadoc)
@@ -2348,10 +2345,10 @@ KeyDownHandler, KeyUpHandler, KeyPressHandler, Focusable {
      * .gwt.event.dom.client.KeyPressEvent)
      */
     public void onKeyPress(KeyPressEvent event) {
-    	if (!inTextBoxes(event)) {
-	        event.preventDefault();
-	        handleKeyboardEvent(event);
-    	}
+        if (!inTextBoxes(event)) {
+            event.preventDefault();
+            handleKeyboardEvent(event);
+        }
     }
 
     /*
@@ -2362,10 +2359,10 @@ KeyDownHandler, KeyUpHandler, KeyPressHandler, Focusable {
      * .dom.client.KeyUpEvent)
      */
     public void onKeyUp(KeyUpEvent event) {
-    	if (!inTextBoxes(event)) {
-	        event.preventDefault();
-	        handleKeyboardEvent(event);
-    	}
+        if (!inTextBoxes(event)) {
+            event.preventDefault();
+            handleKeyboardEvent(event);
+        }
     }
 
     /*
@@ -2376,10 +2373,10 @@ KeyDownHandler, KeyUpHandler, KeyPressHandler, Focusable {
      * .event.dom.client.KeyDownEvent)
      */
     public void onKeyDown(KeyDownEvent event) {
-    	if (!inTextBoxes(event)) {
-	        event.preventDefault();
-	        handleKeyboardEvent(event);
-    	}
+        if (!inTextBoxes(event)) {
+            event.preventDefault();
+            handleKeyboardEvent(event);
+        }
     }
 
     /*

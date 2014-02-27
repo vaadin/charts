@@ -60,12 +60,13 @@ public class PieChart extends AbstractVaadinChartExample {
         series.add(new DataSeriesItem("Opera", 6.2));
         series.add(new DataSeriesItem("Others", 0.7));
         conf.setSeries(series);
-        
+
         chart.addPointClickListener(new PointClickListener() {
-            
+
             @Override
             public void onClick(PointClickEvent event) {
-                Notification.show("Click: " + series.get(event.getPointIndex()).getName());
+                Notification.show("Click: "
+                        + series.get(event.getPointIndex()).getName());
             }
         });
 

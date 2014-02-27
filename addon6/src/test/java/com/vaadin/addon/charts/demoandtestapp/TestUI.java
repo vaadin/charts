@@ -5,10 +5,10 @@ import com.vaadin.ui.Window;
 
 public class TestUI extends Window {
 
-	public TestUI(String name) {
-		if(name == null) {
-			name = "";
-		}
+    public TestUI(String name) {
+        if (name == null) {
+            name = "";
+        }
         if (name.startsWith("/")) {
             name = name.substring(1);
         }

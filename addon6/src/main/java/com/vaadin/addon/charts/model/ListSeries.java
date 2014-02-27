@@ -123,7 +123,7 @@ public class ListSeries extends AbstractSeries {
      */
     public void addData(Number number, boolean updateChartImmediately,
             boolean shift) {
-        if(shift) {
+        if (shift) {
             data.remove(0);
         }
         data.add(number);

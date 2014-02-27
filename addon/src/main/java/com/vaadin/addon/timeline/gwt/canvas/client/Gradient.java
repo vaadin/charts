@@ -38,11 +38,13 @@ package com.vaadin.addon.timeline.gwt.canvas.client;
  */
 public abstract class Gradient {
 
-	/**
-	 * Adds a color at an offset point to the gradient.
-	 * 
-	 * @param offset the offset at which to apply the color stop
-	 * @param color the actual color value of the color stop
-	 */
-	public abstract void addColorStop(double offset, String color);
+    /**
+     * Adds a color at an offset point to the gradient.
+     * 
+     * @param offset
+     *            the offset at which to apply the color stop
+     * @param color
+     *            the actual color value of the color stop
+     */
+    public abstract void addColorStop(double offset, String color);
 }

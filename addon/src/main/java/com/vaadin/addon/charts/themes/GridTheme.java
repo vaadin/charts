@@ -78,11 +78,11 @@ public class GridTheme extends HighChartsDefaultTheme {
         getLegend().getItemHiddenStyle().setColor(new SolidColor("gray"));
 
         getLabels().setColor(new SolidColor("#99b"));
-        
+
         /* Shadows on by default, off in range stuff */
         getPlotOptions().getArearange().setShadow(false);
         getPlotOptions().getAreasplinerange().setShadow(false);
-        
+
         getPlotOptions().getLine().setShadow(true);
         getPlotOptions().getSpline().setShadow(true);
         getPlotOptions().getBar().setShadow(true);

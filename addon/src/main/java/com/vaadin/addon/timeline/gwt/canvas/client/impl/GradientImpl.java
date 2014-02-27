@@ -33,7 +33,6 @@ package com.vaadin.addon.timeline.gwt.canvas.client.impl;
  * #L%
  */
 
-
 import com.google.gwt.core.client.JavaScriptObject;
 import com.vaadin.addon.timeline.gwt.canvas.client.Gradient;
 
@@ -42,13 +41,13 @@ import com.vaadin.addon.timeline.gwt.canvas.client.Gradient;
  */
 public abstract class GradientImpl extends Gradient {
 
-	public JavaScriptObject gradient;
+    public JavaScriptObject gradient;
 
-	public void addColorStop(double offset, String color) {
-		addNativeColorStop(offset, color);
-	}
+    public void addColorStop(double offset, String color) {
+        addNativeColorStop(offset, color);
+    }
 
-	private native void addNativeColorStop(double offset, String color) /*-{
-		this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.GradientImpl::gradient.addColorStop(offset, color);
-	}-*/;
+    private native void addNativeColorStop(double offset, String color) /*-{
+                                                                        this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.GradientImpl::gradient.addColorStop(offset, color);
+                                                                        }-*/;
 }

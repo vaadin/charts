@@ -40,14 +40,14 @@ import com.google.gwt.core.client.JavaScriptObject;
  */
 public class RadialGradientImpl extends GradientImpl {
 
-	public RadialGradientImpl(double x0, double y0, double r0, double x1,
-			double y1, double r1, JavaScriptObject context) {
-		createNativeGradientObject(x0, y0, r0, x1, y1, r1, context);
-	}
+    public RadialGradientImpl(double x0, double y0, double r0, double x1,
+            double y1, double r1, JavaScriptObject context) {
+        createNativeGradientObject(x0, y0, r0, x1, y1, r1, context);
+    }
 
-	private native void createNativeGradientObject(double x0, double y0, double r0, double x1,
-			double y1, double r1, JavaScriptObject context) /*-{
-		this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.GradientImpl::gradient =
-			context.createRadialGradient(x0, y0, r0, x1, y1, r1);
-	}-*/;
+    private native void createNativeGradientObject(double x0, double y0,
+            double r0, double x1, double y1, double r1, JavaScriptObject context) /*-{
+                                                                                  this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.GradientImpl::gradient =
+                                                                                  context.createRadialGradient(x0, y0, r0, x1, y1, r1);
+                                                                                  }-*/;
 }

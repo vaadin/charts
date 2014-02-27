@@ -25,7 +25,8 @@ package com.vaadin.addon.timeline.gwt.canvas.client.impl.ie;
  */
 public class RadialGradientImplIE extends GradientImplIE {
 
-	public RadialGradientImplIE(double x0, double y0, double r0, double x1, double y1, double r1) {
-		super(x0, y0, x1, y1);
-	}
+    public RadialGradientImplIE(double x0, double y0, double r0, double x1,
+            double y1, double r1) {
+        super(x0, y0, x1, y1);
+    }
 }

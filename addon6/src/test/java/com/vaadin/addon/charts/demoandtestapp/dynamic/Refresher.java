@@ -10,6 +10,7 @@ public class Refresher extends CssLayout {
         setWidth("0px");
         setHeight("0px");
     }
+
     @Override
     protected String getCss(Component c) {
         return "overflow:hidden;";

@@ -120,8 +120,7 @@ public class TimeDataWithIrregularIntervalsAndLocalizedTexts extends
                 chartOptions.setLang(fi);
             }
         });
-        
-        
+
         VerticalLayout verticalLayout = new VerticalLayout();
         HorizontalLayout horizontalLayout = new HorizontalLayout();
         horizontalLayout.addComponent(enButton);

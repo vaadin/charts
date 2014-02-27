@@ -341,9 +341,9 @@ public class VClientCache {
             Date f = new Date(from);
             Date t = new Date(to);
             return "Datarange: " + formatter.format(f) + " - "
-            + formatter.format(t) + ", points=" + points.size()
-            + ",max=" + maximum.getValue() + ", min="
-            + minimum.getValue();
+                    + formatter.format(t) + ", points=" + points.size()
+                    + ",max=" + maximum.getValue() + ", min="
+                    + minimum.getValue();
         }
     }
 
@@ -414,55 +414,55 @@ public class VClientCache {
         // Calculate new from and to times
         Date from = r1.getStartTime() > r2.getStartTime() ? new Date(
                 r2.getStartTime()) : new Date(r1.getStartTime());
-                Date to = r1.getEndTime() > r2.getEndTime() ? new Date(r1.getEndTime())
+        Date to = r1.getEndTime() > r2.getEndTime() ? new Date(r1.getEndTime())
                 : new Date(r2.getEndTime());
 
-                // Add markers
-                Set<String> markers = new HashSet<String>();
-                if (r1.getMarkers() != null) {
-                    markers.addAll(r1.getMarkers());
-                }
-                if (r2.getMarkers() != null) {
-                    markers.addAll(r2.getMarkers());
-                }
+        // Add markers
+        Set<String> markers = new HashSet<String>();
+        if (r1.getMarkers() != null) {
+            markers.addAll(r1.getMarkers());
+        }
+        if (r2.getMarkers() != null) {
+            markers.addAll(r2.getMarkers());
+        }
 
-                // Add events
-                Set<String> events = new HashSet<String>();
-                if (r1.getEvents() != null) {
-                    events.addAll(r1.getEvents());
-                }
-                if (r2.getEvents() != null) {
-                    events.addAll(r2.getEvents());
-                }
+        // Add events
+        Set<String> events = new HashSet<String>();
+        if (r1.getEvents() != null) {
+            events.addAll(r1.getEvents());
+        }
+        if (r2.getEvents() != null) {
+            events.addAll(r2.getEvents());
+        }
 
-                // Add all points, skip duplicates
-                Set<DataPoint> uniquePoints = new HashSet<DataPoint>();
-                if (r1.getPoints() != null) {
-                    uniquePoints.addAll(r1.getPoints());
-                }
-                if (r2.getPoints() != null) {
-                    uniquePoints.addAll(r2.getPoints());
-                }
+        // Add all points, skip duplicates
+        Set<DataPoint> uniquePoints = new HashSet<DataPoint>();
+        if (r1.getPoints() != null) {
+            uniquePoints.addAll(r1.getPoints());
+        }
+        if (r2.getPoints() != null) {
+            uniquePoints.addAll(r2.getPoints());
+        }
 
-                // Sort the points
-                List<DataPoint> points = new ArrayList<DataPoint>(uniquePoints);
-                Collections.sort(points);
+        // Sort the points
+        List<DataPoint> points = new ArrayList<DataPoint>(uniquePoints);
+        Collections.sort(points);
 
-                // Get minimum and maximum
-                DataPoint min = null, max = null;
-                for (DataPoint p : points) {
-                    if (min == null || min.getValue() > p.getValue()) {
-                        min = p;
-                    }
-                    if (max == null || max.getValue() < p.getValue()) {
-                        max = p;
-                    }
-                }
+        // Get minimum and maximum
+        DataPoint min = null, max = null;
+        for (DataPoint p : points) {
+            if (min == null || min.getValue() > p.getValue()) {
+                min = p;
+            }
+            if (max == null || max.getValue() < p.getValue()) {
+                max = p;
+            }
+        }
 
-                // Create a new Data range
-                DataRange range = new DataRange(from, to, points, markers, events, min,
-                        max);
-                ranges.add(range);
+        // Create a new Data range
+        DataRange range = new DataRange(from, to, points, markers, events, min,
+                max);
+        ranges.add(range);
     }
 
     /**
@@ -537,9 +537,9 @@ public class VClientCache {
                     || (dr.inRange(from)
                             && to.getTime() > widget.getEndDate().getTime() && dr
                             .getEndTime() == widget.getEndDate().getTime())
-                            || (dr.inRange(to)
-                                    && from.getTime() < widget.getStartDate().getTime() && dr
-                                    .getStartTime() == widget.getStartDate().getTime())) {
+                    || (dr.inRange(to)
+                            && from.getTime() < widget.getStartDate().getTime() && dr
+                            .getStartTime() == widget.getStartDate().getTime())) {
                 List<Float> values = new LinkedList<Float>();
                 List<Date> dates = new LinkedList<Date>();
                 Set<String> markers = new HashSet<String>();

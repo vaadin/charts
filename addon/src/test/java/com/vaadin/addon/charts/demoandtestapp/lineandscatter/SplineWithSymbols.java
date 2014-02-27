@@ -50,8 +50,7 @@ public class SplineWithSymbols extends AbstractVaadinChartExample {
         configuration.setPlotOptions(plotOptions);
         plotOptions.setMarker(new Marker(true));
         plotOptions.getMarker().setRadius(4);
-        plotOptions.getMarker()
-                .setLineColor(new SolidColor("#666666"));
+        plotOptions.getMarker().setLineColor(new SolidColor("#666666"));
         plotOptions.getMarker().setLineWidth(1);
 
         DataSeries ls = new DataSeries();

@@ -46,7 +46,7 @@ public class ModifyOnePoint extends AbstractVaadinChartExample {
         configuration.getChart().setType(ChartType.SPLINE);
 
         series = new DataSeries();
-        series.add(createBasicPoint(1,4));
+        series.add(createBasicPoint(1, 4));
         series.add(new DataSeriesItem(3, 4));
         dataSeriesItem = new DataSeriesItem(4, 4);
         Marker marker = new Marker(true);
@@ -56,31 +56,32 @@ public class ModifyOnePoint extends AbstractVaadinChartExample {
         dataSeriesItem.setName("Special point");
         series.add(dataSeriesItem);
         series.add(new DataSeriesItem(8, 3));
-        
+
         configuration.setSeries(series);
 
         chart.drawChart(configuration);
 
         return chart;
     }
-    
+
     static final Color[] colors = new VaadinTheme().getColors();
-    
+
     static final Color COLOR_NORMAL = colors[0];
 
     private DataSeriesItem createBasicPoint(int i, int j) {
         DataSeriesItem dataSeriesItem2 = new DataSeriesItem(1, 4);
         return dataSeriesItem2;
     }
-    
+
     @Override
     protected void setup() {
         super.setup();
 
         FormLayout formLayout = new FormLayout();
-        formLayout.setCaption("Special point settings, only updated point state is sent to client.");
+        formLayout
+                .setCaption("Special point settings, only updated point state is sent to client.");
         formLayout.setMargin(true);
-        
+
         final Slider sliderX = new Slider();
         sliderX.setMin(3);
         sliderX.setMax(8);
@@ -97,7 +98,7 @@ public class ModifyOnePoint extends AbstractVaadinChartExample {
         sliderX.setWidth("200px");
         sliderX.setImmediate(true);
         formLayout.addComponent(sliderX);
-        
+
         final Slider sliderY = new Slider();
         sliderY.setMin(0);
         sliderY.setMax(10);
@@ -115,39 +116,42 @@ public class ModifyOnePoint extends AbstractVaadinChartExample {
         sliderY.setImmediate(true);
         formLayout.addComponent(sliderY);
 
-        
         final ColorPicker colorPicker = new ColorPicker();
-        colorPicker.setColor( new com.vaadin.shared.ui.colorpicker.Color(255, 0, 0));
+        colorPicker.setColor(new com.vaadin.shared.ui.colorpicker.Color(255, 0,
+                0));
         colorPicker.setCaption("Marker color");
         colorPicker.setImmediate(true);
         colorPicker.addColorChangeListener(new ColorChangeListener() {
             @Override
             public void colorChanged(ColorChangeEvent event) {
-                dataSeriesItem.getMarker().setFillColor(new SolidColor(event.getColor().getCSS()));
+                dataSeriesItem.getMarker().setFillColor(
+                        new SolidColor(event.getColor().getCSS()));
                 updateItemInChart();
             }
 
         });
         formLayout.addComponent(colorPicker);
-        
+
         Button c = new Button("Pseudorandom", new Button.ClickListener() {
             Random r = new Random(0);
+
             @Override
             public void buttonClick(ClickEvent event) {
-                sliderX.setValue(r.nextDouble()*5 + 3);
-                sliderY.setValue(r.nextDouble()*10);
-                colorPicker.setColor(new com.vaadin.shared.ui.colorpicker.Color(r.nextInt(255),r.nextInt(255),r.nextInt(255)));
+                sliderX.setValue(r.nextDouble() * 5 + 3);
+                sliderY.setValue(r.nextDouble() * 10);
+                colorPicker
+                        .setColor(new com.vaadin.shared.ui.colorpicker.Color(r
+                                .nextInt(255), r.nextInt(255), r.nextInt(255)));
                 colorPicker.fireColorChanged();
             }
         });
         c.setId("random");
         formLayout.addComponent(c);
-        
+
         addComponentAsFirst(formLayout);
-        
-        
+
     }
-    
+
     private void updateItemInChart() {
         series.update(dataSeriesItem);
     }

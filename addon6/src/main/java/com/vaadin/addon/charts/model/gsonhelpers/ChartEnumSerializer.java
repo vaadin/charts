@@ -28,8 +28,7 @@ import com.vaadin.addon.charts.model.ChartEnum;
 /**
  * Serializer for enums
  */
-public class ChartEnumSerializer implements
-        JsonSerializer<ChartEnum> {
+public class ChartEnumSerializer implements JsonSerializer<ChartEnum> {
 
     @Override
     public JsonElement serialize(ChartEnum src, Type typeOfSrc,

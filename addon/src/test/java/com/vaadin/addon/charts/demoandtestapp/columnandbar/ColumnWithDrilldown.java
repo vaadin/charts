@@ -128,10 +128,10 @@ public class ColumnWithDrilldown extends AbstractVaadinChartExample {
         chart.drawChart(conf);
         return chart;
     }
-    
+
     /**
-     * Works like normal DataSeries but stores also the drilldown data and contains
-     * functionality for dill down and back to up
+     * Works like normal DataSeries but stores also the drilldown data and
+     * contains functionality for dill down and back to up
      */
     public static class DrilldownSeries extends DataSeries {
         private transient final Map<String, Drilldown> drilldowns = new HashMap<String, Drilldown>();
@@ -154,7 +154,8 @@ public class ColumnWithDrilldown extends AbstractVaadinChartExample {
 
         /**
          * Constructs the DrilldownSeries with Chart's configuration and numeric
-         * data for main categories (that are fetched from the chart configuration)
+         * data for main categories (that are fetched from the chart
+         * configuration)
          * 
          * @param configuration
          */
@@ -194,14 +195,15 @@ public class ColumnWithDrilldown extends AbstractVaadinChartExample {
          */
         public void drillDown(String category) {
             if (mainData == null) {
-                
+
                 mainData = new Number[size()];
-                
+
                 List<DataSeriesItem> data = getData();
                 for (int i = 0; i < data.size(); i++) {
                     mainData[i] = data.get(i).getY();
                 }
-                mainCategories = configuration.getxAxis().getCategories().clone();
+                mainCategories = configuration.getxAxis().getCategories()
+                        .clone();
                 mainName = getName();
                 if (getPlotOptions() != null) {
                     mainColor = getPlotOptions().getColor();

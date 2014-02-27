@@ -880,7 +880,7 @@ public class VCanvasPlotter {
         }
         for (Graph g : graphs) {
             while (g.getPoints().size() < maxSize) {
-                g.addPoint(new Point(0, 0, g, 0,0));
+                g.addPoint(new Point(0, 0, g, 0, 0));
             }
         }
 

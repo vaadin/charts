@@ -26,7 +26,7 @@ import com.vaadin.addon.charts.model.style.Color;
  * @see PlotOptionsColumn
  */
 public class PlotOptionsWaterfall extends PlotOptionsColumn {
-    
+
     private Color upColor;
 
     @Override
@@ -43,7 +43,8 @@ public class PlotOptionsWaterfall extends PlotOptionsColumn {
     }
 
     /**
-     * @param upColor the color to use when item value is positive
+     * @param upColor
+     *            the color to use when item value is positive
      */
     public void setUpColor(Color upColor) {
         this.upColor = upColor;

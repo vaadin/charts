@@ -30,7 +30,7 @@ public class TServer {
 
         final Connector connector = new SelectChannelConnector();
 
-        if(port != null) {
+        if (port != null) {
             connector.setPort(port);
         }
         server.setConnectors(new Connector[] { connector });
@@ -40,8 +40,7 @@ public class TServer {
         ServletHolder servletHolder = new ServletHolder(vaadinServlet);
         servletHolder.setInitParameter("widgetset",
                 "com.vaadin.addon.charts.ChartsWithTimelineWidgetset");
-        servletHolder.setInitParameter("application",
-                TestApp.class.getName());
+        servletHolder.setInitParameter("application", TestApp.class.getName());
 
         File file = new File("target/testwebapp");
         context.setWar(file.getPath());

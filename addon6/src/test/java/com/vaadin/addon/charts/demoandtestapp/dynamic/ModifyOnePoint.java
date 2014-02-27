@@ -44,7 +44,7 @@ public class ModifyOnePoint extends AbstractVaadinChartExample {
         configuration.getChart().setType(ChartType.SPLINE);
 
         series = new DataSeries();
-        series.add(createBasicPoint(1,4));
+        series.add(createBasicPoint(1, 4));
         series.add(new DataSeriesItem(3, 4));
         dataSeriesItem = new DataSeriesItem(4, 4);
         Marker marker = new Marker(true);
@@ -54,68 +54,69 @@ public class ModifyOnePoint extends AbstractVaadinChartExample {
         dataSeriesItem.setName("Special point");
         series.add(dataSeriesItem);
         series.add(new DataSeriesItem(8, 3));
-        
+
         configuration.setSeries(series);
 
         chart.drawChart(configuration);
 
         return chart;
     }
-    
+
     static final Color[] colors = new VaadinTheme().getColors();
-    
+
     static final Color COLOR_NORMAL = colors[0];
 
     private DataSeriesItem createBasicPoint(int i, int j) {
         DataSeriesItem dataSeriesItem2 = new DataSeriesItem(1, 4);
         return dataSeriesItem2;
     }
-    
+
     @Override
     protected void setup() {
         super.setup();
 
         FormLayout formLayout = new FormLayout();
-        formLayout.setCaption("Special point settings, only updated point state is sent to client.");
+        formLayout
+                .setCaption("Special point settings, only updated point state is sent to client.");
         formLayout.setMargin(true);
-        
+
         final Slider sliderX = new Slider();
         sliderX.setMin(3);
         sliderX.setMax(8);
         sliderX.setResolution(1);
         try {
-			sliderX.setValue(4d);
-		} catch (ValueOutOfBoundsException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+            sliderX.setValue(4d);
+        } catch (ValueOutOfBoundsException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         sliderX.setCaption("X");
         sliderX.addListener(new ValueChangeListener() {
             @Override
             public void valueChange(ValueChangeEvent event) {
-                dataSeriesItem.setX((Number)sliderX.getValue());
+                dataSeriesItem.setX((Number) sliderX.getValue());
                 series.update(dataSeriesItem);
             }
         });
         sliderX.setWidth("200px");
         sliderX.setImmediate(true);
         formLayout.addComponent(sliderX);
-        
+
         final Slider sliderY = new Slider();
         sliderY.setMin(0);
         sliderY.setMax(10);
         sliderY.setResolution(1);
         try {
-			sliderY.setValue(4d);
-		} catch (ValueOutOfBoundsException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+            sliderY.setValue(4d);
+        } catch (ValueOutOfBoundsException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         sliderY.setCaption("Y");
         sliderY.addListener(new ValueChangeListener() {
             @Override
             public void valueChange(ValueChangeEvent event) {
-                dataSeriesItem.setY((Number)sliderY.getValue());
+                dataSeriesItem.setY((Number) sliderY.getValue());
                 updateItemInChart();
             }
         });
@@ -123,28 +124,27 @@ public class ModifyOnePoint extends AbstractVaadinChartExample {
         sliderY.setImmediate(true);
         formLayout.addComponent(sliderY);
 
-        
         Button c = new Button("Pseudorandom", new Button.ClickListener() {
             Random r = new Random(0);
+
             @Override
             public void buttonClick(ClickEvent event) {
                 try {
-					sliderX.setValue(r.nextDouble()*5 + 3);
-					sliderY.setValue(r.nextDouble()*10);
-				} catch (ValueOutOfBoundsException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+                    sliderX.setValue(r.nextDouble() * 5 + 3);
+                    sliderY.setValue(r.nextDouble() * 10);
+                } catch (ValueOutOfBoundsException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             }
         });
         c.setDebugId("random");
         formLayout.addComponent(c);
-        
+
         addComponentAsFirst(formLayout);
-        
-        
+
     }
-    
+
     private void updateItemInChart() {
         series.update(dataSeriesItem);
     }

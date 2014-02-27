@@ -67,51 +67,60 @@ public class VMLContext {
 
     public int shadowOffsetY;
 
-    public VMLContext () {
+    public VMLContext() {
 
         // load identity matrix
-        matrix[0] = 1.0; matrix[1] = 0.0; matrix[2] = 0.0;
-        matrix[3] = 0.0; matrix[4] = 1.0; matrix[5] = 0.0;
-        matrix[6] = 0.0; matrix[7] = 0.0; matrix[8] = 1.0;
+        matrix[0] = 1.0;
+        matrix[1] = 0.0;
+        matrix[2] = 0.0;
+        matrix[3] = 0.0;
+        matrix[4] = 1.0;
+        matrix[5] = 0.0;
+        matrix[6] = 0.0;
+        matrix[7] = 0.0;
+        matrix[8] = 1.0;
 
         // init other stuff
-        arcScaleX					=  1.0;
-        arcScaleY					=  1.0;
-        globalAlpha					=  1.0;
-        strokeAlpha					=  1.0;
-        fillAlpha					=  1.0;
-        miterLimit					= 10.0;
-        lineWidth					=  1.0;
-        lineCap						=  CanvasImplIE.BUTT;
-        lineJoin					=  Canvas.MITER;
-        strokeStyle					=  "#000";
-        fillStyle					=  "#000";
-        globalCompositeOperation	=  CanvasImplIE.SOURCE_OVER;
+        arcScaleX = 1.0;
+        arcScaleY = 1.0;
+        globalAlpha = 1.0;
+        strokeAlpha = 1.0;
+        fillAlpha = 1.0;
+        miterLimit = 10.0;
+        lineWidth = 1.0;
+        lineCap = CanvasImplIE.BUTT;
+        lineJoin = Canvas.MITER;
+        strokeStyle = "#000";
+        fillStyle = "#000";
+        globalCompositeOperation = CanvasImplIE.SOURCE_OVER;
     }
 
     public VMLContext(VMLContext ctx) {
 
         // copy the matrix
-        matrix[0] = ctx.matrix[0]; matrix[1] = ctx.matrix[1];
-        matrix[3] = ctx.matrix[3]; matrix[4] = ctx.matrix[4];
-        matrix[6] = ctx.matrix[6]; matrix[7] = ctx.matrix[7];
+        matrix[0] = ctx.matrix[0];
+        matrix[1] = ctx.matrix[1];
+        matrix[3] = ctx.matrix[3];
+        matrix[4] = ctx.matrix[4];
+        matrix[6] = ctx.matrix[6];
+        matrix[7] = ctx.matrix[7];
 
         // copy other stuff
-        arcScaleX					= ctx.arcScaleX;
-        arcScaleY					= ctx.arcScaleY;
-        globalAlpha					= ctx.globalAlpha;
-        strokeAlpha					= ctx.strokeAlpha;
-        fillAlpha					= ctx.fillAlpha;
-        miterLimit					= ctx.miterLimit;
-        lineWidth					= ctx.lineWidth;
-        lineCap						= ctx.lineCap;
-        lineJoin					= ctx.lineJoin;
-        strokeStyle					= ctx.strokeStyle;
-        strokeStyle_				= ctx.strokeStyle_;
-        fillStyle					= ctx.fillStyle;
-        fillStyle_					= ctx.fillStyle_;
-        globalCompositeOperation	= ctx.globalCompositeOperation;
-        fillGradient				= ctx.fillGradient;
+        arcScaleX = ctx.arcScaleX;
+        arcScaleY = ctx.arcScaleY;
+        globalAlpha = ctx.globalAlpha;
+        strokeAlpha = ctx.strokeAlpha;
+        fillAlpha = ctx.fillAlpha;
+        miterLimit = ctx.miterLimit;
+        lineWidth = ctx.lineWidth;
+        lineCap = ctx.lineCap;
+        lineJoin = ctx.lineJoin;
+        strokeStyle = ctx.strokeStyle;
+        strokeStyle_ = ctx.strokeStyle_;
+        fillStyle = ctx.fillStyle;
+        fillStyle_ = ctx.fillStyle_;
+        globalCompositeOperation = ctx.globalCompositeOperation;
+        fillGradient = ctx.fillGradient;
         shadowBlur = ctx.shadowBlur;
         shadowColor = ctx.shadowColor;
         shadowOffsetX = ctx.shadowOffsetX;

@@ -22,7 +22,8 @@ import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
 
 @SkipFromDemo
-public class SplineUpdatingEachSecondWithCustomizedNewPoints extends AbstractVaadinChartExample {
+public class SplineUpdatingEachSecondWithCustomizedNewPoints extends
+        AbstractVaadinChartExample {
 
     @Override
     public String getDescription() {
@@ -58,8 +59,8 @@ public class SplineUpdatingEachSecondWithCustomizedNewPoints extends AbstractVaa
         series.setPlotOptions(new PlotOptionsSpline());
         series.setName("Random data");
         for (int i = -19; i <= 0; i++) {
-            DataSeriesItem item = new DataSeriesItem(System.currentTimeMillis() + i
-                    * 1000, random.nextDouble());
+            DataSeriesItem item = new DataSeriesItem(System.currentTimeMillis()
+                    + i * 1000, random.nextDouble());
             series.add(item);
         }
         Thread randomDataGenerator = new Thread() {
@@ -76,9 +77,10 @@ public class SplineUpdatingEachSecondWithCustomizedNewPoints extends AbstractVaa
                                 item.setName("Diipaiapa");
                                 Marker marker = new Marker();
                                 marker.setEnabled(true);
-                                boolean b = (new Random().nextInt(5)%4 == 0); 
-                                marker.setFillColor(new SolidColor(b ? "#ff0000" : "#000000"));
-                                item.setMarker(marker );
+                                boolean b = (new Random().nextInt(5) % 4 == 0);
+                                marker.setFillColor(new SolidColor(
+                                        b ? "#ff0000" : "#000000"));
+                                item.setMarker(marker);
                                 series.add(item, true, true);
                             } finally {
                             }

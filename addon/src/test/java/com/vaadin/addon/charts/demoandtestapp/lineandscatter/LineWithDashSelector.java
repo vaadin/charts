@@ -112,9 +112,9 @@ public class LineWithDashSelector extends AbstractVaadinChartExample {
                 chart.drawChart();
             }
         });
-        
+
         nativeSelect.setImmediate(true);
-        
+
         addComponentAsFirst(nativeSelect);
 
     }

@@ -35,7 +35,8 @@ public class WebXYChartSelection extends AbstractVaadinChartExample {
         scatterChart.getConfiguration().getChart().setZoomType(ZoomType.XY);
         scatterChart.getConfiguration().disableCredits();
         scatterChart.getConfiguration().setTitle("Selections as area ranges");
-        scatterChart.getConfiguration().setSubTitle("Drag with mouse to draw areas");
+        scatterChart.getConfiguration().setSubTitle(
+                "Drag with mouse to draw areas");
 
         PlotOptionsScatter scatterOptions = new PlotOptionsScatter();
         scatterOptions.setAnimation(false);

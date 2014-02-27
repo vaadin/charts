@@ -48,11 +48,11 @@ public abstract class AbstractLinePlotOptions extends AbstractPointPlotOptions {
      * 
      * @see DashStyle
      * 
-     * @param dashStyle the dash style
+     * @param dashStyle
+     *            the dash style
      */
     public void setDashStyle(DashStyle dashStyle) {
         this.dashStyle = dashStyle;
     }
-
 
 }

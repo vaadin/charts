@@ -35,7 +35,7 @@ public class HighchartWidget extends Widget {
 
     public void init(HighchartConfig config) {
         HighchartJsOverlay old = jsOverlay;
-        if(old != null) {
+        if (old != null) {
             old.destroy();
         }
         jsOverlay = config.renderTo(getElement());
@@ -47,15 +47,18 @@ public class HighchartWidget extends Widget {
 
     public void updatePointValue(int seriesIndex, int pointIndex,
             double newValue) {
-        HighchartSeries highchartSeries = jsOverlay.getSeries().get(seriesIndex);
-        HighchartPoint highchartPoint = highchartSeries.getData().get(pointIndex);
+        HighchartSeries highchartSeries = jsOverlay.getSeries()
+                .get(seriesIndex);
+        HighchartPoint highchartPoint = highchartSeries.getData().get(
+                pointIndex);
         highchartPoint.update(newValue);
     }
-    
 
     public void updatePointValue(int seriesIndex, int pointIndex, String json) {
-        HighchartSeries highchartSeries = jsOverlay.getSeries().get(seriesIndex);
-        HighchartPoint highchartPoint = highchartSeries.getData().get(pointIndex);
+        HighchartSeries highchartSeries = jsOverlay.getSeries()
+                .get(seriesIndex);
+        HighchartPoint highchartPoint = highchartSeries.getData().get(
+                pointIndex);
         highchartPoint.update(json);
     }
 
@@ -69,8 +72,8 @@ public class HighchartWidget extends Widget {
 
     public int getSeriesIndex(HighchartSeries series) {
         JsArray<HighchartSeries> serA = jsOverlay.getSeries();
-        for(int i = 0; i< serA.length(); i++) {
-            if(serA.get(i) == series) {
+        for (int i = 0; i < serA.length(); i++) {
+            if (serA.get(i) == series) {
                 return i;
             }
         }

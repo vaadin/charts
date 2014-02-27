@@ -43,24 +43,22 @@ public class ColumnRangeResourceUsage extends AbstractVaadinChartExample {
         yAxis.setTitle("Time");
         yAxis.setType(AxisType.DATETIME);
         conf.addyAxis(yAxis);
-        
+
         Tooltip tooltip = new Tooltip();
         tooltip.setFormatter("this.series.name +': '+ Highcharts.dateFormat('%H:%M', this.point.low) + ' - ' + Highcharts.dateFormat('%H:%M', this.point.high)");
         conf.setTooltip(tooltip);
 
-
         PlotOptionsColumnRange columnRange = new PlotOptionsColumnRange();
         columnRange.setGrouping(false);
         Labels dataLabels = new Labels(true);
-        dataLabels.setFormatter("this.y == this.point.low ? '' : this.series.name");
+        dataLabels
+                .setFormatter("this.y == this.point.low ? '' : this.series.name");
         dataLabels.setInside(true);
         dataLabels.setColor(new SolidColor("white"));
         columnRange.setDataLabels(dataLabels);
-        
-        
+
         conf.setPlotOptions(columnRange);
-        
-        
+
         Calendar instance = Calendar.getInstance();
         instance.set(Calendar.MILLISECOND, 0);
         instance.set(2013, 6, 7, 12, 00, 00);
@@ -84,7 +82,7 @@ public class ColumnRangeResourceUsage extends AbstractVaadinChartExample {
         instance.roll(Calendar.HOUR_OF_DAY, 3);
         item.setHigh(instance.getTimeInMillis());
         a.add(item);
-        
+
         item = new DataSeriesItem();
         item.setName("Printer");
         instance.roll(Calendar.HOUR_OF_DAY, 1);
@@ -100,7 +98,7 @@ public class ColumnRangeResourceUsage extends AbstractVaadinChartExample {
         instance.roll(Calendar.HOUR_OF_DAY, 2);
         item.setHigh(instance.getTimeInMillis());
         b.add(item);
-        
+
         item = new DataSeriesItem();
         item.setName("Coffee mahine");
         instance.roll(Calendar.HOUR_OF_DAY, -1);
@@ -109,8 +107,8 @@ public class ColumnRangeResourceUsage extends AbstractVaadinChartExample {
         item.setHigh(instance.getTimeInMillis());
         a.add(item);
 
-        conf.setSeries(a,b);
-        
+        conf.setSeries(a, b);
+
         return chart;
     }
 }

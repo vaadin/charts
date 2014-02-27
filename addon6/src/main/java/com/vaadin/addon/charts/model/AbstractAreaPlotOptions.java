@@ -60,5 +60,4 @@ public abstract class AbstractAreaPlotOptions extends AbstractLinePlotOptions {
         this.fillOpacity = fillOpacity;
     }
 
-
 }

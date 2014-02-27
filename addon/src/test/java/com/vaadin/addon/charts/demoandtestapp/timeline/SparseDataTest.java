@@ -15,7 +15,7 @@ import com.vaadin.data.util.IndexedContainer;
 import com.vaadin.ui.Component;
 
 @SkipFromDemo
-@SuppressWarnings({"serial", "deprecation"})
+@SuppressWarnings({ "serial", "deprecation" })
 public class SparseDataTest extends AbstractVaadinChartExample {
 
     private Timeline timeline;
@@ -47,8 +47,7 @@ public class SparseDataTest extends AbstractVaadinChartExample {
         ds.addContainerProperty(Timeline.PropertyId.TIMESTAMP, Date.class, null);
         ds.addContainerProperty(Timeline.PropertyId.VALUE, Float.class, 0f);
 
-        InputStream stream = getClass().getResourceAsStream(
-                "points2.txt");
+        InputStream stream = getClass().getResourceAsStream("points2.txt");
         BufferedReader r = new BufferedReader(new InputStreamReader(stream));
         String line;
         while ((line = r.readLine()) != null) {

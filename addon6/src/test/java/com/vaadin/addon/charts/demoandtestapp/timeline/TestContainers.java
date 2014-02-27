@@ -20,7 +20,7 @@ import com.vaadin.data.Container.Indexed;
 import com.vaadin.data.Item;
 import com.vaadin.data.util.IndexedContainer;
 
-@SuppressWarnings({"serial", "deprecation", "unchecked"})
+@SuppressWarnings({ "serial", "deprecation", "unchecked" })
 public class TestContainers implements Serializable {
 
     /**

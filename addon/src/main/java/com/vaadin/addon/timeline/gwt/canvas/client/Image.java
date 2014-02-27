@@ -41,114 +41,117 @@ import com.google.gwt.dom.client.ImageElement;
  */
 public class Image {
 
-	/**
-	 * An optional loading listener callback method.
-	 */
-	private ImageListener loadingListener;
+    /**
+     * An optional loading listener callback method.
+     */
+    private ImageListener loadingListener;
 
-	/**
-	 * The actual image element.
-	 */
-	private ImageElement imageElement;
+    /**
+     * The actual image element.
+     */
+    private ImageElement imageElement;
 
-	/**
-	 * Flag that indicates the loading status.
-	 */
-	private boolean loaded;
+    /**
+     * Flag that indicates the loading status.
+     */
+    private boolean loaded;
 
-	/**
-	 * Creates an image object that will not give any notifications on its own
-	 * when it's actual data has been loaded by the browser.
-	 * 
-	 * @param url to an image file (GIF, JPEG, PNG)
-	 */
-	public Image(String url) {
-		this(url, null);
-	}
+    /**
+     * Creates an image object that will not give any notifications on its own
+     * when it's actual data has been loaded by the browser.
+     * 
+     * @param url
+     *            to an image file (GIF, JPEG, PNG)
+     */
+    public Image(String url) {
+        this(url, null);
+    }
 
-	/**
-	 * Creates an image object that will notify the given callback listener
-	 * when it's actual data has been loaded by the browser.
-	 * 
-	 * @param url to an image file (GIF, JPEG, PNG)
-	 * @param listener a user defined callback method
-	 */
-	public Image(String url, ImageListener listener) {
-		if (url == null) {
-			throw new IllegalArgumentException();
-		}
-		loadingListener = listener;
-		imageElement = getNativeHandle();
-		imageElement.setSrc(url);
-	}
+    /**
+     * Creates an image object that will notify the given callback listener when
+     * it's actual data has been loaded by the browser.
+     * 
+     * @param url
+     *            to an image file (GIF, JPEG, PNG)
+     * @param listener
+     *            a user defined callback method
+     */
+    public Image(String url, ImageListener listener) {
+        if (url == null) {
+            throw new IllegalArgumentException();
+        }
+        loadingListener = listener;
+        imageElement = getNativeHandle();
+        imageElement.setSrc(url);
+    }
 
-	/**
-	 * Creates an image handle that will notify the {@link Image} instance, if
-	 * it has loaded it's actual data successfully.
-	 * 
-	 * @return an ImageElement object
-	 */
-	private native ImageElement getNativeHandle() /*-{
-		var self = this;
-		var image = new Image();
-		image.onload = function() {
-			self.@com.vaadin.addon.timeline.gwt.canvas.client.Image::invokeCallback()();
-			image.onload = null;
-		}
-		return image;
-	}-*/;
+    /**
+     * Creates an image handle that will notify the {@link Image} instance, if
+     * it has loaded it's actual data successfully.
+     * 
+     * @return an ImageElement object
+     */
+    private native ImageElement getNativeHandle() /*-{
+                                                  var self = this;
+                                                  var image = new Image();
+                                                  image.onload = function() {
+                                                  self.@com.vaadin.addon.timeline.gwt.canvas.client.Image::invokeCallback()();
+                                                  image.onload = null;
+                                                  }
+                                                  return image;
+                                                  }-*/;
 
-	/**
-	 * Invokes the {@link Image.ImageListener} instance, if any.
-	 */
-	private void invokeCallback() {
-		loaded = true;
-		if (loadingListener != null) {
-			loadingListener.onLoadingComplete(this);
-			loadingListener = null;
-		}
-	}
+    /**
+     * Invokes the {@link Image.ImageListener} instance, if any.
+     */
+    private void invokeCallback() {
+        loaded = true;
+        if (loadingListener != null) {
+            loadingListener.onLoadingComplete(this);
+            loadingListener = null;
+        }
+    }
 
-	/**
-	 * Use this method to determine if the actual image has already been
-	 * loaded by the browser.
-	 * 
-	 * @return true when loaded, false otherwise
-	 */
-	public boolean isLoaded() {
-		return loaded;
-	}
+    /**
+     * Use this method to determine if the actual image has already been loaded
+     * by the browser.
+     * 
+     * @return true when loaded, false otherwise
+     */
+    public boolean isLoaded() {
+        return loaded;
+    }
 
-	/**
-	 * Returns the actual image DOM element.
-	 * 
-	 * @return the image element
-	 */
-	public ImageElement getElement() {
-		return imageElement;
-	}
+    /**
+     * Returns the actual image DOM element.
+     * 
+     * @return the image element
+     */
+    public ImageElement getElement() {
+        return imageElement;
+    }
 
-	/**
-	 * Returns the image's width or -1 if it has not yet been loaded
-	 * 
-	 * @return the width or -1 if unknown
-	 */
-	public int getWidth() {
-		if (imageElement != null) {
-			return imageElement.getWidth();
-		}
-		return -1;
-	}
+    /**
+     * Returns the image's width or -1 if it has not yet been loaded
+     * 
+     * @return the width or -1 if unknown
+     */
+    public int getWidth() {
+        if (imageElement != null) {
+            return imageElement.getWidth();
+        }
+        return -1;
+    }
 
-	/**
-	 * Returns the image's height or -1 if it has not yet been loaded
-	 * 
-	 * @return the height or -1 if unknown
-	 */
-	public int getHeight() {
-		if (imageElement != null) {
-			return imageElement.getHeight();
-		}
-		return -1;
-	}
+    /**
+     * Returns the image's height or -1 if it has not yet been loaded
+     * 
+     * @return the height or -1 if unknown
+     */
+    public int getHeight() {
+        if (imageElement != null) {
+            return imageElement.getHeight();
+        }
+        return -1;
+    }
 }

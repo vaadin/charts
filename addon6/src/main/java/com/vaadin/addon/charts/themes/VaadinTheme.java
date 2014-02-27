@@ -123,14 +123,13 @@ public class VaadinTheme extends Theme {
         /* Shadows on by default, off in range stuff */
         getPlotOptions().getArearange().setShadow(false);
         getPlotOptions().getAreasplinerange().setShadow(false);
-        
+
         getPlotOptions().getLine().setShadow(true);
         getPlotOptions().getSpline().setShadow(true);
         getPlotOptions().getBar().setShadow(true);
         getPlotOptions().getColumn().setShadow(true);
         getPlotOptions().getArea().setShadow(true);
         getPlotOptions().getPie().setShadow(true);
-        
 
     }
 

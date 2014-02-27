@@ -11,7 +11,7 @@ import com.vaadin.addon.timeline.Timeline.ChartMode;
 import com.vaadin.data.util.IndexedContainer;
 import com.vaadin.ui.Component;
 
-@SuppressWarnings({"serial", "deprecation"})
+@SuppressWarnings({ "serial", "deprecation" })
 public class ForumTrends extends AbstractVaadinChartExample {
     public static final float GRAPH_MAX_LIMIT = 130f;
     public static final float GRAPH_MIN_LIMIT = 0f;

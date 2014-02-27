@@ -26,14 +26,14 @@ public class PieChartTBTest extends AbstractSimpleScreenShotTestBenchTest {
         super.testCustomStuff();
         // Ensure animation has finished before clicking
         sleep(2000);
-        
+
         WebElement chart = driver.findElement(By
                 .xpath("//div[contains(@class, 'vaadin-chart')]"));
         Action click = new Actions(driver).moveToElement(chart, 400 + 20, 200)
                 .click().build();
 
         click.perform();
-        
+
         sleep(1000);
 
         boolean containsFirefox = driver

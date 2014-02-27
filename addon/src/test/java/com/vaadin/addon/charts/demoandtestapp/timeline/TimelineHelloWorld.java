@@ -14,7 +14,7 @@ import com.vaadin.data.util.IndexedContainer;
 import com.vaadin.ui.Component;
 
 @SkipFromDemo
-@SuppressWarnings({"serial", "deprecation"})
+@SuppressWarnings({ "serial", "deprecation" })
 public class TimelineHelloWorld extends AbstractVaadinChartExample {
 
     private Timeline timeline;

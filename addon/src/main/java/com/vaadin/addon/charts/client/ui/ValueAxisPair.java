@@ -22,11 +22,12 @@ import com.google.gwt.core.client.JavaScriptObject;
 public class ValueAxisPair extends JavaScriptObject {
     protected ValueAxisPair() {
     }
+
     public native final double getValue()
     /*-{
         return this.value;
     }-*/;
-    
+
     public native final HighchartAxis getAxis()
     /*-{
         return this.axis;

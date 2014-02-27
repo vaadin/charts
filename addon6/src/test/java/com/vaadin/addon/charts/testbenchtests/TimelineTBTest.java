@@ -38,7 +38,7 @@ public class TimelineTBTest extends AbstractTestBenchTest {
                 click("ROOT::PID_Smenu#item0", 16, 13);
                 click("ROOT::PID_Smenu#item0", 16, 13);
             } catch (Exception e) {
-                
+
             }
             sleep(2000);
             if (!testBench.compareScreen(refImage)) {

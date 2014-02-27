@@ -35,7 +35,7 @@ public class SplineWithPlotBandRemoveFunctionalityTBTest extends
             captureAndCompare("2-removed");
 
             button.click();
-            
+
             waitBetweenShots();
             captureAndCompare("1-start");
 

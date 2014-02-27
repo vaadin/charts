@@ -13,7 +13,7 @@ import com.vaadin.ui.HorizontalSplitPanel;
 import com.vaadin.ui.VerticalSplitPanel;
 
 @SkipFromDemo
-@SuppressWarnings({"serial", "deprecation"})
+@SuppressWarnings({ "serial", "deprecation" })
 public class ResizeTest extends AbstractVaadinChartExample {
 
     private VerticalSplitPanel panel;

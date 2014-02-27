@@ -5,14 +5,14 @@ import com.vaadin.terminal.PaintTarget;
 
 class AnimationEnabled implements PartialChange {
 
-	private boolean enabled;
+    private boolean enabled;
 
-	public AnimationEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
+    public AnimationEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
 
-	public void paint(Chart chart, PaintTarget target) throws PaintException {
-		target.addAttribute("animationEnabled", enabled);
-	}
+    public void paint(Chart chart, PaintTarget target) throws PaintException {
+        target.addAttribute("animationEnabled", enabled);
+    }
 
 }

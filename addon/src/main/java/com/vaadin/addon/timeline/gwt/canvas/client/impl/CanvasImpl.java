@@ -33,7 +33,6 @@ package com.vaadin.addon.timeline.gwt.canvas.client.impl;
  * #L%
  */
 
-
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.dom.client.ImageElement;
 import com.google.gwt.user.client.DOM;
@@ -50,9 +49,9 @@ import com.vaadin.client.VConsole;
  */
 public class CanvasImpl {
 
-    /////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////
     // PRIVATE/PROTECTED MEMBERS/METHODS
-    /////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////
 
     protected JavaScriptObject context;
 
@@ -61,21 +60,21 @@ public class CanvasImpl {
     protected String backgroundColor;
 
     // TODO investigate further
-    //	protected native void cancelSelections() /*-{
-    //		try {
-    //			$wnd.getSelection().removeAllRanges();
-    //		} catch (e) {
-    //			// do nothing
-    //		}
-    //	}-*/;
+    // protected native void cancelSelections() /*-{
+    // try {
+    // $wnd.getSelection().removeAllRanges();
+    // } catch (e) {
+    // // do nothing
+    // }
+    // }-*/;
 
     protected native void init() /*-{
-		this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context = this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::element.getContext("2d");
-	}-*/;
+                                 this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context = this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::element.getContext("2d");
+                                 }-*/;
 
-    /////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////
     // CONSTRUCTORS AND PUBLIC METHODS
-    /////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////
 
     public void init(Element element) {
         this.element = element;
@@ -100,197 +99,205 @@ public class CanvasImpl {
         DOM.setElementAttribute(element, "height", height);
     }
 
-    //	public void onMouseDown(Event event) {
-    //		cancelSelections();
-    //		DOM.eventPreventDefault(event);
-    //	}
+    // public void onMouseDown(Event event) {
+    // cancelSelections();
+    // DOM.eventPreventDefault(event);
+    // }
 
-    //	public void onMouseUp() {
-    //		// method stub to be overridden by IE implementation
-    //	}
+    // public void onMouseUp() {
+    // // method stub to be overridden by IE implementation
+    // }
 
-    /////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////
     // CANVAS STATE METHODS
-    /////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////
 
     public native void restore() /*-{
-		this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.restore();
-	}-*/;
+                                 this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.restore();
+                                 }-*/;
 
     public native void save() /*-{
-		this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.save();
-	}-*/;
+                              this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.save();
+                              }-*/;
 
     public native void rotate(double angle) /*-{
-		this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.rotate(angle);
-	}-*/;
+                                            this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.rotate(angle);
+                                            }-*/;
 
     public native void scale(double x, double y) /*-{
-		this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.scale(x, y);
-	}-*/;
+                                                 this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.scale(x, y);
+                                                 }-*/;
 
     public native void translate(double x, double y) /*-{
-		this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.translate(x, y);
-	}-*/;
+                                                     this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.translate(x, y);
+                                                     }-*/;
 
-    /////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////
     // WORKING WITH PATHS
-    /////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////
 
-    public native void arc(double x, double y, double radius, double startAngle, double endAngle, boolean antiClockwise) /*-{
-		this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.arc(x, y, radius, startAngle, endAngle, antiClockwise);
-	}-*/;
+    public native void arc(double x, double y, double radius,
+            double startAngle, double endAngle, boolean antiClockwise) /*-{
+                                                                       this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.arc(x, y, radius, startAngle, endAngle, antiClockwise);
+                                                                       }-*/;
 
-    public native void cubicCurveTo(double cp1x, double cp1y, double cp2x, double cp2y, double x, double y) /*-{
-		this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y);
-	}-*/;
+    public native void cubicCurveTo(double cp1x, double cp1y, double cp2x,
+            double cp2y, double x, double y) /*-{
+                                             this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y);
+                                             }-*/;
 
-    public native void quadraticCurveTo(double cpx, double cpy, double x, double y) /*-{
-		this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.quadraticCurveTo(cpx, cpy, x, y);
-	}-*/;
+    public native void quadraticCurveTo(double cpx, double cpy, double x,
+            double y) /*-{
+                      this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.quadraticCurveTo(cpx, cpy, x, y);
+                      }-*/;
 
     public native void beginPath() /*-{
-		this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.beginPath();
-	}-*/;
+                                   this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.beginPath();
+                                   }-*/;
 
     public native void closePath() /*-{
-		this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.closePath();
-	}-*/;
+                                   this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.closePath();
+                                   }-*/;
 
     public native void moveTo(double x, double y) /*-{
-		this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.moveTo(x, y);
-	}-*/;
+                                                  this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.moveTo(x, y);
+                                                  }-*/;
 
     public native void lineTo(double x, double y) /*-{
-		this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.lineTo(x, y);
-	}-*/;
+                                                  this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.lineTo(x, y);
+                                                  }-*/;
 
     public native void rect(double x, double y, double w, double h) /*-{
-		this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.rect(x, y, w, h);
-	}-*/;
+                                                                    this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.rect(x, y, w, h);
+                                                                    }-*/;
 
-    /////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////
     // STROKING AND FILLING
-    /////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////
 
     public native void clear() /*-{
-		this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.clearRect(-1e4, -1e4, 2e4, 2e4);
-	}-*/;
+                               this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.clearRect(-1e4, -1e4, 2e4, 2e4);
+                               }-*/;
 
     public native void fill() /*-{
-		this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.fill();
-	}-*/;
+                              this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.fill();
+                              }-*/;
 
     public native void stroke() /*-{
-		this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.stroke();
-	}-*/;
+                                this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.stroke();
+                                }-*/;
 
     public native void fillRect(double x, double y, double w, double h) /*-{
-		this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.fillRect(x, y, w, h);
-	}-*/;
+                                                                        this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.fillRect(x, y, w, h);
+                                                                        }-*/;
 
     public native void strokeRect(double x, double y, double w, double h) /*-{
-		this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.strokeRect(x, y, w, h);
-	}-*/;
+                                                                          this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.strokeRect(x, y, w, h);
+                                                                          }-*/;
 
-    /////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////
     // GRADIENT STYLES
-    /////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////
 
-    public Gradient createLinearGradient(double x0, double y0, double x1, double y1) {
+    public Gradient createLinearGradient(double x0, double y0, double x1,
+            double y1) {
         return new LinearGradientImpl(x0, y0, x1, y1, context);
     }
 
-    public Gradient createRadialGradient(double x0, double y0, double r0, double x1, double y1, double r1) {
+    public Gradient createRadialGradient(double x0, double y0, double r0,
+            double x1, double y1, double r1) {
         return new RadialGradientImpl(x0, y0, r0, x1, y1, r1, context);
     }
 
-    /////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////
     // DRAWING IMAGES
-    /////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////
 
-    public native void drawImage(ImageElement image, double sx, double sy, double sWidth, double sHeight,
-            double dx, double dy, double dWidth, double dHeight) /*-{
-		this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
-	}-*/;
+    public native void drawImage(ImageElement image, double sx, double sy,
+            double sWidth, double sHeight, double dx, double dy, double dWidth,
+            double dHeight) /*-{
+                            this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
+                            }-*/;
 
-    /////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////
     // SETTERS AND GETTERS
-    /////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////
 
     public native void setGlobalAlpha(double globalAlpha) /*-{
-		this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.globalAlpha = globalAlpha;
-	}-*/;
+                                                          this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.globalAlpha = globalAlpha;
+                                                          }-*/;
 
     public native double getGlobalAlpha() /*-{
-		return this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.globalAlpha;
-	}-*/;
+                                          return this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.globalAlpha;
+                                          }-*/;
 
-    public native void setGlobalCompositeOperation(String globalCompositeOperation) /*-{
-		this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.globalCompositeOperation = globalCompositeOperation;
-	}-*/;
+    public native void setGlobalCompositeOperation(
+            String globalCompositeOperation) /*-{
+                                             this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.globalCompositeOperation = globalCompositeOperation;
+                                             }-*/;
 
     public native String getGlobalCompositeOperation() /*-{
-		return this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.globalCompositeOperation;
-	}-*/;
+                                                       return this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.globalCompositeOperation;
+                                                       }-*/;
 
     public native void setStrokeStyle(String strokeStyle) /*-{
-		this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.strokeStyle = strokeStyle;
-	}-*/;
+                                                          this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.strokeStyle = strokeStyle;
+                                                          }-*/;
 
     public native String getStrokeStyle() /*-{
-		return this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.strokeStyle;
-	}-*/;
+                                          return this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.strokeStyle;
+                                          }-*/;
 
     public native void setFillStyle(Gradient fillStyle) /*-{
-		this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.fillStyle =
-			fillStyle.@com.vaadin.addon.timeline.gwt.canvas.client.impl.GradientImpl::gradient;
-	}-*/;
+                                                        this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.fillStyle =
+                                                        fillStyle.@com.vaadin.addon.timeline.gwt.canvas.client.impl.GradientImpl::gradient;
+                                                        }-*/;
 
     public native void setFillStyle(String fillStyle) /*-{
-		this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.fillStyle = fillStyle;
-	}-*/;
+                                                      this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.fillStyle = fillStyle;
+                                                      }-*/;
 
     public native String getFillStyle() /*-{
-		return this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.fillStyle;
-	}-*/;
+                                        return this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.fillStyle;
+                                        }-*/;
 
     public native void setLineWidth(double lineWidth) /*-{
-		this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.lineWidth = lineWidth;
-	}-*/;
+                                                      this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.lineWidth = lineWidth;
+                                                      }-*/;
 
     public native double getLineWidth() /*-{
-		return this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.lineWidth;
-	}-*/;
+                                        return this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.lineWidth;
+                                        }-*/;
 
     public native void setLineCap(String lineCap) /*-{
-		this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.lineCap = lineCap;
-	}-*/;
+                                                  this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.lineCap = lineCap;
+                                                  }-*/;
 
     public native String getLineCap() /*-{
-		return this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.lineCap;
-	}-*/;
+                                      return this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.lineCap;
+                                      }-*/;
 
     public native void setLineJoin(String lineJoin) /*-{
-		this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.lineJoin = lineJoin;
-	}-*/;
+                                                    this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.lineJoin = lineJoin;
+                                                    }-*/;
 
     public native String getLineJoin() /*-{
-		return this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.lineJoin;
-	}-*/;
+                                       return this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.lineJoin;
+                                       }-*/;
 
     public native void setMiterLimit(double miterLimit) /*-{
-		this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.miterLimit = miterLimit;
-	}-*/;
+                                                        this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.miterLimit = miterLimit;
+                                                        }-*/;
 
     public native double getMiterLimit() /*-{
-		return this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.miterLimit;
-	}-*/;
+                                         return this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.miterLimit;
+                                         }-*/;
 
-    public native void setShadow(String color, int blur, int offsetX, int offsetY) /*-{
-        this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.shadowColor = color;
-        this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.shadowBlur = blur;
-        this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.shadowOffsetX = offsetX;
-        this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.shadowOffsetY = offsetY;
-    }-*/;
+    public native void setShadow(String color, int blur, int offsetX,
+            int offsetY) /*-{
+                         this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.shadowColor = color;
+                         this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.shadowBlur = blur;
+                         this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.shadowOffsetX = offsetX;
+                         this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::context.shadowOffsetY = offsetY;
+                         }-*/;
 }

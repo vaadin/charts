@@ -100,28 +100,31 @@ public class BasicLineGettingMousePointerPosition extends
             @Override
             public void onClick(PointClickEvent event) {
                 Window win = new Window("PointClickEvent window");
-                win.setContent(new Label("Browser client area coordinates: point X:"
-                        + event.getAbsoluteX() + " Y:" + event.getAbsoluteY()));
+                win.setContent(new Label(
+                        "Browser client area coordinates: point X:"
+                                + event.getAbsoluteX() + " Y:"
+                                + event.getAbsoluteY()));
                 win.setPositionX(event.getAbsoluteX());
                 win.setPositionY(event.getAbsoluteY());
                 getUI().addWindow(win);
-            }
-        });
-       
-        chart.addChartClickListener(new ChartClickListener() {
-            
-            @Override
-            public void onClick(ChartClickEvent event) {
-                Window win = new Window("Chart Click Event Window");
-                win.setContent(new Label("Browser client area coordinates: point X:"
-                        + event.getAbsoluteX() + " Y:" + event.getAbsoluteY()));
-                win.setPositionX(event.getAbsoluteX());
-                win.setPositionY(event.getAbsoluteY());
-                getUI().addWindow(win);
-                
             }
         });
 
+        chart.addChartClickListener(new ChartClickListener() {
+
+            @Override
+            public void onClick(ChartClickEvent event) {
+                Window win = new Window("Chart Click Event Window");
+                win.setContent(new Label(
+                        "Browser client area coordinates: point X:"
+                                + event.getAbsoluteX() + " Y:"
+                                + event.getAbsoluteY()));
+                win.setPositionX(event.getAbsoluteX());
+                win.setPositionY(event.getAbsoluteY());
+                getUI().addWindow(win);
+
+            }
+        });
 
         return chart;
     }

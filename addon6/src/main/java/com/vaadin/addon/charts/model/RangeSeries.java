@@ -78,7 +78,8 @@ public class RangeSeries extends DataSeries {
     /**
      * Constructs a RangeSeries with the given name and values
      * 
-     * @param name the name of the series
+     * @param name
+     *            the name of the series
      * @param values
      *            low-high pairs, or x-low-high triplets
      */

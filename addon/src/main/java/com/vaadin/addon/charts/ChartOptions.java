@@ -97,13 +97,13 @@ public class ChartOptions extends AbstractExtension {
 
     private void buildOptionsJson() {
         JsonObject json;
-        if(theme != null) {
+        if (theme != null) {
             json = gson.toJsonTree(theme).getAsJsonObject();
         } else {
             json = new JsonObject();
         }
-        
-        if(lang != null) {
+
+        if (lang != null) {
             json.add("lang", Lang.createGsonBuilder().create().toJsonTree(lang));
         }
 

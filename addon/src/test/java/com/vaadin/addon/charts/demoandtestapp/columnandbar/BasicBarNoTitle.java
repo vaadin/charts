@@ -36,7 +36,7 @@ public class BasicBarNoTitle extends AbstractVaadinChartExample {
         Chart chart = new Chart(ChartType.BAR);
 
         Configuration conf = chart.getConfiguration();
-        
+
         conf.getTitle().setText(null);
 
         XAxis x = new XAxis();
@@ -78,7 +78,6 @@ public class BasicBarNoTitle extends AbstractVaadinChartExample {
         series.add(new ListSeries("Year 1900", 133, 156, 947, 408, 6));
         series.add(new ListSeries("Year 2008", 973, 914, 4054, 732, 34));
         conf.setSeries(series);
-        
 
         chart.drawChart(conf);
 

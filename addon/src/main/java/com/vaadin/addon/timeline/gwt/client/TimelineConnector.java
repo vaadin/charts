@@ -27,7 +27,7 @@ import com.vaadin.shared.ui.Connect;
 @SuppressWarnings("deprecation")
 @Connect(Timeline.class)
 public class TimelineConnector extends LegacyConnector implements
-DirectionalManagedLayout {
+        DirectionalManagedLayout {
 
     /*
      * (non-Javadoc)

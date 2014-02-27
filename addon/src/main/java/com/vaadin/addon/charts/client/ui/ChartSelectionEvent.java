@@ -35,10 +35,12 @@ public class ChartSelectionEvent extends JavaScriptObject {
     /*-{
         return this.xAxis[0].max;
     }-*/;
+
     public native final double getValueStart()
     /*-{
         return this.yAxis[0].min;
     }-*/;
+
     public native final double getValueEnd()
     /*-{
         return this.yAxis[0].max;

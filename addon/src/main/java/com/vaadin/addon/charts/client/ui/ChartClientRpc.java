@@ -26,7 +26,7 @@ public interface ChartClientRpc extends ClientRpc {
      * 
      * @param pointJson
      * @param seriesIndex
-     * @param shift 
+     * @param shift
      */
     void addPoint(String pointJson, int seriesIndex, boolean shift);
 
@@ -34,7 +34,7 @@ public interface ChartClientRpc extends ClientRpc {
      * Removes the first point found at the given index
      * 
      * @param pointIndex
-     * @param seriesIndex 
+     * @param seriesIndex
      */
     void removePoint(int pointIndex, int seriesIndex);
 

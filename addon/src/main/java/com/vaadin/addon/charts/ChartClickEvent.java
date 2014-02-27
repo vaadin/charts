@@ -37,7 +37,8 @@ public class ChartClickEvent extends com.vaadin.ui.Component.Event {
      * @param xAxis
      * @param yAxis
      */
-    public ChartClickEvent(Chart source, double xAxis, double yAxis, int absoluteX, int absoluteY) {
+    public ChartClickEvent(Chart source, double xAxis, double yAxis,
+            int absoluteX, int absoluteY) {
         super(source);
         xAxisValue = xAxis;
         yAxisValue = yAxis;
@@ -68,14 +69,18 @@ public class ChartClickEvent extends com.vaadin.ui.Component.Event {
     }
 
     /**
-     * @return the absolute x position of the clicked point in browser client area in pixels or -1 if chart type (like pie) don't have relevant point
+     * @return the absolute x position of the clicked point in browser client
+     *         area in pixels or -1 if chart type (like pie) don't have relevant
+     *         point
      */
     public int getAbsoluteX() {
         return absoluteX;
     }
 
     /**
-     * @return the absolute x position of the clicked point in browser client area in pixels or -1 if chart type (like pie) don't have relevant point
+     * @return the absolute x position of the clicked point in browser client
+     *         area in pixels or -1 if chart type (like pie) don't have relevant
+     *         point
      */
     public int getAbsoluteY() {
         return absoluteY;

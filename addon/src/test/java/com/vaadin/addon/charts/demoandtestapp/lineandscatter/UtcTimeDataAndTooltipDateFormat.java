@@ -13,8 +13,7 @@ import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.ui.Component;
 
-public class UtcTimeDataAndTooltipDateFormat extends
-        AbstractVaadinChartExample {
+public class UtcTimeDataAndTooltipDateFormat extends AbstractVaadinChartExample {
 
     @Override
     public String getDescription() {

@@ -27,26 +27,27 @@ public class ErrorBarExample extends AbstractVaadinChartExample {
     @Override
     protected Component getChart() {
         Chart chart = new Chart();
-        
+
         Configuration conf = chart.getConfiguration();
 
         // Enable xy zooming, test also with touch devices
         conf.getChart().setZoomType(ZoomType.XY);
-        
+
         conf.setTitle("Temperature vs Rainfall");
-        
-        conf.getxAxis().setCategories("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
-        
+
+        conf.getxAxis().setCategories("Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
+
         YAxis primaryAxis = conf.getyAxis();
-        
+
         Title title = new Title("Temperature");
         Style style = new Style();
         style.setColor(new SolidColor("#89A54E"));
-        title.setStyle(style );
-        primaryAxis.setTitle(title );
-        
+        title.setStyle(style);
+        primaryAxis.setTitle(title);
+
         primaryAxis.getLabels().setFormatter("this.value + '°C'");
-        
+
         YAxis secondaryAxis = new YAxis();
         conf.getyAxes().addAxis(secondaryAxis);
         title = new Title("Rainfall");
@@ -57,11 +58,11 @@ public class ErrorBarExample extends AbstractVaadinChartExample {
         secondaryAxis.getLabels().setFormatter("this.value + ' mm'");
         secondaryAxis.getLabels().setStyle(style);
         secondaryAxis.setOpposite(true);
-        
+
         conf.getTooltip().setShared(true);
-        
+
         DataSeries rainfall = new DataSeries("Rainfall");
-        
+
         PlotOptionsColumn column = new PlotOptionsColumn();
         column.setColor(new SolidColor("#4572A7"));
         Tooltip tooltip = new Tooltip();
@@ -70,8 +71,7 @@ public class ErrorBarExample extends AbstractVaadinChartExample {
         rainfall.setPlotOptions(column);
         conf.addSeries(rainfall);
         rainfall.setyAxis(secondaryAxis);
-        
-        
+
         DataSeries rainfallError = new DataSeries("Rainfall");
         conf.addSeries(rainfallError);
         rainfallError.setyAxis(secondaryAxis);
@@ -101,7 +101,6 @@ public class ErrorBarExample extends AbstractVaadinChartExample {
         tempErrorOptions.setTooltip(tooltip);
         temperatureErrors.setPlotOptions(tempErrorOptions);
 
-
         // Populate series
         for (Data d : DATA) {
             DataSeriesItem item = new DataSeriesItem();
@@ -112,7 +111,7 @@ public class ErrorBarExample extends AbstractVaadinChartExample {
             item.setLow(d.rainfallErrorLow);
             item.setHigh(d.rainfallErrorHigh);
             rainfallError.add(item);
-            
+
             item = new DataSeriesItem();
             item.setY(d.temperature);
             temperature.add(item);
@@ -121,9 +120,9 @@ public class ErrorBarExample extends AbstractVaadinChartExample {
             item.setLow(d.temperatureErrorLow);
             item.setHigh(d.temperatureErrorHigh);
             temperatureErrors.add(item);
-            
+
         }
-        
+
         return chart;
     }
 

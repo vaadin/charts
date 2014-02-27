@@ -39,9 +39,9 @@ import com.vaadin.client.VConsole;
  */
 public class CanvasImplIE extends CanvasImpl {
 
-    /////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////
     // STATIC CONSTANTS AND METHODS
-    /////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////
 
     public final static String SOURCE_OVER = "beforeEnd";
 
@@ -50,12 +50,12 @@ public class CanvasImplIE extends CanvasImpl {
     public final static String BUTT = "flat";
 
     public static native int floor(double value) /*-{
-		return (value | 0);
-	}-*/;
+                                                 return (value | 0);
+                                                 }-*/;
 
-    /////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////
     // PRIVATE/PROTECTED MEMBERS/METHODS
-    /////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////
 
     private final Stack<VMLContext> contextStack = new Stack<VMLContext>();
 
@@ -71,7 +71,6 @@ public class CanvasImplIE extends CanvasImpl {
 
     private double currentY = 0.0;
 
-
     private int getCoordX(double x, double y) {
         int coordX = floor(10 * (matrix[0] * x + matrix[3] * y + matrix[6]) - 4.5);
         // TODO update min-max x-values
@@ -85,38 +84,38 @@ public class CanvasImplIE extends CanvasImpl {
     }
 
     protected native void insert(String where, String html) /*-{
-		this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::element.insertAdjacentHTML(where, html);
-	}-*/;
+                                                            this.@com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl::element.insertAdjacentHTML(where, html);
+                                                            }-*/;
 
     // TODO investigate further
-    //	protected native void cancelSelections() /*-{
-    //		try {
-    //			$doc.selection.empty();
-    //		} catch (e) {
-    //			// do nothing
-    //		}
-    //	}-*/;
+    // protected native void cancelSelections() /*-{
+    // try {
+    // $doc.selection.empty();
+    // } catch (e) {
+    // // do nothing
+    // }
+    // }-*/;
 
     @Override
     protected native void init() /*-{
-		if (!$doc.namespaces["v"]) {
-			$doc.namespaces.add("v", "urn:schemas-microsoft-com:vml");
-			$doc.createStyleSheet().cssText = "v\\:*{behavior:url(#default#VML);}";
-		}
-	}-*/;
+                                 if (!$doc.namespaces["v"]) {
+                                 $doc.namespaces.add("v", "urn:schemas-microsoft-com:vml");
+                                 $doc.createStyleSheet().cssText = "v\\:*{behavior:url(#default#VML);}";
+                                 }
+                                 }-*/;
 
-    /////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////
     // CONSTRUCTORS AND PUBLIC METHODS
-    /////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////
 
     @Override
     public void init(Element element) {
         this.element = element;
-        DOM.setStyleAttribute(element, "position",  "relative");
-        DOM.setStyleAttribute(element, "display",   "inline-block");
-        DOM.setStyleAttribute(element, "overflow",  "hidden");
+        DOM.setStyleAttribute(element, "position", "relative");
+        DOM.setStyleAttribute(element, "display", "inline-block");
+        DOM.setStyleAttribute(element, "overflow", "hidden");
         DOM.setStyleAttribute(element, "textAlign", "left");
-        DOM.setStyleAttribute(element, "cursor",    "default");
+        DOM.setStyleAttribute(element, "cursor", "default");
 
         init();
         context = new VMLContext();
@@ -137,18 +136,18 @@ public class CanvasImplIE extends CanvasImpl {
         DOM.setStyleAttribute(element, "height", height);
     }
 
-    //	public void onMouseDown(Event event) {
-    //		cancelSelections();
-    //		DOM.setCapture(element);
-    //	}
+    // public void onMouseDown(Event event) {
+    // cancelSelections();
+    // DOM.setCapture(element);
+    // }
 
-    //	public void onMouseUp() {
-    //		DOM.releaseCapture(element);
-    //	}
+    // public void onMouseUp() {
+    // DOM.releaseCapture(element);
+    // }
 
-    /////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////
     // CANVAS STATE METHODS
-    /////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////
 
     @Override
     public void restore() {
@@ -171,11 +170,11 @@ public class CanvasImplIE extends CanvasImpl {
         double c = Math.cos(angle);
         double a = matrix[0];
         double b = matrix[3];
-        matrix[0] =  a * c + b * s;
+        matrix[0] = a * c + b * s;
         matrix[3] = -a * s + b * c;
         a = matrix[1];
         b = matrix[4];
-        matrix[1] =  a * c + b * s;
+        matrix[1] = a * c + b * s;
         matrix[4] = -a * s + b * c;
     }
 
@@ -195,36 +194,42 @@ public class CanvasImplIE extends CanvasImpl {
         matrix[7] += matrix[1] * x + matrix[4] * y;
     }
 
-    public void transform(double m11, double m12, double m21, double m22, double dx, double dy) {
+    public void transform(double m11, double m12, double m21, double m22,
+            double dx, double dy) {
         double a = matrix[0];
         double b = matrix[3];
-        matrix[0]  = a * m11 + b * m12;
-        matrix[3]  = a * m21 + b * m22;
-        matrix[6] += a * dx  + b * dy;
+        matrix[0] = a * m11 + b * m12;
+        matrix[3] = a * m21 + b * m22;
+        matrix[6] += a * dx + b * dy;
         a = matrix[1];
         b = matrix[4];
-        matrix[1]  = a * m11 + b * m12;
-        matrix[4]  = a * m21 + b * m22;
-        matrix[7] += a * dx  + b * dy;
+        matrix[1] = a * m11 + b * m12;
+        matrix[4] = a * m21 + b * m22;
+        matrix[7] += a * dx + b * dy;
     }
 
-    public void setTransform(double m11, double m12, double m21, double m22, double dx, double dy) {
-        matrix[0] = m11; matrix[1] = m12;
-        matrix[3] = m21; matrix[4] = m22;
-        matrix[6] = dx;  matrix[7] = dy;
+    public void setTransform(double m11, double m12, double m21, double m22,
+            double dx, double dy) {
+        matrix[0] = m11;
+        matrix[1] = m12;
+        matrix[3] = m21;
+        matrix[4] = m22;
+        matrix[6] = dx;
+        matrix[7] = dy;
     }
 
-    /////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////
     // WORKING WITH PATHS
-    /////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////
 
     @Override
-    public void arc(double x, double y, double radius, double startAngle, double endAngle, boolean antiClockwise) {
+    public void arc(double x, double y, double radius, double startAngle,
+            double endAngle, boolean antiClockwise) {
         double ar = radius * 10;
         double startX = x + Math.cos(startAngle) * ar - 5;
         double startY = y + Math.sin(startAngle) * ar - 5;
-        double endX   = x + Math.cos(endAngle)   * ar - 5;
-        double endY   = y + Math.sin(endAngle)   * ar - 5;
+        double endX = x + Math.cos(endAngle) * ar - 5;
+        double endY = y + Math.sin(endAngle) * ar - 5;
         if (Math.abs(startX - endX) < .0000001 && !antiClockwise) {
             startX += 0.125;
         }
@@ -247,42 +252,44 @@ public class CanvasImplIE extends CanvasImpl {
     }
 
     // another version, works but has issues, see demo
-    //	public void arc(double x, double y, double radius, double startAngle, double endAngle, boolean antiClockwise) {
-    //		if (!antiClockwise) {
-    //			double temp = startAngle;
-    //			startAngle = endAngle;
-    //			endAngle = temp;
-    //		}
-    //		double ar = radius * 10;
-    //		double startX = x + Math.cos(startAngle) * ar - 5;
-    //		double startY = y + Math.sin(startAngle) * ar - 5;
-    //		double endX   = x + Math.cos(endAngle)   * ar - 5;
-    //		double endY   = y + Math.sin(endAngle)   * ar - 5;
-    //		if (startX == endX && !antiClockwise) {
-    //			startX += 0.125;
-    //		}
-    //		double cx = getCoordX(x, y);
-    //		double cy = getCoordY(x, y);
-    //		double arcX = context.arcScaleX * ar;
-    //		double arcY = context.arcScaleY * ar;
-    //		pathStack.push(" ar " + floor(cx - arcX + 0.5));
-    //		pathStack.push(","    + floor(cy + arcY + 0.5));
-    //		pathStack.push(" "    + floor(cx + arcX + 0.5));
-    //		pathStack.push(","    + floor(cy - arcY + 0.5));
-    //		pathStack.push(" " + getCoordX(startX, startY));
-    //		pathStack.push("," + getCoordY(startX, startY));
-    //		pathStack.push(" " + getCoordX(endX, endY));
-    //		pathStack.push("," + getCoordY(endX, endY));
-    //	}
+    // public void arc(double x, double y, double radius, double startAngle,
+    // double endAngle, boolean antiClockwise) {
+    // if (!antiClockwise) {
+    // double temp = startAngle;
+    // startAngle = endAngle;
+    // endAngle = temp;
+    // }
+    // double ar = radius * 10;
+    // double startX = x + Math.cos(startAngle) * ar - 5;
+    // double startY = y + Math.sin(startAngle) * ar - 5;
+    // double endX = x + Math.cos(endAngle) * ar - 5;
+    // double endY = y + Math.sin(endAngle) * ar - 5;
+    // if (startX == endX && !antiClockwise) {
+    // startX += 0.125;
+    // }
+    // double cx = getCoordX(x, y);
+    // double cy = getCoordY(x, y);
+    // double arcX = context.arcScaleX * ar;
+    // double arcY = context.arcScaleY * ar;
+    // pathStack.push(" ar " + floor(cx - arcX + 0.5));
+    // pathStack.push("," + floor(cy + arcY + 0.5));
+    // pathStack.push(" " + floor(cx + arcX + 0.5));
+    // pathStack.push("," + floor(cy - arcY + 0.5));
+    // pathStack.push(" " + getCoordX(startX, startY));
+    // pathStack.push("," + getCoordY(startX, startY));
+    // pathStack.push(" " + getCoordX(endX, endY));
+    // pathStack.push("," + getCoordY(endX, endY));
+    // }
 
     @Override
-    public void cubicCurveTo(double cp1x, double cp1y, double cp2x, double cp2y, double x, double y) {
+    public void cubicCurveTo(double cp1x, double cp1y, double cp2x,
+            double cp2y, double x, double y) {
         pathStack.push(" c " + getCoordX(cp1x, cp1y));
-        pathStack.push(","   + getCoordY(cp1x, cp1y));
-        pathStack.push(","   + getCoordX(cp2x, cp2y));
-        pathStack.push(","   + getCoordY(cp2x, cp2y));
-        pathStack.push(","   + getCoordX(x, y));
-        pathStack.push(","   + getCoordY(x, y));
+        pathStack.push("," + getCoordY(cp1x, cp1y));
+        pathStack.push("," + getCoordX(cp2x, cp2y));
+        pathStack.push("," + getCoordY(cp2x, cp2y));
+        pathStack.push("," + getCoordX(x, y));
+        pathStack.push("," + getCoordY(x, y));
         currentX = x;
         currentY = y;
     }
@@ -325,21 +332,21 @@ public class CanvasImplIE extends CanvasImpl {
         w += x;
         h += y;
         pathStack.push(" m " + getCoordX(x, y));
-        pathStack.push(","   + getCoordY(x, y));
+        pathStack.push("," + getCoordY(x, y));
         pathStack.push(" l " + getCoordX(w, y));
-        pathStack.push(","   + getCoordY(x, y));
+        pathStack.push("," + getCoordY(x, y));
         pathStack.push(" l " + getCoordX(w, y));
-        pathStack.push(","   + getCoordY(x, h));
+        pathStack.push("," + getCoordY(x, h));
         pathStack.push(" l " + getCoordX(x, y));
-        pathStack.push(","   + getCoordY(x, h));
+        pathStack.push("," + getCoordY(x, h));
         pathStack.push(" x");
         currentX = x;
         currentY = h;
     }
 
-    /////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////
     // STROKING AND FILLING
-    /////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////
 
     @Override
     public void clear() {
@@ -354,11 +361,13 @@ public class CanvasImplIE extends CanvasImpl {
             return;
         }
         scratchStack.clear();
-        scratchStack.push("<v:shape style=\"position:absolute;width:10;height:10;\" coordsize=\"100,100\" fillcolor=\"");
+        scratchStack
+                .push("<v:shape style=\"position:absolute;width:10;height:10;\" coordsize=\"100,100\" fillcolor=\"");
         scratchStack.push(context.fillStyle);
         scratchStack.push("\" stroked=\"f\" path=\"");
         scratchStack.push(pathStack.join());
-        scratchStack.push(" e\"><v:fill opacity=\"" + context.globalAlpha * context.fillAlpha);
+        scratchStack.push(" e\"><v:fill opacity=\"" + context.globalAlpha
+                * context.fillAlpha);
         // TODO add gradient code here
         scratchStack.push("\"></v:fill>");
         if (context.shadowColor != null) {
@@ -379,12 +388,14 @@ public class CanvasImplIE extends CanvasImpl {
             return;
         }
         scratchStack.clear();
-        scratchStack.push("<v:shape style=\"position:absolute;width:10;height:10;\" coordsize=\"100,100\" filled=\"f\" strokecolor=\"");
+        scratchStack
+                .push("<v:shape style=\"position:absolute;width:10;height:10;\" coordsize=\"100,100\" filled=\"f\" strokecolor=\"");
         scratchStack.push(context.strokeStyle);
         scratchStack.push("\" strokeweight=\"" + context.lineWidth);
         scratchStack.push("px\" path=\"");
         scratchStack.push(pathStack.join());
-        scratchStack.push(" e\"><v:stroke opacity=\"" + context.globalAlpha * context.strokeAlpha);
+        scratchStack.push(" e\"><v:stroke opacity=\"" + context.globalAlpha
+                * context.strokeAlpha);
         scratchStack.push("\" miterlimit=\"" + context.miterLimit);
         scratchStack.push("\" joinstyle=\"");
         scratchStack.push(context.lineJoin);
@@ -427,34 +438,38 @@ public class CanvasImplIE extends CanvasImpl {
         pathStack.clear();
     }
 
-    /////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////
     // GRADIENT STYLES
-    /////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////
 
     @Override
-    public Gradient createLinearGradient(double x0, double y0, double x1, double y1) {
+    public Gradient createLinearGradient(double x0, double y0, double x1,
+            double y1) {
         return new LinearGradientImplIE(x0, y0, x1, y1);
     }
 
     @Override
-    public Gradient createRadialGradient(double x0, double y0, double r0, double x1, double y1, double r1) {
+    public Gradient createRadialGradient(double x0, double y0, double r0,
+            double x1, double y1, double r1) {
         return new RadialGradientImplIE(x0, y0, r0, x1, y1, r1);
     }
 
-    /////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////
     // DRAWING IMAGES
-    /////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////
 
     @Override
-    public void drawImage(ImageElement image, double sx, double sy, double sWidth, double sHeight,
-            double dx, double dy, double dWidth, double dHeight) {
+    public void drawImage(ImageElement image, double sx, double sy,
+            double sWidth, double sHeight, double dx, double dy, double dWidth,
+            double dHeight) {
 
         int iWidth = image.getWidth();
         int iHeight = image.getHeight();
-        int dX = (int)(getCoordX(dx, dy) / 10.0);
-        int dY = (int)(getCoordY(dx, dy) / 10.0);
+        int dX = (int) (getCoordX(dx, dy) / 10.0);
+        int dY = (int) (getCoordY(dx, dy) / 10.0);
         scratchStack.clear();
-        scratchStack.push("<v:group style=\"position:absolute;width:10;height:10;");
+        scratchStack
+                .push("<v:group style=\"position:absolute;width:10;height:10;");
 
         // If the transformation matrix has a rotation/scale we apply a filter
         // Create a padding bounding box to prevent clipping
@@ -465,7 +480,8 @@ public class CanvasImplIE extends CanvasImpl {
             scratchStack.push(";padding-bottom:");
             // TODO verify px suffix
             scratchStack.push(DOM.getStyleAttribute(element, "height"));
-            scratchStack.push(";filter:progid:DXImageTransform.Microsoft.Matrix(M11='");
+            scratchStack
+                    .push(";filter:progid:DXImageTransform.Microsoft.Matrix(M11='");
             scratchStack.push(matrix[0] + "',M12='");
             scratchStack.push(matrix[3] + "',M21='");
             scratchStack.push(matrix[1] + "',M22='");
@@ -478,21 +494,24 @@ public class CanvasImplIE extends CanvasImpl {
             scratchStack.push("top:");
             scratchStack.push(dY + "px");
         }
-        scratchStack.push("\" coordsize=\"100,100\" coordorigin=\"0,0\"><v:image src=\"");
+        scratchStack
+                .push("\" coordsize=\"100,100\" coordorigin=\"0,0\"><v:image src=\"");
         scratchStack.push(image.getSrc());
-        scratchStack.push("\" style=\"width:" + (int)(dWidth * 10));
-        scratchStack.push(";height:" + (int)(dHeight * 10));
+        scratchStack.push("\" style=\"width:" + (int) (dWidth * 10));
+        scratchStack.push(";height:" + (int) (dHeight * 10));
         scratchStack.push(";\" cropleft=\"" + (sx / iWidth));
         scratchStack.push("\" croptop=\"" + (sy / iHeight));
-        scratchStack.push("\" cropright=\"" + ((iWidth - sx - sWidth) / iWidth));
-        scratchStack.push("\" cropbottom=\"" + ((iHeight - sy - sHeight) / iHeight));
+        scratchStack
+                .push("\" cropright=\"" + ((iWidth - sx - sWidth) / iWidth));
+        scratchStack.push("\" cropbottom=\""
+                + ((iHeight - sy - sHeight) / iHeight));
         scratchStack.push("\"/></v:group>");
         insert("BeforeEnd", scratchStack.join());
     }
 
-    /////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////
     // SETTERS AND GETTERS
-    /////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////
 
     @Override
     public void setGlobalAlpha(double globalAlpha) {
@@ -531,14 +550,15 @@ public class CanvasImplIE extends CanvasImpl {
             if (end > -1) {
                 String[] guts = strokeStyle.substring(5, end).split(",");
                 if (guts.length == 4) {
-                    context.strokeAlpha  = Double.parseDouble(guts[3]);
-                    context.strokeStyle  = "rgb(" + guts[0] + "," + guts[1] + "," + guts[2] + ")";
+                    context.strokeAlpha = Double.parseDouble(guts[3]);
+                    context.strokeStyle = "rgb(" + guts[0] + "," + guts[1]
+                            + "," + guts[2] + ")";
                     context.strokeStyle_ = strokeStyle;
                 }
             }
         } else {
-            context.strokeAlpha  = 1.0;
-            context.strokeStyle  = strokeStyle;
+            context.strokeAlpha = 1.0;
+            context.strokeStyle = strokeStyle;
             context.strokeStyle_ = null;
         }
     }
@@ -564,14 +584,15 @@ public class CanvasImplIE extends CanvasImpl {
             if (end > -1) {
                 String[] guts = fillStyle.substring(5, end).split(",");
                 if (guts.length == 4) {
-                    context.fillAlpha  = Double.parseDouble(guts[3]);
-                    context.fillStyle  = "rgb(" + guts[0] + "," + guts[1] + "," + guts[2] + ")";
+                    context.fillAlpha = Double.parseDouble(guts[3]);
+                    context.fillStyle = "rgb(" + guts[0] + "," + guts[1] + ","
+                            + guts[2] + ")";
                     context.fillStyle_ = fillStyle;
                 }
             }
         } else {
-            context.fillAlpha  = 1.0;
-            context.fillStyle  = fillStyle;
+            context.fillAlpha = 1.0;
+            context.fillStyle = fillStyle;
             context.fillStyle_ = null;
         }
         context.fillGradient = null;

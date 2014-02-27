@@ -186,7 +186,7 @@ public class TimeSeriesZoomable extends AbstractVaadinChartExample {
 
         configuration.getTitle().setText(
                 "USD to EUR exchange rate from 2006 through 2008");
-        
+
         String title = Page.getCurrent().getWebBrowser().isTouchDevice() ? "Drag your finger over the plot to zoom in"
                 : "Click and drag in the plot area to zoom in";
         configuration.getSubTitle().setText(title);
@@ -247,7 +247,7 @@ public class TimeSeriesZoomable extends AbstractVaadinChartExample {
         configuration.setSeries(ls);
 
         chart.drawChart(configuration);
-        
+
         return chart;
     }
 }

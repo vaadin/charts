@@ -64,7 +64,7 @@ public class ColoredContainerSeries extends AbstractVaadinChartExample {
         plotOptions.setColor(SolidColor.GOLDENROD);
         containerDataSeries.setPlotOptions(plotOptions);
 
-//        conf.setPlotOptions(plotOptions);
+        // conf.setPlotOptions(plotOptions);
 
         conf.setSeries(containerDataSeries);
 

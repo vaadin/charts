@@ -76,7 +76,7 @@ public class ScatterWithRegressionLine extends AbstractVaadinChartExample {
         conf.addSeries(listSeries);
 
         chart.drawChart(conf);
-        
+
         return chart;
     }
 }

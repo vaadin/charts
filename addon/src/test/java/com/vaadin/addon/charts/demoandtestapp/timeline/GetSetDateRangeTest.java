@@ -12,7 +12,7 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Component;
 
 @SkipFromDemo
-@SuppressWarnings({"serial", "deprecation"})
+@SuppressWarnings({ "serial", "deprecation" })
 public class GetSetDateRangeTest extends AbstractVaadinChartExample implements
         DateRangeListener {
 

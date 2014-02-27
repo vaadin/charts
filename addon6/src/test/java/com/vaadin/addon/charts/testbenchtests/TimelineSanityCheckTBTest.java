@@ -2,7 +2,6 @@ package com.vaadin.addon.charts.testbenchtests;
 
 import com.vaadin.addon.charts.demoandtestapp.timeline.SanityCheck;
 
-
 public class TimelineSanityCheckTBTest extends
         AbstractSimpleScreenShotTestBenchTest {
 

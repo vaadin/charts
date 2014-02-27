@@ -1,4 +1,5 @@
 package com.vaadin.addon.charts.model;
+
 /*
  * #%L
  * Vaadin Charts
@@ -17,10 +18,11 @@ package com.vaadin.addon.charts.model;
  */
 
 /**
- * The position of the tick marks relative to the axis line. Can be one of INSIDE and OUTSIDE. Defaults to OUTSIDE.
+ * The position of the tick marks relative to the axis line. Can be one of
+ * INSIDE and OUTSIDE. Defaults to OUTSIDE.
  */
 public enum TickPosition implements ChartEnum {
-	INSIDE("inside"), OUTSIDE("outside");
+    INSIDE("inside"), OUTSIDE("outside");
 
     private final String tickPosition;
 

@@ -41,11 +41,13 @@ class LicenseChecker {
             String homedir = System.getProperty("user.home");
             File file = new File(homedir + "/.vaadin.charts.developer.license");
             licenseFileFound = file.exists();
-            if(!licenseFileFound) {
+            if (!licenseFileFound) {
                 // Still check if license file is added to war files class path
-                URL resource = LicenseChecker.class.getResource("/vaadin.charts.developer.license");
-                if(resource == null) {
-                    resource = LicenseChecker.class.getResource("/.vaadin.charts.developer.license");
+                URL resource = LicenseChecker.class
+                        .getResource("/vaadin.charts.developer.license");
+                if (resource == null) {
+                    resource = LicenseChecker.class
+                            .getResource("/.vaadin.charts.developer.license");
                 }
                 licenseFileFound = resource != null;
             }
@@ -61,7 +63,7 @@ class LicenseChecker {
                     new InputStreamReader(LicenseChecker.class
                             .getResourceAsStream("licensenag.txt"), "UTF-8"));
             String l;
-            while((l = bufferedReader.readLine()) != null) {
+            while ((l = bufferedReader.readLine()) != null) {
                 System.err.println(l);
             }
         } catch (IOException e) {

@@ -29,7 +29,7 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.TextField;
 
 @SkipFromDemo
-@SuppressWarnings({"serial", "deprecation", "unchecked"})
+@SuppressWarnings({ "serial", "deprecation", "unchecked" })
 public class MyTimelineDemo extends AbstractVaadinChartExample {
 
     Container.Indexed firstDataSource;

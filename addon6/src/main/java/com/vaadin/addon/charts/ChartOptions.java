@@ -119,17 +119,17 @@ public class ChartOptions extends AbstractComponent {
         this.lang = lang;
         notifyListeners();
     }
-    
+
     @Override
     public void paintContent(PaintTarget target) throws PaintException {
         super.paintContent(target);
         JsonObject json;
-        if(theme != null) {
+        if (theme != null) {
             json = (JsonObject) gson.toJsonTree(theme);
         } else {
             json = new JsonObject();
         }
-        if(lang != null) {
+        if (lang != null) {
             json.add("lang", gson.toJsonTree(lang));
         }
         target.addAttribute("json", json.toString());

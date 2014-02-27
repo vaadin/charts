@@ -35,11 +35,10 @@ import com.vaadin.ui.Window;
  */
 public class TListUi extends Window {
     private IndexedContainer testClassess;
-    
-    public TListUi() {
-    	loadTestClasses(this);
-	}
 
+    public TListUi() {
+        loadTestClasses(this);
+    }
 
     private void loadTestClasses(TListUi aThis) {
         if (testClassess != null) {
@@ -134,18 +133,18 @@ public class TListUi extends Window {
             Class<?> forName, String subpackage) throws InstantiationException,
             IllegalAccessException {
         if (AbstractVaadinChartExample.class.isAssignableFrom(forName)) {
-        	try {
-        		AbstractVaadinChartExample newInstance = (AbstractVaadinChartExample) forName
-        				.newInstance();
-        		Object id = indexedContainer.addItem();
-        		Item item = indexedContainer.getItem(id);
-        		item.getItemProperty("name").setValue(simpleName);
-        		item.getItemProperty("description").setValue(
-        				newInstance.getDescription());
-        		item.getItemProperty("package").setValue(subpackage);
-        	} catch (Throwable e) {
-//        		e.printStackTrace();
-        	}
+            try {
+                AbstractVaadinChartExample newInstance = (AbstractVaadinChartExample) forName
+                        .newInstance();
+                Object id = indexedContainer.addItem();
+                Item item = indexedContainer.getItem(id);
+                item.getItemProperty("name").setValue(simpleName);
+                item.getItemProperty("description").setValue(
+                        newInstance.getDescription());
+                item.getItemProperty("package").setValue(subpackage);
+            } catch (Throwable e) {
+                // e.printStackTrace();
+            }
         }
     }
 

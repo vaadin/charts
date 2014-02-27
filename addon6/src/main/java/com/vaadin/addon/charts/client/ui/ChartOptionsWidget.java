@@ -43,7 +43,8 @@ public class ChartOptionsWidget extends Widget implements Paintable {
     @Override
     public void updateFromUIDL(UIDL mainUidl, ApplicationConnection client) {
         if (!client.updateComponent(this, mainUidl, true)) {
-            JavaScriptObject options = JSONParser.parseLenient(mainUidl.getStringAttribute("json"))
+            JavaScriptObject options = JSONParser
+                    .parseLenient(mainUidl.getStringAttribute("json"))
                     .isObject().getJavaScriptObject();
             applyOptions(options);
         }

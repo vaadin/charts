@@ -353,7 +353,7 @@ public class DataSeriesItem extends AbstractConfigurationObject {
     public boolean isCustomized() {
         return customized;
     }
-    
+
     protected void makeCustomized() {
         customized = true;
     }

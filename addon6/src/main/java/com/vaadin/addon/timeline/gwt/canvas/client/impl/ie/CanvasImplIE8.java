@@ -44,7 +44,8 @@ public class CanvasImplIE8 extends CanvasImplIE {
     /*
      * (non-Javadoc)
      * 
-     * @see com.vaadin.addon.timeline.gwt.canvas.client.impl.ie.CanvasImplIE#stroke()
+     * @see
+     * com.vaadin.addon.timeline.gwt.canvas.client.impl.ie.CanvasImplIE#stroke()
      */
     @Override
     public void stroke() {
@@ -54,25 +55,25 @@ public class CanvasImplIE8 extends CanvasImplIE {
 
         scratchStack.clear();
         scratchStack
-        .push("<v:shape style=\"position:absolute;width:10px;height:10px;\" coordsize=\"100,100\" filled=\"f\" strokecolor=\"");
+                .push("<v:shape style=\"position:absolute;width:10px;height:10px;\" coordsize=\"100,100\" filled=\"f\" strokecolor=\"");
         scratchStack.push(context.strokeStyle);
         scratchStack.push("\" strokeweight=\"" + context.lineWidth);
         scratchStack.push("px\" path=\"");
         scratchStack.push(pathStack.join());
         scratchStack
-        .push(" e\"><v:stroke style=\"position:absolute;width:10px;height:10px;\" opacity=\""
-                + context.globalAlpha
-                * context.strokeAlpha);
+                .push(" e\"><v:stroke style=\"position:absolute;width:10px;height:10px;\" opacity=\""
+                        + context.globalAlpha * context.strokeAlpha);
         scratchStack.push("\" miterlimit=\"" + context.miterLimit);
         scratchStack.push("\" joinstyle=\"");
         scratchStack.push(context.lineJoin);
         scratchStack.push("\" endcap=\"");
         scratchStack.push(context.lineCap);
         scratchStack.push("\"></v:stroke>");
-        if(context.shadowColor != null){
+        if (context.shadowColor != null) {
             scratchStack.push("<v:shadow on=\"True\" ");
-            scratchStack.push("color=\""+context.shadowColor+"\" ");
-            scratchStack.push("offset=\""+context.shadowOffsetX+"px,"+context.shadowOffsetY+"px\" ");
+            scratchStack.push("color=\"" + context.shadowColor + "\" ");
+            scratchStack.push("offset=\"" + context.shadowOffsetX + "px,"
+                    + context.shadowOffsetY + "px\" ");
             scratchStack.push("opacity=\"" + context.shadowBlur + "\"");
             scratchStack.push("/>");
         }
@@ -83,7 +84,8 @@ public class CanvasImplIE8 extends CanvasImplIE {
     /*
      * (non-Javadoc)
      * 
-     * @see com.vaadin.addon.timeline.gwt.canvas.client.impl.ie.CanvasImplIE#fill()
+     * @see
+     * com.vaadin.addon.timeline.gwt.canvas.client.impl.ie.CanvasImplIE#fill()
      */
     @Override
     public void fill() {
@@ -92,13 +94,13 @@ public class CanvasImplIE8 extends CanvasImplIE {
         }
         scratchStack.clear();
         scratchStack
-        .push("<v:shape style=\"position:absolute;width:10px;height:10px;\" coordsize=\"100,100\" fillcolor=\"");
+                .push("<v:shape style=\"position:absolute;width:10px;height:10px;\" coordsize=\"100,100\" fillcolor=\"");
         scratchStack.push(context.fillStyle);
         scratchStack.push("\" stroked=\"f\" path=\"");
         scratchStack.push(pathStack.join());
-        scratchStack.push(" e\"><v:fill style=\"position:absolute;width:10px;height:10px;\" opacity=\""
-                + context.globalAlpha
-                * context.fillAlpha);
+        scratchStack
+                .push(" e\"><v:fill style=\"position:absolute;width:10px;height:10px;\" opacity=\""
+                        + context.globalAlpha * context.fillAlpha);
         // TODO add gradient code here
         scratchStack.push("\"></v:fill>");
         if (context.shadowColor != null) {

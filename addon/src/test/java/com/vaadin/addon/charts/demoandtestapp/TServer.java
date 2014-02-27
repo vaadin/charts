@@ -26,8 +26,8 @@ public class TServer {
     }
 
     public static Server startServer(Integer port) throws Exception {
-        Server server = new Server(port != null ? port :0);
-        
+        Server server = new Server(port != null ? port : 0);
+
         WebAppContext context = new WebAppContext();
         VaadinServlet vaadinServlet = new VaadinServlet();
         ServletHolder servletHolder = new ServletHolder(vaadinServlet);

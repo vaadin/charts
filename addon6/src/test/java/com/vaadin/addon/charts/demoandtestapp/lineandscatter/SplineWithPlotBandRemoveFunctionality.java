@@ -128,11 +128,11 @@ public class SplineWithPlotBandRemoveFunctionality extends
                 chart.drawChart(configuration);
             }
         });
-        
+
         VerticalLayout verticalLayout = new VerticalLayout();
         verticalLayout.addComponent(removePlotBand);
         verticalLayout.addComponent(chart);
-        
+
         return verticalLayout;
     }
 

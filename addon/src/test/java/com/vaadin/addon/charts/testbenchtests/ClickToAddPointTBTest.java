@@ -25,19 +25,19 @@ public class ClickToAddPointTBTest extends
     @Override
     protected void testCustomStuff() {
         WebElement findElement = driver.findElement(By.id("chart"));
-        Action click = new Actions(driver)
-                .moveToElement(findElement, 200, 200).click().build();
-        
+        Action click = new Actions(driver).moveToElement(findElement, 200, 200)
+                .click().build();
+
         click.perform();
-        
+
         sleep(1000); // FIXME investigate why randomly fails without this
-        
+
         Assert.assertTrue(eventLogText().startsWith("Added"));
 
         click.perform();
-        
+
         sleep(1000); // FIXME investigate why randomly fails without this
-        
+
         Assert.assertTrue(eventLogText().startsWith("Removed"));
     }
 

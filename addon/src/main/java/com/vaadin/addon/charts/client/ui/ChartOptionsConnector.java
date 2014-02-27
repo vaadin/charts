@@ -29,7 +29,7 @@ import com.vaadin.shared.ui.Connect;
 @SuppressWarnings("serial")
 @Connect(com.vaadin.addon.charts.ChartOptions.class)
 public class ChartOptionsConnector extends AbstractExtensionConnector {
-    
+
     public ChartOptionsConnector() {
         HighchartsScriptLoader.ensureInjected();
     }

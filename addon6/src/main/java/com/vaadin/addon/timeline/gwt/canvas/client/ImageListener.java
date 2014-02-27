@@ -34,17 +34,18 @@ package com.vaadin.addon.timeline.gwt.canvas.client;
  */
 
 /**
- * Listener interface to be used to register an optional callback method to
- * be notified when the actual image has been loaded.
+ * Listener interface to be used to register an optional callback method to be
+ * notified when the actual image has been loaded.
  */
 public interface ImageListener {
 
-	/**
-	 * A method that will be invoked once the image data has been properly
-	 * loaded by the browser. Implement it to be notified when the image
-	 * has been loaded successfully and is ready to use.
-	 * 
-	 * @param image a handle to this image object
-	 */
-	public void onLoadingComplete(Image image);
+    /**
+     * A method that will be invoked once the image data has been properly
+     * loaded by the browser. Implement it to be notified when the image has
+     * been loaded successfully and is ready to use.
+     * 
+     * @param image
+     *            a handle to this image object
+     */
+    public void onLoadingComplete(Image image);
 }

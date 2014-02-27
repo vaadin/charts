@@ -46,7 +46,7 @@ public class BubbleChartExample extends AbstractVaadinChartExample {
         opts.setNegativeColor(new VaadinTheme().getColors()[3]);
         opts.setMaxSize(120);
         opts.setMinSize(3);
-        
+
         conf.setPlotOptions(opts);
 
         conf.addSeries(dataSeries);

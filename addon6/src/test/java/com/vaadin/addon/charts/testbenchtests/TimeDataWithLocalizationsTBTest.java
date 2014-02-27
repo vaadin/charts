@@ -23,7 +23,7 @@ public class TimeDataWithLocalizationsTBTest extends AbstractTestBenchTest {
 
             // click default first to give focus to button
             driver.findElement(By.id("en-button")).click();
-            
+
             waitBetweenShots();
             captureAndCompare("1-start");
 

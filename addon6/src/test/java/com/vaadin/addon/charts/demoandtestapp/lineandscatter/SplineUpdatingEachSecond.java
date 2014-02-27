@@ -54,8 +54,8 @@ public class SplineUpdatingEachSecond extends AbstractVaadinChartExample {
         series.setPlotOptions(new PlotOptionsSpline());
         series.setName("Random data");
         for (int i = -19; i <= 0; i++) {
-            series.add(new DataSeriesItem(System.currentTimeMillis() + i
-                    * 1000, random.nextDouble()));
+            series.add(new DataSeriesItem(
+                    System.currentTimeMillis() + i * 1000, random.nextDouble()));
         }
         Thread randomDataGenerator = new Thread() {
             @Override

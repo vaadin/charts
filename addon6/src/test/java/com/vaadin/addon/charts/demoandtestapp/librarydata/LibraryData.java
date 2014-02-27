@@ -86,12 +86,14 @@ public class LibraryData extends AbstractVaadinChartExample implements
                             r.title, r.author, r.description.isEmpty() ? ""
                                     : "<br/>" + r.description);
                     list.add(new DataSeriesItem(name, numPages));
-                    categories.add(r.title.length() > 25 ? r.title.substring(0, 25) + "..." : r.title);
+                    categories.add(r.title.length() > 25 ? r.title.substring(0,
+                            25) + "..." : r.title);
                 }
             }
             series.setData(list);
             XAxis getyAxes = chart.getConfiguration().getxAxis();
-            getyAxes.setCategories(categories.toArray(new String[categories.size()]));
+            getyAxes.setCategories(categories.toArray(new String[categories
+                    .size()]));
             chart.drawChart(chart.getConfiguration());
         }
     }
@@ -138,7 +140,7 @@ public class LibraryData extends AbstractVaadinChartExample implements
             nextButton.setEnabled(result.currentPage < result.getPageCount());
         }
     }
-    
+
     @Override
     public String getDescription() {
         return "Shows an example how data provided by a rest api can be easily plotted with Vaadin Charts.";

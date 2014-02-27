@@ -70,7 +70,8 @@ public class Chart extends AbstractComponent {
 
     private final class ChartServerRpcImplementation implements ChartServerRpc {
         @Override
-        public void onChartClick(final double x, final double y, final int offsetX, int offsetY) {
+        public void onChartClick(final double x, final double y,
+                final int offsetX, int offsetY) {
             final ChartClickEvent chartClickEvent = new ChartClickEvent(
                     Chart.this, x, y, offsetX, offsetY);
             fireEvent(chartClickEvent);
@@ -79,13 +80,12 @@ public class Chart extends AbstractComponent {
         @Override
         public void onPointClick(final double x, final double y,
                 final int seriesIndex, final String category,
-                final int pointIndex, final int absoluteX,
-                final int absoluteY) {
+                final int pointIndex, final int absoluteX, final int absoluteY) {
 
             final Series series = getSeriesBasedOnIndex(seriesIndex);
             final PointClickEvent pointClickEvent = new PointClickEvent(
-                    Chart.this, x, y, series, category, pointIndex,
-                    absoluteX, absoluteY);
+                    Chart.this, x, y, series, category, pointIndex, absoluteX,
+                    absoluteY);
             fireEvent(pointClickEvent);
         }
 

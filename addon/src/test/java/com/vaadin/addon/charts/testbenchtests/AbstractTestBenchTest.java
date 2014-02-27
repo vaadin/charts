@@ -30,7 +30,7 @@ public abstract class AbstractTestBenchTest extends TestBenchTestCase {
     private static String getTestUrl() {
         return "http://localhost:" + TESTPORT + "/";
     }
-    
+
     private static final File REF_IMAGE_ROOT = new File(
             "src/test/resources/screenshots/reference");
     protected WebDriver driver;
@@ -38,8 +38,9 @@ public abstract class AbstractTestBenchTest extends TestBenchTestCase {
     private Server server;
     protected WebDriver rawDriver;
     protected static final String ERROR_IMAGE_ROOT = "target/testbench/errors/";
-    @Rule public ScreenshotOnFailureRule screenshotOnFailure = new ScreenshotOnFailureRule(this, true);
-
+    @Rule
+    public ScreenshotOnFailureRule screenshotOnFailure = new ScreenshotOnFailureRule(
+            this, true);
 
     public AbstractTestBenchTest() {
         super();

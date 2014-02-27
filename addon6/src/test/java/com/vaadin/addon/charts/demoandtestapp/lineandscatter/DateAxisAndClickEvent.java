@@ -66,25 +66,27 @@ public class DateAxisAndClickEvent extends AbstractVaadinChartExample {
                  * When working with Date objects, developers probably want to
                  * convert it to Date object at their local time zone.
                  */
-                getWindow().showNotification("Clicked @ "
-                        + Util.toServerDate(timeStampShiftedToUc).toString());
+                getWindow().showNotification(
+                        "Clicked @ "
+                                + Util.toServerDate(timeStampShiftedToUc)
+                                        .toString());
             }
         });
-        
+
         chart.addPointClickListener(new PointClickListener() {
-            
+
             @Override
             public void onClick(PointClickEvent event) {
                 /*
                  * Same with point clicks...
                  */;
                 double timeStampShiftedToUc = event.getX();
-                getWindow().showNotification("Clicked Point with Date value "
-                        + Util.toServerDate(timeStampShiftedToUc).toString());
+                getWindow().showNotification(
+                        "Clicked Point with Date value "
+                                + Util.toServerDate(timeStampShiftedToUc)
+                                        .toString());
             }
         });
-        
-        
 
         return chart;
     }

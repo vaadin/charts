@@ -55,10 +55,8 @@ public class ChartWithExternalContainer extends AbstractVaadinChartExample {
         ContainerDataSeries container = new ContainerDataSeries(vaadinContainer);
         container.setName("Order item quantities");
         container.setPlotOptions(new PlotOptionsPie());
-        container
-                .setYPropertyId(ExampleUtil.ORDER_QUANTITY_PROPERTY_ID);
-        container
-                .setNamePropertyId(ExampleUtil.ORDER_DESCRIPTION_PROPERTY_ID);
+        container.setYPropertyId(ExampleUtil.ORDER_QUANTITY_PROPERTY_ID);
+        container.setNamePropertyId(ExampleUtil.ORDER_DESCRIPTION_PROPERTY_ID);
         return container;
     }
 
@@ -66,10 +64,8 @@ public class ChartWithExternalContainer extends AbstractVaadinChartExample {
         ContainerDataSeries container = new ContainerDataSeries(vaadinContainer);
         container.setName("Order item prices");
         container.setPlotOptions(new PlotOptionsColumn());
-        container
-                .setYPropertyId(ExampleUtil.ORDER_ITEMPRICE_PROPERTY_ID);
-        container
-                .setNamePropertyId(ExampleUtil.ORDER_DESCRIPTION_PROPERTY_ID);
+        container.setYPropertyId(ExampleUtil.ORDER_ITEMPRICE_PROPERTY_ID);
+        container.setNamePropertyId(ExampleUtil.ORDER_DESCRIPTION_PROPERTY_ID);
         return container;
     }
 
@@ -94,7 +90,7 @@ public class ChartWithExternalContainer extends AbstractVaadinChartExample {
         configuration.setPlotOptions(plotOptions);
 
         configuration.setSeries(container);
-//        System.out.println(configuration.toString());
+        // System.out.println(configuration.toString());
         chart.drawChart(configuration);
         return chart;
     }
@@ -115,7 +111,7 @@ public class ChartWithExternalContainer extends AbstractVaadinChartExample {
         configuration.setPlotOptions(plotOptions);
 
         configuration.setSeries(container);
-//        System.out.println(configuration.toString());
+        // System.out.println(configuration.toString());
         chart.drawChart(configuration);
 
         return chart;

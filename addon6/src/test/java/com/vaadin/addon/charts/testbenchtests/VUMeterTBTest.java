@@ -13,5 +13,5 @@ public class VUMeterTBTest extends AbstractSimpleScreenShotTestBenchTest {
     protected String getPackageName() {
         return "other";
     }
-    
+
 }

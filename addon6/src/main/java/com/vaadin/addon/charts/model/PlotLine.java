@@ -100,6 +100,7 @@ public class PlotLine extends AbstractConfigurationObject {
 
     /**
      * see {@link #setLabel(PlotBandLabel)}
+     * 
      * @return
      */
     public PlotBandLabel getLabel() {

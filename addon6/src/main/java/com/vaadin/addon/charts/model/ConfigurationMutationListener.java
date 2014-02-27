@@ -39,7 +39,7 @@ public interface ConfigurationMutationListener extends Serializable {
 
     /** The series is enabled or disabled */
     void seriesEnablation(SeriesEnablationEvent event);
-    
+
     void animationChanged(boolean animation);
 
     public static abstract class SeriesEvent implements Serializable {
@@ -108,7 +108,7 @@ public interface ConfigurationMutationListener extends Serializable {
             this.series = series;
             this.index = index;
         }
-        
+
         /**
          * @return index of the removed data point
          */
@@ -149,8 +149,7 @@ public interface ConfigurationMutationListener extends Serializable {
 
         SeriesEnablationEvent(Series series, boolean enabled) {
             if (series == null) {
-                throw new IllegalArgumentException(
-                        "Series may not be null");
+                throw new IllegalArgumentException("Series may not be null");
             }
             this.series = series;
             this.enabled = enabled;

@@ -25,8 +25,8 @@ public class ChartSelectionEvent extends com.vaadin.ui.Component.Event {
 
     private final Double selectionStart;
     private final Double selectionEnd;
-    private final Double valueStart; 
-    private final Double valueEnd; 
+    private final Double valueStart;
+    private final Double valueEnd;
 
     /**
      * Construct a ChartSelectionEvent
@@ -42,7 +42,7 @@ public class ChartSelectionEvent extends com.vaadin.ui.Component.Event {
         super(source);
         this.selectionStart = selectionStart;
         this.selectionEnd = selectionEnd;
-        this.valueStart = valueStart; 
+        this.valueStart = valueStart;
         this.valueEnd = valueEnd;
     }
 
@@ -59,18 +59,18 @@ public class ChartSelectionEvent extends com.vaadin.ui.Component.Event {
     public Double getSelectionEnd() {
         return selectionEnd;
     }
-    
+
     /**
      * @return the Y coordinate where the selection started.
      */
     public Double getValueStart() {
-		return valueStart;
-	}
-    
+        return valueStart;
+    }
+
     /**
      * @return the Y coordinate where the selection ended.
      */
     public Double getValueEnd() {
-		return valueEnd;
-	}
+        return valueEnd;
+    }
 }
