@@ -34,6 +34,8 @@ public class PlotOptionsPie extends AbstractCommonPlotOptions {
     private Marker marker;
     private SolidColor borderColor;
     private Number borderWidth;
+    private Number startAngle;
+    private Number endAngle;
 
     /**
      * @see #setBorderColor(Color)
@@ -67,6 +69,42 @@ public class PlotOptionsPie extends AbstractCommonPlotOptions {
      */
     public void setBorderWidth(Number borderWidth) {
         this.borderWidth = borderWidth;
+    }
+
+    /**
+     * @see #setStartAngle(Number)
+     * @return the start angle
+     */
+    public Number getStartAngle() {
+        return startAngle;
+    }
+
+    /**
+     * Sets the start angle of the pie slices in degrees where 0 is top and 90
+     * right. Defaults to 0. Should be smaller than end angle.
+     * 
+     * @param startAngle
+     */
+    public void setStartAngle(Number startAngle) {
+        this.startAngle = startAngle;
+    }
+
+    /**
+     * @see #setEndAngle(Number)
+     * @return the end angle
+     */
+    public Number getEndAngle() {
+        return endAngle;
+    }
+
+    /**
+     * Sets the end angle of the pie in degrees where 0 is top and 90 is right.
+     * Defaults to startAngle plus 360. Should be larger than start angle.
+     * 
+     * @param endAngle
+     */
+    public void setEndAngle(Number endAngle) {
+        this.endAngle = endAngle;
     }
 
     /**
