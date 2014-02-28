@@ -49,7 +49,10 @@
 	
 	<replace-with class='com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl'>
 		<when-type-is class='com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImpl'/>
-		<when-property-is name='user.agent' value='ie9'/>
+		<any>
+			<when-property-is name='user.agent' value='ie9'/>
+			<when-property-is name='user.agent' value='ie10'/>
+		</any>
 	</replace-with>
 	
 	<replace-with class='com.vaadin.addon.timeline.gwt.canvas.client.impl.CanvasImplSafari'>
