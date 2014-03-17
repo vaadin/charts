@@ -32,8 +32,10 @@ import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.ConfigurationMutationListener;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.Series;
+import com.vaadin.server.ClientMethodInvocation;
 import com.vaadin.ui.AbstractComponent;
 import com.vaadin.util.ReflectTools;
+import java.util.List;
 
 /**
  * Chart is a Vaadin component that is used to visualize data.
@@ -242,6 +244,9 @@ public class Chart extends AbstractComponent {
     private void forceStateChange() {
         getState().paintCount++;
         markAsDirty();
+        // Remove all pending RPC calls as they are now irrelevant
+        // and possibly corrupted as well
+        retrievePendingRpcCalls();
     }
 
     /**
