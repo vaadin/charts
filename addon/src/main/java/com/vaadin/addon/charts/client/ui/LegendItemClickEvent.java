@@ -32,7 +32,7 @@ public class LegendItemClickEvent extends JavaScriptObject {
 
     public native final HighchartSeries getSeries()
     /*-{
-         return this.target;
+         return this.target.series || this.target;
     }-*/;
 
 }

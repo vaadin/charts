@@ -1,6 +1,8 @@
 package com.vaadin.addon.charts.demoandtestapp.pie;
 
 import com.vaadin.addon.charts.Chart;
+import com.vaadin.addon.charts.LegendItemClickEvent;
+import com.vaadin.addon.charts.LegendItemClickListener;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
@@ -52,6 +54,14 @@ public class PieWithLegend extends AbstractVaadinChartExample {
         series.add(new DataSeriesItem("Opera", 6.2));
         series.add(new DataSeriesItem("Others", 0.7));
         conf.setSeries(series);
+
+        chart.addLegendItemClickListener(new LegendItemClickListener() {
+            @Override
+            public void onClick(LegendItemClickEvent event) {
+                PieWithLegend.this.getWindow().showNotification(
+                        "Legend item click");
+            }
+        });
 
         chart.drawChart(conf);
         return chart;

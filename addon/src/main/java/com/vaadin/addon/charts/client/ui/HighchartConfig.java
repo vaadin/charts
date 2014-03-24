@@ -146,8 +146,9 @@ public class HighchartConfig extends JavaScriptObject {
             LegendItemClickHandler handler)
     /*-{
         @com.vaadin.addon.charts.client.ui.HighchartConfig::ensureObjectStructure(Lcom/google/gwt/core/client/JavaScriptObject;Ljava/lang/String;)(this,"plotOptions.series.events");
-               
-        this.plotOptions.series.events.legendItemClick = function(e) {
+        @com.vaadin.addon.charts.client.ui.HighchartConfig::ensureObjectStructure(Lcom/google/gwt/core/client/JavaScriptObject;Ljava/lang/String;)(this,"plotOptions.pie.point.events");
+        
+        this.plotOptions.series.events.legendItemClick = this.plotOptions.pie.point.events.legendItemClick = function(e) {
             $entry(handler.@com.vaadin.addon.charts.client.ui.LegendItemClickHandler::onClick(Lcom/vaadin/addon/charts/client/ui/LegendItemClickEvent;)(e));
         };
     }-*/;
