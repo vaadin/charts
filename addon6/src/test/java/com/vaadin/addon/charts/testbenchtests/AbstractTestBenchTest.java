@@ -2,7 +2,10 @@ package com.vaadin.addon.charts.testbenchtests;
 
 import java.io.File;
 import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.net.URL;
+import java.util.Enumeration;
 
 import org.eclipse.jetty.server.Server;
 import org.junit.After;
@@ -10,7 +13,6 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.Augmenter;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -97,30 +99,64 @@ public abstract class AbstractTestBenchTest extends TestBenchTestCase {
 
     protected void prepareDriver() {
         String hubhost = System.getProperty("tb.hub");
-
-        if (hubhost != null && !hubhost.isEmpty()) {
-            try {
-                String ip = System.getProperty("host.ip");
-                if (ip == null || ip.isEmpty()) {
-                    ip = InetAddress.getLocalHost().getHostName();
-                }
-                BASEURL = "http://" + ip + ":" + TESTPORT + "/";
-                System.out.println("DD " + BASEURL);
-                DesiredCapabilities cap = DesiredCapabilities.chrome();
-                cap.setPlatform(Platform.MAC);
-                URL remoteAddress = new URL("http://" + hubhost
-                        + ":4444/wd/hub");
-                rawDriver = new RemoteWebDriver(remoteAddress, cap);
-                driver = new Augmenter().augment(TestBench
-                        .createDriver(rawDriver));
-            } catch (Exception e1) {
-                // TODO Auto-generated catch block
-                throw new RuntimeException(e1);
-            }
-        } else {
-            rawDriver = new ChromeDriver();
-            driver = new Augmenter().augment(TestBench.createDriver(rawDriver));
+        if (hubhost == null || hubhost.isEmpty()) {
+            hubhost = "tb3-hub.intra.itmill.com";
         }
+
+        try {
+            String ip = System.getProperty("host.ip");
+            if (ip == null || ip.isEmpty()) {
+                ip = findAutoHostname();
+            }
+            BASEURL = "http://" + ip + ":" + TESTPORT + "/";
+            System.out.println("DD " + BASEURL);
+            DesiredCapabilities cap = DesiredCapabilities.chrome();
+            cap.setPlatform(Platform.MAC);
+            URL remoteAddress = new URL("http://" + hubhost + ":4444/wd/hub");
+            rawDriver = new RemoteWebDriver(remoteAddress, cap);
+            driver = new Augmenter().augment(TestBench.createDriver(rawDriver));
+        } catch (Exception e1) {
+            // TODO Auto-generated catch block
+            throw new RuntimeException(e1);
+        }
+    }
+
+    /**
+     * Tries to automatically determine the IP address of the machine the test
+     * is running on.
+     * 
+     * @return An IP address of one of the network interfaces in the machine.
+     * @throws RuntimeException
+     *             if there was an error or no IP was found
+     */
+    private String findAutoHostname() {
+        try {
+            Enumeration<NetworkInterface> interfaces = NetworkInterface
+                    .getNetworkInterfaces();
+            while (interfaces.hasMoreElements()) {
+                NetworkInterface current = interfaces.nextElement();
+                if (!current.isUp() || current.isLoopback()
+                        || current.isVirtual()) {
+                    continue;
+                }
+                Enumeration<InetAddress> addresses = current.getInetAddresses();
+                while (addresses.hasMoreElements()) {
+                    InetAddress current_addr = addresses.nextElement();
+                    if (current_addr.isLoopbackAddress()) {
+                        continue;
+                    }
+                    String hostAddress = current_addr.getHostAddress();
+                    if (hostAddress.startsWith("192.168.")) {
+                        return hostAddress;
+                    }
+                }
+            }
+        } catch (SocketException e) {
+            throw new RuntimeException("Could not enumerate ");
+        }
+
+        throw new RuntimeException(
+                "No compatible (192.168.*) ip address found.");
     }
 
     public File getReferenceImage(String name) {
