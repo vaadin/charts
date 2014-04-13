@@ -22,7 +22,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.organization>Vaadin Ltd</project.organization>
-		<highcharts.version>3.0.9</highcharts.version>
+		<highcharts.version>3.0.10</highcharts.version>
 	</properties>
 
 	<build>
