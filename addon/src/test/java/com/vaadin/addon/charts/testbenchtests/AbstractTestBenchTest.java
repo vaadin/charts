@@ -144,9 +144,8 @@ public abstract class AbstractTestBenchTest extends TestBenchTestCase {
                     if (current_addr.isLoopbackAddress()) {
                         continue;
                     }
-                    String hostAddress = current_addr.getHostAddress();
-                    if (hostAddress.startsWith("192.168.")) {
-                        return hostAddress;
+                    if (current_addr.isSiteLocalAddress()) {
+                        return current_addr.getHostAddress();
                     }
                 }
             }

@@ -26,10 +26,10 @@ import com.vaadin.testbench.commands.TestBenchCommands;
 
 public abstract class AbstractTestBenchTest extends TestBenchTestCase {
 
-    protected int TESTPORT;
-    protected String BASEURL = getTestUrl();
+    protected static int TESTPORT;
+    protected static String BASEURL = getTestUrl();
 
-    private String getTestUrl() {
+    private static String getTestUrl() {
         return "http://localhost:" + TESTPORT + "/";
     }
 
@@ -99,9 +99,8 @@ public abstract class AbstractTestBenchTest extends TestBenchTestCase {
 
     protected void prepareDriver() {
         String hubhost = System.getProperty("tb.hub");
-        if (hubhost == null || hubhost.isEmpty()) {
+        if (hubhost == null || hubhost.isEmpty())
             hubhost = "tb3-hub.intra.itmill.com";
-        }
 
         try {
             String ip = System.getProperty("host.ip");
@@ -109,9 +108,9 @@ public abstract class AbstractTestBenchTest extends TestBenchTestCase {
                 ip = findAutoHostname();
             }
             BASEURL = "http://" + ip + ":" + TESTPORT + "/";
-            System.out.println("DD " + BASEURL);
             DesiredCapabilities cap = DesiredCapabilities.chrome();
-            cap.setPlatform(Platform.MAC);
+            cap.setPlatform(Platform.WINDOWS);
+            cap.setVersion("33");
             URL remoteAddress = new URL("http://" + hubhost + ":4444/wd/hub");
             rawDriver = new RemoteWebDriver(remoteAddress, cap);
             driver = new Augmenter().augment(TestBench.createDriver(rawDriver));
@@ -145,9 +144,8 @@ public abstract class AbstractTestBenchTest extends TestBenchTestCase {
                     if (current_addr.isLoopbackAddress()) {
                         continue;
                     }
-                    String hostAddress = current_addr.getHostAddress();
-                    if (hostAddress.startsWith("192.168.")) {
-                        return hostAddress;
+                    if (current_addr.isSiteLocalAddress()) {
+                        return current_addr.getHostAddress();
                     }
                 }
             }
