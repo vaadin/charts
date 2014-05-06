@@ -103,6 +103,8 @@
 							<Vaadin-Package-Version>1</Vaadin-Package-Version>
 
 							<!-- Add-on specific fields to update -->
+							<AdVaaLicen>cval</AdVaaLicen>
+							<AdVaaName>vaadin-charts</AdVaaName>
 
 							<!-- Implementation-Title and Implementation-Version come from the 
 								POM by default -->

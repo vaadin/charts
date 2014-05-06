@@ -116,10 +116,6 @@ public class Chart extends AbstractComponent {
         }
     }
 
-    static {
-        LicenseChecker.nag();
-    }
-
     private String jsonConfig;
 
     private Configuration configuration;
