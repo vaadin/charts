@@ -27,6 +27,7 @@ public class TooltipStyle extends AbstractConfigurationObject {
     private Color backgroundColor;
     private Number borderWidth;
     private Number borderRadius;
+    private Boolean followPointer = false;
     private Style style = new Style();
 
     /**
@@ -93,6 +94,21 @@ public class TooltipStyle extends AbstractConfigurationObject {
      */
     public void setBorderRadius(Number borderRadius) {
         this.borderRadius = borderRadius;
+    }
+
+    /**
+     * @return the followPointer
+     */
+    public Boolean getFollowPointer() {
+        return followPointer;
+    }
+
+    /**
+     * @param followPointer
+     *            the followPointer to set
+     */
+    public void setFollowPointer(Boolean followPointer) {
+        this.followPointer = followPointer;
     }
 
 }
