@@ -44,6 +44,8 @@ public class Legend extends AbstractConfigurationObject {
     private Style style;
     private Style itemHoverStyle;
     private Style itemHiddenStyle;
+    private Number itemMarginTop;
+    private Number itemMarginBottom;
 
     /**
      * @see #setItemHoverStyle(Style)
@@ -349,6 +351,42 @@ public class Legend extends AbstractConfigurationObject {
     }
 
     /**
+     * @see #setItemMarginTop(Number)
+     * @return the itemMarginTop
+     */
+    public Number getItemMarginTop() {
+        return itemMarginTop;
+    }
+
+    /**
+     * Sets the top itemMargin for legend items. Defaults to 0.
+     * 
+     * @param itemMarginTop
+     *            the itemMarginTop to set
+     */
+    public void setItemMarginTop(Number itemMarginTop) {
+        this.itemMarginTop = itemMarginTop;
+    }
+
+    /**
+     * @see #setItemMarginBottom(Number)
+     * @return the itemMarginBottom
+     */
+    public Number getItemMarginBottom() {
+        return itemMarginBottom;
+    }
+
+    /**
+     * Sets the bottom itemMargin for legend items. Defaults to 0.
+     * 
+     * @param itemMarginBottom
+     *            the itemMarginBottom to set
+     */
+    public void setItemMarginBottom(Number itemMarginBottom) {
+        this.itemMarginBottom = itemMarginBottom;
+    }
+
+    /**
      * Sets the CSS styles for the legend area. In Highcharts 1.x versions the
      * position of the legend area was determined by CSS. In 2.x, the position
      * is determined by properties like align, verticalAlign, x and y, but the
@@ -369,4 +407,5 @@ public class Legend extends AbstractConfigurationObject {
         }
         return style;
     }
+
 }
