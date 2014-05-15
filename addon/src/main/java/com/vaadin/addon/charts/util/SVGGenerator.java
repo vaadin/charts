@@ -12,7 +12,9 @@ import java.util.ArrayList;
 import org.apache.commons.io.IOUtils;
 
 import com.vaadin.addon.charts.Chart;
+import com.vaadin.addon.charts.ChartOptions;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.themes.VaadinTheme;
 
 /**
  * This class can be used to render the same Chart displayed on clients browser
@@ -197,13 +199,35 @@ public class SVGGenerator {
      */
     public synchronized String generate(String options, int targetWidth,
             int targetHeight) {
-        // long exportStartTime = System.currentTimeMillis();
+
+        return generate(options, getTheme(), targetWidth, targetHeight);
+    }
+
+    /**
+     * Generates SVG file using given JSON configuration object
+     * 
+     * @param options
+     *            the json options string that will be plotted as an SVG
+     *            graphics
+     * @param targetWidth
+     *            the target width in pixels for the the chart
+     * @param targetHeight
+     *            the target height in pixels for the chart
+     * @return String containing SVG graphics
+     * @see SVGGenerator
+     * @see #generate(Configuration, int, int)
+     */
+    public synchronized String generate(String options, String theme,
+            int targetWidth, int targetHeight) {
+
         try {
 
             OutputStream out = process.getOutputStream();
             out.write((targetWidth + "\n").getBytes());
             out.write((targetHeight + "\n").getBytes());
             out.write(options.getBytes());
+            out.write("\n___Config:start\n".getBytes());
+            out.write(theme.getBytes());
             out.write("\n___VaadinSVGGenerator:run\n".getBytes());
             out.flush();
 
@@ -236,6 +260,24 @@ public class SVGGenerator {
      */
     public String generate(String options) {
         return generate(options, -1, -1);
+    }
+
+    private String getTheme() {
+        ChartOptions chartOptions = null;
+        try {
+            chartOptions = ChartOptions.get();
+        } catch (IllegalStateException e) {
+            // Thrown when no UI thread is found. This is most likely because we
+            // are running an automated process. We will proceed to use a null
+            // chartOptions object, and use the default VaadinTheme in lieu of
+            // the default highcharts theme.
+        }
+        if (chartOptions == null) {
+            // generate the default Vaadin theme
+            VaadinTheme theme = new VaadinTheme();
+            return theme.toString();
+        }
+        return chartOptions.getTheme().toString();
     }
 
     private void destroyPhantomInstanse(String line) {
