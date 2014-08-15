@@ -111,35 +111,35 @@ public class HighchartConfig extends JavaScriptObject {
     /*-{
         if(!this.chart) this.chart = {};
         if(!this.chart.events) this.chart.events = {};
-        this.chart.events.click = function(e) {
-            $entry(handler.@com.vaadin.addon.charts.client.ui.ChartClickHandler::onClick(Lcom/vaadin/addon/charts/client/ui/ChartClickEvent;)(e));
-        };
+        this.chart.events.click = $entry(function(e) {
+            return handler.@com.vaadin.addon.charts.client.ui.ChartClickHandler::onClick(Lcom/vaadin/addon/charts/client/ui/ChartClickEvent;)(e);
+        });
     }-*/;
 
     public final native void setSeriesPointClickHandler(
             PointClickHandler handler)
     /*-{
         @com.vaadin.addon.charts.client.ui.HighchartConfig::ensureObjectStructure(Lcom/google/gwt/core/client/JavaScriptObject;Ljava/lang/String;)(this,"plotOptions.series.point.events");
-        this.plotOptions.series.point.events.click = function(e) {
-            $entry(handler.@com.vaadin.addon.charts.client.ui.PointClickHandler::onClick(Lcom/vaadin/addon/charts/client/ui/PointClickEvent;)(e));
-        };
+        this.plotOptions.series.point.events.click = $entry(function(e) {
+            return handler.@com.vaadin.addon.charts.client.ui.PointClickHandler::onClick(Lcom/vaadin/addon/charts/client/ui/PointClickEvent;)(e);
+        });
     }-*/;
 
     public final native void setColumnClickHandler(PointClickHandler handler)
     /*-{
         @com.vaadin.addon.charts.client.ui.HighchartConfig::ensureObjectStructure(Lcom/google/gwt/core/client/JavaScriptObject;Ljava/lang/String;)(this,"plotOptions.column.point.events");
-        this.plotOptions.series.point.events.click = function(e) {
-            $entry(handler.@com.vaadin.addon.charts.client.ui.PointClickHandler::onClick(Lcom/vaadin/addon/charts/client/ui/PointClickEvent;)(e));
-        };
+        this.plotOptions.series.point.events.click = $entry(function(e) {
+            return handler.@com.vaadin.addon.charts.client.ui.PointClickHandler::onClick(Lcom/vaadin/addon/charts/client/ui/PointClickEvent;)(e);
+        });
     }-*/;
 
     public final native void setChartSelectionHandler(
             ChartSelectionHandler handler)
     /*-{
         @com.vaadin.addon.charts.client.ui.HighchartConfig::ensureObjectStructure(Lcom/google/gwt/core/client/JavaScriptObject;Ljava/lang/String;)(this,"chart.events");
-        this.chart.events.selection = function(e) {
-            $entry(handler.@com.vaadin.addon.charts.client.ui.ChartSelectionHandler::onSelection(Lcom/vaadin/addon/charts/client/ui/ChartSelectionEvent;)(e));
-        };
+        this.chart.events.selection = $entry(function(e) {
+            return handler.@com.vaadin.addon.charts.client.ui.ChartSelectionHandler::onSelection(Lcom/vaadin/addon/charts/client/ui/ChartSelectionEvent;)(e);
+        });
     }-*/;
 
     public final native void setLegendItemClickHandler(
@@ -148,9 +148,9 @@ public class HighchartConfig extends JavaScriptObject {
         @com.vaadin.addon.charts.client.ui.HighchartConfig::ensureObjectStructure(Lcom/google/gwt/core/client/JavaScriptObject;Ljava/lang/String;)(this,"plotOptions.series.events");
         @com.vaadin.addon.charts.client.ui.HighchartConfig::ensureObjectStructure(Lcom/google/gwt/core/client/JavaScriptObject;Ljava/lang/String;)(this,"plotOptions.pie.point.events");
         
-        this.plotOptions.series.events.legendItemClick = this.plotOptions.pie.point.events.legendItemClick = function(e) {
-            $entry(handler.@com.vaadin.addon.charts.client.ui.LegendItemClickHandler::onClick(Lcom/vaadin/addon/charts/client/ui/LegendItemClickEvent;)(e));
-        };
+        this.plotOptions.series.events.legendItemClick = this.plotOptions.pie.point.events.legendItemClick = $entry(function(e) {
+            returnhandler.@com.vaadin.addon.charts.client.ui.LegendItemClickHandler::onClick(Lcom/vaadin/addon/charts/client/ui/LegendItemClickEvent;)(e);
+        });
     }-*/;
 
     public static final native void ensureObjectStructure(JavaScriptObject obj,
