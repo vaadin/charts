@@ -47,6 +47,6 @@ public interface ChartServerRpc extends ServerRpc {
     void onSelection(double selectionStart, double selectionEnd,
             double valueStart, double valueEnd);
 
-    void onLegendItemClick(int seriesIndex);
+    void onLegendItemClick(int seriesIndex, int seriesItemIndex);
 
 }

@@ -125,8 +125,9 @@ public class Chart extends AbstractComponent {
         } else if (variables.containsKey("legendClick")) {
             final Series series = getSeriesBasedOnIndex(((Integer) variables
                     .get("legendClick")));
+            int seriesItemIndex = (Integer) variables.get("seriesItemIndex");
             LegendItemClickEvent legendItemClickEvent = new LegendItemClickEvent(
-                    this, series);
+                    this, series, seriesItemIndex);
             fireEvent(legendItemClickEvent);
 
         } else if (variables.containsKey("selectionStart")) {

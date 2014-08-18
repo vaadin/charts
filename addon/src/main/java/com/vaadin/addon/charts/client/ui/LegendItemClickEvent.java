@@ -35,4 +35,21 @@ public class LegendItemClickEvent extends JavaScriptObject {
          return this.target.series || this.target;
     }-*/;
 
+    /**
+     * Returns the series item index for the legend item that was clicked if
+     * possible.
+     * 
+     * @return Series item index.
+     */
+    public native final int getSeriesItemIndex()
+    /*-{   
+        if(typeof this.target.x === "undefined") {
+          if(typeof this.target.index === "undefined") {
+            return -1;
+          }
+          return this.target.index;
+        }
+        return this.target.x;
+    }-*/;
+
 }

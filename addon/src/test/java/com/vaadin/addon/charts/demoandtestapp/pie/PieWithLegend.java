@@ -59,7 +59,12 @@ public class PieWithLegend extends AbstractVaadinChartExample {
         chart.addLegendItemClickListener(new LegendItemClickListener() {
             @Override
             public void onClick(LegendItemClickEvent event) {
-                Notification.show("Legend item click");
+                Notification.show("Legend item click"
+                        + " : "
+                        + event.getSeriesItemIndex()
+                        + " : "
+                        + ((DataSeries) event.getSeries())
+                                .get(event.getSeriesItemIndex()).getName());
             }
         });
 

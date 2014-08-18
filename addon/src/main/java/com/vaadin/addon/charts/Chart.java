@@ -32,10 +32,8 @@ import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.ConfigurationMutationListener;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.Series;
-import com.vaadin.server.ClientMethodInvocation;
 import com.vaadin.ui.AbstractComponent;
 import com.vaadin.util.ReflectTools;
-import java.util.List;
 
 /**
  * Chart is a Vaadin component that is used to visualize data.
@@ -108,9 +106,11 @@ public class Chart extends AbstractComponent {
         }
 
         @Override
-        public void onLegendItemClick(final int seriesIndex) {
+        public void onLegendItemClick(final int seriesIndex,
+                int seriesItemIndex) {
             final LegendItemClickEvent itemClickEvent = new LegendItemClickEvent(
-                    Chart.this, getSeriesBasedOnIndex(seriesIndex));
+                    Chart.this, getSeriesBasedOnIndex(seriesIndex),
+                    seriesItemIndex);
             fireEvent(itemClickEvent);
 
         }

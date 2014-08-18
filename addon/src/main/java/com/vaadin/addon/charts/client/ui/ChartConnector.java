@@ -164,7 +164,9 @@ public class ChartConnector extends AbstractComponentConnector {
                 public void onClick(LegendItemClickEvent event) {
                     int seriesIndex = getWidget().getSeriesIndex(
                             event.getSeries());
-                    rpc.onLegendItemClick(seriesIndex);
+
+                    rpc.onLegendItemClick(seriesIndex,
+                            event.getSeriesItemIndex());
                     event.preventDefault();
                 }
             });

@@ -229,6 +229,8 @@ public class HighchartWidget extends Widget implements Paintable,
     @Override
     public void onClick(LegendItemClickEvent event) {
         int seriesIndex = getSeriesIndex(event.getSeries());
+        client.updateVariable(paintableId, "seriesItemIndex",
+                event.getSeriesItemIndex(), false);
         client.updateVariable(paintableId, "legendClick", seriesIndex, true);
         event.preventDefault();
     }
