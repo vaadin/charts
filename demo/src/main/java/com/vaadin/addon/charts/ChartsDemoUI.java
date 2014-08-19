@@ -29,6 +29,8 @@ import com.vaadin.data.Item;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.data.util.HierarchicalContainer;
+import com.vaadin.event.FieldEvents.TextChangeEvent;
+import com.vaadin.event.FieldEvents.TextChangeListener;
 import com.vaadin.event.MouseEvents.ClickEvent;
 import com.vaadin.event.MouseEvents.ClickListener;
 import com.vaadin.server.ClassResource;
@@ -46,15 +48,13 @@ import com.vaadin.ui.Image;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.OptionGroup;
-import com.vaadin.ui.TextField;
 import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.TabSheet.SelectedTabChangeEvent;
 import com.vaadin.ui.TabSheet.SelectedTabChangeListener;
+import com.vaadin.ui.TextField;
 import com.vaadin.ui.Tree;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
-import com.vaadin.event.FieldEvents.TextChangeListener;
-import com.vaadin.event.FieldEvents.TextChangeEvent;
 
 /**
  * The Application's "main" class
@@ -239,7 +239,8 @@ public class ChartsDemoUI extends UI {
         tree = new Tree("Chart examples");
         tree.setImmediate(true);
         final HierarchicalContainer container = getContainer();
-        tree.setContainerDataSource(container);        tree.setItemCaptionPropertyId("displayName");
+        tree.setContainerDataSource(container);
+        tree.setItemCaptionPropertyId("displayName");
 
         VerticalLayout content = new VerticalLayout();
         content.setMargin(true);
@@ -249,18 +250,26 @@ public class ChartsDemoUI extends UI {
         textField.setId("search");
         textField.setInputPrompt("Filter examples");
         textField.addTextChangeListener(new TextChangeListener() {
-            
+
             @Override
             public void textChange(TextChangeEvent event) {
                 container.removeAllContainerFilters();
                 String text = event.getText();
-                if(text != null && !text.isEmpty()) {
-                    container.addContainerFilter("displayName", text, true, false);
+                if (text != null && !text.isEmpty()) {
+                    container.addContainerFilter("displayName", text, true,
+                            false);
                 }
             }
         });
-        
-        com.vaadin.ui.JavaScript.eval("document.getElementById('search').type = 'search';");
+
+        // Don't change the field type to search on IE8 #14211
+
+        if (getPage().getWebBrowser().isIE()
+                && getPage().getWebBrowser().getBrowserMajorVersion() != 8) {
+            com.vaadin.ui.JavaScript
+                    .eval("document.getElementById('search').type = 'search';");
+        }
+
         content.addComponent(textField);
         content.addComponent(tree);
         content.addComponent(themeSelector);
