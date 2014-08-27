@@ -263,9 +263,7 @@ public class ChartsDemoUI extends UI {
         });
 
         // Don't change the field type to search on IE8 #14211
-
-        if (getPage().getWebBrowser().isIE()
-                && getPage().getWebBrowser().getBrowserMajorVersion() != 8) {
+        if (!isIE8()) {
             com.vaadin.ui.JavaScript
                     .eval("document.getElementById('search').type = 'search';");
         }
@@ -321,6 +319,15 @@ public class ChartsDemoUI extends UI {
                     }
                 });
 
+    }
+
+    private boolean isIE8() {
+        if (getPage().getWebBrowser().isIE()) {
+            if (getPage().getWebBrowser().getBrowserMajorVersion() == 8) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void selectItem() {
