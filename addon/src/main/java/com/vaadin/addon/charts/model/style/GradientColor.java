@@ -17,6 +17,7 @@ package com.vaadin.addon.charts.model.style;
  * #L%
  */
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +26,7 @@ import java.util.List;
  */
 public class GradientColor implements Color {
 
-    public static class RadialGradient {
+    public static class RadialGradient implements Serializable {
         final Number cx;
         final Number cy;
         final Number r;
@@ -37,7 +38,7 @@ public class GradientColor implements Color {
         }
     }
 
-    public static class LinearGradient {
+    public static class LinearGradient implements Serializable {
         final Number x1;
         final Number y1;
         final Number x2;

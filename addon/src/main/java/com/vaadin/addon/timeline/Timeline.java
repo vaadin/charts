@@ -3732,7 +3732,7 @@ public class Timeline extends AbstractComponent implements LegacyComponent {
         return Math.max(xDistance, distanceFromLine);
     }
 
-    private static class DataPoint {
+    private static class DataPoint implements Serializable {
         public long d = -1;
         public Item item;
         long ts;
