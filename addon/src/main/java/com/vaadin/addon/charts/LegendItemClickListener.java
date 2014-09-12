@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts;
 
+import java.io.Serializable;
+
 /*
  * #%L
  * Vaadin Charts
@@ -20,7 +22,7 @@ package com.vaadin.addon.charts;
 /**
  * Listener interface for legend item click events
  */
-public interface LegendItemClickListener {
+public interface LegendItemClickListener extends Serializable {
 
     /**
      * Called when the user click an item in the chart's legend

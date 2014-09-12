@@ -797,14 +797,14 @@ public class Timeline extends AbstractComponent implements LegacyComponent {
     /**
      * The date range listener interface
      */
-    public interface DateRangeListener {
+    public interface DateRangeListener extends Serializable {
         public void dateRangeChanged(DateRangeChangedEvent event);
     }
 
     /**
      * The event click listener interface
      */
-    public interface EventClickListener {
+    public interface EventClickListener extends Serializable {
         public void eventClick(EventButtonClickEvent event);
     }
 
@@ -813,7 +813,7 @@ public class Timeline extends AbstractComponent implements LegacyComponent {
      * date
      * 
      */
-    public interface DuplicateHandler {
+    public interface DuplicateHandler extends Serializable {
 
         /**
          * Called by the timeline when duplicates are observed in the Timeline

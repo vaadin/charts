@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts;
 
+import java.io.Serializable;
+
 /*
  * #%L
  * Vaadin Charts
@@ -20,7 +22,7 @@ package com.vaadin.addon.charts;
 /**
  * Listener interface for chart selection events
  */
-public interface ChartSelectionListener {
+public interface ChartSelectionListener extends Serializable {
 
     /**
      * Called when the user finishes the selection of an area on the X axis.

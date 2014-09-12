@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts;
 
+import java.io.Serializable;
+
 /*
  * #%L
  * Vaadin Charts
@@ -20,7 +22,7 @@ package com.vaadin.addon.charts;
 /**
  * Listener interface for click events on the chart's area
  */
-public interface ChartClickListener {
+public interface ChartClickListener extends Serializable {
 
     /**
      * Called when the user clicks somewhere on the chart.

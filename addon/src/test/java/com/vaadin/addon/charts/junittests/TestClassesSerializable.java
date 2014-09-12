@@ -36,18 +36,11 @@ public class TestClassesSerializable extends TestCase {
         "com\\.vaadin\\.addon\\.charts\\.model\\.gsonhelpers\\..*",
         "com\\.vaadin\\.addon\\.charts\\.model\\.MarkerSymbol",
         "com\\.vaadin\\.addon\\.charts\\.utils\\.ExampleUtil",
-        "com\\.vaadin\\.addon\\.charts\\.ChartClickListener",
-        "com\\.vaadin\\.addon\\.charts\\.ChartSelectionListener",
-        "com\\.vaadin\\.addon\\.charts\\.LegendItemClickListener",
         "com\\.vaadin\\.addon\\.charts\\.LicenseChecker",
         "com\\.vaadin\\.addon\\.charts\\.model\\.Series",
         "com\\.vaadin\\.addon\\.charts\\.model\\.style\\.ThemeGradientColorSerializer",
-        "com\\.vaadin\\.addon\\.charts\\.PointClickListener",
         "com\\.vaadin\\.addon\\.charts\\.util\\.SVGGenerator",
         "com\\.vaadin\\.addon\\.charts\\.util\\.Util",
-        "com\\.vaadin\\.addon\\.timeline\\.Timeline\\$DateRangeListener",
-        "com\\.vaadin\\.addon\\.timeline\\.Timeline\\$DuplicateHandler",
-        "com\\.vaadin\\.addon\\.timeline\\.Timeline\\$EventClickListener",
         "com\\.vaadin\\.addon\\.charts\\.util\\.SVGGenerator\\$1", };
 
     /**
