@@ -44,7 +44,8 @@ public class HighchartWidget extends Widget implements Paintable,
     public HighchartWidget() {
         HighchartsScriptLoader.ensureInjected();
         setElement(Document.get().createDivElement());
-        getElement().setInnerHTML("Loading chart...");
+        String loading = "<div class=v-loading-indicator style=\"position:relative\"></div>";
+        getElement().setInnerHTML(loading);
     }
 
     public void init(HighchartConfig config) {

@@ -8,10 +8,10 @@ package com.vaadin.addon.charts.client.ui;
  * %%
  * This program is available under Commercial Vaadin Add-On License 2.0
  * (CVALv2).
- * 
+ *
  * See the file licensing.txt distributed with this software for more
  * information about licensing.
- * 
+ *
  * You should have received a copy of the CVALv2 along with this program.
  * If not, see <http://vaadin.com/license/cval-2.0>.
  * #L%
@@ -31,7 +31,8 @@ public class HighchartWidget extends Widget {
     public HighchartWidget() {
         HighchartsScriptLoader.ensureInjected();
         setElement(Document.get().createDivElement());
-        getElement().setInnerHTML("Loading chart...");
+        String loading = "<div class=v-loading-indicator style=\"position:relative\"></div>";
+        getElement().setInnerHTML(loading);
     }
 
     public void init(HighchartConfig config) {
