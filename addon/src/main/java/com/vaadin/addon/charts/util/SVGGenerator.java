@@ -17,19 +17,18 @@ import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.themes.VaadinTheme;
 
 /**
- * This class can be used to render the same Chart displayed on clients browser
- * into SVG format. SVG is nowadays well supported format and it can be
- * transferred to virtually any graphic format.
+ * This class can be used to render a Chart displayed on the browser of the
+ * client as SVG. SVG is a well supported format and it can be transferred to
+ * virtually any graphic format.
  * <p>
  * The implementation uses PhantomJS to render the chart on server side. Install
- * at least version 1.9 separately from <a
- * href="http://phantomjs.org/">phantomjs.org</a>. After installation, if not
- * installed so that it is available on your path, set "phantom.exec" system
- * property to point to your phantomjs binary.
+ * version 1.9 or newer separately from <a
+ * href="http://phantomjs.org/">phantomjs.org</a>. After installation either
+ * ensure that phantomjs binary is available on PATH or set "phantom.exec"
+ * system property to point into it.
  * <p>
- * The solution is derived form Highchart's exporting-server code: <a href=
- * "https://github.com/highslide-software/highcharts.com/blob/master/exporting-server/java/highcharts-export/src/main/java/com/highcharts/export/util/SVGCreator.java"
- * >SVGCreator.java</a>.
+ * The solution is derived from SVGGenerator of 'exporting-server' of Highcharts
+ * (not available anymore).
  */
 public class SVGGenerator {
 
@@ -103,7 +102,6 @@ public class SVGGenerator {
     /**
      * Creates in new {@link SVGGenerator} instance. The preferred way to get an
      * instance is to use {@link #getInstance()} method.
-     * 
      */
     public SVGGenerator() {
         try {
@@ -144,9 +142,8 @@ public class SVGGenerator {
      */
     public static final SVGGenerator getInstance() {
         // TODO pool several instances for better performance, and possibly kill
-        // instances to
-        // ensure PhantomJS don't start to eat memory. With quick test, the
-        // memory isn't a problem
+        // instances to ensure PhantomJS doesn't start to eat memory. With quick
+        // test, the memory isn't a problem
         synchronized (SVGGenerator.class) {
             if (INSTANCE == null) {
                 INSTANCE = new SVGGenerator(7878);
@@ -156,7 +153,7 @@ public class SVGGenerator {
     }
 
     /**
-     * Generates SVG file using given Vaadin Chart {@link Configuration}.
+     * Generates an SVG file using given Vaadin Chart {@link Configuration}.
      * 
      * @param conf
      *            the configuration that will be plotted as an SVG graphics
@@ -168,7 +165,7 @@ public class SVGGenerator {
     }
 
     /**
-     * Generates SVG file using given Vaadin Chart {@link Configuration}.
+     * Generates an SVG file using given Vaadin Chart {@link Configuration}.
      * 
      * @param conf
      *            the configuration that will be plotted as an SVG graphics
@@ -184,7 +181,7 @@ public class SVGGenerator {
     }
 
     /**
-     * Generates SVG file using given JSON configuration object
+     * Generates an SVG file using given JSON configuration object.
      * 
      * @param options
      *            the json options string that will be plotted as an SVG
@@ -204,7 +201,7 @@ public class SVGGenerator {
     }
 
     /**
-     * Generates SVG file using given JSON configuration object
+     * Generates an SVG file using given JSON configuration object.
      * 
      * @param options
      *            the json options string that will be plotted as an SVG
@@ -225,9 +222,9 @@ public class SVGGenerator {
             OutputStream out = process.getOutputStream();
             out.write((targetWidth + "\n").getBytes());
             out.write((targetHeight + "\n").getBytes());
-            out.write(options.getBytes());
-            out.write("\n___Config:start\n".getBytes());
             out.write(theme.getBytes());
+            out.write("\n___Config:start\n".getBytes());
+            out.write(options.getBytes());
             out.write("\n___VaadinSVGGenerator:run\n".getBytes());
             out.flush();
 
@@ -237,13 +234,13 @@ public class SVGGenerator {
             String line = reader.readLine();
             while (!line.startsWith("<svg")) {
                 if (line.startsWith("Render failed")) {
-                    destroyPhantomInstanse(line);
+                    destroyPhantomInstance(line);
                 }
                 if (line.startsWith("[object ")
                         || line.startsWith("Highcharts")) {
                     line = reader.readLine();
                 } else {
-                    destroyPhantomInstanse(line);
+                    destroyPhantomInstance(line);
                 }
             }
             return line;
@@ -253,10 +250,10 @@ public class SVGGenerator {
     }
 
     /**
-     * Generates SVG from given json string containing chart options
+     * Generates an SVG file from given JSON string containing chart options.
      * 
      * @param options
-     * @return SVG generated from options json
+     * @return SVG generated from options JSON
      */
     public String generate(String options) {
         return generate(options, -1, -1);
@@ -270,9 +267,9 @@ public class SVGGenerator {
             // Thrown when no UI thread is found. This is most likely because we
             // are running an automated process. We will proceed to use a null
             // chartOptions object, and use the default VaadinTheme in lieu of
-            // the default highcharts theme.
+            // the default Highcharts theme.
         }
-        if (chartOptions == null) {
+        if (chartOptions == null || chartOptions.getTheme() == null) {
             // generate the default Vaadin theme
             VaadinTheme theme = new VaadinTheme();
             return theme.toString();
@@ -280,7 +277,7 @@ public class SVGGenerator {
         return chartOptions.getTheme().toString();
     }
 
-    private void destroyPhantomInstanse(String line) {
+    private void destroyPhantomInstance(String line) {
         process.destroy();
         process = null;
         INSTANCE = null;
