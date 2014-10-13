@@ -100,7 +100,7 @@ public class PlotOptionsBubble extends AbstractLinePlotOptions {
      * @see #setMaxSize(Number)
      */
     public void setMaxSizeAsPercentage(Number maxSize) {
-        this.maxSize = maxSize;
+        this.maxSize = maxSize + "%";
     }
 
 }
