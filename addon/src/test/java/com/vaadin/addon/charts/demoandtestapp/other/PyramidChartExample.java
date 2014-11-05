@@ -6,16 +6,16 @@ import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.Labels;
-import com.vaadin.addon.charts.model.PlotOptionsFunnel;
+import com.vaadin.addon.charts.model.PlotOptionsPyramid;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
 
 @SuppressWarnings("serial")
-public class FunnelChartExample extends AbstractVaadinChartExample {
+public class PyramidChartExample extends AbstractVaadinChartExample {
 
     @Override
     public String getDescription() {
-	return "Funnel chart example";
+	return "Pyramid chart example";
     }
 
     @Override
@@ -31,14 +31,10 @@ public class FunnelChartExample extends AbstractVaadinChartExample {
 
 	Configuration conf = chart.getConfiguration();
 
-	conf.setTitle("Sales funnel");
+	conf.setTitle("Sales pyramid");
 	conf.getLegend().setEnabled(false);
 
-	PlotOptionsFunnel options = new PlotOptionsFunnel();
-	options.setNeckWidthPercentage(30);
-	// options.setNeckWidth(20); // in pixels
-	options.setNeckHeightPercentage(30);
-	// options.setNeckHeight(100); // in pixels
+	PlotOptionsPyramid options = new PlotOptionsPyramid();
 
 	options.setWidthPercentage(70); // With default (90%), long labels in
 					// this example may be cut

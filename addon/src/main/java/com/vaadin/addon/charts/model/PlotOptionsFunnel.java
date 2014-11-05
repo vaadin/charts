@@ -25,16 +25,10 @@ import java.io.Serializable;
  * @see AbstractPlotOptions
  * @see AbstractCommonPlotOptions
  */
-public class PlotOptionsFunnel extends AbstractLinePlotOptions {
+public class PlotOptionsFunnel extends PlotOptionsPyramid {
 
-    private Serializable width;
     private Serializable neckWidth;
     private Serializable neckHeight;
-
-    @Override
-    public ChartType getChartType() {
-        return ChartType.FUNNEL;
-    }
 
     /**
      * @see #setNeckWidth(Number)
@@ -90,36 +84,6 @@ public class PlotOptionsFunnel extends AbstractLinePlotOptions {
      */
     public void setNeckHeightPercentage(Number neckHeight) {
         this.neckHeight = neckHeight;
-    }
-
-    /**
-     * @return the width of the funnel, value can be String (percentage of the
-     *         plot value) or Number (pixel value)
-     */
-    public Serializable getWidth() {
-        return width;
-    }
-
-    /**
-     * Sets the width of the funnel in pixels
-     * 
-     * @param width
-     *            the pixel width of the funnel chart
-     * @see #setWidthPercentage(Number)
-     */
-    public void setWidth(Number width) {
-        this.width = width;
-    }
-
-    /**
-     * Sets the relative funnel width compared to the plot area.
-     * 
-     * @param width
-     *            the width in percentage of the plot area
-     * @see #setWidth(Number)
-     */
-    public void setWidthPercentage(Number width) {
-        this.width = width + "%";
     }
 
 }
