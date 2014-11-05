@@ -31,13 +31,13 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.organization>Vaadin Ltd</project.organization>
-		<vaadin.version.maven>7.2.6</vaadin.version.maven>
+		<vaadin.version.maven>7.3.3</vaadin.version.maven>
 	</properties>
 
 	<licenses>
 		<license>
-			<name>CVALv2</name>
-			<url>https://vaadin.com/license/cval-2.0</url>
+			<name>CVALv3</name>
+			<url>https://vaadin.com/license/cval-3.0</url>
 		</license>
 	</licenses>
 
@@ -59,7 +59,7 @@
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>license-maven-plugin</artifactId>
 				<configuration>
-					<licenseName>cval2</licenseName>
+					<licenseName>cval3</licenseName>
 					<licenseResolver>file://${basedir}/src/license</licenseResolver>
 					<includes>
 						<include>**/main/**/*.java</include>
@@ -105,6 +105,11 @@
 							<!-- Add-on specific fields to update -->
 							<AdVaaLicen>cval</AdVaaLicen>
 							<AdVaaName>vaadin-charts</AdVaaName>
+							<AdVaaPkg>com.vaadin.addon.charts.client</AdVaaPkg>
+							
+							<!--  this is a workaround for old Charts 1.0 keys to work with 2.0 -->
+							<!--  TODO this has to go away in the release -->
+							<Implementation-Version>1.9.9</Implementation-Version>
 
 							<!-- Implementation-Title and Implementation-Version come from the 
 								POM by default -->
