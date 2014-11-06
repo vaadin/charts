@@ -29,14 +29,15 @@ import java.io.Serializable;
 public class PlotOptionsPyramid extends AbstractLinePlotOptions {
 
     private Serializable width;
+    private Number depth;
 
     public PlotOptionsPyramid() {
-	super();
+        super();
     }
 
     @Override
     public ChartType getChartType() {
-	return ChartType.PYRAMID;
+        return ChartType.PYRAMID;
     }
 
     /**
@@ -44,7 +45,7 @@ public class PlotOptionsPyramid extends AbstractLinePlotOptions {
      *         plot value) or Number (pixel value)
      */
     public Serializable getWidth() {
-	return width;
+        return width;
     }
 
     /**
@@ -55,7 +56,7 @@ public class PlotOptionsPyramid extends AbstractLinePlotOptions {
      * @see #setWidthPercentage(Number)
      */
     public void setWidth(Number width) {
-	this.width = width;
+        this.width = width;
     }
 
     /**
@@ -66,7 +67,23 @@ public class PlotOptionsPyramid extends AbstractLinePlotOptions {
      * @see #setWidth(Number)
      */
     public void setWidthPercentage(Number width) {
-	this.width = width + "%";
+        this.width = width + "%";
     }
 
+    /**
+     * @see #setDepth(Number)
+     * @return depth
+     */
+    public Number getDepth() {
+        return depth;
+    }
+
+    /**
+     * The thickness of a 3D chart. Defaults to 0.
+     * 
+     * @param depth
+     */
+    public void setDepth(Number depth) {
+        this.depth = depth;
+    }
 }

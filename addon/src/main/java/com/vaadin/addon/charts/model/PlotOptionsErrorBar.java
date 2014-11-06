@@ -6,6 +6,22 @@ import com.vaadin.addon.charts.model.style.Color;
 
 public class PlotOptionsErrorBar extends AbstractLinePlotOptions {
 
+    private Color stemColor;
+
+    private DashStyle stemDashStyle;
+
+    private Number stemWidth;
+
+    private Color whiskerColor;
+
+    private Serializable whiskerLength;
+
+    private Number whiskerWidth;
+
+    private Number depth;
+
+    private Number groupZPadding;
+
     @Override
     public ChartType getChartType() {
         return ChartType.ERRORBAR;
@@ -104,7 +120,7 @@ public class PlotOptionsErrorBar extends AbstractLinePlotOptions {
      *            the whisker length to set in pixels
      */
     public void setWhiskerLength(Number whiskerLengthInPixels) {
-        this.whiskerLength = whiskerLengthInPixels;
+        whiskerLength = whiskerLengthInPixels;
     }
 
     /**
@@ -118,7 +134,7 @@ public class PlotOptionsErrorBar extends AbstractLinePlotOptions {
      *            the whisker length to set
      */
     public void setWhiskerLengthAsPercentage(Number whiskerLengthAsPercentage) {
-        this.whiskerLength = whiskerLengthAsPercentage + "%";
+        whiskerLength = whiskerLengthAsPercentage + "%";
     }
 
     /**
@@ -143,16 +159,38 @@ public class PlotOptionsErrorBar extends AbstractLinePlotOptions {
         this.whiskerWidth = whiskerWidth;
     }
 
-    private Color stemColor;
+    /**
+     * @see #setDepth(Number)
+     * @return depth
+     */
+    public Number getDepth() {
+        return depth;
+    }
 
-    private DashStyle stemDashStyle;
+    /**
+     * Depth of the columns in a 3D column chart. Defaults to 25.
+     * 
+     * @param depth
+     */
+    public void setDepth(Number depth) {
+        this.depth = depth;
+    }
 
-    private Number stemWidth;
+    /**
+     * @see #setGroupZPadding(Number)
+     * @return groupZPadding
+     */
+    public Number getGroupZPadding() {
+        return groupZPadding;
+    }
 
-    private Color whiskerColor;
-
-    private Serializable whiskerLength;
-
-    private Number whiskerWidth;
+    /**
+     * The spacing between columns on the Z Axis in a 3D chart. Defaults to 1.
+     * 
+     * @param groupZPadding
+     */
+    public void setGroupZPadding(Number groupZPadding) {
+        this.groupZPadding = groupZPadding;
+    }
 
 }

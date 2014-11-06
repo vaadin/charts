@@ -51,6 +51,7 @@ public class ChartModel extends AbstractConfigurationObject {
     private String plotBackgroundImage;
     private Boolean alignTicks;
     private Boolean polar;
+    private Options3d options3d;
 
     transient Configuration configuration;
 
@@ -574,4 +575,13 @@ public class ChartModel extends AbstractConfigurationObject {
     public void setBorderRadius(Number borderRadius) {
         this.borderRadius = borderRadius;
     }
+
+    public Options3d getOptions3d() {
+        return options3d;
+    }
+
+    public void setOptions3d(Options3d options3d) {
+        this.options3d = options3d;
+    }
+
 }

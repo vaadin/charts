@@ -57,4 +57,8 @@ public interface HighchartResources extends ClientBundle {
 
     @Source("funnel.js")
     TextResource funnel();
+
+    @Source("highcharts-3d.js")
+    TextResource highcharts3d();
+
 }

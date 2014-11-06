@@ -28,6 +28,8 @@ public class PlotOptionsColumn extends AbstractPointPlotOptions {
     private Number borderWidth;
     private Number groupPadding;
     private Boolean grouping;
+    private Number depth;
+    private Number groupZPadding;
 
     /**
      * @see #setPointPadding(Number)
@@ -107,4 +109,39 @@ public class PlotOptionsColumn extends AbstractPointPlotOptions {
     public void setGrouping(Boolean grouping) {
         this.grouping = grouping;
     }
+
+    /**
+     * @see #setDepth(Number)
+     * @return depth
+     */
+    public Number getDepth() {
+        return depth;
+    }
+
+    /**
+     * Depth of the columns in a 3D column chart. Defaults to 25.
+     * 
+     * @param depth
+     */
+    public void setDepth(Number depth) {
+        this.depth = depth;
+    }
+
+    /**
+     * @see #setGroupZPadding(Number)
+     * @return groupZPadding
+     */
+    public Number getGroupZPadding() {
+        return groupZPadding;
+    }
+
+    /**
+     * The spacing between columns on the Z Axis in a 3D chart. Defaults to 1.
+     * 
+     * @param groupZPadding
+     */
+    public void setGroupZPadding(Number groupZPadding) {
+        this.groupZPadding = groupZPadding;
+    }
+
 }

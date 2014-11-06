@@ -36,6 +36,7 @@ public class DataSeriesItemTypeAdapterFactory implements TypeAdapterFactory {
     public DataSeriesItemTypeAdapterFactory() {
     }
 
+    @Override
     @SuppressWarnings("unchecked")
     public final <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
         return DataSeriesItem.class.isAssignableFrom(type.getRawType()) ? (TypeAdapter<T>) customizeMyClassAdapter(
@@ -57,11 +58,15 @@ public class DataSeriesItemTypeAdapterFactory implements TypeAdapterFactory {
                 } else {
                     Number x = value.getX();
                     Number y = value.getY();
+                    Number z = value.getZ();
                     if (x != null) {
                         JsonArray jsonArray = new JsonArray();
                         jsonArray.add(new JsonPrimitive(x));
                         if (y != null) {
                             jsonArray.add(new JsonPrimitive(y));
+                            if (z != null) {
+                                jsonArray.add(new JsonPrimitive(z));
+                            }
                         } else if (value.getLow() != null) {
                             jsonArray.add(new JsonPrimitive(value.getLow()));
                             jsonArray.add(new JsonPrimitive(value.getHigh()));

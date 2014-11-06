@@ -50,6 +50,7 @@ public class HighchartsScriptLoader {
         inject(HighchartResources.INSTANCE.funnel().getText());
         inject(HighchartResources.INSTANCE.exporting().getText());
         inject(HighchartResources.INSTANCE.defaultTheme().getText());
+        inject(HighchartResources.INSTANCE.highcharts3d().getText());
     }
 
     protected native static boolean hasJQuery()

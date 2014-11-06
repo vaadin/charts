@@ -36,6 +36,7 @@ public class PlotOptionsPie extends AbstractCommonPlotOptions {
     private Number borderWidth;
     private Number startAngle;
     private Number endAngle;
+    private Number depth;
 
     /**
      * @see #setBorderColor(Color)
@@ -45,7 +46,7 @@ public class PlotOptionsPie extends AbstractCommonPlotOptions {
     }
 
     /**
-     * The color of the border surronding each slice. Defaults to white.
+     * The color of the border surrounding each slice. Defaults to white.
      * 
      * @param borderColor
      */
@@ -241,6 +242,23 @@ public class PlotOptionsPie extends AbstractCommonPlotOptions {
             array = new Object[] { left, top };
         }
         center = array;
+    }
+
+    /**
+     * @see #setDepth(Number)
+     * @return depth
+     */
+    public Number getDepth() {
+        return depth;
+    }
+
+    /**
+     * The thickness of a 3D pie. Defaults to 0.
+     * 
+     * @param borderColor
+     */
+    public void setDepth(Number depth) {
+        this.depth = depth;
     }
 
 }
