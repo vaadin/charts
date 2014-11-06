@@ -32,6 +32,7 @@ public abstract class AbstractVaadinChartExample extends VerticalLayout
         UI.getCurrent().setPollInterval(interval);
 
         final Thread thread = new Thread() {
+            @Override
             public void run() {
                 try {
                     Thread.sleep(initialPause);

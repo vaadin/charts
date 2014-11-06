@@ -83,7 +83,7 @@ public class PlotOptionsFunnel extends PlotOptionsPyramid {
      *            the neck height to set in percentage of the plot area height
      */
     public void setNeckHeightPercentage(Number neckHeight) {
-        this.neckHeight = neckHeight;
+        this.neckHeight = neckHeight + "%";
     }
 
 }
