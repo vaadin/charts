@@ -82,7 +82,7 @@ public class ChartsDemoUI extends UI {
 
     private static final String[] GROUP_ORDER = { "Column and Bar", "Pie",
             "Area", "Line and Scatter", "Dynamic", "Combinations", "Other",
-            "Container", "Timeline" };
+            "Container", "Timeline", "Three D" };
 
     static {
         Reflections reflections = new Reflections(
