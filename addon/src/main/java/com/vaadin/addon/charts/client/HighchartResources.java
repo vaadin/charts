@@ -61,4 +61,7 @@ public interface HighchartResources extends ClientBundle {
     @Source("highcharts-3d.js")
     TextResource highcharts3d();
 
+    @Source("solid-gauge.js")
+    TextResource solidGauge();
+
 }

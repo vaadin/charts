@@ -43,6 +43,8 @@ public class Labels extends AbstractConfigurationObject {
     private Boolean softConnector;
     private Number distance;
     private Color backgroundColor;
+    private Number borderWidth;
+    private Boolean useHTML;
 
     public Labels() {
     }
@@ -392,6 +394,44 @@ public class Labels extends AbstractConfigurationObject {
      */
     public void setInside(Boolean inside) {
         this.inside = inside;
+    }
+
+    /**
+     * Returns current border width.
+     * 
+     * @return Border width.
+     */
+    public Number getBorderWidth() {
+        return borderWidth;
+    }
+
+    /**
+     * Sets new border width.
+     * 
+     * @param borderWidth
+     *            New border width.
+     */
+    public void setBorderWidth(Number borderWidth) {
+        this.borderWidth = borderWidth;
+    }
+
+    /**
+     * Checks whether or not HTML is allowed.
+     * 
+     * @return <b>true</b> when HTML is allowed, <b>false</b> otherwise.
+     */
+    public Boolean getUseHTML() {
+        return useHTML;
+    }
+
+    /**
+     * Sets whether or not to allow using HTML.
+     * 
+     * @param useHTML
+     *            Whether or not to allow using HTML.
+     */
+    public void setUseHTML(Boolean useHTML) {
+        this.useHTML = useHTML;
     }
 
 }

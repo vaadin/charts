@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts.model;
 
+import com.vaadin.addon.charts.model.style.SolidColor;
+
 /*
  * #%L
  * Vaadin Charts
@@ -25,6 +27,8 @@ public class YAxis extends Axis {
     private PlotLine[] plotLines;
     private Integer pane;
     private String gridLineInterpolation;
+    private String minColor;
+    private String maxColor;
 
     /**
      * @see #setStackLabels(StackLabels)
@@ -107,5 +111,63 @@ public class YAxis extends Axis {
                     "Pane must be attached to configuration");
         }
         setPane(pane.getPaneIndex());
+    }
+
+    /**
+     * Returns current minimum color.
+     * 
+     * @return Minimum color.
+     */
+    public String getMinColor() {
+        return minColor;
+    }
+
+    /**
+     * Sets the minimum color.
+     * 
+     * @param minColor
+     *            Minimum color.
+     */
+    public void setMinColor(String minColor) {
+        this.minColor = minColor;
+    }
+
+    /**
+     * Sets the minimum color.
+     * 
+     * @param color
+     *            Minimum color.
+     */
+    public void setMinColor(SolidColor color) {
+        this.minColor = color.toString();
+    }
+
+    /**
+     * Returns current maximum color.
+     * 
+     * @return Maximum color.
+     */
+    public String getMaxColor() {
+        return maxColor;
+    }
+
+    /**
+     * Sets the new maximum color.
+     * 
+     * @param maxColor
+     *            Maximum color.
+     */
+    public void setMaxColor(String maxColor) {
+        this.maxColor = maxColor;
+    }
+
+    /**
+     * Sets the new maximum color.
+     * 
+     * @param color
+     *            Maximum color.
+     */
+    public void setMaxColor(SolidColor color) {
+        this.maxColor = color.toString();
     }
 }

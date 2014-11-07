@@ -33,6 +33,7 @@ public class Background extends AbstractConfigurationObject {
     private Number borderWidth;
     private String outerRadius;
     private String innerRadius;
+    private String shape;
 
     /**
      * @see #setBackgroundColor(Color)
@@ -120,6 +121,25 @@ public class Background extends AbstractConfigurationObject {
      */
     public String getInnerRadius() {
         return innerRadius;
+    }
+
+    /**
+     * Returns current shape of the background.
+     * 
+     * @return Current shape.
+     */
+    public String getShape() {
+        return shape;
+    }
+
+    /**
+     * Sets the current shape of the background.
+     * 
+     * @param shape
+     *            New shape.
+     */
+    public void setShape(String shape) {
+        this.shape = shape;
     }
 
 }
