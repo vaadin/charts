@@ -20,11 +20,11 @@ import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.charts.model.style.Style;
 
-public class Clock extends AbstractVaadinChartExample {
+public class CustomClock extends AbstractVaadinChartExample {
 
     @Override
     public String getDescription() {
-        return "Clock";
+        return "Gauge clock with a customised dial";
     }
 
     @Override
@@ -39,7 +39,7 @@ public class Clock extends AbstractVaadinChartExample {
         configuration.getChart().setPlotBackgroundImage(null);
         configuration.getChart().setPlotBorderWidth(0);
         configuration.getChart().setPlotShadow(false);
-        configuration.setTitle("The Vaadin Charts clock");
+        configuration.setTitle("The Vaadin Charts customised clock");
         configuration.getCredits().setEnabled(false);
 
         GradientColor gradient1 = GradientColor.createRadial(0.5, -0.4, 1.9);
@@ -75,7 +75,7 @@ public class Clock extends AbstractVaadinChartExample {
         yAxis.setTickLength(10);
         yAxis.setTickColor(new SolidColor("#666"));
 
-        yAxis.setTitle(new Title("Powered by<br/>Vaadin Charts"));
+        yAxis.setTitle(new Title("Powered by<br/>Vaadin Charts 2"));
         yAxis.getTitle().setStyle(new Style());
         yAxis.getTitle().getStyle().setColor(new SolidColor("#BBB"));
         yAxis.getTitle().getStyle().setFontWeight(FontWeight.BOLD);
@@ -84,23 +84,7 @@ public class Clock extends AbstractVaadinChartExample {
         yAxis.getTitle().setY(10);
 
         final DataSeries series = new DataSeries();
-        final DataSeriesItem hour = new DataSeriesItem();
-        final DataSeriesItem minute = new DataSeriesItem();
         final DataSeriesItem second = new DataSeriesItem();
-
-        hour.setId("hour");
-        hour.setY(10);
-        hour.setDial(new Dial());
-        hour.getDial().setRadius("60%");
-        hour.getDial().setBaseWidth(4);
-        hour.getDial().setRearLength("0%");
-        hour.getDial().setBaseLength("95%");
-
-        minute.setId("minute");
-        minute.setY(10);
-        minute.setDial(new Dial());
-        minute.getDial().setBaseLength("95%");
-        minute.getDial().setRearLength("0%");
 
         second.setId("second");
         second.setY(30);
@@ -108,9 +92,11 @@ public class Clock extends AbstractVaadinChartExample {
         second.getDial().setRadius("100%");
         second.getDial().setBaseWidth(1);
         second.getDial().setRearLength("20%");
+        second.getDial().setBackgroundColor(SolidColor.AQUA);
+        second.getDial().setBorderColor(SolidColor.RED);
+        second.getDial().setBorderWidth(10);
+        second.getDial().setTopWidth(8);
 
-        series.add(hour);
-        series.add(minute);
         series.add(second);
 
         PlotOptionsGauge plotOptionsGauge = new PlotOptionsGauge();
@@ -125,19 +111,13 @@ public class Clock extends AbstractVaadinChartExample {
             @Override
             public void run() {
                 cal.setTimeInMillis(System.currentTimeMillis());
-                double hours = cal.get(Calendar.HOUR);
-                double mins = cal.get(Calendar.MINUTE);
                 double secs = cal.get(Calendar.SECOND);
 
                 // disable animation when the second dial reaches 0
                 boolean animation = secs == 0 ? false : true;
                 configuration.getChart().setAnimation(animation);
 
-                hour.setY(hours + (mins / 60.0));
-                minute.setY(mins * (12.0 / 60.0) + secs * (12.0 / 3600.0));
                 second.setY(secs * (12.0 / 60.0));
-                series.update(hour);
-                series.update(minute);
                 series.update(second);
             }
         }, 1000, 15000);
@@ -145,4 +125,5 @@ public class Clock extends AbstractVaadinChartExample {
         chart.drawChart(configuration);
         return chart;
     }
+
 }

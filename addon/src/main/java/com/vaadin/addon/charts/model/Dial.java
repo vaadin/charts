@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts.model;
 
+import com.vaadin.addon.charts.model.style.SolidColor;
+
 /*
  * #%L
  * Vaadin Charts
@@ -23,6 +25,10 @@ package com.vaadin.addon.charts.model;
  */
 public class Dial extends AbstractConfigurationObject {
 
+    private String backgroundColor;
+    private String borderColor;
+    private Number borderWidth;
+    private Number topWidth;
     private String radius;
     private Number baseWidth;
     private String baseLength;
@@ -101,6 +107,103 @@ public class Dial extends AbstractConfigurationObject {
      */
     public void setRearLength(String rearLength) {
         this.rearLength = rearLength;
+    }
+
+    /**
+     * Returns current background color as an HTML color string.
+     * 
+     * @return Current background color.
+     */
+    public String getBackgroundColor() {
+        return backgroundColor;
+    }
+
+    /**
+     * Sets the background color.
+     * 
+     * @param backgroundColor
+     *            Color to set.
+     */
+    public void setBackgroundColor(String backgroundColor) {
+        this.backgroundColor = backgroundColor;
+    }
+
+    /**
+     * Sets the background color.
+     * 
+     * @param color
+     *            Color to set.
+     */
+    public void setBackgroundColor(SolidColor color) {
+        this.backgroundColor = color.toString();
+    }
+
+    /**
+     * Returns current border color as an HTML color string.
+     * 
+     * @return Current border color.
+     */
+    public String getBorderColor() {
+        return borderColor;
+    }
+
+    /**
+     * Sets the color of the border.
+     * 
+     * @param borderColor
+     *            Color of the border.
+     */
+    public void setBorderColor(String borderColor) {
+        this.borderColor = borderColor;
+    }
+
+    /**
+     * Sets the color of the border.
+     * 
+     * @param borderColor
+     *            Color of the border.
+     */
+    public void setBorderColor(SolidColor borderColor) {
+        this.borderColor = borderColor.toString();
+    }
+
+    /**
+     * Returns current border width.
+     * 
+     * @return Current border width.
+     */
+    public Number getBorderWidth() {
+        return borderWidth;
+    }
+
+    /**
+     * Sets the new border width.
+     * 
+     * @param borderWidth
+     *            Border width.
+     */
+    public void setBorderWidth(Number borderWidth) {
+        this.borderWidth = borderWidth;
+    }
+
+    /**
+     * Returns the width of the top of the dial.
+     * 
+     * @return Width of the top of the dial.
+     */
+    public Number getTopWidth() {
+        return topWidth;
+    }
+
+    /**
+     * Sets the width of the top of the dial, closest to the perimeter. The
+     * pivot narrows in form from the base to the top.
+     * 
+     * @param topWidth
+     *            Width of the top dial.
+     */
+    public void setTopWidth(Number topWidth) {
+        this.topWidth = topWidth;
     }
 
 }
