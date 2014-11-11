@@ -6,7 +6,7 @@ import java.io.Serializable;
  * #%L
  * Vaadin Charts
  * %%
- * Copyright (C) 2012 Vaadin Ltd
+ * Copyright (C) 2014 Vaadin Ltd
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
@@ -15,7 +15,7 @@ import java.io.Serializable;
  * information about licensing.
  * 
  * You should have received a copy of the CVALv3 along with this program.
- * If not, see <http://vaadin.com/license/cval-3.0>.
+ * If not, see <https://vaadin.com/license/cval-3>.
  * #L%
  */
 
