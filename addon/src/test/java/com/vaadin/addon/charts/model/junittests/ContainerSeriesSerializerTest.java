@@ -22,7 +22,6 @@ public class ContainerSeriesSerializerTest {
     private ContainerDataSeries containerSeries;
     private ContainerDataSeriesSerializer serializer;
 
-    @SuppressWarnings("unchecked")
     @Before
     public void setup() {
         serializer = new ContainerDataSeriesSerializer();
@@ -167,6 +166,23 @@ public class ContainerSeriesSerializerTest {
         JsonElement json = serializer.serialize(containerSeries, null, null);
 
         assertEquals(expected, json.toString());
+    }
+
+    @Test
+    public void serialize_ContainerWithLowAndHighValues_LowAndHighValuesSerialized() {
+        containerSeries.setHighPropertyId("somehigh");
+        containerSeries.setLowPropertyId("somelow");
+
+        vaadinContainer.addContainerProperty("somehigh", Number.class, null);
+        vaadinContainer.addContainerProperty("somelow", Number.class, null);
+
+        Item item = vaadinContainer.getItem(vaadinContainer.addItem());
+        item.getItemProperty("somehigh").setValue(5);
+        item.getItemProperty("somelow").setValue(-5);
+
+        JsonElement json = serializer.serialize(containerSeries, null, null);
+
+        assertEquals("{\"data\":[{\"high\":5,\"low\":-5}]}", json.toString());
     }
 
 }

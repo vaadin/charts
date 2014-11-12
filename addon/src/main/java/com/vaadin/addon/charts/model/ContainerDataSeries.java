@@ -30,10 +30,15 @@ public class ContainerDataSeries extends AbstractSeries {
 
     private final Container vaadinContainer;
 
+    // these need to be public for proper json serialisation
+    // see ContainerDataSeriesSerializer
     public static final String SERIES_DEFAULT_ATTRIBUTE1 = "x";
     public static final String SERIES_DEFAULT_ATTRIBUTE2 = "y";
 
     private static final String NAMEATTRIBUTE = "name";
+
+    private static final String HIGH_PROPERTY = "high";
+    private static final String LOW_PROPERTY = "low";
 
     private final Map<String, Object> attributeToPropertyIdMap;
 
@@ -41,6 +46,7 @@ public class ContainerDataSeries extends AbstractSeries {
      * Constructs a ContainerDataSeries wrapping the given Container
      * 
      * @param container
+     *            A container to wrap.
      */
     public ContainerDataSeries(Container container) {
         vaadinContainer = container;
@@ -51,20 +57,22 @@ public class ContainerDataSeries extends AbstractSeries {
      * Adds mapping that translates a property ID in the container into the
      * chart's X attribute
      * 
-     * @param containerPId
+     * @param propertyId
+     *            Id of a property.
      */
-    public void setXPropertyId(Object containerPId) {
-        attributeToPropertyIdMap.put(SERIES_DEFAULT_ATTRIBUTE1, containerPId);
+    public void setXPropertyId(Object propertyId) {
+        attributeToPropertyIdMap.put(SERIES_DEFAULT_ATTRIBUTE1, propertyId);
     }
 
     /**
      * Adds mapping that translates a property ID in the container into the
      * chart's Y attribute
      * 
-     * @param containerPId
+     * @param propertyId
+     *            Id of a property.
      */
-    public void setYPropertyId(Object containerPId) {
-        attributeToPropertyIdMap.put(SERIES_DEFAULT_ATTRIBUTE2, containerPId);
+    public void setYPropertyId(Object propertyId) {
+        attributeToPropertyIdMap.put(SERIES_DEFAULT_ATTRIBUTE2, propertyId);
     }
 
     /**
@@ -72,9 +80,32 @@ public class ContainerDataSeries extends AbstractSeries {
      * chart's name attribute
      * 
      * @param propertyId
+     *            Id of a property.
      */
     public void setNamePropertyId(Object propertyId) {
         attributeToPropertyIdMap.put(NAMEATTRIBUTE, propertyId);
+    }
+
+    /**
+     * Adds mapping that translates a property ID in the container into the
+     * chart's low attribute.
+     *
+     * @param propertyId
+     *            Id of a property.
+     */
+    public void setLowPropertyId(Object propertyId) {
+        attributeToPropertyIdMap.put(LOW_PROPERTY, propertyId);
+    }
+
+    /**
+     * Adds mapping that translates a property ID in the container into the
+     * chart's high attribute.
+     *
+     * @param propertyId
+     *            Id of a property.
+     */
+    public void setHighPropertyId(Object propertyId) {
+        attributeToPropertyIdMap.put(HIGH_PROPERTY, propertyId);
     }
 
     /**
@@ -82,14 +113,18 @@ public class ContainerDataSeries extends AbstractSeries {
      * property id in the container.
      * 
      * @param chartAttribute
-     * @param containerId
+     *            Attribute of a chart.
+     * @param propertyId
+     *            Id of a property.
      */
     public void addAttributeToPropertyIdMapping(String chartAttribute,
-            Object containerPId) {
-        attributeToPropertyIdMap.put(chartAttribute, containerPId);
+            Object propertyId) {
+        attributeToPropertyIdMap.put(chartAttribute, propertyId);
     }
 
     /**
+     * Returns the underlying container.
+     *
      * @return the wrapped Vaadin container.
      */
     public Container getVaadinContainer() {
@@ -97,6 +132,9 @@ public class ContainerDataSeries extends AbstractSeries {
     }
 
     /**
+     * Returns current mappings. The map may be modified and it will affect this
+     * object.
+     *
      * @return mappings between chart attributes (keys) and property IDs
      *         (values) in the container
      */
