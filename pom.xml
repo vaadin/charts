@@ -1,73 +1,73 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.vaadin.addon</groupId>
-	<version>1.1.1-SNAPSHOT</version>
-	<artifactId>vaadin-charts-directorypackage</artifactId>
-	<packaging>pom</packaging>
-	<name>Vaadin Charts</name>
-	<inceptionYear>2013</inceptionYear>
-	<description>This parent project packages v7 and v6 version of the same addon into one package. So we will get two different versions in one package, each time a directory package is built. Don't come saying me this is good thing to do. This is just what wise man decided...</description>
-	
-	<modules>
-        <module>addon</module>
-        <module>addon6</module>
-  </modules>
-	
-	<organization>
-		<name>Vaadin Ltd</name>
-		<url>http://vaadin.com/</url>
-	</organization>
-		
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.organization>Vaadin Ltd</project.organization>
-		<highcharts.version>3.0.10</highcharts.version>
-	</properties>
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.vaadin.addon</groupId>
+    <version>1.2.0-SNAPSHOT</version>
+    <artifactId>vaadin-charts-directorypackage</artifactId>
+    <packaging>pom</packaging>
+    <name>Vaadin Charts</name>
+    <inceptionYear>2014</inceptionYear>
+    <description>This parent project packages the addon and the demos in one package.</description>
 
-	<build>
-	  <plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<configuration>
-					<finalName>${project.artifactId}-${project.version}</finalName>
-					<appendAssemblyId>false</appendAssemblyId>
-					<descriptors>
-						<descriptor>assembly.xml</descriptor>
-					</descriptors>
-				</configuration>
-			</plugin>
-			<plugin>
-          <groupId>com.github.zch</groupId>
-          <artifactId>pdfsplit-maven-plugin</artifactId>
-          <version>1.0.1</version>
-          <executions>
-              <execution>
-                  <id>pdfsplit</id>
-                  <phase>package</phase>
-                  <goals>
-                      <goal>split</goal>
-                  </goals>
-                  <configuration>
-                      <inputUrl>https://vaadin.com/download/book-of-vaadin/vaadin-7/pdf/book-of-vaadin.pdf</inputUrl>
-                      <chapter>Chapter 18. Vaadin Charts</chapter>
-                      <outFile>${project.build.directory}/vaadin-charts-manual-${project.version}.pdf</outFile>
-                  </configuration>
-              </execution>
-          </executions>
-      </plugin>
-      
-		</plugins>
-		
-	</build>
-	
-	<pluginRepositories>
+    <modules>
+        <module>addon</module>
+        
+  </modules>
+
+    <organization>
+        <name>Vaadin Ltd</name>
+        <url>http://vaadin.com/</url>
+    </organization>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.organization>Vaadin Ltd</project.organization>
+        <highcharts.version>4.0.4</highcharts.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <finalName>${project.artifactId}-${project.version}</finalName>
+                    <appendAssemblyId>false</appendAssemblyId>
+                    <descriptors>
+                        <descriptor>assembly.xml</descriptor>
+                    </descriptors>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.github.zch</groupId>
+                <artifactId>pdfsplit-maven-plugin</artifactId>
+                <version>1.0.1</version>
+                <executions>
+                    <execution>
+                        <id>pdfsplit</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>split</goal>
+                        </goals>
+                        <configuration>
+                            <inputUrl>https://vaadin.com/download/book-of-vaadin/vaadin-7/pdf/book-of-vaadin.pdf</inputUrl>
+                            <chapter>Chapter 18. Vaadin Charts</chapter>
+                            <outFile>${project.build.directory}/vaadin-charts-manual-${project.version}.pdf</outFile>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+
+    </build>
+
+    <pluginRepositories>
         <pluginRepository>
             <id>pdfsplit-plugin</id>
             <url>https://raw.github.com/zch/maven/releases/</url>
         </pluginRepository>
     </pluginRepositories>
-	
+
 
 </project>
