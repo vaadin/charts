@@ -27,7 +27,7 @@ public class Tooltip extends AbstractConfigurationObject {
     private Number valueDecimals;
     private String pointFormat;
     private Boolean shared;
-    private Boolean crosshairs;
+    private Object crosshairs;
     private String headerFormat;
     private String footerFormat;
     private Boolean enabled;
@@ -181,9 +181,51 @@ public class Tooltip extends AbstractConfigurationObject {
     }
 
     /**
+     * Sets displaying of crosshairs for each axis separately.
+     * 
+     * @param crosshairsX
+     *            Whether or not to display crosshairs on the X axis.
+     * @param crosshairsY
+     *            Whether or not to display crosshairs on the Y axis.
+     */
+    public void setCrosshairs(Boolean crosshairsX, Boolean crosshairsY) {
+        this.crosshairs = new Boolean[] { crosshairsX, crosshairsY };
+    }
+
+    /**
+     * Sets the displaying of crosshairs for each axis separately, allowing full
+     * control over how the crosshairs look.
+     * 
+     * @param crosshairs
+     *            Styles for crosshairs on the axes (X, Y).
+     */
+    public void setCrosshairs(CrosshairStyle... crosshairs) {
+        this.crosshairs = crosshairs;
+    }
+
+    /**
+     * Checks if the crosshairs are in a global setting and if so, returns that
+     * setting. Otherwise returns <code>null</code>.
+     * 
      * @see #setCrosshairs(Boolean)
+     * @return <code>null</code> when the crosshairs are not in global setting,
+     *         otherwise a corresponding boolean.
      */
     public Boolean isCrosshairs() {
+        return crosshairs instanceof Boolean ? (Boolean) crosshairs : null;
+    }
+
+    /**
+     * Returns current crosshairs settings. Can be a boolean (
+     * {@link #isCrosshairs()}), an array with two booleans or an array of up to
+     * two {@link CrosshairStyle}s.
+     * 
+     * @see #setCrosshairs(Boolean)
+     * @see #setCrosshairs(Boolean, Boolean)
+     * @see #setCrosshairs(CrosshairStyle...)
+     * @return Current crosshairs settings.
+     */
+    public Object getCrosshairs() {
         return crosshairs;
     }
 
