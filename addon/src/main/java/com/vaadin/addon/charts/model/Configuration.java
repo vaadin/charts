@@ -43,6 +43,7 @@ public class Configuration extends AbstractConfigurationObject {
     private SubTitle subtitle;
     private AxisList xAxis;
     private AxisList yAxis;
+    private AxisList colorAxis;
     private Tooltip tooltip;
     private Legend legend;
     private Credits credits;
@@ -629,6 +630,70 @@ public class Configuration extends AbstractConfigurationObject {
         if (chart != null) {
             chart.configuration = this;
         }
+    }
+
+    /**
+     * Returns the color axis. This is used in colour-based diagrams, like heat
+     * maps. In case of multiple axes defined, the first axis is returned. An
+     * axis will be created if no axis is defined.
+     * 
+     * @return the color axis.
+     */
+    public ColorAxis getColorAxis() {
+
+        if (colorAxis == null) {
+            colorAxis = new AxisList();
+        }
+
+        if (colorAxis.getNumberOfAxes() == 0) {
+            colorAxis.addAxis(new ColorAxis());
+        }
+
+        return (ColorAxis) colorAxis.getAxis(0);
+    }
+
+    /**
+     * @return the number of color axes defined
+     */
+    public int getNumberOfColorAxes() {
+        if (colorAxis == null) {
+            return 0;
+        } else {
+            return colorAxis.getNumberOfAxes();
+        }
+    }
+
+    /**
+     * @return The Color-axis with the given index or null if the index is not
+     *         valid
+     */
+    public ColorAxis getColorAxis(int index) {
+        if (index > 0 && colorAxis != null && getNumberOfColorAxes() > index) {
+            return (ColorAxis) colorAxis.getAxis(index);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Removes all defined color-axes
+     */
+    public void removeColorAxes() {
+        colorAxis = null;
+    }
+
+    /**
+     * Adds a color-axis to the configuration
+     * 
+     * @param axis
+     *            The color Axis to add.
+     * @see #getColorAxis()
+     */
+    public void addColorAxis(ColorAxis axis) {
+        if (colorAxis == null) {
+            colorAxis = new AxisList();
+        }
+        colorAxis.addAxis(axis);
     }
 
 }

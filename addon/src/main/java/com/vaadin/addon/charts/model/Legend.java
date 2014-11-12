@@ -46,6 +46,8 @@ public class Legend extends AbstractConfigurationObject {
     private Style itemHiddenStyle;
     private Number itemMarginTop;
     private Number itemMarginBottom;
+    private Number margin;
+    private Number symbolHeight;
 
     /**
      * @see #setItemHoverStyle(Style)
@@ -406,6 +408,44 @@ public class Legend extends AbstractConfigurationObject {
             style = new Style();
         }
         return style;
+    }
+
+    /**
+     * Returns current margin.
+     * 
+     * @return Current margin.
+     */
+    public Number getMargin() {
+        return margin;
+    }
+
+    /**
+     * Sets the current margin to a new value.
+     * 
+     * @param margin
+     *            Margin.
+     */
+    public void setMargin(Number margin) {
+        this.margin = margin;
+    }
+
+    /**
+     * Returns symbol height.
+     * 
+     * @return Symbol height.
+     */
+    public Number getSymbolHeight() {
+        return symbolHeight;
+    }
+
+    /**
+     * Sets the new symbol height.
+     * 
+     * @param symbolHeight
+     *            Symbol height.
+     */
+    public void setSymbolHeight(Number symbolHeight) {
+        this.symbolHeight = symbolHeight;
     }
 
 }

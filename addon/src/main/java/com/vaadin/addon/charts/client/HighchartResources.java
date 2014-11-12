@@ -64,4 +64,7 @@ public interface HighchartResources extends ClientBundle {
     @Source("solid-gauge.js")
     TextResource solidGauge();
 
+    @Source("heatmap.js")
+    TextResource heatmap();
+
 }
