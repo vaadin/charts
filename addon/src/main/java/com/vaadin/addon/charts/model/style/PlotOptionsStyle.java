@@ -27,6 +27,7 @@ import com.vaadin.addon.charts.model.PlotOptionsBar;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.PlotOptionsPie;
+import com.vaadin.addon.charts.model.PlotOptionsPyramid;
 import com.vaadin.addon.charts.model.PlotOptionsSeries;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
 
@@ -45,9 +46,10 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
     private PlotOptionsColumn column = new PlotOptionsColumn();
     private PlotOptionsSpline spline = new PlotOptionsSpline();
     private PlotOptionsSeries series = new PlotOptionsSeries();
+    private PlotOptionsPyramid pyramid = new PlotOptionsPyramid();
 
     /**
-     * @see #getBar()
+     * @see #setBar(PlotOptionsBar)
      */
     public PlotOptionsBar getBar() {
         return bar;
@@ -63,7 +65,7 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getArea()
+     * @see #setArea(PlotOptionsArea)
      */
     public PlotOptionsArea getArea() {
         return area;
@@ -79,7 +81,7 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getPie()
+     * @see #setPie(PlotOptionsPie)
      */
     public PlotOptionsPie getPie() {
         return pie;
@@ -95,7 +97,7 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getLine()
+     * @see #setLine(PlotOptionsLine)
      */
     public PlotOptionsLine getLine() {
         return line;
@@ -111,7 +113,7 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getColumn()
+     * @see #setColumn(PlotOptionsColumn)
      */
     public PlotOptionsColumn getColumn() {
         return column;
@@ -127,7 +129,7 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getSpline()
+     * @see #setSpline(PlotOptionsSpline)
      */
     public PlotOptionsSpline getSpline() {
         return spline;
@@ -143,7 +145,7 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getSeries()
+     * @see #setSeries(PlotOptionsSeries)
      */
     public PlotOptionsSeries getSeries() {
         return series;
@@ -158,28 +160,68 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
         this.series = series;
     }
 
+    /**
+     * @see #setArearange(PlotOptionsAreaRange)
+     */
     public PlotOptionsAreaRange getArearange() {
         return arearange;
     }
 
+    /**
+     * Sets the style options for {@link ChartType#AREARANGE} charts
+     * 
+     * @param arearange
+     */
     public void setArearange(PlotOptionsAreaRange arearange) {
         this.arearange = arearange;
     }
 
+    /**
+     * @see #setAreasplinerange(PlotOptionsAreaSplineRange)
+     */
     public PlotOptionsAreaSplineRange getAreasplinerange() {
         return areasplinerange;
     }
 
+    /**
+     * Sets the style options for {@link ChartType#AREASPLINERANGE} charts
+     * 
+     * @param areasplinerange
+     */
     public void setAreasplinerange(PlotOptionsAreaSplineRange areasplinerange) {
         this.areasplinerange = areasplinerange;
     }
 
+    /**
+     * @see #setAreaspline(PlotOptionsAreaSpline)
+     */
     public PlotOptionsAreaSpline getAreaspline() {
         return areaspline;
     }
 
+    /**
+     * Sets the style options for {@link ChartType#AREASPLINE} charts
+     * 
+     * @param areaspline
+     */
     public void setAreaspline(PlotOptionsAreaSpline areaspline) {
         this.areaspline = areaspline;
+    }
+
+    /**
+     * @see #setPyramid(PlotOptionsPyramid)
+     */
+    public PlotOptionsPyramid getPyramid() {
+        return pyramid;
+    }
+
+    /**
+     * Sets the style options for {@link ChartType#PYRAMID} charts
+     * 
+     * @param pyramid
+     */
+    public void setPyramid(PlotOptionsPyramid pyramid) {
+        this.pyramid = pyramid;
     }
 
 }

@@ -40,7 +40,7 @@ public class FunnelChartExample extends AbstractVaadinChartExample {
 	options.setNeckHeightPercentage(30);
 	// options.setNeckHeight(100); // in pixels
 
-	options.setWidthPercentage(70); // With default (90%), long labels in
+	options.setWidthAsPercentage(70); // With default (90%), long labels in
 					// this example may be cut
 	// options.setWidth(400); // in pixels
 

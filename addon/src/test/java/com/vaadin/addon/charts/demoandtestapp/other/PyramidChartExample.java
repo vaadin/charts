@@ -36,7 +36,7 @@ public class PyramidChartExample extends AbstractVaadinChartExample {
 
 	PlotOptionsPyramid options = new PlotOptionsPyramid();
 
-	options.setWidthPercentage(70); // With default (90%), long labels in
+	options.setWidthAsPercentage(70); // With default (90%), long labels in
 					// this example may be cut
 	// options.setWidth(400); // in pixels
 

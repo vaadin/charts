@@ -42,6 +42,14 @@ public class ChangingThemesTBTest extends AbstractTestBenchTest {
             waitBetweenShots();
             captureAndCompare("5-gray");
 
+            driver.findElement(By.id("vl-button")).click();
+            waitBetweenShots();
+            captureAndCompare("6-vaadinLight");
+
+            driver.findElement(By.id("vd-button")).click();
+            waitBetweenShots();
+            captureAndCompare("7-vaadinDark");
+
             // Now check again that pictures match
 
             driver.findElement(By.id("vaadin-button")).click();
