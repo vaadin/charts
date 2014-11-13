@@ -2,12 +2,12 @@ package com.vaadin.addon.charts.demoandtestapp.other;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.model.BoxPlotItem;
 import com.vaadin.addon.charts.model.DashStyle;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.HorizontalAlign;
 import com.vaadin.addon.charts.model.Legend;
 import com.vaadin.addon.charts.model.PlotBandLabel;
-import com.vaadin.addon.charts.model.BoxPlotItem;
 import com.vaadin.addon.charts.model.PlotLine;
 import com.vaadin.addon.charts.model.PlotOptionsBoxPlot;
 import com.vaadin.addon.charts.model.XAxis;
@@ -52,13 +52,28 @@ public class BoxPlotExample extends AbstractVaadinChartExample {
         plotLine.setColor(new SolidColor("red"));
         plotLine.setValue(932);
         plotLine.setWidth(1);
+        plotLine.setzIndex(0);
+        plotLine.setDashStyle(DashStyle.DASHDOT);
         PlotBandLabel label = new PlotBandLabel("Theoretical mean: 932");
         label.setAlign(HorizontalAlign.CENTER);
         Style style = new Style();
         style.setColor(new SolidColor("gray"));
         label.setStyle(style);
         plotLine.setLabel(label);
-        yAxis.setPlotLines(plotLine);
+        PlotLine plotLine2 = new PlotLine();
+        plotLine2.setColor(new SolidColor("blue"));
+        plotLine2.setValue(800);
+        plotLine2.setWidth(1);
+        plotLine2.setzIndex(500);
+        plotLine2.setDashStyle(DashStyle.SHORTDASHDOTDOT);
+        PlotBandLabel label2 = new PlotBandLabel("Second plotline: 800");
+        label2.setAlign(HorizontalAlign.CENTER);
+        Style style2 = new Style();
+        style2.setColor(new SolidColor("gray"));
+        label2.setStyle(style2);
+        plotLine2.setLabel(label2);
+
+        yAxis.setPlotLines(plotLine, plotLine2);
 
         observations = new DataSeries();
         observations.setName("Observations");
@@ -103,7 +118,7 @@ public class BoxPlotExample extends AbstractVaadinChartExample {
     private PlotOptionsBoxPlot getPlotBoxOptions() {
         PlotOptionsBoxPlot options = new PlotOptionsBoxPlot();
 
-        if ((Boolean) useCustomStyles.getValue()) {
+        if (useCustomStyles.getValue()) {
             // optional styling
             options.setMedianColor(new SolidColor("cyan"));
             options.setMedianWidth(1);

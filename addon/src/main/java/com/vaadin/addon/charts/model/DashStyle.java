@@ -29,7 +29,7 @@ package com.vaadin.addon.charts.model;
 public enum DashStyle implements ChartEnum {
 
     SOLID("Solid"), SHORTDASH("ShortDash"), SHORTDOT("ShortDot"), SHORTDASHDOT(
-            "ShortDashDot"), SHORTDASHDOTDO("ShortDashDotDot"), DOT("Dot"), DASH(
+            "ShortDashDot"), SHORTDASHDOTDOT("ShortDashDotDot"), DOT("Dot"), DASH(
             "Dash"), LONGDASH("LongDash"), DASHDOT("DashDot"), LONGDASHDOT(
             "LongDashDot"), LONGDASHDOTDOT("LongDashDotDot");
     private final String type;
