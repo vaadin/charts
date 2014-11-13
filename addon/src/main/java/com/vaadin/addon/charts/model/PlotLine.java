@@ -30,6 +30,8 @@ public class PlotLine extends AbstractConfigurationObject {
     private Number width;
     private Color color;
     private PlotBandLabel label;
+    private Number zIndex;
+    private DashStyle dashStyle;
 
     public PlotLine() {
         super();
@@ -116,4 +118,38 @@ public class PlotLine extends AbstractConfigurationObject {
         this.label = label;
     }
 
+    /**
+     * @see #setzIndex(Number)
+     * @return zIndex
+     */
+    public Number getzIndex() {
+        return zIndex;
+    }
+
+    /**
+     * Sets the z index of the plot line within the chart. Defaults to null.
+     * 
+     * @param zIndex
+     */
+    public void setzIndex(Number zIndex) {
+        this.zIndex = zIndex;
+    }
+
+    /**
+     * @see #setDashStyle(DashStyle)
+     * @return dashStyle
+     */
+    public DashStyle getDashStyle() {
+        return dashStyle;
+    }
+
+    /**
+     * Sets the dash or dot style of the plot line. For possible values, see
+     * this {@link DashStyle}. Defaults to {@link DashStyle#SOLID}.
+     * 
+     * @param dashStyle
+     */
+    public void setDashStyle(DashStyle dashStyle) {
+        this.dashStyle = dashStyle;
+    }
 }
