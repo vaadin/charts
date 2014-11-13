@@ -47,7 +47,7 @@ public class ChartModel extends AbstractConfigurationObject {
     private Number marginLeft;
     private Number marginRight;
     private Number marginTop;
-    private Boolean animation;
+    private Object animation;
     private String plotBackgroundImage;
     private Boolean alignTicks;
     private Boolean polar;
@@ -464,6 +464,30 @@ public class ChartModel extends AbstractConfigurationObject {
     }
 
     /**
+     * Checks if animation is set as a Boolean and if so, returns that setting.
+     * Otherwise returns <code>null</code>.
+     * 
+     * @see #setAnimation(Boolean)
+     * @return <code>null</code> when the animation is not set as Boolean,
+     *         otherwise a corresponding Boolean.
+     */
+    public Boolean isAnimation() {
+        return animation instanceof Boolean ? (Boolean) animation : null;
+    }
+
+    /**
+     * Returns current animation settings. Can be a boolean (
+     * {@link #isAnimation()}), or an {@link Animation} instance.
+     * 
+     * @see #setAnimation(Boolean)
+     * @see #setAnimation(Animation)
+     * @return Current animation setting.
+     */
+    public Object getAnimation() {
+        return animation;
+    }
+
+    /**
      * Some updates to existing charts can be animated. This method sets the
      * overall animation for all chart updates. Animation can be disabled
      * throughout the chart by setting it to false here. The default is true.
@@ -479,11 +503,18 @@ public class ChartModel extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #setAnimation(Boolean)
-     * @return true is animation are enabled for this chart
+     * Some updates to existing charts can be animated. This method sets the
+     * overall animation for all chart updates. Animation can be disabled
+     * throughout the chart by setting it to false here. The default is true.
+     * <p>
+     * Note, that animation for the initial rendering (or redraw) is controlled
+     * by the plot options.
+     * 
+     * @param animation
      */
-    public boolean isAnimation() {
-        return animation == null ? true : animation;
+    public void setAnimation(Animation animation) {
+        this.animation = animation;
+        configuration.fireAnimationChanged(animation != null);
     }
 
     /**
