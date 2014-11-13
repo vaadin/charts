@@ -30,6 +30,7 @@ public class PlotOptionsColumn extends AbstractPointPlotOptions {
     private Boolean grouping;
     private Number depth;
     private Number groupZPadding;
+    private Number minPointLength;
 
     /**
      * @see #setPointPadding(Number)
@@ -142,6 +143,27 @@ public class PlotOptionsColumn extends AbstractPointPlotOptions {
      */
     public void setGroupZPadding(Number groupZPadding) {
         this.groupZPadding = groupZPadding;
+    }
+
+    /**
+     * @see #setMinPointLength(Number)
+     * @return minPointLength
+     */
+    public Number getMinPointLength() {
+        return minPointLength;
+    }
+
+    /**
+     * The minimal height for a column or width for a bar. By default, 0 values
+     * are not shown. To visualize a 0 (or close to zero) point, set the minimal
+     * point length to a pixel value like 3. In stacked column charts,
+     * minPointLength might not be respected for tightly packed values. Defaults
+     * to 0.
+     * 
+     * @param minPointLength
+     */
+    public void setMinPointLength(Number minPointLength) {
+        this.minPointLength = minPointLength;
     }
 
 }
