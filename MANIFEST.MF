@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Vaadin-Package-Version: 1
-Vaadin-Addon: vaadin7/vaadin-charts-${project.version}.jar,vaadin6/vaadin-charts-vaadin6-${project.version}.jar
+Vaadin-Addon: vaadin7/vaadin-charts-${project.version}.jar
 Implementation-Vendor: ${project.organization}
 Implementation-Title: ${project.name}
 Implementation-Version: ${project.version}
