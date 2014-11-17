@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts;
 
+import com.vaadin.addon.charts.client.ui.MouseEventDetails;
+import com.vaadin.addon.charts.client.ui.MouseEventDetails.MouseButton;
 import com.vaadin.addon.charts.model.Series;
 import com.vaadin.addon.charts.util.Util;
 
@@ -26,34 +28,27 @@ import com.vaadin.addon.charts.util.Util;
  */
 public class PointClickEvent extends com.vaadin.ui.Component.Event {
 
-    private final Double x;
-    private final Double y;
     private final String category;
     private final Series series;
     private int pointIndex;
-    private final int absoluteX;
-    private final int absoluteY;
+    private MouseEventDetails details;
 
     /**
      * Construct a PointClickEvent
      * 
      * @param source
-     * @param x
-     * @param y
+     * @param details
      * @param series
      * @param category
      * @param pointIndex
      */
-    public PointClickEvent(Chart source, double x, double y, Series series,
-            String category, int pointIndex, int absoluteX, int absoluteY) {
+    public PointClickEvent(Chart source, MouseEventDetails details,
+            Series series, String category, int pointIndex) {
         super(source);
-        this.x = x;
-        this.y = y;
+        this.details = details;
         this.series = series;
         this.category = category;
         this.pointIndex = pointIndex;
-        this.absoluteX = absoluteX;
-        this.absoluteY = absoluteY;
     }
 
     /**
@@ -68,14 +63,14 @@ public class PointClickEvent extends com.vaadin.ui.Component.Event {
      * @return the X coordinate of the point that was clicked.
      */
     public double getX() {
-        return x;
+        return details.getxValue();
     }
 
     /**
      * @return the Y coordinate of the point that was clicked.
      */
     public double getY() {
-        return y;
+        return details.getyValue();
     }
 
     /**
@@ -104,7 +99,7 @@ public class PointClickEvent extends com.vaadin.ui.Component.Event {
      *         area in pixels
      */
     public int getAbsoluteX() {
-        return absoluteX;
+        return details.getAbsoluteX();
     }
 
     /**
@@ -112,7 +107,47 @@ public class PointClickEvent extends com.vaadin.ui.Component.Event {
      *         area in pixels
      */
     public int getAbsoluteY() {
-        return absoluteY;
+        return details.getAbsoluteY();
+    }
+
+    public MouseButton getButton() {
+        return details.getButton();
+    }
+
+    /**
+     * Checks if the Alt key was down when the mouse event took place.
+     * 
+     * @return true if Alt was down when the event occured, false otherwise
+     */
+    public boolean isAltKey() {
+        return details.isAltKey();
+    }
+
+    /**
+     * Checks if the Ctrl key was down when the mouse event took place.
+     * 
+     * @return true if Ctrl was pressed when the event occured, false otherwise
+     */
+    public boolean isCtrlKey() {
+        return details.isCtrlKey();
+    }
+
+    /**
+     * Checks if the Meta key was down when the mouse event took place.
+     * 
+     * @return true if Meta was pressed when the event occured, false otherwise
+     */
+    public boolean isMetaKey() {
+        return details.isMetaKey();
+    }
+
+    /**
+     * Checks if the Shift key was down when the mouse event took place.
+     * 
+     * @return true if Shift was pressed when the event occured, false otherwise
+     */
+    public boolean isShiftKey() {
+        return details.isShiftKey();
     }
 
 }

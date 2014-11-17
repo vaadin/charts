@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts;
 
+import com.vaadin.addon.charts.client.ui.MouseEventDetails;
+import com.vaadin.addon.charts.client.ui.MouseEventDetails.MouseButton;
 import com.vaadin.addon.charts.util.Util;
 
 /*
@@ -25,25 +27,17 @@ import com.vaadin.addon.charts.util.Util;
  */
 public class ChartClickEvent extends com.vaadin.ui.Component.Event {
 
-    private final Double xAxisValue;
-    private final Double yAxisValue;
-    private final int absoluteX;
-    private final int absoluteY;
+    private final MouseEventDetails details;
 
     /**
-     * Constructs a ChartClickEvent
+     * Construct a ChartClickEvent
      * 
      * @param source
-     * @param xAxis
-     * @param yAxis
+     * @param details
      */
-    public ChartClickEvent(Chart source, double xAxis, double yAxis,
-            int absoluteX, int absoluteY) {
+    public ChartClickEvent(Chart source, MouseEventDetails details) {
         super(source);
-        xAxisValue = xAxis;
-        yAxisValue = yAxis;
-        this.absoluteX = absoluteX;
-        this.absoluteY = absoluteY;
+        this.details = details;
     }
 
     /**
@@ -58,14 +52,14 @@ public class ChartClickEvent extends com.vaadin.ui.Component.Event {
      * @return the X coordinate of the click.
      */
     public double getxAxisValue() {
-        return xAxisValue;
+        return details.getxValue();
     }
 
     /**
      * @return the Y coordinate of the click
      */
     public double getyAxisValue() {
-        return yAxisValue;
+        return details.getyValue();
     }
 
     /**
@@ -74,7 +68,7 @@ public class ChartClickEvent extends com.vaadin.ui.Component.Event {
      *         point
      */
     public int getAbsoluteX() {
-        return absoluteX;
+        return details.getAbsoluteX();
     }
 
     /**
@@ -83,7 +77,46 @@ public class ChartClickEvent extends com.vaadin.ui.Component.Event {
      *         point
      */
     public int getAbsoluteY() {
-        return absoluteY;
+        return details.getAbsoluteY();
     }
 
+    public MouseButton getButton() {
+        return details.getButton();
+    }
+
+    /**
+     * Checks if the Alt key was down when the mouse event took place.
+     * 
+     * @return true if Alt was down when the event occured, false otherwise
+     */
+    public boolean isAltKey() {
+        return details.isAltKey();
+    }
+
+    /**
+     * Checks if the Ctrl key was down when the mouse event took place.
+     * 
+     * @return true if Ctrl was pressed when the event occured, false otherwise
+     */
+    public boolean isCtrlKey() {
+        return details.isCtrlKey();
+    }
+
+    /**
+     * Checks if the Meta key was down when the mouse event took place.
+     * 
+     * @return true if Meta was pressed when the event occured, false otherwise
+     */
+    public boolean isMetaKey() {
+        return details.isMetaKey();
+    }
+
+    /**
+     * Checks if the Shift key was down when the mouse event took place.
+     * 
+     * @return true if Shift was pressed when the event occured, false otherwise
+     */
+    public boolean isShiftKey() {
+        return details.isShiftKey();
+    }
 }

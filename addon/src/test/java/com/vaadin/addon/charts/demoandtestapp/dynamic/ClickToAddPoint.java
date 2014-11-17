@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts.demoandtestapp.dynamic;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.ChartClickEvent;
 import com.vaadin.addon.charts.ChartClickListener;
@@ -28,6 +30,7 @@ public class ClickToAddPoint extends AbstractVaadinChartExample {
 
     private Chart chart;
     private Label lastAction = new Label();
+    private Label eventDetails = new Label();
 
     @Override
     public String getDescription() {
@@ -37,6 +40,7 @@ public class ClickToAddPoint extends AbstractVaadinChartExample {
     @Override
     protected Component getChart() {
         lastAction.setId("lastAction");
+        eventDetails.setId("eventDetails");
         chart = new Chart();
         chart.setId("chart");
         chart.setWidth("500px");
@@ -81,6 +85,7 @@ public class ClickToAddPoint extends AbstractVaadinChartExample {
                 double y = Math.round(event.getyAxisValue());
                 series.add(new DataSeriesItem(x, y));
                 lastAction.setValue("Added point " + x + "," + y);
+                eventDetails.setValue(createEventString(event));
             }
         });
 
@@ -93,12 +98,19 @@ public class ClickToAddPoint extends AbstractVaadinChartExample {
                 ds.remove(dataSeriesItem2);
                 lastAction.setValue("Removed point at index "
                         + event.getPointIndex());
+                eventDetails.setValue(createEventString(event));
             }
         });
         VerticalLayout verticalLayout = new VerticalLayout();
         verticalLayout.addComponent(chart);
         verticalLayout.addComponent(lastAction);
+        verticalLayout.addComponent(eventDetails);
         return verticalLayout;
+    }
+
+    private String createEventString(Event event) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return gson.toJson(event);
     }
 
     @Override

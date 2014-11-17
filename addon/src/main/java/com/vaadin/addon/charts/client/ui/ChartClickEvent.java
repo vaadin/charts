@@ -17,13 +17,12 @@ package com.vaadin.addon.charts.client.ui;
  * #L%
  */
 
-import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;
 
 /**
  * Client side ChartClickEvent
  */
-public class ChartClickEvent extends JavaScriptObject {
+public class ChartClickEvent extends AbstractClickEvent {
     protected ChartClickEvent() {
     }
 

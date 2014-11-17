@@ -101,18 +101,9 @@ public class ChartConnector extends AbstractComponentConnector {
             cfg.setClickHandler(new ChartClickHandler() {
                 @Override
                 public void onClick(ChartClickEvent event) {
-
-                    ValueAxisPair xPair = event.getXPairs().get(0);
-                    ValueAxisPair yPair = event.getYPairs().get(0);
-                    double x = xPair.getValue();
-                    double y = yPair.getValue();
-                    int absoluteX = getWidget().getAbsoluteLeft()
-                            + new Double(xPair.getAxis().toPixels(x, false))
-                                    .intValue();
-                    int absoluteY = getWidget().getAbsoluteTop()
-                            + new Double(yPair.getAxis().toPixels(y, false))
-                                    .intValue();
-                    rpc.onChartClick(x, y, absoluteX, absoluteY);
+                    MouseEventDetails details = MouseEventDetailsBuilder
+                            .buildMouseEventDetails(event, getWidget());
+                    rpc.onChartClick(details);
                 }
             });
         }
@@ -123,19 +114,16 @@ public class ChartConnector extends AbstractComponentConnector {
 
                 @Override
                 public void onClick(PointClickEvent event) {
+                    MouseEventDetails details = MouseEventDetailsBuilder
+                            .buildMouseEventDetails(event, getWidget());
+
                     HighchartPoint point = event.getPoint();
                     HighchartSeries series = point.getSeries();
                     int seriesIndex = getWidget().getSeriesIndex(series);
                     int pointIndex = series.indexOf(point);
-                    int absoluteX = getWidget().getAbsoluteLeft()
-                            + new Double(event.getXAxis().toPixels(
-                                    event.getX(), false)).intValue();
-                    int absoluteY = getWidget().getAbsoluteTop()
-                            + new Double(event.getYAxis().toPixels(
-                                    event.getY(), false)).intValue();
-                    rpc.onPointClick(event.getX(), event.getY(), seriesIndex,
-                            event.getCategory(), pointIndex, absoluteX,
-                            absoluteY);
+
+                    rpc.onPointClick(details, seriesIndex, event.getCategory(),
+                            pointIndex);
                 }
             });
         }
@@ -179,7 +167,8 @@ public class ChartConnector extends AbstractComponentConnector {
 
                 // Add resize listener lazily here. If done in init like in
                 // examples it will be called
-                // way too early, like before the wiget is not even rendered yet
+                // way too early, like before the widget is not even rendered
+                // yet
                 if (resizeListener == null) {
                     resizeListener = new ElementResizeListener() {
 

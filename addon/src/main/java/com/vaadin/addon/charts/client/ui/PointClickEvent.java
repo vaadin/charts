@@ -17,9 +17,8 @@ package com.vaadin.addon.charts.client.ui;
  * #L%
  */
 
-import com.google.gwt.core.client.JavaScriptObject;
 
-public class PointClickEvent extends JavaScriptObject {
+public class PointClickEvent extends AbstractClickEvent {
     protected PointClickEvent() {
     }
 
