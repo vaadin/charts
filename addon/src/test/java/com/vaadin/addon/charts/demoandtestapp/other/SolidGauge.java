@@ -11,6 +11,7 @@ import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.Pane;
 import com.vaadin.addon.charts.model.PlotOptionsSolidGauge;
 import com.vaadin.addon.charts.model.YAxis;
+import com.vaadin.addon.charts.model.YAxis.Stop;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
 
@@ -51,8 +52,10 @@ public class SolidGauge extends AbstractVaadinChartExample {
         yaxis.setTitle("Speed");
         yaxis.getTitle().setY(-70);
         yaxis.getLabels().setY(16);
-        yaxis.setMinColor("#eeeeee");
-        yaxis.setMaxColor(SolidColor.BLACK);
+        Stop stop1 = new Stop(0.1f, SolidColor.GREEN);
+        Stop stop2 = new Stop(0.5f, SolidColor.YELLOW);
+        Stop stop3 = new Stop(0.9f, SolidColor.RED);
+        yaxis.setStops(stop1, stop2, stop3);
 
         PlotOptionsSolidGauge plotOptions = new PlotOptionsSolidGauge();
         // plotOptions.getDataLabels().setY(5);

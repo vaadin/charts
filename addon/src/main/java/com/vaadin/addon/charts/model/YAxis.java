@@ -1,5 +1,9 @@
 package com.vaadin.addon.charts.model;
 
+import java.io.Serializable;
+
+import com.vaadin.addon.charts.model.style.SolidColor;
+
 /*
  * #%L
  * Vaadin Charts
@@ -25,6 +29,7 @@ public class YAxis extends AbstractColorAxis {
     private PlotLine[] plotLines;
     private Integer pane;
     private String gridLineInterpolation;
+    private Object[][] stops;
 
     /**
      * @see #setStackLabels(StackLabels)
@@ -107,5 +112,77 @@ public class YAxis extends AbstractColorAxis {
                     "Pane must be attached to configuration");
         }
         setPane(pane.getPaneIndex());
+    }
+
+    /**
+     * @see #setStops(Stop...)
+     * @return array of tuples, where the first item is a float between 0 and 1
+     *         assigning the relative position in the gradient, and the second
+     *         item is the color.
+     */
+    public Object[][] getStops() {
+        return stops;
+    }
+
+    /**
+     * Only for {@link ChartType#SOLIDGAUGE} series only. Color stops for the
+     * solid gauge. Use this in cases where a linear gradient between a minColor
+     * and maxColor is not sufficient.
+     * 
+     * @param stopObjects
+     */
+    public void setStops(Stop... stopObjects) {
+        if (stopObjects != null) {
+            stops = new Object[stopObjects.length][2];
+            for (int i = 0; i < stopObjects.length; i++) {
+                Stop stop = stopObjects[i];
+                if (stop.color != null) {
+                    stops[i][0] = stop.getPosition();
+                    stops[i][1] = stop.getColor().toString();
+                }
+            }
+        }
+    }
+
+    /**
+     * Class used for {@link ChartType#SOLIDGAUGE} series only. Color stops for
+     * the solid gauge. Use this in cases where a linear gradient between a
+     * minColor and maxColor is not sufficient.
+     */
+    public static class Stop implements Serializable {
+        private final Float position;
+        private final SolidColor color;
+
+        /**
+         * The stop is a tuple, where the first item is a float between 0 and 1
+         * assigning the relative position in the gradient, and the second item
+         * is the color.
+         * 
+         * @param position
+         * @param color
+         */
+        public Stop(Float position, SolidColor color) {
+            this.position = position;
+            this.color = color;
+        }
+
+        /**
+         * Float between 0 and 1 assigning the relative position in the gradient
+         * 
+         * @return position
+         */
+        public Float getPosition() {
+            return position;
+        }
+
+        /**
+         * Color of the stop in the gradient
+         * 
+         * @return color
+         */
+        public SolidColor getColor() {
+            return color;
+        }
+
     }
 }
