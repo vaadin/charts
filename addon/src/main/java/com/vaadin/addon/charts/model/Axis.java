@@ -85,6 +85,8 @@ public abstract class Axis extends AbstractConfigurationObject {
      */
     private Integer axisIndex;
 
+    private transient Configuration configuration;
+
     /**
      * @see #setCategories(String...)
      */
@@ -706,8 +708,7 @@ public abstract class Axis extends AbstractConfigurationObject {
      *            The new maximum value
      */
     public void setExtremes(Number min, Number max) {
-        this.min = min;
-        this.max = max;
+        this.setExtremes(min, max, true, true);
     }
 
     /**
@@ -956,6 +957,61 @@ public abstract class Axis extends AbstractConfigurationObject {
      */
     public void setGridLineDashStyle(DashStyle gridLineDashStyle) {
         this.gridLineDashStyle = gridLineDashStyle;
+    }
+
+    /**
+     * Returns the configuration this axis is bound to.
+     * 
+     * @return The configuration.
+     */
+    public Configuration getConfiguration() {
+        return configuration;
+    }
+
+    /**
+     * Sets the configuration this axis is bound to. This method is
+     * automatically called by configuration, when the axis is added to it.
+     * 
+     * @param configuration
+     *            Configuration this object is linked to.
+     */
+    public void setConfiguration(Configuration configuration) {
+        this.configuration = configuration;
+    }
+
+    /**
+     * Sets the extremes at runtime.
+     * 
+     * @param minimum
+     *            Minimum.
+     * @param maximum
+     *            Maximum.
+     * @param redraw
+     *            Whether or not to redraw the chart.
+     */
+    public void setExtremes(Number minimum, Number maximum, boolean redraw) {
+        this.setExtremes(min, max, redraw, true);
+    }
+
+    /**
+     * Run-time modification of the axis extremes.
+     * 
+     * @param minimum
+     *            New minimum value.
+     * @param maximum
+     *            New maximum value.
+     * @param redraw
+     *            Whether or not to redraw the chart.
+     * @param animate
+     *            Whether or not to animate the rescaling.
+     */
+    public void setExtremes(Number minimum, Number maximum, boolean redraw,
+            boolean animate) {
+        this.min = minimum;
+        this.max = maximum;
+        if (this.configuration != null)
+            this.configuration.fireAxesRescaled(this, minimum, maximum, redraw,
+                    animate);
     }
 
 }

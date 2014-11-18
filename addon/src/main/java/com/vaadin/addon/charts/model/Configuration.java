@@ -26,10 +26,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.vaadin.addon.charts.model.ConfigurationMutationListener.DataAddedEvent;
-import com.vaadin.addon.charts.model.ConfigurationMutationListener.DataRemovedEvent;
-import com.vaadin.addon.charts.model.ConfigurationMutationListener.DataUpdatedEvent;
-import com.vaadin.addon.charts.model.ConfigurationMutationListener.SeriesEnablationEvent;
+import com.vaadin.addon.charts.client.ui.ChartClientRpc;
+import com.vaadin.addon.charts.events.AxisRescaledEvent;
+import com.vaadin.addon.charts.events.ConfigurationChangeListener;
+import com.vaadin.addon.charts.events.DataAddedEvent;
+import com.vaadin.addon.charts.events.DataRemovedEvent;
+import com.vaadin.addon.charts.events.DataUpdatedEvent;
+import com.vaadin.addon.charts.events.SeriesStateEvent;
 
 /**
  * Chart's configuration root object containing all the child objects that are
@@ -54,7 +57,7 @@ public class Configuration extends AbstractConfigurationObject {
 
     private PaneList pane;
     private Exporting exporting = new Exporting(false);
-    private transient ConfigurationMutationListener configurationMutationListener;
+    private final transient ArrayList<ConfigurationChangeListener> changeListeners = new ArrayList<ConfigurationChangeListener>();
 
     /**
      * @see #setChart(ChartModel)
@@ -198,7 +201,9 @@ public class Configuration extends AbstractConfigurationObject {
         }
 
         if (xAxis.getNumberOfAxes() == 0) {
-            xAxis.addAxis(new XAxis());
+            XAxis x = new XAxis();
+            x.setConfiguration(this);
+            xAxis.addAxis(x);
         }
 
         return (XAxis) xAxis.getAxis(0);
@@ -263,7 +268,9 @@ public class Configuration extends AbstractConfigurationObject {
         }
 
         if (yAxis.getNumberOfAxes() == 0) {
-            yAxis.addAxis(new YAxis());
+            YAxis y = new YAxis();
+            y.setConfiguration(this);
+            yAxis.addAxis(y);
         }
 
         return (YAxis) yAxis.getAxis(0);
@@ -555,9 +562,9 @@ public class Configuration extends AbstractConfigurationObject {
 
     /** Notifies listeners that a data point has been added */
     void fireDataAdded(Series series, Number value) {
-        if (configurationMutationListener != null) {
-            configurationMutationListener.dataAdded(new DataAddedEvent(series,
-                    value));
+        DataAddedEvent dataAddedEvent = new DataAddedEvent(series, value);
+        for (ConfigurationChangeListener listener : this.changeListeners) {
+            listener.dataAdded(dataAddedEvent);
         }
     }
 
@@ -567,47 +574,126 @@ public class Configuration extends AbstractConfigurationObject {
      * @param shift
      */
     void fireDataAdded(Series series, DataSeriesItem item, boolean shift) {
-        if (configurationMutationListener != null) {
-            configurationMutationListener.dataAdded(new DataAddedEvent(series,
-                    item, shift));
+        DataAddedEvent dataAddedEvent = new DataAddedEvent(series, item, shift);
+        for (ConfigurationChangeListener listener : this.changeListeners) {
+            listener.dataAdded(dataAddedEvent);
         }
     }
 
     /** Notifies listeners that a data point has been removed */
     void fireDataRemoved(Series series, int index) {
-        if (configurationMutationListener != null) {
-            configurationMutationListener.dataRemoved(new DataRemovedEvent(
-                    series, index));
+        DataRemovedEvent dataRemovedEvent = new DataRemovedEvent(series, index);
+        for (ConfigurationChangeListener listener : this.changeListeners) {
+            listener.dataRemoved(dataRemovedEvent);
         }
     }
 
     /** Notifies listeners that a data point has been updated */
     void fireDataUpdated(Series series, Number value, int pointIndex) {
-        if (configurationMutationListener != null) {
-            configurationMutationListener.dataUpdated(new DataUpdatedEvent(
-                    series, value, pointIndex));
+        DataUpdatedEvent dataUpdatedEvent = new DataUpdatedEvent(series, value,
+                pointIndex);
+        for (ConfigurationChangeListener listener : this.changeListeners) {
+            listener.dataUpdated(dataUpdatedEvent);
         }
     }
 
     /** Notifies listeners that a data point has been updated */
     void fireDataUpdated(Series series, DataSeriesItem item, int pointIndex) {
-        if (configurationMutationListener != null) {
-            configurationMutationListener.dataUpdated(new DataUpdatedEvent(
-                    series, item, pointIndex));
+        DataUpdatedEvent dataUpdatedEvent = new DataUpdatedEvent(series, item,
+                pointIndex);
+        for (ConfigurationChangeListener listener : this.changeListeners) {
+            listener.dataUpdated(dataUpdatedEvent);
         }
     }
 
     /** Notifies listeners that a series is enabled or disabled */
     void fireSeriesEnabled(Series series, boolean enabled) {
-        if (configurationMutationListener != null) {
-            configurationMutationListener
-                    .seriesEnablation(new SeriesEnablationEvent(series, enabled));
+        SeriesStateEvent seriesEnablationEvent = new SeriesStateEvent(series,
+                enabled);
+        for (ConfigurationChangeListener listener : this.changeListeners) {
+            listener.seriesStateChanged(seriesEnablationEvent);
         }
     }
 
-    public void fireAnimationChanged(boolean animation) {
-        if (configurationMutationListener != null) {
-            configurationMutationListener.animationChanged(animation);
+    /**
+     * Fires animation change event.
+     * 
+     * @param animation
+     *            Whether or not animation has been changed.
+     */
+    void fireAnimationChanged(boolean animation) {
+        for (ConfigurationChangeListener listener : this.changeListeners) {
+            listener.animationChanged(animation);
+        }
+    }
+
+    /**
+     * Gets the axis dimension.
+     * 
+     * @param axis
+     *            Axis to check.
+     * @return Dimension, as defined in ChartClientRpc.
+     */
+    private short getAxisDimension(Axis axis) {
+        if (this.xAxis.getAxes().contains(axis))
+            return ChartClientRpc.X_AXIS;
+        else if (this.yAxis.getAxes().contains(axis))
+            return ChartClientRpc.Y_AXIS;
+        // z axis will get 2
+        else if (this.colorAxis.getAxes().contains(axis))
+            return ChartClientRpc.COLOR_AXIS;
+        else
+            return -1;
+    }
+
+    /**
+     * Returns axis index in the dimension.
+     * 
+     * @param dimension
+     *            Dimension of the axis.
+     * @param axis
+     *            Axis to get index for.
+     * @return Index of the axis at given dimension.
+     */
+    private int getAxisIndex(short dimension, Axis axis) {
+        switch (dimension) {
+        case ChartClientRpc.X_AXIS:
+            return this.xAxis.getAxes().indexOf(axis);
+        case ChartClientRpc.Y_AXIS:
+            return this.yAxis.getAxes().indexOf(axis);
+        case ChartClientRpc.COLOR_AXIS:
+            return this.colorAxis.getAxes().indexOf(axis);
+        default:
+            return -1;
+        }
+    }
+
+    /**
+     * Fires axis rescaled event.
+     * 
+     * @param axis
+     *            Axis that is the source of the event.
+     * @param minimum
+     *            New minimum.
+     * @param maximum
+     *            New maximum.
+     * @param redraw
+     *            Whether or not to redraw.
+     * @param animate
+     *            Whether or not to animate.
+     */
+    void fireAxesRescaled(Axis axis, Number minimum, Number maximum,
+            boolean redraw, boolean animate) {
+
+        // determine the dimension of the axis, either x or y
+        short axisType = this.getAxisDimension(axis);
+
+        int axisIndex = this.getAxisIndex(axisType, axis);
+
+        AxisRescaledEvent event = new AxisRescaledEvent(axisType, axisIndex,
+                minimum, maximum, redraw, animate);
+        for (ConfigurationChangeListener listener : this.changeListeners) {
+            listener.axisRescaled(event);
         }
     }
 
@@ -618,10 +704,20 @@ public class Configuration extends AbstractConfigurationObject {
      * cause unexpected behavior.
      * 
      * @param listener
-     * @deprecated This method is reserved for internal use only
+     *            Listener to add.
      */
-    public void setMutationListener(ConfigurationMutationListener listener) {
-        configurationMutationListener = listener;
+    public void addChangeListener(ConfigurationChangeListener listener) {
+        this.changeListeners.add(listener);
+    }
+
+    /**
+     * Removes a change listener.
+     * 
+     * @param listener
+     *            Listener to remove.
+     */
+    public void removeChangeListener(ConfigurationChangeListener listener) {
+        this.changeListeners.remove(listener);
     }
 
     private void readObject(ObjectInputStream in) throws IOException,
@@ -646,7 +742,9 @@ public class Configuration extends AbstractConfigurationObject {
         }
 
         if (colorAxis.getNumberOfAxes() == 0) {
-            colorAxis.addAxis(new ColorAxis());
+            ColorAxis c = new ColorAxis();
+            c.setConfiguration(this);
+            colorAxis.addAxis(c);
         }
 
         return (ColorAxis) colorAxis.getAxis(0);
@@ -679,6 +777,10 @@ public class Configuration extends AbstractConfigurationObject {
      * Removes all defined color-axes
      */
     public void removeColorAxes() {
+        if (colorAxis != null)
+            for (Axis a : colorAxis.getAxes())
+                if (a != null)
+                    a.setConfiguration(null);
         colorAxis = null;
     }
 
@@ -694,6 +796,7 @@ public class Configuration extends AbstractConfigurationObject {
             colorAxis = new AxisList();
         }
         colorAxis.addAxis(axis);
+        axis.setConfiguration(this);
     }
 
 }

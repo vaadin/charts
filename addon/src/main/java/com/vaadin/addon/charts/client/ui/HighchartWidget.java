@@ -82,6 +82,19 @@ public class HighchartWidget extends Widget {
         return -1;
     }
 
+    public void updatexAxis(int axisIndex, double minimum, double maximum,
+            boolean redraw, boolean animate) {
+        JsArray<HighchartAxis> axes = jsOverlay.getxAxes();
+        axes.get(axisIndex).setExtremes(minimum, maximum, redraw, animate);
+
+    }
+
+    public void updateyAxis(int axisIndex, double minimum, double maximum,
+            boolean redraw, boolean animate) {
+        JsArray<HighchartAxis> axes = jsOverlay.getyAxes();
+        axes.get(axisIndex).setExtremes(minimum, maximum, redraw, animate);
+    }
+
     public void setAnimation(boolean animation) {
         jsOverlay.setAnimation(animation);
     }

@@ -75,7 +75,22 @@ public class ChartConnector extends AbstractComponentConnector {
             @Override
             public void updatePoint(int seriesIndex, int pointIndex, String json) {
                 getWidget().updatePointValue(seriesIndex, pointIndex, json);
+            }
 
+            @Override
+            public void rescaleAxis(short axisCategory, int axisIndex,
+                    double minimum, double maximum, boolean redraw,
+                    boolean animate) {
+                switch (axisCategory) {
+                case X_AXIS:
+                    getWidget().updatexAxis(axisIndex, minimum, maximum,
+                            redraw, animate);
+                    break;
+                default:
+                    getWidget().updateyAxis(axisIndex, minimum, maximum,
+                            redraw, animate);
+                    break;
+                }
             }
         });
     }

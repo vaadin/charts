@@ -33,4 +33,10 @@ public class HighchartAxis extends JavaScriptObject {
                 return -1;
             }
     }-*/;
+
+    public native final void setExtremes(double min, double max,
+            boolean redraw, boolean animation)
+    /*-{
+        this.setExtremes(min, max, redraw, animation);
+     }-*/;
 }

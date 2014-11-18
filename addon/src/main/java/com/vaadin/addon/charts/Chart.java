@@ -26,11 +26,17 @@ import com.vaadin.addon.charts.client.ui.ChartConnector;
 import com.vaadin.addon.charts.client.ui.ChartServerRpc;
 import com.vaadin.addon.charts.client.ui.ChartState;
 import com.vaadin.addon.charts.client.ui.MouseEventDetails;
+import com.vaadin.addon.charts.events.AbstractSeriesEvent;
+import com.vaadin.addon.charts.events.AxisRescaledEvent;
+import com.vaadin.addon.charts.events.ConfigurationChangeListener;
+import com.vaadin.addon.charts.events.DataAddedEvent;
+import com.vaadin.addon.charts.events.DataRemovedEvent;
+import com.vaadin.addon.charts.events.DataUpdatedEvent;
+import com.vaadin.addon.charts.events.SeriesStateEvent;
 import com.vaadin.addon.charts.model.AbstractSeries;
 import com.vaadin.addon.charts.model.ChartModel;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
-import com.vaadin.addon.charts.model.ConfigurationMutationListener;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.Series;
 import com.vaadin.ui.AbstractComponent;
@@ -66,8 +72,82 @@ import com.vaadin.util.ReflectTools;
  * @see <a href="http://vaadin.com/book">Book of Vaadin</a>
  * @see <a href="https://vaadin.com/add-ons/charts">Vaadin Charts</a>
  */
-@SuppressWarnings("deprecation")
+@SuppressWarnings("serial")
 public class Chart extends AbstractComponent {
+
+    /**
+     * Forwards changes broadcasted by configurations into client RPC method
+     * calls.
+     * 
+     * @since 2.0
+     *
+     */
+    private static class ProxyChangeForwarder implements
+            ConfigurationChangeListener {
+
+        private final Chart chart;
+
+        public ProxyChangeForwarder(Chart chart) {
+            this.chart = chart;
+        }
+
+        @Override
+        public void dataAdded(DataAddedEvent event) {
+            if (event.getItem() != null) {
+                if (event.getItem().getX() != null) {
+                    // x,y type data
+                    chart.getRpcProxy(ChartClientRpc.class).addPoint(
+                            event.getItem().toString(), getSeriesIndex(event),
+                            event.isShift());
+                }
+            }
+        }
+
+        private int getSeriesIndex(AbstractSeriesEvent event) {
+            return chart.getConfiguration().getSeries()
+                    .indexOf(event.getSeries());
+        }
+
+        @Override
+        public void dataRemoved(DataRemovedEvent event) {
+            chart.getRpcProxy(ChartClientRpc.class).removePoint(
+                    event.getIndex(), getSeriesIndex(event));
+        }
+
+        @Override
+        public void dataUpdated(DataUpdatedEvent event) {
+            if (event.getValue() != null) {
+                chart.getRpcProxy(ChartClientRpc.class).updatePointValue(
+                        getSeriesIndex(event), event.getPointIndex(),
+                        event.getValue().doubleValue());
+            } else {
+                chart.getRpcProxy(ChartClientRpc.class).updatePoint(
+                        getSeriesIndex(event), event.getPointIndex(),
+                        event.getItem().toString());
+            }
+        }
+
+        @Override
+        public void seriesStateChanged(SeriesStateEvent event) {
+            chart.getRpcProxy(ChartClientRpc.class).setSeriesEnabled(
+                    getSeriesIndex(event), event.isEnabled());
+        }
+
+        @Override
+        public void animationChanged(boolean animation) {
+            chart.getRpcProxy(ChartClientRpc.class).setAnimationEnabled(
+                    animation);
+        }
+
+        @Override
+        public void axisRescaled(AxisRescaledEvent event) {
+            chart.getRpcProxy(ChartClientRpc.class).rescaleAxis(
+                    event.getAxis(), event.getAxisIndex(),
+                    event.getMinimum().doubleValue(),
+                    event.getMaximum().doubleValue(),
+                    event.isRedrawingNeeded(), event.isAnimated());
+        }
+    }
 
     private final class ChartServerRpcImplementation implements ChartServerRpc {
         @Override
@@ -113,6 +193,13 @@ public class Chart extends AbstractComponent {
 
         }
     }
+
+    /**
+     * Listens to events on the series attached to the chart and redraws as
+     * necessary.
+     */
+    private final ConfigurationChangeListener changeListener = new ProxyChangeForwarder(
+            this);
 
     private String jsonConfig;
 
@@ -163,7 +250,7 @@ public class Chart extends AbstractComponent {
         if (configuration != null) {
             // Start listening to data series events once the chart has been
             // drawn.
-            configuration.setMutationListener(dataSeriesEventListener);
+            configuration.addChangeListener(changeListener);
         }
     }
 
@@ -360,66 +447,11 @@ public class Chart extends AbstractComponent {
                 LegendItemClickEvent.class, listener);
     }
 
-    /**
-     * Listens to events on the series attached to the chart and redraws as
-     * necessary.
-     */
-    private final ConfigurationMutationListener dataSeriesEventListener = new ConfigurationMutationListener() {
-        // TODO: add support for DataSeriesItems with name,y pairs
-
-        @Override
-        public void dataAdded(DataAddedEvent event) {
-            if (event.getItem() != null) {
-                if (event.getItem().getX() != null) {
-                    // x,y type data
-                    getRpcProxy(ChartClientRpc.class).addPoint(
-                            event.getItem().toString(), getSeriesIndex(event),
-                            event.isShift());
-                }
-            }
-        }
-
-        private int getSeriesIndex(SeriesEvent event) {
-            return getConfiguration().getSeries().indexOf(event.getSeries());
-        }
-
-        @Override
-        public void dataRemoved(DataRemovedEvent event) {
-            getRpcProxy(ChartClientRpc.class).removePoint(event.getIndex(),
-                    getSeriesIndex(event));
-        }
-
-        @Override
-        public void dataUpdated(DataUpdatedEvent event) {
-            if (event.getValue() != null) {
-                getRpcProxy(ChartClientRpc.class).updatePointValue(
-                        getSeriesIndex(event), event.getPointIndex(),
-                        event.getValue().doubleValue());
-            } else {
-                getRpcProxy(ChartClientRpc.class).updatePoint(
-                        getSeriesIndex(event), event.getPointIndex(),
-                        event.getItem().toString());
-            }
-        }
-
-        @Override
-        public void seriesEnablation(SeriesEnablationEvent event) {
-            getRpcProxy(ChartClientRpc.class).setSeriesEnabled(
-                    getSeriesIndex(event), event.isEnabled());
-        }
-
-        @Override
-        public void animationChanged(boolean animation) {
-            getRpcProxy(ChartClientRpc.class).setAnimationEnabled(animation);
-        }
-
-    };
-
     private void readObject(ObjectInputStream in) throws IOException,
             ClassNotFoundException {
         in.defaultReadObject();
         if (getUI() != null) {
-            configuration.setMutationListener(dataSeriesEventListener);
+            configuration.addChangeListener(changeListener);
         }
     }
 
@@ -451,7 +483,7 @@ public class Chart extends AbstractComponent {
     public void setConfiguration(Configuration configuration) {
         if (this.configuration != null) {
             // unbound old configuration
-            this.configuration.setMutationListener(null);
+            this.configuration.removeChangeListener(changeListener);
         }
         this.configuration = configuration;
         stateDirty = true;

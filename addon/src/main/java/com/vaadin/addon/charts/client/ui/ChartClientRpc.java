@@ -56,4 +56,12 @@ public interface ChartClientRpc extends ClientRpc {
 
     void updatePoint(int indexOf, int pointIndex, String json);
 
+    public static final short X_AXIS = 0;
+    public static final short Y_AXIS = 1;
+    public static final short Z_AXIS = 2;
+    public static final short COLOR_AXIS = 3;
+
+    void rescaleAxis(short axisCategory, int axisIndex, double minimum,
+            double maximum, boolean redraw, boolean animate);
+
 }
