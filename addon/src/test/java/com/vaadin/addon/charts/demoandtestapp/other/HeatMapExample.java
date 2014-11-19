@@ -6,7 +6,9 @@ import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.HorizontalAlign;
 import com.vaadin.addon.charts.model.LayoutDirection;
+import com.vaadin.addon.charts.model.PlotOptionsHeatMap;
 import com.vaadin.addon.charts.model.RangeSeries;
+import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
@@ -47,14 +49,21 @@ public class HeatMapExample extends AbstractVaadinChartExample {
         config.getLegend().setY(25);
         config.getLegend().setSymbolHeight(320);
 
-        RangeSeries rs = new RangeSeries("Sales per employee",
-                this.getRawData());
+        RangeSeries rs = new RangeSeries("Sales per employee", getRawData());
+
+        PlotOptionsHeatMap plotOptionsHeatMap = new PlotOptionsHeatMap();
+        plotOptionsHeatMap.setBorderColor(SolidColor.BLANCHEDALMOND);
+        plotOptionsHeatMap.setBorderWidth(3);
+
+        Tooltip tooltip = new Tooltip();
+        tooltip.setHeaderFormat("{series.name}<br/>");
+        tooltip.setPointFormat("Amount: <b>{point.value}</b> ");
+        plotOptionsHeatMap.setTooltip(tooltip);
+        config.setPlotOptions(plotOptionsHeatMap);
 
         config.setSeries(rs);
 
         chart.drawChart(config);
-
-        // System.err.println(config.toString());
 
         return chart;
     }
