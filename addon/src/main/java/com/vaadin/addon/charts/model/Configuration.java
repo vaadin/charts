@@ -32,6 +32,7 @@ import com.vaadin.addon.charts.events.ConfigurationChangeListener;
 import com.vaadin.addon.charts.events.DataAddedEvent;
 import com.vaadin.addon.charts.events.DataRemovedEvent;
 import com.vaadin.addon.charts.events.DataUpdatedEvent;
+import com.vaadin.addon.charts.events.ItemSlicedEvent;
 import com.vaadin.addon.charts.events.SeriesStateEvent;
 
 /**
@@ -563,7 +564,7 @@ public class Configuration extends AbstractConfigurationObject {
     /** Notifies listeners that a data point has been added */
     void fireDataAdded(Series series, Number value) {
         DataAddedEvent dataAddedEvent = new DataAddedEvent(series, value);
-        for (ConfigurationChangeListener listener : this.changeListeners) {
+        for (ConfigurationChangeListener listener : changeListeners) {
             listener.dataAdded(dataAddedEvent);
         }
     }
@@ -575,7 +576,7 @@ public class Configuration extends AbstractConfigurationObject {
      */
     void fireDataAdded(Series series, DataSeriesItem item, boolean shift) {
         DataAddedEvent dataAddedEvent = new DataAddedEvent(series, item, shift);
-        for (ConfigurationChangeListener listener : this.changeListeners) {
+        for (ConfigurationChangeListener listener : changeListeners) {
             listener.dataAdded(dataAddedEvent);
         }
     }
@@ -583,7 +584,7 @@ public class Configuration extends AbstractConfigurationObject {
     /** Notifies listeners that a data point has been removed */
     void fireDataRemoved(Series series, int index) {
         DataRemovedEvent dataRemovedEvent = new DataRemovedEvent(series, index);
-        for (ConfigurationChangeListener listener : this.changeListeners) {
+        for (ConfigurationChangeListener listener : changeListeners) {
             listener.dataRemoved(dataRemovedEvent);
         }
     }
@@ -592,7 +593,7 @@ public class Configuration extends AbstractConfigurationObject {
     void fireDataUpdated(Series series, Number value, int pointIndex) {
         DataUpdatedEvent dataUpdatedEvent = new DataUpdatedEvent(series, value,
                 pointIndex);
-        for (ConfigurationChangeListener listener : this.changeListeners) {
+        for (ConfigurationChangeListener listener : changeListeners) {
             listener.dataUpdated(dataUpdatedEvent);
         }
     }
@@ -601,7 +602,7 @@ public class Configuration extends AbstractConfigurationObject {
     void fireDataUpdated(Series series, DataSeriesItem item, int pointIndex) {
         DataUpdatedEvent dataUpdatedEvent = new DataUpdatedEvent(series, item,
                 pointIndex);
-        for (ConfigurationChangeListener listener : this.changeListeners) {
+        for (ConfigurationChangeListener listener : changeListeners) {
             listener.dataUpdated(dataUpdatedEvent);
         }
     }
@@ -610,7 +611,7 @@ public class Configuration extends AbstractConfigurationObject {
     void fireSeriesEnabled(Series series, boolean enabled) {
         SeriesStateEvent seriesEnablationEvent = new SeriesStateEvent(series,
                 enabled);
-        for (ConfigurationChangeListener listener : this.changeListeners) {
+        for (ConfigurationChangeListener listener : changeListeners) {
             listener.seriesStateChanged(seriesEnablationEvent);
         }
     }
@@ -622,7 +623,7 @@ public class Configuration extends AbstractConfigurationObject {
      *            Whether or not animation has been changed.
      */
     void fireAnimationChanged(boolean animation) {
-        for (ConfigurationChangeListener listener : this.changeListeners) {
+        for (ConfigurationChangeListener listener : changeListeners) {
             listener.animationChanged(animation);
         }
     }
@@ -635,15 +636,15 @@ public class Configuration extends AbstractConfigurationObject {
      * @return Dimension, as defined in ChartClientRpc.
      */
     private short getAxisDimension(Axis axis) {
-        if (this.xAxis.getAxes().contains(axis))
+        if (xAxis.getAxes().contains(axis)) {
             return ChartClientRpc.X_AXIS;
-        else if (this.yAxis.getAxes().contains(axis))
+        } else if (yAxis.getAxes().contains(axis)) {
             return ChartClientRpc.Y_AXIS;
-        // z axis will get 2
-        else if (this.colorAxis.getAxes().contains(axis))
+        } else if (colorAxis.getAxes().contains(axis)) {
             return ChartClientRpc.COLOR_AXIS;
-        else
+        } else {
             return -1;
+        }
     }
 
     /**
@@ -658,11 +659,11 @@ public class Configuration extends AbstractConfigurationObject {
     private int getAxisIndex(short dimension, Axis axis) {
         switch (dimension) {
         case ChartClientRpc.X_AXIS:
-            return this.xAxis.getAxes().indexOf(axis);
+            return xAxis.getAxes().indexOf(axis);
         case ChartClientRpc.Y_AXIS:
-            return this.yAxis.getAxes().indexOf(axis);
+            return yAxis.getAxes().indexOf(axis);
         case ChartClientRpc.COLOR_AXIS:
-            return this.colorAxis.getAxes().indexOf(axis);
+            return colorAxis.getAxes().indexOf(axis);
         default:
             return -1;
         }
@@ -686,15 +687,34 @@ public class Configuration extends AbstractConfigurationObject {
             boolean redraw, boolean animate) {
 
         // determine the dimension of the axis, either x or y
-        short axisType = this.getAxisDimension(axis);
+        short axisType = getAxisDimension(axis);
 
-        int axisIndex = this.getAxisIndex(axisType, axis);
+        int axisIndex = getAxisIndex(axisType, axis);
 
         AxisRescaledEvent event = new AxisRescaledEvent(axisType, axisIndex,
                 minimum, maximum, redraw, animate);
-        for (ConfigurationChangeListener listener : this.changeListeners) {
+        for (ConfigurationChangeListener listener : changeListeners) {
             listener.axisRescaled(event);
         }
+    }
+
+    /**
+     * Fires point sliced event
+     * 
+     * @param series
+     * @param index
+     * @param sliced
+     * @param redraw
+     * @param animation
+     */
+    void fireItemSliced(Series series, int index, Boolean sliced,
+            Boolean redraw, Boolean animation) {
+        ItemSlicedEvent event = new ItemSlicedEvent(series, index, sliced,
+                redraw, animation);
+        for (ConfigurationChangeListener listener : changeListeners) {
+            listener.itemSliced(event);
+        }
+
     }
 
     /**
@@ -707,7 +727,7 @@ public class Configuration extends AbstractConfigurationObject {
      *            Listener to add.
      */
     public void addChangeListener(ConfigurationChangeListener listener) {
-        this.changeListeners.add(listener);
+        changeListeners.add(listener);
     }
 
     /**
@@ -717,7 +737,7 @@ public class Configuration extends AbstractConfigurationObject {
      *            Listener to remove.
      */
     public void removeChangeListener(ConfigurationChangeListener listener) {
-        this.changeListeners.remove(listener);
+        changeListeners.remove(listener);
     }
 
     private void readObject(ObjectInputStream in) throws IOException,
@@ -777,10 +797,13 @@ public class Configuration extends AbstractConfigurationObject {
      * Removes all defined color-axes
      */
     public void removeColorAxes() {
-        if (colorAxis != null)
-            for (Axis a : colorAxis.getAxes())
-                if (a != null)
+        if (colorAxis != null) {
+            for (Axis a : colorAxis.getAxes()) {
+                if (a != null) {
                     a.setConfiguration(null);
+                }
+            }
+        }
         colorAxis = null;
     }
 

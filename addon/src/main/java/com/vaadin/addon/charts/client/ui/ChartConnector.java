@@ -92,6 +92,14 @@ public class ChartConnector extends AbstractComponentConnector {
                     break;
                 }
             }
+
+            @Override
+            public void sliceItem(int seriesIndex, int pointIndex,
+                    Boolean sliced, Boolean redraw, Boolean animation) {
+                getWidget().slicePoint(seriesIndex, pointIndex, sliced, redraw,
+                        animation);
+            }
+
         });
     }
 

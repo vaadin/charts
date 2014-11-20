@@ -11,7 +11,11 @@ import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.PlotOptionsPie;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Component;
+import com.vaadin.ui.VerticalLayout;
 
 @SuppressWarnings("serial")
 public class PieWithGradientFill extends AbstractVaadinChartExample {
@@ -39,11 +43,22 @@ public class PieWithGradientFill extends AbstractVaadinChartExample {
                 .setFormatter("'<b>'+ this.point.name +'</b>: '+ this.percentage +' %'");
         plotOptions.setDataLabels(dataLabels);
         conf.setPlotOptions(plotOptions);
-
-        conf.setSeries(getBrowserMarketShareSeries());
+        final DataSeries series = getBrowserMarketShareSeries();
+        conf.setSeries(series);
 
         chart.drawChart();
-        return chart;
+        VerticalLayout layout = new VerticalLayout();
+        layout.addComponent(chart);
+        Button button = new Button("Slice");
+        button.addClickListener(new ClickListener() {
+
+            @Override
+            public void buttonClick(ClickEvent event) {
+                series.setItemSliced(1, null);
+            }
+        });
+        layout.addComponent(button);
+        return layout;
     }
 
     private DataSeries getBrowserMarketShareSeries() {

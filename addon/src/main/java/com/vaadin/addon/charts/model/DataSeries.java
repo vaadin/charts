@@ -288,4 +288,54 @@ public class DataSeries extends AbstractSeries {
     public void clear() {
         data.clear();
     }
+
+    /**
+     * Sets a new sliced value to the item with the specified index
+     * 
+     * @param index
+     *            Index of the Item to modify
+     * @param sliced
+     *            When true, the point is sliced out. When false, the point is
+     *            set in. When null the sliced state is toggled
+     */
+    public void setItemSliced(int index, Boolean sliced) {
+        setItemSliced(index, sliced, true, true);
+    }
+
+    /**
+     * Sets a new sliced value to the item with the specified index
+     * 
+     * @param index
+     *            Index of the Item to modify
+     * @param sliced
+     *            When true, the point is sliced out. When false, the point is
+     *            set in. When null the sliced state is toggled
+     * @param redraw
+     *            Whether to redraw the chart after the point is altered.
+     */
+    public void setItemSliced(int index, Boolean sliced, Boolean redraw) {
+        setItemSliced(index, sliced, redraw, true);
+    }
+
+    /**
+     * Sets a new sliced value to the item with the specified index
+     * 
+     * @param index
+     *            Index of the Item to modify
+     * @param sliced
+     *            When true, the point is sliced out. When false, the point is
+     *            set in. When null the sliced state is toggled
+     * @param redraw
+     *            Whether to redraw the chart after the point is altered.
+     * @param animation
+     *            When true, the move will be animated with default animation
+     *            options
+     */
+    public void setItemSliced(int index, Boolean sliced, Boolean redraw,
+            Boolean animation) {
+        DataSeriesItem item = get(index);
+        item.setSliced(sliced);
+        getConfiguration().fireItemSliced(this, index, sliced, redraw,
+                animation);
+    }
 }

@@ -32,6 +32,7 @@ import com.vaadin.addon.charts.events.ConfigurationChangeListener;
 import com.vaadin.addon.charts.events.DataAddedEvent;
 import com.vaadin.addon.charts.events.DataRemovedEvent;
 import com.vaadin.addon.charts.events.DataUpdatedEvent;
+import com.vaadin.addon.charts.events.ItemSlicedEvent;
 import com.vaadin.addon.charts.events.SeriesStateEvent;
 import com.vaadin.addon.charts.model.AbstractSeries;
 import com.vaadin.addon.charts.model.ChartModel;
@@ -147,6 +148,14 @@ public class Chart extends AbstractComponent {
                     event.getMaximum().doubleValue(),
                     event.isRedrawingNeeded(), event.isAnimated());
         }
+
+        @Override
+        public void itemSliced(ItemSlicedEvent event) {
+            chart.getRpcProxy(ChartClientRpc.class).sliceItem(
+                    getSeriesIndex(event), event.getIndex(), event.isSliced(),
+                    event.isRedraw(), event.isAnimation());
+        }
+
     }
 
     private final class ChartServerRpcImplementation implements ChartServerRpc {

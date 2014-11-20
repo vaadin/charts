@@ -64,4 +64,7 @@ public interface ChartClientRpc extends ClientRpc {
     void rescaleAxis(short axisCategory, int axisIndex, double minimum,
             double maximum, boolean redraw, boolean animate);
 
+    void sliceItem(int seriesIndex, int pointIndex, Boolean sliced,
+            Boolean redraw, Boolean animation);
+
 }

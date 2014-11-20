@@ -75,4 +75,12 @@ public interface ConfigurationChangeListener extends Serializable {
      */
     void axisRescaled(AxisRescaledEvent event);
 
+    /**
+     * A point has been sliced
+     * 
+     * @param event
+     *            The event
+     */
+    void itemSliced(ItemSlicedEvent event);
+
 }
