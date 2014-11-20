@@ -19,6 +19,8 @@ package com.vaadin.addon.charts.themes;
 
 import com.vaadin.addon.charts.model.AbstractPlotOptions;
 import com.vaadin.addon.charts.model.Labels;
+import com.vaadin.addon.charts.model.State;
+import com.vaadin.addon.charts.model.States;
 import com.vaadin.addon.charts.model.style.AxisStyle;
 import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.FontWeight;
@@ -31,9 +33,9 @@ import com.vaadin.addon.charts.model.style.TickIntervalStyle;
  * The default theme for Vaadin Charts
  */
 @SuppressWarnings("serial")
-public class VaadinDarkTheme extends Theme {
+public class ValoDarkTheme extends Theme {
 
-    protected static final int BORDER_RADIUS = 4;
+    protected static final int BORDER_RADIUS = 5;
     protected final static SolidColor COLOR1 = new SolidColor(236, 100, 100);
     protected final static SolidColor COLOR2 = new SolidColor(152, 223, 88);
     protected final static SolidColor COLOR3 = new SolidColor(48, 144, 240);
@@ -67,7 +69,7 @@ public class VaadinDarkTheme extends Theme {
     protected static final Color LEGEND_TEXT_COLOR = new SolidColor(155, 155,
             155);
 
-    public VaadinDarkTheme() {
+    public ValoDarkTheme() {
         setColors(COLOR1, COLOR2, COLOR3, COLOR4, COLOR5, COLOR6, COLOR7,
                 COLOR8);
         Style style = new Style();
@@ -100,8 +102,9 @@ public class VaadinDarkTheme extends Theme {
         getTooltip().getStyle().setColor(TOOLTIP_TEXT_COLOR);
 
         getLegend().getItemStyle().setColor(LEGEND_TEXT_COLOR);
+        getLegend().getItemStyle().setFontWeight(FontWeight.NORMAL);
         Style itemHoverStyle = new Style();
-        itemHoverStyle.setColor(new SolidColor(0, 0, 0));
+        itemHoverStyle.setColor(LEGEND_TEXT_COLOR);
         getLegend().setItemHoverStyle(itemHoverStyle);
         getLegend().setItemHiddenStyle(new Style());
         getLegend().getItemHiddenStyle()
@@ -130,24 +133,32 @@ public class VaadinDarkTheme extends Theme {
         getPlotOptions().getLine().setShadow(true);
         getPlotOptions().getSpline().setShadow(true);
         getPlotOptions().getBar().setShadow(false);
-        getPlotOptions().getColumn().setShadow(true);
+        getPlotOptions().getColumn().setShadow(false);
         getPlotOptions().getArea().setShadow(true);
         getPlotOptions().getPie().setShadow(true);
 
         getPlotOptions().getPie().setBorderWidth(0);
+        getPlotOptions().getColumn().setBorderWidth(0);
+        getPlotOptions().getColumn().setPointPadding(0);
         getPlotOptions().getBar().setBorderWidth(0);
         getPlotOptions().getBar().setPointPadding(0);
         getPlotOptions().getPyramid().setBorderWidth(0);
 
         setDataLabelsDefaults(getPlotOptions().getPyramid());
+        setDataLabelsDefaults(getPlotOptions().getBar());
+        setDataLabelsDefaults(getPlotOptions().getColumn());
+        setDataLabelsDefaults(getPlotOptions().getLine());
         setDataLabelsDefaults(getPlotOptions().getPie());
+
+        State state = new State(false);
+        getPlotOptions().getPie().setStates(new States(state));
     }
 
     protected void setDataLabelsDefaults(AbstractPlotOptions plotOptions) {
         Labels labels = new Labels();
         labels.setColor(TEXT_COLOR);
         labels.getStyle().setFontFamily(DEFAULT_FONT_FAMILIES);
-        labels.getStyle().setFontSize("14px");
+        labels.getStyle().setFontSize("12px");
         plotOptions.setDataLabels(labels);
     }
 

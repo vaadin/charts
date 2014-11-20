@@ -22,9 +22,9 @@ import com.vaadin.addon.charts.themes.GrayTheme;
 import com.vaadin.addon.charts.themes.GridTheme;
 import com.vaadin.addon.charts.themes.HighChartsDefaultTheme;
 import com.vaadin.addon.charts.themes.SkiesTheme;
-import com.vaadin.addon.charts.themes.VaadinDarkTheme;
-import com.vaadin.addon.charts.themes.VaadinLightTheme;
 import com.vaadin.addon.charts.themes.VaadinTheme;
+import com.vaadin.addon.charts.themes.ValoDarkTheme;
+import com.vaadin.addon.charts.themes.ValoLightTheme;
 import com.vaadin.annotations.JavaScript;
 import com.vaadin.annotations.Theme;
 import com.vaadin.data.Item;
@@ -83,8 +83,8 @@ public class ChartsDemoUI extends UI {
     private static Map<String, List<Class<? extends AbstractVaadinChartExample>>> tests;
 
     private static final String[] GROUP_ORDER = { "Column and Bar", "Pie",
-            "Area", "Line and Scatter", "Dynamic", "Combinations", "Other",
-            "Container", "Timeline", "Three D" };
+        "Area", "Line and Scatter", "Dynamic", "Combinations", "Other",
+        "Container", "Timeline", "Three D" };
 
     static {
         Reflections reflections = new Reflections(
@@ -111,18 +111,18 @@ public class ChartsDemoUI extends UI {
             }
             list.add(class1);
             Collections
-                    .sort(list,
-                            new Comparator<Class<? extends AbstractVaadinChartExample>>() {
+            .sort(list,
+                    new Comparator<Class<? extends AbstractVaadinChartExample>>() {
 
-                                @Override
-                                public int compare(
-                                        Class<? extends AbstractVaadinChartExample> o1,
-                                        Class<? extends AbstractVaadinChartExample> o2) {
-                                    String simpleName = o1.getSimpleName();
-                                    String simpleName2 = o2.getSimpleName();
-                                    return simpleName.compareTo(simpleName2);
-                                }
-                            });
+                @Override
+                public int compare(
+                        Class<? extends AbstractVaadinChartExample> o1,
+                        Class<? extends AbstractVaadinChartExample> o2) {
+                    String simpleName = o1.getSimpleName();
+                    String simpleName2 = o2.getSimpleName();
+                    return simpleName.compareTo(simpleName2);
+                }
+            });
         }
         tests = grouped;
     }
@@ -138,7 +138,7 @@ public class ChartsDemoUI extends UI {
             @Override
             public void selectedTabChange(SelectedTabChangeEvent event) {
                 com.vaadin.ui.JavaScript
-                        .eval("setTimeout(function(){prettyPrint();},300);");
+                .eval("setTimeout(function(){prettyPrint();},300);");
             }
         });
         tabSheet.setSizeFull();
@@ -212,10 +212,10 @@ public class ChartsDemoUI extends UI {
         themeSelector.addItem(VaadinTheme.class);
         themeSelector.setItemCaption(VaadinTheme.class, "Vaadin");
         themeSelector.addItem(VaadinTheme.class);
-        themeSelector.setItemCaption(VaadinDarkTheme.class, "Vaadin Dark");
-        themeSelector.addItem(VaadinDarkTheme.class);
-        themeSelector.setItemCaption(VaadinLightTheme.class, "Vaadin Light");
-        themeSelector.addItem(VaadinLightTheme.class);
+        themeSelector.setItemCaption(ValoDarkTheme.class, "Valo Dark");
+        themeSelector.addItem(ValoDarkTheme.class);
+        themeSelector.setItemCaption(ValoLightTheme.class, "Valo Light");
+        themeSelector.addItem(ValoLightTheme.class);
         themeSelector.setItemCaption(SkiesTheme.class, "Skies");
         themeSelector.addItem(GridTheme.class);
         themeSelector.setItemCaption(GridTheme.class, "Grid");
@@ -223,7 +223,7 @@ public class ChartsDemoUI extends UI {
         themeSelector.setItemCaption(GrayTheme.class, "Gray");
         themeSelector.addItem(HighChartsDefaultTheme.class);
         themeSelector
-                .setItemCaption(HighChartsDefaultTheme.class, "Highcharts");
+        .setItemCaption(HighChartsDefaultTheme.class, "Highcharts");
         themeSelector.setImmediate(true);
         themeSelector.select(VaadinTheme.class);
         themeSelector.addValueChangeListener(new ValueChangeListener() {
@@ -231,11 +231,11 @@ public class ChartsDemoUI extends UI {
             public void valueChange(ValueChangeEvent event) {
                 @SuppressWarnings("unchecked")
                 Class<? extends Theme> value = (Class<? extends Theme>) event
-                        .getProperty().getValue();
+                .getProperty().getValue();
                 try {
                     ChartOptions.get().setTheme(
                             (com.vaadin.addon.charts.model.style.Theme) value
-                                    .newInstance());
+                            .newInstance());
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
@@ -271,7 +271,7 @@ public class ChartsDemoUI extends UI {
         // Don't change the field type to search on IE8 #14211
         if (!isIE8()) {
             com.vaadin.ui.JavaScript
-                    .eval("document.getElementById('search').type = 'search';");
+            .eval("document.getElementById('search').type = 'search';");
         }
 
         content.addComponent(textField);
