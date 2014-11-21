@@ -3,7 +3,6 @@
  */
 package com.vaadin.addon.charts.demoandtestapp.timeline;
 
-import java.awt.Color;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,6 +12,7 @@ import java.util.Random;
 
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.demoandtestapp.SkipFromDemo;
+import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.timeline.Timeline;
 import com.vaadin.addon.timeline.Timeline.EventButtonClickEvent;
 import com.vaadin.data.Container;
@@ -67,19 +67,21 @@ public class MyTimelineDemo extends AbstractVaadinChartExample {
         timeline.setGraphLegend(firstDataSource, "Our cool graph");
 
         // Set the color of the graph
-        timeline.setGraphOutlineColor(firstDataSource, Color.RED);
+        timeline.setGraphOutlineColor(firstDataSource, SolidColor.RED);
 
         // Set the fill color of the graph
-        timeline.setGraphFillColor(firstDataSource, new Color(255, 0, 0, 128));
+        timeline.setGraphFillColor(firstDataSource, new SolidColor(255, 0, 0,
+                128));
 
         // Set the width of the graph
         timeline.setGraphOutlineThickness(1);
 
         // Set the color of the browser graph
-        timeline.setBrowserOutlineColor(firstDataSource, Color.BLACK);
+        timeline.setBrowserOutlineColor(firstDataSource, SolidColor.BLACK);
 
         // Set the fill color of the graph
-        timeline.setBrowserFillColor(firstDataSource, new Color(0, 0, 0, 128));
+        timeline.setBrowserFillColor(firstDataSource, new SolidColor(0, 0, 0,
+                128));
 
         // Add some zoom levels
         timeline.addZoomLevel("Day", 86400000L);
@@ -143,7 +145,7 @@ public class MyTimelineDemo extends AbstractVaadinChartExample {
                         Container.Indexed ds = createGraphDataSource();
                         datasourcesList.add(ds);
                         timeline.addGraphDataSource(ds);
-                        timeline.setGraphFillColor(ds, Color.BLACK);
+                        timeline.setGraphFillColor(ds, SolidColor.BLACK);
                     }
                 });
         addComponent(addGraphDataSource);

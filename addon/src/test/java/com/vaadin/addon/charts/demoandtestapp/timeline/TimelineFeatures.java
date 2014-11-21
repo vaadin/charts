@@ -1,6 +1,5 @@
 package com.vaadin.addon.charts.demoandtestapp.timeline;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -8,6 +7,7 @@ import java.util.List;
 
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.demoandtestapp.SkipFromDemo;
+import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.timeline.Timeline;
 import com.vaadin.addon.timeline.Timeline.EventButtonClickEvent;
 import com.vaadin.data.Container;
@@ -148,21 +148,21 @@ public class TimelineFeatures extends AbstractVaadinChartExample {
         }
 
         MenuItem graph_color = graph.addItem("Color", null);
-        addGraphColorToMenu("None", new Color(0, 0, 0, 255), graph_color);
-        addGraphColorToMenu("Red", Color.RED, graph_color);
-        addGraphColorToMenu("Green", Color.GREEN, graph_color);
-        addGraphColorToMenu("Blue", Color.BLUE, graph_color);
-        addGraphColorToMenu("Orange", Color.ORANGE, graph_color);
-        addGraphColorToMenu("Black", Color.BLACK, graph_color);
+        addGraphColorToMenu("None", new SolidColor(0, 0, 0, 1.0), graph_color);
+        addGraphColorToMenu("Red", SolidColor.RED, graph_color);
+        addGraphColorToMenu("Green", SolidColor.GREEN, graph_color);
+        addGraphColorToMenu("Blue", SolidColor.BLUE, graph_color);
+        addGraphColorToMenu("Orange", SolidColor.ORANGE, graph_color);
+        addGraphColorToMenu("Black", SolidColor.BLACK, graph_color);
 
         MenuItem graph_fillcolor = graph.addItem("Fill Color", null);
-        addGraphFillColorToMenu("None", new Color(0, 0, 0, 255),
+        addGraphFillColorToMenu("None", new SolidColor(0, 0, 0, 1.0),
                 graph_fillcolor);
-        addGraphFillColorToMenu("Red", Color.RED, graph_fillcolor);
-        addGraphFillColorToMenu("Green", Color.GREEN, graph_fillcolor);
-        addGraphFillColorToMenu("Blue", Color.BLUE, graph_fillcolor);
-        addGraphFillColorToMenu("Orange", Color.ORANGE, graph_fillcolor);
-        addGraphFillColorToMenu("Black", Color.BLACK, graph_fillcolor);
+        addGraphFillColorToMenu("Red", SolidColor.RED, graph_fillcolor);
+        addGraphFillColorToMenu("Green", SolidColor.GREEN, graph_fillcolor);
+        addGraphFillColorToMenu("Blue", SolidColor.BLUE, graph_fillcolor);
+        addGraphFillColorToMenu("Orange", SolidColor.ORANGE, graph_fillcolor);
+        addGraphFillColorToMenu("Black", SolidColor.BLACK, graph_fillcolor);
 
         graph.addItem("Toggle stacked", new MenuBar.Command() {
             @Override
@@ -241,21 +241,23 @@ public class TimelineFeatures extends AbstractVaadinChartExample {
         MenuItem browser = m.addItem("Browser", null);
 
         MenuItem browser_color = browser.addItem("Color", null);
-        addBrowserColorToMenu("None", new Color(0, 0, 0, 255), browser_color);
-        addBrowserColorToMenu("Red", Color.RED, browser_color);
-        addBrowserColorToMenu("Green", Color.GREEN, browser_color);
-        addBrowserColorToMenu("Blue", Color.BLUE, browser_color);
-        addBrowserColorToMenu("Orange", Color.ORANGE, browser_color);
-        addBrowserColorToMenu("Black", Color.BLACK, browser_color);
+        addBrowserColorToMenu("None", new SolidColor(0, 0, 0, 1.0),
+                browser_color);
+        addBrowserColorToMenu("Red", SolidColor.RED, browser_color);
+        addBrowserColorToMenu("Green", SolidColor.GREEN, browser_color);
+        addBrowserColorToMenu("Blue", SolidColor.BLUE, browser_color);
+        addBrowserColorToMenu("Orange", SolidColor.ORANGE, browser_color);
+        addBrowserColorToMenu("Black", SolidColor.BLACK, browser_color);
 
         MenuItem browser_fillcolor = browser.addItem("Fill Color", null);
-        addBrowserFillColorToMenu("None", new Color(0, 0, 0, 255),
+        addBrowserFillColorToMenu("None", new SolidColor(0, 0, 0, 1.0),
                 browser_fillcolor);
-        addBrowserFillColorToMenu("Red", Color.RED, browser_fillcolor);
-        addBrowserFillColorToMenu("Green", Color.GREEN, browser_fillcolor);
-        addBrowserFillColorToMenu("Blue", Color.BLUE, browser_fillcolor);
-        addBrowserFillColorToMenu("Orange", Color.ORANGE, browser_fillcolor);
-        addBrowserFillColorToMenu("Black", Color.BLACK, browser_fillcolor);
+        addBrowserFillColorToMenu("Red", SolidColor.RED, browser_fillcolor);
+        addBrowserFillColorToMenu("Green", SolidColor.GREEN, browser_fillcolor);
+        addBrowserFillColorToMenu("Blue", SolidColor.BLUE, browser_fillcolor);
+        addBrowserFillColorToMenu("Orange", SolidColor.ORANGE,
+                browser_fillcolor);
+        addBrowserFillColorToMenu("Black", SolidColor.BLACK, browser_fillcolor);
 
         MenuItem browser_range = browser.addItem("Show range", null);
         browser_range.addItem("First week", new MenuBar.Command() {
@@ -377,7 +379,7 @@ public class TimelineFeatures extends AbstractVaadinChartExample {
         timeline.removeAllGraphDataSources();
     }
 
-    private void addGraphColorToMenu(String caption, final Color c,
+    private void addGraphColorToMenu(String caption, final SolidColor c,
             MenuItem root) {
         root.addItem(caption, new MenuBar.Command() {
             @Override
@@ -389,7 +391,7 @@ public class TimelineFeatures extends AbstractVaadinChartExample {
         });
     }
 
-    private void addGraphFillColorToMenu(String caption, final Color c,
+    private void addGraphFillColorToMenu(String caption, final SolidColor c,
             MenuItem root) {
         root.addItem(caption, new MenuBar.Command() {
             @Override
@@ -401,7 +403,7 @@ public class TimelineFeatures extends AbstractVaadinChartExample {
         });
     }
 
-    private void addBrowserColorToMenu(String caption, final Color c,
+    private void addBrowserColorToMenu(String caption, final SolidColor c,
             MenuItem root) {
         root.addItem(caption, new MenuBar.Command() {
             @Override
@@ -413,7 +415,7 @@ public class TimelineFeatures extends AbstractVaadinChartExample {
         });
     }
 
-    private void addBrowserFillColorToMenu(String caption, final Color c,
+    private void addBrowserFillColorToMenu(String caption, final SolidColor c,
             MenuItem root) {
         root.addItem(caption, new MenuBar.Command() {
             @Override
