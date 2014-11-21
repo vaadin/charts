@@ -36,6 +36,7 @@ public class ChartModel extends AbstractConfigurationObject {
     private Number plotBorderWidth;
     private Boolean plotShadow;
     private ZoomType zoomType;
+    private PinchType pinchType;
     private Style style;
     private Boolean reflow;
     private Number borderWidth;
@@ -191,10 +192,29 @@ public class ChartModel extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #getZoomType()
+     * @see #setZoomType(ZoomType)
      */
     public ZoomType getZoomType() {
         return zoomType;
+    }
+
+    /**
+     * @see #setPinchType(PinchType)
+     * @return
+     */
+    public PinchType getPinchType() {
+        return pinchType;
+    }
+
+    /**
+     * Equivalent to zoomType, but for multitouch gestures only. By default, the
+     * pinchType behavior is the same as the zoomType setting. However, pinching can be
+     * enabled separately in some cases. Defaults to null.
+     * 
+     * @param pinchType
+     */
+    public void setPinchType(PinchType pinchType) {
+        this.pinchType = pinchType;
     }
 
     /**
