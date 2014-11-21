@@ -68,7 +68,7 @@ public class ValoLightTheme extends Theme {
 
     protected final static SolidColor BGCOLOR = new SolidColor(255, 255, 255);
     protected final static SolidColor BGCOLOR_LIGHT_GRAY = new SolidColor(0, 0,
-            0, 0.90);
+            0, 0.02);
     protected final static SolidColor TRANSPARENT_COLOR = new SolidColor(255,
             255, 255, 0.0);
 
@@ -120,7 +120,7 @@ public class ValoLightTheme extends Theme {
                 .setColor(new SolidColor(128, 128, 128));
         getLegend().setBorderRadius(BORDER_RADIUS);
         getLegend().setBorderColor(LINE_COLOR);
-        getLegend().setBackgroundColor(BGCOLOR_LIGHT_GRAY);
+        getLegend().setBackgroundColor(new SolidColor(255, 255, 255, 0.9));
 
         getLabels().setColor(TEXT_COLOR);
 

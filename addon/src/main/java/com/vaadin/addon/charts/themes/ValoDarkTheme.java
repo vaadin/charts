@@ -8,10 +8,10 @@ package com.vaadin.addon.charts.themes;
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
- * 
+ *
  * See the file licensing.txt distributed with this software for more
  * information about licensing.
- * 
+ *
  * You should have received a copy of the CVALv3 along with this program.
  * If not, see <https://vaadin.com/license/cval-3>.
  * #L%
@@ -121,7 +121,7 @@ public class ValoDarkTheme extends Theme {
                 .setColor(new SolidColor(128, 128, 128));
         getLegend().setBorderRadius(BORDER_RADIUS);
         getLegend().setBorderColor(LINE_COLOR);
-        getLegend().setBackgroundColor(BGCOLOR_LIGHT_GRAY);
+        getLegend().setBackgroundColor(new SolidColor(255, 255, 255, 0.9));
 
         getLabels().setColor(TEXT_COLOR);
 

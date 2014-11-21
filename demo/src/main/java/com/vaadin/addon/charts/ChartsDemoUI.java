@@ -210,7 +210,7 @@ public class ChartsDemoUI extends UI {
         ChartOptions.get().setTheme(new ValoLightTheme());
         themeSelector = new OptionGroup("Theme");
         themeSelector.addItem(VaadinTheme.class);
-        themeSelector.setItemCaption(VaadinTheme.class, "ValoLightThemeLocal");
+        themeSelector.setItemCaption(VaadinTheme.class, "Vaadin");
         themeSelector.addItem(ValoDarkTheme.class);
         themeSelector.setItemCaption(ValoDarkTheme.class, "Valo Dark");
         themeSelector.addItem(ValoLightTheme.class);
