@@ -207,15 +207,15 @@ public class ChartsDemoUI extends UI {
         verticalLayout.addComponent(horizontalSplitPanel);
         verticalLayout.setExpandRatio(horizontalSplitPanel, 1);
         setContent(verticalLayout);
-
+        ChartOptions.get().setTheme(new ValoLightTheme());
         themeSelector = new OptionGroup("Theme");
         themeSelector.addItem(VaadinTheme.class);
-        themeSelector.setItemCaption(VaadinTheme.class, "Vaadin");
-        themeSelector.addItem(VaadinTheme.class);
-        themeSelector.setItemCaption(ValoDarkTheme.class, "Valo Dark");
+        themeSelector.setItemCaption(VaadinTheme.class, "ValoLightThemeLocal");
         themeSelector.addItem(ValoDarkTheme.class);
-        themeSelector.setItemCaption(ValoLightTheme.class, "Valo Light");
+        themeSelector.setItemCaption(ValoDarkTheme.class, "Valo Dark");
         themeSelector.addItem(ValoLightTheme.class);
+        themeSelector.setItemCaption(ValoLightTheme.class, "Valo Light");
+        themeSelector.addItem(SkiesTheme.class);
         themeSelector.setItemCaption(SkiesTheme.class, "Skies");
         themeSelector.addItem(GridTheme.class);
         themeSelector.setItemCaption(GridTheme.class, "Grid");
