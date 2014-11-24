@@ -15,6 +15,7 @@ import java.util.Set;
 
 import org.apache.commons.io.IOUtils;
 import org.reflections.Reflections;
+import org.vaadin.googleanalytics.tracking.GoogleAnalyticsTracker;
 
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.demoandtestapp.SkipFromDemo;
@@ -33,23 +34,20 @@ import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.data.util.HierarchicalContainer;
 import com.vaadin.event.FieldEvents.TextChangeEvent;
 import com.vaadin.event.FieldEvents.TextChangeListener;
-import com.vaadin.event.MouseEvents.ClickEvent;
-import com.vaadin.event.MouseEvents.ClickListener;
-import com.vaadin.server.ClassResource;
 import com.vaadin.server.ExternalResource;
+import com.vaadin.server.FontAwesome;
 import com.vaadin.server.Page;
 import com.vaadin.server.Page.UriFragmentChangedEvent;
 import com.vaadin.server.Page.UriFragmentChangedListener;
 import com.vaadin.server.VaadinRequest;
+import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.shared.ui.label.ContentMode;
-import com.vaadin.ui.Component;
+import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.HorizontalSplitPanel;
-import com.vaadin.ui.Image;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
-import com.vaadin.ui.OptionGroup;
 import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.TabSheet.SelectedTabChangeEvent;
 import com.vaadin.ui.TabSheet.SelectedTabChangeListener;
@@ -57,12 +55,14 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.Tree;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.themes.ValoTheme;
 
 /**
  * The Application's "main" class
  */
 @SuppressWarnings("serial")
 @JavaScript("prettify.js")
+@Theme("charts-demo")
 public class ChartsDemoUI extends UI {
 
     static final Properties prop = new Properties();
@@ -83,8 +83,14 @@ public class ChartsDemoUI extends UI {
     private static Map<String, List<Class<? extends AbstractVaadinChartExample>>> tests;
 
     private static final String[] GROUP_ORDER = { "Column and Bar", "Pie",
-        "Area", "Line and Scatter", "Dynamic", "Combinations", "Other",
-        "Container", "Timeline", "Three D" };
+            "Area", "Line and Scatter", "Dynamic", "Combinations", "Other",
+            "Container", "Timeline", "Three D" };
+
+    static String splitCamelCase(String s) {
+        return s.replaceAll(String.format("%s|%s|%s",
+                "(?<=[A-Z])(?=[A-Z][a-z])", "(?<=[^A-Z])(?=[A-Z])",
+                "(?<=[A-Za-z])(?=[^A-Za-z])"), " ");
+    }
 
     static {
         Reflections reflections = new Reflections(
@@ -111,151 +117,113 @@ public class ChartsDemoUI extends UI {
             }
             list.add(class1);
             Collections
-            .sort(list,
-                    new Comparator<Class<? extends AbstractVaadinChartExample>>() {
+                    .sort(list,
+                            new Comparator<Class<? extends AbstractVaadinChartExample>>() {
 
-                @Override
-                public int compare(
-                        Class<? extends AbstractVaadinChartExample> o1,
-                        Class<? extends AbstractVaadinChartExample> o2) {
-                    String simpleName = o1.getSimpleName();
-                    String simpleName2 = o2.getSimpleName();
-                    return simpleName.compareTo(simpleName2);
-                }
-            });
+                                @Override
+                                public int compare(
+                                        Class<? extends AbstractVaadinChartExample> o1,
+                                        Class<? extends AbstractVaadinChartExample> o2) {
+                                    String simpleName = o1.getSimpleName();
+                                    String simpleName2 = o2.getSimpleName();
+                                    return simpleName.compareTo(simpleName2);
+                                }
+                            });
         }
         tests = grouped;
     }
 
     private Tree tree;
-    private OptionGroup themeSelector;
+    private ComboBox themeSelector;
+    private GoogleAnalyticsTracker tracker;
 
     @Override
     protected void init(VaadinRequest request) {
+        initGATracker();
 
         final TabSheet tabSheet = new TabSheet();
         tabSheet.addSelectedTabChangeListener(new SelectedTabChangeListener() {
             @Override
             public void selectedTabChange(SelectedTabChangeEvent event) {
                 com.vaadin.ui.JavaScript
-                .eval("setTimeout(function(){prettyPrint();},300);");
+                        .eval("setTimeout(function(){prettyPrint();},300);");
             }
         });
         tabSheet.setSizeFull();
+        tabSheet.addStyleName(ValoTheme.TABSHEET_PADDED_TABBAR);
 
-        CssLayout logoc = new CssLayout() {
-            @Override
-            protected String getCss(Component c) {
-                if (c instanceof CssLayout) {
-                    return "background: #007ea8; border-bottom: 1px solid #004e68;padding-left:6px;";
-                }
-                return null;
-            }
-        };
-        logoc.setId("logoc");
-
-        String cssString = "#logoc {position:relative; width:100%} #links {position:absolute; top:5px; right: 5px;}  #links a span {text-decoration: none;} #links .v-icon {height:25px;}";
-
-        String script = "if ('\\v'=='v') /* ie only */ {\n"
-                + "        document.createStyleSheet().cssText = '"
-                + cssString
-                + "';\n"
-                + "    } else {var tag = document.createElement('style'); tag.type = 'text/css';"
-                + " document.getElementsByTagName('head')[0].appendChild(tag);tag[ (typeof "
-                + "document.body.style.WebkitAppearance=='string') /* webkit only */ ? 'innerText' "
-                + ": 'innerHTML'] = '" + cssString + "';}";
-
-        com.vaadin.ui.JavaScript.eval(script);
-
-        CssLayout logow = new CssLayout();
-        logoc.addComponent(logow);
-        Image logo = new Image();
-        logo.setAlternateText("Vaadin Charts logo");
-        logo.setSource(new ClassResource("header.png"));
-        logo.setHeight("60px");
-        logo.addClickListener(new ClickListener() {
-
-            @Override
-            public void click(ClickEvent event) {
-                Page.getCurrent().setLocation(
-                        "https://vaadin.com/add-ons/charts");
-            }
-        });
-        logow.addComponent(logo);
-
-        Link homepage = new Link(null, new ExternalResource(
+        Link homepage = new Link("Home page", new ExternalResource(
                 "https://vaadin.com/add-ons/charts"));
-        homepage.setIcon(new ClassResource("links_homepage.png"));
-        Link javadoc = new Link(null, new ExternalResource(
+        Link javadoc = new Link("JavaDoc", new ExternalResource(
                 "http://demo.vaadin.com/javadoc/com.vaadin.addon/vaadin-charts/"
                         + getVersion() + "/"));
-        javadoc.setIcon(new ClassResource("links_javadoc.png"));
-        Link manula = new Link(null, new ExternalResource(
+        Link manula = new Link("Manual", new ExternalResource(
                 "https://vaadin.com/book/vaadin7/-/page/charts.html"));
-        manula.setIcon(new ClassResource("links_manual.png"));
         HorizontalLayout links = new HorizontalLayout(homepage, javadoc, manula);
         links.setSpacing(true);
-        links.setId("links");
-        logoc.addComponent(links);
+        links.addStyleName("links");
 
         HorizontalSplitPanel horizontalSplitPanel = new HorizontalSplitPanel();
         horizontalSplitPanel.setSecondComponent(tabSheet);
-        horizontalSplitPanel.setSplitPosition(20);
-        VerticalLayout verticalLayout = new VerticalLayout();
-        verticalLayout.setSizeFull();
-        verticalLayout.addComponent(logoc);
-        verticalLayout.addComponent(horizontalSplitPanel);
-        verticalLayout.setExpandRatio(horizontalSplitPanel, 1);
-        setContent(verticalLayout);
+        horizontalSplitPanel.setSplitPosition(300, Unit.PIXELS);
+        horizontalSplitPanel.addStyleName("main-layout");
+
         ChartOptions.get().setTheme(new ValoLightTheme());
-        themeSelector = new OptionGroup("Theme");
-        themeSelector.addItem(VaadinTheme.class);
-        themeSelector.setItemCaption(VaadinTheme.class, "Vaadin");
-        themeSelector.addItem(ValoDarkTheme.class);
-        themeSelector.setItemCaption(ValoDarkTheme.class, "Valo Dark");
+
+        themeSelector = new ComboBox("Charts Theme:");
+        themeSelector.addStyleName("theme-selector");
+        themeSelector.addStyleName(ValoTheme.COMBOBOX_SMALL);
+        themeSelector.setTextInputAllowed(false);
+        themeSelector.setNullSelectionAllowed(false);
         themeSelector.addItem(ValoLightTheme.class);
         themeSelector.setItemCaption(ValoLightTheme.class, "Valo Light");
-        themeSelector.addItem(SkiesTheme.class);
-        themeSelector.setItemCaption(SkiesTheme.class, "Skies");
+        themeSelector.addItem(ValoDarkTheme.class);
+        themeSelector.setItemCaption(ValoDarkTheme.class, "Valo Dark");
+        themeSelector.addItem(VaadinTheme.class);
+        themeSelector.setItemCaption(VaadinTheme.class, "Vaadin");
+        themeSelector.addItem(HighChartsDefaultTheme.class);
+        themeSelector
+                .setItemCaption(HighChartsDefaultTheme.class, "Highcharts");
         themeSelector.addItem(GridTheme.class);
         themeSelector.setItemCaption(GridTheme.class, "Grid");
         themeSelector.addItem(GrayTheme.class);
         themeSelector.setItemCaption(GrayTheme.class, "Gray");
-        themeSelector.addItem(HighChartsDefaultTheme.class);
-        themeSelector
-        .setItemCaption(HighChartsDefaultTheme.class, "Highcharts");
+        themeSelector.addItem(SkiesTheme.class);
+        themeSelector.setItemCaption(SkiesTheme.class, "Skies");
         themeSelector.setImmediate(true);
-        themeSelector.select(VaadinTheme.class);
+        themeSelector.select(ValoLightTheme.class);
         themeSelector.addValueChangeListener(new ValueChangeListener() {
             @Override
             public void valueChange(ValueChangeEvent event) {
                 @SuppressWarnings("unchecked")
                 Class<? extends Theme> value = (Class<? extends Theme>) event
-                .getProperty().getValue();
+                        .getProperty().getValue();
                 try {
                     ChartOptions.get().setTheme(
                             (com.vaadin.addon.charts.model.style.Theme) value
-                            .newInstance());
+                                    .newInstance());
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
             }
         });
 
-        tree = new Tree("Chart examples");
-        tree.setImmediate(true);
         final HierarchicalContainer container = getContainer();
-        tree.setContainerDataSource(container);
-        tree.setItemCaptionPropertyId("displayName");
 
         VerticalLayout content = new VerticalLayout();
-        content.setMargin(true);
         content.setSpacing(true);
+        content.setMargin(new MarginInfo(false, false, true, false));
 
-        TextField textField = new TextField();
-        textField.setId("search");
-        textField.setInputPrompt("Filter examples");
-        textField.addTextChangeListener(new TextChangeListener() {
+        Label logo = new Label("Vaadin Charts");
+        logo.addStyleName("h3");
+        logo.addStyleName("logo");
+
+        TextField filterField = new TextField();
+        filterField.setInputPrompt("Filter examples");
+        filterField.setIcon(FontAwesome.SEARCH);
+        filterField.addStyleName("filter");
+        filterField.setWidth("100%");
+        filterField.addTextChangeListener(new TextChangeListener() {
 
             @Override
             public void textChange(TextChangeEvent event) {
@@ -268,17 +236,12 @@ public class ChartsDemoUI extends UI {
             }
         });
 
-        // Don't change the field type to search on IE8 #14211
-        if (!isIE8()) {
-            com.vaadin.ui.JavaScript
-            .eval("document.getElementById('search').type = 'search';");
-        }
-
-        content.addComponent(textField);
-        content.addComponent(tree);
-        content.addComponent(themeSelector);
-        horizontalSplitPanel.setFirstComponent(content);
-
+        tree = new Tree();
+        tree.setImmediate(true);
+        tree.setContainerDataSource(container);
+        tree.setItemCaptionPropertyId("displayName");
+        tree.setNullSelectionAllowed(false);
+        tree.setWidth("100%");
         tree.addValueChangeListener(new ValueChangeListener() {
             @Override
             public void valueChange(ValueChangeEvent event) {
@@ -289,7 +252,7 @@ public class ChartsDemoUI extends UI {
                         AbstractVaadinChartExample newInstance = (AbstractVaadinChartExample) value
                                 .newInstance();
                         tabSheet.removeAllComponents();
-                        tabSheet.addTab(newInstance, "Graph");
+                        tabSheet.addTab(newInstance, "Example");
 
                         String r = "/" + value.getName().replace(".", "/")
                                 + ".java";
@@ -307,13 +270,16 @@ public class ChartsDemoUI extends UI {
 
                     } catch (Exception e) {
                         // TODO Auto-generated catch block
-                        // e.printStackTrace();
+                        e.printStackTrace();
                     }
                 } else {
                     tree.expandItemsRecursively(value2);
                 }
             }
         });
+
+        content.addComponents(logo, links, filterField, tree);
+        horizontalSplitPanel.setFirstComponent(content);
 
         selectItem();
 
@@ -322,18 +288,21 @@ public class ChartsDemoUI extends UI {
                     @Override
                     public void uriFragmentChanged(UriFragmentChangedEvent event) {
                         selectItem();
+
+                        if (tracker != null) {
+                            tracker.trackPageview("/charts/"
+                                    + event.getUriFragment());
+                        }
                     }
                 });
 
-    }
-
-    private boolean isIE8() {
-        if (getPage().getWebBrowser().isIE()) {
-            if (getPage().getWebBrowser().getBrowserMajorVersion() == 8) {
-                return true;
+        setContent(new CssLayout() {
+            {
+                setSizeFull();
+                addComponent(horizontalSplitPanel);
+                addComponent(themeSelector);
             }
-        }
-        return false;
+        });
     }
 
     private void selectItem() {
@@ -376,7 +345,7 @@ public class ChartsDemoUI extends UI {
             for (Class<? extends AbstractVaadinChartExample> class1 : list) {
                 Item testItem = hierarchicalContainer.addItem(class1);
                 testItem.getItemProperty("displayName").setValue(
-                        class1.getSimpleName());
+                        splitCamelCase(class1.getSimpleName()));
                 hierarchicalContainer.setParent(class1, group);
                 hierarchicalContainer.setChildrenAllowed(class1, false);
             }
@@ -384,6 +353,15 @@ public class ChartsDemoUI extends UI {
         }
 
         return hierarchicalContainer;
+    }
+
+    private void initGATracker() {
+        // Provide a Google Analytics tracker id here
+        String trackerId = null;// "UA-658457-6";
+        if (trackerId != null) {
+            tracker = new GoogleAnalyticsTracker(trackerId, "none");
+            tracker.extend(UI.getCurrent());
+        }
     }
 
 }

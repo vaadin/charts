@@ -4,4 +4,5 @@
 /.settings
 
 /target/
-/src/main/webapp/VAADIN/
+/src/main/webapp/VAADIN/gwt-unitCache
+/src/main/webapp/VAADIN/widgetsets
