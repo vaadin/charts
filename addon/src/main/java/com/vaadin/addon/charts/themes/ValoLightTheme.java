@@ -183,7 +183,7 @@ public class ValoLightTheme extends Theme {
         style.setAlternateGridColor(new SolidColor(255, 255, 255, 0.0));
 
         style.getTitle().setColor(TEXT_COLOR);
-        style.getTitle().setFontWeight(FontWeight.BOLD);
+        style.getTitle().setFontWeight(FontWeight.NORMAL);
 
         style.getSubtitle().setColor(SUBTITLE_COLOR);
         style.getSubtitle().setFontSize("14px");

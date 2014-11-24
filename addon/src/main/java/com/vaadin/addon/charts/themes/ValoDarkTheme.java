@@ -96,7 +96,7 @@ public class ValoDarkTheme extends Theme {
         getChart().setClassName("vaadin-chart");
         getChart().setPlotBackgroundImage("");
         getChart().setBackgroundColor(BGCOLOR);
-        getChart().setPlotBackgroundColor(TRANSPARENT_COLOR);
+        getChart().setPlotBackgroundColor(new SolidColor(50, 50, 50));
         getChart().setPlotBorderWidth(0);
         getChart().setBorderRadius(0);
         getChart().setPlotShadow(false);
