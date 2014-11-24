@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
+import com.vaadin.ui.Panel;
 import org.apache.commons.io.IOUtils;
 import org.reflections.Reflections;
 import org.vaadin.googleanalytics.tracking.GoogleAnalyticsTracker;
@@ -276,10 +277,15 @@ public class ChartsDemoUI extends UI {
                         InputStream resourceAsStream = newInstance.getClass()
                                 .getResourceAsStream(r);
                         String code = IOUtils.toString(resourceAsStream);
+                        Panel p = new Panel();
+                        p.setWidth("100%");
+                        p.setStyleName(ValoTheme.PANEL_BORDERLESS);
                         Label c = new Label("<pre class='prettyprint'>" + code
                                 + "</pre>");
                         c.setContentMode(ContentMode.HTML);
-                        tabSheet.addTab(c, "Source");
+                        c.setSizeUndefined();
+                        p.setContent(c);
+                        tabSheet.addTab(p, "Source");
 
                         Page.getCurrent().setUriFragment(value.getSimpleName(),
                                 false);
