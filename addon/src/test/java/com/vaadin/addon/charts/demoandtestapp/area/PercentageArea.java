@@ -14,12 +14,10 @@ import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
-import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
 
 @SuppressWarnings("serial")
 public class PercentageArea extends AbstractVaadinChartExample {
-    private static final SolidColor WHITE = new SolidColor("#ffffff");
 
     @Override
     public String getDescription() {
@@ -58,11 +56,8 @@ public class PercentageArea extends AbstractVaadinChartExample {
 
         PlotOptionsArea plotOptions = new PlotOptionsArea();
         plotOptions.setStacking(Stacking.PERCENT);
-        plotOptions.setLineColor(WHITE);
         plotOptions.setLineWidth(1);
         Marker marker = new Marker();
-        marker.setLineColor(WHITE);
-        marker.setLineWidth(1);
         plotOptions.setMarker(marker);
         conf.setPlotOptions(plotOptions);
 

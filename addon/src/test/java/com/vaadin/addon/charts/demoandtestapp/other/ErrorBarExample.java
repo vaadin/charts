@@ -12,6 +12,7 @@ import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.ZoomType;
+import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.charts.model.style.Style;
 import com.vaadin.ui.Component;
@@ -29,6 +30,7 @@ public class ErrorBarExample extends AbstractVaadinChartExample {
         Chart chart = new Chart();
 
         Configuration conf = chart.getConfiguration();
+        Color[] colors = getThemeColors();
 
         // Enable xy zooming, test also with touch devices
         conf.getChart().setZoomType(ZoomType.XY);
@@ -42,7 +44,7 @@ public class ErrorBarExample extends AbstractVaadinChartExample {
 
         Title title = new Title("Temperature");
         Style style = new Style();
-        style.setColor(new SolidColor("#89A54E"));
+        style.setColor(colors[0]);
         title.setStyle(style);
         primaryAxis.setTitle(title);
 
@@ -53,7 +55,7 @@ public class ErrorBarExample extends AbstractVaadinChartExample {
         title = new Title("Rainfall");
         secondaryAxis.setTitle(title);
         style = new Style();
-        style.setColor(new SolidColor("#4572A7"));
+        style.setColor(colors[1]);
         title.setStyle(style);
         secondaryAxis.getLabels().setFormatter("this.value + ' mm'");
         secondaryAxis.getLabels().setStyle(style);
@@ -64,7 +66,7 @@ public class ErrorBarExample extends AbstractVaadinChartExample {
         DataSeries rainfall = new DataSeries("Rainfall");
 
         PlotOptionsColumn column = new PlotOptionsColumn();
-        column.setColor(new SolidColor("#4572A7"));
+        column.setColor(colors[1]);
         Tooltip tooltip = new Tooltip();
         tooltip.setPointFormat("<span style='font-weight: bold; color: {series.color}'>{series.name}</span>: <b>{point.y:.1f} mm</b> ");
         column.setTooltip(tooltip);
@@ -84,7 +86,7 @@ public class ErrorBarExample extends AbstractVaadinChartExample {
         DataSeries temperature = new DataSeries("Temperature");
         conf.addSeries(temperature);
         PlotOptionsSpline tempOptions = new PlotOptionsSpline();
-        tempOptions.setColor(new SolidColor("#89a54e"));
+        tempOptions.setColor(colors[0]);
         tooltip = new Tooltip();
         tooltip.setPointFormat("<span style='font-weight: bold; color: {series.color}'>{series.name}</span>: <b>{point.y:.1f}°C");
         tempOptions.setTooltip(tooltip);

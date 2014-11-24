@@ -5,10 +5,8 @@ import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.ContainerDataSeries;
-import com.vaadin.addon.charts.model.PlotOptionsPie;
 import com.vaadin.addon.charts.model.Series;
 import com.vaadin.addon.charts.model.style.Color;
-import com.vaadin.addon.charts.themes.VaadinTheme;
 import com.vaadin.data.Container;
 import com.vaadin.data.Item;
 import com.vaadin.data.util.IndexedContainer;
@@ -57,7 +55,7 @@ public class SimpleChartWithContainerSeries extends AbstractVaadinChartExample {
         String[] names = new String[] { "MSIE", "Firefox", "Chrome", "Safari",
                 "Opera" };
         Number[] values = new Number[] { 55.11, 21.63, 11.94, 7.15, 2.14 };
-        Color[] colors = new VaadinTheme().getColors();
+        Color[] colors = getThemeColors();
 
         for (int i = 0; i < names.length; i++) {
             Item ie = vaadinContainer.addItem(i);

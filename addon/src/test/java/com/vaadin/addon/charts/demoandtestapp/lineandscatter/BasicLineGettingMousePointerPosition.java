@@ -18,7 +18,7 @@ import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.ZoomType;
-import com.vaadin.addon.charts.model.style.SolidColor;
+import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.Style;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Label;
@@ -37,6 +37,8 @@ public class BasicLineGettingMousePointerPosition extends
         Chart chart = new Chart();
         chart.setId("chart");
 
+        Color[] colors = getThemeColors();
+
         Configuration conf = chart.getConfiguration();
 
         conf.getChart().setZoomType(ZoomType.XY);
@@ -52,7 +54,7 @@ public class BasicLineGettingMousePointerPosition extends
         YAxis primary = new YAxis();
         primary.setTitle("Temperature");
         Style style = new Style();
-        style.setColor(new SolidColor("#89A54E"));
+        style.setColor(colors[0]);
         primary.getTitle().setStyle(style);
         conf.addyAxis(primary);
 
@@ -60,7 +62,7 @@ public class BasicLineGettingMousePointerPosition extends
         snd.setTitle("Rainfall");
         snd.setOpposite(true);
         style = new Style();
-        style.setColor(new SolidColor("#4572A7"));
+        style.setColor(colors[1]);
         snd.getTitle().setStyle(style);
         conf.addyAxis(snd);
 
@@ -92,7 +94,6 @@ public class BasicLineGettingMousePointerPosition extends
         series.setName("Temperature");
         series.setData(7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3,
                 13.9, 9.6);
-        plotOptions.setColor(new SolidColor("#89A54E"));
         conf.addSeries(series);
 
         chart.addPointClickListener(new PointClickListener() {

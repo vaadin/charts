@@ -3,7 +3,6 @@ package com.vaadin.addon.charts.demoandtestapp.combinations;
 import java.util.List;
 
 import com.vaadin.addon.charts.Chart;
-import com.vaadin.addon.charts.ChartOptions;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
@@ -19,8 +18,6 @@ import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.charts.model.style.Style;
-import com.vaadin.addon.charts.model.style.Theme;
-import com.vaadin.addon.charts.themes.VaadinTheme;
 import com.vaadin.ui.Component;
 
 @SuppressWarnings("serial")
@@ -36,19 +33,9 @@ public class ColumnLineAndPie extends AbstractVaadinChartExample {
             return;
         }
 
-        // Defaults that might be overridden by theme colors.
-        Theme vaadinTheme = new VaadinTheme();
-        Color janeColor = vaadinTheme.getColors()[0];
-        Color johnColor = vaadinTheme.getColors()[1];
-        Color joeColor = vaadinTheme.getColors()[2];
-
-        // Override default colors if a Theme has been defined.
-        Theme currentTheme = ChartOptions.get().getTheme();
-        if (currentTheme != null && currentTheme.getColors().length >= 3) {
-            janeColor = currentTheme.getColors()[0];
-            johnColor = currentTheme.getColors()[1];
-            joeColor = currentTheme.getColors()[2];
-        }
+        Color janeColor = getThemeColors()[0];
+        Color johnColor = getThemeColors()[1];
+        Color joeColor = getThemeColors()[2];
 
         // Colors for columns
         List<Series> series = configuration.getSeries();

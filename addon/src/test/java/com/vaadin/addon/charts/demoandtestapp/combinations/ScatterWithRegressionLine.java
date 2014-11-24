@@ -16,7 +16,7 @@ import com.vaadin.addon.charts.model.State;
 import com.vaadin.addon.charts.model.States;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
-import com.vaadin.addon.charts.model.style.SolidColor;
+import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.ui.Component;
 
 @SuppressWarnings("serial")
@@ -32,6 +32,7 @@ public class ScatterWithRegressionLine extends AbstractVaadinChartExample {
 
         Chart chart = new Chart();
         Configuration conf = chart.getConfiguration();
+        Color[] colors = getThemeColors();
 
         XAxis x = new XAxis();
         x.setMin(-0.5);
@@ -46,7 +47,7 @@ public class ScatterWithRegressionLine extends AbstractVaadinChartExample {
 
         DataSeries series = new DataSeries();
         PlotOptionsLine plotOptions = new PlotOptionsLine();
-        plotOptions.setColor(new SolidColor("#AA4643"));
+        plotOptions.setColor(colors[1]);
         series.setPlotOptions(plotOptions);
         series.setName("Regression Line");
 

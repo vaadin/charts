@@ -11,7 +11,6 @@ import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.PlotOptionsPie;
-import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Notification;
 
@@ -42,8 +41,6 @@ public class PieChart extends AbstractVaadinChartExample {
         plotOptions.setCursor(Cursor.POINTER);
         Labels dataLabels = new Labels();
         dataLabels.setEnabled(true);
-        dataLabels.setColor(new SolidColor(0, 0, 0));
-        dataLabels.setConnectorColor(new SolidColor(0, 0, 0));
         dataLabels
                 .setFormatter("'<b>'+ this.point.name +'</b>: '+ this.percentage +' %'");
         plotOptions.setDataLabels(dataLabels);

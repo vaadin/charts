@@ -16,9 +16,7 @@ import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
-import com.vaadin.addon.charts.model.style.FontWeight;
 import com.vaadin.addon.charts.model.style.SolidColor;
-import com.vaadin.addon.charts.model.style.Style;
 import com.vaadin.ui.Component;
 
 @SuppressWarnings("serial")
@@ -46,10 +44,6 @@ public class StackedColumn extends AbstractVaadinChartExample {
         yAxis.setMin(0);
         yAxis.setTitle(new Title("Total fruit consumption"));
         StackLabels sLabels = new StackLabels(true);
-        Style slStyle = new Style();
-        slStyle.setFontWeight(FontWeight.BOLD);
-        slStyle.setColor(new SolidColor("gray"));
-        sLabels.setStyle(slStyle);
         yAxis.setStackLabels(sLabels);
         conf.addyAxis(yAxis);
 
@@ -59,10 +53,6 @@ public class StackedColumn extends AbstractVaadinChartExample {
         legend.setVerticalAlign(VerticalAlign.TOP);
         legend.setX(-100);
         legend.setY(20);
-        legend.setBorderWidth(1);
-        legend.setBorderColor("#CCC");
-        legend.setBackgroundColor("white");
-        legend.setShadow(false);
         conf.setLegend(legend);
 
         Tooltip tooltip = new Tooltip();
@@ -72,8 +62,7 @@ public class StackedColumn extends AbstractVaadinChartExample {
 
         PlotOptionsColumn plotOptions = new PlotOptionsColumn();
         plotOptions.setStacking(Stacking.NORMAL);
-        Labels labels = new Labels();
-        labels.setEnabled(true);
+        Labels labels = new Labels(true);
         labels.setColor(new SolidColor("white"));
         plotOptions.setDataLabels(labels);
         conf.setPlotOptions(plotOptions);

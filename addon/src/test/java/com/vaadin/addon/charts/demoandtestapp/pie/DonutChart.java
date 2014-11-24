@@ -14,14 +14,14 @@ import com.vaadin.addon.charts.model.PlotOptionsPie;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.SolidColor;
-import com.vaadin.addon.charts.themes.VaadinTheme;
+import com.vaadin.addon.charts.themes.ValoLightTheme;
 import com.vaadin.ui.Component;
 
 @SuppressWarnings("serial")
 public class DonutChart extends AbstractVaadinChartExample {
 
     private static Random rand = new Random(0);
-    private static Color[] colors = new VaadinTheme().getColors();
+    private static Color[] colors = new ValoLightTheme().getColors();
 
     @Override
     public String getDescription() {

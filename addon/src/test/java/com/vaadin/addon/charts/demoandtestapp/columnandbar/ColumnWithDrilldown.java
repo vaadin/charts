@@ -19,9 +19,7 @@ import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.Color;
-import com.vaadin.addon.charts.model.style.FontWeight;
 import com.vaadin.addon.charts.model.style.SolidColor;
-import com.vaadin.addon.charts.themes.VaadinTheme;
 import com.vaadin.ui.Component;
 
 @SuppressWarnings("serial")
@@ -36,7 +34,7 @@ public class ColumnWithDrilldown extends AbstractVaadinChartExample {
     protected Component getChart() {
         final Chart chart = new Chart(ChartType.COLUMN);
 
-        Color[] colors = new VaadinTheme().getColors();
+        Color[] colors = getThemeColors();
         final Configuration conf = chart.getConfiguration();
 
         conf.setTitle("Browser market share, April, 2011");
@@ -53,8 +51,6 @@ public class ColumnWithDrilldown extends AbstractVaadinChartExample {
         PlotOptionsColumn column = new PlotOptionsColumn();
         column.setCursor(Cursor.POINTER);
         column.setDataLabels(new Labels(true));
-        column.getDataLabels().setColor(colors[0]);
-        column.getDataLabels().getStyle().setFontWeight(FontWeight.BOLD);
         column.getDataLabels().setFormatter("this.y +'%'");
 
         conf.setPlotOptions(column);
@@ -183,7 +179,7 @@ public class ColumnWithDrilldown extends AbstractVaadinChartExample {
             if (mainCategories.length == drilldowns.size()) {
                 for (DataSeriesItem item : getData()) {
                     Drilldown dd = drilldowns.get(item.getName());
-                    ((DataSeriesItem) item).setColor(dd.getColor());
+                    item.setColor(dd.getColor());
                 }
             }
         }
@@ -226,7 +222,7 @@ public class ColumnWithDrilldown extends AbstractVaadinChartExample {
         private void setDrillDownColors(String category) {
             Drilldown dd = drilldowns.get(category);
             for (DataSeriesItem item : getData()) {
-                ((DataSeriesItem) item).setColor(dd.getColor());
+                item.setColor(dd.getColor());
             }
         }
 

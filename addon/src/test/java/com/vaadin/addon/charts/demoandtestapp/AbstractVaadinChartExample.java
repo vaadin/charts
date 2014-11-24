@@ -6,6 +6,10 @@ import java.util.concurrent.Future;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.vaadin.addon.charts.ChartOptions;
+import com.vaadin.addon.charts.model.style.Color;
+import com.vaadin.addon.charts.model.style.Theme;
+import com.vaadin.addon.charts.themes.ValoLightTheme;
 import com.vaadin.data.Item;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.demo.sampler.sample.Sample;
@@ -126,4 +130,9 @@ public abstract class AbstractVaadinChartExample extends VerticalLayout
         }
     }
 
+    protected Color[] getThemeColors() {
+        Theme theme = ChartOptions.get().getTheme();
+        return (theme != null) ? theme.getColors() : new ValoLightTheme()
+                .getColors();
+    }
 }

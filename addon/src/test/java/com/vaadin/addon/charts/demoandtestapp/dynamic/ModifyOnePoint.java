@@ -11,7 +11,7 @@ import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.Marker;
 import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.SolidColor;
-import com.vaadin.addon.charts.themes.VaadinTheme;
+import com.vaadin.addon.charts.themes.ValoLightTheme;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.ui.Button;
@@ -64,7 +64,7 @@ public class ModifyOnePoint extends AbstractVaadinChartExample {
         return chart;
     }
 
-    static final Color[] colors = new VaadinTheme().getColors();
+    static final Color[] colors = new ValoLightTheme().getColors();
 
     static final Color COLOR_NORMAL = colors[0];
 

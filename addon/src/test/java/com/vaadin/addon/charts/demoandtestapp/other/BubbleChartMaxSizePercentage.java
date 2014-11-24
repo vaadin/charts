@@ -8,7 +8,6 @@ import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.DataSeriesItem3d;
 import com.vaadin.addon.charts.model.PlotOptionsBubble;
-import com.vaadin.addon.charts.themes.VaadinTheme;
 import com.vaadin.ui.Component;
 
 @SuppressWarnings("serial")
@@ -43,7 +42,7 @@ public class BubbleChartMaxSizePercentage extends AbstractVaadinChartExample {
         dataSeries.add(item(44, 83, -28));
 
         PlotOptionsBubble opts = new PlotOptionsBubble();
-        opts.setNegativeColor(new VaadinTheme().getColors()[3]);
+        opts.setNegativeColor(getThemeColors()[3]);
         opts.setMaxSizeAsPercentage(50);
         opts.setMinSize(3);
 

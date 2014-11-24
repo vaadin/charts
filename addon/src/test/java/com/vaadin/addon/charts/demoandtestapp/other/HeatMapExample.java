@@ -40,7 +40,7 @@ public class HeatMapExample extends AbstractVaadinChartExample {
 
         config.getColorAxis().setMin(0);
         config.getColorAxis().setMinColor(SolidColor.WHITE);
-        config.getColorAxis().setMaxColor(SolidColor.CYAN);
+        config.getColorAxis().setMaxColor((SolidColor) getThemeColors()[0]);
 
         config.getLegend().setLayout(LayoutDirection.VERTICAL);
         config.getLegend().setHorizontalAlign(HorizontalAlign.RIGHT);
@@ -52,7 +52,7 @@ public class HeatMapExample extends AbstractVaadinChartExample {
         RangeSeries rs = new RangeSeries("Sales per employee", getRawData());
 
         PlotOptionsHeatMap plotOptionsHeatMap = new PlotOptionsHeatMap();
-        plotOptionsHeatMap.setBorderColor(SolidColor.BLANCHEDALMOND);
+        plotOptionsHeatMap.setBorderColor((SolidColor) getThemeColors()[1]);
         plotOptionsHeatMap.setBorderWidth(3);
 
         Tooltip tooltip = new Tooltip();

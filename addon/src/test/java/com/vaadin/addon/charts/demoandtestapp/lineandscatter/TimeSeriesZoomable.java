@@ -16,6 +16,7 @@ import com.vaadin.addon.charts.model.State;
 import com.vaadin.addon.charts.model.States;
 import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.ZoomType;
+import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.server.Page;
@@ -180,6 +181,8 @@ public class TimeSeriesZoomable extends AbstractVaadinChartExample {
         chart.setHeight("450px");
         chart.setWidth("100%");
 
+        Color[] colors = getThemeColors();
+
         Configuration configuration = new Configuration();
         configuration.getChart().setZoomType(ZoomType.X);
         configuration.getChart().setSpacingRight(20);
@@ -208,8 +211,8 @@ public class TimeSeriesZoomable extends AbstractVaadinChartExample {
         PlotOptionsArea plotOptions = new PlotOptionsArea();
 
         GradientColor fillColor = GradientColor.createLinear(0, 0, 0, 1);
-        fillColor.addColorStop(0, new SolidColor("#4572A7"));
-        fillColor.addColorStop(1, new SolidColor(2, 0, 0, 0));
+        fillColor.addColorStop(0, (SolidColor) colors[0]);
+        fillColor.addColorStop(1, (SolidColor) colors[8]);
         plotOptions.setFillColor(fillColor);
 
         plotOptions.setLineWidth(1);

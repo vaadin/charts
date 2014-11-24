@@ -12,9 +12,7 @@ import com.vaadin.addon.charts.model.PlotOptionsWaterfall;
 import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.WaterFallSum;
 import com.vaadin.addon.charts.model.style.Color;
-import com.vaadin.addon.charts.model.style.FontWeight;
 import com.vaadin.addon.charts.model.style.SolidColor;
-import com.vaadin.addon.charts.model.style.Style;
 import com.vaadin.ui.Component;
 
 @SuppressWarnings("serial")
@@ -25,9 +23,11 @@ public class WaterfallChartExample extends AbstractVaadinChartExample {
         return "Bubble Chart";
     }
 
-    private Color sumColor = new SolidColor("black");
-    private Color upColor = new SolidColor("green");
-    private Color color = new SolidColor("red");
+    Color[] colors = getThemeColors();
+
+    private Color sumColor = colors[0];
+    private Color upColor = colors[1];
+    private Color color = colors[2];
 
     @Override
     protected Component getChart() {
@@ -60,10 +60,6 @@ public class WaterfallChartExample extends AbstractVaadinChartExample {
         dataLabels.setY(-30);
         dataLabels.setColor(new SolidColor("black"));
         dataLabels.setFormatter("this.y / 1000 + 'k'");
-        Style style = new Style();
-        style.setColor(new SolidColor("#ffffff"));
-        style.setFontWeight(FontWeight.BOLD);
-        dataLabels.setStyle(style);
         opts.setDataLabels(dataLabels);
         opts.setPointPadding(0);
 
