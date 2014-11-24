@@ -190,14 +190,14 @@ public class VTimelineWidget extends FocusPanel implements Paintable,
     private int numGraphs = 0;
 
     // Graph colors
-    private final Map<Integer, List<Integer>> colors = new HashMap<Integer, List<Integer>>();
-    private final Map<Integer, List<Integer>> fillcolors = new HashMap<Integer, List<Integer>>();
+    private final Map<Integer, String> colors = new HashMap<Integer, String>();
+    private final Map<Integer, String> fillcolors = new HashMap<Integer, String>();
     private final Map<Integer, Double> thicknesses = new HashMap<Integer, Double>();
     private final Map<Integer, Boolean> caps = new HashMap<Integer, Boolean>();
 
     // Browser colors
-    private final Map<Integer, List<Integer>> browserColors = new HashMap<Integer, List<Integer>>();
-    private final Map<Integer, List<Integer>> browserFillColors = new HashMap<Integer, List<Integer>>();
+    private final Map<Integer, String> browserColors = new HashMap<Integer, String>();
+    private final Map<Integer, String> browserFillColors = new HashMap<Integer, String>();
 
     // Legend values
     private final Map<Integer, String> captions = new HashMap<Integer, String>();
@@ -852,12 +852,8 @@ public class VTimelineWidget extends FocusPanel implements Paintable,
                     if (colors.get(graph) != null) {
                         HTML color = new HTML("<B>—</B>");
                         color.setHeight("15px");
-                        List<Integer> cc = colors.get(graph);
-                        DOM.setStyleAttribute(
-                                color.getElement(),
-                                "color",
-                                "rgb(" + cc.get(0) + "," + cc.get(1) + ","
-                                        + cc.get(2) + ")");
+                        String cc = colors.get(graph);
+                        DOM.setStyleAttribute(color.getElement(), "color", cc);
                         legend.add(color);
                         legendColors.add(color);
                     }
@@ -938,9 +934,7 @@ public class VTimelineWidget extends FocusPanel implements Paintable,
             if (color == null || color.equals("")) {
                 initGridColor = null;
             } else {
-                String[] rgba = color.split(";");
-                initGridColor = "rgba(" + rgba[0] + "," + rgba[1] + ","
-                        + rgba[2] + "," + rgba[3] + ")";
+                initGridColor = color;
             }
 
             display.setGridColor(initGridColor);
@@ -1061,13 +1055,7 @@ public class VTimelineWidget extends FocusPanel implements Paintable,
             String[] colorStrings = uidl
                     .getStringArrayAttribute(TimelineConstants.ATTRIBUTE_BROWSER_COLORS);
             for (int s = 0; s < colorStrings.length; s++) {
-                List<Integer> colorComponents = new ArrayList<Integer>();
-                String[] comp = colorStrings[s].split(";");
-                colorComponents.add(Integer.parseInt(comp[0]));
-                colorComponents.add(Integer.parseInt(comp[1]));
-                colorComponents.add(Integer.parseInt(comp[2]));
-                colorComponents.add(Integer.parseInt(comp[3]));
-                browserColors.put(s, colorComponents);
+                browserColors.put(s, colorStrings[s]);
             }
             if (isInitDone()) {
                 browser.redraw();
@@ -1081,13 +1069,7 @@ public class VTimelineWidget extends FocusPanel implements Paintable,
             String[] colorStrings = uidl
                     .getStringArrayAttribute(TimelineConstants.ATTRIBUTE_BROWSER_FILLCOLORS);
             for (int s = 0; s < colorStrings.length; s++) {
-                List<Integer> colorComponents = new ArrayList<Integer>();
-                String[] comp = colorStrings[s].split(";");
-                colorComponents.add(Integer.parseInt(comp[0]));
-                colorComponents.add(Integer.parseInt(comp[1]));
-                colorComponents.add(Integer.parseInt(comp[2]));
-                colorComponents.add(Integer.parseInt(comp[3]));
-                browserFillColors.put(s, colorComponents);
+                browserFillColors.put(s, colorStrings[s]);
             }
             if (isInitDone()) {
                 browser.redraw();
@@ -1101,13 +1083,7 @@ public class VTimelineWidget extends FocusPanel implements Paintable,
             String[] colorStrings = uidl
                     .getStringArrayAttribute(TimelineConstants.ATTRIBUTE_COLORS);
             for (int s = 0; s < colorStrings.length; s++) {
-                List<Integer> colorComponents = new ArrayList<Integer>();
-                String[] comp = colorStrings[s].split(";");
-                colorComponents.add(Integer.parseInt(comp[0]));
-                colorComponents.add(Integer.parseInt(comp[1]));
-                colorComponents.add(Integer.parseInt(comp[2]));
-                colorComponents.add(Integer.parseInt(comp[3]));
-                colors.put(s, colorComponents);
+                colors.put(s, colorStrings[s]);
             }
             if (isInitDone()) {
                 display.redraw();
@@ -1121,13 +1097,7 @@ public class VTimelineWidget extends FocusPanel implements Paintable,
             String[] colorStrings = uidl
                     .getStringArrayAttribute(TimelineConstants.ATTRIBUTE_FILLCOLORS);
             for (int s = 0; s < colorStrings.length; s++) {
-                List<Integer> colorComponents = new ArrayList<Integer>();
-                String[] comp = colorStrings[s].split(";");
-                colorComponents.add(Integer.parseInt(comp[0]));
-                colorComponents.add(Integer.parseInt(comp[1]));
-                colorComponents.add(Integer.parseInt(comp[2]));
-                colorComponents.add(Integer.parseInt(comp[3]));
-                fillcolors.put(s, colorComponents);
+                fillcolors.put(s, colorStrings[s]);
             }
             if (isInitDone()) {
                 display.redraw();
@@ -1862,7 +1832,7 @@ public class VTimelineWidget extends FocusPanel implements Paintable,
      * 
      * @return A map of colors
      */
-    Map<Integer, List<Integer>> getColorMap() {
+    Map<Integer, String> getColorMap() {
         return colors;
     }
 
@@ -1889,7 +1859,7 @@ public class VTimelineWidget extends FocusPanel implements Paintable,
      * 
      * @return
      */
-    public Map<Integer, List<Integer>> getBrowserColorMap() {
+    public Map<Integer, String> getBrowserColorMap() {
         return browserColors;
     }
 
@@ -1898,11 +1868,11 @@ public class VTimelineWidget extends FocusPanel implements Paintable,
      * 
      * @return A map of colors
      */
-    public Map<Integer, List<Integer>> getFillColorMap() {
+    public Map<Integer, String> getFillColorMap() {
         return fillcolors;
     }
 
-    public Map<Integer, List<Integer>> getBrowserFillColorMap() {
+    public Map<Integer, String> getBrowserFillColorMap() {
         return browserFillColors;
     }
 

@@ -1365,7 +1365,7 @@ public class VTimelineBrowser extends VTimelineCanvasComponent implements
      * (int)
      */
     @Override
-    protected List<Integer> getFillColors(int graphIndex) {
+    protected String getFillColors(int graphIndex) {
         return timelineWidget.getBrowserFillColorMap().get(graphIndex);
     }
 
@@ -1377,7 +1377,7 @@ public class VTimelineBrowser extends VTimelineCanvasComponent implements
      * (int)
      */
     @Override
-    protected List<Integer> getColors(int graphIndex) {
+    protected String getColors(int graphIndex) {
         return timelineWidget.getBrowserColorMap().get(graphIndex);
     }
 

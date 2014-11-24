@@ -17,9 +17,9 @@ package com.vaadin.addon.timeline;
  * #L%
  */
 
-import java.awt.Color;
 import java.io.Serializable;
 
+import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.data.Container;
 
 /**
@@ -38,15 +38,15 @@ public class TimelineDatasourceProperties implements Serializable {
 
     private boolean visible = true;
 
-    private Color color = Color.BLACK;
+    private SolidColor color = SolidColor.BLACK;
 
-    private Color fillColor = new Color(0, 0, 0, 0);
+    private SolidColor fillColor = new SolidColor(0, 0, 0, 0);
 
     private String caption = "Unknown graph";
 
-    private Color browserColor = new Color(0x00, 0x67, 0xDD);
+    private SolidColor browserColor = new SolidColor(0x00, 0x67, 0xDD);
 
-    private Color browserFillColor = new Color(0xED, 0xF7, 0xFF);
+    private SolidColor browserFillColor = new SolidColor(0xED, 0xF7, 0xFF);
 
     private String legendUnit = "";
 
@@ -86,19 +86,19 @@ public class TimelineDatasourceProperties implements Serializable {
         this.visible = visible;
     }
 
-    public Color getColor() {
+    public SolidColor getColor() {
         return color;
     }
 
-    public void setColor(Color color) {
+    public void setColor(SolidColor color) {
         this.color = color;
     }
 
-    public Color getFillColor() {
+    public SolidColor getFillColor() {
         return fillColor;
     }
 
-    public void setFillColor(Color fillColor) {
+    public void setFillColor(SolidColor fillColor) {
         this.fillColor = fillColor;
     }
 
@@ -110,19 +110,19 @@ public class TimelineDatasourceProperties implements Serializable {
         this.caption = caption;
     }
 
-    public Color getBrowserColor() {
+    public SolidColor getBrowserColor() {
         return browserColor;
     }
 
-    public void setBrowserColor(Color browserColor) {
+    public void setBrowserColor(SolidColor browserColor) {
         this.browserColor = browserColor;
     }
 
-    public Color getBrowserFillColor() {
+    public SolidColor getBrowserFillColor() {
         return browserFillColor;
     }
 
-    public void setBrowserFillColor(Color browserFillColor) {
+    public void setBrowserFillColor(SolidColor browserFillColor) {
         this.browserFillColor = browserFillColor;
     }
 

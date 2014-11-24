@@ -17,7 +17,6 @@ package com.vaadin.addon.timeline;
  * #L%
  */
 
-import java.awt.Color;
 import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
@@ -35,6 +34,7 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.timeline.gwt.client.TimelineConstants;
 import com.vaadin.data.Container;
 import com.vaadin.data.Container.Indexed;
@@ -287,7 +287,7 @@ public class Timeline extends AbstractComponent implements LegacyComponent {
     protected String chartModeCaption = "Chart mode";
 
     // The graph grid color
-    protected Color graphGridColor = Color.LIGHT_GRAY;
+    protected SolidColor graphGridColor = SolidColor.LIGHTGRAY;
 
     // Stacking
     protected boolean graphStacking = false;
@@ -977,8 +977,8 @@ public class Timeline extends AbstractComponent implements LegacyComponent {
      * java.util.Map)
      */
     @Override
-    public void changeVariables(Object source, @SuppressWarnings("rawtypes")
-    Map variables) {
+    public void changeVariables(Object source,
+            @SuppressWarnings("rawtypes") Map variables) {
 
         if (dirty) {
             /*
@@ -1133,39 +1133,6 @@ public class Timeline extends AbstractComponent implements LegacyComponent {
 
             fireEventButtonClickEvent(ids);
         }
-    }
-
-    /**
-     * Converts a AWT Color to a rgb/rgba separated string
-     * 
-     * @param c
-     *            The color to convert
-     * @param separator
-     *            The separator
-     * @param includeAlpha
-     *            Should the alpha color be appended
-     * @return A string representation of the color
-     */
-    private static String colorToString(Color c, String separator,
-            boolean includeAlpha) {
-        String red = String.valueOf(c.getRed());
-        String green = String.valueOf(c.getGreen());
-        String blue = String.valueOf(c.getBlue());
-        String alpha = String.valueOf(c.getAlpha());
-
-        StringBuilder color = new StringBuilder();
-        color.append(red);
-        color.append(separator);
-        color.append(green);
-        color.append(separator);
-        color.append(blue);
-
-        if (includeAlpha) {
-            color.append(separator);
-            color.append(alpha);
-        }
-
-        return color.toString();
     }
 
     /*
@@ -1362,9 +1329,8 @@ public class Timeline extends AbstractComponent implements LegacyComponent {
             Object[] cols = new Object[datasources.size()];
             for (int i = 0; i < cols.length; i++) {
                 TimelineDatasourceProperties ds = datasources.get(i);
-                Color c = ds.getColor();
-                cols[i] = colorToString(c, ";", true);
-                getLogger().finest("Graph " + i + " stroke color is " + c);
+                cols[i] = ds.getColor().toString();
+                getLogger().finest("Graph " + i + " stroke color is " + cols[i]);
             }
             target.addAttribute(TimelineConstants.ATTRIBUTE_COLORS, cols);
             sendGraphColors = false;
@@ -1375,10 +1341,9 @@ public class Timeline extends AbstractComponent implements LegacyComponent {
             Object[] cols = new Object[datasources.size()];
             for (int i = 0; i < cols.length; i++) {
                 TimelineDatasourceProperties ds = datasources.get(i);
-                Color c = ds.getBrowserColor();
-                cols[i] = colorToString(c, ";", true);
+                cols[i] = ds.getBrowserColor().toString();
                 getLogger().finest(
-                        "Browser Graph " + i + " stroke color is " + c);
+                        "Browser Graph " + i + " stroke color is " + cols[i]);
             }
             target.addAttribute(TimelineConstants.ATTRIBUTE_BROWSER_COLORS,
                     cols);
@@ -1391,9 +1356,8 @@ public class Timeline extends AbstractComponent implements LegacyComponent {
             Object[] cols = new Object[datasources.size()];
             for (int i = 0; i < cols.length; i++) {
                 TimelineDatasourceProperties ds = datasources.get(i);
-                Color c = ds.getFillColor();
-                cols[i] = colorToString(c, ";", true);
-                getLogger().finest("Graph " + i + " fill color is " + c);
+                cols[i] = ds.getFillColor().toString();
+                getLogger().finest("Graph " + i + " fill color is " + cols[i]);
             }
             target.addAttribute(TimelineConstants.ATTRIBUTE_FILLCOLORS, cols);
             sendGraphFillColors = false;
@@ -1404,10 +1368,9 @@ public class Timeline extends AbstractComponent implements LegacyComponent {
             Object[] cols = new Object[datasources.size()];
             for (int i = 0; i < cols.length; i++) {
                 TimelineDatasourceProperties ds = datasources.get(i);
-                Color c = ds.getBrowserFillColor();
-                cols[i] = colorToString(c, ";", true);
+                cols[i] = ds.getBrowserFillColor().toString();
                 getLogger().finest(
-                        "Browser Graph " + i + " stroke color is " + c);
+                        "Browser Graph " + i + " stroke color is " + cols[i]);
             }
             target.addAttribute(TimelineConstants.ATTRIBUTE_BROWSER_FILLCOLORS,
                     cols);
@@ -1606,8 +1569,7 @@ public class Timeline extends AbstractComponent implements LegacyComponent {
             getLogger().finest("Grid color is " + graphGridColor);
             target.addAttribute(
                     TimelineConstants.ATTRIBUTE_GRID_COLOR,
-                    graphGridColor == null ? "" : colorToString(graphGridColor,
-                            ";", true));
+                    graphGridColor == null ? "" : graphGridColor.toString());
             sendGraphGrid = false;
         }
 
@@ -1693,7 +1655,7 @@ public class Timeline extends AbstractComponent implements LegacyComponent {
     /**
      * Initiates new default values for a datasource
      * 
-     * @param dataSource
+     * @param ds
      *            The new datasource
      */
     private void initNewGraphDataSource(TimelineDatasourceProperties ds) {
@@ -2139,11 +2101,12 @@ public class Timeline extends AbstractComponent implements LegacyComponent {
      * @param color
      *            The color of the graph outline
      */
-    public void setGraphOutlineColor(Container.Indexed dataSource, Color color) {
+    public void setGraphOutlineColor(Container.Indexed dataSource,
+            SolidColor color) {
         TimelineDatasourceProperties ds = getDatasourceProperties(dataSource);
         if (ds != null) {
             if (color == null) {
-                color = Color.BLACK;
+                color = SolidColor.BLACK;
             }
             ds.setColor(color);
             sendGraphColors = true;
@@ -2163,7 +2126,7 @@ public class Timeline extends AbstractComponent implements LegacyComponent {
      * @param dataSource
      *            The data source of the graph
      */
-    public Color getGraphOutlineColor(Container.Indexed dataSource) {
+    public SolidColor getGraphOutlineColor(Container.Indexed dataSource) {
         TimelineDatasourceProperties ds = getDatasourceProperties(dataSource);
         if (ds != null) {
             return ds.getColor();
@@ -2180,11 +2143,11 @@ public class Timeline extends AbstractComponent implements LegacyComponent {
      * @param color
      *            The color to be used as a fill color
      */
-    public void setGraphFillColor(Container.Indexed dataSource, Color color) {
+    public void setGraphFillColor(Container.Indexed dataSource, SolidColor color) {
         TimelineDatasourceProperties ds = getDatasourceProperties(dataSource);
         if (ds != null) {
             if (color == null) {
-                color = new Color(0, 0, 0, 0);
+                color = new SolidColor(0, 0, 0, 0);
             }
             ds.setFillColor(color);
             sendGraphFillColors = true;
@@ -2204,7 +2167,7 @@ public class Timeline extends AbstractComponent implements LegacyComponent {
      * @param dataSource
      *            The data source of the graph
      */
-    public Color getGraphFillColor(Container.Indexed dataSource) {
+    public SolidColor getGraphFillColor(Container.Indexed dataSource) {
         TimelineDatasourceProperties ds = getDatasourceProperties(dataSource);
         if (ds != null) {
             return ds.getFillColor();
@@ -2221,11 +2184,12 @@ public class Timeline extends AbstractComponent implements LegacyComponent {
      * @param color
      *            The outline color of the graph
      */
-    public void setBrowserOutlineColor(Container.Indexed dataSource, Color color) {
+    public void setBrowserOutlineColor(Container.Indexed dataSource,
+            SolidColor color) {
         TimelineDatasourceProperties ds = getDatasourceProperties(dataSource);
         if (ds != null) {
             if (color == null) {
-                color = new Color(0x00, 0x67, 0xDD);
+                color = new SolidColor(0x00, 0x67, 0xDD);
             }
             ds.setBrowserColor(color);
             sendBrowserColors = true;
@@ -2245,7 +2209,7 @@ public class Timeline extends AbstractComponent implements LegacyComponent {
      * @param dataSource
      *            The data source of the graph
      */
-    public Color getBrowserOutlineColor(Container.Indexed dataSource) {
+    public SolidColor getBrowserOutlineColor(Container.Indexed dataSource) {
         TimelineDatasourceProperties ds = getDatasourceProperties(dataSource);
         if (ds != null) {
             return ds.getBrowserColor();
@@ -2262,11 +2226,12 @@ public class Timeline extends AbstractComponent implements LegacyComponent {
      * @param color
      *            The fill color of the graph
      */
-    public void setBrowserFillColor(Container.Indexed dataSource, Color color) {
+    public void setBrowserFillColor(Container.Indexed dataSource,
+            SolidColor color) {
         TimelineDatasourceProperties ds = getDatasourceProperties(dataSource);
         if (ds != null) {
             if (color == null) {
-                color = new Color(0xED, 0xF7, 0xFF);
+                color = new SolidColor(0xED, 0xF7, 0xFF);
             }
             ds.setBrowserFillColor(color);
             sendBrowserFillColors = true;
@@ -2286,7 +2251,7 @@ public class Timeline extends AbstractComponent implements LegacyComponent {
      * @param dataSource
      *            The data source of the graph
      */
-    public Color getBrowserFillColor(Container.Indexed dataSource) {
+    public SolidColor getBrowserFillColor(Container.Indexed dataSource) {
         TimelineDatasourceProperties ds = getDatasourceProperties(dataSource);
         if (ds != null) {
             return ds.getBrowserFillColor();
@@ -2598,8 +2563,8 @@ public class Timeline extends AbstractComponent implements LegacyComponent {
      * Get the vertical unit for the graph.<br/>
      * The vertical unit is displayed after the value in the legend.
      * 
-     * @param The
-     *            data source of the graph
+     * @param dataSource
+     *            The data source of the graph
      */
     public String getVerticalAxisLegendUnit(Container.Indexed dataSource) {
         TimelineDatasourceProperties ds = getDatasourceProperties(dataSource);
@@ -3360,7 +3325,7 @@ public class Timeline extends AbstractComponent implements LegacyComponent {
      * @param color
      *            The color of the grid or Null to remove the grid
      */
-    public void setGraphGridColor(Color color) {
+    public void setGraphGridColor(SolidColor color) {
         graphGridColor = color;
         sendGraphGrid = true;
         if (initDone) {
@@ -3374,7 +3339,7 @@ public class Timeline extends AbstractComponent implements LegacyComponent {
      * 
      * @return The color of the graph
      */
-    public Color getGraphGridColor() {
+    public SolidColor getGraphGridColor() {
         return graphGridColor;
     }
 

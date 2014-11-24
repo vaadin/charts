@@ -2187,12 +2187,10 @@ public class VTimelineDisplay extends VTimelineCanvasComponent implements
         // not used.
         // private double value;
 
-        public Dot(List<Integer> colors) {
+        public Dot(String colors) {
             super(" ");
             setStyleName(CLASSNAME_DOT);
-            getElement().getStyle().setBackgroundColor(
-                    "rgb(" + colors.get(0) + "," + colors.get(1) + ","
-                            + colors.get(2) + ")");
+            getElement().getStyle().setBackgroundColor(colors);
         }
 
         // public double getValue() {
@@ -2323,7 +2321,7 @@ public class VTimelineDisplay extends VTimelineCanvasComponent implements
      * (int)
      */
     @Override
-    protected List<Integer> getFillColors(int graphIndex) {
+    protected String getFillColors(int graphIndex) {
         return widget.getFillColorMap().get(graphIndex);
     }
 
@@ -2335,7 +2333,7 @@ public class VTimelineDisplay extends VTimelineCanvasComponent implements
      * (int)
      */
     @Override
-    protected List<Integer> getColors(int graphIndex) {
+    protected String getColors(int graphIndex) {
         return widget.getColorMap().get(graphIndex);
     }
 

@@ -184,8 +184,10 @@ public class SolidColor extends AbstractConfigurationObject implements Color {
      * @param color
      */
     public SolidColor(String color) {
+
         // Sanitize value to avoid cross site attacks
         this.color = color.replaceAll("[^0-9a-z,A-Z#]", "");
+
     }
 
     /**

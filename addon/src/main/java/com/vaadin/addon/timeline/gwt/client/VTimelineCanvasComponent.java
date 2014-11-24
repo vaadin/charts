@@ -56,9 +56,9 @@ public abstract class VTimelineCanvasComponent extends Widget {
 
     protected abstract void setCurrentGraphs(List<Graph> graphs);
 
-    protected abstract List<Integer> getFillColors(int graphIndex);
+    protected abstract String getFillColors(int graphIndex);
 
-    protected abstract List<Integer> getColors(int graphIndex);
+    protected abstract String getColors(int graphIndex);
 
     private float currentZeroCoordinate = 0f;
 
@@ -204,16 +204,11 @@ public abstract class VTimelineCanvasComponent extends Widget {
         List<Graph> graphs = new ArrayList<Graph>();
         for (int g = 0; g < widget.getNumGraphs(); g++) {
             Graph graph = new Graph();
-            double fillalpha = 0;
-            double alpha = 0;
 
             // Set Fill color
-            List<Integer> fillcolors = getFillColors(g);
-            if (fillcolors != null && fillcolors.size() == 4) {
-                fillalpha = fillcolors.get(3) / 255.0;
-                graph.setFillColor("rgba(" + fillcolors.get(0) + ","
-                        + fillcolors.get(1) + "," + fillcolors.get(2) + ","
-                        + fillalpha + ")");
+            String fillcolors = getFillColors(g);
+            if (fillcolors != null) {
+                graph.setFillColor(fillcolors);
             } else {
                 VConsole.error("Could not plot graph " + g
                         + " since fill color is missing");
@@ -221,19 +216,12 @@ public abstract class VTimelineCanvasComponent extends Widget {
             }
 
             // Set color
-            List<Integer> colors = getColors(g);
-            if (colors != null && colors.size() == 4) {
-                alpha = colors.get(3) / 255.0;
-                graph.setColor("rgba(" + colors.get(0) + "," + colors.get(1)
-                        + "," + colors.get(2) + "," + alpha + ")");
+            String colors = getColors(g);
+            if (colors != null) {
+                graph.setColor(colors);
             } else {
                 VConsole.error("Could not plot graph " + g
                         + " since color is missing");
-                continue;
-            }
-
-            if (fillalpha == 0 && alpha == 0) {
-                // Graph is invisible, ignore drawing it
                 continue;
             }
 
