@@ -24,6 +24,22 @@ public class DataSeriesItem3d extends DataSeriesItem {
 
     private Number z;
 
+    public DataSeriesItem3d() {
+        super();
+    }
+
+    /**
+     * Constructs an item with X, Y and Z values
+     * 
+     * @param x
+     * @param y
+     * @param z
+     */
+    public DataSeriesItem3d(Number x, Number y, Number z) {
+        super(x, y);
+        this.z = z;
+    }
+
     /**
      * Sets the z value of the point.
      * 
@@ -40,4 +56,5 @@ public class DataSeriesItem3d extends DataSeriesItem {
     public Number getZ() {
         return z;
     }
+
 }

@@ -30,7 +30,6 @@ public class DataSeriesItem extends AbstractConfigurationObject {
     private String name;
     private Number y;
     private Number x;
-    private Number z;
     private Number low;
     private Number high;
     private Boolean sliced;
@@ -205,23 +204,6 @@ public class DataSeriesItem extends AbstractConfigurationObject {
      */
     public void setX(Number x) {
         this.x = x;
-    }
-
-    /**
-     * @see #setZ(Number)
-     * @return The Z value of this data item.
-     */
-    public Number getZ() {
-        return z;
-    }
-
-    /**
-     * Sets the Z value of this data item. Defaults to null. Used in 3d scatter
-     * 
-     * @param z
-     */
-    public void setZ(Number z) {
-        this.z = z;
     }
 
     /**

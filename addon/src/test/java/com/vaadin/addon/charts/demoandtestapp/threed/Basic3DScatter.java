@@ -6,7 +6,7 @@ import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.DataSeries;
-import com.vaadin.addon.charts.model.DataSeriesItem;
+import com.vaadin.addon.charts.model.DataSeriesItem3d;
 import com.vaadin.addon.charts.model.Frame;
 import com.vaadin.addon.charts.model.FramePanel;
 import com.vaadin.addon.charts.model.Options3d;
@@ -48,7 +48,7 @@ public class Basic3DScatter extends AbstractVaadinChartExample {
         Random random = new Random(0);
 
         for (int i = 0; i < 20; i++) {
-            DataSeriesItem dsi = new DataSeriesItem();
+            DataSeriesItem3d dsi = new DataSeriesItem3d();
             dsi.setY(random.nextInt(10));
             dsi.setX(random.nextInt(10));
             dsi.setZ(random.nextInt(10));
