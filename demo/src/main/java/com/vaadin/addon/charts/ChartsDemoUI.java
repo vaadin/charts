@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -242,8 +243,11 @@ public class ChartsDemoUI extends UI {
                 container.removeAllContainerFilters();
                 String text = event.getText();
                 if (text != null && !text.isEmpty()) {
+                    expandForFiltering();
                     container.addContainerFilter("displayName", text, true,
                             false);
+                } else {
+                    restoreExpandedStates();
                 }
             }
         });
@@ -315,6 +319,25 @@ public class ChartsDemoUI extends UI {
                 addComponent(themeSelector);
             }
         });
+    }
+
+    HashSet<Object> expandedItemIds = new HashSet<Object>();
+    private void expandForFiltering() {
+        expandedItemIds.clear();
+        for (Object itemId : tree.getVisibleItemIds()) {
+            if (tree.isExpanded(itemId)) {
+                expandedItemIds.add(itemId);
+            }
+            tree.expandItemsRecursively(itemId);
+        }
+    }
+
+    private void restoreExpandedStates() {
+        for (Object itemId : tree.getVisibleItemIds()) {
+            if (!expandedItemIds.contains(itemId) && tree.isExpanded(itemId)) {
+                tree.collapseItem(itemId);
+            }
+        }
     }
 
     private void selectItem() {
