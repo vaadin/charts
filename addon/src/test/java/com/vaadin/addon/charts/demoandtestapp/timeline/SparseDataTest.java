@@ -1,5 +1,6 @@
 package com.vaadin.addon.charts.demoandtestapp.timeline;
 
+import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,7 +9,6 @@ import java.util.Date;
 
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.demoandtestapp.SkipFromDemo;
-import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.timeline.Timeline;
 import com.vaadin.data.Item;
 import com.vaadin.data.util.IndexedContainer;
@@ -29,8 +29,8 @@ public class SparseDataTest extends AbstractVaadinChartExample {
         try {
             IndexedContainer ds = getDatasource();
             timeline.addGraphDataSource(ds);
-            timeline.setGraphOutlineColor(ds, new SolidColor(0, 0, 0, 0));
-            timeline.setGraphFillColor(ds, new SolidColor(254, 0, 0, 1.0));
+            timeline.setGraphOutlineColor(ds, new Color(0, 0, 0, 0));
+            timeline.setGraphFillColor(ds, new Color(254, 0, 0, 100));
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

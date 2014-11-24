@@ -3,6 +3,7 @@
  */
 package com.vaadin.addon.charts.demoandtestapp.timeline;
 
+import java.awt.Color;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
@@ -11,7 +12,6 @@ import java.util.TimerTask;
 
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.demoandtestapp.SkipFromDemo;
-import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.timeline.Timeline;
 import com.vaadin.data.Item;
 import com.vaadin.data.Property;
@@ -53,8 +53,8 @@ public class Monitor extends AbstractVaadinChartExample {
         timeline.setZoomLevelsVisible(false);
         timeline.setDateSelectVisible(false);
         timeline.setGraphOutlineThickness(4);
-        timeline.setGraphFillColor(ds, new SolidColor(0, 30, 220, 128));
-        timeline.setGraphOutlineColor(ds, SolidColor.RED);
+        timeline.setGraphFillColor(ds, new Color(0, 30, 220, 128));
+        timeline.setGraphOutlineColor(ds, Color.RED);
         addComponent(timeline);
 
         HorizontalLayout controls = new HorizontalLayout();

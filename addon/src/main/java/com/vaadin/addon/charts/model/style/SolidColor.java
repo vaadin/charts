@@ -178,11 +178,6 @@ public class SolidColor extends AbstractConfigurationObject implements Color {
 
     private final String color;
 
-    private final int red;
-    private final int green;
-    private final int blue;
-    private final double opacity;
-
     /**
      * Constructs a new color from a hex value like "#ff0000" for red.
      * 
@@ -191,11 +186,6 @@ public class SolidColor extends AbstractConfigurationObject implements Color {
     public SolidColor(String color) {
         // Sanitize value to avoid cross site attacks
         this.color = color.replaceAll("[^0-9a-z,A-Z#]", "");
-
-        this.red = Integer.valueOf(color.substring(1, 3), 16);
-        this.green = Integer.valueOf(color.substring(3, 5), 16);
-        this.blue = Integer.valueOf(color.substring(5, 7), 16);
-        this.opacity = 1.0;
     }
 
     /**
@@ -216,10 +206,6 @@ public class SolidColor extends AbstractConfigurationObject implements Color {
 
         color = String
                 .format(Locale.ENGLISH, "#%02X%02X%02X", red, green, blue);
-        this.red = red;
-        this.green = green;
-        this.blue = blue;
-        this.opacity = 1.0;
     }
 
     /**
@@ -242,78 +228,11 @@ public class SolidColor extends AbstractConfigurationObject implements Color {
 
         color = String.format(Locale.ENGLISH, "rgba(%d,%d,%d,%.2f)", red,
                 green, blue, opacity);
-        this.red = red;
-        this.green = green;
-        this.blue = blue;
-        this.opacity = opacity;
     }
 
     @Override
     public String toString() {
         return color;
-    }
-
-    @Override
-    public int hashCode() {
-        return this.getRed() + this.getGreen() * 17 + this.getBlue() * 97
-                + this.getOpacity() * 101;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof SolidColor) {
-            SolidColor other = (SolidColor) obj;
-            return this.getRed() == other.getRed()
-                    && this.getGreen() == other.getGreen()
-                    && this.getBlue() == other.getBlue()
-                    && this.getAlpha() == other.getAlpha();
-        } else
-            return super.equals(obj);
-    }
-
-    /**
-     * Returns red component.
-     * 
-     * @return Red, 0-255.
-     */
-    public int getRed() {
-        return red;
-    }
-
-    /**
-     * Returns green component.
-     * 
-     * @return Green, 0-255.
-     */
-    public int getGreen() {
-        return green;
-    }
-
-    /**
-     * Returns blue component.
-     * 
-     * @return Blue, 0-255.
-     */
-    public int getBlue() {
-        return blue;
-    }
-
-    /**
-     * Returns alpha component.
-     * 
-     * @return Alpha, 0.0-1.0.
-     */
-    public double getAlpha() {
-        return opacity;
-    }
-
-    /**
-     * Returns opacity (alpha) component as byte.
-     * 
-     * @return Alpha, 0-255.
-     */
-    public int getOpacity() {
-        return new Double(opacity * 255).intValue();
     }
 
 }
