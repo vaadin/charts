@@ -6,7 +6,7 @@
     <artifactId>charts-demo</artifactId>
     <packaging>war</packaging>
     <version>0.0.2-SNAPSHOT</version>
-    <name>Vaadin Web Application</name>
+    <name>Vaadin Charts Demo</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

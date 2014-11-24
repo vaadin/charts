@@ -6,7 +6,7 @@
 	<artifactId>chart-export-demo</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Vaadin Web Application</name>
+	<name>Vaadin Charts Export Demo</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
