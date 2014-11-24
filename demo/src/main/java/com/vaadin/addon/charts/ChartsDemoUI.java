@@ -28,6 +28,7 @@ import com.vaadin.addon.charts.themes.ValoDarkTheme;
 import com.vaadin.addon.charts.themes.ValoLightTheme;
 import com.vaadin.annotations.JavaScript;
 import com.vaadin.annotations.Theme;
+import com.vaadin.annotations.Title;
 import com.vaadin.data.Item;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
@@ -63,6 +64,7 @@ import com.vaadin.ui.themes.ValoTheme;
 @SuppressWarnings("serial")
 @JavaScript("prettify.js")
 @Theme("charts-demo")
+@Title("Vaadin Charts Demo")
 public class ChartsDemoUI extends UI {
 
     static final Properties prop = new Properties();
