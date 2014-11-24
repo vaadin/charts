@@ -1,13 +1,13 @@
 package com.vaadin.addon.charts.testbenchtests;
 
-import com.vaadin.addon.charts.demoandtestapp.pie.PieWithStartEndAngle;
+import com.vaadin.addon.charts.demoandtestapp.pie.PieWithStartAndEndAngle;
 
-public class PieWithStartEndAngleTBTest extends
+public class PieWithStartAndEndAngleTBTest extends
         AbstractSimpleScreenShotTestBenchTest {
 
     @Override
     protected String getTestViewName() {
-        return PieWithStartEndAngle.class.getSimpleName();
+        return PieWithStartAndEndAngle.class.getSimpleName();
     }
 
     @Override

@@ -15,7 +15,7 @@ import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
 
 @SuppressWarnings("serial")
-public class PieWithStartEndAngle extends AbstractVaadinChartExample {
+public class PieWithStartAndEndAngle extends AbstractVaadinChartExample {
 
 	@Override
 	public String getDescription() {

@@ -84,14 +84,24 @@ public class ChartsDemoUI extends UI {
 
     private static Map<String, List<Class<? extends AbstractVaadinChartExample>>> tests;
 
-    private static final String[] GROUP_ORDER = { "Column and Bar", "Pie",
+    private static final String[] GROUP_ORDER = { "columnandbar", "pie",
+            "area", "lineandscatter", "dynamic", "combinations", "other",
+            "container", "timeline", "threed" };
+    private static final String[] GROUP_CAPTIONS = { "Column and Bar", "Pie",
             "Area", "Line and Scatter", "Dynamic", "Combinations", "Other",
-            "Container", "Timeline", "Three D" };
+            "Container", "Timeline", "3D" };
 
     static String splitCamelCase(String s) {
-        return s.replaceAll(String.format("%s|%s|%s",
+        String replaced = s.replaceAll(String.format("%s|%s|%s",
                 "(?<=[A-Z])(?=[A-Z][a-z])", "(?<=[^A-Z])(?=[A-Z])",
                 "(?<=[A-Za-z])(?=[^A-Za-z])"), " ");
+        // Make things look nicer with some special case handling
+        replaced = replaced.replaceAll("And", "and");
+        replaced = replaced.replaceAll("With", "with");
+        replaced = replaced.replaceAll("To", "to");
+        replaced = replaced.replaceAll("Of", "of");
+        replaced = replaced.replaceAll("Api", "API");
+        return replaced.replaceAll("3 D", "3D");
     }
 
     static {
@@ -165,7 +175,7 @@ public class ChartsDemoUI extends UI {
         links.setSpacing(true);
         links.addStyleName("links");
 
-        HorizontalSplitPanel horizontalSplitPanel = new HorizontalSplitPanel();
+        final HorizontalSplitPanel horizontalSplitPanel = new HorizontalSplitPanel();
         horizontalSplitPanel.setSecondComponent(tabSheet);
         horizontalSplitPanel.setSplitPosition(300, Unit.PIXELS);
         horizontalSplitPanel.addStyleName("main-layout");
@@ -338,10 +348,10 @@ public class ChartsDemoUI extends UI {
         hierarchicalContainer.addContainerProperty("displayName", String.class,
                 "");
 
-        for (String g : GROUP_ORDER) {
-            String group = g.replaceAll(" ", "").toLowerCase();
+        for (int i = 0; i < GROUP_CAPTIONS.length; i++) {
+            String group = GROUP_ORDER[i];
             Item groupItem = hierarchicalContainer.addItem(group);
-            groupItem.getItemProperty("displayName").setValue(g);
+            groupItem.getItemProperty("displayName").setValue(GROUP_CAPTIONS[i]);
             List<Class<? extends AbstractVaadinChartExample>> list = tests
                     .get(group);
             for (Class<? extends AbstractVaadinChartExample> class1 : list) {
