@@ -12,6 +12,13 @@ The add-on works like normal Vaadin Add-ons. Note, that the package also has
 client side extensions, so make sure that you compile your widgetset after 
 installation!
 
+!!!!! NOTE !!!!!
+Widget set compilation will fail unless you have a license for Vaadin
+Charts. A free trial key can be obtained by clicking the big orange "Free
+trial key" button on the right hand side of http://vaadin.com/addon/vaadin-charts
+Please find instructions for how to install the license at
+https://vaadin.com/directory/help/installing-cval-license
+
 Maven
 -----
 
@@ -22,8 +29,6 @@ Dependency snippet for Maven users:
 	<artifactId>vaadin-charts</artifactId>
 	<version>${project.version}</version>
 </dependency>
-
-For Vaadin 6 compatible version the artifactId is vaadin-charts-vaadin6.
 
 The add-on is available in Vaadin Add-Ons repository:
 
@@ -38,8 +43,6 @@ Ivy
 IVY dependency snippet:
 
 <dependency org="com.vaadin.addon" name="vaadin-charts" rev="${project.version}" conf="default->default" />
-
-For Vaadin 6 compatible version the name is vaadin-charts-vaadin6.
 
 Using plain Jar
 ---------------
@@ -111,6 +114,5 @@ http://dev.vaadin.com/
 Documentation:
 https://vaadin.com/book/vaadin7/-/page/charts.html
 
-SCM (SVN):
-http://dev.vaadin.com/svn/addons/vaadin-charts
-
+SCM (Git):
+https://github.com/vaadin/charts
