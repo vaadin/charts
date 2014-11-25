@@ -15,11 +15,7 @@
 	<fileSets>
 		<fileSet>
 			<directory>addon/target/directorystuff</directory>
-			<outputDirectory>./vaadin7</outputDirectory>
-		</fileSet>
-		<fileSet>
-			<directory>addon6/target/directorystuff</directory>
-			<outputDirectory>./vaadin6</outputDirectory>
+			<outputDirectory>addon</outputDirectory>
 		</fileSet>
 		<fileSet>
 			<directory>target</directory>
@@ -27,6 +23,10 @@
 			<includes>
 				<include>*.pdf</include>
 			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>assembly/assets</directory>
+			<outputDirectory>assets</outputDirectory>
 		</fileSet>
 	</fileSets>
 
@@ -39,11 +39,15 @@
 			<filtered>true</filtered>
 		</file>
 		<file>
-			<source>README.txt</source>
+			<source>assembly/README.txt</source>
 			<filtered>true</filtered>
 		</file>
 		<file>
 			<source>LICENSE.txt</source>
+			<filtered>true</filtered>
+		</file>
+		<file>
+			<source>assembly/license.html</source>
 			<filtered>true</filtered>
 		</file>
 	</files>

@@ -61,7 +61,7 @@ Licensing
 Vaadin Charts is a commercial product. After 30 days of evaluation use,
 you must either acquire a license or stop using it. More information about
 Commercial Vaadin Add-on License is available in LICENSE file or at 
-https://vaadin.com/license/cval-2.0. 
+https://vaadin.com/license/cval-3. 
 
 You may obtain a valid license by subscribing to Vaadin Pro Account at
 https://vaadin.com/pro or by purchasing a perpetual license at
@@ -89,9 +89,9 @@ highcharts.src.js)
 Using Vaadin Charts Add-on does not require a separate Highcharts JS license
 purchase. 
 
-Please note that; 
-- A valid Highcharts JS license does not entitle you to use Vaadin Charts Add-on under the terms of CVALv2.
-- The Vaadin Charts Add-on (CVALv2) license does not entitle you to use the 
+Please note that: 
+- A valid Highcharts JS license does not entitle you to use Vaadin Charts Add-on under the terms of CVALv3.
+- The Vaadin Charts Add-on (CVALv3) license does not entitle you to use the 
 Highcharts JS product in other ways than through the Vaadin Charts Add-on API.
 
 Vaadin Charts also requires Gson library licensed under liberal Apache 2 license.
