@@ -7,7 +7,12 @@ public class ContainerSeriesWithSplineTBTest extends
 
     @Override
     protected String getTestViewName() {
-        return ContainerSeriesWithSpline.class.getName();
+        return ContainerSeriesWithSpline.class.getSimpleName();
+    }
+
+    @Override
+    protected String getPackageName() {
+        return "container";
     }
 
 }

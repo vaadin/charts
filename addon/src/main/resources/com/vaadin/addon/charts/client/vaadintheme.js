@@ -1,143 +1,227 @@
-Highcharts.setOptions({
-	"colors" : [ "#4A7093", "#49CFE5", "#FFBC41", "#C24758", "#77AA54",
-			"#7071C8", "#C58FBA", "#B5B9C6" ],
-	"chart" : {
-		"backgroundColor" : "#FFFFFF",
-		"plotBackgroundColor" : "rgba(255,255,255,0.00)",
-		"plotBackgroundImage" : "",
-		"plotShadow" : false,
-		"plotBorderWidth" : 0,
-		"className" : "vaadin-chart",
-		"borderRadius" : 0,
-		"style" : {
-			"fontFamily" : "Arial",
-			"fontSize" : "12px"
-		}
-	},
-	"title" : {
-		"style" : {
-			"color" : "#44698B",
-			"fontWeight" : "bold",
-			"fontSize" : "16px"
-		}
-	},
-	"subtitle" : {
-		"style" : {
-			"color" : "#979797",
-			"fontWeight" : "normal"
-		}
-	},
-	"xAxis" : {
-		"lineColor" : "#E5E5E5",
-		"lineWidth" : 1,
-		"tickColor" : "#979797",
-		"gridLineColor" : "#979797",
-		"alternateGridColor" : "rgba(255,255,255,0.00)",
-		"title" : {
-			"style" : {
-				"color" : "#44698B",
-				"fontWeight" : "bold"
+Highcharts
+		.setOptions({
+			"colors" : [ "#3090F0", "#EC6464", "#98DF58", "#F9DD51", "#24DCD4",
+					"#EC64A5", "#685CB0", "#FF7D42", "#336190", "#AA514D",
+					"#7FB053", "#BBA85B", "#247981", "#963970", "#4B56A8",
+					"#9A593D" ],
+			"chart" : {
+				"backgroundColor" : "#FFFFFF",
+				"plotBackgroundColor" : "rgba(255,255,255,0.00)",
+				"plotBackgroundImage" : "",
+				"plotShadow" : false,
+				"plotBorderWidth" : 0,
+				"className" : "vaadin-chart",
+				"borderRadius" : 0,
+				"style" : {
+					"fontFamily" : "Open Sans, Helvetica Neue, Arial, sans-serif",
+					"fontSize" : "14px"
+				}
+			},
+			"title" : {
+				"style" : {
+					"color" : "#197DE1",
+					"fontWeight" : "normal",
+					"fontSize" : "26px"
+				}
+			},
+			"subtitle" : {
+				"style" : {
+					"color" : "#808080",
+					"fontWeight" : "normal"
+				}
+			},
+			"xAxis" : {
+				"lineColor" : "#FAFAFA",
+				"lineWidth" : 0,
+				"tickWidth" : 0,
+				"gridLineColor" : "#FAFAFA",
+				"gridLineWidth" : 0,
+				"alternateGridColor" : "rgba(255,255,255,0.00)",
+				"title" : {
+					"style" : {
+						"color" : "#808080",
+						"fontWeight" : "normal"
+					}
+				},
+				"subtitle" : {
+					"style" : {
+						"color" : "#808080",
+						"fontWeight" : "normal",
+						"fontSize" : "14px"
+					}
+				},
+				"labels" : {
+					"style" : {
+						"color" : "#808080",
+						"fontWeight" : "normal",
+						"fontSize" : "14px"
+					}
+				}
+			},
+			"yAxis" : {
+				"minorTickInterval" : "",
+				"lineColor" : "#FAFAFA",
+				"lineWidth" : 0,
+				"tickWidth" : 0,
+				"gridLineColor" : "#DFDFDF",
+				"alternateGridColor" : "rgba(0,0,0,0.02)",
+				"title" : {
+					"style" : {
+						"color" : "#808080",
+						"fontWeight" : "normal"
+					}
+				},
+				"subtitle" : {
+					"style" : {
+						"color" : "#808080",
+						"fontWeight" : "normal",
+						"fontSize" : "14px"
+					}
+				},
+				"labels" : {
+					"style" : {
+						"color" : "#808080",
+						"fontWeight" : "normal",
+						"fontSize" : "14px"
+					}
+				}
+			},
+			"labels" : {
+				"style" : {
+					"color" : "#808080"
+				}
+			},
+			"legend" : {
+				"borderColor" : "#DFDFDF",
+				"borderRadius" : 5,
+				"backgroundColor" : "rgba(255,255,255,0.90)",
+				"itemStyle" : {
+					"color" : "#808080",
+					"fontWeight" : "normal",
+					"fontSize" : "14px"
+				},
+				"itemHoverStyle" : {
+					"color" : "#808080"
+				},
+				"itemHiddenStyle" : {
+					"color" : "#808080"
+				}
+			},
+			"tooltip" : {
+				"backgroundColor" : "#FFFFFF",
+				"borderWidth" : 0,
+				"borderRadius" : 5,
+				"followPointer" : false,
+				"style" : {
+					"color" : "#333333"
+				}
+			},
+			"plotOptions" : {
+				"bar" : {
+					"pointPadding" : 0,
+					"borderWidth" : 0,
+					"shadow" : false,
+					"dataLabels" : {
+						"style" : {
+							"fontFamily" : "Open Sans, Helvetica Neue, Arial, sans-serif",
+							"fontSize" : "12px"
+						},
+						"color" : "#808080"
+					}
+				},
+				"area" : {
+					"shadow" : false
+				},
+				"arearange" : {
+					"shadow" : false,
+					"dataLabels" : {
+						"style" : {
+							"fontFamily" : "Open Sans, Helvetica Neue, Arial, sans-serif",
+							"fontSize" : "12px"
+						},
+						"color" : "#808080"
+					}
+				},
+				"areaspline" : {},
+				"areasplinerange" : {
+					"shadow" : false,
+					"dataLabels" : {
+						"style" : {
+							"fontFamily" : "Open Sans, Helvetica Neue, Arial, sans-serif",
+							"fontSize" : "12px"
+						},
+						"color" : "#808080"
+					}
+				},
+				"pie" : {
+					"borderWidth" : 0,
+					"shadow" : false,
+					"dataLabels" : {
+						"style" : {
+							"fontFamily" : "Open Sans, Helvetica Neue, Arial, sans-serif",
+							"fontSize" : "12px"
+						},
+						"color" : "#808080"
+					},
+					"states" : {
+						"hover" : {
+							"enabled" : false
+						}
+					}
+				},
+				"line" : {
+					"shadow" : false,
+					"dataLabels" : {
+						"style" : {
+							"fontFamily" : "Open Sans, Helvetica Neue, Arial, sans-serif",
+							"fontSize" : "12px"
+						},
+						"color" : "#808080"
+					}
+				},
+				"column" : {
+					"pointPadding" : 0,
+					"borderWidth" : 0,
+					"shadow" : false,
+					"dataLabels" : {
+						"style" : {
+							"fontFamily" : "Open Sans, Helvetica Neue, Arial, sans-serif",
+							"fontSize" : "12px"
+						},
+						"color" : "#808080"
+					}
+				},
+				"spline" : {
+					"shadow" : false,
+					"dataLabels" : {
+						"style" : {
+							"fontFamily" : "Open Sans, Helvetica Neue, Arial, sans-serif",
+							"fontSize" : "12px"
+						},
+						"color" : "#808080"
+					}
+				},
+				"series" : {},
+				"pyramid" : {
+					"borderWidth" : 0,
+					"dataLabels" : {
+						"style" : {
+							"fontFamily" : "Open Sans, Helvetica Neue, Arial, sans-serif",
+							"fontSize" : "12px"
+						},
+						"color" : "#808080"
+					}
+				}
+			},
+			"credits" : {
+				"text" : "Vaadin Charts",
+				"href" : "https://vaadin.com/add-ons/charts",
+				"style" : {
+					"color" : "#808080",
+					"fontSize" : "14px"
+				}
 			}
-		},
-		"subtitle" : {
-			"style" : {
-				"color" : "#979797",
-				"fontWeight" : "normal",
-				"fontSize" : "10px"
-			}
-		},
-		"labels" : {
-			"style" : {
-				"color" : "#979797",
-				"fontWeight" : "normal"
-			}
-		}
-	},
-	"yAxis" : {
-		"lineColor" : "#979797",
-		"lineWidth" : 0,
-		"tickColor" : "#979797",
-		"gridLineColor" : "#E5E5E5",
-		"alternateGridColor" : "rgba(0,0,0,0.02)",
-		"title" : {
-			"style" : {
-				"color" : "#44698B",
-				"fontWeight" : "bold"
-			}
-		},
-		"subtitle" : {
-			"style" : {
-				"color" : "#979797",
-				"fontWeight" : "normal",
-				"fontSize" : "10px"
-			}
-		},
-		"labels" : {
-			"style" : {
-				"color" : "#979797",
-				"fontWeight" : "normal"
-			}
-		}
-	},
-	"labels" : {
-		"style" : {
-			"color" : "#979797"
-		}
-	},
-	"legend" : {
-		"borderColor" : "#E5E5E5",
-		"borderRadius" : 2,
-		"backgroundColor" : "rgba(0,0,0,0.02)",
-		"itemStyle" : {
-			"color" : "#555555"
-		},
-		"itemHoverStyle" : {
-			"color" : "#000000"
-		},
-		"itemHiddenStyle" : {
-			"color" : "#808080"
-		}
-	},
-	"tooltip" : {
-		"backgroundColor" : "#FFFFFF",
-		"borderWidth" : 1,
-		"borderRadius" : 2,
-		"style" : {
-			"color" : "#44698B"
-		}
-	},
-	"plotOptions" : {
-		"series" : {},
-		"bar" : {
-			"shadow" : true
-		},
-		"area" : {"shadow" : true},
-		"arearange" : { "shadow" : false},
-		"areaspline" : { "shadow" : true},
-		"areasplinerange" : { "shadow" : false},
-		"pie" : {
-			"shadow" : true
-		},
-		"line" : {
-			"lineWidth" : 1,
-			"shadow" : true
-		},
-		"column" : {
-			"shadow" : true
-		},
-		"spline" : {
-			"shadow" : true
-		}
-	},
-	"credits" : {
-		"text" : "Vaadin Charts",
-		"href" : "https://vaadin.com/add-ons/charts",
-		"style" : {
-			"color" : "#808080",
-			"fontSize" : "10px"
-		}
-	}
-});
+		});
 
 // Workaround for #10999, TODO check if this is generic Vaadin layout issue
 if (window.matchMedia && /chrom(e|ium)/.test(navigator.userAgent.toLowerCase())) {
@@ -149,7 +233,8 @@ if (window.matchMedia && /chrom(e|ium)/.test(navigator.userAgent.toLowerCase()))
 		} else {
 			if (inprintmode) {
 				setTimeout(function() {
-					// Force layout phase just after HC has returned from print mode
+					// Force layout phase just after HC has returned from print
+					// mode
 					// Without this Vaadin breaks layouts in Chrome, layout
 					// phase is once executed with 0,0 size and then not fixed
 					// afterwards

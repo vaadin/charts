@@ -10,9 +10,14 @@ import com.vaadin.testbench.By;
 public class WebXYChartSelectionTBTest extends
         AbstractSimpleScreenShotTestBenchTest {
 
+    @Override
     protected String getTestViewName() {
-        String simpleName = WebXYChartSelection.class.getName();
-        return simpleName;
+        return WebXYChartSelection.class.getSimpleName();
+    }
+
+    @Override
+    protected String getPackageName() {
+        return "dynamic";
     }
 
     @Override
@@ -22,8 +27,8 @@ public class WebXYChartSelectionTBTest extends
                 .clickAndHold().moveByOffset(200, 50).release().build();
 
         click.perform();
-
         sleep(1000);
 
     }
+
 }

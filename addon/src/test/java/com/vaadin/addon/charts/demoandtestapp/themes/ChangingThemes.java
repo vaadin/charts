@@ -9,9 +9,9 @@ import com.vaadin.addon.charts.themes.GrayTheme;
 import com.vaadin.addon.charts.themes.GridTheme;
 import com.vaadin.addon.charts.themes.HighChartsDefaultTheme;
 import com.vaadin.addon.charts.themes.SkiesTheme;
+import com.vaadin.addon.charts.themes.VaadinTheme;
 import com.vaadin.addon.charts.themes.ValoDarkTheme;
 import com.vaadin.addon.charts.themes.ValoLightTheme;
-import com.vaadin.addon.charts.themes.VaadinTheme;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Component;
@@ -69,12 +69,12 @@ public class ChangingThemes extends AbstractVaadinChartExample {
 
         Button vaadinLight = new Button("Valo Light", new ThemeChangeListener(
                 ValoLightTheme.class));
-        highchart.setId("vl-button");
+        vaadinLight.setId("vl-button");
         buttons.addComponent(vaadinLight);
 
         Button vaadinDark = new Button("Valo Dark", new ThemeChangeListener(
                 ValoDarkTheme.class));
-        highchart.setId("vd-button");
+        vaadinDark.setId("vd-button");
         buttons.addComponent(vaadinDark);
 
         chart = PercentageArea.createNewChart();

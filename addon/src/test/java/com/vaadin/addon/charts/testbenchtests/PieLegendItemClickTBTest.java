@@ -11,12 +11,11 @@ import org.openqa.selenium.WebElement;
 import com.google.common.collect.Lists;
 import com.vaadin.addon.charts.demoandtestapp.pie.PieWithLegend;
 
-public class PieLegendItemClickTBTest extends AbstractTestBenchTest {
+public class PieLegendItemClickTBTest extends AbstractParallelTest {
 
     @Test
     public void test() {
-        startBrowser();
-        driver.navigate().to(BASEURL + PieWithLegend.class.getName());
+        driver.get(getTestUrl());
 
         WebElement ie = getLegendItem("IE");
         ie.click();
@@ -29,8 +28,8 @@ public class PieLegendItemClickTBTest extends AbstractTestBenchTest {
 
     @Test
     public void testLegendPointIndex() {
-        startBrowser();
-        driver.navigate().to(BASEURL + PieWithLegend.class.getName());
+        driver.get(getTestUrl());
+
         List<String> items = Lists.newArrayList("Firefox", "IE", "Chrome",
                 "Safari", "Opera", "Others");
 
@@ -57,5 +56,15 @@ public class PieLegendItemClickTBTest extends AbstractTestBenchTest {
         return driver.findElement(By
                 .xpath("//*[contains(@class, 'v-Notification')]"
                         + "//*[contains(text(), '" + text + "')]"));
+    }
+
+    @Override
+    protected String getTestViewName() {
+        return PieWithLegend.class.getSimpleName();
+    }
+
+    @Override
+    protected String getPackageName() {
+        return "pie";
     }
 }

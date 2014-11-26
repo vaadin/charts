@@ -7,7 +7,11 @@ public class BubbleChartExampleTBTest extends
 
     @Override
     protected String getTestViewName() {
-        return BubbleChartExample.class.getName();
+        return BubbleChartExample.class.getSimpleName();
     }
 
+    @Override
+    protected String getPackageName() {
+        return "other";
+    }
 }

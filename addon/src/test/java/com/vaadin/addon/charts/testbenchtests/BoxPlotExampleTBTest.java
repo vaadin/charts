@@ -8,7 +8,12 @@ public class BoxPlotExampleTBTest extends AbstractSimpleScreenShotTestBenchTest 
 
     @Override
     protected String getTestViewName() {
-        return BoxPlotExample.class.getName();
+        return BoxPlotExample.class.getSimpleName();
+    }
+
+    @Override
+    protected String getPackageName() {
+        return "other";
     }
 
     @Override

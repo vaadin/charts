@@ -1,9 +1,8 @@
 package com.vaadin.addon.charts.testbenchtests;
 
-import java.io.File;
-import java.io.IOException;
+import static org.junit.Assert.assertTrue;
 
-import junit.framework.Assert;
+import java.io.IOException;
 
 import org.junit.Test;
 
@@ -11,64 +10,39 @@ import com.vaadin.addon.charts.demoandtestapp.columnandbar.ToggledSeriesVisibili
 import com.vaadin.testbench.By;
 import com.vaadin.testbench.Parameters;
 
-public class ToggledSeriesVisibilityTBTest extends AbstractTestBenchTest {
+public class ToggledSeriesVisibilityTBTest extends AbstractParallelTest {
 
     boolean screenshotErrors = false;
 
     @Test
     public void test() throws IOException, AssertionError {
 
-        startBrowser();
-        try {
+        // negligible difference when returning to 2-disable shot on chrome,
+        // avoid error by increasing the tolerance
+        Parameters.setScreenshotComparisonTolerance(0.03);
 
-            // negligible difference when returning to 2-disable shot on chrome,
-            // avoid error by increasing the tolerance
-            Parameters.setScreenshotComparisonTolerance(0.03);
+        driver.get(getTestUrl());
 
-            driver.navigate().to(BASEURL + getTestViewName());
+        waitBetweenShots();
 
-            waitBetweenShots();
+        driver.findElements(By.tagName("input")).get(0).click();
+        driver.findElements(By.tagName("input")).get(0).click();
+        waitBetweenShots();
+        captureAndCompare("1-start");
 
-            driver.findElements(By.tagName("input")).get(0).click();
-            driver.findElements(By.tagName("input")).get(0).click();
-            waitBetweenShots();
-            captureAndCompare("1-start");
+        driver.findElements(By.tagName("input")).get(0).click();
+        waitBetweenShots();
+        captureAndCompare("2-disable");
 
-            driver.findElements(By.tagName("input")).get(0).click();
-            waitBetweenShots();
-            captureAndCompare("2-disable");
+        driver.findElements(By.tagName("input")).get(1).click();
+        waitBetweenShots();
+        captureAndCompare("3-disable");
 
-            driver.findElements(By.tagName("input")).get(1).click();
-            waitBetweenShots();
-            captureAndCompare("3-disable");
-
-            driver.findElements(By.tagName("input")).get(1).click();
-            waitBetweenShots();
-            captureAndCompare("2-disable");
-
-            driver.findElements(By.tagName("input")).get(0).click();
-            waitBetweenShots();
-            captureAndCompare("1-start");
-
-        } finally {
-            driver.quit();
-        }
-        if (screenshotErrors) {
-            Assert.fail("There are differences in screenshots");
-        }
     }
 
     protected void captureAndCompare(String name) throws IOException {
-        String imageName = getTestViewName() + "-" + name + ".png";
-        File refImage = getReferenceImage(imageName);
-
-        if (!refImage.exists()) {
-            System.err.println("Reference image " + refImage.getAbsolutePath()
-                    + " is missing!");
-        }
-        if (!testBench.compareScreen(refImage)) {
-            screenshotErrors = true;
-        }
+        assertTrue(testBench(driver).compareScreen(
+                getTestViewName() + "-" + name));
     }
 
     protected void waitBetweenShots() {
@@ -79,8 +53,14 @@ public class ToggledSeriesVisibilityTBTest extends AbstractTestBenchTest {
         }
     }
 
+    @Override
     protected String getTestViewName() {
-        return "columnandbar/" + ToggledSeriesVisibility.class.getSimpleName();
+        return ToggledSeriesVisibility.class.getSimpleName();
+    }
+
+    @Override
+    protected String getPackageName() {
+        return "columnandbar";
     }
 
 }

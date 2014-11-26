@@ -7,7 +7,12 @@ public class FunnelChartExampleTBTest extends
 
     @Override
     protected String getTestViewName() {
-        return FunnelChartExample.class.getName();
+        return FunnelChartExample.class.getSimpleName();
+    }
+
+    @Override
+    protected String getPackageName() {
+        return "other";
     }
 
 }

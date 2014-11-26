@@ -1,19 +1,28 @@
 package com.vaadin.addon.charts.testbenchtests;
 
+import java.util.List;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import com.vaadin.addon.charts.demoandtestapp.lineandscatter.BasicLineGettingMousePointerPosition;
 import com.vaadin.testbench.By;
+import com.vaadin.testbench.annotations.BrowserConfiguration;
+import com.vaadin.testbench.parallel.Browser;
 
 public class PixelCoordinatesTBTest extends
         AbstractSimpleScreenShotTestBenchTest {
 
+    @Override
     protected String getTestViewName() {
-        String simpleName = BasicLineGettingMousePointerPosition.class
-                .getName();
-        return simpleName;
+        return BasicLineGettingMousePointerPosition.class.getSimpleName();
+    }
+
+    @Override
+    protected String getPackageName() {
+        return "lineandscatter";
     }
 
     @Override
@@ -38,6 +47,14 @@ public class PixelCoordinatesTBTest extends
 
         click.perform();
         sleep(100);
-
     }
+
+    @Override
+    @BrowserConfiguration
+    public List<DesiredCapabilities> getBrowsersToTest() {
+        List<DesiredCapabilities> allBrowsers = super.getBrowsersToTest();
+        allBrowsers.remove(Browser.FIREFOX.getDesiredCapabilities());
+        return allBrowsers;
+    }
+
 }

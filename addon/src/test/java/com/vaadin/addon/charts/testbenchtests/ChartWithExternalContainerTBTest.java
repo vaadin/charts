@@ -7,7 +7,11 @@ public class ChartWithExternalContainerTBTest extends
 
     @Override
     protected String getTestViewName() {
-        return ChartWithExternalContainer.class.getName();
+        return ChartWithExternalContainer.class.getSimpleName();
     }
 
+    @Override
+    protected String getPackageName() {
+        return "container";
+    }
 }

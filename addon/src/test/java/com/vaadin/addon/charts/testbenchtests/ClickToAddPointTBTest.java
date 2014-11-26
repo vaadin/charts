@@ -1,20 +1,24 @@
 package com.vaadin.addon.charts.testbenchtests;
 
+import java.util.List;
+
 import junit.framework.Assert;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import com.vaadin.addon.charts.demoandtestapp.dynamic.ClickToAddPoint;
 import com.vaadin.testbench.By;
+import com.vaadin.testbench.parallel.Browser;
 
 public class ClickToAddPointTBTest extends
         AbstractSimpleScreenShotTestBenchTest {
 
+    @Override
     protected String getTestViewName() {
-        String simpleName = ClickToAddPoint.class.getSimpleName();
-        return simpleName;
+        return ClickToAddPoint.class.getSimpleName();
     }
 
     @Override
@@ -43,6 +47,14 @@ public class ClickToAddPointTBTest extends
 
     private String eventLogText() {
         return driver.findElement(By.id("lastAction")).getText();
+    }
+
+    @Override
+    public List<DesiredCapabilities> getBrowsersToTest() {
+        List<DesiredCapabilities> result = super.getBrowsersToTest();
+        // FIXME: click didn't work in IE8
+        result.remove(Browser.IE8.getDesiredCapabilities());
+        return result;
     }
 
 }

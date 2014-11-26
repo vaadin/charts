@@ -5,8 +5,8 @@ import com.vaadin.addon.charts.demoandtestapp.timeline.SanityCheck;
 public class TimelineSanityCheckTBTest extends
         AbstractSimpleScreenShotTestBenchTest {
 
-    protected void startBrowser() {
-        super.startBrowser();
+    @Override
+    protected void configBrowser() {
         // We need a bigger viewport to fit everything.
         testBench.resizeViewPortTo(1212, 605);
     }

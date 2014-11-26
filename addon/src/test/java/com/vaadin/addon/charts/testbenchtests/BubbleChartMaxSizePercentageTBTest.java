@@ -7,7 +7,12 @@ public class BubbleChartMaxSizePercentageTBTest extends
 
     @Override
     protected String getTestViewName() {
-        return BubbleChartMaxSizePercentage.class.getName();
+        return BubbleChartMaxSizePercentage.class.getSimpleName();
+    }
+
+    @Override
+    protected String getPackageName() {
+        return "other";
     }
 
 }

@@ -1,59 +1,41 @@
 package com.vaadin.addon.charts.testbenchtests;
 
-import java.io.File;
-import java.io.IOException;
+import static org.junit.Assert.assertTrue;
 
-import junit.framework.Assert;
+import java.io.IOException;
 
 import org.junit.Test;
 
 import com.vaadin.addon.charts.demoandtestapp.lineandscatter.TimeDataWithIrregularIntervalsAndLocalizedTexts;
 import com.vaadin.testbench.By;
 
-public class TimeDataWithLocalizationsTBTest extends AbstractTestBenchTest {
+public class TimeDataWithLocalizationsTBTest extends AbstractParallelTest {
 
     boolean screenshotErrors = false;
 
     @Test
     public void test() throws IOException, AssertionError {
+        driver.get(getTestUrl());
 
-        startBrowser();
-        try {
-            driver.navigate().to(BASEURL + getTestViewName());
+        // click default first to give focus to button
+        driver.findElement(By.id("en-button")).click();
 
-            // click default first to give focus to button
-            driver.findElement(By.id("en-button")).click();
+        waitBetweenShots();
+        captureAndCompare("1-start");
 
-            waitBetweenShots();
-            captureAndCompare("1-start");
+        driver.findElement(By.id("fi-button")).click();
+        waitBetweenShots();
+        captureAndCompare("2-removed");
 
-            driver.findElement(By.id("fi-button")).click();
-            waitBetweenShots();
-            captureAndCompare("2-removed");
+        driver.findElement(By.id("en-button")).click();
+        waitBetweenShots();
+        captureAndCompare("1-start");
 
-            driver.findElement(By.id("en-button")).click();
-            waitBetweenShots();
-            captureAndCompare("1-start");
-
-        } finally {
-            driver.quit();
-        }
-        if (screenshotErrors) {
-            Assert.fail("There are differences in screenshots");
-        }
     }
 
     protected void captureAndCompare(String name) throws IOException {
-        String imageName = getTestViewName() + "-" + name + ".png";
-        File refImage = getReferenceImage(imageName);
-
-        if (!refImage.exists()) {
-            System.err.println("Reference image " + refImage.getAbsolutePath()
-                    + " is missing!");
-        }
-        if (!testBench.compareScreen(refImage)) {
-            screenshotErrors = true;
-        }
+        assertTrue(testBench(driver).compareScreen(
+                getTestViewName() + "-" + name));
     }
 
     protected void waitBetweenShots() {
@@ -64,10 +46,14 @@ public class TimeDataWithLocalizationsTBTest extends AbstractTestBenchTest {
         }
     }
 
+    @Override
     protected String getTestViewName() {
-        return "lineandscatter/"
-                + TimeDataWithIrregularIntervalsAndLocalizedTexts.class
-                        .getSimpleName();
+        return TimeDataWithIrregularIntervalsAndLocalizedTexts.class
+                .getSimpleName();
     }
 
+    @Override
+    protected String getPackageName() {
+        return "lineandscatter";
+    }
 }

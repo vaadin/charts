@@ -7,7 +7,12 @@ public class WaterfallChartExampleTBTest extends
 
     @Override
     protected String getTestViewName() {
-        return WaterfallChartExample.class.getName();
+        return WaterfallChartExample.class.getSimpleName();
+    }
+
+    @Override
+    protected String getPackageName() {
+        return "other";
     }
 
 }

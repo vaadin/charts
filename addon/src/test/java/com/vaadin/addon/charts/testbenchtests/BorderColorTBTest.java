@@ -6,7 +6,7 @@ public class BorderColorTBTest extends AbstractSimpleScreenShotTestBenchTest {
 
     @Override
     protected String getTestViewName() {
-        return BorderTest.class.getName();
+        return BorderTest.class.getSimpleName();
     }
 
 }

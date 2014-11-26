@@ -5,8 +5,13 @@ import com.vaadin.addon.charts.demoandtestapp.timeline.TimelineWithSpike;
 public class TimelineWithSpikeTBTest extends
         AbstractSimpleScreenShotTestBenchTest {
 
+    @Override
     protected String getTestViewName() {
-        return TimelineWithSpike.class.getName();
+        return TimelineWithSpike.class.getSimpleName();
     }
 
+    @Override
+    protected String getPackageName() {
+        return "timeline";
+    }
 }

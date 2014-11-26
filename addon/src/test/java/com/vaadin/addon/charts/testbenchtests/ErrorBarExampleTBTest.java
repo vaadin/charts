@@ -7,7 +7,12 @@ public class ErrorBarExampleTBTest extends
 
     @Override
     protected String getTestViewName() {
-        return ErrorBarExample.class.getName();
+        return ErrorBarExample.class.getSimpleName();
+    }
+
+    @Override
+    protected String getPackageName() {
+        return "other";
     }
 
 }

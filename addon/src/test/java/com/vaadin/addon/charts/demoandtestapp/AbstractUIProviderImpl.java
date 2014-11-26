@@ -15,8 +15,12 @@
  */
 package com.vaadin.addon.charts.demoandtestapp;
 
+import javax.servlet.annotation.WebInitParam;
+import javax.servlet.annotation.WebServlet;
+
 import com.vaadin.server.UIClassSelectionEvent;
 import com.vaadin.server.UIProvider;
+import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.UI;
 
 /**
@@ -24,6 +28,13 @@ import com.vaadin.ui.UI;
  */
 @SuppressWarnings("serial")
 public class AbstractUIProviderImpl extends UIProvider {
+
+    @WebServlet(value = "/*", asyncSupported = true, initParams = {
+            @WebInitParam(name = "heartbeatInterval", value = "10"),
+            @WebInitParam(name = "widgetset", value = "com.vaadin.addon.charts.ChartsWithTimelineWidgetset"),
+            @WebInitParam(name = "UIProvider", value = "com.vaadin.addon.charts.demoandtestapp.AbstractUIProviderImpl") })
+    public static class Servlet extends VaadinServlet {
+    }
 
     @Override
     public Class<? extends UI> getUIClass(UIClassSelectionEvent event) {

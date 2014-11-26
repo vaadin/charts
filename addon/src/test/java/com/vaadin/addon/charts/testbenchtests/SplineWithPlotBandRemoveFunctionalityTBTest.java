@@ -1,9 +1,8 @@
 package com.vaadin.addon.charts.testbenchtests;
 
-import java.io.File;
-import java.io.IOException;
+import static org.junit.Assert.assertTrue;
 
-import junit.framework.Assert;
+import java.io.IOException;
 
 import org.junit.Test;
 import org.openqa.selenium.WebElement;
@@ -12,52 +11,35 @@ import com.vaadin.addon.charts.demoandtestapp.lineandscatter.SplineWithPlotBandR
 import com.vaadin.testbench.By;
 
 public class SplineWithPlotBandRemoveFunctionalityTBTest extends
-        AbstractTestBenchTest {
+        AbstractParallelTest {
 
     boolean screenshotErrors = false;
 
     @Test
     public void test() throws IOException, AssertionError {
+        driver.get(getTestUrl());
+        WebElement button = driver.findElement(By.id("vaadin-button"));
+        // toggle first to give focus for button
+        button.click();
+        button.click();
 
-        startBrowser();
-        try {
-            driver.navigate().to(BASEURL + getTestViewName());
-            WebElement button = driver.findElement(By.id("vaadin-button"));
-            // toggle first to give focus for button
-            button.click();
-            button.click();
+        waitBetweenShots();
+        captureAndCompare("1-start");
 
-            waitBetweenShots();
-            captureAndCompare("1-start");
+        button.click();
+        waitBetweenShots();
+        captureAndCompare("2-removed");
 
-            button.click();
-            waitBetweenShots();
-            captureAndCompare("2-removed");
+        button.click();
 
-            button.click();
+        waitBetweenShots();
+        captureAndCompare("1-start");
 
-            waitBetweenShots();
-            captureAndCompare("1-start");
-
-        } finally {
-            driver.quit();
-        }
-        if (screenshotErrors) {
-            Assert.fail("There are differences in screenshots");
-        }
     }
 
     protected void captureAndCompare(String name) throws IOException {
-        String imageName = getTestViewName() + "-" + name + ".png";
-        File refImage = getReferenceImage(imageName);
-
-        if (!refImage.exists()) {
-            System.err.println("Reference image " + refImage.getAbsolutePath()
-                    + " is missing!");
-        }
-        if (!testBench.compareScreen(refImage)) {
-            screenshotErrors = true;
-        }
+        assertTrue(testBench(driver).compareScreen(
+                getTestViewName() + "-" + name));
     }
 
     protected void waitBetweenShots() {
@@ -68,9 +50,14 @@ public class SplineWithPlotBandRemoveFunctionalityTBTest extends
         }
     }
 
+    @Override
     protected String getTestViewName() {
-        return "lineandscatter/"
-                + SplineWithPlotBandRemoveFunctionality.class.getSimpleName();
+        return SplineWithPlotBandRemoveFunctionality.class.getSimpleName();
+    }
+
+    @Override
+    protected String getPackageName() {
+        return "lineandscatter";
     }
 
 }

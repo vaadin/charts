@@ -6,7 +6,12 @@ public class ColorThresholdTBTest extends AbstractSimpleScreenShotTestBenchTest 
 
     @Override
     protected String getTestViewName() {
-        return ColorThreshold.class.getName();
+        return ColorThreshold.class.getSimpleName();
+    }
+
+    @Override
+    protected String getPackageName() {
+        return "other";
     }
 
 }
