@@ -103,7 +103,8 @@ public class ChartsDemoUI extends UI {
         replaced = replaced.replaceAll("To", "to");
         replaced = replaced.replaceAll("Of", "of");
         replaced = replaced.replaceAll("Api", "API");
-        return replaced.replaceAll("3 D", "3D");
+        replaced = replaced.replaceAll("3 D", "3D");
+        return replaced.substring(0,1).toUpperCase() + replaced.substring(1);
     }
 
     static {

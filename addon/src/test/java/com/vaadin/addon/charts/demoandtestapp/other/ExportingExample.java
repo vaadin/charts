@@ -3,6 +3,7 @@ package com.vaadin.addon.charts.demoandtestapp.other;
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.demoandtestapp.columnandbar.DualAxesLineAndColumn;
 import com.vaadin.addon.charts.model.Exporting;
+import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
@@ -12,18 +13,20 @@ public class ExportingExample extends DualAxesLineAndColumn {
 
     @Override
     public String getDescription() {
-        return "An example demonstrating how exporting feature is used."
-                + "Note that using this feature your charts may visit "
-                + "Highsofts export server, unless you customize the feature "
-                + "to use your own export server. In most cases it is better "
-                + "idea to use com.vaadin.addon.charts.util.SVGGenerator in "
-                + "that works completely in your own servers.";
+        return "This example demonstrates the exporting feature. "
+                + "<div style='font-size:smaller'>Note that using "
+                + "this feature your charts may visit "
+                + "Highsoft's export server, unless you customize the feature "
+                + "to use your own export server. In most cases it's a better "
+                + "idea to use <tt>com.vaadin.addon.charts.util.SVGGenerator</tt> in "
+                + "that it works completely on your own servers.</div>";
     }
 
     @Override
     protected Component getChart() {
         VerticalLayout verticalLayout = new VerticalLayout();
-        verticalLayout.addComponent(new Label(getDescription()));
+        verticalLayout.setSpacing(true);
+        verticalLayout.addComponent(new Label(getDescription(), ContentMode.HTML));
         Chart chart = (Chart) super.getChart();
         // Enabling exporting adds a button to UI via users can download the
         // chart e.g. for printing
@@ -48,6 +51,5 @@ public class ExportingExample extends DualAxesLineAndColumn {
 
         verticalLayout.addComponent(chart);
         return verticalLayout;
-
     }
 }

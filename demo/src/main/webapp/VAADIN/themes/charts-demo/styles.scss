@@ -6,7 +6,7 @@ $v-bevel: false;
 $v-shadow: false;
 $v-gradient: false;
 
-$v-included-components: label, link, orderedlayout, tabsheet, tree, combobox, optiongroup, slider, button, table, notification;
+$v-included-components: label, link, orderedlayout, tabsheet, tree, combobox, optiongroup, slider, button, table, notification, colorpicker, window;
 $v-included-additional-styles: ();
 
 @import "../valo/valo";
