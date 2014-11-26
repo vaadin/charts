@@ -313,7 +313,7 @@ public class ChartsDemoUI extends UI {
                         selectItem();
 
                         if (tracker != null) {
-                            tracker.trackPageview("/charts/"
+                            tracker.trackPageview("/charts-demo/"
                                     + event.getUriFragment());
                         }
                     }
