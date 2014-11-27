@@ -237,8 +237,7 @@
                     <excludeDependencies>*;scope=provided|runtime</excludeDependencies>
                     <!-- <excludeDependencies>vaadin-client,vaadin-server</excludeDependencies> -->
                     <instructions>
-                        <Export-Package>com.vaadin.addon.charts,com.vaadin.addon.charts.model,com.vaadin.addon.charts.model.styles,com.vaadin.addon.charts.themes,com.vaadin.addon.charts.utilcom.vaadin.addon.timeline
-                            com.vaadin.addon.timeline</Export-Package>
+                        <Export-Package>com.vaadin.addon.charts,com.vaadin.addon.charts.events,com.vaadin.addon.charts.model,com.vaadin.addon.charts.model.style,com.vaadin.addon.charts.themes,com.vaadin.addon.charts.util,com.vaadin.addon.timeline</Export-Package>
                         <!-- Ignore GWT dirt, not needed in osgi bundles, 
                             gwt compilation seldom happens in such -->
                         <Import-Package>!com.google.gwt.*,
