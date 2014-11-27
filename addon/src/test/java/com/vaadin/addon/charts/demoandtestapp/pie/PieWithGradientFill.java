@@ -11,9 +11,8 @@ import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.PlotOptionsPie;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.data.Property;
+import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.VerticalLayout;
 
@@ -49,12 +48,13 @@ public class PieWithGradientFill extends AbstractVaadinChartExample {
         chart.drawChart();
         VerticalLayout layout = new VerticalLayout();
         layout.addComponent(chart);
-        Button button = new Button("Slice");
-        button.addClickListener(new ClickListener() {
+        CheckBox button = new CheckBox("Slice one part");
+        button.addValueChangeListener(new Property.ValueChangeListener() {
 
             @Override
-            public void buttonClick(ClickEvent event) {
-                series.setItemSliced(1, null);
+            public void valueChange(Property.ValueChangeEvent event) {
+                series.setItemSliced(1, ((Boolean) event.getProperty()
+                        .getValue()).booleanValue());
             }
         });
         layout.addComponent(button);

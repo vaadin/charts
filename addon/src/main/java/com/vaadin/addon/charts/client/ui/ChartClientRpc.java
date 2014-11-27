@@ -61,10 +61,10 @@ public interface ChartClientRpc extends ClientRpc {
     public static final short Z_AXIS = 2;
     public static final short COLOR_AXIS = 3;
 
-    void rescaleAxis(short axisCategory, int axisIndex, double minimum,
+    void rescaleAxis(int axisCategory, int axisIndex, double minimum,
             double maximum, boolean redraw, boolean animate);
 
-    void sliceItem(int seriesIndex, int pointIndex, Boolean sliced,
-            Boolean redraw, Boolean animation);
+    void sliceItem(int seriesIndex, int pointIndex, boolean sliced,
+            boolean redraw, boolean animation);
 
 }

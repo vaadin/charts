@@ -40,8 +40,8 @@ public class HighchartPoint extends JavaScriptObject {
         this.update(newValue);
     }-*/;
 
-    public native final void slice(Boolean sliced, Boolean redraw,
-            Boolean animation)
+    public native final void slice(boolean sliced, boolean redraw,
+            boolean animation)
     /*-{
         this.slice(sliced, redraw, animation);
     }-*/;

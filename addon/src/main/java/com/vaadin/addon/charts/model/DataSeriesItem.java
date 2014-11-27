@@ -212,7 +212,7 @@ public class DataSeriesItem extends AbstractConfigurationObject {
      *         pie chart.
      */
     public boolean getSliced() {
-        return sliced == null ? false : sliced;
+        return sliced;
     }
 
     /**
@@ -223,7 +223,7 @@ public class DataSeriesItem extends AbstractConfigurationObject {
      * 
      * @param sliced
      */
-    public void setSliced(Boolean sliced) {
+    public void setSliced(boolean sliced) {
         this.sliced = sliced;
         makeCustomized();
     }

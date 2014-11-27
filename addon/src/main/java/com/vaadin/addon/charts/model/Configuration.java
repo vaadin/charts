@@ -707,8 +707,8 @@ public class Configuration extends AbstractConfigurationObject {
      * @param redraw
      * @param animation
      */
-    void fireItemSliced(Series series, int index, Boolean sliced,
-            Boolean redraw, Boolean animation) {
+    void fireItemSliced(Series series, int index, boolean sliced,
+            boolean redraw, boolean animation) {
         ItemSlicedEvent event = new ItemSlicedEvent(series, index, sliced,
                 redraw, animation);
         for (ConfigurationChangeListener listener : changeListeners) {

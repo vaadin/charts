@@ -99,8 +99,8 @@ public class HighchartWidget extends Widget {
         jsOverlay.setAnimation(animation);
     }
 
-    public void slicePoint(int seriesIndex, int pointIndex, Boolean sliced,
-            Boolean redraw, Boolean animation) {
+    public void slicePoint(int seriesIndex, int pointIndex, boolean sliced,
+            boolean redraw, boolean animation) {
         HighchartSeries highchartSeries = jsOverlay.getSeries()
                 .get(seriesIndex);
         HighchartPoint highchartPoint = highchartSeries.getData().get(

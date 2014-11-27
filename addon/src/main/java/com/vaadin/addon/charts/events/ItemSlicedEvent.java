@@ -21,13 +21,15 @@ import com.vaadin.addon.charts.model.Series;
 
 /**
  * Event for information about slicing a pie point
+ * 
+ * @since 2.0
  */
 public class ItemSlicedEvent extends AbstractSeriesEvent {
 
     private final int index;
-    private final Boolean sliced;
-    private final Boolean redraw;
-    private final Boolean animation;
+    private final boolean sliced;
+    private final boolean redraw;
+    private final boolean animation;
 
     /**
      * Constructs the event.
@@ -37,8 +39,8 @@ public class ItemSlicedEvent extends AbstractSeriesEvent {
      * @param redraw
      * @param animation
      */
-    public ItemSlicedEvent(Series series, int index, Boolean sliced,
-            Boolean redraw, Boolean animation) {
+    public ItemSlicedEvent(Series series, int index, boolean sliced,
+            boolean redraw, boolean animation) {
         super(series);
         this.index = index;
         this.sliced = sliced;
@@ -53,8 +55,8 @@ public class ItemSlicedEvent extends AbstractSeriesEvent {
      * @param sliced
      * @param redraw
      */
-    public ItemSlicedEvent(Series series, int index, Boolean sliced,
-            Boolean redraw) {
+    public ItemSlicedEvent(Series series, int index, boolean sliced,
+            boolean redraw) {
         this(series, index, sliced, redraw, true);
     }
 
@@ -64,7 +66,7 @@ public class ItemSlicedEvent extends AbstractSeriesEvent {
      * @param index
      * @param sliced
      */
-    public ItemSlicedEvent(Series series, int index, Boolean sliced) {
+    public ItemSlicedEvent(Series series, int index, boolean sliced) {
         this(series, index, sliced, true, true);
     }
 
@@ -83,15 +85,27 @@ public class ItemSlicedEvent extends AbstractSeriesEvent {
      * 
      * @return
      */
-    public Boolean isSliced() {
+    public boolean isSliced() {
         return sliced;
     }
 
-    public Boolean isRedraw() {
+    /**
+     * Whether or not redrawing should be immediate.
+     * 
+     * @return <b>true</b> when redrawing needs to be immediate, <b>false</b>
+     *         otherwise.
+     */
+    public boolean isRedraw() {
         return redraw;
     }
 
-    public Boolean isAnimation() {
+    /**
+     * Whether or not animation should be used.
+     * 
+     * @return <b>true</b> when slicing should be animated, <b>false</b>
+     *         otherwise.
+     */
+    public boolean isAnimation() {
         return animation;
     }
 

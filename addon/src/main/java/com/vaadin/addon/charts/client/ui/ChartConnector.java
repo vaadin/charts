@@ -78,7 +78,7 @@ public class ChartConnector extends AbstractComponentConnector {
             }
 
             @Override
-            public void rescaleAxis(short axisCategory, int axisIndex,
+            public void rescaleAxis(int axisCategory, int axisIndex,
                     double minimum, double maximum, boolean redraw,
                     boolean animate) {
                 switch (axisCategory) {
@@ -95,7 +95,7 @@ public class ChartConnector extends AbstractComponentConnector {
 
             @Override
             public void sliceItem(int seriesIndex, int pointIndex,
-                    Boolean sliced, Boolean redraw, Boolean animation) {
+                    boolean sliced, boolean redraw, boolean animation) {
                 getWidget().slicePoint(seriesIndex, pointIndex, sliced, redraw,
                         animation);
             }
