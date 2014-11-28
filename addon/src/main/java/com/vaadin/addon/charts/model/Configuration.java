@@ -727,7 +727,9 @@ public class Configuration extends AbstractConfigurationObject {
      *            Listener to add.
      */
     public void addChangeListener(ConfigurationChangeListener listener) {
-        changeListeners.add(listener);
+        if (!changeListeners.contains(listener)) {
+            changeListeners.add(listener);
+        }
     }
 
     /**
