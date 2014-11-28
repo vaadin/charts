@@ -399,9 +399,9 @@ public class ChartsDemoUI extends UI {
 
     private void initGATracker() {
         // Provide a Google Analytics tracker id here
-        String trackerId = null;// "UA-658457-6";
+        String trackerId = "UA-658457-6";
         if (trackerId != null) {
-            tracker = new GoogleAnalyticsTracker(trackerId, "none");
+            tracker = new GoogleAnalyticsTracker(trackerId, "demo.vaadin.com");
             tracker.extend(UI.getCurrent());
         }
     }
