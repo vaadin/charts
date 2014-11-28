@@ -289,7 +289,7 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * @return The X-axis with the given index or null if the index is not valid
+     * @return The Y-axis with the given index or null if the index is not valid
      */
     public YAxis getyAxis(int index) {
         if (index > 0 && yAxis != null && getNumberOfyAxes() > index) {
