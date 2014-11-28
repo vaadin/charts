@@ -98,7 +98,19 @@ public class StackLabels extends AbstractConfigurationObject {
     }
 
     /**
-     * Sets the JavaScript function to format the label.
+     * Sets a JavaScript function to format the label. The value is given by
+     * this.total. Defaults to:
+     * 
+     * <code>
+     * function(){ return this.total; }
+     * </code>
+     * 
+     * If the function is a simple one liner, it can be given in a shortened
+     * form, e.g.:
+     * 
+     * <code>   
+     * setFormatter("this.total + ' mm'")
+     * </code>
      * 
      * @param formatter
      */
