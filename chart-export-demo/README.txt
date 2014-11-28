@@ -13,7 +13,7 @@ command:
 
 mvn jetty:run-war
 
-or one liner including svn checkout:
+or one liner including git clone:
 
-svn co http://dev.vaadin.com/svn/addons/vaadin-charts/chart-export-demo/; cd chart-export-demo; mvn jetty:run-war
+git clone git@github.com:vaadin/charts.git; cd charts/chart-export-demo; mvn jetty:run-war
 
