@@ -225,7 +225,7 @@ public class Configuration extends AbstractConfigurationObject {
      * @return The X-axis with the given index or null if the index is not valid
      */
     public XAxis getxAxis(int index) {
-        if (index > 0 && xAxis != null && getNumberOfxAxes() > index) {
+        if (index >= 0 && xAxis != null && getNumberOfxAxes() > index) {
             return (XAxis) xAxis.getAxis(index);
         } else {
             return null;
@@ -292,7 +292,7 @@ public class Configuration extends AbstractConfigurationObject {
      * @return The Y-axis with the given index or null if the index is not valid
      */
     public YAxis getyAxis(int index) {
-        if (index > 0 && yAxis != null && getNumberOfyAxes() > index) {
+        if (index >= 0 && yAxis != null && getNumberOfyAxes() > index) {
             return (YAxis) yAxis.getAxis(index);
         } else {
             return null;
