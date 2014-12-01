@@ -96,7 +96,6 @@ public class ValoDarkTheme extends Theme {
         getChart().setClassName("vaadin-chart");
         getChart().setPlotBackgroundImage("");
         getChart().setBackgroundColor(BGCOLOR);
-        getChart().setPlotBackgroundColor(new SolidColor(50, 50, 50));
         getChart().setPlotBorderWidth(0);
         getChart().setBorderRadius(0);
         getChart().setPlotShadow(false);
@@ -132,9 +131,11 @@ public class ValoDarkTheme extends Theme {
         getCredits().setHref("https://vaadin.com/add-ons/charts");
 
         getyAxis().setMinorTickInterval(TickIntervalStyle.NONE);
-        getyAxis().setAlternateGridColor(new SolidColor(61, 61, 61));
+        getyAxis().setAlternateGridColor(new SolidColor(50, 50, 50));
         getyAxis().setGridLineColor(LINE_COLOR);
+        getyAxis().setGridLineWidth(0);
 
+        getxAxis().setGridLineColor(LINE_COLOR);
         getxAxis().setGridLineWidth(0);
 
         // Shadows on by default, off in range stuff

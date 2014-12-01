@@ -12,7 +12,6 @@ import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.Options3d;
 import com.vaadin.addon.charts.model.PlotOptionsPie;
-import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Notification;
 
@@ -41,10 +40,7 @@ public class Basic3DPie extends AbstractVaadinChartExample {
 
         PlotOptionsPie plotOptions = new PlotOptionsPie();
         plotOptions.setCursor(Cursor.POINTER);
-        Labels dataLabels = new Labels();
-        dataLabels.setEnabled(true);
-        dataLabels.setColor(new SolidColor(0, 0, 0));
-        dataLabels.setConnectorColor(new SolidColor(0, 0, 0));
+        Labels dataLabels = new Labels(true);
         dataLabels
                 .setFormatter("'<b>'+ this.point.name +'</b>: '+ this.percentage +' %'");
         plotOptions.setDataLabels(dataLabels);

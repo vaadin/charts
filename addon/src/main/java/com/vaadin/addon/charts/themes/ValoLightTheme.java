@@ -131,9 +131,10 @@ public class ValoLightTheme extends Theme {
         getCredits().setHref("https://vaadin.com/add-ons/charts");
 
         getyAxis().setMinorTickInterval(TickIntervalStyle.NONE);
-        getyAxis().setAlternateGridColor(BGCOLOR_LIGHT_GRAY);
         getyAxis().setGridLineColor(LINE_COLOR);
+        getyAxis().setGridLineWidth(1);
 
+        getxAxis().setGridLineColor(LINE_COLOR);
         getxAxis().setGridLineWidth(0);
 
         // Shadows on by default, off in range stuff

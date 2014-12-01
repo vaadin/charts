@@ -5,7 +5,6 @@ import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.Frame;
-import com.vaadin.addon.charts.model.FramePanel;
 import com.vaadin.addon.charts.model.HorizontalAlign;
 import com.vaadin.addon.charts.model.LayoutDirection;
 import com.vaadin.addon.charts.model.Legend;
@@ -16,7 +15,6 @@ import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
-import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
 
 @SuppressWarnings("serial")
@@ -47,7 +45,6 @@ public class Basic3DColumn extends AbstractVaadinChartExample {
 
         Legend legend = new Legend();
         legend.setLayout(LayoutDirection.VERTICAL);
-        legend.setBackgroundColor("#FFFFFF");
         legend.setHorizontalAlign(HorizontalAlign.LEFT);
         legend.setVerticalAlign(VerticalAlign.TOP);
         legend.setX(100);
@@ -70,12 +67,9 @@ public class Basic3DColumn extends AbstractVaadinChartExample {
         options3d.setEnabled(true);
         options3d.setAlpha(15);
         options3d.setBeta(15);
-        options3d.setDepth(50);
+        options3d.setDepth(100);
         options3d.setViewDistance(200);
         Frame frame = new Frame();
-        frame.setBack(new FramePanel(SolidColor.GREY, 5));
-        frame.setBottom(new FramePanel(SolidColor.GREY, 10));
-        frame.setSide(new FramePanel(SolidColor.DARKGRAY, 5));
         options3d.setFrame(frame);
         conf.getChart().setOptions3d(options3d);
 
