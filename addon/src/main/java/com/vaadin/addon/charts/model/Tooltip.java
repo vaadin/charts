@@ -62,24 +62,24 @@ public class Tooltip extends AbstractConfigurationObject {
      * <p>
      * Available data:
      * <ul>
-     * <li><code>this.percentage</code> (not shared)
+     * <li><code>this.percentage</code> (not shared)</li>
      * <li><code>this.points[i].percentage</code> (shared) Stacked series and
-     * pies only. The point's percentage of the total.
-     * <li><code>this.point</code> (not shared)
+     * pies only. The point's percentage of the total.</li>
+     * <li><code>this.point</code> (not shared)</li>
      * <li><code>this.points[i].point</code> (shared) The point object. The
-     * point name, if defined, is available through this.point.name.
+     * point name, if defined, is available through this.point.name.</li>
      * <li><code>this.points</code> In a shared tooltip, this is an array
-     * containing all other properties for each point.
-     * <li><code>this.series</code> (not shared)
+     * containing all other properties for each point.</li>
+     * <li><code>this.series</code> (not shared)</li>
      * <li><code>this.points[i].series</code> (shared) The series object. The
-     * series name is available through this.series.name.
-     * <li><code>this.total</code> (not shared)
+     * series name is available through this.series.name.</li>
+     * <li><code>this.total</code> (not shared)</li>
      * <li><code>this.points[i].total</code> (shared) Stacked series only. The
-     * total value at this point's x value.
+     * total value at this point's x value.</li>
      * <li><code>this.x</code> The X value. This property is the same regardless
-     * of the tooltip being shared or not.
-     * <li><code>this.y</code> (not shared)
-     * <li><code>this.points[i].y</code> (shared) The Y value.
+     * of the tooltip being shared or not.</li>
+     * <li><code>this.y</code> (not shared)</li>
+     * <li><code>this.points[i].y</code> (shared) The Y value.</li>
      * </ul>
      * 
      * <p>
@@ -152,15 +152,21 @@ public class Tooltip extends AbstractConfigurationObject {
     /**
      * Sets the tooltip formatting string for the point part. The HTML of the
      * point's part in the tooltip. Variables are enclosed by curly brackets.
-     * Available variables are <code>point.x</code>, <code>point.y</code>,
-     * <code>series.name</code> and <code>series.color</code> as well as other
-     * properties on the same form. Furthermore, <code>point.y</code> can be
-     * extended by the {@link #setValuePrefix(String)} and
-     * {@link #setValueSuffix(String)} values. This can also be overridden for
-     * each series, which makes it a good hook for displaying units.
+     * Available variables are:
+     * <ul>
+     * <li><code>point.x</code></li>
+     * <li><code>point.y</code></li>
+     * <li><code>series.name</code></li>
+     * <li><code>series.color</code></li>
+     * <li>other properties on the same form</li>
+     * </ul>
+     * Furthermore, <code>point.y</code> can be extended by the
+     * {@link #setValuePrefix(String)} and {@link #setValueSuffix(String)}
+     * values. This can also be overridden for each series, which makes it a
+     * good hook for displaying units.
      * <p>
      * Defaults to <code>
-     * &lt;span style="color:{series.color}"&gt;{series.name}&lt;/span&gt;: &lt;b&gt;{point.y}&lt;/b&gt;
+     * &lt;span style=&#92;"color:{series.color}&#92;"&gt;\u25CF&lt;/span&gt; {series.name}: &lt;b&gt;{point.y}&lt;/b&gt;&lt;br/&gt;
      * </code>
      * 
      * @param pointFormat
@@ -189,7 +195,7 @@ public class Tooltip extends AbstractConfigurationObject {
      *            Whether or not to display crosshairs on the Y axis.
      */
     public void setCrosshairs(Boolean crosshairsX, Boolean crosshairsY) {
-        this.crosshairs = new Boolean[] { crosshairsX, crosshairsY };
+        crosshairs = new Boolean[] { crosshairsX, crosshairsY };
     }
 
     /**
