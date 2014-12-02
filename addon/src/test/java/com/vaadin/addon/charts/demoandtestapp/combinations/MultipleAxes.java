@@ -48,13 +48,13 @@ public class MultipleAxes extends AbstractVaadinChartExample {
         Labels labels = new Labels();
         labels.setFormatter("return this.value +'°C'");
         Style style = new Style();
-        style.setColor(colors[0]);
+        style.setColor(colors[1]);
         labels.setStyle(style);
         y1.setLabels(labels);
         y1.setOpposite(true);
         Title title = new Title("Temperature");
         style = new Style();
-        style.setColor(colors[0]);
+        style.setColor(colors[1]);
         y1.setTitle(title);
         conf.addyAxis(y1);
 
@@ -62,12 +62,12 @@ public class MultipleAxes extends AbstractVaadinChartExample {
         y2.setGridLineWidth(0);
         title = new Title("Rainfall");
         style = new Style();
-        style.setColor(colors[1]);
+        style.setColor(colors[0]);
         y2.setTitle(title);
         labels = new Labels();
         labels.setFormatter("this.value +' mm'");
         style = new Style();
-        style.setColor(colors[1]);
+        style.setColor(colors[0]);
         labels.setStyle(style);
         y2.setLabels(labels);
         conf.addyAxis(y2);
@@ -105,7 +105,7 @@ public class MultipleAxes extends AbstractVaadinChartExample {
 
         DataSeries series = new DataSeries();
         AbstractPlotOptions plotOptions = new PlotOptionsColumn();
-        plotOptions.setColor(colors[1]);
+        plotOptions.setColor(colors[0]);
         series.setPlotOptions(plotOptions);
         series.setName("Rainfall");
         series.setyAxis(1);
@@ -125,7 +125,7 @@ public class MultipleAxes extends AbstractVaadinChartExample {
 
         series = new DataSeries();
         plotOptions = new PlotOptionsSpline();
-        plotOptions.setColor(colors[0]);
+        plotOptions.setColor(colors[1]);
         series.setPlotOptions(plotOptions);
         series.setName("Temperature");
         series.setData(7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3,

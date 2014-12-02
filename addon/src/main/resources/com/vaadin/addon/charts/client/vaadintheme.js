@@ -34,7 +34,7 @@ Highcharts
 				"lineColor" : "#FAFAFA",
 				"lineWidth" : 0,
 				"tickWidth" : 0,
-				"gridLineColor" : "#FAFAFA",
+				"gridLineColor" : "#DFDFDF",
 				"gridLineWidth" : 0,
 				"alternateGridColor" : "rgba(255,255,255,0.00)",
 				"title" : {
@@ -64,7 +64,8 @@ Highcharts
 				"lineWidth" : 0,
 				"tickWidth" : 0,
 				"gridLineColor" : "#DFDFDF",
-				"alternateGridColor" : "rgba(0,0,0,0.02)",
+				"gridLineWidth" : 1,
+				"alternateGridColor" : "rgba(255,255,255,0.00)",
 				"title" : {
 					"style" : {
 						"color" : "#808080",
