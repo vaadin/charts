@@ -46,41 +46,75 @@ public class ChartConnector extends AbstractComponentConnector {
     public ChartConnector() {
         registerRpc(ChartClientRpc.class, new ChartClientRpc() {
             @Override
-            public void addPoint(String pointJson, int seriesIndex,
-                    boolean shift) {
+            public void addPoint(final String pointJson, final int seriesIndex,
+                    final boolean shift) {
+                Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+                    @Override
+                    public void execute() {
+                
                 getWidget().addPoint(pointJson, seriesIndex, shift);
+                    }});
             }
 
             @Override
-            public void removePoint(int pointIndex, int seriesIndex) {
+            public void removePoint(final int pointIndex, final int seriesIndex) {
+                Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+                    @Override
+                    public void execute() {
+
                 getWidget().removePoint(pointIndex, seriesIndex);
+                    }});
             }
 
             @Override
-            public void updatePointValue(int seriesIndex, int pointIndex,
-                    double newValue) {
+            public void updatePointValue(final int seriesIndex, final int pointIndex,
+                    final double newValue) {
+                Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+                    @Override
+                    public void execute() {
+
                 getWidget().updatePointValue(seriesIndex, pointIndex, newValue);
+                    }});
             }
 
             @Override
-            public void setSeriesEnabled(int seriesIndex, boolean enabled) {
+            public void setSeriesEnabled(final int seriesIndex, final boolean enabled) {
+                Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+                    @Override
+                    public void execute() {
+
                 getWidget().setSeriesEnabled(seriesIndex, enabled);
+                    }});
             }
 
             @Override
-            public void setAnimationEnabled(boolean animation) {
+            public void setAnimationEnabled(final boolean animation) {
+                Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+                    @Override
+                    public void execute() {
+
                 getWidget().setAnimation(animation);
+                    }});
             }
 
             @Override
-            public void updatePoint(int seriesIndex, int pointIndex, String json) {
+            public void updatePoint(final int seriesIndex, final int pointIndex, final String json) {
+                Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+                    @Override
+                    public void execute() {
+
                 getWidget().updatePointValue(seriesIndex, pointIndex, json);
+                    }});
             }
 
             @Override
-            public void rescaleAxis(int axisCategory, int axisIndex,
-                    double minimum, double maximum, boolean redraw,
-                    boolean animate) {
+            public void rescaleAxis(final int axisCategory, final int axisIndex,
+                    final double minimum, final double maximum, final boolean redraw,
+                    final boolean animate) {
+                Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+                    @Override
+                    public void execute() {
+
                 switch (axisCategory) {
                 case X_AXIS:
                     getWidget().updatexAxis(axisIndex, minimum, maximum,
@@ -91,13 +125,19 @@ public class ChartConnector extends AbstractComponentConnector {
                             redraw, animate);
                     break;
                 }
+                    }});
             }
 
             @Override
-            public void sliceItem(int seriesIndex, int pointIndex,
-                    boolean sliced, boolean redraw, boolean animation) {
+            public void sliceItem(final int seriesIndex, final int pointIndex,
+                    final boolean sliced, final boolean redraw, final boolean animation) {
+                Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+                    @Override
+                    public void execute() {
+
                 getWidget().slicePoint(seriesIndex, pointIndex, sliced, redraw,
                         animation);
+                    }});
             }
 
         });
@@ -183,11 +223,11 @@ public class ChartConnector extends AbstractComponentConnector {
             });
         }
 
+
         Scheduler.get().scheduleDeferred(new ScheduledCommand() {
             @Override
             public void execute() {
                 getWidget().init(cfg);
-
                 // Add resize listener lazily here. If done in init like in
                 // examples it will be called
                 // way too early, like before the widget is not even rendered
