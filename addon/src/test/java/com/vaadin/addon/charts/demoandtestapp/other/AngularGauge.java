@@ -75,7 +75,7 @@ public class AngularGauge extends AbstractVaadinChartExample {
         yAxis.setMinorTickLength(10);
         yAxis.setMinorTickPosition(TickPosition.INSIDE);
         yAxis.setMinorTickColor(new SolidColor("#666"));
-
+        yAxis.setGridLineWidth(0);
         yAxis.setTickPixelInterval(30);
         yAxis.setTickWidth(2);
         yAxis.setTickPosition(TickPosition.INSIDE);
