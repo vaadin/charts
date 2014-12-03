@@ -37,7 +37,7 @@ public class VUMeter extends AbstractVaadinChartExample {
         gradient.addColorStop(0.3, new SolidColor("#FFFFFF"));
         gradient.addColorStop(1, new SolidColor("#FFF4C6"));
 
-        final Configuration configuration = new Configuration();
+        final Configuration configuration = chart.getConfiguration();
         configuration.getChart().setType(ChartType.GAUGE);
         configuration.getChart().setPlotBackgroundColor(gradient);
         configuration.getChart().setPlotBackgroundImage(null);

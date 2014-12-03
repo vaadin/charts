@@ -63,9 +63,6 @@ public class HighChartsDefaultTheme extends Theme {
         getSubtitle().setFontSize("12px");
         getSubtitle().setFontWeight(FontWeight.NORMAL);
 
-        getCredits().setText("Highcharts.com");
-        getCredits().setHref("http://www.highcharts.com/");
-
         setAxisDefaults(getxAxis());
         getxAxis().setGridLineWidth(0);
 

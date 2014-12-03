@@ -213,14 +213,6 @@ Highcharts
 						"color" : "#808080"
 					}
 				}
-			},
-			"credits" : {
-				"text" : "Vaadin Charts",
-				"href" : "https://vaadin.com/add-ons/charts",
-				"style" : {
-					"color" : "#808080",
-					"fontSize" : "14px"
-				}
 			}
 		});
 

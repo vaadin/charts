@@ -28,7 +28,7 @@ public class BasicLine extends AbstractVaadinChartExample {
         chart.setHeight("450px");
         chart.setWidth("100%");
 
-        Configuration configuration = new Configuration();
+        Configuration configuration = chart.getConfiguration();
         configuration.getChart().setType(ChartType.LINE);
         configuration.getChart().setMarginRight(130);
         configuration.getChart().setMarginBottom(25);

@@ -26,7 +26,7 @@ public class SplineInverted extends AbstractVaadinChartExample {
         Chart chart = new Chart();
         chart.setWidth("500px");
 
-        Configuration configuration = new Configuration();
+        Configuration configuration = chart.getConfiguration();
         configuration.getChart().setType(ChartType.SPLINE);
         configuration.getChart().setInverted(true);
 

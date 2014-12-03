@@ -81,7 +81,7 @@ public class ChartWithExternalContainer extends AbstractVaadinChartExample {
     public static Chart createChart1(Series container) {
         final Chart chart = new Chart();
 
-        final Configuration configuration = new Configuration();
+        final Configuration configuration = chart.getConfiguration();
         configuration.getChart().setType(ChartType.PIE);
         configuration.getTitle().setText("Order item quantities");
         configuration.getLegend().setEnabled(false);
@@ -98,7 +98,7 @@ public class ChartWithExternalContainer extends AbstractVaadinChartExample {
     public static Chart createChart2(AbstractSeries container) {
         final Chart chart = new Chart();
 
-        final Configuration configuration = new Configuration();
+        final Configuration configuration = chart.getConfiguration();
         configuration.getChart().setType(ChartType.COLUMN);
         configuration.getTitle().setText("Order item totals");
         configuration.getLegend().setEnabled(false);

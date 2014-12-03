@@ -211,7 +211,8 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
                         .setPlotBands(plotBand1, plotBand2);
                 masterChart.drawChart();
 
-                List<Number> list = getPartialList(start, end);
+                List<Number> list = MasterDetailChart.this.getPartialList(
+                        start, end);
 
                 Configuration configuration = detailChart.getConfiguration();
                 configuration.getChart().setAnimation(false);
@@ -251,7 +252,7 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
         detailChart.setHeight("100%");
         detailChart.setWidth("100%");
 
-        Configuration configuration = new Configuration();
+        Configuration configuration = detailChart.getConfiguration();
 
         configuration.getCredits().setEnabled(false);
         configuration.setTitle("Historical USD to EUR Exchange Rate");
@@ -300,7 +301,7 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
         masterChart.setHeight("80px");
         masterChart.setWidth("100%");
 
-        Configuration configuration = new Configuration();
+        Configuration configuration = masterChart.getConfiguration();
         configuration.getChart().setZoomType(ZoomType.X);
 
         configuration.getChart().setReflow(false);

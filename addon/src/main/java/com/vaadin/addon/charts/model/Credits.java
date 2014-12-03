@@ -74,6 +74,8 @@ public class Credits extends AbstractConfigurationObject {
     }
 
     /**
+     * Returns current text of the credits. Defaults to an empty string.
+     * 
      * @see #setText(String)
      * @return The text of the credits label or null if not defined
      */
@@ -82,7 +84,7 @@ public class Credits extends AbstractConfigurationObject {
     }
 
     /**
-     * Sets the text of the credits label. Defaults to "Vaadin Charts".
+     * Sets the text of the credits label.
      * 
      * @param text
      */

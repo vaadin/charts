@@ -46,7 +46,7 @@ public class SplineWithPlotBandRemoveFunctionality extends
         chart.setHeight("450px");
         chart.setWidth("100%");
 
-        final Configuration configuration = new Configuration();
+        final Configuration configuration = chart.getConfiguration();
         configuration.getChart().setType(ChartType.SPLINE);
 
         configuration.getTitle().setText("Wind speed during two days");

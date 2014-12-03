@@ -22,7 +22,7 @@ public class LogarithmicAxis extends AbstractVaadinChartExample {
         chart.setHeight("450px");
         chart.setWidth("100%");
 
-        Configuration configuration = new Configuration();
+        Configuration configuration = chart.getConfiguration();
         configuration.getTitle().setText("Logarithmic axis demo");
 
         configuration.getxAxis().setTickInterval(1);

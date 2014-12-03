@@ -7,7 +7,6 @@ import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.demoandtestapp.SkipFromDemo;
 import com.vaadin.addon.charts.model.AxisType;
-import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.ContainerDataSeries;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
@@ -49,8 +48,11 @@ public class ContainerSeriesWithSpline extends AbstractVaadinChartExample {
         item.getItemProperty("Date").setValue(cal.getTime());
         item.getItemProperty("Count").setValue(5);
 
+        // Create chart and render
+        Chart chart = new Chart();
+
         // Create chart config
-        Configuration config = new Configuration();
+        Configuration config = chart.getConfiguration();
 
         config.getxAxis().setType(AxisType.DATETIME);
 
@@ -63,8 +65,6 @@ public class ContainerSeriesWithSpline extends AbstractVaadinChartExample {
         // Add points to series
         config.addSeries(cds);
 
-        // Create chart and render
-        Chart chart = new Chart();
         chart.setSizeFull();
         chart.drawChart(config);
 

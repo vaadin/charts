@@ -55,10 +55,11 @@ public class ColumnLineAndPie extends AbstractVaadinChartExample {
         Chart chart = new Chart() {
             @Override
             public void drawChart(Configuration conf) {
-                updateColorsFromTheme(conf);
+                ColumnLineAndPie.this.updateColorsFromTheme(conf);
                 super.drawChart(conf);
             }
         };
+
         Configuration conf = chart.getConfiguration();
 
         conf.setTitle("Combined Chart");

@@ -31,7 +31,7 @@ public class DateAxisAndClickEvent extends AbstractVaadinChartExample {
         chart.setHeight("450px");
         chart.setWidth("100%");
 
-        Configuration configuration = new Configuration();
+        Configuration configuration = chart.getConfiguration();
         configuration.getChart().setType(ChartType.SPLINE);
 
         configuration.getxAxis().setType(AxisType.DATETIME);

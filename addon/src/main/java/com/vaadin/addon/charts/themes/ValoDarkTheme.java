@@ -124,12 +124,6 @@ public class ValoDarkTheme extends Theme {
 
         getLabels().setColor(TEXT_COLOR);
 
-        getCredits().setStyle(new Style());
-        getCredits().getStyle().setFontSize("14px");
-        getCredits().getStyle().setColor(new SolidColor(128, 128, 128));
-        getCredits().setText("Vaadin Charts");
-        getCredits().setHref("https://vaadin.com/add-ons/charts");
-
         getyAxis().setMinorTickInterval(TickIntervalStyle.NONE);
         getyAxis().setAlternateGridColor(new SolidColor(50, 50, 50));
         getyAxis().setGridLineColor(LINE_COLOR);

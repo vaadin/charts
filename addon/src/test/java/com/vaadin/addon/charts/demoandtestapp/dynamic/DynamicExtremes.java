@@ -26,7 +26,7 @@ public class DynamicExtremes extends AbstractVaadinChartExample {
         chart.setHeight("450px");
         chart.setWidth("100%");
 
-        Configuration configuration = new Configuration();
+        Configuration configuration = chart.getConfiguration();
         configuration.getChart().setType(ChartType.LINE);
         configuration.getChart().setMarginRight(130);
         configuration.getChart().setMarginBottom(25);
@@ -91,12 +91,13 @@ public class DynamicExtremes extends AbstractVaadinChartExample {
 
             @Override
             public void valueChange(Property.ValueChangeEvent event) {
-                if ((Boolean) event.getProperty().getValue())
+                if ((Boolean) event.getProperty().getValue()) {
                     chart.getConfiguration().getyAxes().getAxis(0)
                             .setExtremes(10, 15);
-                else
+                } else {
                     chart.getConfiguration().getyAxes().getAxis(0)
                             .setExtremes(-10, 30);
+                }
                 chart.markAsDirty();
             }
         });

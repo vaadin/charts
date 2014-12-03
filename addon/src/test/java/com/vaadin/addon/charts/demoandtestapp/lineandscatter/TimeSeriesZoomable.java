@@ -183,7 +183,7 @@ public class TimeSeriesZoomable extends AbstractVaadinChartExample {
 
         Color[] colors = getThemeColors();
 
-        Configuration configuration = new Configuration();
+        Configuration configuration = chart.getConfiguration();
         configuration.getChart().setZoomType(ZoomType.X);
         configuration.getChart().setSpacingRight(20);
 

@@ -23,7 +23,7 @@ public class Events extends AbstractVaadinChartExample {
         chart.setHeight("450px");
         chart.setWidth("100%");
 
-        final Configuration configuration = new Configuration();
+        final Configuration configuration = chart.getConfiguration();
 
         configuration.getChart().setType(ChartType.SPLINE);
 

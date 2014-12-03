@@ -40,7 +40,7 @@ public class ModifyOnePoint extends AbstractVaadinChartExample {
         chart.setHeight("300px");
         chart.setWidth("100%");
 
-        final Configuration configuration = new Configuration();
+        final Configuration configuration = chart.getConfiguration();
         configuration.getTooltip().setEnabled(false);
 
         configuration.getChart().setType(ChartType.SPLINE);

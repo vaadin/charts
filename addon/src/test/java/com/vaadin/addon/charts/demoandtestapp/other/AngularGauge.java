@@ -29,7 +29,7 @@ public class AngularGauge extends AbstractVaadinChartExample {
         final Chart chart = new Chart();
         chart.setWidth("500px");
 
-        final Configuration configuration = new Configuration();
+        final Configuration configuration = chart.getConfiguration();
         configuration.getChart().setType(ChartType.GAUGE);
         configuration.getChart().setPlotBackgroundColor(null);
         configuration.getChart().setPlotBackgroundImage(null);

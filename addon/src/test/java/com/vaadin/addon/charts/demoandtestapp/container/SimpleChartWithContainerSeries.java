@@ -78,7 +78,7 @@ public class SimpleChartWithContainerSeries extends AbstractVaadinChartExample {
     public static Chart createChart(Series container) {
         final Chart chart = new Chart();
 
-        final Configuration configuration = new Configuration();
+        final Configuration configuration = chart.getConfiguration();
         configuration.getChart().setType(ChartType.PIE);
         configuration.getTitle().setText("Data from Vaadin Container");
 

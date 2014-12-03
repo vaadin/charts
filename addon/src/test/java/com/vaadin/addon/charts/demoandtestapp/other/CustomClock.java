@@ -33,7 +33,7 @@ public class CustomClock extends AbstractVaadinChartExample {
         chart.setWidth("500px");
         chart.setHeight("200px");
 
-        final Configuration configuration = new Configuration();
+        final Configuration configuration = chart.getConfiguration();
         configuration.getChart().setType(ChartType.GAUGE);
         configuration.getChart().setPlotBackgroundColor(null);
         configuration.getChart().setPlotBackgroundImage(null);

@@ -13,7 +13,6 @@ import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.XAxis;
-import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
 
@@ -31,7 +30,7 @@ public class BasicLineWithRedGridLines extends AbstractVaadinChartExample {
         chart.setHeight("450px");
         chart.setWidth("100%");
 
-        Configuration configuration = new Configuration();
+        Configuration configuration = chart.getConfiguration();
         configuration.getChart().setType(ChartType.LINE);
         configuration.getChart().setMarginRight(130);
         configuration.getChart().setMarginBottom(25);

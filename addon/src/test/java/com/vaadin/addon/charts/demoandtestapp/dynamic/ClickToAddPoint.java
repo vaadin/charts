@@ -45,7 +45,7 @@ public class ClickToAddPoint extends AbstractVaadinChartExample {
         chart.setId("chart");
         chart.setWidth("500px");
 
-        final Configuration configuration = new Configuration();
+        final Configuration configuration = chart.getConfiguration();
         configuration.getChart().setType(ChartType.SCATTER);
         configuration.getTitle().setText("User supplied data");
         configuration

@@ -84,33 +84,33 @@ public class DonutChart extends AbstractVaadinChartExample {
 
         DataSeriesItem[] outerItems = new DataSeriesItem[] {
                 /* @formatter:off */
-                new DataSeriesItem("MSIE 6.0",       10.85, color(0)),
-                new DataSeriesItem("MSIE 7.0",        7.35, color(0)),
-                new DataSeriesItem("MSIE 8.0",       33.06, color(0)),
-                new DataSeriesItem("MSIE 9.0",        2.81, color(0)),
-                new DataSeriesItem("Firefox 2.0",     0.20, color(1)),
-                new DataSeriesItem("Firefox 3.0",     0.83, color(1)),
-                new DataSeriesItem("Firefox 3.5",     1.58, color(1)),
-                new DataSeriesItem("Firefox 3.6",    13.12, color(1)),
-                new DataSeriesItem("Firefox 4.0",     5.43, color(1)),
-                new DataSeriesItem("Chrome 5.0",      0.12, color(2)),
-                new DataSeriesItem("Chrome 6.0",      0.19, color(2)),
-                new DataSeriesItem("Chrome 7.0",      0.12, color(2)),
-                new DataSeriesItem("Chrome 8.0",      0.36, color(2)),
-                new DataSeriesItem("Chrome 9.0",      0.32, color(2)),
-                new DataSeriesItem("Chrome 10.0",     9.91, color(2)),
-                new DataSeriesItem("Chrome 11.0",     0.50, color(2)),
-                new DataSeriesItem("Chrome 12.0",     0.22, color(2)),
-                new DataSeriesItem("Safari 5.0",      4.55, color(3)),
-                new DataSeriesItem("Safari 4.0",      1.42, color(3)),
-                new DataSeriesItem("Safari Win 5.0",  0.23, color(3)),
-                new DataSeriesItem("Safari 4.1",      0.21, color(3)),
-                new DataSeriesItem("Safari/Maxthon",  0.20, color(3)),
-                new DataSeriesItem("Safari 3.1",      0.19, color(3)),
-                new DataSeriesItem("Safari 4.1",      0.14, color(3)),
-                new DataSeriesItem("Opera 9.x",       0.12, color(4)),
-                new DataSeriesItem("Opera 10.x",      0.37, color(4)),
-                new DataSeriesItem("Opera 11.x",      1.65, color(4))
+                new DataSeriesItem("MSIE 6.0", 10.85, color(0)),
+                new DataSeriesItem("MSIE 7.0", 7.35, color(0)),
+                new DataSeriesItem("MSIE 8.0", 33.06, color(0)),
+                new DataSeriesItem("MSIE 9.0", 2.81, color(0)),
+                new DataSeriesItem("Firefox 2.0", 0.20, color(1)),
+                new DataSeriesItem("Firefox 3.0", 0.83, color(1)),
+                new DataSeriesItem("Firefox 3.5", 1.58, color(1)),
+                new DataSeriesItem("Firefox 3.6", 13.12, color(1)),
+                new DataSeriesItem("Firefox 4.0", 5.43, color(1)),
+                new DataSeriesItem("Chrome 5.0", 0.12, color(2)),
+                new DataSeriesItem("Chrome 6.0", 0.19, color(2)),
+                new DataSeriesItem("Chrome 7.0", 0.12, color(2)),
+                new DataSeriesItem("Chrome 8.0", 0.36, color(2)),
+                new DataSeriesItem("Chrome 9.0", 0.32, color(2)),
+                new DataSeriesItem("Chrome 10.0", 9.91, color(2)),
+                new DataSeriesItem("Chrome 11.0", 0.50, color(2)),
+                new DataSeriesItem("Chrome 12.0", 0.22, color(2)),
+                new DataSeriesItem("Safari 5.0", 4.55, color(3)),
+                new DataSeriesItem("Safari 4.0", 1.42, color(3)),
+                new DataSeriesItem("Safari Win 5.0", 0.23, color(3)),
+                new DataSeriesItem("Safari 4.1", 0.21, color(3)),
+                new DataSeriesItem("Safari/Maxthon", 0.20, color(3)),
+                new DataSeriesItem("Safari 3.1", 0.19, color(3)),
+                new DataSeriesItem("Safari 4.1", 0.14, color(3)),
+                new DataSeriesItem("Opera 9.x", 0.12, color(4)),
+                new DataSeriesItem("Opera 10.x", 0.37, color(4)),
+                new DataSeriesItem("Opera 11.x", 1.65, color(4))
                 /* @formatter:on */
         };
 
@@ -123,7 +123,7 @@ public class DonutChart extends AbstractVaadinChartExample {
 
     /**
      * Add a small random factor to a color form the vaadin theme.
-     * 
+     *
      * @param colorIndex
      *            the index of the color in the colors array.
      * @return the new color

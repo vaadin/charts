@@ -31,7 +31,7 @@ public class SplineUpdatingEachSecond extends AbstractVaadinChartExample {
         final Chart chart = new Chart();
         chart.setWidth("500px");
 
-        final Configuration configuration = new Configuration();
+        final Configuration configuration = chart.getConfiguration();
         configuration.getChart().setType(ChartType.SPLINE);
         configuration.getTitle().setText("Live random data");
 

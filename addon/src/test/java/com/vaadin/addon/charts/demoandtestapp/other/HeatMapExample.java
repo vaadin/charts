@@ -25,7 +25,7 @@ public class HeatMapExample extends AbstractVaadinChartExample {
 
         Chart chart = new Chart();
 
-        Configuration config = new Configuration();
+        Configuration config = chart.getConfiguration();
         config.getChart().setType(ChartType.HEATMAP);
         config.getChart().setMarginTop(40);
         config.getChart().setMarginBottom(40);

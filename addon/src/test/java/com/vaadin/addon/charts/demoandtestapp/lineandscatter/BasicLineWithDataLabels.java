@@ -24,7 +24,7 @@ public class BasicLineWithDataLabels extends AbstractVaadinChartExample {
         chart.setHeight("450px");
         chart.setWidth("100%");
 
-        Configuration configuration = new Configuration();
+        Configuration configuration = chart.getConfiguration();
         configuration.getChart().setType(ChartType.LINE);
 
         configuration.getTitle().setText("Monthly Average Temperature");

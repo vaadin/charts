@@ -2,17 +2,9 @@ package com.vaadin.addon.charts.demoandtestapp.lineandscatter;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.model.Axis;
-import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
-import com.vaadin.addon.charts.model.HorizontalAlign;
-import com.vaadin.addon.charts.model.Labels;
-import com.vaadin.addon.charts.model.LayoutDirection;
-import com.vaadin.addon.charts.model.Legend;
 import com.vaadin.addon.charts.model.ListSeries;
-import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.Tooltip;
-import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.ui.Component;
 
 public class LinesWithComplexHtmlTooltip extends AbstractVaadinChartExample {
@@ -35,7 +27,7 @@ public class LinesWithComplexHtmlTooltip extends AbstractVaadinChartExample {
         tooltip.setPointFormat("<tr><td style=\"color: {series.color}\">{series.name}: </td><td style=\"text-align: right\"><b>{point.y} EUR</b></td></tr>");
         tooltip.setFooterFormat("</table>");
 
-        Configuration configuration = new Configuration();
+        Configuration configuration = chart.getConfiguration();
         configuration.setTooltip(tooltip);
 
         configuration.getxAxis().setCategories("Jan", "Feb", "Mar", "Apr",
