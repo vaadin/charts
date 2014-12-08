@@ -26,6 +26,12 @@ public class PlotBandLabel extends AbstractConfigurationObject {
     private HorizontalAlign align;
     private String text;
     private Style style;
+    private Number rotation;
+    private HorizontalAlign textAlign;
+    private Boolean useHTML;
+    private VerticalAlign verticalAlign;
+    private Number x;
+    private Number y;
 
     /**
      * Constructs a PlotBandLabel using the given text
@@ -76,12 +82,123 @@ public class PlotBandLabel extends AbstractConfigurationObject {
     }
 
     /**
-     * Sets horizontal alignment of the label. Can be one of LEFT, CENTER or
-     * RIGHT. Defaults to center.
+     * Sets horizontal alignment of the label. Can be one of
+     * {@link HorizontalAlign#LEFT}, {@link HorizontalAlign#CENTER} and
+     * {@link HorizontalAlign#RIGHT}. Defaults to center.
      * 
      * @param align
      */
     public void setAlign(HorizontalAlign align) {
         this.align = align;
+    }
+
+    /**
+     * @see #setRotation(Number)
+     * @return
+     */
+    public Number getRotation() {
+        return rotation;
+    }
+
+    /**
+     * Rotation of the text label in degrees . Defaults to 0.
+     * 
+     * @param rotation
+     */
+    public void setRotation(Number rotation) {
+        this.rotation = rotation;
+    }
+
+    /**
+     * @see #setTextAlign(HorizontalAlign)
+     * @return textAlign
+     */
+    public HorizontalAlign getTextAlign() {
+        return textAlign;
+    }
+
+    /**
+     * The text alignment for the label. While align determines where the texts
+     * anchor point is placed within the plot band, textAlign determines how the
+     * text is aligned against its anchor point. Possible values are
+     * {@link HorizontalAlign#LEFT}, {@link HorizontalAlign#CENTER} and
+     * {@link HorizontalAlign#RIGHT}". Defaults to the same as the align option.
+     * 
+     * @param textAlign
+     */
+    public void setTextAlign(HorizontalAlign textAlign) {
+        this.textAlign = textAlign;
+    }
+
+    /**
+     * @see #setUseHTML(Boolean)
+     * @return
+     */
+    public Boolean getUseHTML() {
+        return useHTML;
+    }
+
+    /**
+     * Whether to use HTML to render the labels. Defaults to false.
+     * 
+     * @param useHTML
+     */
+    public void setUseHTML(Boolean useHTML) {
+        this.useHTML = useHTML;
+    }
+
+    /**
+     * @see #setVerticalAlign(VerticalAlign)
+     * @return
+     */
+    public VerticalAlign getVerticalAlign() {
+        return verticalAlign;
+    }
+
+    /**
+     * Vertical alignment of the label relative to the plot band. Can be one of
+     * {@link VerticalAlign#TOP}, {@link VerticalAlign#MIDDLE} or
+     * {@link VerticalAlign#BOTTOM}. Defaults to {@link VerticalAlign#TOP}.
+     * 
+     * @param verticalAlign
+     */
+    public void setVerticalAlign(VerticalAlign verticalAlign) {
+        this.verticalAlign = verticalAlign;
+    }
+
+    /**
+     * @see #setX(Number)
+     * @return x
+     */
+    public Number getX() {
+        return x;
+    }
+
+    /**
+     * Horizontal position relative the alignment. Default varies by
+     * orientation.
+     * 
+     * @param x
+     */
+    public void setX(Number x) {
+        this.x = x;
+    }
+
+    /**
+     * @see #setY(Number)
+     * @return y
+     */
+    public Number getY() {
+        return y;
+    }
+
+    /**
+     * Vertical position of the text baseline relative to the alignment. Default
+     * varies by orientation.
+     * 
+     * @param y
+     */
+    public void setY(Number y) {
+        this.y = y;
     }
 }
