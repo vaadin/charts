@@ -45,15 +45,15 @@ public class AreaSpline extends AbstractVaadinChartExample {
         legend.setVerticalAlign(VerticalAlign.TOP);
         legend.setX(150);
         legend.setY(100);
-        legend.setBorderWidth(1);
-        legend.setBackgroundColor("white");
         conf.setLegend(legend);
 
         XAxis xAxis = new XAxis();
         xAxis.setCategories(new String[] { "Monday", "Tuesday", "Wednesday",
                 "Thursday", "Friday", "Saturday", "Sunday" });
         // add blue background for the weekend
-        xAxis.setPlotBands(new PlotBand(4.5, 6.5, LIGHT_BLUE));
+        PlotBand plotBand = new PlotBand(4.5, 6.5, LIGHT_BLUE);
+        plotBand.setzIndex(1);
+        xAxis.setPlotBands(plotBand);
         conf.addxAxis(xAxis);
 
         YAxis yAxis = new YAxis();

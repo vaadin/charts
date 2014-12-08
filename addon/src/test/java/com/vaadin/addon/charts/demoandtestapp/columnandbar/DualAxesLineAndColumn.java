@@ -45,7 +45,7 @@ public class DualAxesLineAndColumn extends AbstractVaadinChartExample {
         YAxis primary = new YAxis();
         primary.setTitle("Temperature");
         Style style = new Style();
-        style.setColor(new SolidColor("#89A54E"));
+        style.setColor(getThemeColors()[1]);
         primary.getTitle().setStyle(style);
         conf.addyAxis(primary);
 
@@ -68,7 +68,6 @@ public class DualAxesLineAndColumn extends AbstractVaadinChartExample {
         legend.setVerticalAlign(VerticalAlign.TOP);
         legend.setY(100);
         legend.setFloating(true);
-        legend.setBackgroundColor("#FFFFFF");
         conf.setLegend(legend);
 
         DataSeries series = new DataSeries();
@@ -85,7 +84,7 @@ public class DualAxesLineAndColumn extends AbstractVaadinChartExample {
         series.setName("Temperature");
         series.setData(7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3,
                 13.9, 9.6);
-        plotOptions.setColor(new SolidColor("#89A54E"));
+        plotOptions.setColor(getThemeColors()[1]);
         conf.addSeries(series);
 
         return chart;

@@ -212,6 +212,17 @@ Highcharts
 						},
 						"color" : "#808080"
 					}
+				},
+				"waterfall" : {
+					"borderWidth" : 0,
+					"shadow" : false,
+					"dataLabels" : {
+						"style" : {
+							"fontFamily" : "Open Sans, Helvetica Neue, Arial, sans-serif",
+							"fontSize" : "12px"
+						},
+						"color" : "#808080"
+					}
 				}
 			}
 		});

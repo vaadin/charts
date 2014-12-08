@@ -140,6 +140,7 @@ public class ValoLightTheme extends Theme {
         getPlotOptions().getColumn().setShadow(false);
         getPlotOptions().getArea().setShadow(false);
         getPlotOptions().getPie().setShadow(false);
+        getPlotOptions().getWaterfall().setShadow(false);
 
         getPlotOptions().getPie().setBorderWidth(0);
         getPlotOptions().getColumn().setBorderWidth(0);
@@ -147,6 +148,7 @@ public class ValoLightTheme extends Theme {
         getPlotOptions().getBar().setBorderWidth(0);
         getPlotOptions().getBar().setPointPadding(0);
         getPlotOptions().getPyramid().setBorderWidth(0);
+        getPlotOptions().getWaterfall().setBorderWidth(0);
 
         setDataLabelsDefaults(getPlotOptions().getPyramid());
         setDataLabelsDefaults(getPlotOptions().getBar());
@@ -157,6 +159,7 @@ public class ValoLightTheme extends Theme {
         setDataLabelsDefaults(getPlotOptions().getAreasplinerange());
         setDataLabelsDefaults(getPlotOptions().getSpline());
         setDataLabelsDefaults(getPlotOptions().getBar());
+        setDataLabelsDefaults(getPlotOptions().getWaterfall());
 
         State state = new State(false);
         getPlotOptions().getPie().setStates(new States(state));

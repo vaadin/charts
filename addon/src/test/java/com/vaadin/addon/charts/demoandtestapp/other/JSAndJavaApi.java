@@ -16,7 +16,6 @@ public class JSAndJavaApi extends AbstractVaadinChartExample {
             + "chart: {                                              "
             // renderTo is not supported, will be overridden by library if set
             // + "    renderTo: 'container',                            "
-            + "    backgroundColor: '#FCFFC5',                       "
             + "    type: 'line'                                      "
             + "},                                                    "
             + "xAxis: {                                              "

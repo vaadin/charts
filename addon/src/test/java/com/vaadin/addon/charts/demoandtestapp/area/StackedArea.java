@@ -9,7 +9,6 @@ import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.ListSeries;
-import com.vaadin.addon.charts.model.Marker;
 import com.vaadin.addon.charts.model.PlotOptionsArea;
 import com.vaadin.addon.charts.model.Series;
 import com.vaadin.addon.charts.model.Stacking;
@@ -62,12 +61,6 @@ public class StackedArea extends AbstractVaadinChartExample {
 
         PlotOptionsArea plotOptions = new PlotOptionsArea();
         plotOptions.setStacking(Stacking.NORMAL);
-        plotOptions.setLineColor(GRAY);
-        plotOptions.setLineWidth(1);
-        Marker marker = new Marker();
-        marker.setLineColor(GRAY);
-        marker.setLineWidth(1);
-        plotOptions.setMarker(marker);
         conf.setPlotOptions(plotOptions);
 
         List<Series> series = new ArrayList<Series>();

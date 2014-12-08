@@ -12,7 +12,6 @@ import com.vaadin.addon.charts.model.PlotOptionsWaterfall;
 import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.WaterFallSum;
 import com.vaadin.addon.charts.model.style.Color;
-import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
 
 @SuppressWarnings("serial")
@@ -48,9 +47,9 @@ public class WaterfallChartExample extends AbstractVaadinChartExample {
 
         dataSeries.add(new DataSeriesItem("Fixed Costs", -342000));
         dataSeries.add(new DataSeriesItem("Variable Costs", -233000));
-        WaterFallSum balanse = new WaterFallSum("Balance");
-        balanse.setColor(sumColor);
-        dataSeries.add(balanse);
+        WaterFallSum balance = new WaterFallSum("Balance");
+        balance.setColor(sumColor);
+        dataSeries.add(balance);
 
         PlotOptionsWaterfall opts = new PlotOptionsWaterfall();
         opts.setColor(color);
@@ -58,10 +57,8 @@ public class WaterfallChartExample extends AbstractVaadinChartExample {
         Labels dataLabels = new Labels(true);
         dataLabels.setVerticalAlign(VerticalAlign.TOP);
         dataLabels.setY(-30);
-        dataLabels.setColor(new SolidColor("black"));
         dataLabels.setFormatter("this.y / 1000 + 'k'");
         opts.setDataLabels(dataLabels);
-        opts.setPointPadding(0);
 
         dataSeries.setPlotOptions(opts);
 

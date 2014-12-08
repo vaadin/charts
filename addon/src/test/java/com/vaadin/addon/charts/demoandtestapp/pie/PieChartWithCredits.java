@@ -13,7 +13,6 @@ import com.vaadin.addon.charts.model.HorizontalAlign;
 import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.PlotOptionsPie;
 import com.vaadin.addon.charts.model.VerticalAlign;
-import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
 
 @SuppressWarnings("serial")
@@ -41,18 +40,14 @@ public class PieChartWithCredits extends AbstractVaadinChartExample {
 
         Credits credits = new Credits(true);
         credits.setPosition(new CreditPosition());
-        credits.getPosition().setHorizontalAlign(HorizontalAlign.CENTER);
+        credits.getPosition().setHorizontalAlign(HorizontalAlign.LEFT);
         credits.getPosition().setVerticalAlign(VerticalAlign.MIDDLE);
-        credits.getPosition().setX(0);
-        credits.getPosition().setY(10);
+        credits.getPosition().setX(200);
         conf.setCredits(credits);
 
         PlotOptionsPie plotOptions = new PlotOptionsPie();
         plotOptions.setCursor(Cursor.POINTER);
-        Labels dataLabels = new Labels();
-        dataLabels.setEnabled(true);
-        dataLabels.setColor(new SolidColor(0, 0, 0));
-        dataLabels.setConnectorColor(new SolidColor(0, 0, 0));
+        Labels dataLabels = new Labels(true);
         dataLabels
                 .setFormatter("'<b>'+ this.point.name +'</b>: '+ this.percentage +' %'");
         plotOptions.setDataLabels(dataLabels);

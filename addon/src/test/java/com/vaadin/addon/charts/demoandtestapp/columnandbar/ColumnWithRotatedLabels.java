@@ -75,10 +75,6 @@ public class ColumnWithRotatedLabels extends AbstractVaadinChartExample {
         dataLabels.setX(4);
         dataLabels.setY(10);
         dataLabels.setFormatter("this.y");
-        style = new Style();
-        style.setFontSize("13px");
-        style.setFontFamily("Verdana, sans-serif");
-        dataLabels.setStyle(style);
         PlotOptionsColumn plotOptionsColumn = new PlotOptionsColumn();
         plotOptionsColumn.setDataLabels(dataLabels);
         serie.setPlotOptions(plotOptionsColumn);

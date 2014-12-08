@@ -48,7 +48,12 @@ public class ResizeInsideVaadinComponent extends AbstractVaadinChartExample {
             @Override
             public void buttonClick(ClickEvent event) {
                 Window window = new Window("Chart windodw");
-                window.setContent(createChart());
+
+                VerticalLayout layout = new VerticalLayout(createChart());
+                layout.setMargin(true);
+                layout.setSizeFull();
+                window.setContent(layout);
+
                 window.setWidth("50%");
                 window.setHeight("50%");
 

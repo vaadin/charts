@@ -30,6 +30,7 @@ import com.vaadin.addon.charts.model.PlotOptionsPie;
 import com.vaadin.addon.charts.model.PlotOptionsPyramid;
 import com.vaadin.addon.charts.model.PlotOptionsSeries;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
+import com.vaadin.addon.charts.model.PlotOptionsWaterfall;
 
 /**
  * Styles for PlotOptions of different plot types
@@ -47,6 +48,7 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
     private PlotOptionsSpline spline = new PlotOptionsSpline();
     private PlotOptionsSeries series = new PlotOptionsSeries();
     private PlotOptionsPyramid pyramid = new PlotOptionsPyramid();
+    private PlotOptionsWaterfall waterfall = new PlotOptionsWaterfall();
 
     /**
      * @see #setBar(PlotOptionsBar)
@@ -222,6 +224,23 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
      */
     public void setPyramid(PlotOptionsPyramid pyramid) {
         this.pyramid = pyramid;
+    }
+
+    /**
+     * @see #setWaterfall(PlotOptionsWaterfall)
+     * @return waterfall
+     */
+    public PlotOptionsWaterfall getWaterfall() {
+        return waterfall;
+    }
+
+    /**
+     * Sets the style options for {@link ChartType#WATERFALL} charts
+     * 
+     * @param waterfall
+     */
+    public void setWaterfall(PlotOptionsWaterfall waterfall) {
+        this.waterfall = waterfall;
     }
 
 }

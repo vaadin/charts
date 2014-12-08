@@ -52,8 +52,6 @@ public class HeatMapExample extends AbstractVaadinChartExample {
         RangeSeries rs = new RangeSeries("Sales per employee", getRawData());
 
         PlotOptionsHeatMap plotOptionsHeatMap = new PlotOptionsHeatMap();
-        plotOptionsHeatMap.setBorderColor((SolidColor) getThemeColors()[1]);
-        plotOptionsHeatMap.setBorderWidth(3);
 
         Tooltip tooltip = new Tooltip();
         tooltip.setHeaderFormat("{series.name}<br/>");

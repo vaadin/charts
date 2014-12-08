@@ -74,7 +74,6 @@ public class ColumnLineAndPie extends AbstractVaadinChartExample {
         Style labelStyle = new Style();
         labelStyle.setTop("8px");
         labelStyle.setLeft("40px");
-        labelStyle.setColor(new SolidColor("black"));
         conf.setLabels(new HTMLLabels(new HTMLLabelItem(
                 "Total fruit consumption", labelStyle)));
 

@@ -120,7 +120,7 @@ public class ValoDarkTheme extends Theme {
                 .setColor(new SolidColor(128, 128, 128));
         getLegend().setBorderRadius(BORDER_RADIUS);
         getLegend().setBorderColor(LINE_COLOR);
-        getLegend().setBackgroundColor(new SolidColor(255, 255, 255, 0.9));
+        getLegend().setBackgroundColor(new SolidColor(40, 40, 40, 0.9));
 
         getLabels().setColor(TEXT_COLOR);
 
@@ -141,6 +141,7 @@ public class ValoDarkTheme extends Theme {
         getPlotOptions().getColumn().setShadow(false);
         getPlotOptions().getArea().setShadow(false);
         getPlotOptions().getPie().setShadow(false);
+        getPlotOptions().getWaterfall().setShadow(false);
 
         getPlotOptions().getPie().setBorderWidth(0);
         getPlotOptions().getColumn().setBorderWidth(0);
@@ -148,6 +149,7 @@ public class ValoDarkTheme extends Theme {
         getPlotOptions().getBar().setBorderWidth(0);
         getPlotOptions().getBar().setPointPadding(0);
         getPlotOptions().getPyramid().setBorderWidth(0);
+        getPlotOptions().getWaterfall().setBorderWidth(0);
 
         setDataLabelsDefaults(getPlotOptions().getPyramid());
         setDataLabelsDefaults(getPlotOptions().getBar());
@@ -158,6 +160,7 @@ public class ValoDarkTheme extends Theme {
         setDataLabelsDefaults(getPlotOptions().getAreasplinerange());
         setDataLabelsDefaults(getPlotOptions().getSpline());
         setDataLabelsDefaults(getPlotOptions().getBar());
+        setDataLabelsDefaults(getPlotOptions().getWaterfall());
 
         State state = new State(false);
         getPlotOptions().getPie().setStates(new States(state));
