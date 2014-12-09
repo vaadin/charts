@@ -10,6 +10,7 @@ Highcharts
 				"plotBackgroundImage" : "",
 				"plotShadow" : false,
 				"plotBorderWidth" : 0,
+				"plotBorderColor" : "rgba(255,255,255,0.00)",
 				"className" : "vaadin-chart",
 				"borderRadius" : 0,
 				"style" : {
@@ -27,13 +28,15 @@ Highcharts
 			"subtitle" : {
 				"style" : {
 					"color" : "#808080",
-					"fontWeight" : "normal"
+					"fontWeight" : "normal",
+					"fontSize" : "12px"
 				}
 			},
 			"xAxis" : {
 				"lineColor" : "#FAFAFA",
 				"lineWidth" : 0,
 				"tickWidth" : 0,
+				"tickColor" : "#C0D0E0",
 				"gridLineColor" : "#DFDFDF",
 				"gridLineWidth" : 0,
 				"alternateGridColor" : "rgba(255,255,255,0.00)",
@@ -63,6 +66,7 @@ Highcharts
 				"lineColor" : "#FAFAFA",
 				"lineWidth" : 0,
 				"tickWidth" : 0,
+				"tickColor" : "#C0D0E0",
 				"gridLineColor" : "#DFDFDF",
 				"gridLineWidth" : 1,
 				"alternateGridColor" : "rgba(255,255,255,0.00)",

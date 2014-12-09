@@ -92,9 +92,12 @@ public class ValoDarkTheme extends Theme {
 
         getSubtitle().setColor(SUBTITLE_COLOR);
         getSubtitle().setFontWeight(FontWeight.NORMAL);
+        getSubtitle().setFontSize("12px");
 
         getChart().setClassName("vaadin-chart");
+        getChart().setPlotBackgroundColor(TRANSPARENT_COLOR);
         getChart().setPlotBackgroundImage("");
+        getChart().setPlotBorderColor(TRANSPARENT_COLOR);
         getChart().setBackgroundColor(BGCOLOR);
         getChart().setPlotBorderWidth(0);
         getChart().setBorderRadius(0);
@@ -185,6 +188,8 @@ public class ValoDarkTheme extends Theme {
         style.setLineColor(GRID_COLOR);
         style.setLineWidth(0);
         style.setTickWidth(0);
+        style.setTickColor(new SolidColor(192, 208, 224));
+
         style.setAlternateGridColor(new SolidColor(255, 255, 255, 0.0));
 
         style.getTitle().setColor(TEXT_COLOR);

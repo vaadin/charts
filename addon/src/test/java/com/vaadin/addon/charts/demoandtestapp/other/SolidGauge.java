@@ -30,11 +30,12 @@ public class SolidGauge extends AbstractVaadinChartExample {
         final Configuration configuration = chart.getConfiguration();
         configuration.getChart().setType(ChartType.SOLIDGAUGE);
 
-        Pane pane = configuration.getPane();
+        Pane pane = new Pane();
         pane.setCenterXY("50%", "85%");
         pane.setSize("140%");
         pane.setStartAngle(-90);
         pane.setEndAngle(90);
+        configuration.addPane(pane);
 
         Background bkg = new Background();
         bkg.setBackgroundColor(new SolidColor("#eeeeee"));

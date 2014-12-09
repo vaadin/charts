@@ -2,6 +2,7 @@ package com.vaadin.addon.charts.demoandtestapp.other;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.model.Background;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.ListSeries;
@@ -32,6 +33,7 @@ public class PolarChart extends AbstractVaadinChartExample {
 
         Pane pane = new Pane(0, 360);
         conf.addPane(pane);
+        pane.setBackground(new Background[] {});
 
         XAxis axis = new XAxis();
         axis.setTickInterval(45);
