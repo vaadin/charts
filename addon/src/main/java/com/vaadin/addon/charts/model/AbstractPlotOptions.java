@@ -51,7 +51,7 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     private Boolean enableMouseTracking;
     private Boolean stickyTracking;
     private Cursor cursor;
-    private Boolean animation;
+    private Object animation;
     private Color color;
     private States states;
     private Tooltip tooltip;
@@ -138,11 +138,37 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #setAnimation(Boolean)
-     * @return true if animation is enabled
+     * Sets the whether to use animation for initial plotting.
+     * 
+     * @param animation
      */
-    public boolean isAnimation() {
-        return animation == null ? true : animation;
+    public void setAnimation(Animation animation) {
+        this.animation = animation;
+    }
+
+    /**
+     * Checks if animation is set as a Boolean and if so, returns that setting.
+     * Otherwise returns <code>null</code>.
+     * 
+     * @see #setAnimation(Boolean)
+     * @see #setAnimation(Animation)
+     * @return <code>null</code> when the animation is not set as Boolean,
+     *         otherwise a corresponding Boolean.
+     */
+    public Boolean isAnimation() {
+        return animation instanceof Boolean ? (Boolean) animation : null;
+    }
+
+    /**
+     * Returns current animation settings. Can be a Boolean (
+     * {@link #isAnimation()}), or an {@link Animation} instance.
+     * 
+     * @see #setAnimation(Boolean)
+     * @see #setAnimation(Animation)
+     * @return Current animation setting.
+     */
+    public Object getAnimation() {
+        return animation;
     }
 
     /**

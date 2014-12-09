@@ -18,7 +18,7 @@ package com.vaadin.addon.charts.model;
  */
 
 /**
- * Abstract Axis class.
+ * Animation model class.
  */
 public class Animation extends AbstractConfigurationObject {
 
