@@ -124,6 +124,12 @@ public class ValoLightTheme extends Theme {
 
         getLabels().setColor(TEXT_COLOR);
 
+        getCredits().setStyle(new Style());
+        getCredits().getStyle().setFontSize("14px");
+        getCredits().getStyle().setColor(new SolidColor(128, 128, 128));
+        getCredits().setText("");
+        getCredits().setHref("");
+
         getyAxis().setMinorTickInterval(TickIntervalStyle.NONE);
         getyAxis().setGridLineColor(LINE_COLOR);
         getyAxis().setGridLineWidth(1);

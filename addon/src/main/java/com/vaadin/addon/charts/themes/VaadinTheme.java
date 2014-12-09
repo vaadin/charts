@@ -104,6 +104,12 @@ public class VaadinTheme extends Theme {
 
         getLabels().setColor(TEXT_COLOR);
 
+        getCredits().setStyle(new Style());
+        getCredits().getStyle().setFontSize("10px");
+        getCredits().getStyle().setColor(new SolidColor(128, 128, 128));
+        getCredits().setText("");
+        getCredits().setHref("");
+
         getyAxis().setMinorTickInterval(TickIntervalStyle.NONE);
         getyAxis().setAlternateGridColor(BGCOLOR_LIGHT_GRAY);
         getyAxis().setGridLineColor(LINE_COLOR);

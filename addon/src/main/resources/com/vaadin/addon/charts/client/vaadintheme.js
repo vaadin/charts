@@ -224,6 +224,14 @@ Highcharts
 						"color" : "#808080"
 					}
 				}
+			},
+			"credits" : {
+				"text" : "",
+				"href" : "",
+				"style" : {
+					"color" : "#808080",
+					"fontSize" : "14px"
+				}
 			}
 		});
 
