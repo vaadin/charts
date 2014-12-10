@@ -92,7 +92,7 @@ public class ValoDarkTheme extends Theme {
 
         getSubtitle().setColor(SUBTITLE_COLOR);
         getSubtitle().setFontWeight(FontWeight.NORMAL);
-        getSubtitle().setFontSize("12px");
+        getSubtitle().setFontSize("14px");
 
         getChart().setClassName("vaadin-chart");
         getChart().setPlotBackgroundColor(TRANSPARENT_COLOR);

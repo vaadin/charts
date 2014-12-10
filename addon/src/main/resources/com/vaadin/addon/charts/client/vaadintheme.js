@@ -29,7 +29,7 @@ Highcharts
 				"style" : {
 					"color" : "#808080",
 					"fontWeight" : "normal",
-					"fontSize" : "12px"
+					"fontSize" : "14px"
 				}
 			},
 			"xAxis" : {
