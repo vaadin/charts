@@ -4,10 +4,10 @@ import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.HeatSeries;
 import com.vaadin.addon.charts.model.HorizontalAlign;
 import com.vaadin.addon.charts.model.LayoutDirection;
 import com.vaadin.addon.charts.model.PlotOptionsHeatMap;
-import com.vaadin.addon.charts.model.RangeSeries;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.style.SolidColor;
@@ -49,7 +49,7 @@ public class HeatMapExample extends AbstractVaadinChartExample {
         config.getLegend().setY(25);
         config.getLegend().setSymbolHeight(320);
 
-        RangeSeries rs = new RangeSeries("Sales per employee", getRawData());
+        HeatSeries rs = new HeatSeries("Sales per employee", getRawData());
 
         PlotOptionsHeatMap plotOptionsHeatMap = new PlotOptionsHeatMap();
 

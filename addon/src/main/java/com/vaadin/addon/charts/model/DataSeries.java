@@ -33,6 +33,7 @@ import com.vaadin.addon.charts.model.style.Color;
  * 
  * @see ListSeries
  * @see RangeSeries
+ * @see HeatSeries
  */
 public class DataSeries extends AbstractSeries {
 
