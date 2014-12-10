@@ -45,59 +45,12 @@ public class SVGGenerator {
             PHANTOM_EXEC = "phantomjs"; // expect it is found from the path
         }
 
-        try {
-            JS_STUFF = File.createTempFile("jsstuff", ".js");
-            JS_STUFF.deleteOnExit();
-            FileOutputStream out = new FileOutputStream(JS_STUFF);
-            String[] scripts = new String[] { "jquery.min.js", "highcharts.js",
-                    "highcharts-more.js", "funnel.js", "exporting.js",
-                    "vaadintheme.js" };
-            for (String string : scripts) {
-                InputStream resourceAsStream = Chart.class
-                        .getResourceAsStream("/com/vaadin/addon/charts/client/"
-                                + string);
-                IOUtils.copy(resourceAsStream, out);
-                resourceAsStream.close();
-            }
-            InputStream resourceAsStream = SVGGenerator.class
-                    .getResourceAsStream("vaadin-charts-formatter.js");
-            IOUtils.copy(resourceAsStream, out);
-            resourceAsStream.close();
-
-            out.close();
-
-            JS_CONVERTER = File.createTempFile("converter", ".js");
-            JS_CONVERTER.deleteOnExit();
-            out = new FileOutputStream(JS_CONVERTER);
-            resourceAsStream = SVGGenerator.class
-                    .getResourceAsStream("phantomconverter.js");
-            IOUtils.copy(resourceAsStream, out);
-            resourceAsStream.close();
-            out.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        createTemporaryFiles();
     }
 
     private static SVGGenerator INSTANCE;
 
     private Process process;
-
-    /**
-     * Creates in new {@link SVGGenerator} instance. The preferred way to get an
-     * instance is to use {@link #getInstance()} method.
-     * 
-     * @param port
-     *            the port used by the PhantomJS service
-     * @deprecated use the constructor without port as the implementation
-     *             nowadays uses stdin/out instead of tcp-ip to localhost
-     */
-    @Deprecated
-    public SVGGenerator(int port) {
-        this();
-    }
 
     /**
      * Creates in new {@link SVGGenerator} instance. The preferred way to get an
@@ -109,6 +62,8 @@ public class SVGGenerator {
             commands.add(PHANTOM_EXEC);
             // comment out for debugging
             // commands.add("--remote-debugger-port=9001");
+
+            ensureTemporaryFiles();
 
             commands.add(JS_CONVERTER.getAbsolutePath());
 
@@ -146,7 +101,7 @@ public class SVGGenerator {
         // test, the memory isn't a problem
         synchronized (SVGGenerator.class) {
             if (INSTANCE == null) {
-                INSTANCE = new SVGGenerator(7878);
+                INSTANCE = new SVGGenerator();
             }
         }
         return INSTANCE;
@@ -154,7 +109,7 @@ public class SVGGenerator {
 
     /**
      * Generates an SVG file using given Vaadin Chart {@link Configuration}.
-     * 
+     *
      * @param conf
      *            the configuration that will be plotted as an SVG graphics
      * @return String containing SVG graphics
@@ -166,7 +121,7 @@ public class SVGGenerator {
 
     /**
      * Generates an SVG file using given Vaadin Chart {@link Configuration}.
-     * 
+     *
      * @param conf
      *            the configuration that will be plotted as an SVG graphics
      * @param targetWidth
@@ -182,7 +137,7 @@ public class SVGGenerator {
 
     /**
      * Generates an SVG file using given JSON configuration object.
-     * 
+     *
      * @param options
      *            the json options string that will be plotted as an SVG
      *            graphics
@@ -202,7 +157,7 @@ public class SVGGenerator {
 
     /**
      * Generates an SVG file using given JSON configuration object.
-     * 
+     *
      * @param options
      *            the json options string that will be plotted as an SVG
      *            graphics
@@ -218,6 +173,7 @@ public class SVGGenerator {
             int targetWidth, int targetHeight) {
 
         try {
+            ensureTemporaryFiles();
 
             OutputStream out = process.getOutputStream();
             out.write((targetWidth + "\n").getBytes());
@@ -251,8 +207,10 @@ public class SVGGenerator {
 
     /**
      * Generates an SVG file from given JSON string containing chart options.
-     * 
+     *
      * @param options
+     *            the json options string that will be plotted as an SVG
+     *            graphics
      * @return SVG generated from options JSON
      */
     public String generate(String options) {
@@ -287,7 +245,78 @@ public class SVGGenerator {
     public void destroy() {
         if (process != null) {
             process.destroy();
+            INSTANCE = null;
         }
     }
 
+    /**
+     * Ensure that the temporary files still exist and
+     * re-generate if they have been cleaned away from /tmp
+     */
+    private static void ensureTemporaryFiles() {
+        if (JS_STUFF == null || JS_CONVERTER == null) {
+            createTemporaryFiles();
+        } else if (!temporaryFilesExist()
+                    || JS_STUFF.length() == 0
+                    || JS_CONVERTER.length() == 0) {
+            writeTemporaryFileContents();
+        }
+    }
+
+    private static void createTemporaryFiles() {
+        try {
+            JS_STUFF = File.createTempFile("jsstuff", ".js");
+            JS_STUFF.deleteOnExit();
+            JS_CONVERTER = File.createTempFile("converter", ".js");
+            JS_CONVERTER.deleteOnExit();
+
+            writeTemporaryFileContents();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void writeTemporaryFileContents() {
+        try {
+            if (!JS_STUFF.exists()) {
+                JS_STUFF.createNewFile();
+                JS_STUFF.deleteOnExit();
+            }
+            FileOutputStream out = new FileOutputStream(JS_STUFF);
+            String[] scripts = new String[]{"jquery.min.js", "highcharts.js",
+                    "highcharts-more.js", "funnel.js", "exporting.js",
+                    "vaadintheme.js"};
+            for (String string : scripts) {
+                InputStream resourceAsStream = Chart.class
+                        .getResourceAsStream("/com/vaadin/addon/charts/client/"
+                                + string);
+                IOUtils.copy(resourceAsStream, out);
+                resourceAsStream.close();
+            }
+            InputStream resourceAsStream = SVGGenerator.class
+                    .getResourceAsStream("vaadin-charts-formatter.js");
+            IOUtils.copy(resourceAsStream, out);
+            resourceAsStream.close();
+
+            out.close();
+
+            if (!JS_CONVERTER.exists()) {
+                JS_CONVERTER.createNewFile();
+                JS_CONVERTER.deleteOnExit();
+            }
+            out = new FileOutputStream(JS_CONVERTER);
+            resourceAsStream = SVGGenerator.class
+                    .getResourceAsStream("phantomconverter.js");
+            IOUtils.copy(resourceAsStream, out);
+            resourceAsStream.close();
+            out.close();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static boolean temporaryFilesExist() {
+        return JS_STUFF != null && JS_STUFF.exists()
+                && JS_CONVERTER != null && JS_CONVERTER.exists();
+    }
 }
