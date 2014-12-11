@@ -23,7 +23,7 @@ for ( var i = 0; i < system.args.length; i += 1) {
 
 var fs = require('fs');
 
-function render(configstr, themeStr, width, height) {
+function render(configstr, themeStr, langStr, width, height) {
 
 	var page = require('webpage').create(), HC = {}, pick, scaleAndClipPage, input, constr, callback, callbackStr, optionsStr, output, outputExtension, pdfOutput, svg, svgFile, svgElem, timer;
 
@@ -121,7 +121,7 @@ function render(configstr, themeStr, width, height) {
 		themesStr = fs.read(theme);
 	}
 
-	var renderer = function(width, height, str, callbackStr, themeStr) {
+	var renderer = function(width, height, str, callbackStr, themeStr, langStr) {
 		opt = JSON.parse(str);
 
 		var imagesLoadedMsg = 'Highcharts.imagesLoaded:7a7dfcb5df73aaa51e67c9f38c5b07cb', chart, nodes, nodeIter, elem, opacity;
@@ -171,9 +171,13 @@ function render(configstr, themeStr, width, height) {
 		if (callbackStr !== 'undefined') {
 			loadScript('callback', callbackStr);
 		}
-		
+
 		if (themeStr !== 'undefined') {
 			loadScript('highcharts_theme', themeStr);
+		}
+
+		if (langStr !== 'undefined') {
+			loadScript('highcharts_lang', langStr);
 		}
 
 		document.body.style.margin = '0px';
@@ -221,10 +225,16 @@ function render(configstr, themeStr, width, height) {
 
 		opt.chart.width = width;
 		opt.chart.height = height;
-		
+
 		if (highcharts_theme !== undefined) {
 			Highcharts.theme = highcharts_theme;
 			Highcharts.setOptions(Highcharts.theme);
+		}
+
+		if (highcharts_lang !== undefined) {
+			Highcharts.setOptions({ 
+				lang: highcharts_lang
+			});
 		}
 
 		chart = new Highcharts.Chart(opt, callback);
@@ -240,7 +250,7 @@ function render(configstr, themeStr, width, height) {
 
 	};
 	// load chart in page and return svg height and width
-	svg = page.evaluate(renderer, width, height, configstr, callbackStr, themeStr);
+	svg = page.evaluate(renderer, width, height, configstr, callbackStr, themeStr, langStr);
 
 	page.close();
 	return svg.html;
@@ -263,15 +273,19 @@ function serve() {
 			height = 400;
 		}
 		var themeStr = system.stdin.readLine();
-		while((line = system.stdin.readLine()) != "___Config:start") {
+		while((line = system.stdin.readLine()) != "___Lang:start") {
 			themeStr += line;
+		}
+		var langStr = system.stdin.readLine();
+		while((line = system.stdin.readLine()) != "___Config:start") {
+			langStr += line;
 		}
 		configstr = system.stdin.readLine();
 		while((line = system.stdin.readLine()) != "___VaadinSVGGenerator:run") {
 			configstr += line;
 		}
 		try {
-			var svgresponse = render(configstr, themeStr, width, height);
+			var svgresponse = render(configstr, themeStr, langStr, width, height);
 			console.log(svgresponse);
 			setTimeout(serve(), 5);
 		} catch (e) {

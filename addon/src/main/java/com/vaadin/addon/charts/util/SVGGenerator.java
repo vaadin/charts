@@ -14,7 +14,7 @@ import org.apache.commons.io.IOUtils;
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.ChartOptions;
 import com.vaadin.addon.charts.model.Configuration;
-import com.vaadin.addon.charts.themes.VaadinTheme;
+import com.vaadin.addon.charts.themes.ValoLightTheme;
 
 /**
  * This class can be used to render a Chart displayed on the browser of the
@@ -152,7 +152,8 @@ public class SVGGenerator {
     public synchronized String generate(String options, int targetWidth,
             int targetHeight) {
 
-        return generate(options, getTheme(), targetWidth, targetHeight);
+        return generate(options, getTheme(), getLang(), targetWidth,
+                targetHeight);
     }
 
     /**
@@ -170,7 +171,7 @@ public class SVGGenerator {
      * @see #generate(Configuration, int, int)
      */
     public synchronized String generate(String options, String theme,
-            int targetWidth, int targetHeight) {
+            String lang, int targetWidth, int targetHeight) {
 
         try {
             ensureTemporaryFiles();
@@ -179,6 +180,8 @@ public class SVGGenerator {
             out.write((targetWidth + "\n").getBytes());
             out.write((targetHeight + "\n").getBytes());
             out.write(theme.getBytes());
+            out.write("\n___Lang:start\n".getBytes());
+            out.write(lang.getBytes());
             out.write("\n___Config:start\n".getBytes());
             out.write(options.getBytes());
             out.write("\n___VaadinSVGGenerator:run\n".getBytes());
@@ -229,10 +232,24 @@ public class SVGGenerator {
         }
         if (chartOptions == null || chartOptions.getTheme() == null) {
             // generate the default Vaadin theme
-            VaadinTheme theme = new VaadinTheme();
+            ValoLightTheme theme = new ValoLightTheme();
             return theme.toString();
         }
         return chartOptions.getTheme().toString();
+    }
+
+    private String getLang() {
+        ChartOptions chartOptions = null;
+        try {
+            chartOptions = ChartOptions.get();
+        } catch (IllegalStateException e) {
+            // Thrown when no UI thread is found. This is most likely because we
+            // are running an automated process.
+        }
+        if (chartOptions == null || chartOptions.getLang() == null) {
+            return "{}";
+        }
+        return chartOptions.getLang().toString();
     }
 
     private void destroyPhantomInstance(String line) {
@@ -250,15 +267,14 @@ public class SVGGenerator {
     }
 
     /**
-     * Ensure that the temporary files still exist and
-     * re-generate if they have been cleaned away from /tmp
+     * Ensure that the temporary files still exist and re-generate if they have
+     * been cleaned away from /tmp
      */
     private static void ensureTemporaryFiles() {
         if (JS_STUFF == null || JS_CONVERTER == null) {
             createTemporaryFiles();
-        } else if (!temporaryFilesExist()
-                    || JS_STUFF.length() == 0
-                    || JS_CONVERTER.length() == 0) {
+        } else if (!temporaryFilesExist() || JS_STUFF.length() == 0
+                || JS_CONVERTER.length() == 0) {
             writeTemporaryFileContents();
         }
     }
@@ -283,9 +299,9 @@ public class SVGGenerator {
                 JS_STUFF.deleteOnExit();
             }
             FileOutputStream out = new FileOutputStream(JS_STUFF);
-            String[] scripts = new String[]{"jquery.min.js", "highcharts.js",
+            String[] scripts = new String[] { "jquery.min.js", "highcharts.js",
                     "highcharts-more.js", "funnel.js", "exporting.js",
-                    "vaadintheme.js"};
+                    "vaadintheme.js" };
             for (String string : scripts) {
                 InputStream resourceAsStream = Chart.class
                         .getResourceAsStream("/com/vaadin/addon/charts/client/"
@@ -310,13 +326,13 @@ public class SVGGenerator {
             IOUtils.copy(resourceAsStream, out);
             resourceAsStream.close();
             out.close();
-        } catch(IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     private static boolean temporaryFilesExist() {
-        return JS_STUFF != null && JS_STUFF.exists()
-                && JS_CONVERTER != null && JS_CONVERTER.exists();
+        return JS_STUFF != null && JS_STUFF.exists() && JS_CONVERTER != null
+                && JS_CONVERTER.exists();
     }
 }

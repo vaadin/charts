@@ -131,6 +131,16 @@ public class ChartOptions extends AbstractExtension {
         notifyListeners();
     }
 
+    /**
+     * Returns the {@link Lang} in use or {@code null} if no lang configuration
+     * has been set.
+     * 
+     * @return the {@link Lang} in use or {@code null}.
+     */
+    public Lang getLang() {
+        return lang;
+    }
+
     @Override
     protected ChartOptionsState getState() {
         return (ChartOptionsState) super.getState();
