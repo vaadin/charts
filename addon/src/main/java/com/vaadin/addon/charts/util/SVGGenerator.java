@@ -301,6 +301,7 @@ public class SVGGenerator {
             FileOutputStream out = new FileOutputStream(JS_STUFF);
             String[] scripts = new String[] { "jquery.min.js", "highcharts.js",
                     "highcharts-more.js", "funnel.js", "exporting.js",
+                    "heatmap.js", "solid-gauge.js", "highcharts-3d.js",
                     "vaadintheme.js" };
             for (String string : scripts) {
                 InputStream resourceAsStream = Chart.class

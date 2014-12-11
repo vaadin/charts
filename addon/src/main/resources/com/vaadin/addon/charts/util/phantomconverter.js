@@ -195,23 +195,6 @@ function render(configstr, themeStr, langStr, width, height) {
 			}
 		});
 
-		Highcharts.SVGElement.prototype.fillSetter = Highcharts.SVGElement.prototype.strokeSetter = function(value, key, element) {
-			var colorObject;
-			if (typeof value === 'string') {
-				if (value.indexOf('rgba') === 0) {
-					// Split it up
-					colorObject = Highcharts.Color(value);
-					element.setAttribute(key + '-opacity', colorObject.get('a'));
-					element.setAttribute(key, colorObject.get('rgb'));
-				} else {
-					element.removeAttribute(key + '-opacity');
-					element.setAttribute(key, value);
-				}
-			} else {
-				this.colorGradient(value, key, element);
-			}
-		};
-
 		if (!opt.chart) {
 			opt.chart = {};
 		}
@@ -242,8 +225,31 @@ function render(configstr, themeStr, langStr, width, height) {
 		// ensure images are all loaded
 		loadImages();
 
+		var svg = cont.firstChild.innerHTML;
+		
+		// Sanitize (the issue numbers are HighCharts')
+		svg = svg
+		.replace(/zIndex="[^"]+"/g, '')
+		.replace(/isShadow="[^"]+"/g, '')
+		.replace(/symbolName="[^"]+"/g, '')
+		.replace(/jQuery[0-9]+="[^"]+"/g, '')
+		.replace(/url\([^#]+#/g, 'url(#')
+		.replace(/<svg /, '<svg xmlns:xlink="http://www.w3.org/1999/xlink" ')
+		.replace(/ href=/g, ' xlink:href=')
+		.replace(/\n/, ' ')
+		// Any HTML added to the container after the SVG (#894)
+		.replace(/<\/svg>.*?$/, '</svg>') 
+		// Batik doesn't support rgba fills and strokes (#3095)
+		.replace(/(fill|stroke)="rgba\(([ 0-9]+,[ 0-9]+,[ 0-9]+),([ 0-9\.]+)\)"/g, '$1="rgb($2)" $1-opacity="$3"') 
+
+		// Replace HTML entities, issue #347
+		.replace(/&nbsp;/g, '\u00A0') // no-break space
+		.replace(/&shy;/g,  '\u00AD'); // soft hyphen
+
+
+		
 		return {
-			html : cont.firstChild.innerHTML,
+			html : svg,
 			width : chart.chartWidth,
 			height : chart.chartHeight
 		};
