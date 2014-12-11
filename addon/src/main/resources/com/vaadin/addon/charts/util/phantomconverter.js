@@ -183,6 +183,14 @@ function render(configstr, themeStr, width, height) {
 		// disable animations
 		Highcharts.SVGRenderer.prototype.Element.prototype.animate = Highcharts.SVGRenderer.prototype.Element.prototype.attr;
 
+		Highcharts.setOptions({ 
+			plotOptions: {
+				series: {
+					animation: false
+				}
+			}
+		});
+
 		if (!opt.chart) {
 			opt.chart = {};
 		}
