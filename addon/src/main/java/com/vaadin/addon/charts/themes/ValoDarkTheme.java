@@ -53,8 +53,8 @@ public class ValoDarkTheme extends Theme {
     protected final static SolidColor COLOR15 = new SolidColor(75, 86, 168);
     protected final static SolidColor COLOR16 = new SolidColor(154, 89, 61);
 
-    protected final static SolidColor TITLE_COLOR = new SolidColor(244, 244,
-            244);
+    protected final static SolidColor TITLE_COLOR = new SolidColor(255, 255,
+            255);
     protected final static SolidColor TOOLTIP_TEXT_COLOR = new SolidColor(51,
             51, 51);
     protected final static SolidColor TOOLTIP_BACKGROUND_COLOR = new SolidColor(
