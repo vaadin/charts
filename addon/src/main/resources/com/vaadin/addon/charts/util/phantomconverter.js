@@ -191,6 +191,23 @@ function render(configstr, themeStr, width, height) {
 			}
 		});
 
+		Highcharts.SVGElement.prototype.fillSetter = Highcharts.SVGElement.prototype.strokeSetter = function(value, key, element) {
+			var colorObject;
+			if (typeof value === 'string') {
+				if (value.indexOf('rgba') === 0) {
+					// Split it up
+					colorObject = Highcharts.Color(value);
+					element.setAttribute(key + '-opacity', colorObject.get('a'));
+					element.setAttribute(key, colorObject.get('rgb'));
+				} else {
+					element.removeAttribute(key + '-opacity');
+					element.setAttribute(key, value);
+				}
+			} else {
+				this.colorGradient(value, key, element);
+			}
+		};
+
 		if (!opt.chart) {
 			opt.chart = {};
 		}
