@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
+import com.vaadin.ui.Layout;
 import org.apache.commons.io.IOUtils;
 
 import com.vaadin.addon.charts.Chart;
@@ -61,9 +62,13 @@ public class ChartExportDemo extends VerticalLayout {
         chart = new Chart();
         chart.setConfiguration(conf);
 
-        layout.addComponent(chart);
+        VerticalLayout vertical = new VerticalLayout();
+        layout.addComponent(vertical);
+        vertical.addComponent(chart);
+        vertical.setSpacing(true);
 
-        createRightSideLayout();
+        addButtons(vertical);
+        addText(layout);
 
         addComponent(new Label(
                 "<h1>Vaadin Charts - not <u>just</u> for browsers<h1>",
@@ -101,23 +106,14 @@ public class ChartExportDemo extends VerticalLayout {
         };
     }
 
-    private void createRightSideLayout() {
-        VerticalLayout l = new VerticalLayout();
-
+    private void addButtons(Layout layout) {
         exportButton2 = createExportButton("Download as SVG", "chart.svg",
                 createSVGStreamSource());
         exportButton3 = createExportButton("Download PDF containing the chart",
                 "chart.pdf", createPdfStreamSource());
 
-        try {
-            String html = IOUtils.toString(ChartExportDemo.class
-                    .getResourceAsStream("/introduction.html"));
-            l.addComponent(new Label(html, ContentMode.HTML));
-        } catch (IOException e) {
-        }
-
-        l.addComponent(exportButton2);
-        l.addComponent(exportButton3);
+        layout.addComponent(exportButton2);
+        layout.addComponent(exportButton3);
         Button jPanelButton = new Button("Show JPanel with chart (needs server running in localhost)");
         jPanelButton.addClickListener(new ClickListener() {
             @Override
@@ -125,10 +121,17 @@ public class ChartExportDemo extends VerticalLayout {
                 SwingDemo.display(conf);
             }
         });
-        l.addComponent(jPanelButton);
-        l.setWidth("100%");
+        layout.addComponent(jPanelButton);
+        layout.setWidth("100%");
+    }
 
-        layout.addComponent(l);
+    private void addText(Layout layout) {
+        try {
+            String html = IOUtils.toString(ChartExportDemo.class
+                    .getResourceAsStream("/introduction.html"));
+            layout.addComponent(new Label(html, ContentMode.HTML));
+        } catch (IOException e) {
+        }
     }
 
     private Button createExportButton(String caption, String filename,

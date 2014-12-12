@@ -1,5 +1,6 @@
 package com.vaadin.demo.chartexport;
 
+import com.vaadin.annotations.Theme;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.UI;
 
@@ -7,6 +8,7 @@ import com.vaadin.ui.UI;
  * The Application's "main" class
  */
 @SuppressWarnings("serial")
+@Theme("valo")
 public class MyVaadinUI extends UI {
 
     @Override

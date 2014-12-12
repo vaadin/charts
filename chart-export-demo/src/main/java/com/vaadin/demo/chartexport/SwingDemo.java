@@ -31,7 +31,7 @@ public class SwingDemo {
             jsvgCanvas.setSVGDocument(svgdoc);
 
             JFrame f = new JFrame();
-            f.setSize(500, 400);
+            f.setSize(600, 400);
             f.getContentPane().add(jsvgCanvas);
             f.pack();
             f.setVisible(true);
