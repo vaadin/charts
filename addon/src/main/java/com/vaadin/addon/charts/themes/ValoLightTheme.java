@@ -30,7 +30,8 @@ import com.vaadin.addon.charts.model.style.Theme;
 import com.vaadin.addon.charts.model.style.TickIntervalStyle;
 
 /**
- * The default theme for Vaadin Charts
+ * The default theme for Vaadin Charts. Suitable for use with the Valo theme
+ * for Vaadin.
  */
 @SuppressWarnings("serial")
 public class ValoLightTheme extends Theme {

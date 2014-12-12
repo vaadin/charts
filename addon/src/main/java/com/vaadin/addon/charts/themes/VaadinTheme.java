@@ -26,7 +26,7 @@ import com.vaadin.addon.charts.model.style.Theme;
 import com.vaadin.addon.charts.model.style.TickIntervalStyle;
 
 /**
- * The default theme for Vaadin Charts
+ * The old default theme for Vaadin Charts 1.x
  */
 @SuppressWarnings("serial")
 public class VaadinTheme extends Theme {
