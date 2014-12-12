@@ -1,6 +1,7 @@
 *.iml
 target/
 .idea
+chart-plugin-demo/src/main/webapp/VAADIN/
 
 # Mac
 *.DS_Store

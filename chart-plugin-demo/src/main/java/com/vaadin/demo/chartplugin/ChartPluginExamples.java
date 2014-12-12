@@ -31,33 +31,10 @@ public class ChartPluginExamples extends VerticalLayout {
         setMargin(true);
         setSpacing(true);
         addComponent(new Label(
-                "<h1>Chart plugins</h1>This example shows how to use custom version of Highcharts and custom Highcharts plugin. Example uses Vaadin Charts 1.0.0 with Highcharts 3 (with funnel chart module) and custom heat map chart type",ContentMode.HTML));
+                "<h1>Chart plugins</h1>This example shows how to use a custom Highcharts plugin. " +
+                        "This example uses Vaadin Charts 2.0.0 with a custom heat map chart type",
+                ContentMode.HTML));
         addComponent(createHeatMap());
-        addComponent(createFunnelChart());
-    }
-
-    private Component createFunnelChart() {
-        final Chart chart = new Chart(CustomChartTypes.FUNNEL);
-        chart.setWidth("800px");
-        chart.setHeight("500px");
-
-        final Configuration configuration = chart.getConfiguration();
-
-        configuration.getTitle().setText("Funnel chart");
-
-        DataSeries dataSeries = new DataSeries();
-        for (int i = 1; i < 5; i++) {
-            DataSeriesItem item = new DataSeriesItem();
-            item.setY(6 - i);
-            item.setName("Slice " + i);
-            dataSeries.add(item);
-        }
-
-        configuration.addSeries(dataSeries);
-
-        chart.drawChart(configuration);
-
-        return chart;
     }
 
     public static Chart createHeatMap() {

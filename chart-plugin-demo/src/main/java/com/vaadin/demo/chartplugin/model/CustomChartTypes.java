@@ -10,9 +10,6 @@ import com.vaadin.addon.charts.model.ChartType;
 public class CustomChartTypes extends ChartType {
 
     public static final ChartType MAP = new CustomChartTypes("map");
-    // This is new type in HC3, not available in Vaadin Charts 1.0
-    public static final ChartType FUNNEL = new CustomChartTypes("funnel");
-
 
     protected CustomChartTypes(String type) {
         super(type);
