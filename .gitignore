@@ -1,7 +1,13 @@
 *.iml
 target/
 .idea
+.classpath
+.project
+.settings
+
 chart-plugin-demo/src/main/webapp/VAADIN/
+chart-export-demo/src/main/webapp/VAADIN/
+chart-export-demo/target/
 
 # Mac
 *.DS_Store
