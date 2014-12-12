@@ -37,7 +37,7 @@ public class DataSeriesItem3d extends DataSeriesItem {
      */
     public DataSeriesItem3d(Number x, Number y, Number z) {
         super(x, y);
-        this.z = z;
+        setZ(z);
     }
 
     /**
