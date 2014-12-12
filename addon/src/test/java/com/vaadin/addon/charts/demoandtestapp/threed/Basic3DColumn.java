@@ -5,14 +5,10 @@ import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.Frame;
-import com.vaadin.addon.charts.model.HorizontalAlign;
-import com.vaadin.addon.charts.model.LayoutDirection;
-import com.vaadin.addon.charts.model.Legend;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.Options3d;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
 import com.vaadin.addon.charts.model.Tooltip;
-import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.ui.Component;
@@ -43,16 +39,6 @@ public class Basic3DColumn extends AbstractVaadinChartExample {
         y.setTitle("Rainfall (mm)");
         conf.addyAxis(y);
 
-        Legend legend = new Legend();
-        legend.setLayout(LayoutDirection.VERTICAL);
-        legend.setHorizontalAlign(HorizontalAlign.LEFT);
-        legend.setVerticalAlign(VerticalAlign.TOP);
-        legend.setX(100);
-        legend.setY(70);
-        legend.setFloating(true);
-        legend.setShadow(true);
-        conf.setLegend(legend);
-
         Tooltip tooltip = new Tooltip();
         tooltip.setFormatter("this.x +': '+ this.y +' mm'");
         conf.setTooltip(tooltip);
@@ -65,8 +51,8 @@ public class Basic3DColumn extends AbstractVaadinChartExample {
 
         Options3d options3d = new Options3d();
         options3d.setEnabled(true);
-        options3d.setAlpha(15);
-        options3d.setBeta(15);
+        options3d.setAlpha(5);
+        options3d.setBeta(30);
         options3d.setDepth(100);
         options3d.setViewDistance(200);
         Frame frame = new Frame();
