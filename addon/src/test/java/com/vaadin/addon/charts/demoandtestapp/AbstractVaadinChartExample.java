@@ -44,7 +44,7 @@ public abstract class AbstractVaadinChartExample extends VerticalLayout
             public void run() {
                 try {
                     Thread.sleep(initialPause);
-                    while (true) {
+                    while (component.getUI() != null) {
                         Future<Void> future = component.getUI().access(task);
                         future.get();
                         Thread.sleep(interval);
