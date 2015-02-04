@@ -12,7 +12,6 @@ import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.HorizontalAlign;
 import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.PlotOptionsPie;
-import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.ui.Component;
 
 @SuppressWarnings("serial")
@@ -38,10 +37,9 @@ public class PieChartWithCredits extends AbstractVaadinChartExample {
 
         conf.setTitle("Browser market shares at a specific website, 2010");
 
-        Credits credits = new Credits(true);
+        Credits credits = new Credits("Custom Credit");
         credits.setPosition(new CreditPosition());
         credits.getPosition().setHorizontalAlign(HorizontalAlign.LEFT);
-        credits.getPosition().setVerticalAlign(VerticalAlign.MIDDLE);
         credits.getPosition().setX(200);
         conf.setCredits(credits);
 
