@@ -36,7 +36,7 @@ public class WebXYChartSelection extends AbstractVaadinChartExample {
         scatterChart.getConfiguration().disableCredits();
         scatterChart.getConfiguration().setTitle("Selections as area ranges");
         scatterChart.getConfiguration().setSubTitle(
-                "Drag with mouse to draw areas");
+                "Drag with mouse to make selections. Click the legend items to toggle visibility.");
 
         PlotOptionsScatter scatterOptions = new PlotOptionsScatter();
         scatterOptions.setAnimation(false);

@@ -20,6 +20,7 @@ public class StepLines extends AbstractVaadinChartExample {
         Chart chart = new Chart();
 
         Configuration configuration = chart.getConfiguration();
+        configuration.setTitle("Step lines");
 
         configuration.getxAxis().setCategories("Jan", "Feb", "Mar", "Apr",
                 "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");

@@ -49,7 +49,7 @@ public class ToggledSeriesVisibility extends AbstractVaadinChartExample {
 
         Configuration conf = chart.getConfiguration();
 
-        conf.setTitle("Total fruit consumtion, grouped by gender");
+        conf.setTitle("Total fruit consumption, grouped by gender");
         conf.setSubTitle("Source: WorldClimate.com");
 
         XAxis x = new XAxis();

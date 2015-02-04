@@ -19,7 +19,7 @@ public class LargeDataSet extends AbstractVaadinChartExample {
 
     @Override
     public String getDescription() {
-        return "Highcharts rendering engine can survice large data sets. "
+        return "Highcharts rendering engine can survive large data sets. "
                 + "Especially if items have just values and no custom options. In this test "
                 + (ROUNDS * TimeSeriesZoomable.USD_TO_EUR_EXCHANGE_RATES.length)
                 + "data points are rendered.";
@@ -32,6 +32,8 @@ public class LargeDataSet extends AbstractVaadinChartExample {
     @Override
     protected Component getChart() {
         Chart chart = new Chart();
+
+        chart.getConfiguration().setTitle("Large data set");
 
         DataSeries series = new DataSeries();
         Number[] data = TimeSeriesZoomable.USD_TO_EUR_EXCHANGE_RATES;

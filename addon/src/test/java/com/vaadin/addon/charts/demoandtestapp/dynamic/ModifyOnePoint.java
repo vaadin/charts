@@ -41,6 +41,7 @@ public class ModifyOnePoint extends AbstractVaadinChartExample {
         chart.setWidth("100%");
 
         final Configuration configuration = chart.getConfiguration();
+        configuration.setTitle("One point is different");
         configuration.getTooltip().setEnabled(false);
 
         configuration.getChart().setType(ChartType.SPLINE);

@@ -24,6 +24,7 @@ public class Events extends AbstractVaadinChartExample {
         chart.setWidth("100%");
 
         final Configuration configuration = chart.getConfiguration();
+        configuration.setTitle("Click to add point");
 
         configuration.getChart().setType(ChartType.SPLINE);
 

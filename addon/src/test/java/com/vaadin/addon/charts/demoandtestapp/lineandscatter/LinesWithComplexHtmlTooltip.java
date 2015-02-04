@@ -28,6 +28,7 @@ public class LinesWithComplexHtmlTooltip extends AbstractVaadinChartExample {
         tooltip.setFooterFormat("</table>");
 
         Configuration configuration = chart.getConfiguration();
+        configuration.setTitle("Complex tooltip");
         configuration.setTooltip(tooltip);
 
         configuration.getxAxis().setCategories("Jan", "Feb", "Mar", "Apr",

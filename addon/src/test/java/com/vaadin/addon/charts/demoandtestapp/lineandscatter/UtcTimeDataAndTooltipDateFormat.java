@@ -27,6 +27,7 @@ public class UtcTimeDataAndTooltipDateFormat extends AbstractVaadinChartExample 
         chart.setWidth("100%");
 
         Configuration configuration = chart.getConfiguration();
+        configuration.setTitle("Time and date in tooltip");
         configuration.getChart().setType(ChartType.SPLINE);
 
         configuration.getxAxis().setType(AxisType.DATETIME);

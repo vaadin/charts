@@ -19,7 +19,7 @@ public class BasicLineWithCustomCrosshairs extends AbstractVaadinChartExample {
 
     @Override
     public String getDescription() {
-        return "Basic chart with customised crosshairs on both axes";
+        return "Basic chart with customized crosshairs on both axes";
     }
 
     @Override
@@ -27,6 +27,7 @@ public class BasicLineWithCustomCrosshairs extends AbstractVaadinChartExample {
         Chart chart = new Chart();
 
         Configuration config = chart.getConfiguration();
+        config.setTitle("Customized crosshairs");
 
         config.getTooltip().setCrosshairs(
                 new CrosshairStyle(10, SolidColor.BLACK, DashStyle.SOLID, 0),

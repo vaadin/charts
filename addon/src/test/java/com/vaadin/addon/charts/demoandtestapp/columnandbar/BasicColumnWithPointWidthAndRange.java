@@ -25,7 +25,7 @@ public class BasicColumnWithPointWidthAndRange extends
 
     @Override
     public String getDescription() {
-        return "Basic bar with point with and range set";
+        return "Basic bar with point width and range set";
     }
 
     @Override
@@ -33,6 +33,7 @@ public class BasicColumnWithPointWidthAndRange extends
         chart = new Chart(ChartType.COLUMN);
 
         Configuration conf = chart.getConfiguration();
+        conf.setTitle("Visualize point width and point range");
 
         plotOptions = new PlotOptionsColumn();
         // plotOptions.setPointRange(10);

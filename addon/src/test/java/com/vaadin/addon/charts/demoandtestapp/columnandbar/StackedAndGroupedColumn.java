@@ -27,7 +27,7 @@ public class StackedAndGroupedColumn extends AbstractVaadinChartExample {
 
         Configuration conf = chart.getConfiguration();
 
-        conf.setTitle(new Title("Total fruit consumtion, grouped by gender"));
+        conf.setTitle(new Title("Total fruit consumption, grouped by gender"));
 
         XAxis xAxis = new XAxis();
         xAxis.setCategories(new String[] { "Apples", "Oranges", "Pears",
