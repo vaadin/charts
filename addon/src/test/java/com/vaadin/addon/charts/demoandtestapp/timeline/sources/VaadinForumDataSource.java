@@ -82,6 +82,10 @@ public class VaadinForumDataSource implements Serializable {
         }
     }
 
+    public Date getLastAvailableDate() {
+        return data.get(data.size()-1).timestamp;
+    }
+
     private boolean isDateInRange(Date d) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(d);

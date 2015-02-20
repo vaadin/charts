@@ -22,6 +22,7 @@ public class ForumTrends extends AbstractVaadinChartExample {
     private IndexedContainer newThreads;
     private IndexedContainer vaadinPosts;
     private IndexedContainer vaadinThreads;
+    private VaadinForumDataSource datasource;
 
     public ForumTrends() {
         setSpacing(true);
@@ -31,7 +32,7 @@ public class ForumTrends extends AbstractVaadinChartExample {
     private void initializeContainers() {
         createContainers();
         // Reads actual forum data from a dynamically updated text file.
-        VaadinForumDataSource datasource = new VaadinForumDataSource();
+        datasource = new VaadinForumDataSource();
         // Fills each container with items consisting of a floating point value
         // and a timestamp.
         datasource.fillPostsContainer(posts);
@@ -115,8 +116,10 @@ public class ForumTrends extends AbstractVaadinChartExample {
 
         // Set the date range
         Calendar cal = Calendar.getInstance();
+        Date lastAvailableDate = datasource.getLastAvailableDate();
+        cal.setTime(lastAvailableDate);
         cal.add(Calendar.MONTH, -1);
-        timeline.setVisibleDateRange(cal.getTime(), new Date());
+        timeline.setVisibleDateRange(cal.getTime(), lastAvailableDate);
 
         return timeline;
     }
