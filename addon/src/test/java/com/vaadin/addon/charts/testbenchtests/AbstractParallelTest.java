@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
-import org.junit.Before;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import com.vaadin.testbench.Parameters;
@@ -34,8 +33,9 @@ public abstract class AbstractParallelTest extends ParallelTest {
         super();
     }
 
-    @Before
-    public void setUp() {
+    @Override
+    public void setup() throws Exception {
+        super.setup();
         new File(ERROR_IMAGE_ROOT).mkdirs();
         Parameters.setScreenshotErrorDirectory(ERROR_IMAGE_ROOT);
         Parameters.setScreenshotComparisonTolerance(0.01);

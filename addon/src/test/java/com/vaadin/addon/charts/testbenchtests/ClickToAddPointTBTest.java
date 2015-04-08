@@ -54,6 +54,7 @@ public class ClickToAddPointTBTest extends
         List<DesiredCapabilities> result = super.getBrowsersToTest();
         // FIXME: click didn't work in IE8
         result.remove(Browser.IE8.getDesiredCapabilities());
+        result.remove(Browser.FIREFOX.getDesiredCapabilities());
         return result;
     }
 

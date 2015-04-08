@@ -129,7 +129,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.organization>Vaadin Ltd</project.organization>
-        <vaadin.version.maven>7.3.3</vaadin.version.maven>
+        <vaadin.version.maven>7.4.3</vaadin.version.maven>
     </properties>
 
     <licenses>
@@ -261,6 +261,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <failOnError>false</failOnError>
+                </configuration>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
