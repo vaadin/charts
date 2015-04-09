@@ -31,6 +31,7 @@ public class Labels extends AbstractConfigurationObject {
     private Boolean enabled;
     private Boolean inside;
     private Object rotation;
+    private Object autoRotation;
     private Number staggerLines;
     private Number step;
     private Style style;
@@ -113,6 +114,54 @@ public class Labels extends AbstractConfigurationObject {
      */
     public void setRotation(Number rotation) {
         this.rotation = rotation;
+    }
+
+    /**
+     * Returns current autoRotation settings. Can be a Boolean if
+     * {@link #disableAutoRotation()} was called, <code>null</code> if
+     * {@link #resetAutoRotation()} was called, or an Number[] if
+     * {@link #setAutoRotation(Number[])} was used.
+     * 
+     * @see #setAutoRotation(Number[])
+     * @see #disableAutoRotation()
+     * @see #resetAutoRotation()
+     * @return Current autoRotation settings.
+     */
+
+    public Object getAutoRotation() {
+        return autoRotation;
+    }
+
+    /**
+     * For axes the allowed degrees of label rotation to prevent overlapping
+     * labels. If there is enough space, labels are not rotated. As the chart
+     * gets narrower, it will start rotating the labels -45 degrees, then remove
+     * every second label and try again with rotations 0 and -45 etc. Defaults
+     * to [-45].
+     * 
+     * @see #disableAutoRotation() to disable autoRotation
+     * @see #resetAutoRotation() to reset autoRotation configuration
+     * 
+     * @param autoRotation
+     */
+    public void setAutoRotation(Number... autoRotation) {
+        this.autoRotation = autoRotation;
+    }
+
+    /**
+     * Disables autoRotation by setting value to <code>false</code>, which will
+     * cause the labels to word-wrap if possible.
+     */
+    public void disableAutoRotation() {
+        autoRotation = false;
+    }
+
+    /**
+     * Resets the previous autoRotation configuration enabling the default value
+     * of [-45] to be used.
+     */
+    public void resetAutoRotation() {
+        autoRotation = null;
     }
 
     /**
