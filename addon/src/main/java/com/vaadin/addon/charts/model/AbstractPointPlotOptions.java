@@ -30,6 +30,7 @@ public abstract class AbstractPointPlotOptions extends
     private Integer turboThreshold;
     private Number pointStart;
     private Number pointInterval;
+    private IntervalUnit pointIntervalUnit;
     private Number pointRange;
     private Number pointWidth;
     private Color negativeColor;
@@ -87,6 +88,26 @@ public abstract class AbstractPointPlotOptions extends
      */
     public Number getPointInterval() {
         return pointInterval;
+    }
+
+    /**
+     * When using {@link AxisType#DATETIME} series, this allows setting the
+     * pointInterval unit to irregular time units: {@link IntervalUnit#MONTH}
+     * and {@link IntervalUnit#YEAR}. Combine it with
+     * {@link #setPointInterval(Number)} to draw quarters, 6 months, 10 years
+     * etc.
+     * 
+     * @param pointIntervalUnit
+     */
+    public void setPointIntervalUnit(IntervalUnit pointIntervalUnit) {
+        this.pointIntervalUnit = pointIntervalUnit;
+    }
+
+    /**
+     * @see #setPointIntervalUnit(IntervalUnit)
+     */
+    public IntervalUnit getPointIntervalUnit() {
+        return pointIntervalUnit;
     }
 
     /**
