@@ -32,7 +32,7 @@ import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * 
+ *
  */
 public class TListUi extends UI {
     private IndexedContainer testClassess;
@@ -63,9 +63,11 @@ public class TListUi extends UI {
         listTestClasses(testClassess, "themes");
         listTestClasses(testClassess, "librarydata");
         listTestClasses(testClassess, "timeline");
+        listTestClasses(testClassess, "threed");
 
         Table table = new Table("Test cases", testClassess);
         table.addGeneratedColumn("name", new Table.ColumnGenerator() {
+            @Override
             public Object generateCell(Table source, Object itemId,
                     Object columnId) {
                 String name = (String) source.getItem(itemId)
@@ -81,6 +83,7 @@ public class TListUi extends UI {
             }
         });
         table.addGeneratedColumn("description", new Table.ColumnGenerator() {
+            @Override
             public Object generateCell(Table source, Object itemId,
                     Object columnId) {
                 String description = (String) source.getItem(itemId)

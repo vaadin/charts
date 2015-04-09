@@ -4,6 +4,7 @@ target/
 .classpath
 .project
 .settings
+rebel.xml
 
 chart-plugin-demo/src/main/webapp/VAADIN/
 chart-export-demo/src/main/webapp/VAADIN/

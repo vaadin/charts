@@ -47,6 +47,7 @@ public class Configuration extends AbstractConfigurationObject {
     private SubTitle subtitle;
     private AxisList xAxis;
     private AxisList yAxis;
+    private ZAxis zAxis;
     private AxisList colorAxis;
     private Tooltip tooltip;
     private Legend legend;
@@ -245,7 +246,6 @@ public class Configuration extends AbstractConfigurationObject {
      * @param axis
      *            The X-Axis to add.
      * @see #getxAxis()
-     * @see #getxAxes()
      */
     public void addxAxis(XAxis axis) {
         if (xAxis == null) {
@@ -308,8 +308,8 @@ public class Configuration extends AbstractConfigurationObject {
 
     /**
      * Adds a Y-axis.
-     * 
-     * @param yAxis
+     *
+     * @param axis
      *            The Y-axis to add.
      * @see #getyAxes()
      * @see #getyAxis()
@@ -330,6 +330,29 @@ public class Configuration extends AbstractConfigurationObject {
         } else {
             return null;
         }
+    }
+
+    /**
+     * Returns the Z-axis. An axis will be
+     * created if no axis is defined.
+     *
+     * @return the Z-axis
+     */
+    public ZAxis getzAxis() {
+        if (zAxis == null) {
+            zAxis = new ZAxis();
+        }
+
+        return zAxis;
+    }
+
+    /**
+     * Set the z-axis of the configuration, or null to remove.
+     *
+     * @param zAxis the zAxis to add
+     */
+    public void setzAxis(ZAxis zAxis) {
+        this.zAxis = zAxis;
     }
 
     /**

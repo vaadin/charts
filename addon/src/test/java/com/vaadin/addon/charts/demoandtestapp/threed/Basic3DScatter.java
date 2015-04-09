@@ -13,6 +13,7 @@ import com.vaadin.addon.charts.model.Options3d;
 import com.vaadin.addon.charts.model.PlotOptionsScatter;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
+import com.vaadin.addon.charts.model.ZAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
 
@@ -25,9 +26,7 @@ public class Basic3DScatter extends AbstractVaadinChartExample {
 
     @Override
     protected Component getChart() {
-
         return createScatterChart();
-
     }
 
     private Chart createScatterChart() {
@@ -63,6 +62,10 @@ public class Basic3DScatter extends AbstractVaadinChartExample {
 
         YAxis y = scatterChart.getConfiguration().getyAxis();
         y.setExtremes(-1, 1);
+
+        ZAxis z = scatterChart.getConfiguration().getzAxis();
+        z.setMin(0);
+        z.setMax(1);
 
         Options3d options3d = new Options3d();
         options3d.setEnabled(true);
