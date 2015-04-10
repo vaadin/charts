@@ -53,6 +53,7 @@ public class HighchartsScriptLoader {
         inject(HighchartResources.INSTANCE.highcharts3d().getText());
         inject(HighchartResources.INSTANCE.solidGauge().getText());
         inject(HighchartResources.INSTANCE.heatmap().getText());
+        inject(HighchartResources.INSTANCE.treemap().getText());
     }
 
     protected native static boolean hasJQuery()

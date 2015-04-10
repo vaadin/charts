@@ -67,4 +67,7 @@ public interface HighchartResources extends ClientBundle {
     @Source("heatmap.js")
     TextResource heatmap();
 
+    @Source("treemap.js")
+    TextResource treemap();
+
 }

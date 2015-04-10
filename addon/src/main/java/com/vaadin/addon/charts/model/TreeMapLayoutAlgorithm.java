@@ -8,31 +8,31 @@ package com.vaadin.addon.charts.model;
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
- * 
+ *
  * See the file licensing.txt distributed with this software for more
  * information about licensing.
- * 
+ *
  * You should have received a copy of the CVALv3 along with this program.
  * If not, see <https://vaadin.com/license/cval-3>.
  * #L%
  */
 
 /**
- * The layout of the legend items. Can be one of HORIZONTAL("horizontal") or
- * VERTICAL("vertical"). Defaults to HORIZONTAL.
+ * The layout algorithm used by {@link ChartType#TREEMAP} charts.
  */
-public enum LayoutDirection implements ChartEnum {
+public enum TreeMapLayoutAlgorithm implements ChartEnum {
 
-    VERTICAL("vertical"), HORIZONTAL("horizontal");
-
-    LayoutDirection(String type) {
-        this.type = type;
-    }
+    SLICEANDDICE("sliceAndDice"), STRIPES("stripes"), SQUARIFIED("squarified"), STRIP(
+            "strip");
 
     private String type;
 
+    TreeMapLayoutAlgorithm(String type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
-        return type;
+        return type.toString();
     }
 }

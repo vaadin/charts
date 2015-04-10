@@ -30,6 +30,7 @@ import com.vaadin.addon.charts.model.PlotOptionsPie;
 import com.vaadin.addon.charts.model.PlotOptionsPyramid;
 import com.vaadin.addon.charts.model.PlotOptionsSeries;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
+import com.vaadin.addon.charts.model.PlotOptionsTreeMap;
 import com.vaadin.addon.charts.model.PlotOptionsWaterfall;
 
 /**
@@ -49,6 +50,7 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
     private PlotOptionsSeries series = new PlotOptionsSeries();
     private PlotOptionsPyramid pyramid = new PlotOptionsPyramid();
     private PlotOptionsWaterfall waterfall = new PlotOptionsWaterfall();
+    private PlotOptionsTreeMap treemap = new PlotOptionsTreeMap();
 
     /**
      * @see #setBar(PlotOptionsBar)
@@ -241,6 +243,23 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
      */
     public void setWaterfall(PlotOptionsWaterfall waterfall) {
         this.waterfall = waterfall;
+    }
+
+    /**
+     * @see #setTreemap(PlotOptionsTreeMap)
+     * @return
+     */
+    public PlotOptionsTreeMap getTreeMap() {
+        return treemap;
+    }
+
+    /**
+     * Sets the style options for {@link ChartType#TREEMAP} charts
+     *
+     * @param treemap
+     */
+    public void setTreemap(PlotOptionsTreeMap treemap) {
+        this.treemap = treemap;
     }
 
 }
