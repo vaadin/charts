@@ -65,6 +65,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     private Object minorTickInterval;
     private Boolean opposite;
     private Number tickPixelInterval;
+    private Number tickAmount;
     private Integer linkedTo;
     private Number minPadding;
     private Boolean showLastTickLabel;
@@ -574,6 +575,33 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
+     * The amount of ticks to draw on the axis.
+     * 
+     * This opens up for aligning the ticks of multiple charts or panes within a
+     * chart. This option overrides the {@link #setTickPixelInterval(Number)}
+     * option.
+     * 
+     * This option only has an effect on {@link AxisType#LINEAR} axes.
+     * {@link AxisType#DATETIME}, {@link AxisType#LOGARITHMIC} or
+     * {@link AxisType#CATEGORY} axes are not affected.
+     * 
+     * @param tickAmount
+     */
+    public void setTickAmount(Number tickAmount) {
+        this.tickAmount = tickAmount;
+    }
+
+    /**
+     * 
+     * @see #setTickAmount(Number)
+     * 
+     * @return tickAmount
+     */
+    public Number getTickAmount() {
+        return tickAmount;
+    }
+
+    /**
      * Sets the tick interval in scale units for the minor ticks. If null, minor
      * ticks are not shown.
      * 
@@ -917,7 +945,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     void setAxisIndex(int i) {
-        this.axisIndex = i;
+        axisIndex = i;
     }
 
     Integer getAxisIndex() {
@@ -1007,11 +1035,12 @@ public abstract class Axis extends AbstractConfigurationObject {
      */
     public void setExtremes(Number minimum, Number maximum, boolean redraw,
             boolean animate) {
-        this.min = minimum;
-        this.max = maximum;
-        if (this.configuration != null)
-            this.configuration.fireAxesRescaled(this, minimum, maximum, redraw,
+        min = minimum;
+        max = maximum;
+        if (configuration != null) {
+            configuration.fireAxesRescaled(this, minimum, maximum, redraw,
                     animate);
+        }
     }
 
 }
