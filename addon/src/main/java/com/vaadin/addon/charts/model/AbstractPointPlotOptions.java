@@ -56,7 +56,7 @@ public abstract class AbstractPointPlotOptions extends
      * on what value to start. For example, if a series contains a yearly value
      * starting from 1945, set pointStart to 1945. Defaults to 0.
      * 
-     * @param pointStart
+     * @param date
      */
     public void setPointStart(Date date) {
         pointStart = Util.toHighchartsTS(date);

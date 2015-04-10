@@ -34,6 +34,7 @@ import com.google.gson.JsonSerializer;
 import com.vaadin.addon.charts.model.AbstractPlotOptions;
 import com.vaadin.addon.charts.model.ContainerDataSeries;
 import com.vaadin.addon.charts.model.PlotOptionsSeries;
+import com.vaadin.addon.charts.util.Util;
 import com.vaadin.data.Container;
 import com.vaadin.data.Item;
 import com.vaadin.data.Property;
@@ -172,7 +173,7 @@ public class ContainerDataSeriesSerializer implements
                 data.add(new JsonPrimitive(pBool));
             } else if (Date.class.isAssignableFrom(itemProperty.getType())) {
                 Date date = (Date) itemProperty.getValue();
-                data.add(new JsonPrimitive(date.getTime()));
+                data.add(new JsonPrimitive(Util.toHighchartsTS(date)));
             } else {
                 String pStr = itemProperty.getValue().toString();
                 data.add(new JsonPrimitive(pStr));
@@ -191,7 +192,8 @@ public class ContainerDataSeriesSerializer implements
                 entryObject.add(name, new JsonPrimitive(pBool));
             } else if (Date.class.isAssignableFrom(itemProperty.getType())) {
                 Date date = (Date) itemProperty.getValue();
-                entryObject.add(name, new JsonPrimitive(date.getTime()));
+                entryObject.add(name,
+                        new JsonPrimitive(Util.toHighchartsTS(date)));
             } else {
                 String pStr = itemProperty.getValue().toString();
                 entryObject.add(name, new JsonPrimitive(pStr));
