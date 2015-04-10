@@ -48,6 +48,7 @@ public class ChartType implements ChartEnum {
     public static final ChartType SOLIDGAUGE = new ChartType("solidgauge");
     public static final ChartType HEATMAP = new ChartType("heatmap");
     public static final ChartType TREEMAP = new ChartType("treemap");
+    public static final ChartType POLYGON = new ChartType("polygon");
 
     private final String type;
 

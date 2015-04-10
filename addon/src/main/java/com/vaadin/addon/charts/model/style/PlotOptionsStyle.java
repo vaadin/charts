@@ -27,6 +27,7 @@ import com.vaadin.addon.charts.model.PlotOptionsBar;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.PlotOptionsPie;
+import com.vaadin.addon.charts.model.PlotOptionsPolygon;
 import com.vaadin.addon.charts.model.PlotOptionsPyramid;
 import com.vaadin.addon.charts.model.PlotOptionsSeries;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
@@ -51,6 +52,7 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
     private PlotOptionsPyramid pyramid = new PlotOptionsPyramid();
     private PlotOptionsWaterfall waterfall = new PlotOptionsWaterfall();
     private PlotOptionsTreeMap treemap = new PlotOptionsTreeMap();
+    private PlotOptionsPolygon polygon = new PlotOptionsPolygon();
 
     /**
      * @see #setBar(PlotOptionsBar)
@@ -260,6 +262,23 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
      */
     public void setTreemap(PlotOptionsTreeMap treemap) {
         this.treemap = treemap;
+    }
+
+    /**
+     * @see #setPolygon(PlotOptionsPolygon)
+     * @return polygon
+     */
+    public PlotOptionsPolygon getPolygon() {
+        return polygon;
+    }
+
+    /**
+     * Sets the style options for {@link ChartType#POLYGON} charts
+     * 
+     * @param polygon
+     */
+    public void setPolygon(PlotOptionsPolygon polygon) {
+        this.polygon = polygon;
     }
 
 }
