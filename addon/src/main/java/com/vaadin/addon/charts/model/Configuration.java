@@ -52,7 +52,7 @@ public class Configuration extends AbstractConfigurationObject {
     private Tooltip tooltip;
     private Legend legend;
     private Credits credits;
-    private Map<String, AbstractPlotOptions> plotOptions;
+    private Map<String, AbstractPlotOptions> plotOptions = new HashMap<String, AbstractPlotOptions>();
     private HTMLLabels labels;
 
     private List<Series> series = new ArrayList<Series>();
@@ -333,8 +333,7 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * Returns the Z-axis. An axis will be
-     * created if no axis is defined.
+     * Returns the Z-axis. An axis will be created if no axis is defined.
      *
      * @return the Z-axis
      */
@@ -349,7 +348,8 @@ public class Configuration extends AbstractConfigurationObject {
     /**
      * Set the z-axis of the configuration, or null to remove.
      *
-     * @param zAxis the zAxis to add
+     * @param zAxis
+     *            the zAxis to add
      */
     public void setzAxis(ZAxis zAxis) {
         this.zAxis = zAxis;
@@ -464,9 +464,6 @@ public class Configuration extends AbstractConfigurationObject {
      * @param plotOptions
      */
     private void addPlotOptions(AbstractPlotOptions plotOptions) {
-        if (this.plotOptions == null) {
-            this.plotOptions = new HashMap<String, AbstractPlotOptions>();
-        }
         if (plotOptions instanceof PlotOptionsSeries) {
             this.plotOptions.put("series", plotOptions);
         } else {

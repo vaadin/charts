@@ -1,11 +1,13 @@
 package com.vaadin.addon.charts.model.junittests;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import com.vaadin.addon.charts.Chart;
+import com.vaadin.addon.charts.model.AbstractPlotOptions;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.ListSeries;
@@ -76,6 +78,15 @@ public class ConfigurationTest {
         assertTrue(((ListSeries) conf.getSeries().get(1)).getData()[3]
                 .intValue() == 11);
 
+    }
+
+    @Test
+    public void getAllPlotOptions_getAfterChartCreation_EmptyArrayReturned() {
+        Chart chart = new Chart();
+        AbstractPlotOptions[] result = chart.getConfiguration()
+                .getAllPlotOptions();
+
+        assertEquals(0, result.length);
     }
 
 }
