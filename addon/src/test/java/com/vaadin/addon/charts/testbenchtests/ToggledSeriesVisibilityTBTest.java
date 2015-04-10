@@ -1,7 +1,5 @@
 package com.vaadin.addon.charts.testbenchtests;
 
-import static org.junit.Assert.assertTrue;
-
 import java.io.IOException;
 
 import org.junit.Test;
@@ -38,19 +36,6 @@ public class ToggledSeriesVisibilityTBTest extends AbstractParallelTest {
         waitBetweenShots();
         captureAndCompare("3-disable");
 
-    }
-
-    protected void captureAndCompare(String name) throws IOException {
-        assertTrue(testBench(driver).compareScreen(
-                getTestViewName() + "-" + name));
-    }
-
-    protected void waitBetweenShots() {
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override

@@ -1,7 +1,5 @@
 package com.vaadin.addon.charts.testbenchtests;
 
-import static org.junit.Assert.assertTrue;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -47,20 +45,6 @@ public class ChangingThemesTBTest extends AbstractParallelTest {
         waitBetweenShots();
         captureAndCompare("7-valoDark");
 
-    }
-
-    protected void captureAndCompare(String name) throws IOException {
-        assertTrue(testBench(driver).compareScreen(
-                getTestViewName() + "-" + name));
-
-    }
-
-    protected void waitBetweenShots() {
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override

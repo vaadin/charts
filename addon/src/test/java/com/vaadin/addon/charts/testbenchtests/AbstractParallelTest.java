@@ -1,6 +1,9 @@
 package com.vaadin.addon.charts.testbenchtests;
 
+import static org.junit.Assert.assertTrue;
+
 import java.io.File;
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
@@ -113,6 +116,34 @@ public abstract class AbstractParallelTest extends ParallelTest {
         return "";
     }
 
+    /**
+     * Compares current screen using the TestViewName as base for screenshot
+     * reference file
+     * 
+     * @throws IOException
+     */
+    protected void captureAndCompare() throws IOException {
+        compareScreen(getTestViewName());
+
+    }
+
+    /**
+     * Compares current screen using the TestViewName and the suffix as base for
+     * screenshot reference file
+     * 
+     * @param suffix
+     *            used in reference file name
+     * @throws IOException
+     */
+    protected void captureAndCompare(String suffix) throws IOException {
+        compareScreen(getTestViewName() + "-" + suffix);
+
+    }
+
+    private void compareScreen(String referenceName) throws IOException {
+        assertTrue(testBench(driver).compareScreen(referenceName));
+    }
+
     protected abstract String getTestViewName();
 
     protected String getTestUrl() {
@@ -137,5 +168,9 @@ public abstract class AbstractParallelTest extends ParallelTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    protected void waitBetweenShots() {
+        sleep(5000);
     }
 }

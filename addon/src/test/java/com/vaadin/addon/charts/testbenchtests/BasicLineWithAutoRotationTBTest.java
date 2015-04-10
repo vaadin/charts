@@ -1,7 +1,5 @@
 package com.vaadin.addon.charts.testbenchtests;
 
-import static org.junit.Assert.assertTrue;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -24,16 +22,6 @@ public class BasicLineWithAutoRotationTBTest extends AbstractParallelTest {
 
         waitBetweenShots();
         captureAndCompare("FinalWidth");
-    }
-
-    protected void captureAndCompare(String name) throws IOException {
-        assertTrue(testBench(driver).compareScreen(
-                getTestViewName() + "-" + name));
-
-    }
-
-    protected void waitBetweenShots() {
-        sleep(5000);
     }
 
     @Override

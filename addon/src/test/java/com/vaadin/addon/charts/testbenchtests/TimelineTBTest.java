@@ -1,7 +1,5 @@
 package com.vaadin.addon.charts.testbenchtests;
 
-import static org.junit.Assert.assertTrue;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,9 +37,8 @@ public class TimelineTBTest extends AbstractParallelTest {
         } catch (Exception e) {
 
         }
-        sleep(2000);
-        assertTrue(testBench(driver).compareScreen(
-                getTestViewName() + "-" + imageQualifier));
+        waitBetweenShots();
+        captureAndCompare(imageQualifier);
     }
 
     @Test

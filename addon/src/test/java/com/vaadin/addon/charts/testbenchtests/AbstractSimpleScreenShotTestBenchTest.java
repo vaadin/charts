@@ -1,7 +1,5 @@
 package com.vaadin.addon.charts.testbenchtests;
 
-import static org.junit.Assert.assertTrue;
-
 import java.io.IOException;
 
 import org.junit.Test;
@@ -21,7 +19,7 @@ public abstract class AbstractSimpleScreenShotTestBenchTest extends
         testCustomStuff();
         sleep(getScreenShotDelay());
 
-        assertTrue(testBench(driver).compareScreen(getTestViewName()));
+        captureAndCompare();
 
     }
 
