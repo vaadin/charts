@@ -20,7 +20,8 @@ import com.google.gwt.user.client.ui.Label;
  */
 
 /**
- * The name of a symbol to use for the border around the {@link Label}.
+ * The name of a symbol to use for the border around the {@link Label} or
+ * {@link Tooltip}.
  */
 public enum Shape implements ChartEnum {
 

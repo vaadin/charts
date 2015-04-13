@@ -37,6 +37,7 @@ public class Tooltip extends AbstractConfigurationObject {
     private Boolean useHTML;
     private Boolean followTouchMove;
     private Boolean followPointer;
+    private Shape shape;
 
     /**
      * Sets a JavaScript function to format the text of the tooltip. Setting the
@@ -416,6 +417,24 @@ public class Tooltip extends AbstractConfigurationObject {
      */
     public void setFollowPointer(Boolean followPointer) {
         this.followPointer = followPointer;
+    }
+
+    /**
+     * @see #setShape(Shape)
+     * @return shape
+     */
+    public Shape getShape() {
+        return shape;
+    }
+
+    /**
+     * The shape to use for the border around the tooltip. Defaults to
+     * {@link Shape#CALLOUT}
+     *
+     * @param shape
+     */
+    public void setShape(Shape shape) {
+        this.shape = shape;
     }
 
 }
