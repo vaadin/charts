@@ -46,6 +46,7 @@ public class Labels extends AbstractConfigurationObject {
     private Color backgroundColor;
     private Number borderWidth;
     private Boolean useHTML;
+    private Shape shape;
 
     public Labels() {
     }
@@ -481,6 +482,24 @@ public class Labels extends AbstractConfigurationObject {
      */
     public void setUseHTML(Boolean useHTML) {
         this.useHTML = useHTML;
+    }
+
+    /**
+     * @see #setShape(Shape)
+     * @return shape
+     */
+    public Shape getShape() {
+        return shape;
+    }
+
+    /**
+     * The shape to use for the border around the label. Defaults to
+     * {@link Shape#SQUARE}
+     *
+     * @param shape
+     */
+    public void setShape(Shape shape) {
+        this.shape = shape;
     }
 
 }
