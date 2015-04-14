@@ -1,4 +1,4 @@
-package com.vaadin.addon.charts.client.ui;
+package com.vaadin.addon.charts.shared;
 
 /*
  * #%L
@@ -17,8 +17,16 @@ package com.vaadin.addon.charts.client.ui;
  * #L%
  */
 
-import com.vaadin.shared.communication.SharedState;
+import com.vaadin.shared.AbstractComponentState;
 
-public class ChartOptionsState extends SharedState {
-    public String json;
+public class ChartState extends AbstractComponentState {
+
+    public String confState;
+    /**
+     * Hacky helper field that can be used to force state change event. TODO
+     * figure out a better method.
+     */
+    public int paintCount;
+    public String jsonState;
+
 }

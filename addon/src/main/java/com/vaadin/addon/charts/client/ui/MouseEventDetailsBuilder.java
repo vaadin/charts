@@ -17,7 +17,8 @@
 package com.vaadin.addon.charts.client.ui;
 
 import com.google.gwt.user.client.ui.UIObject;
-import com.vaadin.addon.charts.client.ui.MouseEventDetails.MouseButton;
+import com.vaadin.addon.charts.shared.MouseEventDetails;
+import com.vaadin.addon.charts.shared.MouseEventDetails.MouseButton;
 
 /**
  * Helper class for constructing a MouseEventDetails object from different types

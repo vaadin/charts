@@ -21,11 +21,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.lang.reflect.Method;
 
-import com.vaadin.addon.charts.client.ui.ChartClientRpc;
-import com.vaadin.addon.charts.client.ui.ChartConnector;
-import com.vaadin.addon.charts.client.ui.ChartServerRpc;
-import com.vaadin.addon.charts.client.ui.ChartState;
-import com.vaadin.addon.charts.client.ui.MouseEventDetails;
 import com.vaadin.addon.charts.events.AbstractSeriesEvent;
 import com.vaadin.addon.charts.events.AxisRescaledEvent;
 import com.vaadin.addon.charts.events.ConfigurationChangeListener;
@@ -40,6 +35,11 @@ import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.Series;
+import com.vaadin.addon.charts.shared.ChartClientRpc;
+import com.vaadin.addon.charts.shared.ChartConnector;
+import com.vaadin.addon.charts.shared.ChartServerRpc;
+import com.vaadin.addon.charts.shared.ChartState;
+import com.vaadin.addon.charts.shared.MouseEventDetails;
 import com.vaadin.ui.AbstractComponent;
 import com.vaadin.util.ReflectTools;
 

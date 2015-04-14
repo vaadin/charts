@@ -26,7 +26,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.vaadin.addon.charts.client.ui.ChartClientRpc;
 import com.vaadin.addon.charts.events.AxisRescaledEvent;
 import com.vaadin.addon.charts.events.ConfigurationChangeListener;
 import com.vaadin.addon.charts.events.DataAddedEvent;
@@ -34,6 +33,7 @@ import com.vaadin.addon.charts.events.DataRemovedEvent;
 import com.vaadin.addon.charts.events.DataUpdatedEvent;
 import com.vaadin.addon.charts.events.ItemSlicedEvent;
 import com.vaadin.addon.charts.events.SeriesStateEvent;
+import com.vaadin.addon.charts.shared.ChartClientRpc;
 
 /**
  * Chart's configuration root object containing all the child objects that are

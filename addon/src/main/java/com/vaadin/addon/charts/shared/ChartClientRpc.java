@@ -1,4 +1,4 @@
-package com.vaadin.addon.charts.client.ui;
+package com.vaadin.addon.charts.shared;
 
 /*
  * #%L

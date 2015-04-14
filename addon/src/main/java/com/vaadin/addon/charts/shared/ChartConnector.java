@@ -1,4 +1,4 @@
-package com.vaadin.addon.charts.client.ui;
+package com.vaadin.addon.charts.shared;
 
 /*
  * #%L
@@ -21,6 +21,19 @@ import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.user.client.Timer;
 import com.vaadin.addon.charts.Chart;
+import com.vaadin.addon.charts.client.ui.ChartClickEvent;
+import com.vaadin.addon.charts.client.ui.ChartClickHandler;
+import com.vaadin.addon.charts.client.ui.ChartSelectionEvent;
+import com.vaadin.addon.charts.client.ui.ChartSelectionHandler;
+import com.vaadin.addon.charts.client.ui.HighchartConfig;
+import com.vaadin.addon.charts.client.ui.HighchartPoint;
+import com.vaadin.addon.charts.client.ui.HighchartSeries;
+import com.vaadin.addon.charts.client.ui.HighchartWidget;
+import com.vaadin.addon.charts.client.ui.LegendItemClickEvent;
+import com.vaadin.addon.charts.client.ui.LegendItemClickHandler;
+import com.vaadin.addon.charts.client.ui.MouseEventDetailsBuilder;
+import com.vaadin.addon.charts.client.ui.PointClickEvent;
+import com.vaadin.addon.charts.client.ui.PointClickHandler;
 import com.vaadin.client.BrowserInfo;
 import com.vaadin.client.ServerConnector;
 import com.vaadin.client.communication.RpcProxy;
@@ -51,9 +64,10 @@ public class ChartConnector extends AbstractComponentConnector {
                 Scheduler.get().scheduleDeferred(new ScheduledCommand() {
                     @Override
                     public void execute() {
-                
-                getWidget().addPoint(pointJson, seriesIndex, shift);
-                    }});
+
+                        getWidget().addPoint(pointJson, seriesIndex, shift);
+                    }
+                });
             }
 
             @Override
@@ -62,29 +76,34 @@ public class ChartConnector extends AbstractComponentConnector {
                     @Override
                     public void execute() {
 
-                getWidget().removePoint(pointIndex, seriesIndex);
-                    }});
+                        getWidget().removePoint(pointIndex, seriesIndex);
+                    }
+                });
             }
 
             @Override
-            public void updatePointValue(final int seriesIndex, final int pointIndex,
-                    final double newValue) {
+            public void updatePointValue(final int seriesIndex,
+                    final int pointIndex, final double newValue) {
                 Scheduler.get().scheduleDeferred(new ScheduledCommand() {
                     @Override
                     public void execute() {
 
-                getWidget().updatePointValue(seriesIndex, pointIndex, newValue);
-                    }});
+                        getWidget().updatePointValue(seriesIndex, pointIndex,
+                                newValue);
+                    }
+                });
             }
 
             @Override
-            public void setSeriesEnabled(final int seriesIndex, final boolean enabled) {
+            public void setSeriesEnabled(final int seriesIndex,
+                    final boolean enabled) {
                 Scheduler.get().scheduleDeferred(new ScheduledCommand() {
                     @Override
                     public void execute() {
 
-                getWidget().setSeriesEnabled(seriesIndex, enabled);
-                    }});
+                        getWidget().setSeriesEnabled(seriesIndex, enabled);
+                    }
+                });
             }
 
             @Override
@@ -93,51 +112,59 @@ public class ChartConnector extends AbstractComponentConnector {
                     @Override
                     public void execute() {
 
-                getWidget().setAnimation(animation);
-                    }});
+                        getWidget().setAnimation(animation);
+                    }
+                });
             }
 
             @Override
-            public void updatePoint(final int seriesIndex, final int pointIndex, final String json) {
+            public void updatePoint(final int seriesIndex,
+                    final int pointIndex, final String json) {
                 Scheduler.get().scheduleDeferred(new ScheduledCommand() {
                     @Override
                     public void execute() {
 
-                getWidget().updatePointValue(seriesIndex, pointIndex, json);
-                    }});
+                        getWidget().updatePointValue(seriesIndex, pointIndex,
+                                json);
+                    }
+                });
             }
 
             @Override
-            public void rescaleAxis(final int axisCategory, final int axisIndex,
-                    final double minimum, final double maximum, final boolean redraw,
+            public void rescaleAxis(final int axisCategory,
+                    final int axisIndex, final double minimum,
+                    final double maximum, final boolean redraw,
                     final boolean animate) {
                 Scheduler.get().scheduleDeferred(new ScheduledCommand() {
                     @Override
                     public void execute() {
 
-                switch (axisCategory) {
-                case X_AXIS:
-                    getWidget().updatexAxis(axisIndex, minimum, maximum,
-                            redraw, animate);
-                    break;
-                default:
-                    getWidget().updateyAxis(axisIndex, minimum, maximum,
-                            redraw, animate);
-                    break;
-                }
-                    }});
+                        switch (axisCategory) {
+                        case X_AXIS:
+                            getWidget().updatexAxis(axisIndex, minimum,
+                                    maximum, redraw, animate);
+                            break;
+                        default:
+                            getWidget().updateyAxis(axisIndex, minimum,
+                                    maximum, redraw, animate);
+                            break;
+                        }
+                    }
+                });
             }
 
             @Override
             public void sliceItem(final int seriesIndex, final int pointIndex,
-                    final boolean sliced, final boolean redraw, final boolean animation) {
+                    final boolean sliced, final boolean redraw,
+                    final boolean animation) {
                 Scheduler.get().scheduleDeferred(new ScheduledCommand() {
                     @Override
                     public void execute() {
 
-                getWidget().slicePoint(seriesIndex, pointIndex, sliced, redraw,
-                        animation);
-                    }});
+                        getWidget().slicePoint(seriesIndex, pointIndex, sliced,
+                                redraw, animation);
+                    }
+                });
             }
 
         });
@@ -222,7 +249,6 @@ public class ChartConnector extends AbstractComponentConnector {
                 }
             });
         }
-
 
         Scheduler.get().scheduleDeferred(new ScheduledCommand() {
             @Override

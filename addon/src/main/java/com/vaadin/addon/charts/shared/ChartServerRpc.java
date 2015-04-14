@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.vaadin.addon.charts.client.ui;
+package com.vaadin.addon.charts.shared;
 
 /*
  * #%L
@@ -32,6 +32,7 @@ package com.vaadin.addon.charts.client.ui;
  * #L%
  */
 
+import com.vaadin.addon.charts.shared.MouseEventDetails;
 import com.vaadin.shared.communication.ServerRpc;
 
 public interface ChartServerRpc extends ServerRpc {

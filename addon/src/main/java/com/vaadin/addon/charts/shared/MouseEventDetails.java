@@ -14,7 +14,7 @@
  * If not, see <https://vaadin.com/license/cval-3>.
  * #L%
  */
-package com.vaadin.addon.charts.client.ui;
+package com.vaadin.addon.charts.shared;
 
 import java.io.Serializable;
 

@@ -1,7 +1,7 @@
 package com.vaadin.addon.charts;
 
-import com.vaadin.addon.charts.client.ui.MouseEventDetails;
-import com.vaadin.addon.charts.client.ui.MouseEventDetails.MouseButton;
+import com.vaadin.addon.charts.shared.MouseEventDetails;
+import com.vaadin.addon.charts.shared.MouseEventDetails.MouseButton;
 import com.vaadin.addon.charts.util.Util;
 
 /*
