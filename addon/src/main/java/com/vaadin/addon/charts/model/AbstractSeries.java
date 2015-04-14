@@ -88,26 +88,17 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
     }
 
     /**
-     * Gets the plot options related to this specific series. This is needed
-     * e.g. in combined charts.
-     * 
-     * @return
+     * {@inheritDoc}
      */
+    @Override
     public AbstractPlotOptions getPlotOptions() {
         return plotOptions;
     }
 
     /**
-     * Sets the plot options for this specific series. The type of the plot
-     * options also explicitly sets the chart type used when rendering this
-     * particular series. If plot options is null, the component wide chart type
-     * is used.
-     * <p>
-     * Options that are not defined at this level will be inherited from the
-     * chart and theme levels.
-     * 
-     * @param plotOptions
+     * {@inheritDoc}
      */
+    @Override
     public void setPlotOptions(AbstractPlotOptions plotOptions) {
         this.plotOptions = plotOptions;
     }

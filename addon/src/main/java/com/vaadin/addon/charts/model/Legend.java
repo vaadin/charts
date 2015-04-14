@@ -49,6 +49,13 @@ public class Legend extends AbstractConfigurationObject {
     private Number margin;
     private Number symbolHeight;
 
+    public Legend() {
+    }
+
+    public Legend(boolean enabled) {
+        setEnabled(enabled);
+    }
+
     /**
      * @see #setItemHoverStyle(Style)
      * 

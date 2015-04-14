@@ -62,7 +62,7 @@ public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
     public abstract ChartType getChartType();
 
     /**
-     * @see #setDataLabels()
+     * @see #setDataLabels(Labels)
      */
     public Labels getDataLabels() {
         return dataLabels;
