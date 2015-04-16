@@ -27,6 +27,7 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
 
     private String name;
     private String stack;
+    private String id;
 
     private AbstractPlotOptions plotOptions;
 
@@ -55,6 +56,22 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
     @Override
     public void setName(String name) {
         this.name = name;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setId(String id) {
+        this.id = id;
     }
 
     /**

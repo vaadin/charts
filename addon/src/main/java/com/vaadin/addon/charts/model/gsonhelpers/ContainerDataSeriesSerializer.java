@@ -69,6 +69,9 @@ public class ContainerDataSeriesSerializer implements
                     series.add(entry.getKey(), entry.getValue());
                 }
             }
+            if (src.getId() != null) {
+                series.add("id", context.serialize(src.getId()));
+            }
             series.add("name", context.serialize(src.getName()));
             series.add("stack", context.serialize(src.getStack()));
         }

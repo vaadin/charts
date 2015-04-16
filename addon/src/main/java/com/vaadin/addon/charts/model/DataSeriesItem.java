@@ -17,10 +17,9 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
-import com.vaadin.addon.charts.model.style.Color;
-import com.vaadin.addon.charts.util.Util;
-
 import java.util.Date;
+
+import com.vaadin.addon.charts.model.style.Color;
 
 /**
  * The DataSeriesItem class represents a single entry in a {@link DataSeries}.
@@ -32,12 +31,13 @@ public class DataSeriesItem extends AbstractSeriesItem {
     private Number high;
     private Boolean selected;
     private Dial dial;
+    private String drilldown;
 
     /*
      * Flag to indicate if this item can be passed in optimized form to
      * rendering library.
      */
-    private boolean customized = false;
+    private transient boolean customized = false;
 
     /**
      * Creates an empty item, without values, colors, etc.
@@ -48,8 +48,10 @@ public class DataSeriesItem extends AbstractSeriesItem {
     /**
      * Constructs an item with a name and a Y value
      *
-     * @param name Name of the item.
-     * @param y    Y-value of the item.
+     * @param name
+     *            Name of the item.
+     * @param y
+     *            Y-value of the item.
      */
     public DataSeriesItem(String name, Number y) {
         setName(name);
@@ -61,9 +63,12 @@ public class DataSeriesItem extends AbstractSeriesItem {
      * Constructs an item with a name and a value on the Y-axis and assigns the
      * specified color to the item.
      *
-     * @param name  Name of the item.
-     * @param y     Y-value of the item.
-     * @param color Color of the item.
+     * @param name
+     *            Name of the item.
+     * @param y
+     *            Y-value of the item.
+     * @param color
+     *            Color of the item.
      */
     public DataSeriesItem(String name, Number y, Color color) {
         setName(name);
@@ -75,8 +80,10 @@ public class DataSeriesItem extends AbstractSeriesItem {
     /**
      * Constructs an item with X and Y values
      *
-     * @param x X-value of the item.
-     * @param y Y-value of the item.
+     * @param x
+     *            X-value of the item.
+     * @param y
+     *            Y-value of the item.
      */
     public DataSeriesItem(Number x, Number y) {
         setX(x);
@@ -87,9 +94,12 @@ public class DataSeriesItem extends AbstractSeriesItem {
      * Constructs an item with numerical values for the X and Y axes and assigns
      * the specified color to the item.
      *
-     * @param x     X-value of the item.
-     * @param y     Y-value of the item.
-     * @param color Color of the item.
+     * @param x
+     *            X-value of the item.
+     * @param y
+     *            Y-value of the item.
+     * @param color
+     *            Color of the item.
      */
     public DataSeriesItem(Number x, Number y, Color color) {
         setX(x);
@@ -101,8 +111,10 @@ public class DataSeriesItem extends AbstractSeriesItem {
     /**
      * Constructs a DataSeriesItem with the given date as X value and Y value.
      *
-     * @param date Date of the item, as its X-value.
-     * @param y    Y-value of the item.
+     * @param date
+     *            Date of the item, as its X-value.
+     * @param y
+     *            Y-value of the item.
      */
     public DataSeriesItem(Date date, Number y) {
         setX(date);
@@ -113,9 +125,12 @@ public class DataSeriesItem extends AbstractSeriesItem {
      * Constructs a DataSeriesItem with the given date as X value with min and
      * max values for use in range visualizations.
      *
-     * @param date Date of the item, as its X-value.
-     * @param low  Lower value for range visualization.
-     * @param high Upper value for range visualization.
+     * @param date
+     *            Date of the item, as its X-value.
+     * @param low
+     *            Lower value for range visualization.
+     * @param high
+     *            Upper value for range visualization.
      */
     public DataSeriesItem(Date date, Number low, Number high) {
         setX(date);
@@ -127,9 +142,12 @@ public class DataSeriesItem extends AbstractSeriesItem {
      * Constructs a DataSeriesItem with the given X, min and max values for use
      * in range visualizations.
      *
-     * @param x    X-value of the item.
-     * @param low  Lower value for range visualization.
-     * @param high Upper value for range visualization.
+     * @param x
+     *            X-value of the item.
+     * @param low
+     *            Lower value for range visualization.
+     * @param high
+     *            Upper value for range visualization.
      */
     public DataSeriesItem(Number x, Number low, Number high) {
         setX(x);
@@ -137,11 +155,10 @@ public class DataSeriesItem extends AbstractSeriesItem {
         setHigh(high);
     }
 
-
-
     /**
      * {@inheritDoc}
      */
+    @Override
     public void setName(String name) {
         super.setName(name);
         makeCustomized();
@@ -150,6 +167,7 @@ public class DataSeriesItem extends AbstractSeriesItem {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void setSliced(boolean sliced) {
         super.setSliced(sliced);
         makeCustomized();
@@ -168,7 +186,8 @@ public class DataSeriesItem extends AbstractSeriesItem {
     /**
      * Sets whether the data item is selected or not.
      *
-     * @param selected Whether or not the item should be selected.
+     * @param selected
+     *            Whether or not the item should be selected.
      */
     public void setSelected(Boolean selected) {
         this.selected = selected;
@@ -178,6 +197,7 @@ public class DataSeriesItem extends AbstractSeriesItem {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void setId(String id) {
         super.setId(id);
         makeCustomized();
@@ -186,6 +206,7 @@ public class DataSeriesItem extends AbstractSeriesItem {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void setLegendIndex(Number legendIndex) {
         super.setLegendIndex(legendIndex);
         makeCustomized();
@@ -194,6 +215,7 @@ public class DataSeriesItem extends AbstractSeriesItem {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void setMarker(Marker marker) {
         super.setMarker(marker);
         makeCustomized();
@@ -202,6 +224,7 @@ public class DataSeriesItem extends AbstractSeriesItem {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void setColor(Color color) {
         super.setColor(color);
         makeCustomized();
@@ -212,7 +235,8 @@ public class DataSeriesItem extends AbstractSeriesItem {
      * <p/>
      * <em>Note</em> This is only applicable for gauge charts.
      *
-     * @param dial Dial to use.
+     * @param dial
+     *            Dial to use.
      */
     public void setDial(Dial dial) {
         this.dial = dial;
@@ -223,7 +247,7 @@ public class DataSeriesItem extends AbstractSeriesItem {
      * Returns the current dial. This is only applicable for gauge charts.
      *
      * @return The dial or arrow pointer of a gauge chart. Only applicable for
-     * gauge charts.
+     *         gauge charts.
      * @see #setDial(Dial)
      */
     public Dial getDial() {
@@ -234,7 +258,7 @@ public class DataSeriesItem extends AbstractSeriesItem {
      * Checks if the data can be rendered in an optimized manner.
      *
      * @return <b>true</b> if the data series item can be rendered in optimized
-     * manner, <b>false</b> otherwise.
+     *         manner, <b>false</b> otherwise.
      */
     public boolean isCustomized() {
         return customized;
@@ -260,7 +284,8 @@ public class DataSeriesItem extends AbstractSeriesItem {
     /**
      * Sets the lower range for visualizations.
      *
-     * @param low New lower range.
+     * @param low
+     *            New lower range.
      */
     public void setLow(Number low) {
         this.low = low;
@@ -278,9 +303,29 @@ public class DataSeriesItem extends AbstractSeriesItem {
     /**
      * Sets the upper range for visualizations.
      *
-     * @param high New upper range.
+     * @param high
+     *            New upper range.
      */
     public void setHigh(Number high) {
         this.high = high;
     }
+
+    /**
+     * @see #setDrilldown(String)
+     * @return drilldown
+     */
+    public String getDrilldown() {
+        return drilldown;
+    }
+
+    /**
+     * The ID of a series in the {@link Drilldown#setSeries(java.util.List)}
+     * list to use for a drilldown for this point
+     * 
+     * @param drilldown
+     */
+    public void setDrilldown(String drilldown) {
+        this.drilldown = drilldown;
+    }
+
 }

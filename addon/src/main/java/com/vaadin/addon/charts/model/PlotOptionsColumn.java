@@ -31,6 +31,7 @@ public class PlotOptionsColumn extends AbstractPointPlotOptions {
     private Number depth;
     private Number groupZPadding;
     private Number minPointLength;
+    private Boolean colorByPoint;
 
     /**
      * @see #setPointPadding(Number)
@@ -164,6 +165,25 @@ public class PlotOptionsColumn extends AbstractPointPlotOptions {
      */
     public void setMinPointLength(Number minPointLength) {
         this.minPointLength = minPointLength;
+    }
+
+    /**
+     * @see PlotOptionsColumn#setColorByPoint(Boolean)
+     * @return
+     */
+    public Boolean getColorByPoint() {
+        return colorByPoint;
+    }
+
+    /**
+     * When using automatic point colors, this option determines whether the
+     * chart should receive one color per series or one color per point.
+     * Defaults to false.
+     * 
+     * @param colorByPoint
+     */
+    public void setColorByPoint(Boolean colorByPoint) {
+        this.colorByPoint = colorByPoint;
     }
 
 }

@@ -63,4 +63,17 @@ public interface Series {
      * @param plotOptions
      */
     void setPlotOptions(AbstractPlotOptions plotOptions);
+
+    /**
+     * @return the series ID
+     */
+    String getId();
+
+    /**
+     * Sets an id for the series
+     * 
+     * @param id
+     *            new ID to set
+     */
+    void setId(String id);
 }

@@ -56,6 +56,7 @@ public class Configuration extends AbstractConfigurationObject {
     private HTMLLabels labels;
 
     private List<Series> series = new ArrayList<Series>();
+    private Drilldown drilldown;
 
     private PaneList pane;
     private Exporting exporting = new Exporting(false);
@@ -128,6 +129,30 @@ public class Configuration extends AbstractConfigurationObject {
      */
     public void setSeries(Series... series) {
         setSeries(Arrays.asList(series));
+    }
+
+    /**
+     * @see #setDrilldown(Drilldown)
+     * @return current drilldown configuration
+     */
+    public Drilldown getDrilldown() {
+        if (drilldown == null) {
+            drilldown = new Drilldown();
+            drilldown.setConfiguration(this);
+        }
+        return drilldown;
+    }
+
+    /**
+     * Configuration options for drill down, the concept of inspecting
+     * increasingly high resolution data through clicking on chart items like
+     * columns or pie slices.
+     * 
+     * @param drilldown
+     */
+    public void setDrilldown(Drilldown drilldown) {
+        this.drilldown = drilldown;
+        drilldown.setConfiguration(this);
     }
 
     /**

@@ -70,4 +70,7 @@ public interface HighchartResources extends ClientBundle {
     @Source("treemap.js")
     TextResource treemap();
 
+    @Source("drilldown.js")
+    TextResource drilldown();
+
 }
