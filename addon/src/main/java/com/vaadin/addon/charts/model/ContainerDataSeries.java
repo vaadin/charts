@@ -20,6 +20,7 @@ package com.vaadin.addon.charts.model;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.vaadin.data.Container;
 
 /**
@@ -28,6 +29,7 @@ import com.vaadin.data.Container;
  */
 public class ContainerDataSeries extends AbstractSeries {
 
+    @JsonIgnore
     private final Container vaadinContainer;
 
     // these need to be public for proper json serialisation
@@ -40,6 +42,7 @@ public class ContainerDataSeries extends AbstractSeries {
     private static final String HIGH_PROPERTY = "high";
     private static final String LOW_PROPERTY = "low";
 
+    @JsonIgnore
     private final Map<String, Object> attributeToPropertyIdMap;
 
     /**

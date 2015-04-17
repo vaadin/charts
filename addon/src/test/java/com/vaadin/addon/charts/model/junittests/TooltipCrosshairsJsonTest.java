@@ -18,7 +18,7 @@ public class TooltipCrosshairsJsonTest {
         tooltip.setCrosshairs(true);
 
         String json = tooltip.toString();
-        String expected = "{\n  \"crosshairs\": true\n}";
+        String expected = "{\"crosshairs\":true}";
 
         assertEquals(expected, json);
     }
@@ -29,7 +29,7 @@ public class TooltipCrosshairsJsonTest {
         tooltip.setCrosshairs(true, true);
 
         String json = tooltip.toString();
-        String expected = "{\n  \"crosshairs\": [\n    true,\n    true\n  ]\n}";
+        String expected = "{\"crosshairs\":[true,true]}";
 
         assertEquals(expected, json);
     }
@@ -40,7 +40,7 @@ public class TooltipCrosshairsJsonTest {
         tooltip.setCrosshairs(false, true);
 
         String json = tooltip.toString();
-        String expected = "{\n  \"crosshairs\": [\n    false,\n    true\n  ]\n}";
+        String expected = "{\"crosshairs\":[false,true]}";
 
         assertEquals(expected, json);
     }
@@ -53,13 +53,8 @@ public class TooltipCrosshairsJsonTest {
                 DashStyle.DOT, 1));
 
         String json = tooltip.toString();
-        String expected = "{\n" + "  \"crosshairs\": [\n" + "    {\n"
-                + "      \"width\": 10,\n" + "      \"color\": \"#000000\",\n"
-                + "      \"dashStyle\": \"Solid\",\n" + "      \"zIndex\": 0\n"
-                + "    },\n" + "    {\n" + "      \"width\": 5,\n"
-                + "      \"color\": \"#880000\",\n"
-                + "      \"dashStyle\": \"Dot\",\n" + "      \"zIndex\": 1\n"
-                + "    }\n" + "  ]\n" + "}";
+        String expected = "{\"crosshairs\":[{\"width\":10,\"color\":\"#000000\",\"dashStyle\":\"Solid\",\"zIndex\":0},{\"width\":5,\"color\":\"#880000\",\"dashStyle\":\"Dot\",\"zIndex\":1}"
+                + "]" + "}";
 
         assertEquals(expected, json);
     }

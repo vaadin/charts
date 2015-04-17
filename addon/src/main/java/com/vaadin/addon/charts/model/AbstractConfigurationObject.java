@@ -8,10 +8,10 @@ package com.vaadin.addon.charts.model;
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
- * 
+ *
  * See the file licensing.txt distributed with this software for more
  * information about licensing.
- * 
+ *
  * You should have received a copy of the CVALv3 along with this program.
  * If not, see <https://vaadin.com/license/cval-3>.
  * #L%
@@ -19,17 +19,18 @@ package com.vaadin.addon.charts.model;
 
 import java.io.Serializable;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.vaadin.addon.charts.model.gsonhelpers.AbstractSeriesTypeAdapterFactory;
-import com.vaadin.addon.charts.model.gsonhelpers.AxisListSerializer;
-import com.vaadin.addon.charts.model.gsonhelpers.ChartEnumSerializer;
-import com.vaadin.addon.charts.model.gsonhelpers.ContainerDataSeriesSerializer;
-import com.vaadin.addon.charts.model.gsonhelpers.DataSeriesItemTypeAdapterFactory;
-import com.vaadin.addon.charts.model.gsonhelpers.PaneListSerializer;
-import com.vaadin.addon.charts.model.gsonhelpers.SolidColorSerializer;
-import com.vaadin.addon.charts.model.gsonhelpers.TitleTypeAdapterFactory;
-import com.vaadin.addon.charts.model.style.SolidColor;
+import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import com.vaadin.addon.charts.model.serializers.AxisListSerializer;
+import com.vaadin.addon.charts.model.serializers.ChartEnumSerializer;
+import com.vaadin.addon.charts.model.serializers.DateSerializer;
+import com.vaadin.addon.charts.model.serializers.DefaultBeanSerializerModifier;
+import com.vaadin.addon.charts.model.serializers.PaneListSerializer;
+import com.vaadin.addon.charts.model.serializers.SolidColorSerializer;
 
 /**
  * Abstract base class for model classes to be serialized to JSON. Mainly
@@ -37,53 +38,53 @@ import com.vaadin.addon.charts.model.style.SolidColor;
  */
 public abstract class AbstractConfigurationObject implements Serializable {
 
-    private static Gson gson;
+    private static ObjectWriter jsonWriter;
+
     static {
-        // GSON is thread safe so we can use shared GSON instance
-        gson = createGsonBuilder().create();
+        // writer is thread safe so we can use a shared instance
+        jsonWriter = createObjectMapper().writer();
     }
 
     /**
-     * Returns default GSON builder for configuration serializer.
+     * Create the default {@link ObjectMapper} used for serialization.
      */
-    public static GsonBuilder createGsonBuilder() {
-        GsonBuilder builder = new GsonBuilder();
-        // uncomment if you wish to debug generated json
-        builder.setPrettyPrinting();
-        builder.registerTypeHierarchyAdapter(ChartEnum.class,
-                new ChartEnumSerializer());
-        builder.registerTypeHierarchyAdapter(SolidColor.class,
-                new SolidColorSerializer());
-        builder.registerTypeHierarchyAdapter(AxisList.class,
-                new AxisListSerializer());
-        builder.registerTypeHierarchyAdapter(PaneList.class,
-                new PaneListSerializer());
-        builder.registerTypeAdapter(ContainerDataSeries.class,
-                new ContainerDataSeriesSerializer());
-        builder.registerTypeAdapterFactory(new DataSeriesItemTypeAdapterFactory());
-        builder.registerTypeAdapterFactory(new AbstractSeriesTypeAdapterFactory());
-        builder.registerTypeAdapterFactory(new TitleTypeAdapterFactory());
-        return builder;
+    public static ObjectMapper createObjectMapper() {
+        ObjectMapper mapper = new ObjectMapper()
+                .setSerializationInclusion(JsonInclude.Include.NON_NULL)
+                .setVisibility(PropertyAccessor.ALL, Visibility.NONE)
+                .setVisibility(PropertyAccessor.FIELD, Visibility.ANY)
+
+                .registerModule(ChartEnumSerializer.getModule())
+                .registerModule(SolidColorSerializer.getModule())
+                .registerModule(AxisListSerializer.getModule())
+                .registerModule(PaneListSerializer.getModule())
+                .registerModule(DateSerializer.getModule());
+
+        // serializer modifier used when basic serializer isn't enough
+        return mapper.setSerializerFactory(mapper.getSerializerFactory()
+                .withSerializerModifier(new DefaultBeanSerializerModifier()));
     }
 
     /**
-     * This method can be used to configure the gson object used to serialize
-     * configuration objects to client side. If users have made their extensions
-     * to Highcharts library and wish to build a typed Java API for it, adding
-     * custom serializers might be needed.
-     * 
-     * @param customGson
-     * @see #createGsonBuilder()
+     * This method can be used to configure the {@link ObjectMapper} object used
+     * to serialize configuration objects to client side. If users have made
+     * their extensions to Highcharts library and wish to build a typed Java API
+     * for it, adding custom serializers might be needed.
+     *
+     * @param newObjectWriter
+     * @see #createObjectMapper()
      */
-    public static void setGsonInstance(Gson customGson) {
-        if (customGson == null) {
-            throw new IllegalArgumentException("GSON serializer cannot be null");
-        }
-        gson = customGson;
+    public static void setObjectMapperInstance(ObjectWriter newObjectWriter) {
+        jsonWriter = newObjectWriter;
     }
 
     @Override
     public String toString() {
-        return gson.toJson(this);
+        try {
+            return jsonWriter.writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("Error while serializing "
+                    + this.getClass().getSimpleName(), e);
+        }
     }
 }

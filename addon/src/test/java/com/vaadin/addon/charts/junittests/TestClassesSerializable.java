@@ -30,10 +30,11 @@ public class TestClassesSerializable extends TestCase {
 
     private static String[] EXCLUDED_PATTERNS = {
             "com\\.vaadin\\.addon\\.charts\\.client\\..*",
+            "com\\.vaadin\\.addon\\.charts\\.shared\\..*",
             "com\\.vaadin\\.addon\\.timeline\\.gwt\\.canvas\\.client\\..*",
             "com\\.vaadin\\.addon\\.timeline\\.gwt\\.client\\..*",
             "com\\.vaadin\\.addon\\.charts\\.demoandtestapp\\..*",
-            "com\\.vaadin\\.addon\\.charts\\.model\\.gsonhelpers\\..*",
+            "com\\.vaadin\\.addon\\.charts\\.model\\.serializers\\..*",
             "com\\.vaadin\\.addon\\.charts\\.model\\.MarkerSymbol",
             "com\\.vaadin\\.addon\\.charts\\.utils\\.ExampleUtil",
             "com\\.vaadin\\.addon\\.charts\\.model\\.Series",
@@ -46,7 +47,7 @@ public class TestClassesSerializable extends TestCase {
     /**
      * Tests that all the relevant classes and interfaces under
      * {@link #BASE_PACKAGES} implement Serializable.
-     *
+    *
      * @throws Exception
      */
     public void testClassesSerializable() throws Exception {

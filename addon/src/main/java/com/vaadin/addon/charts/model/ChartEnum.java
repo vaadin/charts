@@ -21,7 +21,7 @@ import java.io.Serializable;
 
 /**
  * Interface shared by all enum classes of the vaadin charts. It is used when
- * serializing enums to gson
+ * serializing enums to JSON.
  */
 public interface ChartEnum extends Serializable {
 

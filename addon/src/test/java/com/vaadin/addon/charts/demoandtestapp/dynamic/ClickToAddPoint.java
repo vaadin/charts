@@ -1,7 +1,11 @@
 package com.vaadin.addon.charts.demoandtestapp.dynamic;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.ChartClickEvent;
 import com.vaadin.addon.charts.ChartClickListener;
@@ -109,8 +113,20 @@ public class ClickToAddPoint extends AbstractVaadinChartExample {
     }
 
     private String createEventString(Event event) {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        return gson.toJson(event);
+        ObjectMapper mapper = new ObjectMapper()
+                .setSerializationInclusion(JsonInclude.Include.NON_NULL)
+                .enable(SerializationFeature.INDENT_OUTPUT)
+                .setVisibility(PropertyAccessor.ALL,
+                        JsonAutoDetect.Visibility.NONE)
+                .setVisibility(PropertyAccessor.FIELD,
+                        JsonAutoDetect.Visibility.ANY);
+
+        try {
+            return mapper.writeValueAsString(event);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return "";
+        }
     }
 
     @Override

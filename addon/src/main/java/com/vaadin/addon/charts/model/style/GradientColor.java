@@ -17,6 +17,8 @@ package com.vaadin.addon.charts.model.style;
  * #L%
  */
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,28 +29,56 @@ import java.util.List;
 public class GradientColor implements Color {
 
     public static class RadialGradient implements Serializable {
-        final Number cx;
-        final Number cy;
-        final Number r;
+        private final Number cx;
+        private final Number cy;
+        private final Number r;
 
         public RadialGradient(double centerX, double centerY, double radius) {
             cx = centerX;
             cy = centerY;
             r = radius;
         }
+
+        public Number getCx() {
+            return cx;
+        }
+
+        public Number getCy() {
+            return cy;
+        }
+
+        public Number getR() {
+            return r;
+        }
     }
 
     public static class LinearGradient implements Serializable {
-        final Number x1;
-        final Number y1;
-        final Number x2;
-        final Number y2;
+        private final Number x1;
+        private final Number y1;
+        private final Number x2;
+        private final Number y2;
 
         public LinearGradient(double x1, double y1, double x2, double y2) {
             this.x1 = x1;
             this.y1 = y1;
             this.x2 = x2;
             this.y2 = y2;
+        }
+
+        public Number getX1() {
+            return x1;
+        }
+
+        public Number getY1() {
+            return y1;
+        }
+
+        public Number getX2() {
+            return x2;
+        }
+
+        public Number getY2() {
+            return y2;
         }
     }
 

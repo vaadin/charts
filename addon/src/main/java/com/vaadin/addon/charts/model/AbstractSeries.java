@@ -1,5 +1,6 @@
 package com.vaadin.addon.charts.model;
 
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.vaadin.addon.charts.Chart;
 
 /*
@@ -10,10 +11,10 @@ import com.vaadin.addon.charts.Chart;
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
- * 
+ *
  * See the file licensing.txt distributed with this software for more
  * information about licensing.
- * 
+ *
  * You should have received a copy of the CVALv3 along with this program.
  * If not, see <https://vaadin.com/license/cval-3>.
  * #L%
@@ -29,9 +30,10 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
     private String stack;
     private String id;
 
+    @JsonUnwrapped
     private AbstractPlotOptions plotOptions;
 
-    private boolean visible = true;
+    private Boolean visible;
 
     private transient Configuration configuration;
 
@@ -85,7 +87,7 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
      * This option allows grouping series in a stacked chart. The stack option
      * can be a string or a number or anything else, as long as the grouped
      * series' stack options match each other. Defaults to null.
-     * 
+     *
      * @param stack
      */
     public void setStack(String stack) {
@@ -124,13 +126,13 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
      * Control the visibility of the series. Although the series is invisible in
      * the client it is still "cached" there and thus setting it visible happens
      * quickly.
-     * 
+     *
      * @see #setVisible(boolean, boolean)
-     * 
+     *
      * @param visible
      *            true if the series should be displayed, false if not
      */
-    public void setVisible(boolean visible) {
+    public void setVisible(Boolean visible) {
         setVisible(visible, true);
     }
 
@@ -140,16 +142,16 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
      * With this version of the method developer can disable immediate chart
      * update for already rendered chart, if e.g. multiple changes to the chart
      * configuration are wished to be applied at once.
-     * 
-     * @see #setVisible(boolean)
+     *
+     * @see #setVisible(Boolean)
      * @see Chart#drawChart()
-     * 
+     *
      * @param visible
      *            true if the series should be displayed, false if not
      * @param updateChartImmediately
      *            Updates the chart immediately if true.
      */
-    public void setVisible(boolean visible, boolean updateChartImmediately) {
+    public void setVisible(Boolean visible, boolean updateChartImmediately) {
         boolean doDynamicChange = updateChartImmediately
                 && getConfiguration() != null && this.visible != visible;
         this.visible = visible;
@@ -162,7 +164,7 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
     /**
      * @return true if the series is displayed on the client
      */
-    public boolean isVisible() {
+    public Boolean isVisible() {
         return visible;
     }
 
@@ -179,7 +181,7 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
      * When using dual or multiple X-axes, this number defines which X-axis the
      * particular series is connected to. It refers to the index of the axis in
      * the X-axis array, with 0 being the first. Defaults to 0.
-     * 
+     *
      * @param xAxis
      *            The index of the X-axis to bind this data series to.
      */
@@ -200,7 +202,7 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
      * When using dual or multiple Y-axes, this number defines which Y-axis the
      * particular series is connected to. It refers to the index of the axis in
      * the Y-axis array, with 0 being the first. Defaults to 0.
-     * 
+     *
      * @param yAxis
      *            The index of the Y-axis to bind this data series to.
      */
@@ -211,13 +213,13 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
     /**
      * * When using dual or multiple Y-axes, this number defines which Y-axis
      * the particular series is connected to.
-     * 
+     *
      * <p>
      * Note, that this method cannot be used until series and axis are both
      * attached to same configuration object.
-     * 
+     *
      * @see #setyAxis(Number)
-     * 
+     *
      * @param secondaryAxis
      */
     public void setyAxis(YAxis secondaryAxis) {

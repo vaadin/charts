@@ -7,9 +7,9 @@ import java.net.URL;
 import java.util.List;
 import java.util.Scanner;
 
-import com.google.gson.FieldNamingPolicy;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 
 /**
  * This class consumes the HelMet REST service, which provides data on books in
@@ -32,9 +32,14 @@ public class Helmet {
         }
         BufferedReader in = new BufferedReader(new InputStreamReader(
                 url.openStream()));
-        Gson gson = new GsonBuilder().setFieldNamingPolicy(
-                FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
-        return gson.fromJson(in, Result.class);
+
+        ObjectMapper mapper = new ObjectMapper()
+                .setPropertyNamingStrategy(
+                        PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES)
+                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
+                        false);
+
+        return mapper.readValue(in, Result.class);
     }
 
     public static class Result {

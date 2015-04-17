@@ -6,12 +6,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
+import com.vaadin.addon.charts.model.PlotOptionsSeries;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.google.gson.JsonElement;
+import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.ContainerDataSeries;
-import com.vaadin.addon.charts.model.gsonhelpers.ContainerDataSeriesSerializer;
+import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.data.Container;
 import com.vaadin.data.Item;
 import com.vaadin.data.util.IndexedContainer;
@@ -20,12 +21,9 @@ public class ContainerSeriesSerializerTest {
 
     private Container vaadinContainer;
     private ContainerDataSeries containerSeries;
-    private ContainerDataSeriesSerializer serializer;
 
     @Before
     public void setup() {
-        serializer = new ContainerDataSeriesSerializer();
-
         vaadinContainer = new IndexedContainer();
 
         containerSeries = new ContainerDataSeries(vaadinContainer);
@@ -49,9 +47,7 @@ public class ContainerSeriesSerializerTest {
         ie.getItemProperty("x").setValue(20);
         ie.getItemProperty("y").setValue(20);
 
-        JsonElement json = serializer.serialize(containerSeries, null, null);
-
-        assertEquals("{\"data\":[[80,80],[20,20]]}", json.toString());
+        assertEquals("{\"data\":[[80,80],[20,20]]}", containerSeries.toString());
     }
 
     @SuppressWarnings("unchecked")
@@ -74,8 +70,7 @@ public class ContainerSeriesSerializerTest {
         ie.getItemProperty("y").setValue(20);
         ie.getItemProperty("z").setValue(20);
 
-        JsonElement json = serializer.serialize(containerSeries, null, null);
-        assertEquals("{\"data\":[[80,80],[20,20]]}", json.toString());
+        assertEquals("{\"data\":[[80,80],[20,20]]}", containerSeries.toString());
     }
 
     @SuppressWarnings("unchecked")
@@ -99,11 +94,9 @@ public class ContainerSeriesSerializerTest {
         ie.getItemProperty("y").setValue(20);
         ie.getItemProperty("z").setValue(20);
 
-        JsonElement json = serializer.serialize(containerSeries, null, null);
-
         assertEquals(
                 "{\"data\":[{\"x\":80,\"y\":80,\"name\":80},{\"x\":20,\"y\":20,\"name\":20}]}",
-                json.toString());
+                containerSeries.toString());
     }
 
     @SuppressWarnings("unchecked")
@@ -131,11 +124,9 @@ public class ContainerSeriesSerializerTest {
         ie.getItemProperty("x").setValue(10);
         ie.getItemProperty("y").setValue(10);
 
-        JsonElement json = serializer.serialize(containerSeries, null, null);
-
         assertEquals(
                 "{\"data\":[{\"x\":80,\"y\":80,\"name\":80},{\"x\":20,\"y\":20,\"name\":20},{\"x\":10,\"y\":10}]}",
-                json.toString());
+                containerSeries.toString());
     }
 
     @Test
@@ -163,9 +154,7 @@ public class ContainerSeriesSerializerTest {
 
         String expected = "{\"data\":[[" + utcTime.getTime() + ",80]]}";
 
-        JsonElement json = serializer.serialize(containerSeries, null, null);
-
-        assertEquals(expected, json.toString());
+        assertEquals(expected, containerSeries.toString());
     }
 
     @Test
@@ -180,9 +169,52 @@ public class ContainerSeriesSerializerTest {
         item.getItemProperty("somehigh").setValue(5);
         item.getItemProperty("somelow").setValue(-5);
 
-        JsonElement json = serializer.serialize(containerSeries, null, null);
+        assertEquals("{\"data\":[{\"high\":5,\"low\":-5}]}",
+                containerSeries.toString());
+    }
 
-        assertEquals("{\"data\":[{\"high\":5,\"low\":-5}]}", json.toString());
+    @Test
+    public void serialize_ContainerWithLinePlotOptions_PlotOptionsAndTypeSerialized() {
+        PlotOptionsLine plotOptions = new PlotOptionsLine();
+        plotOptions.setShowInLegend(true);
+        containerSeries.setPlotOptions(plotOptions);
+
+        Configuration config = new Configuration();
+        config.addSeries(containerSeries);
+
+        assertEquals("{\"type\":\"line\",\"showInLegend\":true,\"data\":[]}",
+                containerSeries.toString());
+    }
+
+    @Test
+    public void serialize_ContainerWithSeriesPlotOptions_PlotTypeNotSerialized() {
+        PlotOptionsSeries plotOptions = new PlotOptionsSeries();
+        plotOptions.setShowInLegend(true);
+        containerSeries.setPlotOptions(plotOptions);
+
+        Configuration config = new Configuration();
+        config.addSeries(containerSeries);
+
+        assertEquals("{\"showInLegend\":true,\"data\":[]}",
+                containerSeries.toString());
+    }
+
+    @Test
+    public void serialize_ContainerWithNameAndStack_NameAndStackSerialized() {
+        containerSeries.setName("foo");
+        containerSeries.setStack("bar");
+        Configuration config = new Configuration();
+        config.addSeries(containerSeries);
+
+        assertEquals("{\"name\":\"foo\",\"stack\":\"bar\",\"data\":[]}",
+                containerSeries.toString());
+    }
+
+    @Test
+    public void serialize_SeriesHasId_IdSerialized() {
+        containerSeries.setId("foo");
+
+        assertEquals("{\"id\":\"foo\",\"data\":[]}", containerSeries.toString());
     }
 
 }

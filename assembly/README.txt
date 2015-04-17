@@ -49,7 +49,7 @@ Using plain Jar
 
 If you wan't to use the add-on jar directly, add it to your classpath. The add-on 
 also depends on following Apache 2 licensed libraries: 
- * gson
+ * Jackson
  * commons-io 
 
 Unless you are already using them in your project add them also. They are also 
@@ -94,7 +94,7 @@ Please note that:
 - The Vaadin Charts Add-on (CVALv3) license does not entitle you to use the 
 Highcharts JS product in other ways than through the Vaadin Charts Add-on API.
 
-Vaadin Charts also requires Gson library licensed under liberal Apache 2 license.
+Vaadin Charts also requires Jackson library licensed under liberal Apache 2 license.
 
 Links
 =====

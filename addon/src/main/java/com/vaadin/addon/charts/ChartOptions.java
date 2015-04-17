@@ -8,10 +8,10 @@ package com.vaadin.addon.charts;
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
- * 
+ *
  * See the file licensing.txt distributed with this software for more
  * information about licensing.
- * 
+ *
  * You should have received a copy of the CVALv3 along with this program.
  * If not, see <https://vaadin.com/license/cval-3>.
  * #L%
@@ -19,14 +19,14 @@ package com.vaadin.addon.charts;
 
 import java.util.Iterator;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import com.vaadin.addon.charts.model.AbstractConfigurationObject;
 import com.vaadin.addon.charts.model.Lang;
-import com.vaadin.addon.charts.model.style.GradientColor;
+import com.vaadin.addon.charts.model.serializers.ChartOptionsBeanSerializerModifier;
 import com.vaadin.addon.charts.model.style.Theme;
-import com.vaadin.addon.charts.model.style.ThemeGradientColorSerializer;
 import com.vaadin.addon.charts.shared.ChartOptionsState;
 import com.vaadin.server.AbstractClientConnector;
 import com.vaadin.server.AbstractExtension;
@@ -43,7 +43,9 @@ import com.vaadin.ui.UI;
  */
 public class ChartOptions extends AbstractExtension {
 
+    @JsonUnwrapped
     private Theme theme;
+
     private Lang lang;
 
     protected ChartOptions() {
@@ -72,21 +74,22 @@ public class ChartOptions extends AbstractExtension {
         }
     }
 
-    final static Gson gson;
+    final static ObjectWriter jsonWriter;
+
     static {
-        // .serializeNulls()
-        GsonBuilder builder = AbstractConfigurationObject.createGsonBuilder();
-        builder.registerTypeHierarchyAdapter(GradientColor.class,
-                new ThemeGradientColorSerializer());
-        gson = builder.create();
+        ObjectMapper defaultMapper = AbstractConfigurationObject
+                .createObjectMapper();
+        jsonWriter = defaultMapper.setSerializerFactory(
+                defaultMapper.getSerializerFactory().withSerializerModifier(
+                        new ChartOptionsBeanSerializerModifier())).writer();
     }
 
     /**
      * Sets the theme to use.
-     * <p>
+     * <p/>
      * Note that if the view is already drawn, all existing {@link Chart}s will
      * be redrawn.
-     * 
+     *
      * @param theme
      */
     public void setTheme(Theme theme) {
@@ -96,24 +99,13 @@ public class ChartOptions extends AbstractExtension {
     }
 
     private void buildOptionsJson() {
-        JsonObject json;
-        if (theme != null) {
-            json = gson.toJsonTree(theme).getAsJsonObject();
-        } else {
-            json = new JsonObject();
-        }
-
-        if (lang != null) {
-            json.add("lang", Lang.createGsonBuilder().create().toJsonTree(lang));
-        }
-
-        getState().json = json.toString();
+        getState().json = toString();
     }
 
     /**
      * Returns the {@link Theme} in use or {@code null} if no theme has been
      * set.
-     * 
+     *
      * @return the {@link Theme} in use or {@code null}.
      */
     public Theme getTheme() {
@@ -122,7 +114,7 @@ public class ChartOptions extends AbstractExtension {
 
     /**
      * Changes the language of all charts.
-     * 
+     *
      * @param lang
      */
     public void setLang(Lang lang) {
@@ -134,7 +126,7 @@ public class ChartOptions extends AbstractExtension {
     /**
      * Returns the {@link Lang} in use or {@code null} if no lang configuration
      * has been set.
-     * 
+     *
      * @return the {@link Lang} in use or {@code null}.
      */
     public Lang getLang() {
@@ -153,7 +145,7 @@ public class ChartOptions extends AbstractExtension {
     /**
      * Returns a ChartOptions extension for the given UI. If a ChartOptions
      * extension has not yet been added, a new one is created and added.
-     * 
+     *
      * @param ui
      *            the UI for which the ChartOptions should be returned
      * @return the ChartOptions instance connected to the given UI
@@ -182,7 +174,7 @@ public class ChartOptions extends AbstractExtension {
     /**
      * Returns a ChartOptions extension for the current UI. If a ChartOptions
      * extension has not yet been added, a new one is created and added.
-     * 
+     *
      * @return a ChartOptions instance connected to the currently active UI
      */
     public static ChartOptions get() {
@@ -193,6 +185,16 @@ public class ChartOptions extends AbstractExtension {
                     "This method must be used from UI thread");
         }
         return get(ui);
+    }
+
+    @Override
+    public String toString() {
+        try {
+            return jsonWriter.writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("Error while serializing "
+                    + this.getClass().getSimpleName(), e);
+        }
     }
 
 }
