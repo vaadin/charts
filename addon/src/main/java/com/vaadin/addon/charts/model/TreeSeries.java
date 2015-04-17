@@ -32,6 +32,32 @@ public class TreeSeries extends AbstractSeries {
 
     private List<TreeSeriesItem> data = new LinkedList<TreeSeriesItem>();
 
+    public TreeSeries() {
+    }
+
+    /**
+     * Constructs a TreeSeries with the given name
+     *
+     * @param name
+     *            The name of this series.
+     */
+    public TreeSeries(String name) {
+        super(name);
+    }
+
+    /**
+     * Constructs a TreeSeries with the given name and data
+     * 
+     * @param name
+     *            The name of this series
+     * @param data
+     *            The data of this series
+     */
+    public TreeSeries(String name, Collection<TreeSeriesItem> data) {
+        this(name);
+        setData(data);
+    }
+
     /**
      * Return an unmodifiable copy of the items in this series.
      *
@@ -57,6 +83,15 @@ public class TreeSeries extends AbstractSeries {
      */
     public void clearSeries() {
         data.clear();
+    }
+
+    /**
+     * Add given item to the series
+     *
+     * @param item
+     */
+    public void add(TreeSeriesItem item) {
+        data.add(item);
     }
 
     /**
