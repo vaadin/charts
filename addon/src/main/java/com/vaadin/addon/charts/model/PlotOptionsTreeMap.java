@@ -33,6 +33,7 @@ public class PlotOptionsTreeMap extends AbstractCommonPlotOptions {
     private TreeMapLayoutStartingDirection layoutStartingDirection;
     private Boolean levelIsConstant;
     private List<TreeMapLevel> levels;
+    private Boolean colorByPoint;
 
     @Override
     public ChartType getChartType() {
@@ -160,4 +161,24 @@ public class PlotOptionsTreeMap extends AbstractCommonPlotOptions {
     public void setLevels(List<TreeMapLevel> levels) {
         this.levels = levels;
     }
+
+    /**
+     * @see PlotOptionsTreeMap#setColorByPoint(Boolean)
+     * @return
+     */
+    public Boolean getColorByPoint() {
+        return colorByPoint;
+    }
+
+    /**
+     * When using automatic point colors, this option determines whether the
+     * chart should receive one color per series or one color per point.
+     * Defaults to false.
+     * 
+     * @param colorByPoint
+     */
+    public void setColorByPoint(Boolean colorByPoint) {
+        this.colorByPoint = colorByPoint;
+    }
+
 }

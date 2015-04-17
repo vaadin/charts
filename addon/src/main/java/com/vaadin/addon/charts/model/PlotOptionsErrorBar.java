@@ -39,6 +39,8 @@ public class PlotOptionsErrorBar extends AbstractLinePlotOptions {
 
     private Number groupZPadding;
 
+    private Boolean colorByPoint;
+
     @Override
     public ChartType getChartType() {
         return ChartType.ERRORBAR;
@@ -208,6 +210,25 @@ public class PlotOptionsErrorBar extends AbstractLinePlotOptions {
      */
     public void setGroupZPadding(Number groupZPadding) {
         this.groupZPadding = groupZPadding;
+    }
+
+    /**
+     * @see PlotOptionsErrorBar#setColorByPoint(Boolean)
+     * @return
+     */
+    public Boolean getColorByPoint() {
+        return colorByPoint;
+    }
+
+    /**
+     * When using automatic point colors, this option determines whether the
+     * chart should receive one color per series or one color per point.
+     * Defaults to false.
+     * 
+     * @param colorByPoint
+     */
+    public void setColorByPoint(Boolean colorByPoint) {
+        this.colorByPoint = colorByPoint;
     }
 
 }
