@@ -39,6 +39,7 @@ public class HighchartConfig extends JavaScriptObject {
         if (jsonState != null) {
             merge(conf, jsonState);
         }
+        conf.initMouseOverHandler();
 
         return conf;
     }
@@ -161,6 +162,20 @@ public class HighchartConfig extends JavaScriptObject {
             if (!obj[parts[i]]) obj[parts[i]] = {};
             obj = obj[parts[i]];
         }
+    }-*/;
+
+    /**
+     * If data series item has a defined cursor it will be set when mouse is
+     * over the item
+     */
+    private final native void initMouseOverHandler()
+    /*-{
+       @com.vaadin.addon.charts.client.ui.HighchartConfig::ensureObjectStructure(Lcom/google/gwt/core/client/JavaScriptObject;Ljava/lang/String;)(this,"plotOptions.series.point.events");
+       this.plotOptions.series.point.events.mouseOver = function(){
+           if(this.cursor){
+               this.graphic.element.style.cursor = this.cursor;
+           }
+       };
     }-*/;
 
     public native final HighchartJsOverlay renderTo(Element element)

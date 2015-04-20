@@ -15,6 +15,19 @@ import com.vaadin.addon.charts.model.serializers.DataSeriesItemBeanSerializer;
 public class DataSeriesItemSerializationTest {
 
     @Test
+    public void toString_cursorIsSet_ItemSerializedWithCursor() {
+        DataSeriesItem item = new DataSeriesItem();
+        item.setCursor("progress");
+
+        DataSeries series = new DataSeries();
+
+        series.add(item);
+
+        String expected = "{\"data\":[{\"cursor\":\"progress\"}]}";
+        assertEquals(expected, series.toString());
+    }
+
+    @Test
     public void toString_xIsSet_ItemSerializedWithXAndNulls() {
         DataSeriesItem item = new DataSeriesItem();
         item.setX(2);

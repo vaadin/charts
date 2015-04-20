@@ -33,6 +33,7 @@ public class DataSeriesItem extends AbstractSeriesItem {
     private Dial dial;
     private String drilldown;
     private Labels dataLabels;
+    private String cursor;
 
     /*
      * Flag to indicate if this item can be passed in optimized form to
@@ -344,6 +345,32 @@ public class DataSeriesItem extends AbstractSeriesItem {
      */
     public void setDataLabels(Labels dataLabels) {
         this.dataLabels = dataLabels;
+    }
+
+    /**
+     * @see #setCursor(String)
+     * @return cursor
+     */
+    public String getCursor() {
+        return cursor;
+    }
+
+    /**
+     * Sets the <code>cursor</code> CSS attribute to be shown on mouse over
+     * <p>
+     * Accepts CSS <code>cursor</code> values like: alias, all-scroll, auto,
+     * cell, context-menu, col-resize, copy, crosshair, default, e-resize,
+     * ew-resize, grab, grabbing, help, move, n-resize, ne-resize, nesw-resize,
+     * ns-resize, nw-resize, nwse-resize, no-drop, none, not-allowed, pointer,
+     * progress, row-resize, s-resize, se-resize, sw-resize, text,
+     * vertical-text, w-resize, wait, zoom-in, zoom-out
+     * <p>
+     * Note that not all browsers have support for all values.
+     *
+     * @param cursor
+     */
+    public void setCursor(String cursor) {
+        this.cursor = cursor;
         makeCustomized();
     }
 
