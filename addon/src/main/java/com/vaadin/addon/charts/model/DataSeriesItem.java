@@ -32,6 +32,7 @@ public class DataSeriesItem extends AbstractSeriesItem {
     private Boolean selected;
     private Dial dial;
     private String drilldown;
+    private Labels dataLabels;
 
     /*
      * Flag to indicate if this item can be passed in optimized form to
@@ -326,6 +327,24 @@ public class DataSeriesItem extends AbstractSeriesItem {
      */
     public void setDrilldown(String drilldown) {
         this.drilldown = drilldown;
+    }
+
+    /**
+     * @see #setDataLabels(Labels)
+     * @return dataLabels
+     */
+    public Labels getDataLabels() {
+        return dataLabels;
+    }
+
+    /**
+     * Set the label configuration for this item
+     * 
+     * @param dataLabels
+     */
+    public void setDataLabels(Labels dataLabels) {
+        this.dataLabels = dataLabels;
+        makeCustomized();
     }
 
 }
