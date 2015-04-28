@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import com.vaadin.addon.charts.ChartDrilldownEvent;
 import com.vaadin.addon.charts.model.style.Style;
 
 /**
@@ -51,7 +52,6 @@ public class Drilldown extends AbstractConfigurationObject {
      */
     public void addSeries(Series series) {
         this.series.add(series);
-        series.setConfiguration(configuration);
     }
 
     /**
@@ -63,7 +63,6 @@ public class Drilldown extends AbstractConfigurationObject {
      */
     public void setSeries(List<Series> series) {
         this.series = series;
-        updateSeriesConfiguration();
     }
 
     /**
@@ -75,13 +74,44 @@ public class Drilldown extends AbstractConfigurationObject {
     }
 
     /**
+     * Drilldowns the point with the specified series. Used for asynchronous
+     * drilldown. For synchronous drilldown use {@link #setSeries(List)} This
+     * method together with {@link #addPointDrilldown(int, int, Series)} should
+     * be called only once per {@link ChartDrilldownEvent}
+     * 
+     * @param pointId
+     * @param series
+     */
+    public void addPointDrilldown(String pointId, Series series) {
+        if (getConfiguration() != null) {
+            getConfiguration().fireDrilldownAdded(series, pointId);
+        }
+    }
+
+    /**
+     * Drilldowns the point with the specified series. Used for asynchronous
+     * drilldown. For synchronous drilldown use {@link #setSeries(List)} This
+     * method together with {@link #addPointDrilldown(String, Series)} should be
+     * called only once per {@link ChartDrilldownEvent}
+     * 
+     * @param seriesIndex
+     * @param pointIndex
+     * @param series
+     */
+    public void addPointDrilldown(int seriesIndex, int pointIndex, Series series) {
+        if (getConfiguration() != null) {
+            getConfiguration().fireDrilldownAdded(series, seriesIndex,
+                    pointIndex);
+        }
+    }
+
+    /**
      * Sets the configuration linked to the drilldown series.
      * 
      * @param configuration
      */
     public void setConfiguration(Configuration configuration) {
         this.configuration = configuration;
-        updateSeriesConfiguration();
     }
 
     /**
@@ -90,14 +120,6 @@ public class Drilldown extends AbstractConfigurationObject {
      */
     public Configuration getConfiguration() {
         return configuration;
-    }
-
-    private void updateSeriesConfiguration() {
-        if (series != null) {
-            for (Series s : series) {
-                s.setConfiguration(configuration);
-            }
-        }
     }
 
     /**

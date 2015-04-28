@@ -89,4 +89,19 @@ public class HighchartJsOverlay extends JavaScriptObject {
         this.destroy();
     }-*/;
 
+    public final native void addDrilldown(String series, String pointId)
+    /*-{
+        var newDrilldownData = $wnd.eval('('+series+')');
+        var point = this.get(pointId);
+        this.addSeriesAsDrilldown(point,newDrilldownData);
+    }-*/;
+
+    public final native void addDrilldown(String series, int seriesIndex,
+            int pointIndex)
+    /*-{
+        var newDrilldownData = $wnd.eval('('+series+')');
+        var point = this.series[seriesIndex].data[pointIndex];
+        this.addSeriesAsDrilldown(point,newDrilldownData);
+    }-*/;
+
 }

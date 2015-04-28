@@ -19,6 +19,7 @@ package com.vaadin.addon.charts.model;
 
 import java.util.Date;
 
+import com.vaadin.addon.charts.ChartDrilldownEvent;
 import com.vaadin.addon.charts.model.style.Color;
 
 /**
@@ -322,7 +323,9 @@ public class DataSeriesItem extends AbstractSeriesItem {
 
     /**
      * The ID of a series in the {@link Drilldown#setSeries(java.util.List)}
-     * list to use for a drilldown for this point
+     * list to use for a drilldown for this point. If the value doesn't
+     * correspond to the ID of a series the point will be shown as if drilldown
+     * was enabled and a {@link ChartDrilldownEvent} will be triggered
      * 
      * @param drilldown
      */

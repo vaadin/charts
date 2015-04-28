@@ -23,8 +23,11 @@ import com.google.gwt.user.client.Timer;
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.client.ui.ChartClickEvent;
 import com.vaadin.addon.charts.client.ui.ChartClickHandler;
+import com.vaadin.addon.charts.client.ui.ChartDrilldownEvent;
+import com.vaadin.addon.charts.client.ui.ChartDrilldownHandler;
 import com.vaadin.addon.charts.client.ui.ChartSelectionEvent;
 import com.vaadin.addon.charts.client.ui.ChartSelectionHandler;
+import com.vaadin.addon.charts.client.ui.DrilldownEventDetailsBuilder;
 import com.vaadin.addon.charts.client.ui.HighchartConfig;
 import com.vaadin.addon.charts.client.ui.HighchartPoint;
 import com.vaadin.addon.charts.client.ui.HighchartSeries;
@@ -55,6 +58,7 @@ public class ChartConnector extends AbstractComponentConnector {
     public static final String LEGENDITEM_CLICK_EVENT_ID = "lic";
     public static final String CHART_SELECTION_EVENT_ID = "cs";
     public static final String CHART_CLICK_EVENT_ID = "cl";
+    public static final String CHART_DRILLDOWN_EVENT_ID = "dd";
 
     public ChartConnector() {
         registerRpc(ChartClientRpc.class, new ChartClientRpc() {
@@ -167,6 +171,29 @@ public class ChartConnector extends AbstractComponentConnector {
                 });
             }
 
+            @Override
+            public void addDrilldownById(final String series,
+                    final String pointId) {
+                Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+                    @Override
+                    public void execute() {
+                        getWidget().addDrilldown(series, pointId);
+                    }
+                });
+            }
+
+            @Override
+            public void addDrilldownByIndex(final String series,
+                    final int seriesIndex, final int pointIndex) {
+                Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+                    @Override
+                    public void execute() {
+                        getWidget().addDrilldown(series, seriesIndex,
+                                pointIndex);
+                    }
+                });
+            }
+
         });
     }
 
@@ -194,6 +221,20 @@ public class ChartConnector extends AbstractComponentConnector {
                     MouseEventDetails details = MouseEventDetailsBuilder
                             .buildMouseEventDetails(event, getWidget());
                     rpc.onChartClick(details);
+                }
+            });
+        }
+        if (getState().registeredEventListeners != null
+                && getState().registeredEventListeners
+                        .contains(CHART_DRILLDOWN_EVENT_ID)) {
+            cfg.setDrilldownHandler(new ChartDrilldownHandler() {
+
+                @Override
+                public void onDrilldown(ChartDrilldownEvent event) {
+                    DrilldownEventDetails details = DrilldownEventDetailsBuilder
+                            .buildDrilldownEventDetails(event, getWidget());
+
+                    rpc.onChartDrilldown(details);
                 }
             });
         }

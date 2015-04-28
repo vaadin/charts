@@ -24,6 +24,16 @@ public class HighchartPoint extends JavaScriptObject {
     protected HighchartPoint() {
     }
 
+    public native final String getId()
+    /*-{
+        return this.id;
+    }-*/;
+
+    public native final int getIndex()
+    /*-{
+        return this.index;
+    }-*/;
+
     public native final HighchartSeries getSeries()
     /*-{
         return this.series;

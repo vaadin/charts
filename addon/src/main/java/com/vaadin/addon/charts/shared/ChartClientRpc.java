@@ -67,4 +67,8 @@ public interface ChartClientRpc extends ClientRpc {
     void sliceItem(int seriesIndex, int pointIndex, boolean sliced,
             boolean redraw, boolean animation);
 
+    void addDrilldownById(String series, String pointId);
+
+    void addDrilldownByIndex(String string, int seriesIndex, int pointIndex);
+
 }

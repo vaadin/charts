@@ -17,6 +17,8 @@ package com.vaadin.addon.charts;
  * #L%
  */
 
+import static com.vaadin.addon.charts.shared.ChartConnector.CHART_DRILLDOWN_EVENT_ID;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.lang.reflect.Method;
@@ -39,6 +41,7 @@ import com.vaadin.addon.charts.shared.ChartClientRpc;
 import com.vaadin.addon.charts.shared.ChartConnector;
 import com.vaadin.addon.charts.shared.ChartServerRpc;
 import com.vaadin.addon.charts.shared.ChartState;
+import com.vaadin.addon.charts.shared.DrilldownEventDetails;
 import com.vaadin.addon.charts.shared.MouseEventDetails;
 import com.vaadin.ui.AbstractComponent;
 import com.vaadin.util.ReflectTools;
@@ -156,6 +159,21 @@ public class Chart extends AbstractComponent {
                     event.isRedraw(), event.isAnimation());
         }
 
+        @Override
+        public void drilldownAdded(String pointId, Series series) {
+            chart.getRpcProxy(ChartClientRpc.class).addDrilldownById(
+                    series.toString(), pointId);
+
+        }
+
+        @Override
+        public void drilldownAdded(int seriesIndex, int pointIndex,
+                Series series) {
+            chart.getRpcProxy(ChartClientRpc.class).addDrilldownByIndex(
+                    series.toString(), seriesIndex, pointIndex);
+
+        }
+
     }
 
     private final class ChartServerRpcImplementation implements ChartServerRpc {
@@ -163,6 +181,19 @@ public class Chart extends AbstractComponent {
         public void onChartClick(MouseEventDetails details) {
             final ChartClickEvent chartClickEvent = new ChartClickEvent(
                     Chart.this, details);
+            fireEvent(chartClickEvent);
+        }
+
+        @Override
+        public void onChartDrilldown(DrilldownEventDetails details) {
+            Series series = null;
+            if (!details.isCategory()) {
+                series = getSeriesBasedOnIndex(details.getPoint()
+                        .getSeriesIndex());
+            }
+            final ChartDrilldownEvent chartClickEvent = new ChartDrilldownEvent(
+                    Chart.this, series, details);
+
             fireEvent(chartClickEvent);
         }
 
@@ -352,6 +383,10 @@ public class Chart extends AbstractComponent {
     private final static Method chartClickMethod = ReflectTools.findMethod(
             ChartClickListener.class, "onClick", ChartClickEvent.class);
 
+    private final static Method chartDrilldownMethod = ReflectTools.findMethod(
+            ChartDrilldownListener.class, "onDrilldown",
+            ChartDrilldownEvent.class);
+
     private final static Method pointClickMethod = ReflectTools.findMethod(
             PointClickListener.class, "onClick", PointClickEvent.class);
 
@@ -372,6 +407,17 @@ public class Chart extends AbstractComponent {
     public void addChartClickListener(ChartClickListener listener) {
         this.addListener(ChartConnector.CHART_CLICK_EVENT_ID,
                 ChartClickEvent.class, listener, chartClickMethod);
+    }
+
+    /**
+     * Adds chart drilldown listener, which will be notified when a drilldown
+     * point is clicked
+     * 
+     * @param listener
+     */
+    public void addChartDrilldownListener(ChartDrilldownListener listener) {
+        this.addListener(CHART_DRILLDOWN_EVENT_ID,
+                ChartDrilldownEvent.class, listener, chartDrilldownMethod);
     }
 
     /**

@@ -19,6 +19,8 @@ package com.vaadin.addon.charts.events;
 
 import java.io.Serializable;
 
+import com.vaadin.addon.charts.model.Series;
+
 /**
  * Listener interface for events triggered in Configuration. E.g. in DataSeries,
  * events like data add/remove/update.
@@ -34,6 +36,22 @@ public interface ConfigurationChangeListener extends Serializable {
      *            The event.
      */
     void dataAdded(DataAddedEvent event);
+
+    /**
+     * A drilldown series has been added
+     * 
+     * @param event
+     */
+    void drilldownAdded(String pointId, Series series);
+
+    /**
+     * A drilldown series has been added
+     * 
+     * @param seriesIndex
+     * @param pointIndex
+     * @param series
+     */
+    void drilldownAdded(int seriesIndex, int pointIndex, Series series);
 
     /**
      * A data point has been removed

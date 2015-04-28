@@ -117,6 +117,15 @@ public class HighchartConfig extends JavaScriptObject {
         });
     }-*/;
 
+    public final native void setDrilldownHandler(ChartDrilldownHandler handler)
+    /*-{
+        if(!this.chart) this.chart = {};
+        if(!this.chart.events) this.chart.events = {};
+        this.chart.events.drilldown = $entry(function(e) {
+            return handler.@com.vaadin.addon.charts.client.ui.ChartDrilldownHandler::onDrilldown(Lcom/vaadin/addon/charts/client/ui/ChartDrilldownEvent;)(e);
+        });
+    }-*/;
+
     public final native void setSeriesPointClickHandler(
             PointClickHandler handler)
     /*-{

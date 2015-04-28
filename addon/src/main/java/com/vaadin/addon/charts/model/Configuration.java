@@ -39,7 +39,6 @@ import com.vaadin.addon.charts.shared.ChartClientRpc;
  * Chart's configuration root object containing all the child objects that are
  * used to configure chart, axes, legend, titles etc.
  */
-@SuppressWarnings("deprecation")
 public class Configuration extends AbstractConfigurationObject {
 
     private ChartModel chart;
@@ -606,7 +605,12 @@ public class Configuration extends AbstractConfigurationObject {
         getxAxis().setCategories(newCategories);
     }
 
-    /** Notifies listeners that a data point has been added */
+    /**
+     * Notifies listeners that a data point has been added
+     * 
+     * @param series
+     * @param value
+     */
     void fireDataAdded(Series series, Number value) {
         DataAddedEvent dataAddedEvent = new DataAddedEvent(series, value);
         for (ConfigurationChangeListener listener : changeListeners) {
@@ -623,6 +627,31 @@ public class Configuration extends AbstractConfigurationObject {
         DataAddedEvent dataAddedEvent = new DataAddedEvent(series, item, shift);
         for (ConfigurationChangeListener listener : changeListeners) {
             listener.dataAdded(dataAddedEvent);
+        }
+    }
+
+    /**
+     * Notifies listeners that a drilldown series has been added
+     * 
+     * @param series
+     * @param pointId
+     */
+    void fireDrilldownAdded(Series series, String pointId) {
+        for (ConfigurationChangeListener listener : changeListeners) {
+            listener.drilldownAdded(pointId, series);
+        }
+    }
+
+    /**
+     * Notifies listeners that a drilldown series has been added
+     * 
+     * @param seriesIndex
+     * @param pointIndex
+     * @param series
+     */
+    void fireDrilldownAdded(Series series, int seriesIndex, int pointIndex) {
+        for (ConfigurationChangeListener listener : changeListeners) {
+            listener.drilldownAdded(seriesIndex, pointIndex, series);
         }
     }
 

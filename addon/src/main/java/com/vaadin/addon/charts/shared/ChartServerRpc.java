@@ -32,12 +32,13 @@ package com.vaadin.addon.charts.shared;
  * #L%
  */
 
-import com.vaadin.addon.charts.shared.MouseEventDetails;
 import com.vaadin.shared.communication.ServerRpc;
 
 public interface ChartServerRpc extends ServerRpc {
 
     void onChartClick(MouseEventDetails details);
+
+    void onChartDrilldown(DrilldownEventDetails details);
 
     void onPointClick(MouseEventDetails details, int seriesIndex,
             String category, int pointIndex);
