@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import com.vaadin.testbench.Parameters;
@@ -20,6 +21,7 @@ import com.vaadin.testbench.annotations.RunOnHub;
 import com.vaadin.testbench.commands.TestBenchCommands;
 import com.vaadin.testbench.parallel.Browser;
 import com.vaadin.testbench.parallel.ParallelTest;
+import com.vaadin.testbench.parallel.setup.SetupDriver;
 
 @RunOnHub("tb3-hub.intra.itmill.com")
 @BrowserFactory(ChartsBrowserFactory.class)
@@ -38,7 +40,17 @@ public abstract class AbstractParallelTest extends ParallelTest {
 
     @Override
     public void setup() throws Exception {
-        super.setup();
+        // override local driver behaviour, so we can easily specify local
+        // PhantomJS
+        // with a system property
+        if (getBooleanProperty("localPhantom")) {
+            WebDriver driver = new SetupDriver()
+                    .setupLocalDriver(Browser.PHANTOMJS);
+            setDriver(driver);
+        } else {
+            super.setup();
+        }
+
         new File(ERROR_IMAGE_ROOT).mkdirs();
         Parameters.setScreenshotErrorDirectory(ERROR_IMAGE_ROOT);
         Parameters.setScreenshotComparisonTolerance(0.01);
@@ -53,6 +65,10 @@ public abstract class AbstractParallelTest extends ParallelTest {
         testBench = (TestBenchCommands) getDriver();
 
         configBrowser();
+    }
+
+    private boolean getBooleanProperty(String key) {
+        return Boolean.parseBoolean(System.getProperty(key));
     }
 
     private String getTestBaseUrl() {

@@ -348,6 +348,7 @@ public class DataSeriesItem extends AbstractSeriesItem {
      */
     public void setDataLabels(Labels dataLabels) {
         this.dataLabels = dataLabels;
+        makeCustomized();
     }
 
     /**
