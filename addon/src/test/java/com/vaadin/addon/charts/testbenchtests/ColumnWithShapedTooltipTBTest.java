@@ -38,6 +38,7 @@ public class ColumnWithShapedTooltipTBTest extends
     public List<DesiredCapabilities> getBrowsersToTest() {
         List<DesiredCapabilities> result = super.getBrowsersToTest();
         result.remove(Browser.IE8.getDesiredCapabilities());
+        result.remove(Browser.PHANTOMJS.getDesiredCapabilities());
         result.remove(Browser.FIREFOX.getDesiredCapabilities());
         return result;
     }
