@@ -32,6 +32,7 @@ public class Labels extends AbstractConfigurationObject {
     private Boolean inside;
     private Object rotation;
     private Object autoRotation;
+    private Number autoRotationLimit;
     private Number staggerLines;
     private Number step;
     private Style style;
@@ -163,6 +164,27 @@ public class Labels extends AbstractConfigurationObject {
      */
     public void resetAutoRotation() {
         autoRotation = null;
+    }
+
+    /**
+     * @see #setAutoRotationLimit(Number)
+     * @return autoRotationLimit
+     */
+    public Number getAutoRotationLimit() {
+        return autoRotationLimit;
+    }
+
+    /**
+     * When each category width is more than this many pixels, we don't apply
+     * auto rotation. Instead, we lay out the axis label with word wrap. A lower
+     * limit makes sense when the label contains multiple short words that don't
+     * extend the available horizontal space for each label. Defaults to
+     * <code>80</code>.
+     * 
+     * @param autoRotationLimit
+     */
+    public void setAutoRotationLimit(Number autoRotationLimit) {
+        this.autoRotationLimit = autoRotationLimit;
     }
 
     /**
