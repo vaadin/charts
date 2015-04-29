@@ -81,6 +81,37 @@
 				</plugins>
 			</build>
 		</profile>
+		<profile>
+			<id>package-directory</id>
+			<build>
+				<plugins>
+					<!-- This creates a zip file of jar and sources jar. When publishing in
+            the Directory this makes sources available to maven users automatically.
+            We could also use this to package required dependecies for those poor developer
+            souls that still dont know how to use a build system that supports transient
+            dependencies... -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-assembly-plugin</artifactId>
+						<configuration>
+							<finalName>directorystuff</finalName>
+							<appendAssemblyId>false</appendAssemblyId>
+							<descriptors>
+								<descriptor>assembly.xml</descriptor>
+							</descriptors>
+						</configuration>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>single</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 	</profiles>
 
 	<organization>
@@ -262,24 +293,6 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
-
-
-			<!-- This creates a zip file of jar and sources jar. When publishing in
-				the Directory this makes sources available to maven users automatically.
-				We could also use this to package required dependecies for those poor developer
-				souls that still dont know how to use a build system that supports transient
-				dependencies... -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<configuration>
-					<finalName>directorystuff</finalName>
-					<appendAssemblyId>false</appendAssemblyId>
-					<descriptors>
-						<descriptor>assembly.xml</descriptor>
-					</descriptors>
-				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>com.vaadin</groupId>
