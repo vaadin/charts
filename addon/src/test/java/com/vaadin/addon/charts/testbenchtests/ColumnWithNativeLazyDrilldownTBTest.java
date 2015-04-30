@@ -7,15 +7,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
-import com.vaadin.addon.charts.demoandtestapp.columnandbar.ColumnWithNativeLazyDrilldownByID;
+import com.vaadin.addon.charts.demoandtestapp.columnandbar.ColumnWithNativeLazyDrilldown;
 import com.vaadin.testbench.By;
 
-public class ColumnWithNativeLazyDrilldownByIDTBTest extends
+public class ColumnWithNativeLazyDrilldownTBTest extends
         AbstractParallelTest {
 
     @Override
     protected String getTestViewName() {
-        return ColumnWithNativeLazyDrilldownByID.class.getSimpleName();
+        return ColumnWithNativeLazyDrilldown.class.getSimpleName();
     }
 
     @Test

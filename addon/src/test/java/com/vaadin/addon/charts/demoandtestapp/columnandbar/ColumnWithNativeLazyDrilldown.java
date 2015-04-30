@@ -7,7 +7,6 @@ import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.ChartDrilldownEvent;
 import com.vaadin.addon.charts.ChartDrilldownListener;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.demoandtestapp.SkipFromDemo;
 import com.vaadin.addon.charts.model.AxisType;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
@@ -24,8 +23,7 @@ import com.vaadin.addon.charts.shared.DrilldownPointDetails;
 import com.vaadin.ui.Component;
 
 @SuppressWarnings("serial")
-@SkipFromDemo
-public class ColumnWithNativeLazyDrilldownByID extends
+public class ColumnWithNativeLazyDrilldown extends
         AbstractVaadinChartExample {
 
     private Map<String, DataSeries> drillSeries;

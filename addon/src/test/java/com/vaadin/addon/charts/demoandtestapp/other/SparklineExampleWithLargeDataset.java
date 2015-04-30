@@ -88,12 +88,12 @@ public class SparklineExampleWithLargeDataset extends
                                 12.37, 12.33, 12.19));
     }
 
-    public class StockData {
+    public static class StockData {
         private final String month;
         private final Number[] values;
 
-        public StockData(String name, Number... values) {
-            this.month = name;
+        public StockData(String month, Number... values) {
+            this.month = month;
             this.values = values;
         }
 

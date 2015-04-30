@@ -2,7 +2,6 @@ package com.vaadin.addon.charts.demoandtestapp.columnandbar;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.demoandtestapp.SkipFromDemo;
 import com.vaadin.addon.charts.model.AxisType;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
@@ -18,7 +17,6 @@ import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.ui.Component;
 
 @SuppressWarnings("serial")
-@SkipFromDemo
 public class ColumnWithNativeDrilldown extends AbstractVaadinChartExample {
 
     @Override
