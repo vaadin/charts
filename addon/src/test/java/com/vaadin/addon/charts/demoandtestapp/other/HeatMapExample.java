@@ -75,7 +75,7 @@ public class HeatMapExample extends AbstractVaadinChartExample {
      * @return Array of arrays of numbers.
      */
     private Number[][] getRawData() {
-        return new Number[][] { { 0, 0, 10 }, { 0, 1, 19 }, { 0, 2, 8 },
+        return new Number[][] { { 0, 0, 0 }, { 0, 1, 19 }, { 0, 2, 8 },
                 { 0, 3, 24 }, { 0, 4, 67 }, { 1, 0, 92 }, { 1, 1, 58 },
                 { 1, 2, 78 }, { 1, 3, 117 }, { 1, 4, 48 }, { 2, 0, 35 },
                 { 2, 1, 15 }, { 2, 2, 123 }, { 2, 3, 64 }, { 2, 4, 52 },
