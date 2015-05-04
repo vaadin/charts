@@ -412,6 +412,7 @@
 							<resourcesAsCSV>${project.build.directory}/testwebapp</resourcesAsCSV>
 						</baseResource>
 					</webApp>
+					<contextXml>${basedir}/src/test/resources/jetty-context.xml</contextXml>
 				</configuration>
 			</plugin>
 		</plugins>
