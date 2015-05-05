@@ -40,13 +40,6 @@ public interface ConfigurationChangeListener extends Serializable {
     /**
      * A drilldown series has been added
      * 
-     * @param event
-     */
-    void drilldownAdded(String pointId, Series series);
-
-    /**
-     * A drilldown series has been added
-     * 
      * @param seriesIndex
      * @param pointIndex
      * @param series

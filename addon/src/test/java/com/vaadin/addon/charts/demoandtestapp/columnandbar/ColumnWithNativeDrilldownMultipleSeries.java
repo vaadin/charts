@@ -9,7 +9,6 @@ import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.Cursor;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
-import com.vaadin.addon.charts.model.Drilldown;
 import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
 import com.vaadin.addon.charts.model.Tooltip;
@@ -65,67 +64,57 @@ public class ColumnWithNativeDrilldownMultipleSeries extends
     }
 
     private void createSeriesAndDrilldown(Configuration conf, int index) {
-        String[] categories = new String[] { "MSIE", "Firefox", "Chrome",
-                "Safari", "Opera" };
-        Number[] ys = new Number[] { 55.11 - index - index - index,
-                21.63 - index, 11.94 + index, 7.15 + index + index,
-                2.14 + index };
         DataSeries series = new DataSeries();
         series.setName("Browser brands" + index);
-        for (int i = 0; i < categories.length; i++) {
-            DataSeriesItem item = new DataSeriesItem(categories[i], ys[i]);
-            item.setDrilldown(categories[i] + index);
-            series.add(item);
-        }
 
-        conf.addSeries(series);
+        DataSeriesItem item = new DataSeriesItem("MSIE", 55.11 + index);
+        DataSeries drillSeries = new DataSeries("MSIE versions");
+        drillSeries.setId("MSIE" + index);
+        String[] categories = new String[] { "MSIE 6.0", "MSIE 7.0",
+                "MSIE 8.0", "MSIE 9.0" };
+        Number[] ys = new Number[] { 10.85 + index, 7.35, 33.06 + index, 2.81 };
+        drillSeries.setData(categories, ys);
+        series.addItemWithDrilldown(item, drillSeries);
 
-        Drilldown drilldown = conf.getDrilldown();
-
-        DataSeries drill = new DataSeries("MSIE versions" + index);
-        drill.setId("MSIE" + index);
-        categories = new String[] { "MSIE 6.0", "MSIE 7.0", "MSIE 8.0",
-                "MSIE 9.0" };
-        ys = new Number[] { 10.85 + index, 7.35 - index - index,
-                33.06 + index + index, 2.81 - index };
-        drill.setData(categories, ys);
-        drilldown.addSeries(drill);
-
-        drill = new DataSeries("Firefox versions" + index);
-        drill.setId("Firefox" + index);
+        item = new DataSeriesItem("Firefox", 21.63 + index);
+        drillSeries = new DataSeries("Firefox versions");
+        drillSeries.setId("Firefox" + index);
         categories = new String[] { "Firefox 2.0", "Firefox 3.0",
                 "Firefox 3.5", "Firefox 3.6", "Firefox 4.0" };
-        ys = new Number[] { 0.20 + index, 0.83, 1.58 + index + index,
-                13.12 - index - index, 5.43 - index };
-        drill.setData(categories, ys);
-        drilldown.addSeries(drill);
+        ys = new Number[] { 0.20, 0.83 + index, 1.58, 13.12 + index, 5.43 };
+        drillSeries.setData(categories, ys);
+        series.addItemWithDrilldown(item, drillSeries);
 
-        drill = new DataSeries("Chrome versions" + index);
-        drill.setId("Chrome" + index);
+        item = new DataSeriesItem("Chrome", 11.94 + index);
+        drillSeries = new DataSeries("Chrome versions");
+        drillSeries.setId("Chrome" + index);
         categories = new String[] { "Chrome 5.0", "Chrome 6.0", "Chrome 7.0",
                 "Chrome 8.0", "Chrome 9.0", "Chrome 10.0", "Chrome 11.0",
                 "Chrome 12.0" };
-        ys = new Number[] { 0.12 + index, 0.19 + index, 0.12, 0.36, 0.32,
-                9.91 - index - index, 0.50, 0.22 };
-        drill.setData(categories, ys);
-        drilldown.addSeries(drill);
+        ys = new Number[] { 0.12, 0.19 + index, 0.12, 0.36 + index, 0.32,
+                9.91 + index, 0.50, 0.22 + index };
+        drillSeries.setData(categories, ys);
+        series.addItemWithDrilldown(item, drillSeries);
 
-        drill = new DataSeries("Safari versions" + index);
-        drill.setId("Safari" + index);
+        item = new DataSeriesItem("Safari", 7.15 + index);
+        drillSeries = new DataSeries("Safari versions");
+        drillSeries.setId("Safari" + index);
         categories = new String[] { "Safari 5.0", "Safari 4.0",
                 "Safari Win 5.0", "Safari 4.1", "Safari/Maxthon", "Safari 3.1",
                 "Safari 4.1" };
-        ys = new Number[] { 4.55 - index - index, 1.42 + index, 0.23, 0.21,
-                0.20 + index, 0.19, 0.14 };
-        drill.setData(categories, ys);
-        drilldown.addSeries(drill);
+        ys = new Number[] { 4.55 + index, 1.42 + index, 0.23, 0.21, 0.20,
+                0.19 + index, 0.14 + index };
+        drillSeries.setData(categories, ys);
+        series.addItemWithDrilldown(item, drillSeries);
 
-        drill = new DataSeries("Opera versions" + index);
-        drill.setId("Opera" + index);
+        item = new DataSeriesItem("Opera", 2.14 + index);
+        drillSeries = new DataSeries("Opera versions");
+        drillSeries.setId("Opera" + index);
         categories = new String[] { "Opera 9.x", "Opera 10.x", "Opera 11.x" };
-        ys = new Number[] { 0.12, 0.37 + index / 2, 1.65 - index / 2 };
-        drill.setData(categories, ys);
-        drilldown.addSeries(drill);
+        ys = new Number[] { 0.12, 0.37 + index, 1.65 };
+        drillSeries.setData(categories, ys);
+        series.addItemWithDrilldown(item, drillSeries);
+        conf.addSeries(series);
     }
 
 }

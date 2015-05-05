@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.model.style.Color;
 
 /**
@@ -38,6 +39,7 @@ import com.vaadin.addon.charts.model.style.Color;
 public class DataSeries extends AbstractSeries {
 
     private List<DataSeriesItem> data = new ArrayList<DataSeriesItem>();
+    private transient List<Series> drilldownSeries = new ArrayList<Series>();
 
     /**
      * Constructs an empty {@link DataSeries}. Developers should then populate
@@ -199,6 +201,58 @@ public class DataSeries extends AbstractSeries {
      */
     public void add(DataSeriesItem item) {
         add(item, true, false);
+    }
+
+    /**
+     * Adds a new item to the series data. And sets the series as its drilldown.
+     * Used for eager loading drilldown. Series must have an id.
+     * 
+     * The remaining drilldown configurations can be set in
+     * {@link Configuration#getDrilldown()}
+     * 
+     * @param item
+     * @param series
+     */
+    public void addItemWithDrilldown(DataSeriesItem item, Series series) {
+        add(item);
+        if (series.getId() == null) {
+            throw new IllegalArgumentException("Series ID may not be null");
+        }
+        item.setDrilldown(series.getId());
+        addSeriesToDrilldownConfiguration(series);
+    }
+
+    /**
+     * Adds a new item to the series data and enables drilldown for it. Used for
+     * lazy loading drilldown. Using async drilldown requires setting
+     * {@link Chart#setDrilldownCallback(com.vaadin.addon.charts.DrilldownCallbackHandler)}
+     * to return a {@link Series} when drilldown is done.
+     * 
+     * The remaining drilldown configurations can be set in
+     * {@link Configuration#getDrilldown()}
+     * 
+     * @param item
+     */
+    public void addItemWithDrilldown(DataSeriesItem item) {
+        add(item);
+        item.setDrilldown(true);
+    }
+
+    private void addSeriesToDrilldownConfiguration(Series series) {
+        if (getConfiguration() != null) {
+            Drilldown drilldown = getConfiguration().getDrilldown();
+            drilldown.addSeries(series);
+        } else {
+            drilldownSeries.add(series);
+        }
+    }
+
+    boolean hasDrilldownSeries() {
+        return !drilldownSeries.isEmpty();
+    }
+
+    List<Series> getDrilldownSeries() {
+        return drilldownSeries;
     }
 
     /**

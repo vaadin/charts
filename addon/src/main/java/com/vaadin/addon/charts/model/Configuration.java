@@ -97,6 +97,7 @@ public class Configuration extends AbstractConfigurationObject {
     public void addSeries(Series series) {
         this.series.add(series);
         series.setConfiguration(this);
+        addSeriesToDrilldownConfiguration(series);
     }
 
     /**
@@ -119,6 +120,7 @@ public class Configuration extends AbstractConfigurationObject {
         this.series = series;
         for (Series s : series) {
             s.setConfiguration(this);
+            addSeriesToDrilldownConfiguration(s);
         }
     }
 
@@ -131,7 +133,30 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #setDrilldown(Drilldown)
+     * If series is a {@link DataSeries} and has drilldown Series that haven't
+     * be added to the {@link Drilldown} configuration object they will be added
+     * at this point
+     * 
+     * @param series
+     */
+    private void addSeriesToDrilldownConfiguration(Series series) {
+        if (series instanceof DataSeries) {
+            DataSeries dataSeries = (DataSeries) series;
+            if (dataSeries.hasDrilldownSeries()) {
+                Drilldown drilldown = getDrilldown();
+                for (Series s : ((DataSeries) series).getDrilldownSeries()) {
+                    drilldown.addSeries(s);
+                    addSeriesToDrilldownConfiguration(s);
+                }
+            }
+        }
+    }
+
+    /**
+     * Configuration options for drill down, the concept of inspecting
+     * increasingly high resolution data through clicking on chart items like
+     * columns or pie slices.
+     * 
      * @return current drilldown configuration
      */
     public Drilldown getDrilldown() {
@@ -140,18 +165,6 @@ public class Configuration extends AbstractConfigurationObject {
             drilldown.setConfiguration(this);
         }
         return drilldown;
-    }
-
-    /**
-     * Configuration options for drill down, the concept of inspecting
-     * increasingly high resolution data through clicking on chart items like
-     * columns or pie slices.
-     * 
-     * @param drilldown
-     */
-    public void setDrilldown(Drilldown drilldown) {
-        this.drilldown = drilldown;
-        drilldown.setConfiguration(this);
     }
 
     /**
@@ -627,31 +640,6 @@ public class Configuration extends AbstractConfigurationObject {
         DataAddedEvent dataAddedEvent = new DataAddedEvent(series, item, shift);
         for (ConfigurationChangeListener listener : changeListeners) {
             listener.dataAdded(dataAddedEvent);
-        }
-    }
-
-    /**
-     * Notifies listeners that a drilldown series has been added
-     * 
-     * @param series
-     * @param pointId
-     */
-    void fireDrilldownAdded(Series series, String pointId) {
-        for (ConfigurationChangeListener listener : changeListeners) {
-            listener.drilldownAdded(pointId, series);
-        }
-    }
-
-    /**
-     * Notifies listeners that a drilldown series has been added
-     * 
-     * @param seriesIndex
-     * @param pointIndex
-     * @param series
-     */
-    void fireDrilldownAdded(Series series, int seriesIndex, int pointIndex) {
-        for (ConfigurationChangeListener listener : changeListeners) {
-            listener.drilldownAdded(seriesIndex, pointIndex, series);
         }
     }
 

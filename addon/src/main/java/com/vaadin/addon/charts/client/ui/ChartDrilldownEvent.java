@@ -1,7 +1,6 @@
 package com.vaadin.addon.charts.client.ui;
 
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.core.client.JsArray;
 
 /*
  * #%L
@@ -26,17 +25,12 @@ public class ChartDrilldownEvent extends JavaScriptObject {
 
     public native final boolean isCategory()
     /*-{
-        return this.points;
+        return this.points && this.points.length > 1;
     }-*/;
 
     public native final boolean hasDrilldownSeries()
     /*-{
         return this.seriesOptions;
-    }-*/;
-
-    public native final JsArray<HighchartPoint> getPoints()
-    /*-{
-        return this.points;
     }-*/;
 
     public native final HighchartPoint getPoint()

@@ -58,7 +58,6 @@ public class ChartConnector extends AbstractComponentConnector {
     public static final String LEGENDITEM_CLICK_EVENT_ID = "lic";
     public static final String CHART_SELECTION_EVENT_ID = "cs";
     public static final String CHART_CLICK_EVENT_ID = "cl";
-    public static final String CHART_DRILLDOWN_EVENT_ID = "dd";
 
     public ChartConnector() {
         registerRpc(ChartClientRpc.class, new ChartClientRpc() {
@@ -172,18 +171,7 @@ public class ChartConnector extends AbstractComponentConnector {
             }
 
             @Override
-            public void addDrilldownById(final String series,
-                    final String pointId) {
-                Scheduler.get().scheduleDeferred(new ScheduledCommand() {
-                    @Override
-                    public void execute() {
-                        getWidget().addDrilldown(series, pointId);
-                    }
-                });
-            }
-
-            @Override
-            public void addDrilldownByIndex(final String series,
+            public void addDrilldown(final String series,
                     final int seriesIndex, final int pointIndex) {
                 Scheduler.get().scheduleDeferred(new ScheduledCommand() {
                     @Override
@@ -224,20 +212,18 @@ public class ChartConnector extends AbstractComponentConnector {
                 }
             });
         }
-        if (getState().registeredEventListeners != null
-                && getState().registeredEventListeners
-                        .contains(CHART_DRILLDOWN_EVENT_ID)) {
-            cfg.setDrilldownHandler(new ChartDrilldownHandler() {
+        cfg.setDrilldownHandler(new ChartDrilldownHandler() {
 
-                @Override
-                public void onDrilldown(ChartDrilldownEvent event) {
+            @Override
+            public void onDrilldown(ChartDrilldownEvent event) {
+                if (!event.isCategory() && !event.hasDrilldownSeries()) {
                     DrilldownEventDetails details = DrilldownEventDetailsBuilder
                             .buildDrilldownEventDetails(event, getWidget());
 
                     rpc.onChartDrilldown(details);
                 }
-            });
-        }
+            }
+        });
         if (getState().registeredEventListeners != null
                 && getState().registeredEventListeners
                         .contains(POINT_CLICK_EVENT_ID)) {

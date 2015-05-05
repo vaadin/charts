@@ -18,11 +18,8 @@ package com.vaadin.addon.charts.model;
  */
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
-import com.vaadin.addon.charts.ChartDrilldownEvent;
 import com.vaadin.addon.charts.model.style.Style;
 
 /**
@@ -35,74 +32,18 @@ public class Drilldown extends AbstractConfigurationObject {
     private Style activeDataLabelStyle;
     private Object animation;
     private DrillUpButton drillUpButton;
-
     private List<Series> series = new ArrayList<Series>();
     private transient Configuration configuration;
 
     /**
-     * @see #setSeries(List)
-     */
-    public List<Series> getSeries() {
-        return Collections.unmodifiableList(series);
-    }
-
-    /**
-     * @see #setSeries(List)
+     * Adds a series configurations for the drilldown. These drilldown series
+     * are hidden by default. The drilldown series is linked to the parent
+     * series' point by its {@link Series#getId()}
+     * 
      * @param series
      */
-    public void addSeries(Series series) {
+    void addSeries(Series series) {
         this.series.add(series);
-    }
-
-    /**
-     * Series configurations for the drilldown. These drilldown series are
-     * hidden by default. The drilldown series is linked to the parent series'
-     * point by its {@link Series#getId()}
-     * 
-     * @param series
-     */
-    public void setSeries(List<Series> series) {
-        this.series = series;
-    }
-
-    /**
-     * @see #setSeries(List)
-     * @param series
-     */
-    public void setSeries(Series... series) {
-        setSeries(Arrays.asList(series));
-    }
-
-    /**
-     * Drilldowns the point with the specified series. Used for asynchronous
-     * drilldown. For synchronous drilldown use {@link #setSeries(List)} This
-     * method together with {@link #addPointDrilldown(int, int, Series)} should
-     * be called only once per {@link ChartDrilldownEvent}
-     * 
-     * @param pointId
-     * @param series
-     */
-    public void addPointDrilldown(String pointId, Series series) {
-        if (getConfiguration() != null) {
-            getConfiguration().fireDrilldownAdded(series, pointId);
-        }
-    }
-
-    /**
-     * Drilldowns the point with the specified series. Used for asynchronous
-     * drilldown. For synchronous drilldown use {@link #setSeries(List)} This
-     * method together with {@link #addPointDrilldown(String, Series)} should be
-     * called only once per {@link ChartDrilldownEvent}
-     * 
-     * @param seriesIndex
-     * @param pointIndex
-     * @param series
-     */
-    public void addPointDrilldown(int seriesIndex, int pointIndex, Series series) {
-        if (getConfiguration() != null) {
-            getConfiguration().fireDrilldownAdded(series, seriesIndex,
-                    pointIndex);
-        }
     }
 
     /**

@@ -123,10 +123,6 @@ public class HighchartWidget extends Widget {
         });
     }
 
-    public void addDrilldown(String series, String pointId) {
-        jsOverlay.addDrilldown(series, pointId);
-    }
-
     public void addDrilldown(String series, int seriesIndex, int pointIndex) {
         jsOverlay.addDrilldown(series, seriesIndex, pointIndex);
     }

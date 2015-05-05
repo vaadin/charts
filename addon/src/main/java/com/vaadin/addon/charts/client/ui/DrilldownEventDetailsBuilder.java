@@ -35,15 +35,6 @@ public class DrilldownEventDetailsBuilder {
     public static DrilldownEventDetails buildDrilldownEventDetails(
             ChartDrilldownEvent event, HighchartWidget widget) {
         DrilldownEventDetails result = new DrilldownEventDetails();
-        result.setCategory(event.isCategory());
-        result.setHasDrilldownSeries(event.hasDrilldownSeries());
-
-        if (event.isCategory()) {
-            for (int i = 0; i < event.getPoints().length(); i++) {
-                HighchartPoint point = event.getPoints().get(i);
-                result.addPoint(buildDrilldownPoint(point, widget));
-            }
-        }
         result.setPoint(buildDrilldownPoint(event.getPoint(), widget));
 
         return result;

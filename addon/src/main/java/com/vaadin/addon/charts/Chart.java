@@ -17,8 +17,6 @@ package com.vaadin.addon.charts;
  * #L%
  */
 
-import static com.vaadin.addon.charts.shared.ChartConnector.CHART_DRILLDOWN_EVENT_ID;
-
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.lang.reflect.Method;
@@ -36,6 +34,7 @@ import com.vaadin.addon.charts.model.ChartModel;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
+import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.Series;
 import com.vaadin.addon.charts.shared.ChartClientRpc;
 import com.vaadin.addon.charts.shared.ChartConnector;
@@ -160,16 +159,9 @@ public class Chart extends AbstractComponent {
         }
 
         @Override
-        public void drilldownAdded(String pointId, Series series) {
-            chart.getRpcProxy(ChartClientRpc.class).addDrilldownById(
-                    series.toString(), pointId);
-
-        }
-
-        @Override
         public void drilldownAdded(int seriesIndex, int pointIndex,
                 Series series) {
-            chart.getRpcProxy(ChartClientRpc.class).addDrilldownByIndex(
+            chart.getRpcProxy(ChartClientRpc.class).addDrilldown(
                     series.toString(), seriesIndex, pointIndex);
 
         }
@@ -186,15 +178,27 @@ public class Chart extends AbstractComponent {
 
         @Override
         public void onChartDrilldown(DrilldownEventDetails details) {
-            Series series = null;
-            if (!details.isCategory()) {
-                series = getSeriesBasedOnIndex(details.getPoint()
-                        .getSeriesIndex());
+            final int seriesIndex = details.getPoint().getSeriesIndex();
+            final int pointIndex = details.getPoint().getIndex();
+            Series series = getSeriesBasedOnIndex(seriesIndex);
+            DataSeriesItem item = null;
+            if (series instanceof DataSeries) {
+                DataSeries dataSeries = (DataSeries) series;
+                item = dataSeries.get(pointIndex);
             }
-            final ChartDrilldownEvent chartClickEvent = new ChartDrilldownEvent(
-                    Chart.this, series, details);
+            final DrilldownEvent chartDrilldownEvent = new DrilldownEvent(
+                    Chart.this, series, item, pointIndex);
 
-            fireEvent(chartClickEvent);
+            if (getDrilldownCallback() != null) {
+                Series drilldownSeries = getDrilldownCallback()
+                        .handleDrilldown(chartDrilldownEvent);
+                if (drilldownSeries != null) {
+                    getRpcProxy(ChartClientRpc.class)
+                            .addDrilldown(drilldownSeries.toString(),
+                                    seriesIndex, pointIndex);
+
+                }
+            }
         }
 
         @Override
@@ -240,6 +244,8 @@ public class Chart extends AbstractComponent {
      */
     private final ConfigurationChangeListener changeListener = new ProxyChangeForwarder(
             this);
+
+    private DrilldownCallback drilldownCallback;
 
     private String jsonConfig;
 
@@ -383,10 +389,6 @@ public class Chart extends AbstractComponent {
     private final static Method chartClickMethod = ReflectTools.findMethod(
             ChartClickListener.class, "onClick", ChartClickEvent.class);
 
-    private final static Method chartDrilldownMethod = ReflectTools.findMethod(
-            ChartDrilldownListener.class, "onDrilldown",
-            ChartDrilldownEvent.class);
-
     private final static Method pointClickMethod = ReflectTools.findMethod(
             PointClickListener.class, "onClick", PointClickEvent.class);
 
@@ -410,14 +412,24 @@ public class Chart extends AbstractComponent {
     }
 
     /**
-     * Adds chart drilldown listener, which will be notified when a drilldown
-     * point is clicked
-     * 
-     * @param listener
+     * @see #setDrilldownCallback(DrilldownCallback)
+     * @return drilldownCallbackHandler
      */
-    public void addChartDrilldownListener(ChartDrilldownListener listener) {
-        this.addListener(CHART_DRILLDOWN_EVENT_ID,
-                ChartDrilldownEvent.class, listener, chartDrilldownMethod);
+    public DrilldownCallback getDrilldownCallback() {
+        return drilldownCallback;
+    }
+
+    /**
+     * Sets the Chart drilldown handler that's responsible for returning the
+     * drilldown series for each drilldown callback when doing async drilldown
+     * 
+     * @see DataSeries#addItemWithDrilldown(com.vaadin.addon.charts.model.DataSeriesItem)
+     *      addItemWithDrilldown to find out how to enable async drilldown
+     * 
+     * @param drilldownCallback
+     */
+    public void setDrilldownCallback(DrilldownCallback drilldownCallback) {
+        this.drilldownCallback = drilldownCallback;
     }
 
     /**

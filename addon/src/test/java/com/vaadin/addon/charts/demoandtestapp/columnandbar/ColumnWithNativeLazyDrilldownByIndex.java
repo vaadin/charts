@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.vaadin.addon.charts.Chart;
-import com.vaadin.addon.charts.ChartDrilldownEvent;
-import com.vaadin.addon.charts.ChartDrilldownListener;
+import com.vaadin.addon.charts.DrilldownCallback;
+import com.vaadin.addon.charts.DrilldownEvent;
 import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.demoandtestapp.SkipFromDemo;
 import com.vaadin.addon.charts.model.AxisType;
@@ -14,13 +14,12 @@ import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.Cursor;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
-import com.vaadin.addon.charts.model.Drilldown;
 import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
+import com.vaadin.addon.charts.model.Series;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
-import com.vaadin.addon.charts.shared.DrilldownPointDetails;
 import com.vaadin.ui.Component;
 
 @SuppressWarnings("serial")
@@ -67,20 +66,30 @@ public class ColumnWithNativeLazyDrilldownByIndex extends
         tooltip.setHeaderFormat("<span style=\"font-size:11px\">{series.name}</span><br>");
         tooltip.setPointFormat("<span style=\"color:{point.color}\">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>");
         conf.setTooltip(tooltip);
-
         topCategories = new String[] { "MSIE", "Firefox", "Chrome", "Safari",
                 "Opera" };
-        Number[] ys = new Number[] { 55.11, 21.63, 11.94, 7.15, 2.14 };
+
         DataSeries series = new DataSeries();
         series.setName("Browser brands");
-        for (int i = 0; i < topCategories.length; i++) {
-            DataSeriesItem item = new DataSeriesItem(topCategories[i], ys[i]);
-            item.setDrilldown(topCategories[i]);
-            series.add(item);
-        }
         PlotOptionsColumn plotOptionsColumn = new PlotOptionsColumn();
         plotOptionsColumn.setColorByPoint(true);
         series.setPlotOptions(plotOptionsColumn);
+
+        DataSeriesItem item = new DataSeriesItem("MSIE", 55.11);
+        series.addItemWithDrilldown(item);
+
+        item = new DataSeriesItem("Firefox", 21.63);
+        series.addItemWithDrilldown(item);
+
+        item = new DataSeriesItem("Chrome", 11.94);
+        series.addItemWithDrilldown(item);
+
+        item = new DataSeriesItem("Safari", 7.15);
+        series.addItemWithDrilldown(item);
+
+        item = new DataSeriesItem("Opera", 2.14);
+        series.addItemWithDrilldown(item);
+
         conf.addSeries(series);
 
         drillSeries = new HashMap<String, DataSeries>();
@@ -88,7 +97,7 @@ public class ColumnWithNativeLazyDrilldownByIndex extends
         DataSeries drill = new DataSeries("MSIE versions");
         String[] categories = new String[] { "MSIE 6.0", "MSIE 7.0",
                 "MSIE 8.0", "MSIE 9.0" };
-        ys = new Number[] { 10.85, 7.35, 33.06, 2.81 };
+        Number[] ys = new Number[] { 10.85, 7.35, 33.06, 2.81 };
         drill.setData(categories, ys);
         drillSeries.put("MSIE", drill);
 
@@ -121,37 +130,18 @@ public class ColumnWithNativeLazyDrilldownByIndex extends
         drill.setData(categories, ys);
         drillSeries.put("Opera", drill);
 
-        chart.addChartDrilldownListener(new ChartDrilldownListener() {
+        chart.setDrilldownCallback(new DrilldownCallback() {
 
             @Override
-            public void onDrilldown(ChartDrilldownEvent event) {
-                if (event.getPoint() != null) {
-                    doPointDrilldown(event.getPoint());
-                } else if (event.getPoints() != null) {
-                    doPointDrilldown(event.getPoints().get(0));
-                }
+            public Series handleDrilldown(DrilldownEvent event) {
+                return getPointDrilldown(event.getItemIndex());
             }
         });
         return chart;
     }
 
-    private void doPointDrilldown(DrilldownPointDetails point) {
-        Drilldown drilldown = conf.getDrilldown();
-        if (point.getId() != null) {
-            String pointId = point.getId();
-            DataSeries series = drillSeries.get(pointId);
-            if (series != null) {
-                drilldown.addPointDrilldown(pointId, series);
-            }
-        } else {
-            DataSeries series = drillSeries
-                    .get(topCategories[point.getIndex()]);
-            int pointIndex = point.getIndex();
-            int seriesIndex = point.getSeriesIndex();
-            if (series != null) {
-                drilldown.addPointDrilldown(seriesIndex, pointIndex, series);
-            }
-        }
-
+    private Series getPointDrilldown(int itemIndex) {
+        return drillSeries.get(topCategories[itemIndex]);
     }
+
 }

@@ -19,7 +19,7 @@ package com.vaadin.addon.charts.model;
 
 import java.util.Date;
 
-import com.vaadin.addon.charts.ChartDrilldownEvent;
+import com.vaadin.addon.charts.DrilldownCallback;
 import com.vaadin.addon.charts.model.style.Color;
 
 /**
@@ -32,7 +32,7 @@ public class DataSeriesItem extends AbstractSeriesItem {
     private Number high;
     private Boolean selected;
     private Dial dial;
-    private String drilldown;
+    private Object drilldown;
     private Labels dataLabels;
     private String cursor;
 
@@ -314,22 +314,24 @@ public class DataSeriesItem extends AbstractSeriesItem {
     }
 
     /**
-     * @see #setDrilldown(String)
-     * @return drilldown
-     */
-    public String getDrilldown() {
-        return drilldown;
-    }
-
-    /**
-     * The ID of a series in the {@link Drilldown#setSeries(java.util.List)}
-     * list to use for a drilldown for this point. If the value doesn't
-     * correspond to the ID of a series the point will be shown as if drilldown
-     * was enabled and a {@link ChartDrilldownEvent} will be triggered
+     * The ID of a series in the {@link Drilldown#addSeries(Series)} list to use
+     * for a drilldown for this point. If the value doesn't correspond to the ID
+     * of a series the point will be shown as if drilldown was enabled and a
+     * {@link DrilldownCallback} will be triggered when user clicks in a point.
      * 
      * @param drilldown
      */
-    public void setDrilldown(String drilldown) {
+    void setDrilldown(String drilldown) {
+        this.drilldown = drilldown;
+    }
+
+    /**
+     * True to enable drilldown and a {@link DrilldownCallback} will be
+     * triggered when user clicks in a point.
+     * 
+     * @param drilldown
+     */
+    void setDrilldown(Boolean drilldown) {
         this.drilldown = drilldown;
     }
 
