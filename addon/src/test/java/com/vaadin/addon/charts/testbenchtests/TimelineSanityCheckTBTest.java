@@ -1,6 +1,8 @@
 package com.vaadin.addon.charts.testbenchtests;
 
 import com.vaadin.addon.charts.demoandtestapp.timeline.SanityCheck;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TimelineSanityCheckTBTest extends
         AbstractSimpleScreenShotTestBenchTest {
@@ -19,6 +21,13 @@ public class TimelineSanityCheckTBTest extends
     @Override
     protected String getPackageName() {
         return "timeline";
+    }
+
+    @Override
+    protected void waitUntilChartRendered() {
+        new WebDriverWait(driver, 120).until(ExpectedConditions
+                .presenceOfElementLocated(com.vaadin.testbench.By
+                        .className("v-timeline")));
     }
 
 }
