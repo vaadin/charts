@@ -12,7 +12,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<vaadin.version>7.3.6</vaadin.version>
 		<vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
-		<vaadin.charts.version>2.1-SNAPSHOT</vaadin.charts.version>
+		<vaadin.charts.version>3.0-SNAPSHOT</vaadin.charts.version>
 		<batik.version>1.7</batik.version>
 	</properties>
 	<repositories>
