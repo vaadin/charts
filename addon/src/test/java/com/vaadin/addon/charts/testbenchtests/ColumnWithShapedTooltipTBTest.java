@@ -28,10 +28,9 @@ public class ColumnWithShapedTooltipTBTest extends
     protected void testCustomStuff() {
         super.testCustomStuff();
         WebElement findElement = driver.findElement(By.id("chart"));
-        Action move = new Actions(driver).moveToElement(findElement, 400, 255)
+        Action move = new Actions(driver).moveToElement(findElement, 415, 280)
                 .build();
         move.perform();
-
     }
 
     @Override
