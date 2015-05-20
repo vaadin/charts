@@ -48,6 +48,8 @@ public class Legend extends AbstractConfigurationObject {
     private Number itemMarginBottom;
     private Number margin;
     private Number symbolHeight;
+    private Boolean useHTML;
+
 
     public Legend() {
     }
@@ -455,4 +457,18 @@ public class Legend extends AbstractConfigurationObject {
         this.symbolHeight = symbolHeight;
     }
 
+    /**
+     * @return Whether HTML is used to render the legend item texts
+     */
+    public Boolean isUseHTML() {
+        return useHTML == null ? false : useHTML;
+    }
+
+    /**
+     * Set whether to use HTML to render the legend item texts.
+     * @param useHTML true to render the texts as HTML
+     */
+    public void setUseHTML(Boolean useHTML) {
+        this.useHTML = useHTML;
+    }
 }
