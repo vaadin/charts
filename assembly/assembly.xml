@@ -28,6 +28,10 @@
 			<directory>assembly/assets</directory>
 			<outputDirectory>assets</outputDirectory>
 		</fileSet>
+		<fileSet>
+			<directory>charts-webcomponent/target/zip</directory>
+			<outputDirectory>webcomponent</outputDirectory>
+		</fileSet>
 	</fileSets>
 
 	<files>
