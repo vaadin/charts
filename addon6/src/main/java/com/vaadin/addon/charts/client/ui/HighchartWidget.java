@@ -120,22 +120,21 @@ public class HighchartWidget extends Widget implements Paintable,
     public void updateFromUIDL(UIDL mainUidl, ApplicationConnection client) {
         if (this.client == null) {
             this.client = client;
-            this.paintableId = mainUidl.getId();
+            paintableId = mainUidl.getId();
         }
         if (!client.updateComponent(this, mainUidl, true)) {
             if (mainUidl.hasAttribute("confState")
                     || mainUidl.hasAttribute("jsonState")) {
-                VConsole.error("full paint");
                 final HighchartConfig cfg = HighchartConfig
                         .createFromServerSideString(
                                 mainUidl.getStringAttribute("confState"),
                                 mainUidl.getStringAttribute("jsonState"));
 
                 if (client.hasEventListeners(this, CHART_CLICK_EVENT_ID)) {
-                    cfg.setClickHandler((ChartClickHandler) this);
+                    cfg.setClickHandler(this);
                 }
                 if (client.hasEventListeners(this, POINT_CLICK_EVENT_ID)) {
-                    cfg.setSeriesPointClickHandler((PointClickHandler) this);
+                    cfg.setSeriesPointClickHandler(this);
                 }
                 if (client.hasEventListeners(this, LEGENDITEM_CLICK_EVENT_ID)) {
                     cfg.setLegendItemClickHandler(this);

@@ -1,0 +1,15 @@
+*.iml
+target/
+.idea
+.classpath
+.project
+.settings
+rebel.xml
+
+demo/src/main/webapp/VAADIN/
+chart-plugin-demo/src/main/webapp/VAADIN/
+chart-export-demo/src/main/webapp/VAADIN/
+chart-export-demo/target/
+
+# Mac
+*.DS_Store
