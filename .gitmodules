@@ -1,3 +1,3 @@
 [submodule "charts-webcomponent"]
 	path = charts-webcomponent
-	url = git@github.com:vaadin/charts-component.git
+	url = https://github.com/vaadin/charts-component.git
