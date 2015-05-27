@@ -11,7 +11,7 @@
 
     <modules>
         <module>addon</module>
-        
+
   </modules>
 
     <organization>
@@ -109,19 +109,6 @@
                                 <goals>
                                     <goal>bower</goal>
                                 </goals>
-                            </execution>
-
-                            <execution>
-                                <id>gulp clean</id>
-                                <goals>
-                                    <goal>gulp</goal>
-                                </goals>
-
-                                <phase>clean</phase>
-
-                                <configuration>
-                                    <arguments>clean</arguments>
-                                </configuration>
                             </execution>
 
                             <execution>
