@@ -111,6 +111,28 @@
             margin-top: 0;
         }
 
+        table {
+            width: 490px;
+            margin: 30px 0;
+        }
+
+        thead {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        thead td {
+            padding: 4px 10px 4px 2px;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: #efeee9;
+        }
+
+        tbody td {
+            padding: 4px 10px 4px 5px;
+        }
+
         /***************************************************
          * Furniture
          ***************************************************/
@@ -477,36 +499,19 @@
     <p>Vaadin Charts is an add-on for Vaadin Framework. It provides advanced charting functionality for any
        mobile or desktop Vaadin application.</p>
 
-    <h2 id="overview_since_2x">Overview of changes in 2.1</h2>
+    <h2 id="overview_since_3x">Overview of changes in 3.0</h2>
 
     <ul>
-        <li>Drilldown support</li>
-        <li>Treemap series</li>
-        <li>Polygon series</li>
-        <li>Data label shapes</li>
-        <li>Axis label rotation</li>
-        <li>Item specific cursors</li>
-        <li>Helper for creating Sparklines</li>
-        <li>JSON library changed to Jackson</li>
-        <li>Upgrade Highcharts to 4.1.5</li>
-        <li>Additional API for different features of the underlying Highcharts</li>
+        <li>Added Web Component version of Vaadin Charts</li>
     </ul>
 
-    <h2 id="changes_since_2x">Changelog for 2.1</h2>
+    <!--<h2 id="changes_since_3x">Changelog for 3.0</h2>
 
     <table>
         <tbody>
-            <tr><td><a href="https://dev.vaadin.com/ticket/13339">#13339</a></td><td>Add support for animated drilldown</td></tr>
-            <tr><td><a href="https://dev.vaadin.com/ticket/15423">#15423</a></td><td>zAxis is missing in configuration</td></tr>
-            <tr><td><a href="https://dev.vaadin.com/ticket/17030">#17030</a></td><td>ChartDataSeries does not convert Dates from timezone to UTC using Util.toHighchartsTS</td></tr>
-            <tr><td><a href="https://dev.vaadin.com/ticket/14323">#14323</a></td><td>There should be helpers to create sparklines with Vaadin Charts</td></tr>
-            <tr><td><a href="https://dev.vaadin.com/ticket/16784">#16784</a></td><td>`gotAllPlotOptions()` throws NullPointerException when called before setting any plot options.</td></tr>
-            <tr><td><a href="https://dev.vaadin.com/ticket/12038">#12038</a></td><td>Change JSON library to Jackson</td></tr>
-            <tr><td><a href="https://dev.vaadin.com/ticket/15349">#15349</a></td><td>ContainerDataSeries missing setters for low and high property IDs II</td></tr>
-            <tr><td><a href="https://dev.vaadin.com/ticket/17406">#17406</a></td><td>Upgrade to highcharts 4.1.4</td></tr>
-            <tr><td><a href="https://dev.vaadin.com/ticket/17420">#17420</a></td><td>Charts should feature the new TreeMap graph in Highcharts 4.1</td></tr>
+            <tr><td><a href="https://dev.vaadin.com/ticket/123">#123</a></td><td>Lorem ipsum</td></tr>
         </tbody>
-    </table>
+    </table>-->
 
     <h2 id="package_contents">Package Contents</h2>
 
@@ -540,44 +545,75 @@
             <td>Third party libraries needed by Vaadin Charts.
             </td>
         </tr>
+        <tr>
+            <td>
+                <pre>webcomponent</pre>
+            </td>
+            <td>The Web Component version of Vaadin Charts.
+            </td>
+        </tr>
     </table>
 
     <h2 id="dependencies">Third Party Dependencies</h2>
 
     <p>All dependencies are included in the package in the <tt>addon/lib</tt> directory.
-        Vaadin Charts 2 directly depends on the following third-party libraries:</p>
+        Vaadin Charts 3 directly depends on the following third-party libraries:</p>
 
     <ul>
-        <li>Apache commons-io 1.4</li>
-        <li>Jackson databind 2.5.2</li>
+        <li>Apache commons-io</li>
+        <li>Jackson databind</li>
+        <li>Polymer</li>
+        <li>webcomponents.js</li>
     </ul>
 
     <h2 id="migration_notes">Migration Notes</h2>
 
-    <p>Vaadin Charts 2 is API compatible with Vaadin Charts 1.x, and can thus be used as a drop-in replacement for
-        any 1.x version. Vaadin Charts 1.x licenses are valid for Vaadin Charts 2.x.</p>
+    <p>Vaadin Charts 3 is API compatible with Vaadin Charts 1.x and 2.x. It can thus be used as a drop-in replacement
+        for any 1.x or 2.x version. Vaadin Charts 1.x licenses are valid for Vaadin Charts 3.x if you haven't upgraded
+        to 2.x before.</p>
 
     <h2 id="supported_platforms_and_browsers">Supported Platforms and Browsers</h2>
 
-    <p>Vaadin Charts 2 supports the following browsers:</p>
+    <p>Vaadin Charts 3 browser support varies depending on whether you use the GWT or the Web Component version:</p>
 
-    <ul>
-        <li>Latest Google Chrome</li>
-        <li>Internet Explorer 8, 9, 10, 11</li>
-        <li>Latest Mozilla Firefox</li>
-        <li>Latest Opera</li>
-        <li>Mobile browsers:
-            <ul>
-                <li>Latest Android default browser</li>
-                <li>Latest iOS Safari</li>
-                <li>Latest Windows Phone</li>
-            </ul>
-        </li>
-    </ul>
+    <table>
+        <thead>
+        <tr>
+            <td>Desktop browser</td>
+            <td>Server-side</td>
+            <td>Web Component</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr><td>Latest Google Chrome</td><td>yes</td><td>yes</td></tr>
+        <tr><td>Internet Explorer 8</td><td>yes</td><td>no</td></tr>
+        <tr><td>Internet Explorer 9</td><td>yes</td><td>no</td></tr>
+        <tr><td>Internet Explorer 10</td><td>yes</td><td>yes</td></tr>
+        <tr><td>Internet Explorer 11</td><td>yes</td><td>yes</td></tr>
+        <tr><td>Latest Mozilla Firefox</td><td>yes</td><td>yes</td></tr>
+        <tr><td>Latest Opera</td><td>yes</td><td>yes</td></tr>
+        </tbody>
+    </table>
+
+    <table>
+        <thead>
+        <tr>
+            <td>Mobile browser</td>
+            <td>Server-side</td>
+            <td>Web Component</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr><td>Latest Android default browser</td><td>yes</td><td>yes</td></tr>
+        <tr><td>Latest iOS Safari</td><td>yes</td><td>yes</td></tr>
+        <tr><td>Latest Windows Phone</td><td>yes</td><td>no</td></tr>
+        </tbody>
+    </table>
+
 </div>
 
 <div id="footer">
-      <span class="slogan"><strong>vaadin <em>}&gt;</em> </strong> thinking of U and I<span>
+      <span class="slogan"><strong>vaadin <em>}&gt;</em> </strong> thinking of U and I</span>
       <a href="#top">&uarr; Back to top</a>
 </div>
 <!-- /footer -->
