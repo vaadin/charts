@@ -31,7 +31,7 @@ public abstract class AbstractSimpleScreenShotTestBenchTest extends
      * necessary in the cases where the test grid is overloaded.
      */
     protected void waitUntilChartRendered() {
-        new WebDriverWait(driver, 120).until(ExpectedConditions
+        new WebDriverWait(driver, 90).until(ExpectedConditions
                 .presenceOfElementLocated(com.vaadin.testbench.By
                         .className("highcharts-container")));
     }
