@@ -50,7 +50,6 @@ public class Legend extends AbstractConfigurationObject {
     private Number symbolHeight;
     private Boolean useHTML;
 
-
     public Legend() {
     }
 
@@ -466,7 +465,9 @@ public class Legend extends AbstractConfigurationObject {
 
     /**
      * Set whether to use HTML to render the legend item texts.
-     * @param useHTML true to render the texts as HTML
+     *
+     * @param useHTML
+     *            true to render the texts as HTML
      */
     public void setUseHTML(Boolean useHTML) {
         this.useHTML = useHTML;

@@ -92,7 +92,7 @@ public class TreeSeriesItem extends AbstractSeriesItem {
     }
 
     /**
-     * @see #setColorValue(Number) 
+     * @see #setColorValue(Number)
      * @return
      */
     public Number getColorValue() {

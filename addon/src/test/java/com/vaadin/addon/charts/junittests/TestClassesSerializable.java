@@ -47,7 +47,7 @@ public class TestClassesSerializable extends TestCase {
     /**
      * Tests that all the relevant classes and interfaces under
      * {@link #BASE_PACKAGES} implement Serializable.
-    *
+     *
      * @throws Exception
      */
     public void testClassesSerializable() throws Exception {

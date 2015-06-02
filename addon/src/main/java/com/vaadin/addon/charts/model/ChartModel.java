@@ -208,8 +208,8 @@ public class ChartModel extends AbstractConfigurationObject {
 
     /**
      * Equivalent to zoomType, but for multitouch gestures only. By default, the
-     * pinchType behavior is the same as the zoomType setting. However, pinching can be
-     * enabled separately in some cases. Defaults to null.
+     * pinchType behavior is the same as the zoomType setting. However, pinching
+     * can be enabled separately in some cases. Defaults to null.
      * 
      * @param pinchType
      */

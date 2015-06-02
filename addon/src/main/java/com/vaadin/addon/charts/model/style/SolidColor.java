@@ -8,10 +8,10 @@ package com.vaadin.addon.charts.model.style;
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
- * 
+ *
  * See the file licensing.txt distributed with this software for more
  * information about licensing.
- * 
+ *
  * You should have received a copy of the CVALv3 along with this program.
  * If not, see <https://vaadin.com/license/cval-3>.
  * #L%
@@ -180,7 +180,7 @@ public class SolidColor extends AbstractConfigurationObject implements Color {
 
     /**
      * Constructs a new color from a hex value like "#ff0000" for red.
-     * 
+     *
      * @param color
      */
     public SolidColor(String color) {
@@ -192,7 +192,7 @@ public class SolidColor extends AbstractConfigurationObject implements Color {
 
     /**
      * Constructs a color from RGB values
-     * 
+     *
      * @param red
      *            Red value (0...255)
      * @param green
@@ -212,7 +212,7 @@ public class SolidColor extends AbstractConfigurationObject implements Color {
 
     /**
      * Constructs a color from RGBA values
-     * 
+     *
      * @param red
      *            Red value (0...255)
      * @param green
@@ -225,7 +225,10 @@ public class SolidColor extends AbstractConfigurationObject implements Color {
     public SolidColor(int red, int green, int blue, double opacity) {
         if (red < 0 || red > 255 || green < 0 || green > 255 || blue < 0
                 || blue > 255 || opacity < 0.0 || opacity > 1.0) {
-            throw new IllegalArgumentException("Invalid color values given.");
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Invalid color values given. Red: %s, green: %s blue: %s, opacity: %s",
+                            red, green, blue, opacity));
         }
 
         color = String.format(Locale.ENGLISH, "rgba(%d,%d,%d,%.2f)", red,

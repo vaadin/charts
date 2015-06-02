@@ -27,14 +27,14 @@ public class LegendItemClickEvent extends com.vaadin.ui.Component.Event {
 
     private Series series;
     private int seriesItemIndex;
+
     /**
      * Constructs a LegendItemClickEvent
      * 
      * @param source
      * @param seriesName
      */
-    public LegendItemClickEvent(Chart source, Series series,
- int seriesItemIndex) {
+    public LegendItemClickEvent(Chart source, Series series, int seriesItemIndex) {
         super(source);
         this.series = series;
         this.seriesItemIndex = seriesItemIndex;
