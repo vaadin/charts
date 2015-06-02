@@ -1330,7 +1330,8 @@ public class Timeline extends AbstractComponent implements LegacyComponent {
             for (int i = 0; i < cols.length; i++) {
                 TimelineDatasourceProperties ds = datasources.get(i);
                 cols[i] = ds.getColor().toString();
-                getLogger().finest("Graph " + i + " stroke color is " + cols[i]);
+                getLogger()
+                        .finest("Graph " + i + " stroke color is " + cols[i]);
             }
             target.addAttribute(TimelineConstants.ATTRIBUTE_COLORS, cols);
             sendGraphColors = false;
@@ -1567,8 +1568,7 @@ public class Timeline extends AbstractComponent implements LegacyComponent {
         // Send the graph grid color if it has changed
         if (sendGraphGrid) {
             getLogger().finest("Grid color is " + graphGridColor);
-            target.addAttribute(
-                    TimelineConstants.ATTRIBUTE_GRID_COLOR,
+            target.addAttribute(TimelineConstants.ATTRIBUTE_GRID_COLOR,
                     graphGridColor == null ? "" : graphGridColor.toString());
             sendGraphGrid = false;
         }

@@ -19,8 +19,8 @@ import org.apache.commons.io.IOUtils;
 import org.reflections.Reflections;
 import org.vaadin.googleanalytics.tracking.GoogleAnalyticsTracker;
 
-import com.vaadin.addon.charts.demoandtestapp.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.demoandtestapp.SkipFromDemo;
+import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.examples.SkipFromDemo;
 import com.vaadin.addon.charts.themes.GrayTheme;
 import com.vaadin.addon.charts.themes.GridTheme;
 import com.vaadin.addon.charts.themes.HighChartsDefaultTheme;
@@ -104,12 +104,12 @@ public class ChartsDemoUI extends UI {
         replaced = replaced.replaceAll("Of", "of");
         replaced = replaced.replaceAll("Api", "API");
         replaced = replaced.replaceAll("3 D", "3D");
-        return replaced.substring(0,1).toUpperCase() + replaced.substring(1);
+        return replaced.substring(0, 1).toUpperCase() + replaced.substring(1);
     }
 
     static {
         Reflections reflections = new Reflections(
-                "com.vaadin.addon.charts.demoandtestapp");
+                "com.vaadin.addon.charts.examples");
 
         Set<Class<? extends AbstractVaadinChartExample>> subTypes = reflections
                 .getSubTypesOf(AbstractVaadinChartExample.class);
@@ -329,6 +329,7 @@ public class ChartsDemoUI extends UI {
     }
 
     HashSet<Object> expandedItemIds = new HashSet<Object>();
+
     private void expandForFiltering() {
         expandedItemIds.clear();
         for (Object itemId : tree.getVisibleItemIds()) {
@@ -381,7 +382,8 @@ public class ChartsDemoUI extends UI {
         for (int i = 0; i < GROUP_CAPTIONS.length; i++) {
             String group = GROUP_ORDER[i];
             Item groupItem = hierarchicalContainer.addItem(group);
-            groupItem.getItemProperty("displayName").setValue(GROUP_CAPTIONS[i]);
+            groupItem.getItemProperty("displayName")
+                    .setValue(GROUP_CAPTIONS[i]);
             List<Class<? extends AbstractVaadinChartExample>> list = tests
                     .get(group);
             for (Class<? extends AbstractVaadinChartExample> class1 : list) {

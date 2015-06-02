@@ -17,7 +17,6 @@ package com.vaadin.addon.charts.client.ui;
  * #L%
  */
 
-
 public class PointClickEvent extends AbstractClickEvent {
     protected PointClickEvent() {
     }
