@@ -10,6 +10,7 @@ $v-included-components: label, link, orderedlayout, tabsheet, tree, combobox, op
 $v-included-additional-styles: ();
 
 @import "../valo/valo";
+@import "prettify.scss";
 
 .charts-demo {
   @include valo;
