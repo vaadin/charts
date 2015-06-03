@@ -22,6 +22,9 @@ import java.io.Serializable;
 /**
  * Identifier interface for different type of colors used in HighCharts model
  * and theme
+ * 
+ * @see GradientColor
+ * @see SolidColor
  */
 public interface Color extends Serializable {
 
