@@ -18,7 +18,7 @@ package com.vaadin.addon.charts.model;
  */
 
 /**
- * Colour axis for map charts.
+ * Color axis for map charts.
  * 
  * @since 2.0
  *

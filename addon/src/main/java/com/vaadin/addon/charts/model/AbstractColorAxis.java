@@ -20,7 +20,7 @@ package com.vaadin.addon.charts.model;
 import com.vaadin.addon.charts.model.style.SolidColor;
 
 /**
- * Support for colours in axes that need it.
+ * Support for colors in axes that need it.
  * 
  * @since 2.0
  *
@@ -58,7 +58,7 @@ public abstract class AbstractColorAxis extends Axis {
      *            Minimum color.
      */
     public void setMinColor(SolidColor color) {
-        this.minColor = color.toString();
+        minColor = color.toString();
     }
 
     /**
@@ -87,7 +87,7 @@ public abstract class AbstractColorAxis extends Axis {
      *            Maximum color.
      */
     public void setMaxColor(SolidColor color) {
-        this.maxColor = color.toString();
+        maxColor = color.toString();
     }
 
 }
