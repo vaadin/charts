@@ -16,6 +16,9 @@ package com.vaadin.addon.charts.model.serializers;
  * If not, see <https://vaadin.com/license/cval-3>.
  * #L%
  */
+import static com.vaadin.addon.charts.model.ContainerDataSeries.HIGH_PROPERTY;
+import static com.vaadin.addon.charts.model.ContainerDataSeries.LOW_PROPERTY;
+
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.Map;
@@ -91,6 +94,9 @@ public class ContainerDataSeriesBeanSerializer extends
         if (yProperty == null) {
             yProperty = ContainerDataSeries.SERIES_DEFAULT_ATTRIBUTE2;
         }
+
+        checkRequiredProperties(container, pidMap, yProperty);
+
         if (mode != Mode.OBJECT) {
             if (container.getContainerPropertyIds().contains(xProperty)) {
                 mode = Mode.XY;
@@ -150,6 +156,22 @@ public class ContainerDataSeriesBeanSerializer extends
         }
 
         return data;
+    }
+
+    private void checkRequiredProperties(Container container,
+            Map<String, Object> pidMap, Object yProperty) {
+        Object highProperty = pidMap.get(HIGH_PROPERTY);
+        Object lowProperty = pidMap.get(LOW_PROPERTY);
+
+        if (!container.getContainerPropertyIds().contains(yProperty)
+                && (highProperty == null
+                        || !container.getContainerPropertyIds().contains(
+                                highProperty) || lowProperty == null || !container
+                        .getContainerPropertyIds().contains(lowProperty))) {
+            throw new IllegalStateException(
+                    "ContainerDataSeries' container should always have a property for 'y' values or for "
+                            + "both high and low values. Check ContainerDataSeries Javadoc");
+        }
     }
 
     private void addValue(ArrayNode data, Property<?> itemProperty) {
