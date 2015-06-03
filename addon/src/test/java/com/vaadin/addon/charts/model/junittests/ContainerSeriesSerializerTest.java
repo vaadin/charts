@@ -6,13 +6,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
-import com.vaadin.addon.charts.model.PlotOptionsSeries;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.ContainerDataSeries;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
+import com.vaadin.addon.charts.model.PlotOptionsSeries;
 import com.vaadin.data.Container;
 import com.vaadin.data.Item;
 import com.vaadin.data.util.IndexedContainer;
@@ -25,6 +25,7 @@ public class ContainerSeriesSerializerTest {
     @Before
     public void setup() {
         vaadinContainer = new IndexedContainer();
+        vaadinContainer.addContainerProperty("y", Number.class, null);
 
         containerSeries = new ContainerDataSeries(vaadinContainer);
 
@@ -37,7 +38,6 @@ public class ContainerSeriesSerializerTest {
         containerSeries.setYPropertyId("y");
 
         vaadinContainer.addContainerProperty("x", Number.class, null);
-        vaadinContainer.addContainerProperty("y", Number.class, null);
 
         Item ie = vaadinContainer.addItem(1);
         ie.getItemProperty("x").setValue(80);
@@ -50,6 +50,28 @@ public class ContainerSeriesSerializerTest {
         assertEquals("{\"data\":[[80,80],[20,20]]}", containerSeries.toString());
     }
 
+    @Test(expected = RuntimeException.class)
+    public void serialize_ContainerWithoutY_ExceptionIsThrown() {
+        containerSeries.setXPropertyId("x");
+
+        vaadinContainer.removeContainerProperty("y");
+        vaadinContainer.addContainerProperty("x", Number.class, null);
+
+        containerSeries.toString();
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void serialize_ContainerWithoutYAndLow_ExceptionIsThrown() {
+        containerSeries.setXPropertyId("x");
+        containerSeries.setHighPropertyId("somehigh");
+
+        vaadinContainer.addContainerProperty("somehigh", Number.class, null);
+        vaadinContainer.addContainerProperty("x", Number.class, null);
+        vaadinContainer.removeContainerProperty("y");
+
+        containerSeries.toString();
+    }
+
     @SuppressWarnings("unchecked")
     @Test
     public void serialize_ContainerWithXYZ_UnmappedPropertyNotSerialized() {
@@ -57,7 +79,6 @@ public class ContainerSeriesSerializerTest {
         containerSeries.setYPropertyId("y");
 
         vaadinContainer.addContainerProperty("x", Number.class, null);
-        vaadinContainer.addContainerProperty("y", Number.class, null);
         vaadinContainer.addContainerProperty("z", Number.class, null);
 
         Item ie = vaadinContainer.addItem(1);
@@ -81,7 +102,6 @@ public class ContainerSeriesSerializerTest {
         containerSeries.addAttributeToPropertyIdMapping("name", "z");
 
         vaadinContainer.addContainerProperty("x", Number.class, null);
-        vaadinContainer.addContainerProperty("y", Number.class, null);
         vaadinContainer.addContainerProperty("z", Number.class, null);
 
         Item ie = vaadinContainer.addItem(1);
@@ -107,7 +127,6 @@ public class ContainerSeriesSerializerTest {
         containerSeries.addAttributeToPropertyIdMapping("name", "z");
 
         vaadinContainer.addContainerProperty("x", Number.class, null);
-        vaadinContainer.addContainerProperty("y", Number.class, null);
         vaadinContainer.addContainerProperty("z", Number.class, null);
 
         Item ie = vaadinContainer.addItem(1);
@@ -135,7 +154,6 @@ public class ContainerSeriesSerializerTest {
         containerSeries.setYPropertyId("y");
 
         vaadinContainer.addContainerProperty("x", Date.class, null);
-        vaadinContainer.addContainerProperty("y", Number.class, null);
 
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR, 1);
@@ -162,6 +180,7 @@ public class ContainerSeriesSerializerTest {
         containerSeries.setHighPropertyId("somehigh");
         containerSeries.setLowPropertyId("somelow");
 
+        vaadinContainer.removeContainerProperty("y");
         vaadinContainer.addContainerProperty("somehigh", Number.class, null);
         vaadinContainer.addContainerProperty("somelow", Number.class, null);
 

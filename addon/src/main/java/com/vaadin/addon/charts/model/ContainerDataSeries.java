@@ -25,22 +25,37 @@ import com.vaadin.data.Container;
 
 /**
  * A series that wraps a Vaadin Container. It is mutable only via the wrapped
- * container.
+ * container. <br>
+ * Wrapped Container should always have:
+ * <ul>
+ * <li>a property for y values</li>
+ * <li>or a property for both high and low values</li>
+ * </ul>
+ * This can be achieved by using a container:
+ * <ul>
+ * <li>with a {@value #SERIES_DEFAULT_ATTRIBUTE2} property</li>
+ * <li>or with a custom property for y values and use
+ * {@link #setYPropertyId(Object)} to set the custom property in the
+ * ContainerDataSeries instance</li>
+ * <li>or with a custom property for both high and low values and use
+ * {@link #setHighPropertyId(Object)} and {@link #setLowPropertyId(Object)} to
+ * set the custom properties in the ContainerDataSeries instance</li>
+ * </ul>
  */
 public class ContainerDataSeries extends AbstractSeries {
 
     @JsonIgnore
     private final Container vaadinContainer;
 
-    // these need to be public for proper json serialisation
+    // these need to be public for proper json serialization
     // see ContainerDataSeriesSerializer
     public static final String SERIES_DEFAULT_ATTRIBUTE1 = "x";
     public static final String SERIES_DEFAULT_ATTRIBUTE2 = "y";
 
     private static final String NAMEATTRIBUTE = "name";
 
-    private static final String HIGH_PROPERTY = "high";
-    private static final String LOW_PROPERTY = "low";
+    public static final String HIGH_PROPERTY = "high";
+    public static final String LOW_PROPERTY = "low";
 
     @JsonIgnore
     private final Map<String, Object> attributeToPropertyIdMap;
