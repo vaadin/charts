@@ -813,7 +813,7 @@ public class Configuration extends AbstractConfigurationObject {
     }
 
     /**
-     * Returns the color axis. This is used in colour-based diagrams, like heat
+     * Returns the color axis. This is used in color-based diagrams, like heat
      * maps. In case of multiple axes defined, the first axis is returned. An
      * axis will be created if no axis is defined.
      * 
