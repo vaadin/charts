@@ -40,6 +40,8 @@ public interface ChartServerRpc extends ServerRpc {
 
     void onChartDrilldown(DrilldownEventDetails details);
 
+    void onChartDrillup();
+
     void onPointClick(MouseEventDetails details, int seriesIndex,
             String category, int pointIndex);
 

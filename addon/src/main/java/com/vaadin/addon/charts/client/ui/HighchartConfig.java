@@ -124,6 +124,9 @@ public class HighchartConfig extends JavaScriptObject {
         this.chart.events.drilldown = $entry(function(e) {
             return handler.@com.vaadin.addon.charts.client.ui.ChartDrilldownHandler::onDrilldown(Lcom/vaadin/addon/charts/client/ui/ChartDrilldownEvent;)(e);
         });
+        this.chart.events.drillup = $entry(function(e) {
+            return handler.@com.vaadin.addon.charts.client.ui.ChartDrilldownHandler::onDrillup()();
+        });
     }-*/;
 
     public final native void setSeriesPointClickHandler(
@@ -131,7 +134,11 @@ public class HighchartConfig extends JavaScriptObject {
     /*-{
         @com.vaadin.addon.charts.client.ui.HighchartConfig::ensureObjectStructure(Lcom/google/gwt/core/client/JavaScriptObject;Ljava/lang/String;)(this,"plotOptions.series.point.events");
         this.plotOptions.series.point.events.click = $entry(function(e) {
-            return handler.@com.vaadin.addon.charts.client.ui.PointClickHandler::onClick(Lcom/vaadin/addon/charts/client/ui/PointClickEvent;)(e);
+            //only handle event if point is not drilldown
+            //and point properties are not null
+            if(!this.drilldown && this.series){
+                return handler.@com.vaadin.addon.charts.client.ui.PointClickHandler::onClick(Lcom/vaadin/addon/charts/client/ui/PointClickEvent;)(e);
+            }
         });
     }-*/;
 
