@@ -1,4 +1,6 @@
-package com.vaadin.addon.charts.client.ui;
+package com.vaadin.addon.charts;
+
+import java.io.Serializable;
 
 /*
  * #%L
@@ -18,11 +20,15 @@ package com.vaadin.addon.charts.client.ui;
  */
 
 /**
- * Client side ChartDrilldownHandler
+ * Listener interface for drillup events on the chart
  */
-public interface ChartDrilldownHandler {
-    void onDrilldown(ChartDrilldownEvent event);
+public interface ChartDrillupListener extends Serializable {
 
-    void onDrillup();
+    /**
+     * Called when the user clicks the 'Back to previous series' button.
+     * 
+     * @param event
+     */
+    public void onDrillup(ChartDrillupEvent event);
 
 }

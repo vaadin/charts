@@ -1,4 +1,6 @@
-package com.vaadin.addon.charts.client.ui;
+package com.vaadin.addon.charts;
+
+import com.vaadin.ui.Component;
 
 /*
  * #%L
@@ -18,11 +20,15 @@ package com.vaadin.addon.charts.client.ui;
  */
 
 /**
- * Client side ChartDrilldownHandler
+ * ChartDrillupEvent triggered when the 'Back to previous series' button is
+ * clicked
  */
-public interface ChartDrilldownHandler {
-    void onDrilldown(ChartDrilldownEvent event);
+public class ChartDrillupEvent extends com.vaadin.ui.Component.Event {
 
-    void onDrillup();
+    private static final long serialVersionUID = -2539790491959770326L;
+
+    public ChartDrillupEvent(Component source) {
+        super(source);
+    }
 
 }

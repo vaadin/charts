@@ -58,6 +58,7 @@ public class ChartConnector extends AbstractComponentConnector {
     public static final String LEGENDITEM_CLICK_EVENT_ID = "lic";
     public static final String CHART_SELECTION_EVENT_ID = "cs";
     public static final String CHART_CLICK_EVENT_ID = "cl";
+    public static final String CHART_DRILLUP_EVENT_ID = "du";
 
     public ChartConnector() {
         registerRpc(ChartClientRpc.class, new ChartClientRpc() {
@@ -222,6 +223,11 @@ public class ChartConnector extends AbstractComponentConnector {
 
                     rpc.onChartDrilldown(details);
                 }
+            }
+
+            @Override
+            public void onDrillup() {
+                rpc.onChartDrillup();
             }
         });
         if (getState().registeredEventListeners != null

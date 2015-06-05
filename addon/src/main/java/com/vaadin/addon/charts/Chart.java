@@ -20,6 +20,7 @@ package com.vaadin.addon.charts;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.lang.reflect.Method;
+import java.util.Stack;
 
 import com.vaadin.addon.charts.events.AbstractSeriesEvent;
 import com.vaadin.addon.charts.events.AxisRescaledEvent;
@@ -176,12 +177,19 @@ public class Chart extends AbstractComponent {
             fireEvent(chartClickEvent);
         }
 
+        private Stack<Series> drilldownStack = new Stack<Series>();
+
         @Override
         public void onChartDrilldown(DrilldownEventDetails details) {
             final int seriesIndex = details.getPoint().getSeriesIndex();
             final int pointIndex = details.getPoint().getIndex();
-            Series series = getSeriesBasedOnIndex(seriesIndex);
+            Series series;
             DataSeriesItem item = null;
+            if (drilldownStack.isEmpty()) {
+                series = getSeriesBasedOnIndex(seriesIndex);
+            } else {
+                series = drilldownStack.peek();
+            }
             if (series instanceof DataSeries) {
                 DataSeries dataSeries = (DataSeries) series;
                 item = dataSeries.get(pointIndex);
@@ -193,20 +201,33 @@ public class Chart extends AbstractComponent {
                 Series drilldownSeries = getDrilldownCallback()
                         .handleDrilldown(chartDrilldownEvent);
                 if (drilldownSeries != null) {
+                    drilldownStack.push(drilldownSeries);
                     getRpcProxy(ChartClientRpc.class)
                             .addDrilldown(drilldownSeries.toString(),
                                     seriesIndex, pointIndex);
-
                 }
             }
+        }
+
+        @Override
+        public void onChartDrillup() {
+            if (!drilldownStack.isEmpty()) {
+                drilldownStack.pop();
+            }
+            fireEvent(new ChartDrillupEvent(Chart.this));
+
         }
 
         @Override
         public void onPointClick(MouseEventDetails details,
                 final int seriesIndex, final String category,
                 final int pointIndex) {
-
-            final Series series = getSeriesBasedOnIndex(seriesIndex);
+            Series series;
+            if (drilldownStack.isEmpty()) {
+                series = getSeriesBasedOnIndex(seriesIndex);
+            } else {
+                series = drilldownStack.peek();
+            }
             final PointClickEvent pointClickEvent = new PointClickEvent(
                     Chart.this, details, series, category, pointIndex);
             fireEvent(pointClickEvent);
@@ -230,10 +251,15 @@ public class Chart extends AbstractComponent {
 
         @Override
         public void onLegendItemClick(final int seriesIndex, int seriesItemIndex) {
-            final LegendItemClickEvent itemClickEvent = new LegendItemClickEvent(
-                    Chart.this, getSeriesBasedOnIndex(seriesIndex),
-                    seriesItemIndex);
-            fireEvent(itemClickEvent);
+            Series series;
+            if (drilldownStack.isEmpty()) {
+                series = getSeriesBasedOnIndex(seriesIndex);
+            } else {
+                series = drilldownStack.peek();
+            }
+            final LegendItemClickEvent legendItemClickEvent = new LegendItemClickEvent(
+                    Chart.this, series, seriesItemIndex);
+            fireEvent(legendItemClickEvent);
 
         }
     }
@@ -389,6 +415,9 @@ public class Chart extends AbstractComponent {
     private final static Method chartClickMethod = ReflectTools.findMethod(
             ChartClickListener.class, "onClick", ChartClickEvent.class);
 
+    private final static Method chartDrillupMethod = ReflectTools.findMethod(
+            ChartDrillupListener.class, "onDrillup", ChartDrillupEvent.class);
+
     private final static Method pointClickMethod = ReflectTools.findMethod(
             PointClickListener.class, "onClick", PointClickEvent.class);
 
@@ -409,6 +438,17 @@ public class Chart extends AbstractComponent {
     public void addChartClickListener(ChartClickListener listener) {
         this.addListener(ChartConnector.CHART_CLICK_EVENT_ID,
                 ChartClickEvent.class, listener, chartClickMethod);
+    }
+
+    /**
+     * Adds chart drillup listener, which will be notified of clicks on the
+     * 'Back to previous series' button.
+     * 
+     * @param listener
+     */
+    public void addChartDrillupListener(ChartDrillupListener listener) {
+        this.addListener(ChartConnector.CHART_DRILLUP_EVENT_ID,
+                ChartDrillupEvent.class, listener, chartDrillupMethod);
     }
 
     /**
@@ -441,6 +481,17 @@ public class Chart extends AbstractComponent {
     public void removeChartClickListener(ChartClickListener listener) {
         this.removeListener(ChartConnector.CHART_CLICK_EVENT_ID,
                 ChartClickEvent.class, listener);
+    }
+
+    /**
+     * Removes a chart drillup listener.
+     * 
+     * @see #addChartDrillupListener(ChartDrillupListener)
+     * @param listener
+     */
+    public void removeChartDrillupListener(ChartDrillupListener listener) {
+        this.removeListener(ChartConnector.CHART_DRILLUP_EVENT_ID,
+                ChartDrillupEvent.class, listener);
     }
 
     /**
