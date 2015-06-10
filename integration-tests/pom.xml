@@ -81,6 +81,12 @@
 
     <build>
         <plugins>
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
             <!-- As we are doing "inplace" GWT compilation, ensure the widgetset -->
             <!-- directory is cleaned properly -->
             <plugin>
