@@ -61,13 +61,5 @@
                 <directory>src/main/resources</directory>
             </resource>
         </resources>
-        <plugins>
-            <plugin>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <configuration>
-                    <skip>false</skip>
-                </configuration>
-            </plugin>
-        </plugins>
     </build>
 </project>
