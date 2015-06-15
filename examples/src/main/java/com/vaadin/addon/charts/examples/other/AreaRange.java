@@ -1,12 +1,13 @@
 package com.vaadin.addon.charts.examples.other;
 
+import static com.vaadin.addon.charts.model.AxisType.DATETIME;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.RangeSeries;
 import com.vaadin.addon.charts.model.Tooltip;
-import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.ui.Component;
 
@@ -26,7 +27,7 @@ public class AreaRange extends AbstractVaadinChartExample {
 
         conf.setTitle("Temperature variation by day");
 
-        conf.addxAxis(new XAxis());
+        conf.getxAxis().setType(DATETIME);
         conf.addyAxis(new YAxis());
 
         Tooltip tooltip = new Tooltip();
