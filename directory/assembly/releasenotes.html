@@ -111,25 +111,25 @@
             margin-top: 0;
         }
 
-        table {
+        table.browser_compatibility {
             width: 490px;
             margin: 30px 0;
         }
 
-        thead {
+        table.browser_compatibility thead {
             font-weight: bold;
             font-size: 18px;
         }
 
-        thead td {
+        table.browser_compatibility thead td {
             padding: 4px 10px 4px 2px;
         }
 
-        tbody tr:nth-child(odd) {
+        table.browser_compatibility tbody tr:nth-child(odd) {
             background-color: #efeee9;
         }
 
-        tbody td {
+        table.browser_compatibility tbody td {
             padding: 4px 10px 4px 5px;
         }
 
@@ -505,13 +505,14 @@
         <li>Added Web Component version of Vaadin Charts</li>
     </ul>
 
-    <!--<h2 id="changes_since_3x">Changelog for 3.0</h2>
+    <h2 id="changes_since_3x">Changelog for 3.0</h2>
 
     <table>
         <tbody>
-            <tr><td><a href="https://dev.vaadin.com/ticket/123">#123</a></td><td>Lorem ipsum</td></tr>
+            <tr><td><a href="https://dev.vaadin.com/ticket/17576">#17576</a></td><td>Better error handling for missing Y propertyId in ContainerDataSeries.
+            </td></tr>
         </tbody>
-    </table>-->
+    </table>
 
     <h2 id="package_contents">Package Contents</h2>
 
@@ -576,7 +577,7 @@
 
     <p>Vaadin Charts 3 browser support varies depending on whether you use the GWT or the Web Component version:</p>
 
-    <table>
+    <table class="browser_compatibility">
         <thead>
         <tr>
             <td>Desktop browser</td>
@@ -595,7 +596,7 @@
         </tbody>
     </table>
 
-    <table>
+    <table class="browser_compatibility">
         <thead>
         <tr>
             <td>Mobile browser</td>
