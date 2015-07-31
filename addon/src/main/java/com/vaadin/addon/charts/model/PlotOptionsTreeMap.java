@@ -34,6 +34,7 @@ public class PlotOptionsTreeMap extends AbstractCommonPlotOptions {
     private Boolean levelIsConstant;
     private List<TreeMapLevel> levels;
     private Boolean colorByPoint;
+    private Integer turboThreshold;
 
     @Override
     public ChartType getChartType() {
@@ -181,4 +182,26 @@ public class PlotOptionsTreeMap extends AbstractCommonPlotOptions {
         this.colorByPoint = colorByPoint;
     }
 
+    /**
+     * @return the turbo threshold used for this chart type
+     * @see #setTurboThreshold(Integer)
+     */
+    public Integer getTurboThreshold() {
+        return turboThreshold;
+    }
+
+    /**
+     * Sets the threshold (number of data points) after library will always try
+     * to use optimized rendering. For optimized rendering to work, data points
+     * can only contain numeric values - no special data item specific settings.
+     * <p>
+     * The default setting used by library is 1000
+     * 
+     * @param turboThreshold
+     *            the number of data points after the optimized rendering is
+     *            forced
+     */
+    public void setTurboThreshold(Integer turboThreshold) {
+        this.turboThreshold = turboThreshold;
+    }
 }
