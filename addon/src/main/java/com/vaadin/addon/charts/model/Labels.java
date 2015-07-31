@@ -48,6 +48,8 @@ public class Labels extends AbstractConfigurationObject {
     private Number borderWidth;
     private Boolean useHTML;
     private Shape shape;
+    private Boolean allowOverlap;
+    private Number padding;
 
     public Labels() {
     }
@@ -522,6 +524,45 @@ public class Labels extends AbstractConfigurationObject {
      */
     public void setShape(Shape shape) {
         this.shape = shape;
+    }
+
+    /**
+     * @see #setAllowOverlap(Boolean)
+     * @return allowOverlap
+     */
+    public Boolean getAllowOverlap() {
+        return allowOverlap;
+    }
+
+    /**
+     * Whether to allow data labels to overlap. To make the labels less
+     * sensitive for overlapping, {@link #setPadding(Number)} can be set to 0.
+     * Defaults to false.
+     * 
+     * @param allowOverlap
+     */
+    public void setAllowOverlap(Boolean allowOverlap) {
+        this.allowOverlap = allowOverlap;
+    }
+
+    /**
+     * {@link #setPadding(Number)}
+     * 
+     * @return padding
+     */
+    public Number getPadding() {
+        return padding;
+    }
+
+    /**
+     * When either the {@link #setBorderWidth(Number)} or the
+     * {@link #setBackgroundColor(Color)} is set, this is the padding within the
+     * box. Defaults to 5.
+     * 
+     * @param padding
+     */
+    public void setPadding(Number padding) {
+        this.padding = padding;
     }
 
 }
