@@ -11,7 +11,7 @@ import com.vaadin.addon.charts.model.Labels;
  * JSON
  *
  */
-public class LabelsSerializationTest {
+public class LabelsJSONSerializationTest {
 
     @Test
     public void toString_autoRotationLimitIsSet_LabelsSerializedWithAutoRotationLimit() {

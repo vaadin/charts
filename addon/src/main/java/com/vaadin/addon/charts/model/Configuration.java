@@ -17,8 +17,6 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -26,6 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.vaadin.addon.charts.events.AxisRescaledEvent;
 import com.vaadin.addon.charts.events.ConfigurationChangeListener;
 import com.vaadin.addon.charts.events.DataAddedEvent;
@@ -59,7 +58,9 @@ public class Configuration extends AbstractConfigurationObject {
 
     private PaneList pane;
     private Exporting exporting = new Exporting(false);
-    private final transient ArrayList<ConfigurationChangeListener> changeListeners = new ArrayList<ConfigurationChangeListener>();
+
+    @JsonIgnore
+    private final List<ConfigurationChangeListener> changeListeners = new ArrayList<ConfigurationChangeListener>();
 
     /**
      * @see #setChart(ChartModel)
@@ -79,7 +80,7 @@ public class Configuration extends AbstractConfigurationObject {
      */
     public void setChart(ChartModel chart) {
         this.chart = chart;
-        chart.configuration = this;
+        chart.setConfiguration(this);
     }
 
     /**
@@ -802,14 +803,6 @@ public class Configuration extends AbstractConfigurationObject {
      */
     public void removeChangeListener(ConfigurationChangeListener listener) {
         changeListeners.remove(listener);
-    }
-
-    private void readObject(ObjectInputStream in) throws IOException,
-            ClassNotFoundException {
-        in.defaultReadObject();
-        if (chart != null) {
-            chart.configuration = this;
-        }
     }
 
     /**

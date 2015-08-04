@@ -19,6 +19,7 @@ package com.vaadin.addon.charts.model;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.vaadin.addon.charts.DrilldownCallback;
 import com.vaadin.addon.charts.model.style.Color;
 
@@ -40,7 +41,8 @@ public class DataSeriesItem extends AbstractSeriesItem {
      * Flag to indicate if this item can be passed in optimized form to
      * rendering library.
      */
-    private transient boolean customized = false;
+    @JsonIgnore
+    private boolean customized = false;
 
     /**
      * Creates an empty item, without values, colors, etc.

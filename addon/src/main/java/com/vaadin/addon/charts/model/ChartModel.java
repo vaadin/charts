@@ -17,6 +17,7 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.charts.model.style.Style;
@@ -54,7 +55,8 @@ public class ChartModel extends AbstractConfigurationObject {
     private Boolean polar;
     private Options3d options3d;
 
-    transient Configuration configuration;
+    @JsonIgnore
+    private Configuration configuration;
 
     public ChartModel() {
     }
@@ -635,4 +637,20 @@ public class ChartModel extends AbstractConfigurationObject {
         this.options3d = options3d;
     }
 
+    /**
+     * Set the configuration for this Chart model. The configuration is set
+     * automatically when the model is added to a {@link Configuration}
+     * 
+     * @param configuration
+     */
+    public void setConfiguration(Configuration configuration) {
+        this.configuration = configuration;
+    }
+
+    /**
+     * @see #getConfiguration()
+     */
+    public Configuration getConfiguration() {
+        return configuration;
+    }
 }

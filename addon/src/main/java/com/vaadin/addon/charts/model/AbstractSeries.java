@@ -1,5 +1,6 @@
 package com.vaadin.addon.charts.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.vaadin.addon.charts.Chart;
 
@@ -35,7 +36,8 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
 
     private Boolean visible;
 
-    private transient Configuration configuration;
+    @JsonIgnore
+    private Configuration configuration;
 
     private Integer xAxis;
     private Integer yAxis;

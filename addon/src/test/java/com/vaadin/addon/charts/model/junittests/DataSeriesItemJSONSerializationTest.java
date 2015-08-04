@@ -12,7 +12,7 @@ import com.vaadin.addon.charts.model.serializers.DataSeriesItemBeanSerializer;
  * Tests for {@link DataSeriesItemBeanSerializer}
  *
  */
-public class DataSeriesItemSerializationTest {
+public class DataSeriesItemJSONSerializationTest {
 
     @Test
     public void toString_cursorIsSet_ItemSerializedWithCursor() {
