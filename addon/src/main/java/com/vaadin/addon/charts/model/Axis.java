@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.SolidColor;
@@ -86,7 +87,8 @@ public abstract class Axis extends AbstractConfigurationObject {
      */
     private Integer axisIndex;
 
-    private transient Configuration configuration;
+    @JsonIgnore
+    private Configuration configuration;
 
     /**
      * @see #setCategories(String...)

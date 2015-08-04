@@ -20,6 +20,7 @@ package com.vaadin.addon.charts.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.vaadin.addon.charts.model.style.Style;
 
 /**
@@ -33,7 +34,9 @@ public class Drilldown extends AbstractConfigurationObject {
     private Object animation;
     private DrillUpButton drillUpButton;
     private List<Series> series = new ArrayList<Series>();
-    private transient Configuration configuration;
+
+    @JsonIgnore
+    private Configuration configuration;
 
     /**
      * Adds a series configurations for the drilldown. These drilldown series

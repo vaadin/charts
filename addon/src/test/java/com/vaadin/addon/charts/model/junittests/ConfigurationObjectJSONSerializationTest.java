@@ -10,6 +10,8 @@ import org.junit.Test;
 import com.vaadin.addon.charts.model.AbstractConfigurationObject;
 import com.vaadin.addon.charts.model.AxisList;
 import com.vaadin.addon.charts.model.ChartType;
+import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.Drilldown;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.Pane;
 import com.vaadin.addon.charts.model.PaneList;
@@ -23,7 +25,7 @@ import com.vaadin.addon.charts.model.style.SolidColor;
  *
  * Some serialization cases are tested by other test classes.
  */
-public class ConfigurationObjectSerializationTest {
+public class ConfigurationObjectJSONSerializationTest {
 
     public static final String BasicTypeJson = "{\"number\":5,\"string\":\"somestring\"}";
 
@@ -139,6 +141,13 @@ public class ConfigurationObjectSerializationTest {
         assertEquals("{\"text\":null}", title.toString());
     }
 
+    @Test
+    public void toString_drilldownWithConfiguration_drilldownSerializedToText() {
+        Drilldown drilldown = new Drilldown();
+        drilldown.setConfiguration(new Configuration());
+        assertEquals("{\"series\":[]}", drilldown.toString());
+    }
+
     /*
      * Helper classes for serialization testing, so that we don't need to use
      * the actual classes
@@ -194,7 +203,7 @@ public class ConfigurationObjectSerializationTest {
         }
 
         public ObjectContainer(Object contents) {
-            this.object = contents;
+            object = contents;
         }
 
         public Object getObject() {

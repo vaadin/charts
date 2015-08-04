@@ -18,7 +18,7 @@ import com.vaadin.addon.charts.model.style.Theme;
 import com.vaadin.ui.UI;
 
 @RunWith(MockitoJUnitRunner.class)
-public class ChartOptionsSerializationTest {
+public class ChartOptionsJSONSerializationTest {
 
     private static final String EmptyThemeJson = "{\"chart\":{},\"title\":{\"style\":{}},\"subtitle\":{\"style\":{}},\"xAxis\":{\"title\":{\"style\":{}},\"subtitle\":{\"style\":{}},\"labels\":{\"style\":{}}},\"yAxis\":{\"title\":{\"style\":{}},\"subtitle\":{\"style\":{}},\"labels\":{\"style\":{}}},\"labels\":{\"style\":{}},\"legend\":{},\"tooltip\":{\"followPointer\":false,\"style\":{}},\"plotOptions\":{\"bar\":{},\"area\":{},\"arearange\":{},\"areaspline\":{},\"areasplinerange\":{},\"pie\":{},\"line\":{},\"column\":{},\"spline\":{},\"series\":{},\"pyramid\":{},\"waterfall\":{},\"treemap\":{},\"polygon\":{}},\"credits\":{}}";
     private static final String ThemeWithLinearGradientFormat = "{\"colors\":[{\"linearGradient\":[%d.0,%d.0,%d.0,%d.0]}],\"chart\":{},\"title\":{\"style\":{}},\"subtitle\":{\"style\":{}},\"xAxis\":{\"title\":{\"style\":{}},\"subtitle\":{\"style\":{}},\"labels\":{\"style\":{}}},\"yAxis\":{\"title\":{\"style\":{}},\"subtitle\":{\"style\":{}},\"labels\":{\"style\":{}}},\"labels\":{\"style\":{}},\"legend\":{},\"tooltip\":{\"followPointer\":false,\"style\":{}},\"plotOptions\":{\"bar\":{},\"area\":{},\"arearange\":{},\"areaspline\":{},\"areasplinerange\":{},\"pie\":{},\"line\":{},\"column\":{},\"spline\":{},\"series\":{},\"pyramid\":{},\"waterfall\":{},\"treemap\":{},\"polygon\":{}},\"credits\":{}}";

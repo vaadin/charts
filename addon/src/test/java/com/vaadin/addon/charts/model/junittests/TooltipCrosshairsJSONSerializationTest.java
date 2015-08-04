@@ -9,7 +9,7 @@ import com.vaadin.addon.charts.model.DashStyle;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.style.SolidColor;
 
-public class TooltipCrosshairsJsonTest {
+public class TooltipCrosshairsJSONSerializationTest {
 
     @Test
     public void testSimpleBooleans() {
