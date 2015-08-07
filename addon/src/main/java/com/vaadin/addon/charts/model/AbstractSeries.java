@@ -167,6 +167,10 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
      * @return true if the series is displayed on the client
      */
     public Boolean isVisible() {
+        if (visible == null) {
+            return Boolean.TRUE;
+        }
+
         return visible;
     }
 
