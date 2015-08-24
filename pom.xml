@@ -31,7 +31,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.organization>Vaadin Ltd</project.organization>
         <highcharts.version>4.1.5</highcharts.version>
-        <vaadin.version>7.4.6</vaadin.version>
+        <vaadin.version>7.5.4</vaadin.version>
     </properties>
 
     <url>http://vaadin.com/charts</url>
