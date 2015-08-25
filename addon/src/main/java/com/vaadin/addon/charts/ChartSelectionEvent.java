@@ -1,5 +1,8 @@
 package com.vaadin.addon.charts;
 
+import com.vaadin.addon.charts.model.ChartModel;
+import com.vaadin.addon.charts.model.ZoomType;
+
 /*
  * #%L
  * Vaadin Charts
@@ -47,28 +50,48 @@ public class ChartSelectionEvent extends com.vaadin.ui.Component.Event {
     }
 
     /**
-     * @return the X coordinate where the selection started.
+     * This value is undefined and shouldn't be considered if
+     * {@link ChartModel#setZoomType(com.vaadin.addon.charts.model.ZoomType)}
+     * was set to {@link ZoomType#Y}
+     * 
+     * @return the X coordinate where the selection started if ZoomType is
+     *         {@link ZoomType#X} or {@link ZoomType#XY}.
      */
     public Double getSelectionStart() {
         return selectionStart;
     }
 
     /**
-     * @return the X coordinate where the selection ended.
+     * This value is undefined and shouldn't be considered if
+     * {@link ChartModel#setZoomType(com.vaadin.addon.charts.model.ZoomType)}
+     * was set to {@link ZoomType#Y}
+     * 
+     * @return the X coordinate where the selection endedif ZoomType is
+     *         {@link ZoomType#X} or {@link ZoomType#XY}.
      */
     public Double getSelectionEnd() {
         return selectionEnd;
     }
 
     /**
-     * @return the Y coordinate where the selection started.
+     * This value is undefined and shouldn't be considered if
+     * {@link ChartModel#setZoomType(com.vaadin.addon.charts.model.ZoomType)}
+     * was set to {@link ZoomType#X}
+     * 
+     * @return the Y coordinate where the selection started if ZoomType is
+     *         {@link ZoomType#Y} or {@link ZoomType#XY}.
      */
     public Double getValueStart() {
         return valueStart;
     }
 
     /**
-     * @return the Y coordinate where the selection ended.
+     * This value is undefined and shouldn't be considered if
+     * {@link ChartModel#setZoomType(com.vaadin.addon.charts.model.ZoomType)}
+     * was set to {@link ZoomType#X}
+     * 
+     * @return the Y coordinate where the selection ended if ZoomType is
+     *         {@link ZoomType#Y} or {@link ZoomType#XY}.
      */
     public Double getValueEnd() {
         return valueEnd;
