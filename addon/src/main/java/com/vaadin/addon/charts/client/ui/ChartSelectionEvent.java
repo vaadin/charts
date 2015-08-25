@@ -21,6 +21,10 @@ import com.google.gwt.core.client.JavaScriptObject;
 
 /**
  * Client side ChartSelectionEvent
+ * 
+ * xAxis and yAxis will be available depending on the zoomType that was
+ * configured for the chart.
+ * e.g. zoomType = 'x' will have xAxis defined and yAxis undefined
  */
 public class ChartSelectionEvent extends JavaScriptObject {
     protected ChartSelectionEvent() {
@@ -28,22 +32,38 @@ public class ChartSelectionEvent extends JavaScriptObject {
 
     public native final double getSelectionStart()
     /*-{
-        return this.xAxis[0].min;
+        if(this.xAxis && this.xAxis[0]){
+            return this.xAxis[0].min;
+        }else{
+            return 0;
+        }
     }-*/;
 
     public native final double getSelectionEnd()
     /*-{
-        return this.xAxis[0].max;
+        if(this.xAxis && this.xAxis[0]){
+            return this.xAxis[0].max;
+        }else{
+            return 0;
+        }
     }-*/;
 
     public native final double getValueStart()
     /*-{
-        return this.yAxis[0].min;
+        if(this.yAxis && this.yAxis[0]){
+            return this.yAxis[0].min;
+        }else{
+            return 0;
+        }
     }-*/;
 
     public native final double getValueEnd()
     /*-{
-        return this.yAxis[0].max;
+        if(this.yAxis && this.yAxis[0]){
+            return this.yAxis[0].max;
+        }else{
+            return 0;
+        }
     }-*/;
 
     public native final void preventDefault()
