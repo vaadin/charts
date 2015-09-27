@@ -10,10 +10,10 @@ import com.google.gwt.core.client.GWT;
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
- * 
+ *
  * See the file licensing.txt distributed with this software for more
  * information about licensing.
- * 
+ *
  * You should have received a copy of the CVALv3 along with this program.
  * If not, see <https://vaadin.com/license/cval-3>.
  * #L%
@@ -45,21 +45,31 @@ public class HighchartsScriptLoader {
         if (!hasJQuery()) {
             inject(HighchartResources.INSTANCE.standaloneframework().getText());
         }
-        inject(HighchartResources.INSTANCE.highcharts().getText());
-        inject(HighchartResources.INSTANCE.highchartsMore().getText());
-        inject(HighchartResources.INSTANCE.funnel().getText());
-        inject(HighchartResources.INSTANCE.exporting().getText());
-        inject(HighchartResources.INSTANCE.defaultTheme().getText());
-        inject(HighchartResources.INSTANCE.highcharts3d().getText());
-        inject(HighchartResources.INSTANCE.solidGauge().getText());
-        inject(HighchartResources.INSTANCE.heatmap().getText());
-        inject(HighchartResources.INSTANCE.treemap().getText());
-        inject(HighchartResources.INSTANCE.drilldown().getText());
+        // Inject highcharts only if not already injected
+        if (!hasHighcharts()) {
+            inject(HighchartResources.INSTANCE.highcharts().getText());
+            inject(HighchartResources.INSTANCE.highchartsMore().getText());
+            inject(HighchartResources.INSTANCE.funnel().getText());
+            inject(HighchartResources.INSTANCE.exporting().getText());
+            inject(HighchartResources.INSTANCE.defaultTheme().getText());
+            inject(HighchartResources.INSTANCE.highcharts3d().getText());
+            inject(HighchartResources.INSTANCE.solidGauge().getText());
+            inject(HighchartResources.INSTANCE.heatmap().getText());
+            inject(HighchartResources.INSTANCE.treemap().getText());
+            inject(HighchartResources.INSTANCE.drilldown().getText());
+        }
     }
 
     protected native static boolean hasJQuery()
     /*-{
         if($wnd.jQuery)
+            return true;
+        return false;
+    }-*/;
+
+    protected native static boolean hasHighcharts()
+    /*-{
+        if($wnd.Highcharts)
             return true;
         return false;
     }-*/;
