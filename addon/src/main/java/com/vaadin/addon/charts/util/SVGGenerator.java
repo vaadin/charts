@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 import org.apache.commons.io.IOUtils;
@@ -53,6 +54,16 @@ public class SVGGenerator {
 
     private static File JS_STUFF;
     private static File JS_CONVERTER;
+
+    /**
+     * Charset for communication with PhantomJS should always be UTF-8 and not
+     * default charset.
+     * 
+     * Highcharts use requires UTF-8 http://goo.gl/Lgukbg
+     * 
+     * PhantomJS default console output encoding is UTF-8 http://goo.gl/aklNQa
+     */
+    private Charset charset = Charset.forName("UTF-8");
 
     static {
         String phantomExec = System.getProperty("phantom.exec");
@@ -194,18 +205,18 @@ public class SVGGenerator {
             ensureTemporaryFiles();
 
             OutputStream out = process.getOutputStream();
-            out.write((targetWidth + "\n").getBytes());
-            out.write((targetHeight + "\n").getBytes());
-            out.write(theme.getBytes());
-            out.write("\n___Lang:start\n".getBytes());
-            out.write(lang.getBytes());
-            out.write("\n___Config:start\n".getBytes());
-            out.write(options.getBytes());
-            out.write("\n___VaadinSVGGenerator:run\n".getBytes());
+            out.write(getBytes(targetWidth + "\n"));
+            out.write(getBytes(targetHeight + "\n"));
+            out.write(getBytes(theme));
+            out.write(getBytes("\n___Lang:start\n"));
+            out.write(getBytes(lang));
+            out.write(getBytes("\n___Config:start\n"));
+            out.write(getBytes(options));
+            out.write(getBytes("\n___VaadinSVGGenerator:run\n"));
             out.flush();
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(
-                    process.getInputStream()));
+                    process.getInputStream(), charset));
 
             String line = reader.readLine();
             while (!line.startsWith("<svg")) {
@@ -223,6 +234,10 @@ public class SVGGenerator {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private byte[] getBytes(String string) {
+        return string.getBytes(charset);
     }
 
     /**
