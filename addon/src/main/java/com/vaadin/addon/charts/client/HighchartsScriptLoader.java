@@ -1,7 +1,5 @@
 package com.vaadin.addon.charts.client;
 
-import java.util.logging.Logger;
-
 import com.google.gwt.core.client.GWT;
 
 /*
