@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   id="svg1901"
+   sodipodi:version="0.32"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="charts-elements.svg"
+   version="1.1">
+  <defs
+     id="defs1903" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="327.36165"
+     inkscape:cy="740.86929"
+     inkscape:document-units="px"
+     inkscape:current-layer="g17430"
+     inkscape:window-width="1680"
+     inkscape:window-height="1030"
+     inkscape:window-x="-2"
+     inkscape:window-y="-3"
+     showgrid="true"
+     inkscape:window-maximized="1"
+     inkscape:snap-bbox="true"
+     inkscape:bbox-paths="true"
+     inkscape:bbox-nodes="true"
+     inkscape:snap-bbox-midpoints="true"
+     inkscape:object-paths="true"
+     inkscape:object-nodes="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid5378"
+       empspacing="5"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true"
+       spacingx="5px"
+       spacingy="5px" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata1906">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Taso 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     style="opacity:1">
+    <g
+       style="display:inline"
+       id="g17430"
+       transform="matrix(1.4955348,0,0,1.4955348,-123.40196,-182.92237)">
+      <image
+         y="240.90683"
+         x="215.77634"
+         id="image5375"
+         xlink:href="file:///home/magi/itmill/book-7/manual/img/charts/charts-elements-sample.png"
+         height="200.59714"
+         width="234.96736" />
+      <rect
+         style="fill:none;stroke:#f39300;stroke-width:1.67164281;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         id="rect17432"
+         width="240.71657"
+         height="30.08956"
+         x="212.90173"
+         y="418.10098"
+         ry="3.7880721" />
+      <rect
+         style="fill:none;stroke:#f39300;stroke-width:1.67164281;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         id="rect17432-1-5"
+         width="240.71657"
+         height="13.37313"
+         x="212.90173"
+         y="264.30984"
+         ry="3.7880721" />
+      <rect
+         style="fill:none;stroke:#f39300;stroke-width:1.67164281;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         id="rect17432-1-5-3"
+         width="240.71657"
+         height="20.059717"
+         x="212.90173"
+         y="240.90683"
+         ry="3.7880721" />
+      <text
+         id="text17434"
+         y="254.2762"
+         x="132.51889"
+         style="font-size:11.99999905px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;text-anchor:start;fill:#f39300;fill-opacity:1;stroke:none;display:inline;font-family:Helvetica Rounded LT Std;-inkscape-font-specification:Helvetica Rounded LT Std Bold"
+         xml:space="preserve"><tspan
+           y="254.2762"
+           x="132.51889"
+           id="tspan17436"
+           sodipodi:role="line">Title</tspan></text>
+      <text
+         id="text17434-0"
+         y="274.33582"
+         x="132.13489"
+         style="font-size:11.99999905px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;text-anchor:start;fill:#f39300;fill-opacity:1;stroke:none;display:inline;font-family:Helvetica Rounded LT Std;-inkscape-font-specification:Helvetica Rounded LT Std Bold"
+         xml:space="preserve"><tspan
+           y="274.33582"
+           x="132.13489"
+           sodipodi:role="line"
+           id="tspan5476">Subtitle</tspan></text>
+      <text
+         id="text17434-0-8-2"
+         y="436.58905"
+         x="131.75089"
+         style="font-size:11.99999905px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;text-anchor:start;fill:#f39300;fill-opacity:1;stroke:none;display:inline;font-family:Helvetica Rounded LT Std;-inkscape-font-specification:Helvetica Rounded LT Std Bold"
+         xml:space="preserve"><tspan
+           y="436.58905"
+           x="131.75089"
+           sodipodi:role="line"
+           id="tspan5476-3-7">Legend</tspan></text>
+      <rect
+         style="fill:none;stroke:#49c2f1;stroke-width:1.00298572;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         id="rect17432-1-5-3-7"
+         width="10.029856"
+         height="106.98512"
+         x="216.24503"
+         y="281.02628"
+         ry="3.7880721" />
+      <rect
+         style="fill:none;stroke:#49c2f1;stroke-width:1.00298572;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         id="rect17432-1-5-3-7-7"
+         width="13.373146"
+         height="106.98512"
+         x="229.61816"
+         y="281.02628"
+         ry="3.7880721" />
+      <rect
+         style="fill:none;stroke:#49c2f1;stroke-width:1.00298572;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         id="rect17432-1-5-3-7-7-2"
+         width="202.26874"
+         height="23.402987"
+         x="244.66299"
+         y="388.01141"
+         ry="3.7880721" />
+      <path
+         style="fill:none;stroke:#f39300;stroke-width:2.49999998;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         d="m 120,192.36218 75,0"
+         id="path5576"
+         inkscape:connector-curvature="0"
+         transform="matrix(0.66865713,0,0,0.66865713,82.5136,122.31235)" />
+      <text
+         id="text17434-0-6"
+         y="337.91562"
+         x="139.23712"
+         style="font-size:9.36119938px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#49c2f1;fill-opacity:1;fill-rule:nonzero;stroke:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Helvetica LT Std;-inkscape-font-specification:Helvetica LT Std Light"
+         xml:space="preserve"
+         sodipodi:linespacing="125%"><tspan
+           y="337.91562"
+           x="139.23712"
+           sodipodi:role="line"
+           id="tspan5476-0">Y Axis Title</tspan></text>
+      <path
+         style="fill:none;stroke:#f39300;stroke-width:1.67164278;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="m 182.81217,270.9964 30.08957,0"
+         id="path5576-5"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#49c2f1;stroke-width:1.00298572;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="m 189.61711,334.51883 26.62791,0"
+         id="path5576-5-0-3"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <text
+         id="text17434-0-6-4"
+         y="351.28876"
+         x="139.23712"
+         style="font-size:9.36119938px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#49c2f1;fill-opacity:1;stroke:none;display:inline;font-family:Helvetica LT Std;-inkscape-font-specification:Helvetica LT Std Light"
+         xml:space="preserve"
+         sodipodi:linespacing="125%"><tspan
+           y="351.28876"
+           x="139.23712"
+           sodipodi:role="line"
+           id="tspan5476-0-4">Y Axis Labels</tspan></text>
+      <path
+         style="fill:none;stroke:#49c2f1;stroke-width:1.00298572000000008;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="m 199.5286,347.89197 30.08957,0"
+         id="path5576-5-0-3-9"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <text
+         id="text17434-0-6-4-0"
+         y="364.6619"
+         x="139.23712"
+         style="font-size:9.36119938px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#49c2f1;fill-opacity:1;stroke:none;display:inline;font-family:Helvetica LT Std;-inkscape-font-specification:Helvetica LT Std Light"
+         xml:space="preserve"
+         sodipodi:linespacing="125%"><tspan
+           y="364.6619"
+           x="139.23712"
+           sodipodi:role="line"
+           id="tspan5476-0-4-7">Y Axis Grid</tspan></text>
+      <path
+         style="fill:none;stroke:#49c2f1;stroke-width:1.00298572;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="m 189.49874,361.26512 60.17914,0"
+         id="path5576-5-0-3-9-2"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#49c2f1;stroke-width:1.00298572;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="m 249.67788,361.26512 6.771,21.66389"
+         id="path5576-5-0-3-9-2-7"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#49c2f1;stroke-width:1.00298572;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="m 249.67788,361.26512 6.51771,-25.81755"
+         id="path5576-5-0-3-9-2-7-5"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <text
+         id="text17434-0-6-4-3"
+         y="402.28247"
+         x="139.18095"
+         style="font-size:9.36119938px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#49c2f1;fill-opacity:1;stroke:none;display:inline;font-family:Helvetica LT Std;-inkscape-font-specification:Helvetica LT Std Light"
+         xml:space="preserve"
+         sodipodi:linespacing="125%"><tspan
+           y="402.28247"
+           x="139.18095"
+           sodipodi:role="line"
+           id="tspan5476-0-4-5">X Axis Labels</tspan></text>
+      <path
+         style="fill:none;stroke:#49c2f1;stroke-width:1.00298572;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="m 199.5286,399.8648 44.39144,0"
+         id="path5576-5-0-3-9-2-0"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#f39300;stroke-width:1.67164278;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="m 179.46888,433.21323 33.43286,0"
+         id="path5576-7"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+    </g>
+  </g>
+</svg>
