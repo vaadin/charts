@@ -1,6 +1,6 @@
 ---
 title: Chart Types
-order: 4
+order: 6
 layout: page
 ---
 
@@ -179,7 +179,7 @@ errors.add(new DataSeriesItem(1, -10, -3));
 errors.add(new DataSeriesItem(2,  -8,  1));
 ...
 
-// Configure the stem and whiskers in error bars 
+// Configure the stem and whiskers in error bars
 PlotOptionsErrorBar barOptions = new PlotOptionsErrorBar();
 barOptions.setStemColor(SolidColor.GREY);
 barOptions.setStemWidth(2);
@@ -277,7 +277,7 @@ different values with the setters, or all at once in the constructor.
 
 ----
 // Orienteering control point times for runners
-double data[][] = orienteeringdata(); 
+double data[][] = orienteeringdata();
 
 DataSeries series = new DataSeries();
 for (double cpointtimes[]: data) {
@@ -318,7 +318,7 @@ not have any chart-type specific options.
 Chart chart = new Chart(ChartType.SCATTER);
 chart.setWidth("500px");
 chart.setHeight("500px");
-        
+
 // Modify the default configuration a bit
 Configuration conf = chart.getConfiguration();
 conf.setTitle("Random Sphere");
@@ -327,7 +327,7 @@ conf.getLegend().setEnabled(false); // Disable legend
 PlotOptionsScatter options = new PlotOptionsScatter();
 // ... Give overall plot options here ...
 conf.setPlotOptions(options);
-        
+
 DataSeries series = new DataSeries();
 for (int i=0; i<300; i++) {
     double lng = Math.random() * 2 * Math.PI;
@@ -335,7 +335,7 @@ for (int i=0; i<300; i++) {
     double x   = Math.cos(lat) * Math.sin(lng);
     double y   = Math.sin(lat);
     double z   = Math.cos(lng) * Math.cos(lat);
-    
+
     DataSeriesItem point = new DataSeriesItem(x,y);
     Marker marker = new Marker();
     // Make settings as described later
@@ -470,10 +470,10 @@ endif::web[]
 ifdef::web[]
 
 ----
-// Create a bubble chart 
+// Create a bubble chart
 Chart chart = new Chart(ChartType.BUBBLE);
 chart.setWidth("640px"); chart.setHeight("350px");
-        
+
 // Modify the default configuration a bit
 Configuration conf = chart.getConfiguration();
 conf.setTitle("Champagne Consumption by Country");
@@ -481,7 +481,7 @@ conf.getLegend().setEnabled(false); // Disable legend
 conf.getTooltip().setFormatter("this.point.name + ': ' + " +
   "Math.round(100*(this.point.z * this.point.z))/100.0 + " +
   "' M bottles'");
-        
+
 // World map as background
 String url = VaadinServlet.getCurrent().getServletContext()
     .getContextPath() + "/VAADIN/themes/mytheme/img/map.png";
@@ -496,7 +496,7 @@ color.addColorStop(1.0, new SolidColor(170, 70, 67, 0.5));
 marker.setFillColor(color);
 plotOptions.setMarker(marker);
 conf.setPlotOptions(plotOptions);
-        
+
 // Source: CIVC - Les expeditions de vins de Champagne en 2011
 DataSeries series = new DataSeries("Countries");
 Object data[][] = {
@@ -508,7 +508,7 @@ Object data[][] = {
 for (Object[] country: data) {
     String name = (String) country[0];
     double amount = (Double) country[1];
-    Coordinate pos = getCountryCoordinates(name); 
+    Coordinate pos = getCountryCoordinates(name);
 
     DataSeriesItem3d item = new DataSeriesItem3d();
     item.setX(pos.longitude * Math.cos(pos.latitude/2.0 *
@@ -519,7 +519,7 @@ for (Object[] country: data) {
     series.add(item);
 }
 conf.addSeries(series);
-        
+
 // Set the category labels on the axis correspondingly
 XAxis xaxis = new XAxis();
 xaxis.setExtremes(-180, 180);
@@ -750,7 +750,7 @@ Button update = new Button("Update", new ClickListener() {
         Integer newValue = new Integer((String)tf.getValue());
         series.updatePoint(0, newValue);
     }
-}); 
+});
 layout.addComponent(update);
 ----
 
@@ -908,7 +908,7 @@ Button update = new Button("Update", new ClickListener() {
         Integer newValue = new Integer((String)tf.getValue());
         series.updatePoint(0, newValue);
     }
-}); 
+});
 layout.addComponent(update);
 ----
 
@@ -1081,16 +1081,16 @@ ifdef::web[]
 Chart chart = new Chart(ChartType.FUNNEL);
 chart.setWidth("500px");
 chart.setHeight("350px");
-        
+
 // Modify the default configuration a bit
 Configuration conf = chart.getConfiguration();
 conf.setTitle("Monster Utilization");
 conf.getLegend().setEnabled(false);
-        
+
 // Give more room for the labels
 conf.getChart().setSpacingRight(120);
 
-// Configure the funnel neck shape 
+// Configure the funnel neck shape
 PlotOptionsFunnel options = new PlotOptionsFunnel();
 options.setNeckHeightPercentage(20);
 options.setNeckWidthPercentage(20);
@@ -1101,7 +1101,7 @@ dataLabels.setFormat("<b>{point.name}</b> ({point.y:,.0f})");
 dataLabels.setSoftConnector(false);
 dataLabels.setColor(SolidColor.BLACK);
 options.setDataLabels(dataLabels);
-      
+
 conf.setPlotOptions(options);
 
 // Create the range series
@@ -1208,7 +1208,7 @@ final Color balanceColor = SolidColor.BLACK;
 final Color positiveColor = SolidColor.BLUE;
 final Color negativeColor = SolidColor.RED;
 
-// Configure the colors 
+// Configure the colors
 PlotOptionsWaterfall options = new PlotOptionsWaterfall();
 options.setUpColor(positiveColor);
 options.setNegativeColor(negativeColor);
@@ -1541,7 +1541,3 @@ Polygon charts options can be configured in a [classname]#PlotOptionsPolygon#
 object, although it does not have any chart-type specific options.
 
 endif::web[]
-
-
-
-

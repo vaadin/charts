@@ -1,0 +1,399 @@
+---
+title: Getting started in web components
+order: 3
+layout: page
+---
+
+= Getting started with Vaadin Charts
+
+[[introduction]]
+== Introduction
+
+This tutorial walks you, step-by-step, through what needs to be done to add
+Vaadin Charts to your web page.
+
+You will learn how to:
+
+* Add Vaadin Charts to a web page
+* Create a simple line chart
+* Create a combined chart with dual Y-axes
+* Configure settings to change the look of a chart
+* Bind the chart to a REST service
+
+The final result of this tutorial can be explored at
+https://github.com/vaadin/charts-tutorial/client[github]. Let's get to it.
+
+[[setup]]
+== Project Setup
+
+Easiest way to get started is to use http://bower.io/[Bower]. First create a
+folder and run 'bower install' command within it to download vaadin-charts and
+all the dependencies that it needs.
+
+----
+  $ mkdir tutorial
+  $ cd tutorial
+  $ bower install --save vaadin-charts
+----
+
+Next create an index.html file with following content.
+
+[source,html]
+----
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+  </head>
+  <body>
+  </body>
+</html>
+----
+
+The head element loads the webcomponents and our web page is now ready for
+adding Vaadin Charts to it.
+
+[[first.chart]]
+== Creating Your First Chart
+
+Add a chart element to the 'body'. In this example, we are going to use 'vaadin-line-chart'.
+
+[source,html]
+----
+<vaadin-line-chart></vaadin-line-chart>
+----
+
+and import the 'vaadin-line-chart' in the 'head' element
+[source,html]
+----
+<link rel="import" href="bower_components/vaadin-charts/vaadin-line-chart.html">
+----
+
+So your 'index.html' file should look like this
+
+[source,html]
+----
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="bower_components/vaadin-charts/vaadin-line-chart.html">
+  </head>
+  <body>
+    <vaadin-line-chart></vaadin-line-chart>
+  </body>
+</html>
+----
+
+You can now serve the 'index.html' and check it out in the browser. One of the
+easiest ways to do this is to use a tool called https://www.npmjs.com/package/serve[serve].
+
+----
+$ serve
+serving <Path to folder>/tutorial on port 3000
+----
+
+Open 'localhost:3000' with a browser. If you don't have a Vaadin Charts license
+you will see a popup with a link where you can get one. Enter the license key
+to the popup. After that, you should see an empty chart with title 'Chart title'.
+
+Next modify 'vaadin-line-chart' element to have a 'title' child element with
+content 'Hello Charts!'
+
+[source,html]
+----
+<vaadin-line-chart>
+  <title>Hello Charts!</title>
+</vaadin-line-chart>
+----
+
+Reload the page and you should see the new title in the chart.
+
+[[bind.data]]
+=== Adding Some Data
+
+In this section, we are going to add data to our line chart. We have data
+about the average shoe size per age for girls and boys. First lets add the data
+for girls. This is done by adding 'data-series' element inside the
+'vaadin-line-chart'.
+
+[source,html]
+----
+<data-series name="Girls">
+  <data>
+    [17, 0.3], [18, 0.7], [19, 0.8], [20, 1.0], [21, 1.3], [22, 1.5],
+    [23, 2.0], [24, 2.5], [25, 3.0], [26, 3.5], [27, 4.0], [28, 4.5],
+    [29, 5.0], [30, 5.5], [31, 6.5], [32, 7.0], [33, 8.0], [34, 9.0],
+    [35, 10.0], [36, 11.0]
+  </data>
+<data-series>
+----
+
+Refresh the page and you should see the data in the chart. That is awesome but
+you might notice that Y axis has a label '"values"'. That is not so awesome. So, lets add our own
+titles there and add also the unit information. This can be done by adding
+following inside the 'vaadin-line-chart' element.
+
+[source,html]
+----
+<x-axis>
+  <title>Shoe size (EU)</title>
+</x-axis>
+<y-axis>
+  <title>Age (years)</title>
+</y-axis>
+----
+
+After refreshing the page, you should see a nice chart about girls average shoe
+size with the nice titles in the axes.
+
+[[bind.another.data]]
+=== Adding Another Data Set to the Same Chart
+
+In previous section, we added only girls data to the chart. Now it is time to add
+also boys there. This is done by adding another 'data-series' element inside the
+'vaadin-line-chart' element. We just use different 'name' attribute which will be
+shown in the charts legend.
+
+[source,html]
+----
+<data-series name="Boys">
+  <data>
+    [17, 0.3], [18, 0.6], [19, 0.8], [20, 0.9], [21, 1.1], [22, 1.3],
+    [23, 1.7], [24, 2.0], [25, 2.5], [26, 3.0], [27, 3.5], [28, 4.0],
+    [29, 4.5], [30, 5.0], [31, 5.5], [32, 6.5], [33, 7.5], [34, 8.0],
+    [35, 9.0], [36, 10.0], [37, 11.0]
+  </data>
+</data-series>
+----
+
+Refresh the page and you see two lines in the chart. They have different colors
+and you can see from the legend which is which. Try to click the legend items - this
+toggles the visibility of the data series.
+
+Finally change the title of the chart to something describing it,
+like “Shoe size per age for boys and girls”.
+
+[[configure.colors]]
+=== Configuring the Colors
+
+Our chart looks OK, but it would be more intuitive to read if the data for girls
+were rendered using a color normally associated with girls, wouldn’t it?
+Let’s color the the girl data as pink and the boy data as light blue. The colors of the
+lines can be changed by adding 'color' element to 'data-series'
+
+[source,html]
+----
+<data-series name="Girls">
+  <color>#FF69B4</color>
+  <data>
+    [17, 0.3], ... , [36, 11.0]
+  </data>
+</data-series>
+<data-series name="Boys">
+  <color>#0000FF</color>
+  <data>
+    [17, 0.3], ..., [37, 11.0]
+  </data>
+</data-series>
+----
+
+Great! Refresh the page and you see the finished chart.
+
+
+[[combination.chart]]
+== Creating a Combination Chart
+
+Let’s do something more complex. We have historical
+weather data for Turku, Finland during most of the year 2013. We’ll plot the
+temperature as a line chart and add columns for the humidity to the same
+chart to create a combination chart. Top of that, we will create our own
+web component which will fetch the data for the chart from REST service.
+
+[[combination.chart.preparations]]
+=== Preparations
+Download data files
+https://raw.githubusercontent.com/vaadin/charts-tutorial/master/client/data/temperature[temperature] and
+https://raw.githubusercontent.com/vaadin/charts-tutorial/master/client/data/humidity[humidity].
+Create a folder 'data' in the same folder
+where you ran the 'serve' command and put the downloaded files there. The data files in the folder are now served
+together with the 'index.html'. Those files will mimic our REST service to fetch
+the weather data.
+
+Next we will create a new web component 'weather-chart' which will wrap the
+chart element and REST calls to fetch the data. First, lets do it so that it
+only wraps the 'vaadin-line-chart' component. Here's how it is done:
+
+[source,html]
+----
+<weather-chart></weather-chart>
+<dom-module id="weather-chart">
+  <template>
+    <vaadin-line-chart>
+      <title>Turku, Finland 2013</title>
+      <x-axis name="Temperature" type="datetime">
+        <title>Date</title>
+      </x-axis>
+      <y-axis>
+        <title>Temperature (°C)</title>
+      </y-axis>
+      <data-series name="Temperature">
+      </data-series>
+    </vaadin-line-chart>
+  </template>
+  <script>
+    Polymer({
+      is: 'weather-chart'
+    });
+  </script>
+</dom-module>
+----
+
+Next we want to call REST service to fetch the data and bind that to the chart.
+We use 'iron-ajax' component to do the request. Add this inside the 'template'
+element next to the 'vaadin-line-chart'.
+
+[source,html]
+----
+<iron-ajax id="temperatureFetcher"
+                url="data/temperature"
+                handle-as="json"
+                last-response="{{temperatureData}}"
+                debounce-duration="300"></iron-ajax>
+----
+
+That will write the response to the 'temperatureData' variable but we have not
+defined that yet. Let's create that to be a property of the web component.
+Also let's make the call to the REST service when the web component is attached to
+the page. These can be done by modifying the 'Polymer' object in 'script' element.
+
+[source,html]
+----
+<script>
+  Polymer({
+    is: 'weather-chart',
+    properties: {
+      temperatureData: Object
+    },
+    attached: function() {
+      this.async(function() {
+        this.$.temperatureFetcher.generateRequest();
+      }, 2);
+    }
+  });
+</script>
+----
+
+Now we fetch the data but that is not bound to the chart. To do that, we will
+add 'data' attribute to the 'data-series' element.
+
+[source,html]
+----
+<data-series name="Temperature" data=[[temperatureData]]>
+</data-series>
+----
+
+Gongrats! After page refresh you should see the chart with temperature data
+fetched from REST service.
+
+[[add.columns]]
+=== Adding Columns and a Second Y-axis
+
+Let's first fetch also the humidity data in our 'weather-chart'. That can be
+done the similar way than we did for temperature data. First, lets create
+another 'iron-ajax' component.
+
+[source,html]
+----
+<iron-ajax id="humidityFetcher"
+            url="data/humidity"
+            handle-as="json"
+            last-response="{{humidityData}}"
+            debounce-duration="300"></iron-ajax>
+----
+
+Then make sure that the request will be made.
+
+[source,javascript]
+----
+attached: function() {
+  this.async(function() {
+    this.$.temperatureFetcher.generateRequest();
+    this.$.humidityFetcher.generateRequest();
+  }, 2);
+}
+----
+
+Finally, create a 'data-series' element for humidity. That should use columns
+instead of line. Now you should have two 'data-series' elements.
+
+[source,html]
+----
+<data-series name="Temperature" data=[[temperatureData]]>
+</data-series>
+<data-series name="Humidity" type="column" data=[[humidityData]]>
+</data-series>
+----
+
+Refresh the page and you should see a line for temperature and column bars for
+humidity. The chart doesn't look so nice, though. The humidity columns
+completely overlaps with the temperature line. To fix this, we could do two
+things
+
+1. Change the order of the data series to make the temperature line
+render on top of the columns
+2. Add a second Y-axis for the humidity, as it is in percent,
+while the temperature is in celsius.
+
+The first part is simple. Just switch the order of the 'data-series' elements.
+
+To create another Y-axis for humidity, we need to create a new 'y-axis' element,
+configure the title, the minimum value and move it to the opposite side of the chart.
+Then bind the 'y-axis' to the humidity 'data-series' using the 'id'
+attribute.
+
+[source,html]
+----
+<y-axis id="humidity">
+  <title>Humidity (%)</title>
+  <min>0</min>
+  <opposite>true</opposite>
+</y-axis>
+...
+<data-series name="Humidity" type="column" data=[[humidityData]] y-axis = "humidity">
+</data-series>
+----
+
+The final chart element should look like this
+
+[source,html]
+----
+<vaadin-line-chart>
+  <title>Turku, Finland 2013</title>
+  <x-axis name="Temperature" type="datetime">
+    <title>Date</title>
+  </x-axis>
+  <y-axis>
+    <title>Temperature (°C)</title>
+  </y-axis>
+  <y-axis id="humidity">
+    <title>Humidity (%)</title>
+    <min>0</min>
+    <opposite>true</opposite>
+  </y-axis>
+  <data-series name="Humidity" type="column" data=[[humidityData]] y-axis = "humidity">
+  </data-series>
+  <data-series name="Temperature" data=[[temperatureData]]>
+  </data-series>
+</vaadin-line-chart>
+----
+
+Refresh the page and enjoy a better looking chart.
+
+[[summary]]
+== Summary
+Congratulations! You now know the basics of how to get Vaadin Charts in your
+web page. For examples, please see the
+http://demo.vaadin.com/charts3[on-line demo]
+and the api can be explored
+http://demo.vaadin.com/charts3-api[here].

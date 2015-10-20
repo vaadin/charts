@@ -1,6 +1,6 @@
 ---
 title: Installing Vaadin Charts
-order: 2
+order: 4
 layout: page
 ---
 
@@ -145,10 +145,3 @@ Continuous Integration Systems:: In CIS systems, you can pass the license key to
 property in the build configuration. However, this only passes it to a runner.
 As described above, Ant does not pass it to sub-processes implicitly, so you
 need to forward it explicitly as described earlier.
-
-
-
-
-
-
-

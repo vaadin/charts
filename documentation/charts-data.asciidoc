@@ -1,6 +1,6 @@
 ---
 title: Chart Data
-order: 6
+order: 8
 layout: page
 ---
 
@@ -351,8 +351,3 @@ You can use the event to decide what kind of series you want to return. The
 event contains, for example, a reference to the item that was clicked. Note that
 the same callback is used for all items. The callback can also return null.
 Returning null will not trigger a drilldown.
-
-
-
-
-

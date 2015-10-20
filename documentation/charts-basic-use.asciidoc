@@ -1,6 +1,6 @@
 ---
 title: Basic Use
-order: 3
+order: 5
 layout: page
 ---
 
@@ -178,13 +178,13 @@ int kills[][] = {        // Location:
         {37,  0, 22, 2}, // Oraniemi
         {13, 23,  4, 1}, // Salla
         {3,  10,  9, 0}, // Alakitka
-};    
+};
 
 // Create a data series for each numeric column in the table
 for (int predator = 0; predator < 4; predator++) {
     ListSeries series = new ListSeries();
     series.setName(predators[predator]);
-    
+
     // The rows of the table
     for (int location = 0; location < kills.length; location++)
         series.addData(kills[location][predator]);
@@ -276,7 +276,7 @@ conf.getChart().setOptions3d(options3d);
 
 The 3D options are as follows:
 
-[parameter]##:: 
+[parameter]##::
 
 [parameter]#alpha#:: The vertical tilt (pitch) in degrees.
 
@@ -402,7 +402,7 @@ DataSeriesItem3d item = new DataSeriesItem3d(x, y,
     z * options3d.getDepth().doubleValue());
 
 double distance = distanceTo(new double[]{x,y,z},
-                             alpha, beta, 2); 
+                             alpha, beta, 2);
 
 int gr = (int) (distance*75); // Grayness
 Marker marker = new Marker(true);
@@ -448,7 +448,3 @@ available themes are [classname]#GrayTheme#, [classname]#GridTheme#, and
 
 A theme is a Vaadin Charts configuration that is used as a template for the
 configuration when rendering the chart.
-
-
-
-

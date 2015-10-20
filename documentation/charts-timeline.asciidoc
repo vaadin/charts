@@ -1,6 +1,6 @@
 ---
 title: Timeline
-order: 8
+order: 10
 layout: page
 ---
 
@@ -178,7 +178,7 @@ Below is an example of how a graph container could be constructed:
 
 
 ----
-// Construct a container which implements Container.Indexed       
+// Construct a container which implements Container.Indexed
 IndexedContainer container = new IndexedContainer();
 
 // Add the Timestamp property to the container
@@ -210,11 +210,11 @@ Below is an example on how a marker or event container can be constructed:
 ----
 // Create the container
 IndexedContainer container = new IndexedContainer();
-        
+
 // Add the timestamp property
 container.addContainerProperty(Timeline.PropertyId.TIMESTAMP,
                                Date.class, null);
-        
+
 // Add the caption property
 container.addContainerProperty(Timeline.PropertyId.CAPTION,
                               String.class, "");
@@ -227,7 +227,7 @@ container.addContainerProperty(Timeline.PropertyId.VALUE,
 // Create the timeline with the container as both the marker
 // and event data source
 Timeline timeline = new Timeline();
-timeline.setMarkerDataSource(container, 
+timeline.setMarkerDataSource(container,
 	Timeline.PropertyId.TIMESTAMP,
 	Timeline.PropertyId.CAPTION,
 	Timeline.PropertyId.VALUE);
@@ -374,38 +374,38 @@ add the following method.
  * Creates a graph container with a month of random data
  */
 public Container.Indexed createGraphDataSource(){
-        
+
     // Create the container
     Container.Indexed container = new IndexedContainer();
-        
+
     // Add the required property ids (use the default ones here)
-    container.addContainerProperty(Timeline.PropertyId.TIMESTAMP, 
+    container.addContainerProperty(Timeline.PropertyId.TIMESTAMP,
         Date.class, null);
-    container.addContainerProperty(Timeline.PropertyId.VALUE, 
+    container.addContainerProperty(Timeline.PropertyId.VALUE,
         Float.class, 0f);
-        
+
     // Add some random data to the container
     Calendar cal = Calendar.getInstance();
     cal.add(Calendar.MONTH, -1);
     Date today = new Date();
     Random generator = new Random();
-        
+
     while(cal.getTime().before(today)){
         // Create  a point in time
         Item item = container.addItem(cal.getTime());
-            
+
         // Set the timestamp property
         item.getItemProperty(Timeline.PropertyId.TIMESTAMP)
             .setValue(cal.getTime());
-            
+
         // Set the value property
         item.getItemProperty(Timeline.PropertyId.VALUE)
             .setValue(generator.nextFloat());
-        
-        cal.add(Calendar.DAY_OF_MONTH, 1);            
+
+        cal.add(Calendar.DAY_OF_MONTH, 1);
     }
-        
-    return container;        
+
+    return container;
 }
 ----
 
@@ -428,18 +428,18 @@ means. Add the following method to the UI class:
  * Creates a marker container with a marker for each seven days
  */
 public Container.Indexed createMarkerDataSource(){
-        
+
     // Create the container
     Container.Indexed container = new IndexedContainer();
-        
+
     // Add the required property IDs (use the default ones here)
     container.addContainerProperty(Timeline.PropertyId.TIMESTAMP,
             Date.class, null);
-    container.addContainerProperty(Timeline.PropertyId.CAPTION, 
+    container.addContainerProperty(Timeline.PropertyId.CAPTION,
             String.class, "Our marker symbol");
-    container.addContainerProperty(Timeline.PropertyId.VALUE, 
+    container.addContainerProperty(Timeline.PropertyId.VALUE,
             String.class, "Our description");
-        
+
     // Add a marker for every seven days
     Calendar cal = Calendar.getInstance();
     cal.add(Calendar.MONTH, -1);
@@ -449,23 +449,23 @@ public Container.Indexed createMarkerDataSource(){
     while(cal.getTime().before(today)){
         // Create a point in time
         Item item = container.addItem(cal.getTime());
-        
+
         // Set the timestamp property
         item.getItemProperty(Timeline.PropertyId.TIMESTAMP)
                 .setValue(cal.getTime());
-        
+
         // Set the caption property
         item.getItemProperty(Timeline.PropertyId.CAPTION)
                 .setValue("M");
-            
+
         // Set the value property
         item.getItemProperty(Timeline.PropertyId.VALUE).
            setValue("Today is "+formatter.format(cal.getTime()));
 
         cal.add(Calendar.DAY_OF_MONTH, 7);
     }
-    
-    return container;        
+
+    return container;
 }
 ----
 
@@ -502,18 +502,18 @@ public Container.Indexed createEventDataSource(){
 
     // Create the container
     Container.Indexed container = new IndexedContainer();
-	
+
     // Add the required property IDs (use default ones here)
     container.addContainerProperty(
             Timeline.PropertyId.TIMESTAMP, Date.class, null);
     container.addContainerProperty(
             Timeline.PropertyId.CAPTION,
             String.class, "Our marker symbol");
-			
+
     // Add a marker for every seven days
     Calendar cal = Calendar.getInstance();
     cal.add(Calendar.MONTH, -1);
-    Date today = new Date();		
+    Date today = new Date();
     while(cal.getTime().before(today)){
         if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY){
             // Create a point in time
@@ -522,15 +522,15 @@ public Container.Indexed createEventDataSource(){
             // Set the timestamp property
             item.getItemProperty(Timeline.PropertyId.TIMESTAMP)
                 .setValue(cal.getTime());
-				
+
             // Set the caption property
             item.getItemProperty(Timeline.PropertyId.CAPTION)
-                .setValue("Sunday");			
-        }			
+                .setValue("Sunday");
+        }
         cal.add(Calendar.DAY_OF_MONTH, 1);
     }
-		
-    return container;		
+
+    return container;
 }
 ----
 
@@ -562,16 +562,16 @@ data sources to the timeline:
 
 
 ----
-timeline.addGraphDataSource(createGraphDataSource(), 
+timeline.addGraphDataSource(createGraphDataSource(),
                         Timeline.PropertyId.TIMESTAMP,
                         Timeline.PropertyId.VALUE);
 
-timeline.setMarkerDataSource(createMarkerDataSource(), 
-                        Timeline.PropertyId.TIMESTAMP, 
+timeline.setMarkerDataSource(createMarkerDataSource(),
+                        Timeline.PropertyId.TIMESTAMP,
                         Timeline.PropertyId.CAPTION,
                         Timeline.PropertyId.VALUE);
 
-timeline.setEventDataSource(createEventDataSource(), 
+timeline.setEventDataSource(createEventDataSource(),
                         Timeline.PropertyId.TIMESTAMP,
                         Timeline.PropertyId.CAPTION);
 ----
@@ -584,7 +584,7 @@ And finally add the timeline to the UI. Here is the complete init-method:
 protected void init(VaadinRequest request) {
     VerticalLayout content = new VerticalLayout();
     setContent(content);
-        
+
     // Create the timeline
     Timeline timeline = new Timeline("Our timeline");
 
@@ -592,20 +592,20 @@ protected void init(VaadinRequest request) {
     Container.Indexed graphDS  = createGraphDataSource();
     Container.Indexed markerDS = createMarkerDataSource();
     Container.Indexed eventDS  = createEventDataSource();
-        
+
     // Add our data sources
-    timeline.addGraphDataSource(graphDS, 
+    timeline.addGraphDataSource(graphDS,
                                 Timeline.PropertyId.TIMESTAMP,
                                 Timeline.PropertyId.VALUE);
-    timeline.setMarkerDataSource(markerDS, 
+    timeline.setMarkerDataSource(markerDS,
                                  Timeline.PropertyId.TIMESTAMP,
-                                 Timeline.PropertyId.CAPTION,     
+                                 Timeline.PropertyId.CAPTION,
                                  Timeline.PropertyId.VALUE);
-    timeline.setEventDataSource(eventDS, 
+    timeline.setEventDataSource(eventDS,
                                 Timeline.PropertyId.TIMESTAMP,
                                 Timeline.PropertyId.CAPTION);
-        
-    content.addComponent(timeline);        
+
+    content.addComponent(timeline);
 }
 ----
 
@@ -628,13 +628,13 @@ properties and a caption in the legend. This can be done as follows:
 ----
 // Set the caption of the graph
 timeline.setGraphLegend(graphDataSource, "Our cool graph");
-        
+
 // Set the color of the graph
 timeline.setGraphOutlineColor(graphDataSource, Color.RED);
 
 // Set the fill color of the graph
 timeline.setGraphFillColor(graphDataSource, new Color(255,0,0,128));
-        
+
 // Set the width of the graph
 timeline.setGraphOutlineThickness(2.0);
 ----
@@ -690,9 +690,9 @@ timeline.addListener(new Timeline.EventClickListener() {
                       Timeline.PropertyId.TIMESTAMP).getValue();
         SimpleDateFormat formatter =
             new SimpleDateFormat("EEE, MMM d, ''yy");
-        
+
         Notification.show(formatter.format(sunday));
-    }        
+    }
 });
 ----
 
@@ -713,6 +713,3 @@ can look them up in the JavaDoc.
 
 
 endif::web[]
-
-
-

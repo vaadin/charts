@@ -1,6 +1,6 @@
 ---
 title: Advanced Uses
-order: 7
+order: 9
 layout: page
 ---
 
@@ -40,11 +40,11 @@ custom settings.
 ----
 // Create the export configuration
 Exporting exporting = new Exporting(true);
-        
+
 // Customize the file name of the download file
 exporting.setFilename("mychartfile.pdf");
 
-// Enable export of raster images 
+// Enable export of raster images
 exporting.setEnableImages(true);
 
 // Use the exporting configuration in the chart
@@ -102,8 +102,3 @@ link:http://xmlgraphics.apache.org/batik/[Batik] or
 link:http://itextpdf.com/[iText] libraries to generate documents. For a complete
 example, you can check out the Charts Export Demo from the Subversion repository
 at [uri]#https://github.com/vaadin/charts/tree/master/chart-export-demo#.
-
-
-
-
-

@@ -1,6 +1,6 @@
 ---
 title: Chart Configuration
-order: 5
+order: 7
 layout: page
 ---
 
@@ -323,8 +323,3 @@ Labels ylabels = yaxis.getLabels();
 Some contexts that display labels allow defining simple formatting for the
 labels. For example, data point tooltips allow defining prefix, suffix, and
 floating-point precision for the values.
-
-
-
-
-
