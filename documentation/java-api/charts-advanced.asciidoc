@@ -1,6 +1,6 @@
 ---
 title: Advanced Uses
-order: 9
+order: 6
 layout: page
 ---
 
@@ -28,7 +28,7 @@ also configure your own.
 You can enable the built-in export function by setting
 [methodname]#setExporting(true)# in the chart configuration.
 
-
+[source,java]
 ----
 chart.getConfiguration().setExporting(true);
 ----
@@ -36,7 +36,7 @@ chart.getConfiguration().setExporting(true);
 To configure it further, you can provide a [classname]#Exporting# object with
 custom settings.
 
-
+[source,java]
 ----
 // Create the export configuration
 Exporting exporting = new Exporting(true);
@@ -54,7 +54,7 @@ chart.getConfiguration().setExporting(exporting);
 If you only want to enable download, you can disable the print button as
 follows:
 
-
+[source,java]
 ----
 ExportButton printButton = new ExportButton();
 printButton.setEnabled(false);
@@ -65,7 +65,7 @@ The functionality uses a HighCharts export service by default. To use your own,
 you need to set up one and then configure it in the exporting configuration as
 follows:
 
-
+[source,java]
 ----
 exporting.setUrl("http://my.own.server.com");
 ----
@@ -89,7 +89,7 @@ To generate the SVG image content as a string (it's XML), simply call the
 [methodname]#generate()# method in the [classname]#SVGGenerator# singleton and
 pass it the chart configuration.
 
-
+[source,java]
 ----
 String svg = SVGGenerator.getInstance()
     .generate(chart.getConfiguration());

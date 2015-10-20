@@ -1,6 +1,6 @@
 ---
 title: Installing Vaadin Charts
-order: 4
+order: 1
 layout: page
 ---
 
@@ -34,7 +34,7 @@ The Maven dependency for Vaadin TestBench is as follows:
 ----
 You also need to define the Vaadin add-ons repository if not already defined:
 
-
+[source,xml]
 ----
 <repository>
    <id>vaadin-addons</id>
@@ -71,13 +71,14 @@ the key.
 
 [[figure.charts.installing.license]]
 .Obtaining License Key from Vaadin Directory
-image::img/screenshots/directory-license-key.png[]
+image::img/directory-license-key.png[]
 
 To install the license key in a development workstation, you can copy and paste
 it verbatim to a [filename]#.vaadin.charts.developer.license# file in your home
 directory. For example, in Linux and OS X:
 
 [subs="normal"]
+[source,xml]
 ----
 [prompt]#$# [command]#echo# "[replaceable]##L1cen5e-c0de##" &gt; [parameter]#~/.vaadin.charts.developer.license#
 ----
@@ -85,6 +86,7 @@ You can also pass the key as a system property to the widget set compiler,
 usually with a [literal]#++-D++# option. For example, on the command-line:
 
 [subs="normal"]
+[source,xml]
 ----
 [prompt]#$# [command]#java# -D[parameter]##vaadin.charts.developer.license##=[replaceable]##L1cen5e-c0de## ...
 ----
@@ -111,6 +113,7 @@ script as follows:
 
 +
 [subs="normal"]
+[source,xml]
 ----
 &lt;sysproperty key="vaadin.charts.developer.license"
              value="**L1cen5e-c0de**"/&gt;
@@ -124,6 +127,7 @@ Ant as a property that you then use in the script for the value argument of the
 
 +
 [subs="normal"]
+[source,xml]
 ----
 &lt;sysproperty key="vaadin.charts.developer.license"
     value="**${vaadin.charts.developer.license}**"/&gt;
@@ -138,6 +142,7 @@ Apache Maven:: If building the project with Apache Maven, you can pass the licen
 
 +
 [subs="normal"]
+[source,xml]
 ----
 [prompt]#$# [command]#mvn# -D[parameter]##vaadin.charts.developer.license##=[replaceable]##L1cen5e-c0de## package
 ----

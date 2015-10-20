@@ -16,7 +16,7 @@ visual themes, which you can extend further. The basic functionalities allow the
 user to interact with the chart elements in various ways, and you can define
 custom interaction with click events. The [classname]#Timeline# is a specialized
 component for visualizing time series, and is described in
-<<dummy/../../charts/charts-timeline#charts.timeline,"Timeline">>.
+<<dummy/../../../charts/java-api/charts-timeline#charts.timeline,"Timeline">>.
 
 [[figure.charts.overview]]
 .Vaadin Charts
@@ -30,18 +30,19 @@ This chapter covers the basic use of Vaadin Charts and the chart configuration.
 For detailed documentation of the configuration parameters and classes, please
 refer to the JavaDoc API documentation of the library.
 
-In the following basic example, which we study further in
-<<dummy/../../charts/charts-basic-use#charts.basic-use,"Basic Use">>, we
+In the following basic examples, which we study further in
+<<dummy/../../../charts/java-api/charts-basic-use#charts.basic-use,"Basic Use (Java)">> and
+<<dummy/../../../charts/webcomponents-api/charts-basic-use#charts.basic-use,"Basic Use (Web Components)">>, we
 demonstrate how to display one-dimensional data in a column graph and customize
 the X and Y axis labels and titles.
 
-
+Java:
+[source, java]
 ----
-
 Chart chart = new Chart(ChartType.BAR);
 chart.setWidth("400px");
 chart.setHeight("300px");
-        
+
 // Modify the default configuration a bit
 Configuration conf = chart.getConfiguration();
 conf.setTitle("Planets");
@@ -70,9 +71,50 @@ yaxis.getLabels().setFormatter(
   "function() {return Math.floor(this.value/1000) + \' Mm\';}");
 yaxis.getLabels().setStep(2);
 conf.addyAxis(yaxis);
-        
+
 layout.addComponent(chart);
 ----
+
+Web Components:
+[source, html]
+----
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+  <link rel="import" href="bower_components/vaadin-charts/vaadin-bar-chart.html">
+</head>
+<body>
+  <div style="width:400px;height:300px">
+    <vaadin-bar-chart>
+      <title>Planets</title>
+      <subTitle>The bigger they are the harder they pull</subTitle>
+      <legend>
+        <enabled>false</enabled>
+      </legend>
+      <x-axis>
+        <title>Planet</title>
+        <categories>Mercury, Venus, Earth, Mars,
+                    Jupiter, Saturn, Uranus, Neptune</categories>
+      </x-axis>
+      <y-axis>
+        <title>Diameter</title>
+        <labels formatter = "function () { return this.value / 1000 + 'Mm';}">
+          <step>2</step>
+        </labels>
+      </y-axis>
+      <data-series name="Diameter">
+        <data>
+          4900, 12100, 12800, 6800,
+          143000, 125000, 51100, 49500
+        </data>
+      </data-series>
+    </vaadin-bar-chart>
+  </div>
+</body>
+</html>
+----
+
 
 The resulting chart is shown in <<figure.charts.overview.basicexample>>.
 
@@ -94,7 +136,3 @@ require purchasing a separate Highcharts JS license.
 The commercial licenses can be purchased from the
 link:https://vaadin.com/directory[Vaadin Directory], where you can also find the
 license details and download the Vaadin Charts.
-
-
-
-

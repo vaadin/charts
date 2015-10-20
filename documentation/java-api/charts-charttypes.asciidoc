@@ -1,6 +1,6 @@
 ---
 title: Chart Types
-order: 6
+order: 3
 layout: page
 ---
 
@@ -76,9 +76,9 @@ type combinations for spline interpolation and ranges are supported.
 In area range charts, the area between a lower and upper value is painted with a
 transparent color. The data series must specify the minimum and maximum values
 for the Y coordinates, defined either with [classname]#RangeSeries#, as
-described in <<dummy/../../charts/charts-data#charts.data.rangeseries,"Range
+described in <<dummy/../../../charts/charts-data#charts.data.rangeseries,"Range
 Series">>, or with [classname]#DataSeries#, described in
-<<dummy/../../charts/charts-data#charts.data.dataseries,"Generic Data Series">>.
+<<dummy/../../../charts/charts-data#charts.data.dataseries,"Generic Data Series">>.
 
 [[charts.charttypes.area.plotoptions]]
 === Plot Options
@@ -111,7 +111,7 @@ orientation of the axes was inverted.
 
 Multiple data series, that is, two-dimensional data, are shown with thinner bars
 or columns grouped by their category, as described in
-<<dummy/../../charts/charts-basic-use#charts.basic-use.two-dimensional,"Displaying
+<<dummy/../../../charts/charts-basic-use#charts.basic-use.two-dimensional,"Displaying
 Multiple Series">>. Enabling stacking with [methodname]#setStacking()# in plot
 options stacks the columns or bars of different series on top of each other.
 
@@ -156,7 +156,7 @@ To display the error bars for data points, you need to have a separate data
 series for the low and high values. The data series needs to use the
 [classname]#PlotOptionsErrorBar# plot options type.
 
-
+[source, java]
 ----
 // Create a chart of some primary type
 Chart chart = new Chart(ChartType.SCATTER);
@@ -232,7 +232,7 @@ image::img/charts-boxplot.png[]
 The chart type for box plot charts is [literal]#++ChartType.BOXPLOT++#. You
 normally have just one data series, so it is meaningful to disable the legend.
 
-
+[source, java]
 ----
 Chart chart = new Chart(ChartType.BOXPLOT);
 chart.setWidth("400px");
@@ -257,7 +257,7 @@ the following plot option properties:
 
 For example:
 
-
+[source, java]
 ----
 // Set median line color and thickness
 PlotOptionsBoxPlot plotOptions = new PlotOptionsBoxPlot();
@@ -274,7 +274,7 @@ As the data points in box plots have five different values instead of the usual
 one, they require using a special [classname]#BoxPlotItem#. You can give the
 different values with the setters, or all at once in the constructor.
 
-
+[source, java]
 ----
 // Orienteering control point times for runners
 double data[][] = orienteeringdata();
@@ -313,7 +313,7 @@ The chart type of a scatter chart is [parameter]#ChartType.SCATTER#. Its options
 can be configured in a [classname]#PlotOptionsScatter# object, although it does
 not have any chart-type specific options.
 
-
+[source, java]
 ----
 Chart chart = new Chart(ChartType.SCATTER);
 chart.setWidth("500px");
@@ -360,7 +360,7 @@ item.
 
 For example, to set the marker for an individual data point:
 
-
+[source, java]
 ----
 DataSeriesItem point = new DataSeriesItem(x,y);
 Marker marker = new Marker();
@@ -378,7 +378,7 @@ set using a [classname]#Color# object. Both solid colors and gradients are
 supported. You can use a [classname]#SolidColor# to specify a solid fill color
 by RGB values or choose from a selection of predefined colors in the class.
 
-
+[source, java]
 ----
 // Set line width and color
 marker.setLineWidth(1); // Normally zero width
@@ -398,7 +398,7 @@ and radial gradients are supported, with multiple color stops.
 Marker size is determined by the [parameter]#radius# parameter, which is given
 in pixels. The actual visual radius includes also the line width.
 
-
+[source, java]
 ----
 marker.setRadius((z+1)*5);
 ----
@@ -414,7 +414,7 @@ the shape from a number of built-in shapes defined in the
 These shapes are drawn with a line and fill, which you can set as described
 above.
 
-
+[source, java]
 ----
 marker.setSymbol(MarkerSymbolEnum.DIAMOND);
 ----
@@ -423,7 +423,7 @@ You can also use any image accessible by a URL by using a
 [classname]#MarkerSymbolUrl# symbol. If the image is deployed with your
 application, such as in a theme folder, you can determine its URL as follows:
 
-
+[source, java]
 ----
 String url = VaadinServlet.getCurrent().getServletContext()
     .getContextPath() + "/VAADIN/themes/mytheme/img/smiley.png";
@@ -468,7 +468,7 @@ that square root is taken of the Z coordinate to
 endif::web[]
 
 ifdef::web[]
-
+[source, java]
 ----
 // Create a bubble chart
 Chart chart = new Chart(ChartType.BUBBLE);
@@ -543,7 +543,7 @@ of all values. The pie chart is enabled with [parameter]#ChartType.PIE# and you
 can make type-specific settings in the [classname]#PlotOptionsPie# object as
 described later.
 
-
+[source, java]
 ----
 Chart chart = new Chart(ChartType.PIE);
 Configuration conf = chart.getConfiguration();
@@ -562,7 +562,7 @@ image::img/charts-pie.png[]
 The chart-specific options of a pie chart are configured with a
 [classname]#PlotOptionsPie#.
 
-
+[source, java]
 ----
 PlotOptionsPie options = new PlotOptionsPie();
 options.setInnerSize(0); // Non-0 results in a donut
@@ -584,7 +584,7 @@ The labels for the pie sectors are determined from the labels of the data
 points. The [classname]#DataSeries# or [classname]#ContainerSeries#, which allow
 labeling the data points, should be used for pie charts.
 
-
+[source, java]
 ----
 DataSeries series = new DataSeries();
 series.add(new DataSeriesItem("Mercury", 4900));
@@ -597,7 +597,7 @@ If a data point, as defined as a [classname]#DataSeriesItem# in a
 [classname]#DataSeries#, has the __sliced__ property enabled, it is shown as
 slightly cut away from the pie.
 
-
+[source, java]
 ----
 // Slice one sector out
 DataSeriesItem earth = new DataSeriesItem("Earth", 12800);
@@ -612,7 +612,7 @@ series.add(earth);
 Setting the [parameter]#innerSize# of the plot options of a pie chart to a
 larger than zero value results in an empty hole at the center of the pie.
 
-
+[source, java]
 ----
 PlotOptionsPie options = new PlotOptionsPie();
 options.setInnerSize("60%");
@@ -624,7 +624,7 @@ charts on top of each other, with a smaller one fitted in the "hole" of the
 donut. This way, you can make pie charts with more details on the outer rim, as
 done in the example below:
 
-
+[source, java]
 ----
 // The inner pie
 DataSeries innerSeries = new DataSeries();
@@ -663,7 +663,7 @@ indicator arc can be configured to change according to color stops.
 
 Let us consider the following gauge:
 
-
+[source, java]
 ----
 Chart chart = new Chart(ChartType.GAUGE);
 chart.setWidth("400px");
@@ -684,7 +684,7 @@ The start and end angles of the gauge can be configured in the [classname]#Pane#
 object of the chart configuration. The angles can be given as -360 to 360
 degrees, with 0 at the top of the circle.
 
-
+[source, java]
 ----
 Configuration conf = chart.getConfiguration();
 conf.setTitle("Speedometer");
@@ -699,7 +699,7 @@ conf.getPane().setEndAngle(135);
 A gauge has only an Y-axis. You need to provide both a minimum and maximum value
 for it.
 
-
+[source, java]
 ----
 YAxis yaxis = new YAxis();
 yaxis.setTitle("km/h");
@@ -729,7 +729,7 @@ documentation for all the available parameters.
 A gauge only displays a single value, which you can define as a data series of
 length one, such as as follows:
 
-
+[source, java]
 ----
 ListSeries series = new ListSeries("Speed", 80);
 conf.addSeries(series);
@@ -739,7 +739,7 @@ Gauges are especially meaningful for displaying changing values. You can use the
 [methodname]#updatePoint()# method in the data series to update the single
 value.
 
-
+[source, java]
 ----
 final TextField tf = new TextField("Enter a new value");
 layout.addComponent(tf);
@@ -767,7 +767,7 @@ stops.
 
 Let us consider the following gauge:
 
-
+[source, java]
 ----
 Chart chart = new Chart(ChartType.SOLIDGAUGE);
 chart.setWidth("400px");
@@ -793,7 +793,7 @@ where you use -90 and 90 for the angles, and move the center lower than you
 would have with a full circle. You can also adjust the size of the gauge pane;
 enlargening it allows positioning tick labels better.
 
-
+[source, java]
 ----
 Configuration conf = chart.getConfiguration();
 conf.setTitle("Solid Gauge");
@@ -810,7 +810,7 @@ least need to set the shape as either " [literal]#++arc++#" or "
 [literal]#++solid++#". You typically also want to set background color and inner
 and outer radius.
 
-
+[source, java]
 ----
 Background bkg = new Background();
 bkg.setBackgroundColor(new SolidColor("#eeeeee")); // Gray
@@ -827,7 +827,7 @@ pane.setBackground(bkg);
 A gauge only has an Y-axis. You must define the value range ( __min__ and
 __max__).
 
-
+[source, java]
 ----
 YAxis yaxis = new YAxis();
 yaxis.setTitle("Pressure GPa");
@@ -845,7 +845,7 @@ yaxis.getLabels().setY(-16); // Move 16 px upwards
 You can configure color stops for the indicator arc. The stops are defined with
 [classname]#Stop# objects having stop points from 0.0 to 1.0 and color values.
 
-
+[source, java]
 ----
 yaxis.setStops(new Stop(0.1f, SolidColor.GREEN),
                new Stop(0.5f, SolidColor.YELLOW),
@@ -865,10 +865,10 @@ documentation for all the available parameters.
 === Plot Options
 
 Solid gauges do not currently have any chart type specific plot options. See
-<<dummy/../../charts/charts-configuration#charts.configuration.plotoptions,"Plot
+<<dummy/../../../charts/charts-configuration#charts.configuration.plotoptions,"Plot
 Options">> for common options.
 
-
+[source, java]
 ----
 PlotOptionsSolidGauge options = new PlotOptionsSolidGauge();
 
@@ -887,7 +887,7 @@ conf.setPlotOptions(options);
 A gauge only displays a single value, which you can define as a data series of
 length one, such as as follows:
 
-
+[source, java]
 ----
 ListSeries series = new ListSeries("Pressure MPa", 80);
 conf.addSeries(series);
@@ -897,7 +897,7 @@ Gauges are especially meaningful for displaying changing values. You can use the
 [methodname]#updatePoint()# method in the data series to update the single
 value.
 
-
+[source, java]
 ----
 final TextField tf = new TextField("Enter a new value");
 layout.addComponent(tf);
@@ -920,13 +920,13 @@ layout.addComponent(update);
 Ranged charts display an area or column between a minimum and maximum value,
 instead of a singular data point. They require the use of
 [classname]#RangeSeries#, as described in
-<<dummy/../../charts/charts-data#charts.data.rangeseries,"Range Series">>. An
+<<dummy/../../../charts/charts-data#charts.data.rangeseries,"Range Series">>. An
 area range is created with [parameter]#AREARANGE# chart type, and a column range
 with [parameter]#COLUMNRANGE# chart type.
 
 Consider the following example:
 
-
+[source, java]
 ----
 Chart chart = new Chart(ChartType.AREARANGE);
 chart.setWidth("400px");
@@ -969,7 +969,7 @@ Vaadin Charts allows many sorts of typical polar chart types, such as __wind
 rose__, a polar column graph, or __spiderweb__, a polar chart with categorical
 data and a more polygonal visual style.
 
-
+[source, java]
 ----
 // Create a chart of some type
 Chart char = new Chart(ChartType.LINE);
@@ -984,7 +984,7 @@ object in the configuration. The sector is defined as degrees from the north
 direction. You also need to define the value range for the X axis with
 [methodname]#setMin()# and [methodname]#setMax()#.
 
-
+[source, java]
 ----
 // Define the sector of the polar projection
 Pane pane = new Pane(0, 360); // Full circle
@@ -1014,7 +1014,7 @@ assumed to be full circle, so no angles for the pane need to be specified.
 ifdef::web[Note the style settings done in the axis in the example below:]
 
 ifdef::web[]
-
+[source, java]
 ----
 Chart chart = new Chart(ChartType.LINE);
 ...
@@ -1077,6 +1077,7 @@ ifdef::web[, as is done in the following example].
 
 ifdef::web[]
 
+[source, java]
 ----
 Chart chart = new Chart(ChartType.FUNNEL);
 chart.setWidth("500px");
@@ -1127,7 +1128,7 @@ shared options: [parameter]#width#, [parameter]#height#, [parameter]#depth#,
 [parameter]#allowPointSelect#, [parameter]#borderColor#,
 [parameter]#borderWidth#, [parameter]#center#, [parameter]#slicedOffset#, and
 [parameter]#visible#. See
-<<dummy/../../charts/charts-configuration#charts.configuration.plotoptions,"Plot
+<<dummy/../../../charts/charts-configuration#charts.configuration.plotoptions,"Plot
 Options">> for detailed descriptions.
 
 They have the following chart type specific properties:
@@ -1157,7 +1158,7 @@ Waterfall charts have chart type [literal]#++WATERFALL++#.
 ifdef::web[For example:]
 
 ifdef::web[]
-
+[source, java]
 ----
 Chart chart = new Chart(ChartType.WATERFALL);
 chart.setWidth("500px");
@@ -1201,7 +1202,7 @@ In the following, we define the colors, as well as the style and placement of
 the labels for the columns:
 
 ifdef::web[]
-
+[source, java]
 ----
 // Define the colors
 final Color balanceColor = SolidColor.BLACK;
@@ -1242,7 +1243,7 @@ are calculated automatically. For intermediate sums, you should set the
 [parameter]#intermediate# property to [literal]#++true++#.
 
 ifdef::web[]
-
+[source, java]
 ----
 // The data
 DataSeries series = new DataSeries();
@@ -1284,7 +1285,7 @@ Heat maps have chart type [literal]#++HEATMAP++#.
 ifdef::web[For example:]
 
 ifdef::web[]
-
+[source, java]
 ----
 
 Chart chart = new Chart(ChartType.HEATMAP);
@@ -1370,7 +1371,7 @@ Tree maps have chart type [literal]#++TREEMAP++#.
 ifdef::web[For example:]
 
 ifdef::web[]
-
+[source, java]
 ----
 Chart chart = new Chart();
 
@@ -1493,7 +1494,7 @@ Polygons have chart type [literal]#++POLYGON++#.
 ifdef::web[For example:]
 
 ifdef::web[]
-
+[source, java]
 ----
 Chart chart = new Chart();
 Configuration conf = chart.getConfiguration();

@@ -1,5 +1,5 @@
 ---
-title: Getting started in web components
+title: Getting started with Web Components
 order: 3
 layout: page
 ---
@@ -21,7 +21,7 @@ You will learn how to:
 * Bind the chart to a REST service
 
 The final result of this tutorial can be explored at
-https://github.com/vaadin/charts-tutorial/client[github]. Let's get to it.
+https://github.com/vaadin/charts-tutorial/tree/master/client[github]. Let's get to it.
 
 [[setup]]
 == Project Setup
@@ -289,7 +289,7 @@ add 'data' attribute to the 'data-series' element.
 
 [source,html]
 ----
-<data-series name="Temperature" data=[[temperatureData]]>
+<data-series name="Temperature" data="[[temperatureData]]">
 </data-series>
 ----
 
@@ -329,9 +329,9 @@ instead of line. Now you should have two 'data-series' elements.
 
 [source,html]
 ----
-<data-series name="Temperature" data=[[temperatureData]]>
+<data-series name="Temperature" data="[[temperatureData]]">
 </data-series>
-<data-series name="Humidity" type="column" data=[[humidityData]]>
+<data-series name="Humidity" type="column" data="[[humidityData]]">
 </data-series>
 ----
 
@@ -360,7 +360,7 @@ attribute.
   <opposite>true</opposite>
 </y-axis>
 ...
-<data-series name="Humidity" type="column" data=[[humidityData]] y-axis = "humidity">
+<data-series name="Humidity" type="column" data="[[humidityData]]" y-axis = "humidity">
 </data-series>
 ----
 
@@ -381,9 +381,9 @@ The final chart element should look like this
     <min>0</min>
     <opposite>true</opposite>
   </y-axis>
-  <data-series name="Humidity" type="column" data=[[humidityData]] y-axis = "humidity">
+  <data-series name="Humidity" type="column" data="[[humidityData]]" y-axis = "humidity">
   </data-series>
-  <data-series name="Temperature" data=[[temperatureData]]>
+  <data-series name="Temperature" data="[[temperatureData]]">
   </data-series>
 </vaadin-line-chart>
 ----

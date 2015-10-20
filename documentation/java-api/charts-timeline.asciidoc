@@ -1,6 +1,6 @@
 ---
 title: Timeline
-order: 10
+order: 7
 layout: page
 ---
 
@@ -176,7 +176,7 @@ is given.
 
 Below is an example of how a graph container could be constructed:
 
-
+[source, java]
 ----
 // Construct a container which implements Container.Indexed
 IndexedContainer container = new IndexedContainer();
@@ -206,7 +206,7 @@ property which is displayed in the marker popup.
 
 Below is an example on how a marker or event container can be constructed:
 
-
+[source, java]
 ----
 // Create the container
 IndexedContainer container = new IndexedContainer();
@@ -368,7 +368,7 @@ So, lets create a container which meets the above stated specification. Open the
 main UI class which was automatically created when we created the project and
 add the following method.
 
-
+[source, java]
 ----
 /**
  * Creates a graph container with a month of random data
@@ -422,7 +422,7 @@ that time. To create markers you again have to create a data source for them.
 I'll first show you how the code to create them and then explain what it all
 means. Add the following method to the UI class:
 
-
+[source, java]
 ----
 /**
  * Creates a marker container with a marker for each seven days
@@ -493,7 +493,7 @@ The event data sources are almost identical the to marker data sources except
 the value property is missing. Lets create an event data source and add events
 for each Sunday in out graph:
 
-
+[source, java]
 ----
 /**
  * Creates a event container with a marker for each sunday
@@ -551,7 +551,7 @@ Okay, now that we have out data sources lets look at the init-method in our
 Vaadin Application. Lets start by creating our timeline, so add the following
 line to the end of the init-method in [classname]#MytimelinedemoApplication#:
 
-
+[source, java]
 ----
 Timeline timeline = new Timeline("Our timeline");
 timeline.setWidth("100%");
@@ -560,7 +560,7 @@ timeline.setWidth("100%");
 This will create the timeline we want with a 100 percent width. Now lets add our
 data sources to the timeline:
 
-
+[source, java]
 ----
 timeline.addGraphDataSource(createGraphDataSource(),
                         Timeline.PropertyId.TIMESTAMP,
@@ -578,7 +578,7 @@ timeline.setEventDataSource(createEventDataSource(),
 
 And finally add the timeline to the UI. Here is the complete init-method:
 
-
+[source, java]
 ----
 @Override
 protected void init(VaadinRequest request) {
@@ -624,7 +624,7 @@ Now that we have our timeline we would probably like to customize it a bit.
 There are many things you can do but lets start by giving our graph some style
 properties and a caption in the legend. This can be done as follows:
 
-
+[source, java]
 ----
 // Set the caption of the graph
 timeline.setGraphLegend(graphDataSource, "Our cool graph");
@@ -641,7 +641,7 @@ timeline.setGraphOutlineThickness(2.0);
 
 Lets do the same to the browser areas graph:
 
-
+[source, java]
 ----
 // Set the color of the browser graph
 timeline.setBrowserOutlineColor(graphDataSource, Color.BLACK);
@@ -664,7 +664,7 @@ month of data lets make a zoom level for a day, a week and a month. Zoom levels
 are given in milliseconds so we will have to calculate how many milliseconds
 each of the zoom levels are. So lets add them by adding the following lines:
 
-
+[source, java]
 ----
 // Add some zoom levels
 timeline.addZoomLevel("Day", 86400000L);
@@ -678,7 +678,7 @@ graph which will send an event each time the user clicks on one of the event
 buttons. To demonstrate this feature lets add an event listener which notifies
 the user what date the Sunday-button represents. Here is the code for that:
 
-
+[source, java]
 ----
 // Listen to click events from events
 timeline.addListener(new Timeline.EventClickListener() {

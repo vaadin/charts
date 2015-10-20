@@ -1,6 +1,6 @@
 ---
 title: Chart Configuration
-order: 7
+order: 4
 layout: page
 ---
 
@@ -25,7 +25,7 @@ summarized in the following:
 * [methodname]#pane#: [classname]#Pane#
 
 * [methodname]#plotoptions#: [classname]#PlotOptions# (see
-<<charts.configuration.plotoptions>>
+<<charts.configuration.plotoptions>>)
 
 * [methodname]#series#: [interfacename]#Series#
 
@@ -35,12 +35,12 @@ summarized in the following:
 
 * [methodname]#tooltip#: [classname]#Tooltip#
 
-* [methodname]#xAxis#: [classname]#XAxis# (see <<charts.configuration.axes>>
+* [methodname]#xAxis#: [classname]#XAxis# (see <<charts.configuration.axes>>)
 
-* [methodname]#yAxis#: [classname]#YAxis# (see <<charts.configuration.axes>>
+* [methodname]#yAxis#: [classname]#YAxis# (see <<charts.configuration.axes>>)
 
 
-For data configuration, see <<dummy/../../charts/charts-data#charts.data,"Chart
+For data configuration, see <<dummy/../../../charts/charts-data#charts.data,"Chart
 Data">>.
 
 [[charts.configuration.plotoptions]]
@@ -56,7 +56,7 @@ chart or for a data series with [methodname]#setPlotOptions()#.
 
 For example, the following enables stacking in column charts:
 
-
+[source,java]
 ----
 PlotOptionsColumn plotOptions = new PlotOptionsColumn();
 plotOptions.setStacking(Stacking.NORMAL);
@@ -72,8 +72,8 @@ information about the chart-specific options, and the
 
 The following options are supported by some chart types.
 
-[parameter]#width#and[parameter]#widthPercentage#:: Defines the width of the chart either by pixels or as a percentual proportion of the drawing area.
-[parameter]#height#and[parameter]#heightPercentage#:: Defines the height of the chart either by pixels or as a percentual proportion of the drawing area.
+[parameter]#width# and [parameter]#widthPercentage#:: Defines the width of the chart either by pixels or as a percentual proportion of the drawing area.
+[parameter]#height# and [parameter]#heightPercentage#:: Defines the height of the chart either by pixels or as a percentual proportion of the drawing area.
 [parameter]#depth#:: Specifies the thickness of the chart in 3D mode.
 [parameter]#allowPointSelect#:: Specifies whether data points, in whatever way they are visualized in the particular chart type, can be selected by clicking on them. Defaults to __false__.
 [parameter]#borderColor#:: Defines the border color of the chart elements.
@@ -109,7 +109,7 @@ image::img/charts-axes-lo.png[]
 Axis objects are created and added to the configuration object with
 [methodname]#addxAxis()# and [methodname]#addyAxis()#.
 
-
+[source,java]
 ----
 XAxis xaxis = new XAxis();
 xaxis.setTitle("Axis title");
@@ -150,7 +150,7 @@ the category labels with [methodname]#setCategories()#, which takes the
 categories as (an ellipsis) parameter list, or as an iterable. The list should
 match the items in the data series.
 
-
+[source,java]
 ----
 XAxis xaxis = new XAxis();
 xaxis.setCategories("Mercury", "Venus", "Earth",
@@ -170,7 +170,7 @@ interval by default. The format and style of labels in an axis is defined in a
 [classname]#Labels# object, which you can get with [methodname]#getLabels()#
 from the axis.
 
-
+[source,java]
 ----
 XAxis xaxis = new XAxis();
 ...
@@ -196,7 +196,7 @@ Axis labels have the following configuration properties:
 [literal]#++isLast++# properties. Defaults to:
 
 
-+
+[source,java]
 ----
 function() {return this.value;}
 ----
@@ -205,7 +205,7 @@ function() {return this.value;}
 clockwise direction. Labels are rotated at their alignment point. Defaults to 0.
 
 
-+
+[source,java]
 ----
 Labels xlabels = xaxis.getLabels();
 xlabels.setAlign(HorizontalAlign.RIGHT);
@@ -217,7 +217,7 @@ __n__th tick. The default step is automatically determined, along with
 staggering, to avoid overlap.
 
 
-+
+[source,java]
 ----
 Labels xlabels = xaxis.getLabels();
 xlabels.setStep(2); // Every 2 major tick
@@ -226,7 +226,7 @@ xlabels.setStep(2); // Every 2 major tick
 to be created and set.
 
 
-+
+[source,java]
 ----
 Labels xlabels = xaxis.getLabels();
 Style xlabelsstyle = new Style();
@@ -309,7 +309,7 @@ that returns the formatted string. The value to be formatted is available in
 
 For example, to format tick labels on a chart axis, you could have:
 
-
+[source,java]
 ----
 YAxis yaxis = new YAxis();
 Labels ylabels = yaxis.getLabels();

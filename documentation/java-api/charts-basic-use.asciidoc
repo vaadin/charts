@@ -1,6 +1,6 @@
 ---
 title: Basic Use
-order: 5
+order: 2
 layout: page
 ---
 
@@ -12,7 +12,7 @@ layout. You can give the chart type in the constructor or set it later in the
 chart model. A chart has a height of 400 pixels and takes full width by default,
 which settings you may often need to customize.
 
-
+[source, java]
 ----
 Chart chart = new Chart(ChartType.COLUMN);
 chart.setWidth("400px");  // 100% by default
@@ -22,7 +22,7 @@ layout.addComponent(chart);
 ----
 
 The chart types are described in
-<<dummy/../../charts/charts-charttypes#charts.charttypes,"Chart Types">>. The
+<<dummy/../../../charts/java-api/charts-charttypes#charts.charttypes,"Chart Types">>. The
 main parts of a chart are illustrated in <<figure.charts.overview.elements>>.
 
 [[figure.charts.overview.elements]]
@@ -51,7 +51,7 @@ component properties. All the chart-specific properties are in a separate
 [classname]#Configuration# object, which you can access with the
 [methodname]#getConfiguration()# method.
 
-
+[source, java]
 ----
 Configuration conf = chart.getConfiguration();
 conf.setTitle("Reindeer Kills by Predators");
@@ -59,7 +59,7 @@ conf.setSubTitle("Kills Grouped by Counties");
 ----
 
 The configuration properties are described in more detail in
-<<dummy/../../charts/charts-configuration#charts.configuration,"Chart
+<<dummy/../../../charts/java-api/charts-configuration#charts.configuration,"Chart
 Configuration">>.
 
 
@@ -72,7 +72,7 @@ each chart type, while many are shared.
 
 For example, for line charts, you could disable the point markers as follows:
 
-
+[source, java]
 ----
 // Disable markers from lines
 PlotOptionsLine plotOptions = new PlotOptionsLine();
@@ -85,7 +85,7 @@ separately, allowing also mixed-type charts, as described in
 <<charts.basic-use.mixed>>.
 
 The shared plot options are described in
-<<dummy/../../charts/charts-configuration#charts.configuration.plotoptions,"Plot
+<<dummy/../../../charts/java-api/charts-configuration#charts.configuration.plotoptions,"Plot
 Options">>.
 
 
@@ -96,7 +96,7 @@ The data displayed in a chart is stored in the chart configuration as a list of
 [classname]#Series# objects. A new data series is added in a chart with the
 [methodname]#addSeries()# method.
 
-
+[source, java]
 ----
 ListSeries series = new ListSeries("Diameter");
 series.setData(4900,  12100,  12800,
@@ -115,7 +115,7 @@ Special chart types, such as box plots and 3D scatter charts require using their
 own special data point type.
 
 The data series configuration is described in more detail in
-<<dummy/../../charts/charts-data#charts.data,"Chart Data">>.
+<<dummy/../../../charts/java-api/charts-data#charts.data,"Chart Data">>.
 
 
 [[charts.basic-use.axis]]
@@ -129,7 +129,7 @@ When an axis is categorical rather than numeric, you can define category labels
 for the items. They must be in the same order and the same number as you have
 values in your data series.
 
-
+[source, java]
 ----
 XAxis xaxis = new XAxis();
 xaxis.setCategories("Mercury", "Venus",   "Earth",
@@ -142,7 +142,7 @@ conf.addxAxis(xaxis);
 Formatting of numeric labels can be done with JavaScript expressions, for
 example as follows:
 
-
+[source, java]
 ----
 // Set the Y axis title
 YAxis yaxis = new YAxis();
@@ -165,7 +165,7 @@ and in column charts the columns for different series are grouped by category.
 Different chart types can offer alternative display modes, such as stacked
 columns. The legend displays the symbols for each series.
 
-
+[source, java]
 ----
 // The data
 // Source: V. Maijala, H. Norberg, J. Kumpula, M. Nieminen
@@ -211,7 +211,7 @@ other settings for the series in the plot options.
 
 For example, to get a line chart, you need to use [classname]#PlotOptionsLine#.
 
-
+[source, java]
 ----
 // A data series as column graph
 DataSeries series1 = new DataSeries();
@@ -258,7 +258,7 @@ chart according to the __alpha__ and __beta__ parameters.
 Let us consider a basic scatter chart for an example. The basic configuration
 for scatter charts is described elsewhere, but let us look how to make it 3D.
 
-
+[source, java]
 ----
 Chart chart = new Chart(ChartType.SCATTER);
 Configuration conf = chart.getConfiguration();
@@ -289,7 +289,7 @@ The 3D options are as follows:
 [parameter]#frame#:: Defines the 3D frame, which consists of a back, bottom, and side panels that
 display the chart grid.
 
-
+[source, java]
 +
 ----
 Frame frame = new Frame();
@@ -309,7 +309,7 @@ properties of the actual chart type. The 3D plot options are chart type
 specific. For example, a pie has __depth__ (or thickness), which you can
 configure as follows:
 
-
+[source, java]
 ----
 // Set some plot options
 PlotOptionsPie options = new PlotOptionsPie();
@@ -333,7 +333,7 @@ The Z parameter is __depth__ and is not scaled; there is no configuration for
 the depth or Z axis. Therefore, you need to handle scaling yourself as is done
 in the following.
 
-
+[source, java]
 ----
 // Orthogonal data points in 2x2x2 cube
 double[][] points = { {0.0, 0.0, 0.0}, // x, y, z
@@ -376,7 +376,7 @@ To add a bit more 3D effect, you can do some tricks, such as calculate the
 distance of the data points from a viewpoint and set the marker size and color
 according to the distance.
 
-
+[source, java]
 ----
 public double distanceTo(double[] point, double alpha,
                          double beta, double viewDist) {
@@ -395,7 +395,7 @@ Using the distance requires some assumptions about the scaling and such, but for
 the data points (as defined earlier) in range -1.0 to +1.0 we could do as
 follows:
 
-
+[source, java]
 ----
 ...
 DataSeriesItem3d item = new DataSeriesItem3d(x, y,
@@ -435,7 +435,7 @@ with [methodname]#setTheme()# in the [classname]#ChartOptions#.
 The [classname]#ChartOptions# is a [classname]#UI# extension that is created and
 referenced by calling the [methodname]#get()# as follows:
 
-
+[source, java]
 ----
 // Set Charts theme for the current UI
 ChartOptions.get().setTheme(new SkiesTheme());

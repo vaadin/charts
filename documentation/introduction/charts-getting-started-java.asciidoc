@@ -1,5 +1,5 @@
 ---
-title: Getting started in Java
+title: Getting started with Java
 order: 2
 layout: page
 ---
@@ -20,7 +20,7 @@ In this tutorial, you will learn how to:
 * Configure settings to change the look of a chart
 
 The final result of this tutorial can be explored at
-https://github.com/vaadin/charts-tutorial/server[github]. Let's get to it.
+https://github.com/vaadin/charts-tutorial/tree/master/server[github]. Let's get to it.
 
 [[setup]]
 == Project Setup

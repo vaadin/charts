@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   id="svg1901"
+   sodipodi:version="0.32"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="charts-axes.svg"
+   version="1.1">
+  <defs
+     id="defs1903" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.979899"
+     inkscape:cx="315.30551"
+     inkscape:cy="719.52074"
+     inkscape:document-units="px"
+     inkscape:current-layer="g17430"
+     inkscape:window-width="1680"
+     inkscape:window-height="1030"
+     inkscape:window-x="-2"
+     inkscape:window-y="-3"
+     showgrid="true"
+     inkscape:window-maximized="1"
+     inkscape:snap-bbox="true"
+     inkscape:bbox-paths="true"
+     inkscape:bbox-nodes="true"
+     inkscape:snap-bbox-midpoints="true"
+     inkscape:object-paths="true"
+     inkscape:object-nodes="true"
+     inkscape:snap-global="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid5378"
+       empspacing="5"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true"
+       spacingx="5px"
+       spacingy="5px" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata1906">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Taso 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     style="opacity:1">
+    <g
+       style="display:inline"
+       id="g17430"
+       transform="matrix(1.4955348,0,0,1.4955348,-123.40196,-182.92237)">
+      <image
+         y="240.90683"
+         x="215.77634"
+         id="image5375"
+         xlink:href="file:///home/magi/itmill/book-7/manual/img/charts/charts-axes-sample.png"
+         height="200.59714"
+         width="234.96736" />
+      <rect
+         style="fill:none;stroke:#f39300;stroke-width:1.00298572;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         id="rect17432-1-5-3-7"
+         width="13.373148"
+         height="23.403013"
+         x="212.90173"
+         y="327.83224"
+         ry="3.7880721" />
+      <rect
+         style="fill:none;stroke:#f39300;stroke-width:1.00298572;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         id="rect17432-1-5-3-7-7"
+         width="14.447766"
+         height="167.16431"
+         x="229.61816"
+         y="254.27997"
+         ry="3.7880721" />
+      <rect
+         style="fill:none;stroke:#49c2f1;stroke-width:1.00298572;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         id="rect17432-1-5-3-7-7-2"
+         width="207.28372"
+         height="13.373131"
+         x="242.9913"
+         y="421.19345"
+         ry="3.7880721" />
+      <text
+         id="text17434-0-6"
+         y="341.25888"
+         x="115.83412"
+         style="font-size:9.36119938px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#f39300;fill-opacity:1;fill-rule:nonzero;stroke:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Helvetica LT Std;-inkscape-font-specification:Helvetica LT Std Light"
+         xml:space="preserve"
+         sodipodi:linespacing="125%"><tspan
+           y="341.25888"
+           x="115.83412"
+           sodipodi:role="line"
+           id="tspan5476-0">Y Axis Title</tspan></text>
+      <path
+         style="fill:none;stroke:#f39300;stroke-width:1.00298572;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="m 166.09574,339.7726 46.74681,0"
+         id="path5576-5-0-3"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <text
+         id="text17434-0-6-4"
+         y="366.81128"
+         x="115.83412"
+         style="font-size:9.36119938px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#f39300;fill-opacity:1;stroke:none;display:inline;font-family:Helvetica LT Std;-inkscape-font-specification:Helvetica LT Std Light"
+         xml:space="preserve"
+         sodipodi:linespacing="125%"><tspan
+           y="366.81128"
+           x="115.83412"
+           sodipodi:role="line"
+           id="tspan5476-0-4">Y Axis Labels</tspan></text>
+      <path
+         style="fill:none;stroke:#f39300;stroke-width:1.00298572;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="m 176.1256,364.6084 53.49257,0"
+         id="path5576-5-0-3-9"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <text
+         id="text17434-0-6-4-3"
+         y="458.08936"
+         x="373.21094"
+         style="font-size:9.36119938px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#49c2f1;fill-opacity:1;stroke:none;display:inline;font-family:Helvetica LT Std;-inkscape-font-specification:Helvetica LT Std Light"
+         xml:space="preserve"
+         sodipodi:linespacing="125%"><tspan
+           y="458.08936"
+           x="373.21094"
+           sodipodi:role="line"
+           id="tspan5476-0-4-5">X Axis Labels</tspan></text>
+      <path
+         style="fill:none;stroke:#49c2f1;stroke-width:1.00298572;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="m 373.02124,450.2204 -6.08956,-16.83584"
+         id="path5576-5-0-3-9-2-0"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <text
+         id="text17434-0-6-4-3-9"
+         y="458.18161"
+         x="297.11606"
+         style="font-size:9.36119938px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#49c2f1;fill-opacity:1;stroke:none;display:inline;font-family:Helvetica LT Std;-inkscape-font-specification:Helvetica LT Std Light"
+         xml:space="preserve"
+         sodipodi:linespacing="125%"><tspan
+           y="458.18161"
+           x="297.11606"
+           sodipodi:role="line"
+           id="tspan5476-0-4-5-5">X Axis Title</tspan></text>
+      <path
+         style="fill:none;stroke:#49c2f1;stroke-width:1.00298572;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="m 343.02004,451.73663 3.13551,-9.39684"
+         id="path5576-5-0-3-9-2-0-2"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <rect
+         style="fill:none;stroke:#49c2f1;stroke-width:1.00298572;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         id="rect17432-1-5-3-7-7-2-5"
+         width="16.716427"
+         height="6.6865573"
+         x="340.66309"
+         y="435.05624"
+         ry="2.02985" />
+      <text
+         id="text17434-0-6-4-3-2"
+         y="444.90076"
+         x="389.92737"
+         style="font-size:9.36119938px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#49c2f1;fill-opacity:1;stroke:none;display:inline;font-family:Helvetica LT Std;-inkscape-font-specification:Helvetica LT Std Light"
+         xml:space="preserve"
+         sodipodi:linespacing="125%"><tspan
+           y="444.90076"
+           x="389.92737"
+           sodipodi:role="line"
+           id="tspan5476-0-4-5-4">X Axis Line</tspan></text>
+      <path
+         style="fill:none;stroke:#49c2f1;stroke-width:1.00298572;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="m 439.90659,416.24435 -19.55108,20.06118"
+         id="path5576-5-0-3-9-2-0-7"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <text
+         id="text17434-0-6-0"
+         y="281.07974"
+         x="115.83412"
+         style="font-size:9.36119938px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#f39300;fill-opacity:1;fill-rule:nonzero;stroke:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Helvetica LT Std;-inkscape-font-specification:Helvetica LT Std Light"
+         xml:space="preserve"
+         sodipodi:linespacing="125%"><tspan
+           y="281.07974"
+           x="115.83412"
+           sodipodi:role="line"
+           id="tspan5476-0-3">Y Axis Line</tspan></text>
+      <path
+         style="fill:none;stroke:#f39300;stroke-width:1.00298572;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="m 249.67788,277.68298 -83.58214,0"
+         id="path5576-5-0-3-4"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <text
+         id="text17434-0-6-4-3-9-4"
+         y="254.10211"
+         x="378.8877"
+         style="font-size:9.36119938px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#49c2f1;fill-opacity:1;stroke:none;display:inline;font-family:Helvetica LT Std;-inkscape-font-specification:Helvetica LT Std Light"
+         xml:space="preserve"
+         sodipodi:linespacing="125%"><tspan
+           y="254.10211"
+           x="378.8877"
+           sodipodi:role="line"
+           id="tspan5476-0-4-5-5-0">X Axis Grid Lines</tspan></text>
+      <text
+         id="text17434-0-6-4-7"
+         y="408.30246"
+         x="115.83412"
+         style="font-size:9.36119938px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#f39300;fill-opacity:1;stroke:none;display:inline;font-family:Helvetica LT Std;-inkscape-font-specification:Helvetica LT Std Light"
+         xml:space="preserve"
+         sodipodi:linespacing="125%"><tspan
+           y="408.30246"
+           x="115.83412"
+           sodipodi:role="line"
+           id="tspan5476-0-4-2">Y Axis Grid Lines</tspan></text>
+      <path
+         style="fill:none;stroke:#f39300;stroke-width:1.00298572;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="m 239.64802,371.29497 19.10449,15.04479"
+         id="path5576-5-0-3-9-20"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#f39300;stroke-width:1.00298572;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="m 239.64802,371.29497 19.34329,-15.7612"
+         id="path5576-5-0-3-9-20-1"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#49c2f1;stroke-width:1.00298572;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="m 358.99314,264.39426 4.35645,-18.23618"
+         id="path5576-5-0-3-9-2-0-2-5"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#49c2f1;stroke-width:1.00298572;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="m 363.34959,246.07365 14.55432,18.27269"
+         id="path5576-5-0-3-9-2-0-2-5-4"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <text
+         id="text17434-0-6-4-3-9-4-5"
+         y="244.48148"
+         x="352.85184"
+         style="font-size:9.36119938px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#49c2f1;fill-opacity:1;stroke:none;display:inline;font-family:Helvetica LT Std;-inkscape-font-specification:Helvetica LT Std Light"
+         xml:space="preserve"
+         sodipodi:linespacing="125%"><tspan
+           y="244.48148"
+           x="352.85184"
+           sodipodi:role="line"
+           id="tspan5476-0-4-5-5-0-6">X Axis Minor Grid Lines</tspan></text>
+      <path
+         style="fill:none;stroke:#49c2f1;stroke-width:1.00298572;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="m 393.43917,255.59341 -4.44982,9.15426"
+         id="path5576-5-0-3-9-2-0-2-5-6"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#49c2f1;stroke-width:1.00298572;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="m 408.06604,264.54863 -14.78956,-8.88468"
+         id="path5576-5-0-3-9-2-0-2-5-49"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <text
+         id="text17434-0-6-4-7-3"
+         y="425.01889"
+         x="115.83412"
+         style="font-size:9.36119938px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#f39300;fill-opacity:1;stroke:none;display:inline;font-family:Helvetica LT Std;-inkscape-font-specification:Helvetica LT Std Light"
+         xml:space="preserve"
+         sodipodi:linespacing="125%"><tspan
+           y="425.01889"
+           x="115.83412"
+           sodipodi:role="line"
+           id="tspan5476-0-4-2-0">Y Axis Minor Grid Lines</tspan></text>
+      <path
+         style="fill:none;stroke:#f39300;stroke-width:1.00298572;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="m 239.64802,398.04126 14.68656,3.8209"
+         id="path5576-5-0-3-9-20-2"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#f39300;stroke-width:1.00298572;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="m 239.64802,398.04126 15.28357,-4.29851"
+         id="path5576-5-0-3-9-20-1-1"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <text
+         id="text17434-0-6-0-2"
+         y="294.45288"
+         x="115.83412"
+         style="font-size:9.36119938px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#f39300;fill-opacity:1;fill-rule:nonzero;stroke:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Helvetica LT Std;-inkscape-font-specification:Helvetica LT Std Light"
+         xml:space="preserve"
+         sodipodi:linespacing="125%"><tspan
+           y="294.45288"
+           x="115.83412"
+           sodipodi:role="line"
+           id="tspan5476-0-3-1">Y Axis Ticks</tspan></text>
+      <path
+         style="fill:none;stroke:#f39300;stroke-width:1.00298572;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="m 245.79727,291.82148 -22.86567,9.26449"
+         id="path5576-5-0-3-4-2"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#f39300;stroke-width:1.00298572;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="M 245.6583,322.64974 222.9316,301.08597"
+         id="path5576-5-0-3-4-2-7"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <text
+         id="text17434-0-6-0-2-3"
+         y="314.45911"
+         x="115.94646"
+         style="font-size:9.36119938px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#f39300;fill-opacity:1;fill-rule:nonzero;stroke:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Helvetica LT Std;-inkscape-font-specification:Helvetica LT Std Light"
+         xml:space="preserve"
+         sodipodi:linespacing="125%"><tspan
+           y="314.45911"
+           x="115.94646"
+           sodipodi:role="line"
+           id="tspan5476-0-3-1-3">Y Axis Minor Ticks</tspan></text>
+      <path
+         style="fill:none;stroke:#f39300;stroke-width:1.00298572;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="m 245.97777,301.42284 -6.32975,6.34971"
+         id="path5576-5-0-3-4-2-7-5"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#f39300;stroke-width:1.00298572;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="m 245.85699,308.73977 -6.20897,-0.96722"
+         id="path5576-5-0-3-4-2-7-5-6"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <text
+         id="text17434-0-6-4-3-7"
+         y="444.90076"
+         x="212.73323"
+         style="font-size:9.36119938px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#49c2f1;fill-opacity:1;stroke:none;display:inline;font-family:Helvetica LT Std;-inkscape-font-specification:Helvetica LT Std Light"
+         xml:space="preserve"
+         sodipodi:linespacing="125%"><tspan
+           y="444.90076"
+           x="212.73323"
+           sodipodi:role="line"
+           id="tspan5476-0-4-5-2">X Axis Ticks</tspan></text>
+      <text
+         id="text17434-0-6-4-3-7-8"
+         y="458.2739"
+         x="212.73323"
+         style="font-size:9.36119938px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#49c2f1;fill-opacity:1;stroke:none;display:inline;font-family:Helvetica LT Std;-inkscape-font-specification:Helvetica LT Std Light"
+         xml:space="preserve"
+         sodipodi:linespacing="125%"><tspan
+           y="458.2739"
+           x="212.73323"
+           sodipodi:role="line"
+           id="tspan5476-0-4-5-2-2">X Axis Minor Ticks</tspan></text>
+      <path
+         style="fill:none;stroke:#49c2f1;stroke-width:1.00298572;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="m 273.08088,428.13083 -4.4624,-8.24876"
+         id="path5576-5-0-3-9-2-0-2-9"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#49c2f1;stroke-width:1.00298572;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="m 273.08088,428.13083 14.69737,-8.83729"
+         id="path5576-5-0-3-9-2-0-2-4"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#49c2f1;stroke-width:1.00298572;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="M 303.17045,431.47411 298.7089,419.3076"
+         id="path5576-5-0-3-9-2-0-2-9-2"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#49c2f1;stroke-width:1.00298572;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="m 303.17045,431.47411 14.95752,-11.82879"
+         id="path5576-5-0-3-9-2-0-2-4-8"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#49c2f1;stroke-width:1.00298572;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="m 263.05102,438.16069 10.02986,-10.02986"
+         id="path5576-5-0-3-9-2-0-2-4-6"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#49c2f1;stroke-width:1.00298572;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="m 286.45402,451.53383 16.71643,-20.05972"
+         id="path5576-5-0-3-9-2-0-2-9-2-7"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#f39300;stroke-width:1.00298572;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="M 222.9316,301.08597 169.43903,291.05612"
+         id="path5576-5-0-3-4-2-7-0"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#f39300;stroke-width:1.00298572;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="m 239.64802,307.77255 -43.46271,3.34328"
+         id="path5576-5-0-3-4-2-7-5-6-7"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#f39300;stroke-width:1.00298572;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="m 189.49874,404.72783 50.14928,-33.43286"
+         id="path5576-5-0-3-9-20-27"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#f39300;stroke-width:1.00298572;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="m 214.45397,419.5338 25.19405,-21.49254"
+         id="path5576-5-0-3-9-20-2-5"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+    </g>
+  </g>
+</svg>
