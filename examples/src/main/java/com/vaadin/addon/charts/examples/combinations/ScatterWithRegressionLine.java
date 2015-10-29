@@ -8,11 +8,11 @@ import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
+import com.vaadin.addon.charts.model.Hover;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.Marker;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.PlotOptionsScatter;
-import com.vaadin.addon.charts.model.State;
 import com.vaadin.addon.charts.model.States;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
@@ -59,9 +59,11 @@ public class ScatterWithRegressionLine extends AbstractVaadinChartExample {
         plotOptions.setMarker(new Marker(true));
         plotOptions.setEnableMouseTracking(true);
 
-        State hover = new State();
+        Hover hover = new Hover();
         hover.setLineWidth(0);
-        plotOptions.setStates(new States(hover));
+        States states = new States();
+        states.setHover(hover);
+        plotOptions.setStates(states);
 
         conf.addSeries(series);
 

@@ -2,7 +2,6 @@ package com.vaadin.addon.charts.examples.other;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.model.Background;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.HorizontalAlign;
@@ -32,17 +31,19 @@ public class Spiderweb extends AbstractVaadinChartExample {
         Configuration conf = chart.getConfiguration();
         conf.getChart().setPolar(true);
         conf.setTitle("Budget vs spending");
-        conf.getTitle().setX(-80);
+        // conf.getTitle().setX(-80);
 
         Pane pane = new Pane();
         pane.setSize("80%");
         conf.addPane(pane);
-        pane.setBackground(new Background[] {});
+        // FIXME missing generated API
+        // pane.setBackground(new Background[] {});
 
         XAxis axis = new XAxis();
-        axis.setCategories("Sales", "Marketing", "Development",
-                "Customer Support", "Information Technology", "Administration");
-        axis.setTickmarkPlacement(TickmarkPlacement.ON);
+        axis.setCategories(new String[] { "Sales", "Marketing", "Development",
+                "Customer Support", "Information Technology", "Administration" });
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        axis.setTickmarkPlacement(TickmarkPlacement.ON.toString());
         axis.setLineWidth(0);
 
         YAxis yaxs = new YAxis();
@@ -52,13 +53,13 @@ public class Spiderweb extends AbstractVaadinChartExample {
         conf.addxAxis(axis);
         conf.addyAxis(yaxs);
 
-        conf.getTooltip().setShared(true);
+        // conf.getTooltip().setShared(true);
         conf.getTooltip().setValuePrefix("$");
 
-        conf.getLegend().setHorizontalAlign(HorizontalAlign.RIGHT);
-        conf.getLegend().setVerticalAlign(VerticalAlign.TOP);
+        conf.getLegend().setAlign(HorizontalAlign.RIGHT.toString());
+        conf.getLegend().setVerticalAlign(VerticalAlign.TOP.toString());
         conf.getLegend().setY(100);
-        conf.getLegend().setLayout(LayoutDirection.VERTICAL);
+        conf.getLegend().setLayout(LayoutDirection.VERTICAL.toString());
 
         ListSeries line1 = new ListSeries(43000, 19000, 60000, 35000, 17000,
                 10000);

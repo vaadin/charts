@@ -2,7 +2,6 @@ package com.vaadin.addon.charts.examples.combinations;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.model.AbstractPlotOptions;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.HorizontalAlign;
@@ -35,18 +34,21 @@ public class MultipleAxes extends AbstractVaadinChartExample {
         Configuration conf = chart.getConfiguration();
         Color[] colors = getThemeColors();
 
-        conf.getChart().setZoomType(ZoomType.XY);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        conf.getChart().setZoomType(ZoomType.XY.toString());
         conf.setTitle("Average Monthly Weather Data for Tokyo");
         conf.setSubTitle("Source: WorldClimate.com");
 
         XAxis x = new XAxis();
-        x.setCategories("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug",
-                "Sep", "Oct", "Nov", "Dec");
+        x.setCategories(new String[] { "Jan", "Feb", "Mar", "Apr", "May",
+                "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" });
         conf.addxAxis(x);
 
         YAxis y1 = new YAxis();
         Labels labels = new Labels();
-        labels.setFormatter("return this.value +'°C'");
+        labels.setFormat("{value}°C");
+        // FIXME missing generated API
+        // labels.setFormatter("return this.value +'°C'");
         Style style = new Style();
         style.setColor(colors[1]);
         labels.setStyle(style);
@@ -65,7 +67,8 @@ public class MultipleAxes extends AbstractVaadinChartExample {
         style.setColor(colors[0]);
         y2.setTitle(title);
         labels = new Labels();
-        labels.setFormatter("this.value +' mm'");
+        labels.setFormat("{value} mm");
+        // labels.setFormatter("this.value +' mm'");
         style = new Style();
         style.setColor(colors[0]);
         labels.setStyle(style);
@@ -80,7 +83,8 @@ public class MultipleAxes extends AbstractVaadinChartExample {
         style.setColor(colors[2]);
         y3.setTitle(title);
         labels = new Labels();
-        labels.setFormatter("this.value +' mb'");
+        labels.setFormat("{value} mb");
+        // labels.setFormatter("this.value +' mb'");
         style = new Style();
         style.setColor(colors[2]);
         labels.setStyle(style);
@@ -89,24 +93,25 @@ public class MultipleAxes extends AbstractVaadinChartExample {
         chart.drawChart(conf);
 
         Tooltip tooltip = new Tooltip();
-        tooltip.setFormatter("function() { "
-                + "var unit = { 'Rainfall': 'mm', 'Temperature': '°C', 'Sea-Level Pressure': 'mb' }[this.series.name];"
-                + "return ''+ this.x +': '+ this.y +' '+ unit; }");
+        // tooltip.setFormatter("function() { "
+        // +
+        // "var unit = { 'Rainfall': 'mm', 'Temperature': '°C', 'Sea-Level Pressure': 'mb' }[this.series.name];"
+        // + "return ''+ this.x +': '+ this.y +' '+ unit; }");
         conf.setTooltip(tooltip);
 
         Legend legend = new Legend();
-        legend.setLayout(LayoutDirection.VERTICAL);
-        legend.setHorizontalAlign(HorizontalAlign.LEFT);
+        legend.setLayout(LayoutDirection.VERTICAL.toString());
+        legend.setAlign(HorizontalAlign.LEFT.toString());
         legend.setX(120);
-        legend.setVerticalAlign(VerticalAlign.TOP);
+        legend.setVerticalAlign(VerticalAlign.TOP.toString());
         legend.setY(80);
         legend.setFloating(true);
         conf.setLegend(legend);
 
         DataSeries series = new DataSeries();
-        AbstractPlotOptions plotOptions = new PlotOptionsColumn();
-        plotOptions.setColor(colors[0]);
-        series.setPlotOptions(plotOptions);
+        PlotOptionsColumn plotOptionsColumn = new PlotOptionsColumn();
+        plotOptionsColumn.setColor(colors[0]);
+        series.setPlotOptions(plotOptionsColumn);
         series.setName("Rainfall");
         series.setyAxis(1);
         series.setData(49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5,
@@ -114,9 +119,9 @@ public class MultipleAxes extends AbstractVaadinChartExample {
         conf.addSeries(series);
 
         series = new DataSeries();
-        plotOptions = new PlotOptionsSpline();
-        plotOptions.setColor(colors[2]);
-        series.setPlotOptions(plotOptions);
+        PlotOptionsSpline plotOptionsSpline = new PlotOptionsSpline();
+        plotOptionsSpline.setColor(colors[2]);
+        series.setPlotOptions(plotOptionsSpline);
         series.setName("Sea-Level Pressure");
         series.setyAxis(2);
         series.setData(1016, 1016, 1015.9, 1015.5, 1012.3, 1009.5, 1009.6,
@@ -124,9 +129,9 @@ public class MultipleAxes extends AbstractVaadinChartExample {
         conf.addSeries(series);
 
         series = new DataSeries();
-        plotOptions = new PlotOptionsSpline();
-        plotOptions.setColor(colors[1]);
-        series.setPlotOptions(plotOptions);
+        plotOptionsSpline = new PlotOptionsSpline();
+        plotOptionsSpline.setColor(colors[1]);
+        series.setPlotOptions(plotOptionsSpline);
         series.setName("Temperature");
         series.setData(7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3,
                 13.9, 9.6);

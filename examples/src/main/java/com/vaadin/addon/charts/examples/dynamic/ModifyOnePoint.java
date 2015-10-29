@@ -36,15 +36,17 @@ public class ModifyOnePoint extends AbstractVaadinChartExample {
 
     @Override
     protected Component getChart() {
+        // FIXME no events until CHARTS-155
         final Chart chart = new Chart();
         chart.setHeight("300px");
         chart.setWidth("100%");
 
         final Configuration configuration = chart.getConfiguration();
         configuration.setTitle("One point is different");
-        configuration.getTooltip().setEnabled(false);
+        // configuration.getTooltip().setEnabled(false);
 
-        configuration.getChart().setType(ChartType.SPLINE);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        configuration.getChart().setType(ChartType.SPLINE.toString());
 
         series = new DataSeries();
         series.add(createBasicPoint(1, 4));
@@ -63,6 +65,7 @@ public class ModifyOnePoint extends AbstractVaadinChartExample {
         chart.drawChart(configuration);
 
         return chart;
+
     }
 
     static final Color[] colors = new ValoLightTheme().getColors();

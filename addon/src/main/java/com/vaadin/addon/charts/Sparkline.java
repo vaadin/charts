@@ -17,7 +17,6 @@ package com.vaadin.addon.charts;
  * #L%
  */
 
-import com.vaadin.addon.charts.model.Axis;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.Legend;
@@ -25,6 +24,9 @@ import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.Marker;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.Series;
+import com.vaadin.addon.charts.model.Title;
+import com.vaadin.addon.charts.model.XAxis;
+import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
 
 /**
@@ -61,10 +63,14 @@ public class Sparkline extends Chart {
 
     protected void configureAsSparkline() {
         getConfiguration().setTitle("");
-        getConfiguration().setLegend(new Legend(false));
+        // TODO add constructor Legend(boolean enabled)
+        Legend legend = new Legend();
+        legend.setEnabled(false);
+        getConfiguration().setLegend(legend);
         getConfiguration().getChart().setBackgroundColor(
                 new SolidColor(0, 0, 0, 0));
-        getConfiguration().getChart().setMargin(0);
+        // TODO: margin should allow single value too
+        getConfiguration().getChart().setMargin(new Integer[] { 0, 0, 0, 0 });
         Series series = getConfiguration().getSeries().get(0);
 
         PlotOptionsLine options = new PlotOptionsLine();
@@ -76,11 +82,11 @@ public class Sparkline extends Chart {
 
         series.setPlotOptions(options);
 
-        configureAxis(getConfiguration().getxAxis());
-        configureAxis(getConfiguration().getyAxis());
+        configureXAxis(getConfiguration().getxAxis());
+        configureYAxis(getConfiguration().getyAxis());
     }
 
-    protected void configureAxis(Axis axis) {
+    protected void configureXAxis(XAxis axis) {
         axis.setLineWidth(0);
         axis.setMinorGridLineWidth(0);
         axis.setMinorTickLength(0);
@@ -92,7 +98,30 @@ public class Sparkline extends Chart {
 
         axis.setLabels(new Labels(false));
         axis.setLineColor(new SolidColor(0, 0, 0, 0));
-        axis.setTitle("");
+        // TODO add setTitle with string arg
+        Title title = new Title();
+        title.setText("");
+        axis.setTitle(title);
+        axis.setStartOnTick(false);
+        axis.setEndOnTick(false);
+    }
+
+    protected void configureYAxis(YAxis axis) {
+        axis.setLineWidth(0);
+        axis.setMinorGridLineWidth(0);
+        axis.setMinorTickLength(0);
+        axis.setMinorTickWidth(0);
+        axis.setGridLineWidth(0);
+
+        axis.setMaxPadding(0.1);
+        axis.setMinPadding(0.1);
+
+        axis.setLabels(new Labels(false));
+        axis.setLineColor(new SolidColor(0, 0, 0, 0));
+        // TODO add setTitle with string arg
+        Title title = new Title();
+        title.setText("");
+        axis.setTitle(title);
         axis.setStartOnTick(false);
         axis.setEndOnTick(false);
     }

@@ -30,9 +30,12 @@ public class WebXYChartSelection extends AbstractVaadinChartExample {
     }
 
     private Chart createScatterChart() {
+        // FIXME no events until CHARTS-155
+
         final Chart scatterChart = new Chart(ChartType.SCATTER);
         scatterChart.setId("chart");
-        scatterChart.getConfiguration().getChart().setZoomType(ZoomType.XY);
+        scatterChart.getConfiguration().getChart()
+                .setZoomType(ZoomType.XY.toString());
         scatterChart.getConfiguration().disableCredits();
         scatterChart.getConfiguration().setTitle("Selections as area ranges");
         scatterChart
@@ -75,6 +78,7 @@ public class WebXYChartSelection extends AbstractVaadinChartExample {
                 areaRangePlot.setLineWidth(0);
 
                 RangeSeries selectionSeries = new RangeSeries("Selection", data);
+
                 selectionSeries.setPlotOptions(areaRangePlot);
                 scatterChart.getConfiguration().addSeries(selectionSeries);
                 scatterChart.drawChart();

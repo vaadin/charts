@@ -2,13 +2,13 @@ package com.vaadin.addon.charts.examples.lineandscatter;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.model.Axis;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
-import com.vaadin.addon.charts.model.Labels;
+import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.Title;
+import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.ui.Component;
 
 public class BasicLineWithDataLabels extends AbstractVaadinChartExample {
@@ -25,24 +25,26 @@ public class BasicLineWithDataLabels extends AbstractVaadinChartExample {
         chart.setWidth("100%");
 
         Configuration configuration = chart.getConfiguration();
-        configuration.getChart().setType(ChartType.LINE);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        configuration.getChart().setType(ChartType.LINE.toString());
 
         configuration.getTitle().setText("Monthly Average Temperature");
         configuration.getSubTitle().setText("Source: WorldClimate.com");
 
-        configuration.getxAxis().setCategories("Jan", "Feb", "Mar", "Apr",
-                "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
+        configuration.getxAxis().setCategories(
+                new String[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
+                        "Aug", "Sep", "Oct", "Nov", "Dec" });
 
-        Axis yAxis = configuration.getyAxis();
+        YAxis yAxis = configuration.getyAxis();
         yAxis.setTitle(new Title("Temperature (°C)"));
 
-        configuration
-                .getTooltip()
-                .setFormatter(
-                        "'<b>'+ this.series.name +'</b><br/>'+this.x +': '+ this.y +'°C'");
+        // configuration
+        // .getTooltip()
+        // .setFormatter(
+        // "'<b>'+ this.series.name +'</b><br/>'+this.x +': '+ this.y +'°C'");
 
         PlotOptionsLine plotOptions = new PlotOptionsLine();
-        plotOptions.setDataLabels(new Labels(true));
+        plotOptions.setDataLabels(new DataLabels(true));
         plotOptions.setEnableMouseTracking(false);
         configuration.setPlotOptions(plotOptions);
 

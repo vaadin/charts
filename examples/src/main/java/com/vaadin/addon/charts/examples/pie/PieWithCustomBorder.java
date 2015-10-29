@@ -6,9 +6,9 @@ import com.vaadin.addon.charts.examples.SkipFromDemo;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.Cursor;
+import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
-import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.PlotOptionsPie;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
@@ -34,13 +34,15 @@ public class PieWithCustomBorder extends AbstractVaadinChartExample {
         PlotOptionsPie plotOptions = new PlotOptionsPie();
         plotOptions.setBorderColor(new SolidColor("green"));
         plotOptions.setBorderWidth(6);
-        plotOptions.setCursor(Cursor.POINTER);
-        Labels dataLabels = new Labels();
+        plotOptions.setCursor(Cursor.POINTER.toString());
+        DataLabels dataLabels = new DataLabels();
         dataLabels.setEnabled(true);
         dataLabels.setColor(SolidColor.BLACK);
-        dataLabels.setConnectorColor(SolidColor.BLACK);
-        dataLabels
-                .setFormatter("'<b>'+ this.point.name +'</b>: '+ this.percentage +' %'");
+        // FIXME missing generated API
+        // dataLabels.setConnectorColor(SolidColor.BLACK);
+        // FIXME missing generated API
+        // dataLabels
+        // .setFormatter("'<b>'+ this.point.name +'</b>: '+ this.percentage +' %'");
         plotOptions.setDataLabels(dataLabels);
         conf.setPlotOptions(plotOptions);
 

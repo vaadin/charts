@@ -80,6 +80,7 @@ public class HighChartsDefaultTheme extends Theme {
         getLegend().setBorderRadius(5);
         getLegend().setBackgroundColor(new SolidColor(255, 255, 255, 0));
         getLegend().setBorderColor(GRAY2);
+        getLegend().setItemStyle(new Style());
         getLegend().getItemStyle().setColor(TITLE_FONT_COLOR);
         getLegend().getItemStyle().setPosition(StylePosition.RELATIVE);
 

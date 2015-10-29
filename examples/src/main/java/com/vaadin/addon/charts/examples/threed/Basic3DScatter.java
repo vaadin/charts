@@ -4,17 +4,15 @@ import java.util.Random;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.model.Bottom;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem3d;
 import com.vaadin.addon.charts.model.Frame;
-import com.vaadin.addon.charts.model.FramePanel;
 import com.vaadin.addon.charts.model.Options3d;
 import com.vaadin.addon.charts.model.PlotOptionsScatter;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
-import com.vaadin.addon.charts.model.ZAxis;
-import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
 
 public class Basic3DScatter extends AbstractVaadinChartExample {
@@ -53,19 +51,23 @@ public class Basic3DScatter extends AbstractVaadinChartExample {
 
         XAxis x = scatterChart.getConfiguration().getxAxis();
         x.setGridLineWidth(1);
-        x.setExtremes(-3, 3);
+        x.setMin(-3);
+        x.setMax(3);
+        // FIXME missing generated API
+        // x.setExtremes(-3, 3);
 
         if (getCurrentTheme().getxAxis().getGridLineColor() != null) {
-            x.setGridLineColor((SolidColor) getCurrentTheme().getxAxis()
-                    .getGridLineColor());
+            x.setGridLineColor(getCurrentTheme().getxAxis().getGridLineColor());
         }
 
         YAxis y = scatterChart.getConfiguration().getyAxis();
-        y.setExtremes(-1, 1);
+        // y.setExtremes(-1, 1);
+        y.setMin(-1);
+        y.setMax(1);
 
-        ZAxis z = scatterChart.getConfiguration().getzAxis();
-        z.setMin(0);
-        z.setMax(1);
+        // ZAxis z = scatterChart.getConfiguration().getzAxis();
+        // z.setMin(0);
+        // z.setMax(1);
 
         Options3d options3d = new Options3d();
         options3d.setEnabled(true);
@@ -75,7 +77,9 @@ public class Basic3DScatter extends AbstractVaadinChartExample {
         options3d.setViewDistance(40);
 
         Frame frame = new Frame();
-        frame.setBottom(new FramePanel(null, 1));
+        Bottom bottom = new Bottom();
+        bottom.setSize(1);
+        frame.setBottom(bottom);
         options3d.setFrame(frame);
         scatterChart.getConfiguration().getChart().setOptions3d(options3d);
 

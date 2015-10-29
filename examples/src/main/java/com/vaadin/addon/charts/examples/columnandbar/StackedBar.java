@@ -8,6 +8,7 @@ import com.vaadin.addon.charts.model.Legend;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.PlotOptionsSeries;
 import com.vaadin.addon.charts.model.Stacking;
+import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
@@ -30,12 +31,13 @@ public class StackedBar extends AbstractVaadinChartExample {
         conf.setTitle("Stacked bar chart");
 
         XAxis x = new XAxis();
-        x.setCategories("Apples", "Oranges", "Pears", "Grapes", "Bananas");
+        x.setCategories(new String[] { "Apples", "Oranges", "Pears", "Grapes",
+                "Bananas" });
         conf.addxAxis(x);
 
         YAxis y = new YAxis();
         y.setMin(0);
-        y.setTitle("Total fruit consumption");
+        y.setTitle(new Title("Total fruit consumption"));
         conf.addyAxis(y);
 
         Legend legend = new Legend();
@@ -43,11 +45,12 @@ public class StackedBar extends AbstractVaadinChartExample {
         legend.setReversed(true);
 
         Tooltip tooltip = new Tooltip();
-        tooltip.setFormatter("this.series.name +': '+ this.y");
+        // tooltip.setFormatter("this.series.name +': '+ this.y");
         conf.setTooltip(tooltip);
 
         PlotOptionsSeries plot = new PlotOptionsSeries();
-        plot.setStacking(Stacking.NORMAL);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        plot.setStacking(Stacking.NORMAL.toString());
         conf.setPlotOptions(plot);
 
         conf.addSeries(new ListSeries("John", 5, 3, 4, 7, 2));

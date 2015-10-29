@@ -40,11 +40,12 @@ public class StackedPercentageColumn extends AbstractVaadinChartExample {
         conf.addyAxis(yAxis);
 
         Tooltip tooltip = new Tooltip();
-        tooltip.setFormatter("this.series.name +': '+ this.y +' ('+ Math.round(this.percentage) +'%)'");
+        // tooltip.setFormatter("this.series.name +': '+ this.y +' ('+ Math.round(this.percentage) +'%)'");
         conf.setTooltip(tooltip);
 
         PlotOptionsColumn plotOptions = new PlotOptionsColumn();
-        plotOptions.setStacking(Stacking.PERCENT);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        plotOptions.setStacking(Stacking.PERCENT.toString());
         conf.setPlotOptions(plotOptions);
 
         conf.addSeries(new ListSeries("John", new Number[] { 5, 3, 4, 7, 2 }));

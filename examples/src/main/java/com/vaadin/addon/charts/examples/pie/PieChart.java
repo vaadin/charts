@@ -7,9 +7,9 @@ import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.Cursor;
+import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
-import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.PlotOptionsPie;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Notification;
@@ -38,11 +38,15 @@ public class PieChart extends AbstractVaadinChartExample {
         conf.setTitle("Browser market shares at a specific website, 2010");
 
         PlotOptionsPie plotOptions = new PlotOptionsPie();
-        plotOptions.setCursor(Cursor.POINTER);
-        Labels dataLabels = new Labels();
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        plotOptions.setCursor(Cursor.POINTER.toString());
+        DataLabels dataLabels = new DataLabels();
         dataLabels.setEnabled(true);
-        dataLabels
-                .setFormatter("'<b>'+ this.point.name +'</b>: '+ this.percentage +' %'");
+        dataLabels.setFormat("<b>{point.name}</b>: {point.percentage} %");
+
+        // FIXME missing generated API
+        // dataLabels
+        // .setFormatter("'<b>'+ this.point.name +'</b>: '+ this.percentage +' %'");
         plotOptions.setDataLabels(dataLabels);
         conf.setPlotOptions(plotOptions);
 

@@ -8,7 +8,7 @@ import com.vaadin.addon.charts.model.HorizontalAlign;
 import com.vaadin.addon.charts.model.LayoutDirection;
 import com.vaadin.addon.charts.model.Legend;
 import com.vaadin.addon.charts.model.ListSeries;
-import com.vaadin.addon.charts.model.PlotBand;
+import com.vaadin.addon.charts.model.PlotBands;
 import com.vaadin.addon.charts.model.PlotOptionsArea;
 import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.Tooltip;
@@ -39,10 +39,11 @@ public class AreaSpline extends AbstractVaadinChartExample {
         conf.setTitle(new Title("Average fruit consumption during one week"));
 
         Legend legend = new Legend();
-        legend.setLayout(LayoutDirection.VERTICAL);
-        legend.setHorizontalAlign(HorizontalAlign.LEFT);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        legend.setLayout(LayoutDirection.VERTICAL.toString());
+        legend.setAlign(HorizontalAlign.LEFT.toString());
         legend.setFloating(true);
-        legend.setVerticalAlign(VerticalAlign.TOP);
+        legend.setVerticalAlign(VerticalAlign.TOP.toString());
         legend.setX(150);
         legend.setY(100);
         conf.setLegend(legend);
@@ -51,9 +52,12 @@ public class AreaSpline extends AbstractVaadinChartExample {
         xAxis.setCategories(new String[] { "Monday", "Tuesday", "Wednesday",
                 "Thursday", "Friday", "Saturday", "Sunday" });
         // add blue background for the weekend
-        PlotBand plotBand = new PlotBand(4.5, 6.5, LIGHT_BLUE);
-        plotBand.setzIndex(1);
-        xAxis.setPlotBands(plotBand);
+        PlotBands plotBand = new PlotBands();
+        plotBand.setFrom(4.5);
+        plotBand.setTo(6.5);
+        plotBand.setColor(LIGHT_BLUE);
+        plotBand.setZIndex(1);
+        xAxis.setPlotBands(new PlotBands[] { plotBand });
         conf.addxAxis(xAxis);
 
         YAxis yAxis = new YAxis();

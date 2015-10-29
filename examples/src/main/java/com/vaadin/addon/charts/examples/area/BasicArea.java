@@ -4,14 +4,14 @@ import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
-import com.vaadin.addon.charts.model.State;
+import com.vaadin.addon.charts.model.Hover;
 import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.Marker;
-import com.vaadin.addon.charts.model.MarkerStates;
 import com.vaadin.addon.charts.model.MarkerSymbolEnum;
 import com.vaadin.addon.charts.model.PlotOptionsArea;
-import com.vaadin.addon.charts.model.SubTitle;
+import com.vaadin.addon.charts.model.States;
+import com.vaadin.addon.charts.model.Subtitle;
 import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.XAxis;
@@ -33,23 +33,27 @@ public class BasicArea extends AbstractVaadinChartExample {
         Configuration conf = chart.getConfiguration();
 
         conf.setTitle(new Title("US and USSR nuclear stockpiles"));
-        conf.setSubTitle(new SubTitle(
+        conf.setSubTitle(new Subtitle(
                 "Source: <a href=\"http://thebulletin.metapress.com/content/c4120650912x74k7/fulltext.pdf\">thebulletin.metapress.com</a>"));
 
         PlotOptionsArea plotOptions = new PlotOptionsArea();
         plotOptions.setPointStart(1940);
         Marker marker = new Marker();
         marker.setEnabled(false);
-        marker.setSymbol(MarkerSymbolEnum.CIRCLE);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        marker.setSymbol(MarkerSymbolEnum.CIRCLE.toString());
         marker.setRadius(2);
-        marker.setStates(new MarkerStates(new State(true)));
+        States states = new States();
+        states.setHover(new Hover(true));
+        marker.setStates(states);
         plotOptions.setMarker(marker);
         conf.setPlotOptions(plotOptions);
 
         XAxis xAxis = new XAxis();
         Labels labels = new Labels();
         // Display x axis value (year) as non formatted integer
-        labels.setFormatter("this.value");
+        // FIXME missing generated API
+        // labels.setFormatter("this.value");
         xAxis.setLabels(labels);
         conf.addxAxis(xAxis);
 
@@ -57,12 +61,14 @@ public class BasicArea extends AbstractVaadinChartExample {
         yAxis.setTitle(new Title("Nuclear weapon states"));
         labels = new Labels();
         // display y axis value in kilos as there is such a pile of weapons
-        labels.setFormatter("this.value / 1000 +'k'");
+        // FIXME missing generated API
+        // labels.setFormatter("this.value / 1000 +'k'");
         yAxis.setLabels(labels);
         conf.addyAxis(yAxis);
 
         Tooltip tooltip = new Tooltip();
-        tooltip.setFormatter("this.series.name +' produced <b>'+ Highcharts.numberFormat(this.y, 0) +'</b><br/>warheads in '+ this.x");
+        // FIXME missing generated API
+        // tooltip.setFormatter("this.series.name +' produced <b>'+ Highcharts.numberFormat(this.y, 0) +'</b><br/>warheads in '+ this.x");
         conf.setTooltip(tooltip);
 
         final Number usaNumbers[] = new Number[] { null, null, null, null,

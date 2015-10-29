@@ -2,17 +2,18 @@ package com.vaadin.addon.charts.examples.other;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.model.Background;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.HorizontalAlign;
+import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.LayoutDirection;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.Pane;
-import com.vaadin.addon.charts.model.PlotOptionsSeries;
+import com.vaadin.addon.charts.model.PlotOptionsColumn;
 import com.vaadin.addon.charts.model.PointPlacement;
 import com.vaadin.addon.charts.model.Stacking;
 import com.vaadin.addon.charts.model.TickmarkPlacement;
+import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
@@ -39,32 +40,37 @@ public class WindRose extends AbstractVaadinChartExample {
         Pane pane = new Pane();
         pane.setSize("85%");
         conf.addPane(pane);
-        pane.setBackground(new Background[] {});
+        // FIXME missing generated API
+        // pane.setBackground(new Background[] {});
 
         conf.getLegend().setReversed(false);
-        conf.getLegend().setHorizontalAlign(HorizontalAlign.RIGHT);
-        conf.getLegend().setVerticalAlign(VerticalAlign.TOP);
+        conf.getLegend().setAlign(HorizontalAlign.RIGHT.toString());
+        conf.getLegend().setVerticalAlign(VerticalAlign.TOP.toString());
         conf.getLegend().setY(100);
-        conf.getLegend().setLayout(LayoutDirection.VERTICAL);
+        conf.getLegend().setLayout(LayoutDirection.VERTICAL.toString());
 
         XAxis axis = new XAxis();
-        axis.setCategories("< 0.5 m/s", "0.5-2 m/s", "2-4 m/s", "4-6 m/s",
-                "6-8 m/s", "8-10 m/s", "> 10 m/s");
-        axis.setTickmarkPlacement(TickmarkPlacement.ON);
+        axis.setCategories(new String[] { "< 0.5 m/s", "0.5-2 m/s", "2-4 m/s",
+                "4-6 m/s", "6-8 m/s", "8-10 m/s", "> 10 m/s" });
+        axis.setTickmarkPlacement(TickmarkPlacement.ON.toString());
 
-        YAxis yaxs = new YAxis();
-        yaxs.setMin(0);
-        yaxs.setEndOnTick(false);
-        yaxs.setShowLastLabel(true);
-        yaxs.setTitle("Frequency (%)");
-        yaxs.getLabels().setFormatter("function() {return this.value + '%';}");
+        YAxis yAxis = new YAxis();
+        yAxis.setMin(0);
+        yAxis.setEndOnTick(false);
+        yAxis.setShowLastLabel(true);
+        yAxis.setTitle(new Title("Frequency (%)"));
+        // FIXME remove initialization after CHARTS-154
+        yAxis.setLabels(new Labels());
+        yAxis.getLabels().setFormat("{value}%");
+        // FIXME missing generated API
+        // yaxs.getLabels().setFormatter("function() {return this.value + '%';}");
         conf.addxAxis(axis);
-        conf.addyAxis(yaxs);
+        conf.addyAxis(yAxis);
 
         conf.getTooltip().setValueSuffix("%");
 
-        PlotOptionsSeries series = new PlotOptionsSeries();
-        series.setStacking(Stacking.NORMAL);
+        PlotOptionsColumn series = new PlotOptionsColumn();
+        series.setStacking(Stacking.NORMAL.toString());
         series.setShadow(false);
         series.setGroupPadding(0);
         series.setPointPlacement(PointPlacement.ON);

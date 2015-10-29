@@ -38,11 +38,11 @@ public class WaterFallSum extends DataSeriesItem {
      */
     public void setIntermediate(boolean intermediate) {
         if (intermediate) {
-            this.isIntermediateSum = Boolean.TRUE;
-            this.isSum = null;
+            isIntermediateSum = Boolean.TRUE;
+            isSum = null;
         } else {
-            this.isIntermediateSum = null;
-            this.isSum = Boolean.TRUE;
+            isIntermediateSum = null;
+            isSum = Boolean.TRUE;
         }
     }
 

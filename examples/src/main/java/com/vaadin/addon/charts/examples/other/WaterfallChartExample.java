@@ -4,10 +4,10 @@ import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.AxisType;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.DataSeriesItem3d;
-import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.PlotOptionsWaterfall;
 import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.WaterFallSum;
@@ -54,17 +54,19 @@ public class WaterfallChartExample extends AbstractVaadinChartExample {
         PlotOptionsWaterfall opts = new PlotOptionsWaterfall();
         opts.setColor(color);
         opts.setUpColor(upColor);
-        Labels dataLabels = new Labels(true);
-        dataLabels.setVerticalAlign(VerticalAlign.TOP);
+        DataLabels dataLabels = new DataLabels(true);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        dataLabels.setVerticalAlign(VerticalAlign.TOP.toString());
         dataLabels.setY(-30);
-        dataLabels.setFormatter("this.y / 1000 + 'k'");
+        // FIXME missing generated API
+        // dataLabels.setFormatter("this.y / 1000 + 'k'");
         opts.setDataLabels(dataLabels);
 
         dataSeries.setPlotOptions(opts);
 
         conf.addSeries(dataSeries);
 
-        conf.getxAxis().setType(AxisType.CATEGORY);
+        conf.getxAxis().setType(AxisType.CATEGORY.toString());
 
         return chart;
     }

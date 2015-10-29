@@ -18,8 +18,8 @@ package com.vaadin.addon.charts.themes;
  */
 
 import com.vaadin.addon.charts.model.AbstractPlotOptions;
-import com.vaadin.addon.charts.model.Labels;
-import com.vaadin.addon.charts.model.State;
+import com.vaadin.addon.charts.model.DataLabels;
+import com.vaadin.addon.charts.model.Hover;
 import com.vaadin.addon.charts.model.States;
 import com.vaadin.addon.charts.model.style.AxisStyle;
 import com.vaadin.addon.charts.model.style.Color;
@@ -113,6 +113,7 @@ public class ValoLightTheme extends Theme {
         getTooltip().setBorderRadius(BORDER_RADIUS);
         getTooltip().getStyle().setColor(TOOLTIP_TEXT_COLOR);
 
+        getLegend().setItemStyle(new Style());
         getLegend().getItemStyle().setColor(LEGEND_TEXT_COLOR);
         getLegend().getItemStyle().setFontWeight(FontWeight.NORMAL);
         getLegend().getItemStyle().setFontSize("14px");
@@ -171,16 +172,19 @@ public class ValoLightTheme extends Theme {
         setDataLabelsDefaults(getPlotOptions().getBar());
         setDataLabelsDefaults(getPlotOptions().getWaterfall());
 
-        State state = new State(false);
-        getPlotOptions().getPie().setStates(new States(state));
+        States states = new States();
+        states.setHover(new Hover(false));
+        getPlotOptions().getPie().setStates(states);
     }
 
     protected void setDataLabelsDefaults(AbstractPlotOptions plotOptions) {
-        Labels labels = new Labels();
+        DataLabels labels = new DataLabels();
         labels.setColor(TEXT_COLOR);
+        labels.setStyle(new Style());
         labels.getStyle().setFontFamily(DEFAULT_FONT_FAMILIES);
         labels.getStyle().setFontSize("12px");
-        plotOptions.setDataLabels(labels);
+        // FIXME not all AbstractPlotOptions have datalabels
+        // plotOptions.setDataLabels(labels);
     }
 
     protected void setAxisDefaults(AxisStyle style) {

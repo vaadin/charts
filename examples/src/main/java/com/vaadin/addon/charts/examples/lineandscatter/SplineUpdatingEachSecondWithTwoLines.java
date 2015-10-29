@@ -5,15 +5,15 @@ import java.util.Random;
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.SkipFromDemo;
-import com.vaadin.addon.charts.model.Axis;
 import com.vaadin.addon.charts.model.AxisType;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
-import com.vaadin.addon.charts.model.PlotLine;
+import com.vaadin.addon.charts.model.PlotLines;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
 import com.vaadin.addon.charts.model.Title;
+import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
@@ -35,18 +35,24 @@ public class SplineUpdatingEachSecondWithTwoLines extends
         chart.setWidth("500px");
 
         final Configuration configuration = chart.getConfiguration();
-        configuration.getChart().setType(ChartType.SPLINE);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        configuration.getChart().setType(ChartType.SPLINE.toString());
         configuration.getTitle().setText("Live random data");
 
-        Axis xAxis = configuration.getxAxis();
-        xAxis.setType(AxisType.DATETIME);
+        XAxis xAxis = configuration.getxAxis();
+        xAxis.setType(AxisType.DATETIME.toString());
         xAxis.setTickPixelInterval(150);
 
         YAxis yAxis = configuration.getyAxis();
         yAxis.setTitle(new Title("Value"));
-        yAxis.setPlotLines(new PlotLine(0, 1, new SolidColor("#808080")));
+        PlotLines plotline = new PlotLines();
+        plotline.setValue(0);
+        plotline.setWidth(1);
+        plotline.setColor(new SolidColor("#808080"));
+        yAxis.setPlotLines(new PlotLines[] { plotline });
 
-        configuration.getTooltip().setEnabled(false);
+        // FIXME missing generated API
+        // configuration.getTooltip().setEnabled(false);
         configuration.getLegend().setEnabled(false);
 
         final DataSeries series = new DataSeries();

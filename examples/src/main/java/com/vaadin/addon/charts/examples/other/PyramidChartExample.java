@@ -3,9 +3,9 @@ package com.vaadin.addon.charts.examples.other;
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
-import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.PlotOptionsPyramid;
 import com.vaadin.ui.Component;
 
@@ -35,11 +35,13 @@ public class PyramidChartExample extends AbstractVaadinChartExample {
 
         PlotOptionsPyramid options = new PlotOptionsPyramid();
 
-        options.setWidthAsPercentage(70); // With default (90%), long labels in
+        // FIXME missing generated API
+        // options.setWidthAsPercentage(70); // With default (90%), long labels
+        // in
         // this example may be cut
         // options.setWidth(400); // in pixels
 
-        Labels dataLabels = new Labels();
+        DataLabels dataLabels = new DataLabels();
         dataLabels.setFormat("<b>{point.name}</b> ({point.y:,.0f})");
         options.setDataLabels(dataLabels);
 

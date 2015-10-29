@@ -136,7 +136,8 @@ public class SVGGenerator {
     }
 
     /**
-     * Generates an SVG file using given Vaadin Chart {@link Configuration}.
+     * Generates an SVG file using given Vaadin Chart {@link Configuration}
+     * .
      *
      * @param conf
      *            the configuration that will be plotted as an SVG graphics
@@ -144,11 +145,12 @@ public class SVGGenerator {
      * @see SVGGenerator
      */
     public String generate(Configuration conf) {
-        return generate(conf.toString());
+        return generate(ChartSerialization.toJSON(conf));
     }
 
     /**
-     * Generates an SVG file using given Vaadin Chart {@link Configuration}.
+     * Generates an SVG file using given Vaadin Chart {@link Configuration}
+     * .
      *
      * @param conf
      *            the configuration that will be plotted as an SVG graphics
@@ -160,7 +162,8 @@ public class SVGGenerator {
      * @see SVGGenerator
      */
     public String generate(Configuration conf, int targetWidth, int targetHeight) {
-        return generate(conf.toString(), targetWidth, targetHeight);
+        return generate(ChartSerialization.toJSON(conf), targetWidth,
+                targetHeight);
     }
 
     /**
@@ -265,9 +268,9 @@ public class SVGGenerator {
         if (chartOptions == null || chartOptions.getTheme() == null) {
             // generate the default Vaadin theme
             ValoLightTheme theme = new ValoLightTheme();
-            return theme.toString();
+            return ChartSerialization.toJSON(theme);
         }
-        return chartOptions.getTheme().toString();
+        return ChartSerialization.toJSON(chartOptions.getTheme());
     }
 
     private String getLang() {
@@ -281,7 +284,7 @@ public class SVGGenerator {
         if (chartOptions == null || chartOptions.getLang() == null) {
             return "{}";
         }
-        return chartOptions.getLang().toString();
+        return ChartSerialization.toJSON(chartOptions.getLang());
     }
 
     private void destroyPhantomInstance(String line) {

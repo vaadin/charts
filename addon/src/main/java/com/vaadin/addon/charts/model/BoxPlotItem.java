@@ -75,7 +75,7 @@ public class BoxPlotItem extends DataSeriesItem {
      *            the lower quartile
      */
     public void setLowerQuartile(Number lowerQuartile) {
-        this.q1 = lowerQuartile;
+        q1 = lowerQuartile;
     }
 
     /**
@@ -92,7 +92,7 @@ public class BoxPlotItem extends DataSeriesItem {
      *            the upper quartile
      */
     public void setUpperQuartile(Number upperQuartile) {
-        this.q3 = upperQuartile;
+        q3 = upperQuartile;
     }
 
     /**

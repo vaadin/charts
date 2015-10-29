@@ -33,9 +33,10 @@ public class DateAxisAndClickEvent extends AbstractVaadinChartExample {
 
         Configuration configuration = chart.getConfiguration();
         configuration.setTitle("Date axis and click events");
-        configuration.getChart().setType(ChartType.SPLINE);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        configuration.getChart().setType(ChartType.SPLINE.toString());
 
-        configuration.getxAxis().setType(AxisType.DATETIME);
+        configuration.getxAxis().setType(AxisType.DATETIME.toString());
 
         Calendar c = Calendar.getInstance();
         c.set(Calendar.MILLISECOND, 0);

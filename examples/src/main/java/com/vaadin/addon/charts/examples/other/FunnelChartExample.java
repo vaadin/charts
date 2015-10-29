@@ -3,9 +3,9 @@ package com.vaadin.addon.charts.examples.other;
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
-import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.PlotOptionsFunnel;
 import com.vaadin.ui.Component;
 
@@ -34,14 +34,16 @@ public class FunnelChartExample extends AbstractVaadinChartExample {
         conf.getLegend().setEnabled(false);
 
         PlotOptionsFunnel options = new PlotOptionsFunnel();
-        options.setNeckWidthPercentage(30);
-        // options.setNeckWidth(20); // in pixels
-        options.setNeckHeightPercentage(30);
-        // options.setNeckHeight(100); // in pixels
+        options.setReversed(true);
+        // FIXME missing generated API
+        // options.setNeckWidthPercentage(30);
+        options.setNeckWidth("30%");
+        // options.setNeckHeightPercentage(30);
+        options.setNeckHeight("30%");
 
-        options.setWidthAsPercentage(70);
+        options.setWidth("70%");
 
-        Labels dataLabels = new Labels();
+        DataLabels dataLabels = new DataLabels();
         dataLabels.setFormat("<b>{point.name}</b> ({point.y:,.0f})");
         options.setDataLabels(dataLabels);
 

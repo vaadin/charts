@@ -5,12 +5,11 @@ import java.util.List;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.model.ColorAxis;
+import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.PlotOptionsTreeMap;
 import com.vaadin.addon.charts.model.TreeMapLayoutAlgorithm;
 import com.vaadin.addon.charts.model.TreeSeries;
 import com.vaadin.addon.charts.model.TreeSeriesItem;
-import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
 
 public class TreeMapWithColorAxis extends AbstractVaadinChartExample {
@@ -22,15 +21,18 @@ public class TreeMapWithColorAxis extends AbstractVaadinChartExample {
 
     @Override
     protected Component getChart() {
-        Chart chart = new Chart();
+        Chart chart = new Chart(ChartType.TREEMAP);
 
-        ColorAxis colorAxis = new ColorAxis();
-        colorAxis.setMinColor(new SolidColor("#FFFFFF"));
-        colorAxis.setMaxColor(new SolidColor("#7BB5EF"));
-        chart.getConfiguration().addColorAxis(colorAxis);
+        // FIXME missing generated API
+        // ColorAxis colorAxis = new ColorAxis();
+        // colorAxis.setMinColor(new SolidColor("#FFFFFF"));
+        // colorAxis.setMaxColor(new SolidColor("#7BB5EF"));
+        // chart.getConfiguration().addColorAxis(colorAxis);
 
         PlotOptionsTreeMap plotOptions = new PlotOptionsTreeMap();
-        plotOptions.setLayoutAlgorithm(TreeMapLayoutAlgorithm.SQUARIFIED);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        plotOptions.setLayoutAlgorithm(TreeMapLayoutAlgorithm.SQUARIFIED
+                .toString());
 
         TreeSeries series = createSeries();
 

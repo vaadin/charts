@@ -3,18 +3,18 @@ package com.vaadin.addon.charts.examples.lineandscatter;
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.SkipFromDemo;
-import com.vaadin.addon.charts.model.Axis;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.HorizontalAlign;
-import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.LayoutDirection;
 import com.vaadin.addon.charts.model.Legend;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.VerticalAlign;
+import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.ui.Component;
 
 @SkipFromDemo
@@ -32,34 +32,36 @@ public class LineWithMissingPoint extends AbstractVaadinChartExample {
         chart.setWidth("100%");
 
         Configuration configuration = chart.getConfiguration();
-        configuration.getChart().setType(ChartType.LINE);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        configuration.getChart().setType(ChartType.LINE.toString());
         configuration.getChart().setMarginRight(130);
         configuration.getChart().setMarginBottom(25);
 
         configuration.getTitle().setText("Monthly Average Temperature");
         configuration.getSubTitle().setText("Source: WorldClimate.com");
 
-        configuration.getxAxis().setCategories("Jan", "Feb", "Mar", "Apr",
-                "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
+        configuration.getxAxis().setCategories(
+                new String[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
+                        "Aug", "Sep", "Oct", "Nov", "Dec" });
 
-        Axis yAxis = configuration.getyAxis();
+        YAxis yAxis = configuration.getyAxis();
         yAxis.setMin(-5d);
         yAxis.setTitle(new Title("Temperature (°C)"));
-        yAxis.getTitle().setVerticalAlign(VerticalAlign.HIGH);
+        yAxis.getTitle().setAlign(VerticalAlign.HIGH.toString());
 
-        configuration
-                .getTooltip()
-                .setFormatter(
-                        "'<b>'+ this.series.name +'</b><br/>'+this.x +': '+ this.y +'°C'");
+        // configuration
+        // .getTooltip()
+        // .setFormatter(
+        // "'<b>'+ this.series.name +'</b><br/>'+this.x +': '+ this.y +'°C'");
 
         PlotOptionsLine plotOptions = new PlotOptionsLine();
-        plotOptions.setDataLabels(new Labels(true));
+        plotOptions.setDataLabels(new DataLabels(true));
         configuration.setPlotOptions(plotOptions);
 
         Legend legend = configuration.getLegend();
-        legend.setLayout(LayoutDirection.VERTICAL);
-        legend.setHorizontalAlign(HorizontalAlign.RIGHT);
-        legend.setVerticalAlign(VerticalAlign.TOP);
+        legend.setLayout(LayoutDirection.VERTICAL.toString());
+        legend.setAlign(HorizontalAlign.RIGHT.toString());
+        legend.setVerticalAlign(VerticalAlign.TOP.toString());
         legend.setX(-10d);
         legend.setY(100d);
         legend.setBorderWidth(0);

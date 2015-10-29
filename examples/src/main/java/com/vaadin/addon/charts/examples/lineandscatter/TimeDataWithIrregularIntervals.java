@@ -8,7 +8,6 @@ import java.util.TimeZone;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.model.Axis;
 import com.vaadin.addon.charts.model.AxisType;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
@@ -17,6 +16,7 @@ import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.DateTimeLabelFormats;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
 import com.vaadin.addon.charts.model.Title;
+import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.ui.Component;
 
 public class TimeDataWithIrregularIntervals extends AbstractVaadinChartExample {
@@ -33,27 +33,28 @@ public class TimeDataWithIrregularIntervals extends AbstractVaadinChartExample {
         chart.setWidth("100%");
 
         Configuration configuration = chart.getConfiguration();
-        configuration.getChart().setType(ChartType.SPLINE);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        configuration.getChart().setType(ChartType.SPLINE.toString());
 
         configuration.getTitle().setText(
                 "Snow depth in the Vikjafjellet mountain, Norway");
         configuration.getSubTitle().setText(
                 "An example of irregular time data in Highcharts JS");
 
-        configuration.getTooltip().setFormatter("");
+        // configuration.getTooltip().setFormatter("");
 
-        configuration.getxAxis().setType(AxisType.DATETIME);
+        configuration.getxAxis().setType(AxisType.DATETIME.toString());
         configuration.getxAxis().setDateTimeLabelFormats(
                 new DateTimeLabelFormats("%e. %b", "%b"));
 
-        Axis yAxis = configuration.getyAxis();
+        YAxis yAxis = configuration.getyAxis();
         yAxis.setTitle(new Title("Snow depth (m)"));
         yAxis.setMin(0);
 
-        configuration
-                .getTooltip()
-                .setFormatter(
-                        "'<b>'+ this.series.name +'</b><br/>\'+ Highcharts.dateFormat('%e. %b', this.x) +': '+ this.y +' m'");
+        // configuration
+        // .getTooltip()
+        // .setFormatter(
+        // "'<b>'+ this.series.name +'</b><br/>\'+ Highcharts.dateFormat('%e. %b', this.x) +': '+ this.y +' m'");
 
         DataSeries ls = new DataSeries();
         ls.setPlotOptions(new PlotOptionsSpline());

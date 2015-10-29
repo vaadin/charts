@@ -3,11 +3,11 @@ package com.vaadin.addon.charts.examples.lineandscatter;
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.SkipFromDemo;
-import com.vaadin.addon.charts.model.Axis;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.ListSeries;
+import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.ui.Button;
@@ -36,14 +36,16 @@ public class BasicLineWithAutoRotation extends AbstractVaadinChartExample {
         configuration.getTitle().setText("Monthly Average Temperature");
         configuration.getSubTitle().setText("Source: WorldClimate.com");
 
-        configuration.getxAxis().setCategories("January", "February", "March",
-                "April", "May", "June", "July", "August", "September",
-                "October", "November", "December");
+        configuration.getxAxis().setCategories(
+                new String[] { "January", "February", "March", "April", "May",
+                        "June", "July", "August", "September", "October",
+                        "November", "December" });
 
-        Axis xAxis = configuration.getxAxis();
-        Labels xLabels = xAxis.getLabels();
-        xLabels.setAutoRotation(-10, -20, -30, -40, 50, -60, -70, -80, -90);
-
+        XAxis xAxis = configuration.getxAxis();
+        Labels xLabels = new Labels();
+        xLabels.setAutoRotation(new Number[] { -10, -20, -30, -40, 50, -60,
+                -70, -80, -90 });
+        xAxis.setLabels(xLabels);
         ListSeries ls = new ListSeries();
         ls.setName("Tokyo");
         ls.setData(7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3,

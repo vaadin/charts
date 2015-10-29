@@ -71,6 +71,7 @@ public class GridTheme extends HighChartsDefaultTheme {
         getyAxis().getTitle().setColor(new SolidColor("#333"));
         getyAxis().getTitle().setFontWeight(FontWeight.BOLD);
 
+        getLegend().setItemStyle(new Style());
         getLegend().getItemStyle().setColor(new SolidColor("black"));
 
         getLegend().getItemHoverStyle().setColor(new SolidColor("#039"));

@@ -50,7 +50,7 @@ public abstract class AbstractSeriesItemEvent extends AbstractSeriesEvent {
             throw new IllegalArgumentException("Value may not be null");
         } else {
             this.value = value;
-            this.item = null;
+            item = null;
         }
     }
 
@@ -68,7 +68,7 @@ public abstract class AbstractSeriesItemEvent extends AbstractSeriesEvent {
             throw new IllegalArgumentException("Item may not be null");
         } else {
             this.item = item;
-            this.value = null;
+            value = null;
         }
     }
 

@@ -13,10 +13,10 @@ import org.junit.Test;
 
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.HorizontalAlign;
-import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.LayoutDirection;
 import com.vaadin.addon.charts.model.Legend;
 import com.vaadin.addon.charts.model.ListSeries;
@@ -84,29 +84,30 @@ public class SVGGeneratorTest {
         conf.setSubTitle("Source: Wikipedia.org");
 
         XAxis x = new XAxis();
-        x.setCategories("Africa", "America", "Asia", "Europe", "Oceania");
-        x.setTitle((String) null);
+        x.setCategories(new String[] { "Africa", "America", "Asia", "Europe",
+                "Oceania" });
+        x.setTitle(new Title((String) null));
         conf.addxAxis(x);
 
         YAxis y = new YAxis();
         y.setMin(0);
         Title title = new Title("Population (millions)");
-        title.setVerticalAlign(VerticalAlign.HIGH);
+        title.setAlign(VerticalAlign.HIGH.toString());
         y.setTitle(title);
         conf.addyAxis(y);
 
         Tooltip tooltip = new Tooltip();
-        tooltip.setFormatter("this.series.name +': '+ this.y +' millions'");
+        // tooltip.setFormatter("this.series.name +': '+ this.y +' millions'");
         conf.setTooltip(tooltip);
 
         PlotOptionsBar plot = new PlotOptionsBar();
-        plot.setDataLabels(new Labels(true));
+        plot.setDataLabels(new DataLabels(true));
         conf.setPlotOptions(plot);
 
         Legend legend = new Legend();
-        legend.setLayout(LayoutDirection.VERTICAL);
-        legend.setHorizontalAlign(HorizontalAlign.RIGHT);
-        legend.setVerticalAlign(VerticalAlign.TOP);
+        legend.setLayout(LayoutDirection.VERTICAL.toString());
+        legend.setAlign(HorizontalAlign.RIGHT.toString());
+        legend.setVerticalAlign(VerticalAlign.TOP.toString());
         legend.setX(-100);
         legend.setY(100);
         legend.setFloating(true);
@@ -130,12 +131,12 @@ public class SVGGeneratorTest {
     public void testWide() throws InterruptedException, URISyntaxException {
 
         Configuration conf = new Configuration();
-        conf.getChart().setType(ChartType.COLUMN);
+        conf.getChart().setType(ChartType.COLUMN.toString());
         conf.getChart().setMarginRight(200);
         Legend legend = conf.getLegend();
-        legend.setLayout(LayoutDirection.VERTICAL);
-        legend.setHorizontalAlign(HorizontalAlign.RIGHT);
-        legend.setVerticalAlign(VerticalAlign.MIDDLE);
+        legend.setLayout(LayoutDirection.VERTICAL.toString());
+        legend.setAlign(HorizontalAlign.RIGHT.toString());
+        legend.setVerticalAlign(VerticalAlign.MIDDLE.toString());
         legend.setBorderWidth(0);
 
         Random r = new Random();

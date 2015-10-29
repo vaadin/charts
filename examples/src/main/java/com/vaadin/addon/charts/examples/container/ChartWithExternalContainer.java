@@ -10,6 +10,7 @@ import com.vaadin.addon.charts.model.ContainerDataSeries;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
 import com.vaadin.addon.charts.model.PlotOptionsPie;
 import com.vaadin.addon.charts.model.Series;
+import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.data.Container;
 import com.vaadin.ui.AbstractSelect.ItemCaptionMode;
@@ -82,7 +83,8 @@ public class ChartWithExternalContainer extends AbstractVaadinChartExample {
         final Chart chart = new Chart();
 
         final Configuration configuration = chart.getConfiguration();
-        configuration.getChart().setType(ChartType.PIE);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        configuration.getChart().setType(ChartType.PIE.toString());
         configuration.getTitle().setText("Order item quantities");
         configuration.getLegend().setEnabled(false);
 
@@ -90,7 +92,6 @@ public class ChartWithExternalContainer extends AbstractVaadinChartExample {
         configuration.setPlotOptions(plotOptions);
 
         configuration.setSeries(container);
-        // System.out.println(configuration.toString());
         chart.drawChart(configuration);
         return chart;
     }
@@ -99,19 +100,18 @@ public class ChartWithExternalContainer extends AbstractVaadinChartExample {
         final Chart chart = new Chart();
 
         final Configuration configuration = chart.getConfiguration();
-        configuration.getChart().setType(ChartType.COLUMN);
+        configuration.getChart().setType(ChartType.COLUMN.toString());
         configuration.getTitle().setText("Order item totals");
         configuration.getLegend().setEnabled(false);
 
         YAxis ax = new YAxis();
-        ax.setTitle("");
+        ax.setTitle(new Title(""));
         configuration.addyAxis(ax);
 
         PlotOptionsColumn plotOptions = new PlotOptionsColumn();
         configuration.setPlotOptions(plotOptions);
 
         configuration.setSeries(container);
-        // System.out.println(configuration.toString());
         chart.drawChart(configuration);
 
         return chart;

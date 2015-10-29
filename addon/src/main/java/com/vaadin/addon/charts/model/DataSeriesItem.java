@@ -34,7 +34,7 @@ public class DataSeriesItem extends AbstractSeriesItem {
     private Boolean selected;
     private Dial dial;
     private Object drilldown;
-    private Labels dataLabels;
+    private DataLabels dataLabels;
     private String cursor;
 
     /*
@@ -338,10 +338,10 @@ public class DataSeriesItem extends AbstractSeriesItem {
     }
 
     /**
-     * @see #setDataLabels(Labels)
+     * @see #setDataLabels(DataLabels)
      * @return dataLabels
      */
-    public Labels getDataLabels() {
+    public DataLabels getDataLabels() {
         return dataLabels;
     }
 
@@ -350,7 +350,7 @@ public class DataSeriesItem extends AbstractSeriesItem {
      * 
      * @param dataLabels
      */
-    public void setDataLabels(Labels dataLabels) {
+    public void setDataLabels(DataLabels dataLabels) {
         this.dataLabels = dataLabels;
         makeCustomized();
     }

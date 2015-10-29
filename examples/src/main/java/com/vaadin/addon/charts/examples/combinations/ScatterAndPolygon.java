@@ -4,13 +4,13 @@ import java.util.Random;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.model.AbstractLinePlotOptions;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.PlotOptionsPolygon;
 import com.vaadin.addon.charts.model.PlotOptionsScatter;
+import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
@@ -31,7 +31,8 @@ public class ScatterAndPolygon extends AbstractVaadinChartExample {
         Configuration conf = chart.getConfiguration();
 
         chart.setId("chart");
-        conf.getChart().setZoomType(ZoomType.XY);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        conf.getChart().setZoomType(ZoomType.XY.toString());
         conf.disableCredits();
         conf.setTitle("Height vs Weight");
         conf.setSubTitle("Polygon series in Highcharts.");
@@ -44,21 +45,21 @@ public class ScatterAndPolygon extends AbstractVaadinChartExample {
         xAxis.setStartOnTick(true);
         xAxis.setEndOnTick(true);
         xAxis.setShowLastLabel(true);
-        xAxis.setTitle("Height (cm)");
+        xAxis.setTitle(new Title("Height (cm)"));
 
         YAxis yAxis = conf.getyAxis();
-        yAxis.setTitle("Weight (kg)");
+        yAxis.setTitle(new Title("Weight (kg)"));
 
-        AbstractLinePlotOptions plotOptions = new PlotOptionsScatter();
+        PlotOptionsScatter plotOptionsScatter = new PlotOptionsScatter();
         DataSeries scatter = new DataSeries();
-        scatter.setPlotOptions(plotOptions);
+        scatter.setPlotOptions(plotOptionsScatter);
         scatter.setName("Observations");
         fillScatter(scatter);
 
         DataSeries polygon = new DataSeries();
-        plotOptions = new PlotOptionsPolygon();
-        plotOptions.setEnableMouseTracking(false);
-        polygon.setPlotOptions(plotOptions);
+        PlotOptionsPolygon plotOptionsPolygon = new PlotOptionsPolygon();
+        plotOptionsPolygon.setEnableMouseTracking(false);
+        polygon.setPlotOptions(plotOptionsPolygon);
         polygon.setName("Target");
 
         polygon.add(new DataSeriesItem(153, 42));

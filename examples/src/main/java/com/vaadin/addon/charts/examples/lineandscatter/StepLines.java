@@ -22,14 +22,16 @@ public class StepLines extends AbstractVaadinChartExample {
         Configuration configuration = chart.getConfiguration();
         configuration.setTitle("Step lines");
 
-        configuration.getxAxis().setCategories("Jan", "Feb", "Mar", "Apr",
-                "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
+        configuration.getxAxis().setCategories(
+                new String[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
+                        "Aug", "Sep", "Oct", "Nov", "Dec" });
 
         ListSeries ls = new ListSeries();
         ls.setName("Right");
         ls.setData(1, 2, 3, 4, null, 6, 7, null, 9);
         PlotOptionsLine options = new PlotOptionsLine();
-        options.setStepType(StepType.RIGHT);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        options.setStep(StepType.RIGHT.toString());
         ls.setPlotOptions(options);
         configuration.addSeries(ls);
 
@@ -37,7 +39,7 @@ public class StepLines extends AbstractVaadinChartExample {
         ls.setName("Center");
         ls.setData(5, 6, 7, 8, null, 10, 11, null, 13);
         options = new PlotOptionsLine();
-        options.setStepType(StepType.CENTER);
+        options.setStep(StepType.CENTER.toString());
         ls.setPlotOptions(options);
         configuration.addSeries(ls);
 
@@ -45,7 +47,7 @@ public class StepLines extends AbstractVaadinChartExample {
         ls.setName("Left");
         ls.setData(9, 10, 11, 12, null, 14, 15, null, 17);
         options = new PlotOptionsLine();
-        options.setStepType(StepType.LEFT);
+        options.setStep(StepType.LEFT.toString());
         ls.setPlotOptions(options);
         configuration.addSeries(ls);
 

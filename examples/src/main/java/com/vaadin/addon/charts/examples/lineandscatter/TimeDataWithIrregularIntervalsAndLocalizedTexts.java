@@ -9,17 +9,17 @@ import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.ChartOptions;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.SkipFromDemo;
-import com.vaadin.addon.charts.model.Axis;
 import com.vaadin.addon.charts.model.AxisType;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.DateTimeLabelFormats;
-import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.Lang;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
 import com.vaadin.addon.charts.model.Title;
+import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Component;
@@ -64,31 +64,32 @@ public class TimeDataWithIrregularIntervalsAndLocalizedTexts extends
         chart.setWidth("100%");
 
         final Configuration configuration = chart.getConfiguration();
-        configuration.getChart().setType(ChartType.SPLINE);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        configuration.getChart().setType(ChartType.SPLINE.toString());
 
         configuration.getTitle().setText(
                 "Lumen syvyys Vikjafjellet-tunturilla, Norja");
         configuration.getSubTitle().setText("Lokalisointiesimerkki");
 
-        configuration.getTooltip().setFormatter("");
+        // configuration.getTooltip().setFormatter("");
 
-        configuration.getxAxis().setType(AxisType.DATETIME);
+        configuration.getxAxis().setType(AxisType.DATETIME.toString());
         configuration.getxAxis().setDateTimeLabelFormats(
                 new DateTimeLabelFormats());
         // configuration.getxAxis().getDateTimeLabelFormats().setMonth("%B");
 
-        Axis yAxis = configuration.getyAxis();
+        YAxis yAxis = configuration.getyAxis();
         yAxis.setTitle(new Title("Lumen syvyys (m)"));
         yAxis.setMin(0);
 
         DataSeries ls = new DataSeries();
-        ls.setPlotOptions(new PlotOptionsSpline());
-        ls.getPlotOptions().setDataLabels(new Labels(true));
-        ls.getPlotOptions().setEnableMouseTracking(false);
-        ls.getPlotOptions()
-                .getDataLabels()
-                .setFormatter(
-                        "return Highcharts.dateFormat('%a %d %B',this.x);");
+        PlotOptionsSpline plotOptionsSpline = new PlotOptionsSpline();
+        plotOptionsSpline.setDataLabels(new DataLabels(true));
+        plotOptionsSpline.setEnableMouseTracking(false);
+        // FIXME missing generated API
+        // plotOptionsSpline.getDataLabels().setFormatter(
+        // "return Highcharts.dateFormat('%a %d %B',this.x);");
+        ls.setPlotOptions(plotOptionsSpline);
 
         ls.setName("Talvi 2009-2010");
         Object[][] data3 = getData3();

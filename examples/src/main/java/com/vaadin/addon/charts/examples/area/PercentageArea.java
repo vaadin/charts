@@ -8,7 +8,7 @@ import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.Marker;
 import com.vaadin.addon.charts.model.PlotOptionsArea;
 import com.vaadin.addon.charts.model.Stacking;
-import com.vaadin.addon.charts.model.SubTitle;
+import com.vaadin.addon.charts.model.Subtitle;
 import com.vaadin.addon.charts.model.TickmarkPlacement;
 import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.Tooltip;
@@ -38,12 +38,13 @@ public class PercentageArea extends AbstractVaadinChartExample {
 
         conf.setTitle(new Title(
                 "Historic and Estimated Worldwide Population Distribution by Region"));
-        conf.setSubTitle(new SubTitle("Source: Wikipedia.org"));
+        conf.setSubTitle(new Subtitle("Source: Wikipedia.org"));
 
         XAxis xAxis = new XAxis();
-        xAxis.setTickmarkPlacement(TickmarkPlacement.ON);
-        xAxis.setCategories("1750", "1800", "1850", "1900", "1950", "1999",
-                "2050");
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        xAxis.setTickmarkPlacement(TickmarkPlacement.ON.toString());
+        xAxis.setCategories(new String[] { "1750", "1800", "1850", "1900",
+                "1950", "1999", "2050" });
         conf.addxAxis(xAxis);
 
         YAxis yAxis = new YAxis();
@@ -51,11 +52,12 @@ public class PercentageArea extends AbstractVaadinChartExample {
         conf.addyAxis(yAxis);
 
         Tooltip tooltip = new Tooltip();
-        tooltip.setFormatter("this.series.name + ': ' +this.x +': '+ Highcharts.numberFormat(this.percentage, 1) +'% ('+ Highcharts.numberFormat(this.y, 0, ',') +' millions)'");
+        // FIXME missing generated API
+        // tooltip.setFormatter("this.series.name + ': ' +this.x +': '+ Highcharts.numberFormat(this.percentage, 1) +'% ('+ Highcharts.numberFormat(this.y, 0, ',') +' millions)'");
         conf.setTooltip(tooltip);
 
         PlotOptionsArea plotOptions = new PlotOptionsArea();
-        plotOptions.setStacking(Stacking.PERCENT);
+        plotOptions.setStacking(Stacking.PERCENT.toString());
         plotOptions.setLineWidth(1);
         Marker marker = new Marker();
         plotOptions.setMarker(marker);

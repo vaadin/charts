@@ -2,17 +2,16 @@ package com.vaadin.addon.charts.examples.container;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.model.Axis;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.ContainerDataSeries;
+import com.vaadin.addon.charts.model.Hover;
 import com.vaadin.addon.charts.model.Marker;
-import com.vaadin.addon.charts.model.MarkerStates;
 import com.vaadin.addon.charts.model.PlotOptionsArea;
 import com.vaadin.addon.charts.model.Series;
-import com.vaadin.addon.charts.model.State;
 import com.vaadin.addon.charts.model.States;
 import com.vaadin.addon.charts.model.Title;
+import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.data.Container;
@@ -79,18 +78,20 @@ public class ContainerWithLotsOfData extends AbstractVaadinChartExample {
         final Chart chart = new Chart();
 
         final Configuration configuration = chart.getConfiguration();
-        configuration.getChart().setType(ChartType.AREA);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        configuration.getChart().setType(ChartType.AREA.toString());
         configuration.getTitle().setText("Data from Vaadin Container");
 
         configuration.getLegend().setEnabled(false);
 
-        Axis yAxis = configuration.getyAxis();
+        YAxis yAxis = configuration.getyAxis();
         yAxis.setTitle(new Title("Exchange rate"));
         yAxis.setMin(0.6);
         yAxis.setStartOnTick(false);
         yAxis.setShowFirstLabel(false);
 
-        configuration.getTooltip().setShared(true);
+        // FIXME missing generated API
+        // configuration.getTooltip().setShared(true);
 
         PlotOptionsArea plotOptions = new PlotOptionsArea();
 
@@ -104,14 +105,14 @@ public class ContainerWithLotsOfData extends AbstractVaadinChartExample {
 
         Marker marker = new Marker();
         marker.setEnabled(false);
-        State hoverState = new State(true);
+        Hover hoverState = new Hover(true);
         hoverState.setRadius(5);
-        MarkerStates markerStates = new MarkerStates(hoverState);
+        States markerStates = new States();
+        markerStates.setHover(hoverState);
         marker.setStates(markerStates);
 
-        State hoverStateForArea = new State(true);
+        Hover hoverStateForArea = new Hover(true);
         hoverState.setLineWidth(1);
-
         States states = new States();
         states.setHover(hoverStateForArea);
         plotOptions.setStates(states);

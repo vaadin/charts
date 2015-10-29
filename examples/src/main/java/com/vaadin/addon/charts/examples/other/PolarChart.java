@@ -5,6 +5,7 @@ import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.Background;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.Pane;
 import com.vaadin.addon.charts.model.PlotOptionsArea;
@@ -31,7 +32,9 @@ public class PolarChart extends AbstractVaadinChartExample {
         conf.getChart().setPolar(true);
         conf.setTitle("Highcharts Polar Chart");
 
-        Pane pane = new Pane(0, 360);
+        Pane pane = new Pane();
+        pane.setStartAngle(0);
+        pane.setEndAngle(360);
         conf.addPane(pane);
         pane.setBackground(new Background[] {});
 
@@ -39,7 +42,11 @@ public class PolarChart extends AbstractVaadinChartExample {
         axis.setTickInterval(45);
         axis.setMin(0);
         axis.setMax(360);
-        axis.getLabels().setFormatter("function() {return this.value + '°';}");
+        // FIXME remove initialization after CHARTS-154
+        axis.setLabels(new Labels());
+        axis.getLabels().setFormat("{value}°");
+        // FIXME missing generated API
+        // axis.getLabels().setFormatter("function() {return this.value + '°';}");
         YAxis yaxs = new YAxis();
         yaxs.setMin(0);
         conf.addxAxis(axis);

@@ -5,8 +5,9 @@ import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
+import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
-import com.vaadin.addon.charts.model.PlotOptionsErrorBar;
+import com.vaadin.addon.charts.model.PlotOptionsErrorbar;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
 import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.Tooltip;
@@ -33,12 +34,14 @@ public class ErrorBarExample extends AbstractVaadinChartExample {
         Color[] colors = getThemeColors();
 
         // Enable xy zooming, test also with touch devices
-        conf.getChart().setZoomType(ZoomType.XY);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        conf.getChart().setZoomType(ZoomType.XY.toString());
 
         conf.setTitle("Temperature vs Rainfall");
 
-        conf.getxAxis().setCategories("Jan", "Feb", "Mar", "Apr", "May", "Jun",
-                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
+        conf.getxAxis().setCategories(
+                new String[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
+                        "Aug", "Sep", "Oct", "Nov", "Dec" });
 
         YAxis primaryAxis = conf.getyAxis();
 
@@ -47,21 +50,28 @@ public class ErrorBarExample extends AbstractVaadinChartExample {
         style.setColor(colors[0]);
         title.setStyle(style);
         primaryAxis.setTitle(title);
-
-        primaryAxis.getLabels().setFormatter("this.value + '°C'");
+        // FIXME remove initialization after CHARTS-154
+        primaryAxis.setLabels(new Labels());
+        primaryAxis.getLabels().setFormat("{value}°C");
+        // FIXME missing generated API
+        // primaryAxis.getLabels().setFormatter("this.value + '°C'");
 
         YAxis secondaryAxis = new YAxis();
-        conf.getyAxes().addAxis(secondaryAxis);
+        conf.getyAxes().add(secondaryAxis);
         title = new Title("Rainfall");
         secondaryAxis.setTitle(title);
         style = new Style();
         style.setColor(colors[1]);
         title.setStyle(style);
-        secondaryAxis.getLabels().setFormatter("this.value + ' mm'");
+        // FIXME remove initialization after CHARTS-154
+        secondaryAxis.setLabels(new Labels());
+        secondaryAxis.getLabels().setFormat("{value} mm");
+        // secondaryAxis.getLabels().setFormatter("this.value + ' mm'");
         secondaryAxis.getLabels().setStyle(style);
         secondaryAxis.setOpposite(true);
 
-        conf.getTooltip().setShared(true);
+        // FIXME missing generated API
+        // conf.getTooltip().setShared(true);
 
         DataSeries rainfall = new DataSeries("Rainfall");
 
@@ -77,7 +87,7 @@ public class ErrorBarExample extends AbstractVaadinChartExample {
         DataSeries rainfallError = new DataSeries("Rainfall");
         conf.addSeries(rainfallError);
         rainfallError.setyAxis(secondaryAxis);
-        PlotOptionsErrorBar rainErrorOptions = new PlotOptionsErrorBar();
+        PlotOptionsErrorbar rainErrorOptions = new PlotOptionsErrorbar();
         tooltip = new Tooltip();
         tooltip.setPointFormat("(error range: {point.low}-{point.high} mm)<br/>");
         rainErrorOptions.setTooltip(tooltip);
@@ -94,7 +104,7 @@ public class ErrorBarExample extends AbstractVaadinChartExample {
 
         DataSeries temperatureErrors = new DataSeries("Temperature error");
         conf.addSeries(temperatureErrors);
-        PlotOptionsErrorBar tempErrorOptions = new PlotOptionsErrorBar();
+        PlotOptionsErrorbar tempErrorOptions = new PlotOptionsErrorbar();
         SolidColor green = new SolidColor("green");
         tempErrorOptions.setStemColor(green);
         tempErrorOptions.setWhiskerColor(green);

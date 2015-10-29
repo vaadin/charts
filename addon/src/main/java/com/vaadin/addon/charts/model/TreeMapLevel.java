@@ -28,7 +28,7 @@ public class TreeMapLevel extends AbstractConfigurationObject {
     private DashStyle borderDashStyle;
     private Number borderWidth;
     private SolidColor color;
-    private Labels dataLabels;
+    private DataLabels dataLabels;
     private TreeMapLayoutAlgorithm layoutAlgorithm;
     private TreeMapLayoutStartingDirection layoutStartingDirection;
     private Number level;
@@ -108,9 +108,9 @@ public class TreeMapLevel extends AbstractConfigurationObject {
 
     /**
      * @return the data label settings, or null
-     * @see #setDataLabels(Labels)
+     * @see #setDataLabels(DataLabels)
      */
-    public Labels getDataLabels() {
+    public DataLabels getDataLabels() {
         return dataLabels;
     }
 
@@ -118,9 +118,9 @@ public class TreeMapLevel extends AbstractConfigurationObject {
      * Set the options of dataLabels on each point which lies on the level.
      *
      * @param dataLabels
-     *            the {@link Labels} to use
+     *            the {@link DataLabels} to use
      */
-    public void setDataLabels(Labels dataLabels) {
+    public void setDataLabels(DataLabels dataLabels) {
         this.dataLabels = dataLabels;
     }
 

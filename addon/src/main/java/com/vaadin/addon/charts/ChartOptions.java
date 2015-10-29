@@ -17,15 +17,12 @@ package com.vaadin.addon.charts;
  * #L%
  */
 
+import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
+
 import java.util.Iterator;
 
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import com.vaadin.addon.charts.model.AbstractConfigurationObject;
 import com.vaadin.addon.charts.model.Lang;
-import com.vaadin.addon.charts.model.serializers.ChartOptionsBeanSerializerModifier;
 import com.vaadin.addon.charts.model.style.Theme;
 import com.vaadin.addon.charts.shared.ChartOptionsState;
 import com.vaadin.server.AbstractClientConnector;
@@ -74,16 +71,6 @@ public class ChartOptions extends AbstractExtension {
         }
     }
 
-    final static ObjectWriter jsonWriter;
-
-    static {
-        ObjectMapper defaultMapper = AbstractConfigurationObject
-                .createObjectMapper();
-        jsonWriter = defaultMapper.setSerializerFactory(
-                defaultMapper.getSerializerFactory().withSerializerModifier(
-                        new ChartOptionsBeanSerializerModifier())).writer();
-    }
-
     /**
      * Sets the theme to use.
      * <p/>
@@ -99,7 +86,7 @@ public class ChartOptions extends AbstractExtension {
     }
 
     private void buildOptionsJson() {
-        getState().json = toString();
+        getState().json = toJSON(this);
     }
 
     /**
@@ -185,16 +172,6 @@ public class ChartOptions extends AbstractExtension {
                     "This method must be used from UI thread");
         }
         return get(ui);
-    }
-
-    @Override
-    public String toString() {
-        try {
-            return jsonWriter.writeValueAsString(this);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException("Error while serializing "
-                    + this.getClass().getSimpleName(), e);
-        }
     }
 
 }

@@ -35,6 +35,7 @@ public class ColoredContainerSeries extends AbstractVaadinChartExample {
         }
     }
 
+    @Override
     protected Component getChart() {
         Chart chart = new Chart(ChartType.AREA);
 
@@ -44,7 +45,7 @@ public class ColoredContainerSeries extends AbstractVaadinChartExample {
 
         conf.addxAxis(new XAxis());
         YAxis yAxis = new YAxis();
-        yAxis.setTitle("Numbers");
+        yAxis.setTitle(new Title("Numbers"));
         conf.addyAxis(yAxis);
 
         BeanItemContainer<Test> beanItemContainer = new BeanItemContainer<Test>(

@@ -1,15 +1,13 @@
 package com.vaadin.addon.charts.examples.other;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.model.ChartType;
+import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.HorizontalAlign;
-import com.vaadin.addon.charts.model.Labels;
+import com.vaadin.addon.charts.model.Levels;
 import com.vaadin.addon.charts.model.PlotOptionsTreeMap;
 import com.vaadin.addon.charts.model.TreeMapLayoutAlgorithm;
-import com.vaadin.addon.charts.model.TreeMapLevel;
 import com.vaadin.addon.charts.model.TreeSeries;
 import com.vaadin.addon.charts.model.TreeSeriesItem;
 import com.vaadin.addon.charts.model.VerticalAlign;
@@ -27,21 +25,23 @@ public class TreeMapWithLevels extends AbstractVaadinChartExample {
 
     @Override
     protected Component getChart() {
-        Chart chart = new Chart();
+        Chart chart = new Chart(ChartType.TREEMAP);
 
         PlotOptionsTreeMap plotOptions = new PlotOptionsTreeMap();
-        plotOptions.setLayoutAlgorithm(TreeMapLayoutAlgorithm.STRIPES);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        plotOptions.setLayoutAlgorithm(TreeMapLayoutAlgorithm.STRIPES
+                .toString());
         plotOptions.setAlternateStartingDirection(true);
 
-        List<TreeMapLevel> levels = new ArrayList<TreeMapLevel>();
-        TreeMapLevel level1 = new TreeMapLevel();
+        Levels level1 = new Levels();
         level1.setLevel(1);
-        level1.setLayoutAlgorithm(TreeMapLayoutAlgorithm.SLICEANDDICE);
+        level1.setLayoutAlgorithm(TreeMapLayoutAlgorithm.SLICEANDDICE
+                .toString());
 
-        Labels dataLabels = new Labels();
+        DataLabels dataLabels = new DataLabels();
         dataLabels.setEnabled(true);
-        dataLabels.setAlign(HorizontalAlign.LEFT);
-        dataLabels.setVerticalAlign(VerticalAlign.TOP);
+        dataLabels.setAlign(HorizontalAlign.LEFT.toString());
+        dataLabels.setVerticalAlign(VerticalAlign.TOP.toString());
 
         Style style = new Style();
         style.setFontSize("15px");
@@ -49,8 +49,7 @@ public class TreeMapWithLevels extends AbstractVaadinChartExample {
 
         dataLabels.setStyle(style);
         level1.setDataLabels(dataLabels);
-        levels.add(level1);
-        plotOptions.setLevels(levels);
+        plotOptions.setLevels(new Levels[] { level1 });
 
         TreeSeries series = createSeries();
         series.setPlotOptions(plotOptions);

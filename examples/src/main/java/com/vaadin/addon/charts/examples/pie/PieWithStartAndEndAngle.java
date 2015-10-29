@@ -5,9 +5,9 @@ import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.Cursor;
+import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
-import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.PlotOptionsPie;
 import com.vaadin.ui.Component;
 
@@ -30,10 +30,14 @@ public class PieWithStartAndEndAngle extends AbstractVaadinChartExample {
         PlotOptionsPie plotOptions = new PlotOptionsPie();
         plotOptions.setStartAngle(45);
         plotOptions.setEndAngle(180);
-        plotOptions.setCursor(Cursor.POINTER);
-        Labels dataLabels = new Labels(true);
-        dataLabels
-                .setFormatter("'<b>'+ this.point.name +'</b>: '+ this.percentage +' %'");
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        plotOptions.setCursor(Cursor.POINTER.toString());
+        DataLabels dataLabels = new DataLabels(true);
+        dataLabels.setFormat("<b>{point.name}</b>: {percentage} %");
+
+        // FIXME missing generated API
+        // dataLabels
+        // .setFormatter("'<b>'+ this.point.name +'</b>: '+ this.percentage +' %'");
         plotOptions.setDataLabels(dataLabels);
         conf.setPlotOptions(plotOptions);
 

@@ -9,6 +9,7 @@ import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
+import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.data.Property.ValueChangeEvent;
@@ -61,11 +62,11 @@ public class LibraryData extends AbstractVaadinChartExample implements
         chart = new Chart(ChartType.BAR);
         chart.setSizeFull();
         Configuration config = chart.getConfiguration();
-        boolean inverted = config.getChart().isInverted();
+        boolean inverted = config.getChart().getInverted();
         config.getChart().setInverted(!inverted);
         config.getLegend().setEnabled(false);
         YAxis axis = new YAxis();
-        axis.setTitle("Pages");
+        axis.setTitle(new Title("Pages"));
         config.addyAxis(axis);
         series = new DataSeries();
         config.setSeries(series);
@@ -91,7 +92,7 @@ public class LibraryData extends AbstractVaadinChartExample implements
             series.setData(list);
             XAxis getyAxes = chart.getConfiguration().getxAxis();
             getyAxes.setCategories(categories.toArray(new String[categories
-                    .size()]));
+                                                                 .size()]));
             chart.drawChart(chart.getConfiguration());
         }
     }

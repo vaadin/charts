@@ -77,6 +77,7 @@ public class GrayTheme extends HighChartsDefaultTheme {
         getyAxis().getTitle().setColor(new SolidColor("#AAA"));
         getyAxis().getTitle().setFontWeight(FontWeight.BOLD);
 
+        getLegend().setItemStyle(new Style());
         getLegend().getItemStyle().setColor(new SolidColor("#CCC"));
 
         getLegend().getItemHoverStyle().setColor(new SolidColor("#FFF"));

@@ -32,11 +32,12 @@ public class ColumnWithNegativeValues extends AbstractVaadinChartExample {
         conf.setPlotOptions(column);
 
         XAxis xAxis = new XAxis();
-        xAxis.setCategories("Apples", "Oranges", "Pears", "Grapes", "Bananas");
+        xAxis.setCategories(new String[] { "Apples", "Oranges", "Pears",
+                "Grapes", "Bananas" });
         conf.addxAxis(xAxis);
 
         Tooltip tooltip = new Tooltip();
-        tooltip.setFormatter("function() { return ''+ this.series.name +': '+ this.y +'';}");
+        // tooltip.setFormatter("function() { return ''+ this.series.name +': '+ this.y +'';}");
         conf.setTooltip(tooltip);
 
         conf.setCredits(new Credits(false));

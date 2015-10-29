@@ -1,6 +1,5 @@
 package com.vaadin.addon.charts;
 
-import com.vaadin.addon.charts.model.ChartModel;
 import com.vaadin.addon.charts.model.ZoomType;
 
 /*

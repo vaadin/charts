@@ -12,6 +12,7 @@ import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.IntervalUnit;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.PlotOptionsSeries;
+import com.vaadin.addon.charts.util.Util;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Component;
@@ -36,17 +37,19 @@ public class TimeSeriesIntervalUnit extends AbstractVaadinChartExample {
 
         configuration.getTitle().setText("Point interval test");
 
-        configuration.getxAxis().setType(AxisType.DATETIME);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        configuration.getxAxis().setType(AxisType.DATETIME.toString());
 
         final PlotOptionsSeries plotOptions = new PlotOptionsSeries();
         try {
             DateFormat df = new SimpleDateFormat("yyyyMMdd");
-            plotOptions.setPointStart(df.parse("20150101"));
+            plotOptions
+                    .setPointStart(Util.toHighchartsTS(df.parse("20150101")));
         } catch (ParseException e) {
             e.printStackTrace();
         }
         plotOptions.setPointInterval(1);
-        plotOptions.setPointIntervalUnit(IntervalUnit.MONTH);
+        plotOptions.setPointIntervalUnit(IntervalUnit.MONTH.toString());
 
         configuration.setPlotOptions(plotOptions);
         ListSeries ls = new ListSeries();

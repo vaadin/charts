@@ -7,10 +7,11 @@ import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.AxisType;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
-import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.PlotOptionsColumnRange;
+import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
@@ -34,23 +35,25 @@ public class ColumnRangeResourceUsage extends AbstractVaadinChartExample {
         conf.getChart().setInverted(true);
 
         XAxis xAxis = new XAxis();
-        xAxis.setCategories("Printer", "Coffee mahine");
+        xAxis.setCategories(new String[] { "Printer", "Coffee mahine" });
         conf.addxAxis(xAxis);
 
         YAxis yAxis = new YAxis();
-        yAxis.setTitle("Time");
-        yAxis.setType(AxisType.DATETIME);
+        yAxis.setTitle(new Title("Time"));
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        yAxis.setType(AxisType.DATETIME.toString());
         conf.addyAxis(yAxis);
 
         Tooltip tooltip = new Tooltip();
-        tooltip.setFormatter("this.series.name +': '+ Highcharts.dateFormat('%H:%M', this.point.low) + ' - ' + Highcharts.dateFormat('%H:%M', this.point.high)");
+        // tooltip.setFormatter("this.series.name +': '+ Highcharts.dateFormat('%H:%M', this.point.low) + ' - ' + Highcharts.dateFormat('%H:%M', this.point.high)");
         conf.setTooltip(tooltip);
 
         PlotOptionsColumnRange columnRange = new PlotOptionsColumnRange();
         columnRange.setGrouping(false);
-        Labels dataLabels = new Labels(true);
-        dataLabels
-                .setFormatter("this.y == this.point.low ? '' : this.series.name");
+        DataLabels dataLabels = new DataLabels(true);
+        // FIXME missing generated API
+        // dataLabels
+        // .setFormatter("this.y == this.point.low ? '' : this.series.name");
         dataLabels.setInside(true);
         dataLabels.setColor(new SolidColor("white"));
         columnRange.setDataLabels(dataLabels);

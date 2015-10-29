@@ -4,14 +4,13 @@ import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.HeatSeries;
 import com.vaadin.addon.charts.model.HorizontalAlign;
-import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.LayoutDirection;
 import com.vaadin.addon.charts.model.PlotOptionsHeatMap;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.VerticalAlign;
-import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
 
 public class HeatMapExample extends AbstractVaadinChartExample {
@@ -27,33 +26,38 @@ public class HeatMapExample extends AbstractVaadinChartExample {
         Chart chart = new Chart();
 
         Configuration config = chart.getConfiguration();
-        config.getChart().setType(ChartType.HEATMAP);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        config.getChart().setType(ChartType.HEATMAP.toString());
         config.getChart().setMarginTop(40);
         config.getChart().setMarginBottom(40);
 
         config.getTitle().setText("Sales per employee per weekday");
 
         config.getxAxis()
-                .setCategories("Marta", "Mysia", "Misiek", "Maniek", "Miki",
-                        "Guillermo", "Jonatan", "Zdzisław", "Antoni", "Zygmunt");
-        config.getyAxis().setCategories("Monday", "Tuesday", "Wednesday",
-                "Thursday", "Friday");
+                .setCategories(
+                        new String[] { "Marta", "Mysia", "Misiek", "Maniek",
+                                "Miki", "Guillermo", "Jonatan", "Zdzisław",
+                                "Antoni", "Zygmunt" });
+        config.getyAxis().setCategories(
+                new String[] { "Monday", "Tuesday", "Wednesday", "Thursday",
+                        "Friday" });
 
-        config.getColorAxis().setMin(0);
-        config.getColorAxis().setMinColor(SolidColor.WHITE);
-        config.getColorAxis().setMaxColor((SolidColor) getThemeColors()[0]);
+        // FIXME missing generated API
+        // config.getColorAxis().setMin(0);
+        // config.getColorAxis().setMinColor(SolidColor.WHITE);
+        // config.getColorAxis().setMaxColor((SolidColor) getThemeColors()[0]);
 
-        config.getLegend().setLayout(LayoutDirection.VERTICAL);
-        config.getLegend().setHorizontalAlign(HorizontalAlign.RIGHT);
-        config.getLegend().setMargin(0);
-        config.getLegend().setVerticalAlign(VerticalAlign.TOP);
+        config.getLegend().setLayout(LayoutDirection.VERTICAL.toString());
+        config.getLegend().setAlign(HorizontalAlign.RIGHT.toString());
+        // config.getLegend().setMargin(0);
+        config.getLegend().setVerticalAlign(VerticalAlign.TOP.toString());
         config.getLegend().setY(25);
         config.getLegend().setSymbolHeight(320);
 
         HeatSeries rs = new HeatSeries("Sales per employee", getRawData());
 
         PlotOptionsHeatMap plotOptionsHeatMap = new PlotOptionsHeatMap();
-        plotOptionsHeatMap.setDataLabels(new Labels());
+        plotOptionsHeatMap.setDataLabels(new DataLabels());
         plotOptionsHeatMap.getDataLabels().setEnabled(true);
 
         Tooltip tooltip = new Tooltip();

@@ -41,12 +41,14 @@ public class StackedAndGroupedColumn extends AbstractVaadinChartExample {
         conf.addyAxis(yAxis);
 
         Tooltip tooltip = new Tooltip();
-        tooltip.setFormatter("function() { return '<b>'+ this.x +'</b><br/>'"
-                + "+this.series.name +': '+ this.y +'<br/>'+'Total: '+ this.point.stackTotal; }");
+        // tooltip.setFormatter("function() { return '<b>'+ this.x +'</b><br/>'"
+        // +
+        // "+this.series.name +': '+ this.y +'<br/>'+'Total: '+ this.point.stackTotal; }");
         conf.setTooltip(tooltip);
 
         PlotOptionsColumn plotOptions = new PlotOptionsColumn();
-        plotOptions.setStacking(Stacking.NORMAL);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        plotOptions.setStacking(Stacking.NORMAL.toString());
         conf.setPlotOptions(plotOptions);
 
         ListSeries serie = new ListSeries("John",

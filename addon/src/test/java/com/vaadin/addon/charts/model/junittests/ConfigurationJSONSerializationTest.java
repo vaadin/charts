@@ -1,5 +1,6 @@
 package com.vaadin.addon.charts.model.junittests;
 
+import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
@@ -66,21 +67,19 @@ public class ConfigurationJSONSerializationTest {
 
             }
         });
-
         assertEquals(
                 "{\"plotOptions\":{},\"series\":[],\"exporting\":{\"enabled\":false}}",
-                conf.toString());
+                toJSON(conf));
     }
 
     @Test
     public void configurationJSONSerialization_configurationSerializedWithYAxis_yAxisConfigurationNotSerialized() {
         Configuration conf = new Configuration();
         YAxis axis = new YAxis();
-        axis.setConfiguration(conf);
+        // axis.setConfiguration(conf);
         conf.addyAxis(axis);
-
         assertEquals(
-                "{\"yAxis\":{\"axisIndex\":0},\"plotOptions\":{},\"series\":[],\"exporting\":{\"enabled\":false}}",
-                conf.toString());
+                "{\"yAxis\":[{}],\"plotOptions\":{},\"series\":[],\"exporting\":{\"enabled\":false}}",
+                toJSON(conf));
     }
 }

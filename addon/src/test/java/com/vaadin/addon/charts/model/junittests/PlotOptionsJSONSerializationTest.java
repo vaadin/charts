@@ -1,5 +1,6 @@
 package com.vaadin.addon.charts.model.junittests;
 
+import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
@@ -19,7 +20,7 @@ public class PlotOptionsJSONSerializationTest {
         PlotOptionsHeatMap plotOptions = new PlotOptionsHeatMap();
         plotOptions.setTurboThreshold(0);
 
-        String json = plotOptions.toString();
+        String json = toJSON(plotOptions);
         String expected = "{\"turboThreshold\":0}";
 
         assertEquals(expected, json);
@@ -31,7 +32,7 @@ public class PlotOptionsJSONSerializationTest {
         PlotOptionsTreeMap plotOptions = new PlotOptionsTreeMap();
         plotOptions.setTurboThreshold(0);
 
-        String json = plotOptions.toString();
+        String json = toJSON(plotOptions);
         String expected = "{\"turboThreshold\":0}";
 
         assertEquals(expected, json);

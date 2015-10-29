@@ -235,6 +235,12 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>com.vaadin.addon</groupId>
+			<artifactId>vaadin-charts-model</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-server</artifactId>
 			<scope>provided</scope>

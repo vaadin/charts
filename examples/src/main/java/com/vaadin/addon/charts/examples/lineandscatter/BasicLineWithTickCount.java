@@ -3,11 +3,12 @@ package com.vaadin.addon.charts.examples.lineandscatter;
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.SkipFromDemo;
-import com.vaadin.addon.charts.model.Axis;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.ListSeries;
+import com.vaadin.addon.charts.model.XAxis;
+import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.ui.Button;
@@ -36,15 +37,18 @@ public class BasicLineWithTickCount extends AbstractVaadinChartExample {
         configuration.getTitle().setText("Monthly Average Temperature");
         configuration.getSubTitle().setText("Source: WorldClimate.com");
 
-        configuration.getxAxis().setCategories("January", "February", "March",
-                "April", "May", "June", "July", "August", "September",
-                "October", "November", "December");
+        configuration.getxAxis().setCategories(
+                new String[] { "January", "February", "March", "April", "May",
+                        "June", "July", "August", "September", "October",
+                        "November", "December" });
 
-        Axis xAxis = configuration.getxAxis();
-        Labels xLabels = xAxis.getLabels();
-        xLabels.setAutoRotation(-10, -20, -30, -40, 50, -60, -70, -80, -90);
+        XAxis xAxis = configuration.getxAxis();
+        Labels xLabels = new Labels();
+        xLabels.setAutoRotation(new Number[] { -10, -20, -30, -40, 50, -60,
+                -70, -80, -90 });
+        xAxis.setLabels(xLabels);
 
-        final Axis yAxis = configuration.getyAxis();
+        final YAxis yAxis = configuration.getyAxis();
         yAxis.setTickAmount(10);
 
         ListSeries ls = new ListSeries();

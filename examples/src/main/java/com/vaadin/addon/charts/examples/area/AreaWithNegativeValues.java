@@ -29,13 +29,15 @@ public class AreaWithNegativeValues extends AbstractVaadinChartExample {
         conf.setTitle(new Title("Area chart with negative values"));
 
         XAxis xAxis = new XAxis();
-        xAxis.setCategories("Apples", "Oranges", "Pears", "Grapes", "Bananas");
+        xAxis.setCategories(new String[] { "Apples", "Oranges", "Pears",
+                "Grapes", "Bananas" });
         conf.addxAxis(xAxis);
 
         conf.setCredits(new Credits(false));
 
         Tooltip tooltip = new Tooltip();
-        tooltip.setFormatter("this.series.name +': '+ this.y");
+        // FIXME missing generated API
+        // tooltip.setFormatter("this.series.name +': '+ this.y");
         conf.setTooltip(tooltip);
 
         conf.addSeries(new ListSeries("John", 5, 3, 4, 7, 2));

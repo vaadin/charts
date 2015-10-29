@@ -5,13 +5,12 @@ import java.util.Calendar;
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.SkipFromDemo;
-import com.vaadin.addon.charts.model.Background;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.Dial;
-import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.PlotOptionsGauge;
 import com.vaadin.addon.charts.model.TickPosition;
 import com.vaadin.addon.charts.model.Title;
@@ -36,7 +35,8 @@ public class CustomClock extends AbstractVaadinChartExample {
         chart.setHeight("200px");
 
         final Configuration configuration = chart.getConfiguration();
-        configuration.getChart().setType(ChartType.GAUGE);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        configuration.getChart().setType(ChartType.GAUGE.toString());
         configuration.getChart().setPlotBackgroundColor(null);
         configuration.getChart().setPlotBackgroundImage(null);
         configuration.getChart().setPlotBorderWidth(0);
@@ -47,16 +47,17 @@ public class CustomClock extends AbstractVaadinChartExample {
         GradientColor gradient1 = GradientColor.createRadial(0.5, -0.4, 1.9);
         gradient1.addColorStop(0.5, new SolidColor(255, 255, 255, 0.2));
         gradient1.addColorStop(0.5, new SolidColor(200, 200, 200, 0.2));
+        // FIXME missing generated API
 
-        Background[] background = new Background[2];
-        background[0] = new Background();
-
-        background[1] = new Background();
-        background[1].setBackgroundColor(gradient1);
-        background[1].setBorderWidth(1);
-        background[1].setOuterRadius("107%");
-
-        configuration.getPane().setBackground(background);
+        // Background[] background = new Background[2];
+        // background[0] = new Background();
+        //
+        // background[1] = new Background();
+        // background[1].setBackgroundColor(gradient1);
+        // background[1].setBorderWidth(1);
+        // background[1].setOuterRadius("107%");
+        //
+        // configuration.getPane().setBackground(background);
 
         YAxis yAxis = configuration.getyAxis();
         yAxis.getLabels().setDistance(-20);
@@ -68,12 +69,12 @@ public class CustomClock extends AbstractVaadinChartExample {
         yAxis.setMinorTickInterval("auto");
         yAxis.setMinorTickWidth(1);
         yAxis.setMinorTickLength(5);
-        yAxis.setMinorTickPosition(TickPosition.INSIDE);
+        yAxis.setMinorTickPosition(TickPosition.INSIDE.toString());
         yAxis.setMinorGridLineWidth(0);
         yAxis.setMinorTickColor(new SolidColor("#666"));
         yAxis.setTickInterval(1);
         yAxis.setTickWidth(2);
-        yAxis.setTickPosition(TickPosition.INSIDE);
+        yAxis.setTickPosition(TickPosition.INSIDE.toString());
         yAxis.setTickLength(10);
         yAxis.setTickColor(new SolidColor("#666"));
 
@@ -83,7 +84,7 @@ public class CustomClock extends AbstractVaadinChartExample {
         yAxis.getTitle().getStyle().setFontWeight(FontWeight.BOLD);
         yAxis.getTitle().getStyle().setFontSize("8px");
         yAxis.getTitle().getStyle().setLineHeight("10px");
-        yAxis.getTitle().setY(10);
+        // yAxis.getTitle().setY(10);
 
         final DataSeries series = new DataSeries();
         final DataSeriesItem second = new DataSeriesItem();
@@ -102,7 +103,7 @@ public class CustomClock extends AbstractVaadinChartExample {
         series.add(second);
 
         PlotOptionsGauge plotOptionsGauge = new PlotOptionsGauge();
-        plotOptionsGauge.setDataLabels(new Labels(false));
+        plotOptionsGauge.setDataLabels(new DataLabels(false));
         configuration.setPlotOptions(plotOptionsGauge);
 
         configuration.setSeries(series);

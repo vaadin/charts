@@ -4,10 +4,11 @@ import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
-import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.PlotOptionsColumnRange;
+import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
@@ -31,12 +32,12 @@ public class ColumnRange extends AbstractVaadinChartExample {
         conf.setSubTitle("Observed in Vik i Sogn, Norway, 2009");
 
         XAxis xAxis = new XAxis();
-        xAxis.setCategories("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
-                "Aug", "Sep", "Oct", "Nov", "Dec");
+        xAxis.setCategories(new String[] { "Jan", "Feb", "Mar", "Apr", "May",
+                "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" });
         conf.addxAxis(xAxis);
 
         YAxis yAxis = new YAxis();
-        yAxis.setTitle("Temperature ( °C )");
+        yAxis.setTitle(new Title("Temperature ( °C )"));
         conf.addyAxis(yAxis);
 
         Tooltip tooltip = new Tooltip();
@@ -44,9 +45,11 @@ public class ColumnRange extends AbstractVaadinChartExample {
         conf.setTooltip(tooltip);
 
         PlotOptionsColumnRange columnRange = new PlotOptionsColumnRange();
-        columnRange.setDataLabels(new Labels(true));
-        columnRange.getDataLabels().setFormatter(
-                "function() {return this.y + '°C';}");
+        columnRange.setDataLabels(new DataLabels(true));
+        columnRange.getDataLabels().setFormat("{y}°C");
+        // FIXME missing generated API
+        // columnRange.getDataLabels().setFormatter(
+        // "function() {return this.y + '°C';}");
         conf.setPlotOptions(columnRange);
 
         conf.getLegend().setEnabled(false);

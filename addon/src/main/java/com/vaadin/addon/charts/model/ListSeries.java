@@ -78,8 +78,8 @@ public class ListSeries extends AbstractSeries {
      * @param values
      */
     public void setData(Number... values) {
-        this.data.clear();
-        Collections.addAll(this.data, values);
+        data.clear();
+        Collections.addAll(data, values);
     }
 
     /**

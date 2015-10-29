@@ -7,6 +7,7 @@ import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.Background;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.Dial;
@@ -34,7 +35,7 @@ public class Clock extends AbstractVaadinChartExample {
         chart.setHeight("200px");
 
         final Configuration configuration = chart.getConfiguration();
-        configuration.getChart().setType(ChartType.GAUGE);
+        configuration.getChart().setType(ChartType.GAUGE.toString());
         configuration.getChart().setPlotBackgroundColor(null);
         configuration.getChart().setPlotBackgroundImage(null);
         configuration.getChart().setPlotBorderWidth(0);
@@ -57,6 +58,8 @@ public class Clock extends AbstractVaadinChartExample {
         configuration.getPane().setBackground(background);
 
         YAxis yAxis = configuration.getyAxis();
+        // FIXME remove initialization after CHARTS-154
+        yAxis.setLabels(new Labels());
         yAxis.getLabels().setDistance(-20);
 
         yAxis.setMin(0);
@@ -66,12 +69,12 @@ public class Clock extends AbstractVaadinChartExample {
         yAxis.setMinorTickInterval("auto");
         yAxis.setMinorTickWidth(1);
         yAxis.setMinorTickLength(5);
-        yAxis.setMinorTickPosition(TickPosition.INSIDE);
+        yAxis.setMinorTickPosition(TickPosition.INSIDE.toString());
         yAxis.setMinorGridLineWidth(0);
         yAxis.setMinorTickColor(new SolidColor("#666"));
         yAxis.setTickInterval(1);
         yAxis.setTickWidth(2);
-        yAxis.setTickPosition(TickPosition.INSIDE);
+        yAxis.setTickPosition(TickPosition.INSIDE.toString());
         yAxis.setTickLength(10);
         yAxis.setTickColor(new SolidColor("#666"));
 
@@ -81,7 +84,8 @@ public class Clock extends AbstractVaadinChartExample {
         yAxis.getTitle().getStyle().setFontWeight(FontWeight.BOLD);
         yAxis.getTitle().getStyle().setFontSize("8px");
         yAxis.getTitle().getStyle().setLineHeight("10px");
-        yAxis.getTitle().setY(10);
+        // FIXME missing generated API
+        // yAxis.getTitle().setY(10);
 
         final DataSeries series = new DataSeries();
         final DataSeriesItem hour = new DataSeriesItem();
@@ -114,7 +118,7 @@ public class Clock extends AbstractVaadinChartExample {
         series.add(second);
 
         PlotOptionsGauge plotOptionsGauge = new PlotOptionsGauge();
-        plotOptionsGauge.setDataLabels(new Labels(false));
+        plotOptionsGauge.setDataLabels(new DataLabels(false));
         configuration.setPlotOptions(plotOptionsGauge);
 
         configuration.setSeries(series);

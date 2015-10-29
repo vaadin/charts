@@ -12,7 +12,7 @@ import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.PlotOptionsArea;
 import com.vaadin.addon.charts.model.Series;
 import com.vaadin.addon.charts.model.Stacking;
-import com.vaadin.addon.charts.model.SubTitle;
+import com.vaadin.addon.charts.model.Subtitle;
 import com.vaadin.addon.charts.model.TickmarkPlacement;
 import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.Tooltip;
@@ -40,27 +40,29 @@ public class StackedArea extends AbstractVaadinChartExample {
 
         conf.setTitle(new Title(
                 "Historic and Estimated Worldwide Population Growth by Region"));
-        conf.setSubTitle(new SubTitle("Source: Wikipedia.org"));
+        conf.setSubTitle(new Subtitle("Source: Wikipedia.org"));
 
         XAxis xAxis = new XAxis();
-        xAxis.setTickmarkPlacement(TickmarkPlacement.ON);
-        xAxis.setCategories("1750", "1800", "1850", "1900", "1950", "1999",
-                "2050");
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        xAxis.setTickmarkPlacement(TickmarkPlacement.ON.toString());
+        xAxis.setCategories(new String[] { "1750", "1800", "1850", "1900",
+                "1950", "1999", "2050" });
         conf.addxAxis(xAxis);
 
         YAxis yAxis = new YAxis();
         yAxis.setTitle(new Title("Billions"));
         Labels labels = new Labels();
-        labels.setFormatter("this.value / 1000");
+        // FIXME missing generated API
+        // labels.setFormatter("this.value / 1000");
         yAxis.setLabels(labels);
         conf.addyAxis(yAxis);
 
         Tooltip tooltip = new Tooltip();
-        tooltip.setFormatter("this.x +': '+ Highcharts.numberFormat(this.y, 0, ',') +' millions'");
+        // tooltip.setFormatter("this.x +': '+ Highcharts.numberFormat(this.y, 0, ',') +' millions'");
         conf.setTooltip(tooltip);
 
         PlotOptionsArea plotOptions = new PlotOptionsArea();
-        plotOptions.setStacking(Stacking.NORMAL);
+        plotOptions.setStacking(Stacking.NORMAL.toString());
         conf.setPlotOptions(plotOptions);
 
         List<Series> series = new ArrayList<Series>();

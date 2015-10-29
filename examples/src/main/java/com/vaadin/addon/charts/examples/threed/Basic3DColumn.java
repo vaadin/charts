@@ -8,6 +8,7 @@ import com.vaadin.addon.charts.model.Frame;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.Options3d;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
+import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
@@ -31,16 +32,16 @@ public class Basic3DColumn extends AbstractVaadinChartExample {
         conf.setSubTitle("Source: WorldClimate.com");
 
         XAxis x = new XAxis();
-        x.setCategories("Jan", "Feb", "Mar", "Apr");
+        x.setCategories(new String[] { "Jan", "Feb", "Mar", "Apr" });
         conf.addxAxis(x);
 
         YAxis y = new YAxis();
         y.setMin(0);
-        y.setTitle("Rainfall (mm)");
+        y.setTitle(new Title("Rainfall (mm)"));
         conf.addyAxis(y);
 
         Tooltip tooltip = new Tooltip();
-        tooltip.setFormatter("this.x +': '+ this.y +' mm'");
+        // tooltip.setFormatter("this.x +': '+ this.y +' mm'");
         conf.setTooltip(tooltip);
 
         PlotOptionsColumn plot = new PlotOptionsColumn();

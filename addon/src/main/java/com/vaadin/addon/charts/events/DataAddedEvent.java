@@ -43,7 +43,7 @@ public class DataAddedEvent extends AbstractSeriesItemEvent {
      */
     public DataAddedEvent(Series series, Number value) {
         super(series, value);
-        this.shift = false;
+        shift = false;
     }
 
     /**

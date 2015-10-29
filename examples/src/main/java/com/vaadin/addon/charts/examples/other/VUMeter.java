@@ -7,13 +7,15 @@ import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.Background;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.Dial;
 import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.Pane;
-import com.vaadin.addon.charts.model.PlotBand;
+import com.vaadin.addon.charts.model.PlotBands;
 import com.vaadin.addon.charts.model.PlotOptionsGauge;
 import com.vaadin.addon.charts.model.TickPosition;
+import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
@@ -28,6 +30,7 @@ public class VUMeter extends AbstractVaadinChartExample {
 
     @Override
     protected Component getChart() {
+
         final Chart chart = new Chart();
         chart.setWidth("600px");
         chart.setHeight("200px");
@@ -38,63 +41,83 @@ public class VUMeter extends AbstractVaadinChartExample {
         gradient.addColorStop(1, new SolidColor("#FFF4C6"));
 
         final Configuration configuration = chart.getConfiguration();
-        configuration.getChart().setType(ChartType.GAUGE);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        configuration.getChart().setType(ChartType.GAUGE.toString());
         configuration.getChart().setPlotBackgroundColor(gradient);
         configuration.getChart().setPlotBackgroundImage(null);
         configuration.getChart().setPlotBorderWidth(1);
         configuration.setTitle("VU meter");
 
-        Pane pane1 = new Pane(-45, 45);
-        Pane pane2 = new Pane(-45, 45);
+        Pane pane1 = new Pane();
+        pane1.setStartAngle(-45);
+        pane1.setEndAngle(45);
+        Pane pane2 = new Pane();
+        pane2.setStartAngle(-45);
+        pane2.setEndAngle(45);
+        // FIXME missing generated API
         pane1.setBackground(new Background[] {});
         pane2.setBackground(new Background[] {});
-        pane1.setCenterXY("25%", "145%");
-        pane2.setCenterXY("75%", "145%");
+        // pane1.setCenter("25%", "145%");
+        // pane2.setCenterXY("75%", "145%");
         pane1.setSize(300);
         pane2.setSize(300);
 
         configuration.addPane(pane1);
         configuration.addPane(pane2);
 
-        PlotBand plotBand1 = new PlotBand(0, 6, new SolidColor("#C02316"));
+        PlotBands plotBand1 = new PlotBands();
+        plotBand1.setFrom(0);
+        plotBand1.setTo(6);
+        plotBand1.setColor(new SolidColor("#C02316"));
         plotBand1.setInnerRadius("100%");
         plotBand1.setOuterRadius("105%");
 
-        PlotBand plotBand2 = new PlotBand(0, 6, new SolidColor("#C02316"));
+        PlotBands plotBand2 = new PlotBands();
+        plotBand1.setFrom(0);
+        plotBand1.setTo(6);
+        plotBand1.setColor(new SolidColor("#C02316"));
+
         plotBand2.setInnerRadius("100%");
         plotBand2.setOuterRadius("105%");
 
         YAxis yAxis = new YAxis();
-        yAxis.setPane(pane1);
-        yAxis.setTitle("VU<br/><span style=\"font-size:8px\">Channel A</span>");
-        yAxis.getTitle().setY(-40);
+        // FIXME missing generated API
+        // yAxis.setPane(pane1);
+        yAxis.setTitle(new Title(
+                "VU<br/><span style=\"font-size:8px\">Channel A</span>"));
+        // FIXME missing generated API
+        // yAxis.getTitle().setY(-40);
         yAxis.setMin(-20);
         yAxis.setMax(6);
-        yAxis.setTickPosition(TickPosition.OUTSIDE);
-        yAxis.setMinorTickPosition(TickPosition.OUTSIDE);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        yAxis.setTickPosition(TickPosition.OUTSIDE.toString());
+        yAxis.setMinorTickPosition(TickPosition.OUTSIDE.toString());
+        // FIXME remove initialization after CHARTS-154
         yAxis.setLabels(new Labels());
         yAxis.getLabels().setDistance(20);
-        yAxis.getLabels().setRotationPerpendicular();
-        yAxis.setPlotBands(plotBand1);
+        // yAxis.getLabels().setRotationPerpendicular();
+        yAxis.setPlotBands(new PlotBands[] { plotBand1 });
 
         YAxis yAxis2 = new YAxis();
-        yAxis2.setPane(pane2);
-        yAxis2.setTitle("VU<br/><span style=\"font-size:8px\">Channel B</span>");
-        yAxis2.getTitle().setY(-40);
+        // yAxis2.setPane(pane2);
+        yAxis2.setTitle(new Title(
+                "VU<br/><span style=\"font-size:8px\">Channel B</span>"));
+        // yAxis2.getTitle().setY(-40);
         yAxis2.setMin(-20);
         yAxis2.setMax(6);
-        yAxis2.setTickPosition(TickPosition.OUTSIDE);
-        yAxis2.setMinorTickPosition(TickPosition.OUTSIDE);
+        yAxis2.setTickPosition(TickPosition.OUTSIDE.toString());
+        yAxis2.setMinorTickPosition(TickPosition.OUTSIDE.toString());
+        // FIXME remove initialization after CHARTS-154
         yAxis2.setLabels(new Labels());
         yAxis2.getLabels().setDistance(20);
-        yAxis2.getLabels().setRotationPerpendicular();
-        yAxis2.setPlotBands(plotBand2);
+        // yAxis2.getLabels().setRotationPerpendicular();
+        yAxis2.setPlotBands(new PlotBands[] { plotBand2 });
 
         configuration.addyAxis(yAxis);
         configuration.addyAxis(yAxis2);
 
         PlotOptionsGauge gauge = new PlotOptionsGauge();
-        gauge.setDataLabels(new Labels(false));
+        gauge.setDataLabels(new DataLabels(false));
         gauge.setDial(new Dial());
         gauge.getDial().setRadius("100%");
 
@@ -130,5 +153,6 @@ public class VUMeter extends AbstractVaadinChartExample {
 
         chart.drawChart(configuration);
         return chart;
+
     }
 }

@@ -5,7 +5,7 @@ import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.SkipFromDemo;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
-import com.vaadin.addon.charts.model.Labels;
+import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
 import com.vaadin.addon.charts.model.StackLabels;
@@ -48,13 +48,14 @@ public class OverrideStackingForSpecificSeries extends
         conf.addyAxis(yAxis);
 
         Tooltip tooltip = new Tooltip();
-        tooltip.setFormatter("'<b>'+ this.x +'</b><br/>'+this.series.name +': '"
-                + "+ this.y +'<br/>'+'Total: '+ this.point.stackTotal");
+        // tooltip.setFormatter("'<b>'+ this.x +'</b><br/>'+this.series.name +': '"
+        // + "+ this.y +'<br/>'+'Total: '+ this.point.stackTotal");
         conf.setTooltip(tooltip);
 
         PlotOptionsColumn plotOptions = new PlotOptionsColumn();
-        plotOptions.setStacking(Stacking.NORMAL);
-        Labels labels = new Labels();
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        plotOptions.setStacking(Stacking.NORMAL.toString());
+        DataLabels labels = new DataLabels();
         labels.setEnabled(true);
         labels.setColor(new SolidColor("white"));
         plotOptions.setDataLabels(labels);
@@ -66,7 +67,7 @@ public class OverrideStackingForSpecificSeries extends
         ListSeries series = new ListSeries("Joe",
                 new Number[] { 3, 4, 4, 2, 5 });
         PlotOptionsColumn joePlotOptions = new PlotOptionsColumn();
-        joePlotOptions.setStacking(Stacking.NONE);
+        joePlotOptions.setStacking(Stacking.NONE.toString());
         series.setPlotOptions(joePlotOptions);
         conf.addSeries(series);
 

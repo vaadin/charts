@@ -39,9 +39,12 @@ public class ColumnLineAndPie extends AbstractVaadinChartExample {
 
         // Colors for columns
         List<Series> series = configuration.getSeries();
-        ((DataSeries) series.get(0)).getPlotOptions().setColor(janeColor);
-        ((DataSeries) series.get(1)).getPlotOptions().setColor(johnColor);
-        ((DataSeries) series.get(2)).getPlotOptions().setColor(joeColor);
+        ((PlotOptionsColumn) ((DataSeries) series.get(0)).getPlotOptions())
+                .setColor(janeColor);
+        ((PlotOptionsColumn) ((DataSeries) series.get(1)).getPlotOptions())
+                .setColor(johnColor);
+        ((PlotOptionsColumn) ((DataSeries) series.get(2)).getPlotOptions())
+                .setColor(joeColor);
 
         // Colors for the pie
         DataSeries pieSeries = ((DataSeries) series.get(4));
@@ -68,7 +71,8 @@ public class ColumnLineAndPie extends AbstractVaadinChartExample {
         conf.getExporting().setWidth(800);
 
         XAxis x = new XAxis();
-        x.setCategories("Apples", "Oranges", "Pears", "Bananas", "Plums");
+        x.setCategories(new String[] { "Apples", "Oranges", "Pears", "Bananas",
+                "Plums" });
         conf.addxAxis(x);
 
         Style labelStyle = new Style();
@@ -123,7 +127,7 @@ public class ColumnLineAndPie extends AbstractVaadinChartExample {
 
         PlotOptionsPie plotOptionsPie = new PlotOptionsPie();
         plotOptionsPie.setSize(100);
-        plotOptionsPie.setCenter(100, 80);
+        plotOptionsPie.setCenter(new Number[] { 100, 80 });
         plotOptionsPie.setShowInLegend(false);
         plotOptionsPie.setShowInLegend(false);
         series.setPlotOptions(plotOptionsPie);
@@ -132,5 +136,4 @@ public class ColumnLineAndPie extends AbstractVaadinChartExample {
         chart.drawChart(conf);
         return chart;
     }
-
 }

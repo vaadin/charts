@@ -19,6 +19,7 @@ public class Events extends AbstractVaadinChartExample {
 
     @Override
     protected Component getChart() {
+        // FIXME no events until CHARTS-155
         final Chart chart = new Chart();
         chart.setHeight("450px");
         chart.setWidth("100%");
@@ -26,7 +27,8 @@ public class Events extends AbstractVaadinChartExample {
         final Configuration configuration = chart.getConfiguration();
         configuration.setTitle("Click to add point");
 
-        configuration.getChart().setType(ChartType.SPLINE);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        configuration.getChart().setType(ChartType.SPLINE.toString());
 
         final ListSeries series = new ListSeries(29.9, 71.5, 106.4, 129.2,
                 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4);
@@ -43,6 +45,7 @@ public class Events extends AbstractVaadinChartExample {
         });
 
         return chart;
+
     }
 
 }

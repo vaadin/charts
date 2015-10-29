@@ -233,7 +233,7 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
             throw new IllegalStateException(
                     "This method must be called only when series is attached to configuration options");
         }
-        int indexOf = configuration.getyAxes().getAxes().indexOf(secondaryAxis);
+        int indexOf = configuration.getyAxes().indexOf(secondaryAxis);
         if (indexOf == -1) {
             throw new IllegalStateException(
                     "This method can only be used if axis is already attached to the same configuration object");

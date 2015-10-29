@@ -74,6 +74,7 @@ public class SkiesTheme extends HighChartsDefaultTheme {
         getyAxis().getLabels().setFontWeight(FontWeight.BOLD);
         getyAxis().getTitle().setColor(new SolidColor("#666"));
 
+        getLegend().setItemStyle(new Style());
         getLegend().getItemStyle().setColor(new SolidColor("#3E576F"));
 
         getLegend().getItemHoverStyle().setColor(new SolidColor("black"));

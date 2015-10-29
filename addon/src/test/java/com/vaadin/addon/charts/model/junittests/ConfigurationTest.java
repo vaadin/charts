@@ -1,5 +1,6 @@
 package com.vaadin.addon.charts.model.junittests;
 
+import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -13,6 +14,7 @@ import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.ContainerDataSeries;
 import com.vaadin.addon.charts.model.ListSeries;
+import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.data.Container;
@@ -99,13 +101,16 @@ public class ConfigurationTest {
     public void setSeries_containerDataSeriesWithName_NameAppearsInLegend() {
 
         Configuration conf = new Configuration();
-        conf.getChart().setType(ChartType.AREA);
+        // FIXME use enums directly
+        conf.getChart().setType(ChartType.AREA.toString());
 
         XAxis xAxis = new XAxis();
-        xAxis.setCategories("A", "B", "C", "D", "E");
+        xAxis.setCategories(new String[] { "A", "B", "C", "D", "E" });
         conf.addxAxis(xAxis);
         YAxis yAxis = new YAxis();
-        yAxis.setTitle("Numbers");
+        Title title = new Title();
+        title.setText("Numbers");
+        yAxis.setTitle(title);
         conf.addyAxis(yAxis);
 
         Container container = createIndexedContainer();
@@ -121,7 +126,7 @@ public class ConfigurationTest {
 
         conf.setSeries(containerDataSeries1);
 
-        Assert.assertTrue(conf.toString().contains("Test Series1"));
+        Assert.assertTrue(toJSON(conf).contains("Test Series1"));
     }
 
     protected IndexedContainer createIndexedContainer() {

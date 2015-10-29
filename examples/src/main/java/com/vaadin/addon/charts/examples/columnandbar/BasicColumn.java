@@ -9,6 +9,7 @@ import com.vaadin.addon.charts.model.LayoutDirection;
 import com.vaadin.addon.charts.model.Legend;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
+import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.XAxis;
@@ -33,20 +34,21 @@ public class BasicColumn extends AbstractVaadinChartExample {
         conf.setSubTitle("Source: WorldClimate.com");
 
         XAxis x = new XAxis();
-        x.setCategories("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug",
-                "Sep", "Oct", "Nov", "Dec");
+        x.setCategories(new String[] { "Jan", "Feb", "Mar", "Apr", "May",
+                "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" });
         conf.addxAxis(x);
 
         YAxis y = new YAxis();
         y.setMin(0);
-        y.setTitle("Rainfall (mm)");
+        y.setTitle(new Title("Rainfall (mm)"));
         conf.addyAxis(y);
 
         Legend legend = new Legend();
-        legend.setLayout(LayoutDirection.VERTICAL);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        legend.setLayout(LayoutDirection.VERTICAL.toString());
         legend.setBackgroundColor("#FFFFFF");
-        legend.setHorizontalAlign(HorizontalAlign.LEFT);
-        legend.setVerticalAlign(VerticalAlign.TOP);
+        legend.setAlign(HorizontalAlign.LEFT.toString());
+        legend.setVerticalAlign(VerticalAlign.TOP.toString());
         legend.setX(100);
         legend.setY(70);
         legend.setFloating(true);
@@ -54,7 +56,8 @@ public class BasicColumn extends AbstractVaadinChartExample {
         conf.setLegend(legend);
 
         Tooltip tooltip = new Tooltip();
-        tooltip.setFormatter("this.x +': '+ this.y +' mm'");
+        // FIXME missing generated API
+        // tooltip.setFormatter("this.x +': '+ this.y +' mm'");
         conf.setTooltip(tooltip);
 
         PlotOptionsColumn plot = new PlotOptionsColumn();

@@ -13,6 +13,7 @@ import com.vaadin.addon.charts.model.LayoutDirection;
 import com.vaadin.addon.charts.model.Legend;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
+import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.XAxis;
@@ -41,25 +42,26 @@ public class BasicLineGettingMousePointerPosition extends
 
         Configuration conf = chart.getConfiguration();
 
-        conf.getChart().setZoomType(ZoomType.XY);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        conf.getChart().setZoomType(ZoomType.XY.toString());
 
         conf.setTitle("Average Monthly Temperature and Rainfall in Tokyo");
         conf.setSubTitle("Source: WorldClimate.com");
 
         XAxis x = new XAxis();
-        x.setCategories("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug",
-                "Sep", "Oct", "Nov", "Dec");
+        x.setCategories(new String[] { "Jan", "Feb", "Mar", "Apr", "May",
+                "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" });
         conf.addxAxis(x);
 
         YAxis primary = new YAxis();
-        primary.setTitle("Temperature");
+        primary.setTitle(new Title("Temperature"));
         Style style = new Style();
         style.setColor(colors[0]);
         primary.getTitle().setStyle(style);
         conf.addyAxis(primary);
 
         YAxis snd = new YAxis();
-        snd.setTitle("Rainfall");
+        snd.setTitle(new Title("Rainfall"));
         snd.setOpposite(true);
         style = new Style();
         style.setColor(colors[1]);
@@ -67,14 +69,14 @@ public class BasicLineGettingMousePointerPosition extends
         conf.addyAxis(snd);
 
         Tooltip tooltip = new Tooltip();
-        tooltip.setFormatter("this.x +': '+ this.y + (this.series.name == 'Rainfall' ? ' mm' : '°C')");
+        // tooltip.setFormatter("this.x +': '+ this.y + (this.series.name == 'Rainfall' ? ' mm' : '°C')");
         conf.setTooltip(tooltip);
 
         Legend legend = new Legend();
-        legend.setLayout(LayoutDirection.VERTICAL);
-        legend.setHorizontalAlign(HorizontalAlign.LEFT);
+        legend.setLayout(LayoutDirection.VERTICAL.toString());
+        legend.setAlign(HorizontalAlign.LEFT.toString());
         legend.setX(120);
-        legend.setVerticalAlign(VerticalAlign.TOP);
+        legend.setVerticalAlign(VerticalAlign.TOP.toString());
         legend.setY(100);
         legend.setFloating(true);
         legend.setBackgroundColor("#FFFFFF");

@@ -2,7 +2,6 @@ package com.vaadin.addon.charts.examples.lineandscatter;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.model.Axis;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
@@ -12,6 +11,8 @@ import com.vaadin.addon.charts.model.Marker;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
 import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.VerticalAlign;
+import com.vaadin.addon.charts.model.XAxis;
+import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.ui.Component;
 
 public class SplineInverted extends AbstractVaadinChartExample {
@@ -27,34 +28,38 @@ public class SplineInverted extends AbstractVaadinChartExample {
         chart.setWidth("500px");
 
         Configuration configuration = chart.getConfiguration();
-        configuration.getChart().setType(ChartType.SPLINE);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        configuration.getChart().setType(ChartType.SPLINE.toString());
         configuration.getChart().setInverted(true);
 
         configuration.getTitle().setText("Atmosphere Temperature by Altitude");
         configuration.getSubTitle().setText(
                 "According to the Standard Atmosphere Model");
 
-        Axis xAxis = configuration.getxAxis();
+        XAxis xAxis = configuration.getxAxis();
         xAxis.setReversed(false);
         xAxis.setTitle(new Title("Altitude"));
         Labels labels = new Labels();
-        labels.setFormatter("this.value + 'km'");
+        labels.setFormat("{value}km");
+        // FIXME missing generated API
+        // labels.setFormatter("this.value + 'km'");
         labels.setEnabled(true);
         xAxis.setLabels(labels);
         xAxis.setMaxPadding(0.05);
         xAxis.setShowLastLabel(true);
 
-        Axis yAxis = configuration.getyAxis();
+        YAxis yAxis = configuration.getyAxis();
         yAxis.setLineWidth(2);
         yAxis.setTitle(new Title("Temperature"));
-        yAxis.getTitle().setVerticalAlign(VerticalAlign.HIGH);
+        yAxis.getTitle().setAlign(VerticalAlign.MIDDLE.toString());
 
         Labels labelsy = new Labels();
         labelsy.setEnabled(true);
-        labelsy.setFormatter("this.value + '°'");
+        labelsy.setFormat("{value}°");
+        // labelsy.setFormatter("this.value + '°'");
         yAxis.setLabels(labelsy);
 
-        configuration.getTooltip().setFormatter("this.x +' km: '+this.y +'°C'");
+        // configuration.getTooltip().setFormatter("this.x +' km: '+this.y +'°C'");
 
         PlotOptionsSpline plotOptions = new PlotOptionsSpline();
         plotOptions.setMarker(new Marker(true));

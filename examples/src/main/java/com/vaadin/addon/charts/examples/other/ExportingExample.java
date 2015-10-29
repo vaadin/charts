@@ -37,7 +37,8 @@ public class ExportingExample extends DualAxesLineAndColumn {
         exporting.setFilename("mychartfile.pdf");
 
         // and choose whether to post raster images to exporting server
-        exporting.setEnableImages(true);
+        // FIXME missing generated API
+        // exporting.setEnableImages(true);
 
         // Exporting is by default done on highcharts public servers, but you
         // can also use your own server

@@ -1,5 +1,6 @@
 package com.vaadin.addon.charts.model.junittests;
 
+import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Calendar;
@@ -47,7 +48,7 @@ public class ContainerSeriesJSONSerializationTest {
         ie.getItemProperty("x").setValue(20);
         ie.getItemProperty("y").setValue(20);
 
-        assertEquals("{\"data\":[[80,80],[20,20]]}", containerSeries.toString());
+        assertEquals("{\"data\":[[80,80],[20,20]]}", toJSON(containerSeries));
     }
 
     @Test(expected = RuntimeException.class)
@@ -57,7 +58,7 @@ public class ContainerSeriesJSONSerializationTest {
         vaadinContainer.removeContainerProperty("y");
         vaadinContainer.addContainerProperty("x", Number.class, null);
 
-        containerSeries.toString();
+        toJSON(containerSeries);
     }
 
     @Test(expected = RuntimeException.class)
@@ -69,7 +70,7 @@ public class ContainerSeriesJSONSerializationTest {
         vaadinContainer.addContainerProperty("x", Number.class, null);
         vaadinContainer.removeContainerProperty("y");
 
-        containerSeries.toString();
+        toJSON(containerSeries);
     }
 
     @SuppressWarnings("unchecked")
@@ -91,7 +92,7 @@ public class ContainerSeriesJSONSerializationTest {
         ie.getItemProperty("y").setValue(20);
         ie.getItemProperty("z").setValue(20);
 
-        assertEquals("{\"data\":[[80,80],[20,20]]}", containerSeries.toString());
+        assertEquals("{\"data\":[[80,80],[20,20]]}", toJSON(containerSeries));
     }
 
     @SuppressWarnings("unchecked")
@@ -116,7 +117,7 @@ public class ContainerSeriesJSONSerializationTest {
 
         assertEquals(
                 "{\"data\":[{\"x\":80,\"y\":80,\"name\":80},{\"x\":20,\"y\":20,\"name\":20}]}",
-                containerSeries.toString());
+                toJSON(containerSeries));
     }
 
     @SuppressWarnings("unchecked")
@@ -145,7 +146,7 @@ public class ContainerSeriesJSONSerializationTest {
 
         assertEquals(
                 "{\"data\":[{\"x\":80,\"y\":80,\"name\":80},{\"x\":20,\"y\":20,\"name\":20},{\"x\":10,\"y\":10}]}",
-                containerSeries.toString());
+                toJSON(containerSeries));
     }
 
     @Test
@@ -172,7 +173,7 @@ public class ContainerSeriesJSONSerializationTest {
 
         String expected = "{\"data\":[[" + utcTime.getTime() + ",80]]}";
 
-        assertEquals(expected, containerSeries.toString());
+        assertEquals(expected, toJSON(containerSeries));
     }
 
     @Test
@@ -189,7 +190,7 @@ public class ContainerSeriesJSONSerializationTest {
         item.getItemProperty("somelow").setValue(-5);
 
         assertEquals("{\"data\":[{\"high\":5,\"low\":-5}]}",
-                containerSeries.toString());
+                toJSON(containerSeries));
     }
 
     @Test
@@ -200,9 +201,9 @@ public class ContainerSeriesJSONSerializationTest {
 
         Configuration config = new Configuration();
         config.addSeries(containerSeries);
-
+        // FIXME add type to plotOptions
         assertEquals("{\"type\":\"line\",\"showInLegend\":true,\"data\":[]}",
-                containerSeries.toString());
+                toJSON(containerSeries));
     }
 
     @Test
@@ -215,7 +216,7 @@ public class ContainerSeriesJSONSerializationTest {
         config.addSeries(containerSeries);
 
         assertEquals("{\"showInLegend\":true,\"data\":[]}",
-                containerSeries.toString());
+                toJSON(containerSeries));
     }
 
     @Test
@@ -226,14 +227,14 @@ public class ContainerSeriesJSONSerializationTest {
         config.addSeries(containerSeries);
 
         assertEquals("{\"name\":\"foo\",\"stack\":\"bar\",\"data\":[]}",
-                containerSeries.toString());
+                toJSON(containerSeries));
     }
 
     @Test
     public void serialize_SeriesHasId_IdSerialized() {
         containerSeries.setId("foo");
 
-        assertEquals("{\"id\":\"foo\",\"data\":[]}", containerSeries.toString());
+        assertEquals("{\"id\":\"foo\",\"data\":[]}", toJSON(containerSeries));
     }
 
 }

@@ -5,7 +5,7 @@ import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.SkipFromDemo;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
-import com.vaadin.addon.charts.model.Labels;
+import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
 import com.vaadin.addon.charts.model.Shape;
@@ -44,11 +44,12 @@ public class ColumnWithShapedLabels extends AbstractVaadinChartExample {
         conf.addyAxis(yAxis);
 
         PlotOptionsColumn plotOptions = new PlotOptionsColumn();
-        plotOptions.setStacking(Stacking.NORMAL);
-        Labels labels = new Labels(true);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        plotOptions.setStacking(Stacking.NORMAL.toString());
+        DataLabels labels = new DataLabels(true);
         labels.setBackgroundColor(SolidColor.BURLYWOOD);
         labels.setColor(new SolidColor("white"));
-        labels.setShape(Shape.DIAMOND);
+        labels.setShape(Shape.DIAMOND.toString());
 
         plotOptions.setDataLabels(labels);
         conf.setPlotOptions(plotOptions);

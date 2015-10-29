@@ -8,19 +8,19 @@ import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.ChartSelectionEvent;
 import com.vaadin.addon.charts.ChartSelectionListener;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.model.Axis;
 import com.vaadin.addon.charts.model.AxisType;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.Hover;
+import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.Marker;
-import com.vaadin.addon.charts.model.MarkerStates;
-import com.vaadin.addon.charts.model.PlotBand;
+import com.vaadin.addon.charts.model.PlotBands;
 import com.vaadin.addon.charts.model.PlotOptionsArea;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
-import com.vaadin.addon.charts.model.State;
 import com.vaadin.addon.charts.model.States;
 import com.vaadin.addon.charts.model.Title;
+import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.ZoomType;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
@@ -185,6 +185,7 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
 
     @Override
     protected Component getChart() {
+        // FIXME no events until CHARTS-155
         VerticalLayout lo = new VerticalLayout();
         lo.setWidth("100%");
         lo.setHeight("600px");
@@ -199,17 +200,17 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
                 long end = event.getSelectionEnd().longValue();
 
                 // set plot band to highlight the selection on the master chart
-                PlotBand plotBand1 = new PlotBand();
-                PlotBand plotBand2 = new PlotBand();
+                PlotBands plotBand1 = new PlotBands();
+                PlotBands plotBand2 = new PlotBands();
                 plotBand1.setColor(new SolidColor(0, 0, 0, 0.2));
                 plotBand2.setColor(new SolidColor(0, 0, 0, 0.2));
-                plotBand1.setFrom(DEMO_DATASET_START);
+                plotBand1.setFrom(Util.toHighchartsTS(DEMO_DATASET_START));
                 plotBand1.setTo(start);
                 plotBand2.setFrom(end);
-                plotBand2.setTo(DEMO_DATASET_END);
+                plotBand2.setTo(Util.toHighchartsTS(DEMO_DATASET_END));
 
                 masterChart.getConfiguration().getxAxis()
-                        .setPlotBands(plotBand1, plotBand2);
+                        .setPlotBands(new PlotBands[] { plotBand1, plotBand2 });
                 masterChart.drawChart();
 
                 List<Number> list = MasterDetailChart.this.getPartialList(
@@ -257,22 +258,24 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
         configuration.setTitle("Historical USD to EUR Exchange Rate");
         configuration
                 .setSubTitle("Select an area by dragging across the lower chart");
-        configuration.getxAxis().setType(AxisType.DATETIME);
-        configuration.getyAxis().setTitle((String) null);
+        configuration.getxAxis().setType(AxisType.DATETIME.toString());
+        configuration.getyAxis().setTitle(new Title((String) null));
         configuration.getyAxis().setMinRange(0.1);
 
-        configuration
-                .getTooltip()
-                .setFormatter(
-                        "function() {var point = this.points[0];return '<b>'+ point.series.name +'</b><br/>'+Highcharts.dateFormat('%A %B %e %Y', this.x) + ':<br/>'+'1 USD = '+ Highcharts.numberFormat(point.y, 2) +' EUR';}");
-        configuration.getTooltip().setShared(true);
+        // configuration
+        // .getTooltip()
+        // .setFormatter(
+        // "function() {var point = this.points[0];return '<b>'+ point.series.name +'</b><br/>'+Highcharts.dateFormat('%A %B %e %Y', this.x) + ':<br/>'+'1 USD = '+ Highcharts.numberFormat(point.y, 2) +' EUR';}");
+        // configuration.getTooltip().setShared(true);
 
         PlotOptionsLine series = new PlotOptionsLine();
         series.setPointInterval(DAY_IN_MILLIS);
         configuration.setPlotOptions(series);
 
-        MarkerStates states = new MarkerStates(new State(true));
-        states.getHover().setRadius(3);
+        States states = new States();
+        Hover hover = new Hover();
+        hover.setRadius(3);
+        states.setHover(hover);
 
         Marker marker = new Marker();
         marker.setEnabled(false);
@@ -283,7 +286,7 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
         ListSeries seriesList = new ListSeries();
         PlotOptionsLine plotOptionsLine = new PlotOptionsLine();
         plotOptionsLine.setPointInterval(DAY_IN_MILLIS);
-        plotOptionsLine.setPointStart(DEMO_DATASET_START);
+        plotOptionsLine.setPointStart(Util.toHighchartsTS(DEMO_DATASET_START));
         seriesList.setPlotOptions(plotOptionsLine);
         seriesList.setName("USD to EUR");
         seriesList.setData(FULL_DEMO_DATA_SET);
@@ -302,7 +305,7 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
         masterChart.setId("master-chart");
 
         Configuration configuration = masterChart.getConfiguration();
-        configuration.getChart().setZoomType(ZoomType.X);
+        configuration.getChart().setZoomType(ZoomType.X.toString());
 
         configuration.getChart().setReflow(false);
         configuration.getChart().setBorderWidth(0);
@@ -312,25 +315,26 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
 
         configuration.getTitle().setText("");
 
-        configuration.getxAxis().setType(AxisType.DATETIME);
-        configuration.getxAxis().setShowLastTickLabel(true);
+        configuration.getxAxis().setType(AxisType.DATETIME.toString());
+        configuration.getxAxis().setShowLastLabel(true);
         configuration.getxAxis().setMinRange(14 * DAY_IN_MILLIS);
         configuration.getxAxis().setTitle(new Title(""));
 
-        PlotBand mask = new PlotBand();
+        PlotBands mask = new PlotBands();
         mask.setColor(new SolidColor(0, 0, 0, 0.2));
-        mask.setFrom(DEMO_DATASET_START);
-        mask.setTo(DEMO_DATASET_END);
-        configuration.getxAxis().setPlotBands(mask);
+        mask.setFrom(Util.toHighchartsTS(DEMO_DATASET_START));
+        mask.setTo(Util.toHighchartsTS(DEMO_DATASET_END));
+        configuration.getxAxis().setPlotBands(new PlotBands[] { mask });
 
-        Axis yAxis = configuration.getyAxis();
+        YAxis yAxis = configuration.getyAxis();
         yAxis.setGridLineWidth(0);
-        yAxis.getLabels().setEnabled(false);
-        yAxis.setTitle("");
+        yAxis.setLabels(new Labels(false));
+        yAxis.setTitle(new Title(""));
         yAxis.setMin(0.6);
         yAxis.setShowFirstLabel(false);
 
-        configuration.getTooltip().setEnabled(false);
+        // FIXME missing generated API
+        // configuration.getTooltip().setEnabled(false);
 
         configuration.getLegend().setEnabled(false);
         configuration.getCredits().setEnabled(false);
@@ -338,7 +342,7 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
         PlotOptionsArea plotOptions = new PlotOptionsArea();
         plotOptions.setLineWidth(1);
         plotOptions.setShadow(false);
-        State hover = new State();
+        Hover hover = new Hover();
         hover.setLineWidth(1);
         States states = new States();
         states.setHover(hover);
@@ -355,7 +359,8 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
         masterPlotOptions.setFillColor(fillColor);
         masterPlotOptions.setPointInterval(24 * 3600 * 1000);
         masterPlotOptions.setMarker(new Marker(false));
-        masterPlotOptions.setPointStart(DEMO_DATASET_START);
+        masterPlotOptions
+                .setPointStart(Util.toHighchartsTS(DEMO_DATASET_START));
         ls.setPlotOptions(masterPlotOptions);
         ls.setName("USD to EUR");
         ls.setData(FULL_DEMO_DATA_SET);

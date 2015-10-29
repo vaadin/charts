@@ -12,12 +12,12 @@ import com.vaadin.addon.charts.examples.SkipFromDemo;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.Cursor;
+import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.DrillUpButton;
 import com.vaadin.addon.charts.model.DrillUpButtonTheme;
 import com.vaadin.addon.charts.model.Drilldown;
-import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.PlotOptionsPie;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.style.GradientColor;
@@ -43,8 +43,9 @@ public class PieWithNativeDrilldown extends AbstractVaadinChartExample {
         conf.getLegend().setEnabled(false);
 
         PlotOptionsPie column = new PlotOptionsPie();
-        column.setCursor(Cursor.POINTER);
-        column.setDataLabels(new Labels(true));
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        column.setCursor(Cursor.POINTER.toString());
+        column.setDataLabels(new DataLabels(true));
 
         conf.setPlotOptions(column);
 

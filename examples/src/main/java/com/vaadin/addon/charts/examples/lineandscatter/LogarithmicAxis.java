@@ -2,11 +2,11 @@ package com.vaadin.addon.charts.examples.lineandscatter;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.model.Axis;
 import com.vaadin.addon.charts.model.AxisType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
+import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.ui.Component;
 
 public class LogarithmicAxis extends AbstractVaadinChartExample {
@@ -27,8 +27,9 @@ public class LogarithmicAxis extends AbstractVaadinChartExample {
 
         configuration.getxAxis().setTickInterval(1);
 
-        Axis yAxis = configuration.getyAxis();
-        yAxis.setType(AxisType.LOGARITHMIC);
+        YAxis yAxis = configuration.getyAxis();
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        yAxis.setType(AxisType.LOGARITHMIC.toString());
         yAxis.setMinorTickInterval(0.1);
 
         configuration.getTooltip()

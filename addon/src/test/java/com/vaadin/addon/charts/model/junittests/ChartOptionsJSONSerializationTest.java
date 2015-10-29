@@ -1,5 +1,6 @@
 package com.vaadin.addon.charts.model.junittests;
 
+import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
@@ -37,41 +38,41 @@ public class ChartOptionsJSONSerializationTest {
     }
 
     @Test
-    public void toString_NoThemeOrLang_EmptyJsonSerialized() {
-        assertEquals("{}", options.toString());
+    public void toJSON_NoThemeOrLang_EmptyJsonSerialized() {
+        assertEquals("{}", toJSON(options));
     }
 
     @Test
-    public void toString_ThemeSet_ThemeSerialized() {
+    public void toJSON_ThemeSet_ThemeSerialized() {
         Theme theme = new Theme();
         options.setTheme(theme);
 
-        assertEquals(EmptyThemeJson, options.toString());
+        assertEquals(EmptyThemeJson, toJSON(options));
     }
 
     @Test
-    public void toString_ThemeSetWithLinearGradient_ThemeSerializedWithLinearGradient() {
+    public void toJSON_ThemeSetWithLinearGradient_ThemeSerializedWithLinearGradient() {
         Theme theme = new Theme();
         theme.setColors(GradientColor.createLinear(1, 2, 3, 4));
         options.setTheme(theme);
 
         String expected = String.format(ThemeWithLinearGradientFormat, 1, 2, 3,
                 4);
-        assertEquals(expected, options.toString());
+        assertEquals(expected, toJSON(options));
     }
 
     @Test
-    public void toString_ThemeSetWithRadialGradient_ThemeSerializedWithRadialGradient() {
+    public void toJSON_ThemeSetWithRadialGradient_ThemeSerializedWithRadialGradient() {
         Theme theme = new Theme();
         theme.setColors(GradientColor.createRadial(1, 2, 3));
         options.setTheme(theme);
 
         String expected = String.format(ThemeWithRadialGradientFormat, 1, 2, 3);
-        assertEquals(expected, options.toString());
+        assertEquals(expected, toJSON(options));
     }
 
     @Test
-    public void toString_ThemeSetWithColorStops_StopsSerialized() {
+    public void toJSON_ThemeSetWithColorStops_StopsSerialized() {
         Theme theme = new Theme();
         GradientColor linear = GradientColor.createLinear(1, 2, 3, 4);
         linear.addColorStop(5, SolidColor.BLUE);
@@ -81,11 +82,11 @@ public class ChartOptionsJSONSerializationTest {
 
         String expected = String.format(ThemeWithLinearGradientAndStopsFormat,
                 1, 2, 3, 4, 5, SolidColor.BLUE.toString());
-        assertEquals(expected, options.toString());
+        assertEquals(expected, toJSON(options));
     }
 
     @Test
-    public void toString_LangWithFinnishLocale_LocaleSerialized() {
+    public void toJSON_LangWithFinnishLocale_LocaleSerialized() {
         final Lang fi = new Lang();
         fi.setDecimalPoint(",");
         fi.setShortMonths(new String[] { "Tammi", "Helmi", "Maalis", "Huhti",
@@ -98,11 +99,11 @@ public class ChartOptionsJSONSerializationTest {
 
         options.setLang(fi);
 
-        assertEquals(LangWithFinnishLocale, options.toString());
+        assertEquals(LangWithFinnishLocale, toJSON(options));
     }
 
     @Test
-    public void toString_itemWithRadialGradientColor_RadialGradientSerialized() {
+    public void toJSON_itemWithRadialGradientColor_RadialGradientSerialized() {
         GradientColor color = GradientColor.createRadial(0.5, 0.3, 0.7);
         color.addColorStop(0, new SolidColor(255, 128, 0));
         color.addColorStop(1, new SolidColor(128, 64, 0));
@@ -115,7 +116,7 @@ public class ChartOptionsJSONSerializationTest {
         series.add(item);
 
         String expected = "{\"data\":[{\"name\":\"Foobar\",\"y\":45.0,\"color\":{\"stops\":[[0.0,\"#FF8000\"],[1.0,\"#804000\"]],\"radialGradient\":{\"cx\":0.5,\"cy\":0.3,\"r\":0.7}}}]}";
-        assertEquals(expected, series.toString());
+        assertEquals(expected, toJSON(series));
     }
 
 }

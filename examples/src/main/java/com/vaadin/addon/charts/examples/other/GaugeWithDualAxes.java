@@ -6,10 +6,12 @@ import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.PlotOptionsGauge;
 import com.vaadin.addon.charts.model.TickPosition;
+import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
@@ -28,7 +30,8 @@ public class GaugeWithDualAxes extends AbstractVaadinChartExample {
         chart.setWidth("500px");
 
         final Configuration configuration = chart.getConfiguration();
-        configuration.getChart().setType(ChartType.GAUGE);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        configuration.getChart().setType(ChartType.GAUGE.toString());
         configuration.getChart().setAlignTicks(false);
         configuration.getChart().setPlotBackgroundColor(null);
         configuration.getChart().setPlotBackgroundImage(null);
@@ -47,9 +50,13 @@ public class GaugeWithDualAxes extends AbstractVaadinChartExample {
         yAxis.setMinorTickColor(new SolidColor("#339"));
         yAxis.setOffset(-25);
         yAxis.setLineWidth(2);
+        // FIXME remove initialization after CHARTS-154
         yAxis.setLabels(new Labels());
         yAxis.getLabels().setDistance(-20);
-        yAxis.getLabels().setRotationPerpendicular();
+        // FIXME missing generated API
+        // yAxis.getLabels().setRotationPerpendicular();
+        // yAxis.getLabels().setRotation("auto");
+
         yAxis.setTickLength(5);
         yAxis.setMinorTickLength(5);
         yAxis.setEndOnTick(false);
@@ -63,14 +70,15 @@ public class GaugeWithDualAxes extends AbstractVaadinChartExample {
         yAxis2.setMinorTickColor(new SolidColor("#933"));
         yAxis2.setOffset(-20);
         yAxis2.setLineWidth(2);
+        // FIXME remove initialization after CHARTS-154
         yAxis2.setLabels(new Labels());
         yAxis2.getLabels().setDistance(12);
-        yAxis2.getLabels().setRotationPerpendicular();
+        // yAxis2.getLabels().setRotationPerpendicular();
         yAxis2.setTickLength(5);
         yAxis2.setMinorTickLength(5);
         yAxis2.setEndOnTick(false);
-        yAxis2.setTickPosition(TickPosition.OUTSIDE);
-        yAxis2.setMinorTickPosition(TickPosition.OUTSIDE);
+        yAxis2.setTickPosition(TickPosition.OUTSIDE.toString());
+        yAxis2.setMinorTickPosition(TickPosition.OUTSIDE.toString());
 
         configuration.addyAxis(yAxis);
         configuration.addyAxis(yAxis2);
@@ -78,15 +86,15 @@ public class GaugeWithDualAxes extends AbstractVaadinChartExample {
         final ListSeries series = new ListSeries("Speed", 80);
 
         PlotOptionsGauge plotOptionsGauge = new PlotOptionsGauge();
-        plotOptionsGauge.setDataLabels(new Labels());
-        plotOptionsGauge
-                .getDataLabels()
-                .setFormatter(
-                        "function() {return '<span style=\"color:#339\">'+ this.y + ' km/h</span><br/>' + '<span style=\"color:#933\">' + Math.round(this.y * 0.621) + ' mph</span>';}");
+        plotOptionsGauge.setDataLabels(new DataLabels());
+        // FIXME missing generated API
+        // plotOptionsGauge .getDataLabels() .setFormatter(
+        // "function() {return '<span style=\"color:#339\">'+ this.y + ' km/h</span><br/>' + '<span style=\"color:#933\">' + Math.round(this.y * 0.621) + ' mph</span>';}");
         GradientColor gradient = GradientColor.createLinear(0, 0, 0, 1);
         gradient.addColorStop(0, new SolidColor("#DDD"));
         gradient.addColorStop(1, new SolidColor("#FFF"));
         plotOptionsGauge.getDataLabels().setBackgroundColor(gradient);
+        plotOptionsGauge.setTooltip(new Tooltip());
         plotOptionsGauge.getTooltip().setValueSuffix(" km/h");
         series.setPlotOptions(plotOptionsGauge);
 
@@ -108,5 +116,4 @@ public class GaugeWithDualAxes extends AbstractVaadinChartExample {
 
         return chart;
     }
-
 }

@@ -9,7 +9,7 @@ import com.vaadin.addon.charts.model.LayoutDirection;
 import com.vaadin.addon.charts.model.Legend;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.PlotOptionsArea;
-import com.vaadin.addon.charts.model.SubTitle;
+import com.vaadin.addon.charts.model.Subtitle;
 import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.XAxis;
@@ -33,24 +33,25 @@ public class AreaWithMissingPoints extends AbstractVaadinChartExample {
 
         conf.setTitle(new Title("Fruit consumption *"));
 
-        SubTitle subTitle = new SubTitle(
+        Subtitle subTitle = new Subtitle(
                 "* Jane\'s banana consumption is unknown");
         subTitle.setFloating(true);
         subTitle.setY(15);
-        subTitle.setHorizontalAlign(HorizontalAlign.RIGHT);
-        subTitle.setVerticalAlign(VerticalAlign.BOTTOM);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        subTitle.setAlign(HorizontalAlign.RIGHT.toString());
+        subTitle.setVerticalAlign(VerticalAlign.BOTTOM.toString());
         conf.setSubTitle(subTitle);
 
         XAxis xAxis = new XAxis();
-        xAxis.setCategories("Apples", "Pears", "Oranges", "Bananas", "Grapes",
-                "Plums", "Strawberries", "Raspberries");
+        xAxis.setCategories(new String[] { "Apples", "Pears", "Oranges",
+                "Bananas", "Grapes", "Plums", "Strawberries", "Raspberries" });
         conf.addxAxis(xAxis);
 
         Legend legend = new Legend();
-        legend.setLayout(LayoutDirection.VERTICAL);
-        legend.setHorizontalAlign(HorizontalAlign.LEFT);
+        legend.setLayout(LayoutDirection.VERTICAL.toString());
+        legend.setAlign(HorizontalAlign.LEFT.toString());
         legend.setFloating(true);
-        legend.setVerticalAlign(VerticalAlign.TOP);
+        legend.setVerticalAlign(VerticalAlign.TOP.toString());
         legend.setX(150);
         legend.setY(100);
         legend.setBorderWidth(1);

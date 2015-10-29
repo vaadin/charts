@@ -21,18 +21,21 @@ public class AreaRange extends AbstractVaadinChartExample {
 
     @Override
     protected Component getChart() {
+
         Chart chart = new Chart(ChartType.AREARANGE);
 
         Configuration conf = chart.getConfiguration();
 
         conf.setTitle("Temperature variation by day");
 
-        conf.getxAxis().setType(DATETIME);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        conf.getxAxis().setType(DATETIME.toString());
         conf.addyAxis(new YAxis());
 
         Tooltip tooltip = new Tooltip();
-        tooltip.setCrosshairs(true);
-        tooltip.setShared(true);
+        // FIXME missing generated API
+        // tooltip.setCrosshairs(true);
+        // tooltip.setShared(true);
         tooltip.setValueSuffix("°C");
         conf.setTooltip(tooltip);
 
@@ -43,6 +46,7 @@ public class AreaRange extends AbstractVaadinChartExample {
         chart.drawChart(conf);
 
         return chart;
+
     }
 
     private Number[][] getRawData() {

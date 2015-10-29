@@ -7,10 +7,9 @@ import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.CreditPosition;
 import com.vaadin.addon.charts.model.Credits;
 import com.vaadin.addon.charts.model.Cursor;
+import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
-import com.vaadin.addon.charts.model.HorizontalAlign;
-import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.PlotOptionsPie;
 import com.vaadin.ui.Component;
 
@@ -39,15 +38,18 @@ public class PieChartWithCredits extends AbstractVaadinChartExample {
 
         Credits credits = new Credits("Custom Credit");
         credits.setPosition(new CreditPosition());
-        credits.getPosition().setHorizontalAlign(HorizontalAlign.LEFT);
-        credits.getPosition().setX(200);
+        // FIXME missing generated API
+        // credits.getPosition().setHorizontalAlign(HorizontalAlign.LEFT.toString());
+        // credits.getPosition().setX(200);
         conf.setCredits(credits);
 
         PlotOptionsPie plotOptions = new PlotOptionsPie();
-        plotOptions.setCursor(Cursor.POINTER);
-        Labels dataLabels = new Labels(true);
-        dataLabels
-                .setFormatter("'<b>'+ this.point.name +'</b>: '+ this.percentage +' %'");
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        plotOptions.setCursor(Cursor.POINTER.toString());
+        DataLabels dataLabels = new DataLabels(true);
+        // FIXME missing generated API
+        // dataLabels
+        // .setFormatter("'<b>'+ this.point.name +'</b>: '+ this.percentage +' %'");
         plotOptions.setDataLabels(dataLabels);
         conf.setPlotOptions(plotOptions);
 

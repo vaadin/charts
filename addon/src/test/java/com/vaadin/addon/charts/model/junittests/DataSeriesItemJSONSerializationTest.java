@@ -1,5 +1,6 @@
 package com.vaadin.addon.charts.model.junittests;
 
+import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
@@ -24,7 +25,7 @@ public class DataSeriesItemJSONSerializationTest {
         series.add(item);
 
         String expected = "{\"data\":[{\"cursor\":\"progress\"}]}";
-        assertEquals(expected, series.toString());
+        assertEquals(expected, toJSON(series));
     }
 
     @Test
@@ -37,7 +38,7 @@ public class DataSeriesItemJSONSerializationTest {
         series.add(item);
 
         String expected = "{\"data\":[[2,null,null]]}";
-        assertEquals(expected, series.toString());
+        assertEquals(expected, toJSON(series));
     }
 
     @Test
@@ -51,7 +52,7 @@ public class DataSeriesItemJSONSerializationTest {
         series.add(item);
 
         String expected = "{\"data\":[[2,3]]}";
-        assertEquals(expected, series.toString());
+        assertEquals(expected, toJSON(series));
     }
 
     @Test
@@ -66,7 +67,7 @@ public class DataSeriesItemJSONSerializationTest {
         series.add(item);
 
         String expected = "{\"data\":[[2,3,4]]}";
-        assertEquals(expected, series.toString());
+        assertEquals(expected, toJSON(series));
     }
 
     @Test
@@ -79,7 +80,7 @@ public class DataSeriesItemJSONSerializationTest {
         series.add(item);
 
         String expected = "{\"data\":[2]}";
-        assertEquals(expected, series.toString());
+        assertEquals(expected, toJSON(series));
     }
 
     @Test
@@ -93,6 +94,6 @@ public class DataSeriesItemJSONSerializationTest {
         series.add(item);
 
         String expected = "{\"data\":[[2,3]]}";
-        assertEquals(expected, series.toString());
+        assertEquals(expected, toJSON(series));
     }
 }

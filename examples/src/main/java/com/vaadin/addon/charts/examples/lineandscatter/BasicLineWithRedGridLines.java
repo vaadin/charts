@@ -3,16 +3,16 @@ package com.vaadin.addon.charts.examples.lineandscatter;
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.SkipFromDemo;
-import com.vaadin.addon.charts.model.Axis;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DashStyle;
-import com.vaadin.addon.charts.model.Labels;
+import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.XAxis;
+import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
 
@@ -31,22 +31,24 @@ public class BasicLineWithRedGridLines extends AbstractVaadinChartExample {
         chart.setWidth("100%");
 
         Configuration configuration = chart.getConfiguration();
-        configuration.getChart().setType(ChartType.LINE);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        configuration.getChart().setType(ChartType.LINE.toString());
         configuration.getChart().setMarginRight(130);
         configuration.getChart().setMarginBottom(25);
 
         configuration.getTitle().setText("Monthly Average Temperature");
         configuration.getSubTitle().setText("Source: WorldClimate.com");
 
-        configuration.getxAxis().setCategories("Jan", "Feb", "Mar", "Apr",
-                "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
+        configuration.getxAxis().setCategories(
+                new String[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
+                        "Aug", "Sep", "Oct", "Nov", "Dec" });
 
-        Axis yAxis = configuration.getyAxis();
+        YAxis yAxis = configuration.getyAxis();
         yAxis.setMin(-5d);
         yAxis.setTitle(new Title("Temperature (°C)"));
-        yAxis.getTitle().setVerticalAlign(VerticalAlign.HIGH);
+        yAxis.getTitle().setAlign(VerticalAlign.MIDDLE.toString());
         yAxis.setGridLineColor(new SolidColor("red"));
-        yAxis.setGridLineDashStyle(DashStyle.DASHDOT);
+        yAxis.setGridLineDashStyle(DashStyle.DASHDOT.toString());
         yAxis.setGridLineWidth(3);
 
         XAxis xAxis = configuration.getxAxis();
@@ -54,7 +56,7 @@ public class BasicLineWithRedGridLines extends AbstractVaadinChartExample {
         xAxis.setGridLineWidth(4);
 
         PlotOptionsLine plotOptions = new PlotOptionsLine();
-        plotOptions.setDataLabels(new Labels(true));
+        plotOptions.setDataLabels(new DataLabels(true));
         configuration.setPlotOptions(plotOptions);
 
         ListSeries ls = new ListSeries();

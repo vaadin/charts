@@ -12,15 +12,15 @@ import com.vaadin.addon.charts.ChartClickListener;
 import com.vaadin.addon.charts.PointClickEvent;
 import com.vaadin.addon.charts.PointClickListener;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.model.Axis;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.Legend;
-import com.vaadin.addon.charts.model.PlotLine;
+import com.vaadin.addon.charts.model.PlotLines;
 import com.vaadin.addon.charts.model.PlotOptionsSeries;
 import com.vaadin.addon.charts.model.Title;
+import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.data.Property.ValueChangeEvent;
@@ -43,6 +43,7 @@ public class ClickToAddPoint extends AbstractVaadinChartExample {
 
     @Override
     protected Component getChart() {
+        // FIXME no events until CHARTS-155
         lastAction.setId("lastAction");
         eventDetails.setId("eventDetails");
         chart = new Chart();
@@ -50,20 +51,25 @@ public class ClickToAddPoint extends AbstractVaadinChartExample {
         chart.setWidth("500px");
 
         final Configuration configuration = chart.getConfiguration();
-        configuration.getChart().setType(ChartType.SCATTER);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        configuration.getChart().setType(ChartType.SCATTER.toString());
         configuration.getTitle().setText("User supplied data");
         configuration
                 .getSubTitle()
                 .setText(
                         "Click the plot area to add a point. Click a point to remove it.");
 
-        Axis xAxis = configuration.getxAxis();
+        XAxis xAxis = configuration.getxAxis();
         xAxis.setMinPadding(0.2);
         xAxis.setMaxPadding(0.2);
 
         YAxis yAxis = configuration.getyAxis();
         yAxis.setTitle(new Title("Value"));
-        yAxis.setPlotLines(new PlotLine(0, 1, new SolidColor("#808080")));
+        PlotLines plotline = new PlotLines();
+        plotline.setValue(0);
+        plotline.setWidth(1);
+        plotline.setColor(new SolidColor("#808080"));
+        yAxis.setPlotLines(new PlotLines[] { plotline });
         yAxis.setMinPadding(0.2);
         yAxis.setMaxPadding(0.2);
 
@@ -92,7 +98,6 @@ public class ClickToAddPoint extends AbstractVaadinChartExample {
                 eventDetails.setValue(createEventString(event));
             }
         });
-
         chart.addPointClickListener(new PointClickListener() {
 
             @Override

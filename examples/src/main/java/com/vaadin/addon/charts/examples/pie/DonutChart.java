@@ -7,10 +7,11 @@ import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
-import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.PlotOptionsPie;
+import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.SolidColor;
@@ -46,7 +47,7 @@ public class DonutChart extends AbstractVaadinChartExample {
         conf.setTitle("Browser market share, April, 2011");
 
         YAxis yaxis = new YAxis();
-        yaxis.setTitle("Total percent market share");
+        yaxis.setTitle(new Title("Total percent market share"));
 
         PlotOptionsPie pie = new PlotOptionsPie();
         pie.setShadow(false);
@@ -59,11 +60,13 @@ public class DonutChart extends AbstractVaadinChartExample {
         PlotOptionsPie innerPieOptions = new PlotOptionsPie();
         innerSeries.setPlotOptions(innerPieOptions);
         innerPieOptions.setSize(237);
-        innerPieOptions.setDataLabels(new Labels());
-        innerPieOptions.getDataLabels().setFormatter(
-                "this.y > 5 ? this.point.name : null");
+        innerPieOptions.setDataLabels(new DataLabels());
+        // FIXME missing generated API
+        // innerPieOptions.getDataLabels().setFormatter(
+        // "this.y > 5 ? this.point.name : null");
         innerPieOptions.getDataLabels().setColor(new SolidColor(255, 255, 255));
-        innerPieOptions.getDataLabels().setDistance(-30);
+        // FIXME missing generated API
+        // innerPieOptions.getDataLabels().setDistance(-30);
 
         Color[] innerColors = Arrays.copyOf(colors, 5);
         innerSeries.setData(new String[] { "MSIE", "Firefox", "Chrome",
@@ -76,11 +79,10 @@ public class DonutChart extends AbstractVaadinChartExample {
         outerSeries.setPlotOptions(outerSeriesOptions);
         outerSeriesOptions.setInnerSize(237);
         outerSeriesOptions.setSize(318);
-        outerSeriesOptions.setDataLabels(new Labels());
-        outerSeriesOptions
-                .getDataLabels()
-                .setFormatter(
-                        "this.y > 1 ? '<b>'+ this.point.name +':</b> '+ this.y +'%' : null");
+        outerSeriesOptions.setDataLabels(new DataLabels());
+        // FIXME missing generated API
+        // outerSeriesOptions .getDataLabels() .setFormatter(
+        // "this.y > 1 ? '<b>'+ this.point.name +':</b> '+ this.y +'%' : null");
 
         DataSeriesItem[] outerItems = new DataSeriesItem[] {
                 /* @formatter:off */

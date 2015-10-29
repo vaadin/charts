@@ -4,8 +4,8 @@ import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.HorizontalAlign;
-import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.Legend;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
@@ -48,21 +48,23 @@ public class StackedColumn extends AbstractVaadinChartExample {
         conf.addyAxis(yAxis);
 
         Legend legend = new Legend();
-        legend.setHorizontalAlign(HorizontalAlign.RIGHT);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        legend.setAlign(HorizontalAlign.RIGHT.toString());
         legend.setFloating(true);
-        legend.setVerticalAlign(VerticalAlign.TOP);
+        legend.setVerticalAlign(VerticalAlign.TOP.toString());
         legend.setX(-100);
         legend.setY(20);
         conf.setLegend(legend);
 
         Tooltip tooltip = new Tooltip();
-        tooltip.setFormatter("function() { return '<b>'+ this.x +'</b><br/>"
-                + "'+this.series.name +': '+ this.y +'<br/>'+'Total: '+ this.point.stackTotal;}");
+        // tooltip.setFormatter("function() { return '<b>'+ this.x +'</b><br/>"
+        // +
+        // "'+this.series.name +': '+ this.y +'<br/>'+'Total: '+ this.point.stackTotal;}");
         conf.setTooltip(tooltip);
 
         PlotOptionsColumn plotOptions = new PlotOptionsColumn();
-        plotOptions.setStacking(Stacking.NORMAL);
-        Labels labels = new Labels(true);
+        plotOptions.setStacking(Stacking.NORMAL.toString());
+        DataLabels labels = new DataLabels(true);
         labels.setColor(new SolidColor("white"));
         plotOptions.setDataLabels(labels);
         conf.setPlotOptions(plotOptions);

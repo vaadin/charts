@@ -48,10 +48,10 @@ public class CrosshairStyle extends AbstractConfigurationObject {
      */
     public CrosshairStyle(Number width, String color, DashStyle dashStyle,
             Number zIndex) {
-        this.setWidth(width);
+        setWidth(width);
         this.setColor(color);
-        this.setDashStyle(dashStyle);
-        this.setzIndex(zIndex);
+        setDashStyle(dashStyle);
+        setzIndex(zIndex);
     }
 
     /**
@@ -68,10 +68,10 @@ public class CrosshairStyle extends AbstractConfigurationObject {
      */
     public CrosshairStyle(Number width, SolidColor color, DashStyle dashStyle,
             Number zIndex) {
-        this.setWidth(width);
+        setWidth(width);
         this.setColor(color);
-        this.setDashStyle(dashStyle);
-        this.setzIndex(zIndex);
+        setDashStyle(dashStyle);
+        setzIndex(zIndex);
     }
 
     /**

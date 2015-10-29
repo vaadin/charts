@@ -6,10 +6,11 @@ import com.vaadin.addon.charts.model.AxisType;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.Cursor;
+import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
-import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
+import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.ui.Component;
@@ -34,16 +35,17 @@ public class ColumnWithMultiLevelDrilldown extends AbstractVaadinChartExample {
         conf.getLegend().setEnabled(false);
 
         XAxis x = new XAxis();
-        x.setType(AxisType.CATEGORY);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        x.setType(AxisType.CATEGORY.toString());
         conf.addxAxis(x);
 
         YAxis y = new YAxis();
-        y.setTitle("Total percent market share");
+        y.setTitle(new Title("Total percent market share"));
         conf.addyAxis(y);
 
         PlotOptionsColumn column = new PlotOptionsColumn();
-        column.setCursor(Cursor.POINTER);
-        column.setDataLabels(new Labels(true));
+        column.setCursor(Cursor.POINTER.toString());
+        column.setDataLabels(new DataLabels(true));
 
         conf.setPlotOptions(column);
 

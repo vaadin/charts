@@ -91,6 +91,7 @@ public class VaadinTheme extends Theme {
         getTooltip().setBorderRadius(BORDER_RADIUS);
         getTooltip().getStyle().setColor(TITLE_COLOR);
 
+        getLegend().setItemStyle(new Style());
         getLegend().getItemStyle().setColor(LEGEND_TEXT_COLOR);
         Style itemHoverStyle = new Style();
         itemHoverStyle.setColor(new SolidColor(0, 0, 0));

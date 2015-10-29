@@ -17,6 +17,8 @@ package com.vaadin.addon.charts;
  * #L%
  */
 
+import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.lang.reflect.Method;
@@ -30,8 +32,8 @@ import com.vaadin.addon.charts.events.DataRemovedEvent;
 import com.vaadin.addon.charts.events.DataUpdatedEvent;
 import com.vaadin.addon.charts.events.ItemSlicedEvent;
 import com.vaadin.addon.charts.events.SeriesStateEvent;
+import com.vaadin.addon.charts.model.AbstractConfigurationObject;
 import com.vaadin.addon.charts.model.AbstractSeries;
-import com.vaadin.addon.charts.model.ChartModel;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
@@ -49,8 +51,8 @@ import com.vaadin.util.ReflectTools;
 /**
  * Chart is a Vaadin component that is used to visualize data.
  * <p>
- * All configuration and data is given through a {@link Configuration} object.
- * Here is a simple usage example:
+ * All configuration and data is given through a {@link Configuration}
+ * object. Here is a simple usage example:
  * <p>
  * <code><pre>
  * Chart chart = new Chart(ChartType.COLUMN);
@@ -65,7 +67,8 @@ import com.vaadin.util.ReflectTools;
  * <p>
  * Unless otherwise documented, dynamic changes to the chart configuration are
  * not immediately reflected to an already drawn component. To redraw the chart
- * you should call {@link #drawChart()} or {@link #drawChart(Configuration)}.
+ * you should call {@link #drawChart()} or
+ * {@link #drawChart(Configuration)}.
  * <p>
  * The implementation relies on the <a
  * href="http://www.highcharts.com/">HighCharts JS</a> library. Developers can
@@ -101,7 +104,7 @@ public class Chart extends AbstractComponent {
                 if (event.getItem().getX() != null) {
                     // x,y type data
                     chart.getRpcProxy(ChartClientRpc.class).addPoint(
-                            event.getItem().toString(), getSeriesIndex(event),
+                            toJSON(event.getItem()), getSeriesIndex(event),
                             event.isShift());
                 }
             }
@@ -127,7 +130,7 @@ public class Chart extends AbstractComponent {
             } else {
                 chart.getRpcProxy(ChartClientRpc.class).updatePoint(
                         getSeriesIndex(event), event.getPointIndex(),
-                        event.getItem().toString());
+                        toJSON(event.getItem()));
             }
         }
 
@@ -163,7 +166,8 @@ public class Chart extends AbstractComponent {
         public void drilldownAdded(int seriesIndex, int pointIndex,
                 Series series) {
             chart.getRpcProxy(ChartClientRpc.class).addDrilldown(
-                    series.toString(), seriesIndex, pointIndex);
+                    toJSON((AbstractConfigurationObject) series), seriesIndex,
+                    pointIndex);
 
         }
 
@@ -203,7 +207,8 @@ public class Chart extends AbstractComponent {
                 if (drilldownSeries != null) {
                     drilldownStack.push(drilldownSeries);
                     getRpcProxy(ChartClientRpc.class)
-                            .addDrilldown(drilldownSeries.toString(),
+                            .addDrilldown(
+                                    toJSON((AbstractConfigurationObject) drilldownSeries),
                                     seriesIndex, pointIndex);
                 }
             }
@@ -307,15 +312,20 @@ public class Chart extends AbstractComponent {
      */
     public Chart(ChartType type) {
         this();
-        configuration.setChart(new ChartModel(configuration, type));
+        // configuration.setChart(new ChartModel(configuration, type));
+        com.vaadin.addon.charts.model.Chart chart = new com.vaadin.addon.charts.model.Chart();
+        // TODO use charttype enum
+        chart.setType(type.toString());
+        // TODO chart-configuration reference?
+        configuration.setChart(chart);
     }
 
     @Override
     public void beforeClientResponse(boolean initial) {
         super.beforeClientResponse(initial);
         if (initial || stateDirty) {
-            getState().confState = configuration == null ? null : configuration
-                    .toString();
+            getState().confState = configuration == null ? null
+                    : toJSON(configuration);
             getState().jsonState = jsonConfig;
             stateDirty = false;
         }
@@ -381,11 +391,11 @@ public class Chart extends AbstractComponent {
      * will automatically be updated to reflect this unless explicitly told not
      * to. The methods listed below can be used as an example.
      * 
-     * @see DataSeries#add(com.vaadin.addon.charts.model.DataSeriesItem)
-     * @see DataSeries#addData(com.vaadin.addon.charts.model.DataSeriesItem,
+     * @see DataSeries#add(com.vaadin.addon.charts.model.series.DataSeriesItem)
+     * @see DataSeries#addData(com.vaadin.addon.charts.model.series.DataSeriesItem,
      *      boolean)
-     * @see DataSeries#removeData(com.vaadin.addon.charts.model.DataSeriesItem)
-     * @see DataSeries#updateData(com.vaadin.addon.charts.model.DataSeriesItem)
+     * @see DataSeries#removeData(com.vaadin.addon.charts.model.series.DataSeriesItem)
+     * @see DataSeries#updateData(com.vaadin.addon.charts.model.series.DataSeriesItem)
      * 
      * @param configuration
      */
@@ -463,7 +473,7 @@ public class Chart extends AbstractComponent {
      * Sets the Chart drilldown handler that's responsible for returning the
      * drilldown series for each drilldown callback when doing async drilldown
      * 
-     * @see DataSeries#addItemWithDrilldown(com.vaadin.addon.charts.model.DataSeriesItem)
+     * @see DataSeries#addItemWithDrilldown(com.vaadin.addon.charts.model.series.DataSeriesItem)
      *      addItemWithDrilldown to find out how to enable async drilldown
      * 
      * @param drilldownCallback

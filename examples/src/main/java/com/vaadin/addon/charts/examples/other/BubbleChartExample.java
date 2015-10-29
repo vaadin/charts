@@ -20,6 +20,7 @@ public class BubbleChartExample extends AbstractVaadinChartExample {
 
     @Override
     protected Component getChart() {
+
         Chart chart = new Chart(ChartType.BUBBLE);
 
         Configuration conf = chart.getConfiguration();
@@ -43,8 +44,9 @@ public class BubbleChartExample extends AbstractVaadinChartExample {
 
         PlotOptionsBubble opts = new PlotOptionsBubble();
         opts.setNegativeColor(getThemeColors()[3]);
-        opts.setMaxSize(120);
-        opts.setMinSize(3);
+        // FIXME missing generated API
+        opts.setMaxSize("120");
+        opts.setMinSize("3");
 
         conf.setPlotOptions(opts);
 
@@ -60,6 +62,7 @@ public class BubbleChartExample extends AbstractVaadinChartExample {
         conf.addSeries(dataSeries2);
 
         return chart;
+
     }
 
     public DataSeriesItem item(int x, int y, int z) {

@@ -34,8 +34,8 @@ public class InvertedAxes extends AbstractVaadinChartExample {
         conf.setTitle(new Title("Average fruit consumption during one week"));
 
         XAxis xAxis = new XAxis();
-        xAxis.setCategories("Monday", "Tuesday", "Wednesday", "Thursday",
-                "Friday", "Saturday", "Sunday");
+        xAxis.setCategories(new String[] { "Monday", "Tuesday", "Wednesday",
+                "Thursday", "Friday", "Saturday", "Sunday" });
         conf.addxAxis(xAxis);
 
         YAxis yAxis = new YAxis();
@@ -44,10 +44,11 @@ public class InvertedAxes extends AbstractVaadinChartExample {
         conf.addyAxis(yAxis);
 
         Legend legend = new Legend();
-        legend.setLayout(LayoutDirection.VERTICAL);
-        legend.setHorizontalAlign(HorizontalAlign.LEFT);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        legend.setLayout(LayoutDirection.VERTICAL.toString());
+        legend.setAlign(HorizontalAlign.LEFT.toString());
         legend.setFloating(true);
-        legend.setVerticalAlign(VerticalAlign.TOP);
+        legend.setVerticalAlign(VerticalAlign.TOP.toString());
         legend.setX(-150);
         legend.setY(100);
         legend.setBorderWidth(1);

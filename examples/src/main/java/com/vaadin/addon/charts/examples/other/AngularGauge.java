@@ -7,11 +7,13 @@ import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.Background;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.ListSeries;
-import com.vaadin.addon.charts.model.PlotBand;
+import com.vaadin.addon.charts.model.PlotBands;
 import com.vaadin.addon.charts.model.PlotOptionsGauge;
 import com.vaadin.addon.charts.model.TickPosition;
 import com.vaadin.addon.charts.model.Title;
+import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
@@ -30,7 +32,8 @@ public class AngularGauge extends AbstractVaadinChartExample {
         chart.setWidth("500px");
 
         final Configuration configuration = chart.getConfiguration();
-        configuration.getChart().setType(ChartType.GAUGE);
+        // FIXME remove toString() once enums are used in model (CHARTS-159)
+        configuration.getChart().setType(ChartType.GAUGE.toString());
         configuration.getChart().setPlotBackgroundColor(null);
         configuration.getChart().setPlotBackgroundImage(null);
         configuration.getChart().setPlotBorderWidth(0);
@@ -73,26 +76,41 @@ public class AngularGauge extends AbstractVaadinChartExample {
         yAxis.setMinorTickInterval("auto");
         yAxis.setMinorTickWidth(1);
         yAxis.setMinorTickLength(10);
-        yAxis.setMinorTickPosition(TickPosition.INSIDE);
+        yAxis.setMinorTickPosition(TickPosition.INSIDE.toString());
         yAxis.setMinorTickColor(new SolidColor("#666"));
         yAxis.setGridLineWidth(0);
         yAxis.setTickPixelInterval(30);
         yAxis.setTickWidth(2);
-        yAxis.setTickPosition(TickPosition.INSIDE);
+        yAxis.setTickPosition(TickPosition.INSIDE.toString());
         yAxis.setTickLength(10);
         yAxis.setTickColor(new SolidColor("#666"));
 
+        // FIXME remove initialization after CHARTS-154
+        yAxis.setLabels(new Labels());
         yAxis.getLabels().setStep(2);
-        yAxis.getLabels().setRotationPerpendicular();
+        // FIXME missing generated API
+        // yAxis.getLabels().setRotation("auto");
 
-        PlotBand[] plotBands = new PlotBand[3];
-        plotBands[0] = new PlotBand(0, 120, new SolidColor("#55BF3B"));
-        plotBands[1] = new PlotBand(120, 160, new SolidColor("#DDDF0D"));
-        plotBands[2] = new PlotBand(160, 200, new SolidColor("#DF5353"));
-        yAxis.setPlotBands(plotBands);
+        PlotBands plotband1 = new PlotBands();
+        plotband1.setFrom(0);
+        plotband1.setTo(120);
+        plotband1.setColor(new SolidColor("#55BF3B"));
+
+        PlotBands plotband2 = new PlotBands();
+        plotband2.setFrom(120);
+        plotband2.setTo(160);
+        plotband2.setColor(new SolidColor("#DDDF0D"));
+
+        PlotBands plotband3 = new PlotBands();
+        plotband3.setFrom(160);
+        plotband3.setTo(200);
+        plotband3.setColor(new SolidColor("#DF5353"));
+
+        yAxis.setPlotBands(new PlotBands[] { plotband1, plotband2, plotband3 });
 
         final ListSeries series = new ListSeries("Speed", 80);
         PlotOptionsGauge plotOptions = new PlotOptionsGauge();
+        plotOptions.setTooltip(new Tooltip());
         plotOptions.getTooltip().setValueSuffix(" km/h");
         series.setPlotOptions(plotOptions);
         configuration.setSeries(series);
