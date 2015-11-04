@@ -1,0 +1,350 @@
+---
+title: Chart Data
+order: 5
+layout: page
+---
+
+[[charts.data]]
+=== Chart Data
+
+Chart data is stored in data series model, which contains visual representation
+information about the data points in addition to their values. Data can be attached
+to a chart either by using a tag or an attribute. Using data tag is useful
+in simple cases when data is ready beforehand.
+
+[source,html]
+----
+<vaadin-line-chart>
+  <data-series name="Total Reindeer Population">
+    <data>181091, 201485, 188105,188135</data>
+  </data-series>
+
+  <plot-options>
+    <series point-interval="1" point-start="1959">
+    </series>
+  </plot-options>
+</vaadin-line-chart>
+----
+
+You can also specify plot options for each point specifically using <point> tag.
+
+[source,html]
+----
+<vaadin-line-chart>
+  <data-series name="Total Reindeer Population">
+       <data>
+         <point>
+           <y>181091</y>
+           <color>red</color>
+           <name>bar</name>
+         </point>
+         <point>
+           <y>201485</y>
+           <name>foo</name>
+           <color>blue</color>
+         </point>
+         <point>
+           <y>211485</y>
+           <color>green</color>
+         </point>
+       </data>
+       <color>red</color>
+  </data-series>
+</vaadin-line-chart>
+----
+
+Using data attribute allows to change an array of data points dynamically.
+The points can be added to a series in three ways: as a one-dimensional array,
+ as a multi-dimensional array or as array of objects.
+
+[[charts.data.1darray]]
+==== Adding series as a one-dimensional array
+
+In case of using one-dimensional array, the data points are assumed to be at
+ a constant interval on the X axis, starting from the
+value specified with the 'point-start'  property (default value is '0') at intervals
+specified with the 'point-interval' property (default value is '1.0').
+You can also add new points to a chart, by adding new items to a Data object. Data attribute
+should be bound to a element property by using either one-way binding
+or automatic binding.
+Please, see more details about these in the Polymer
+ https://www.polymer-project.org/1.0/docs/devguide/data-binding.html[Data binding]
+ documentation.
+
+[source,html]
+----
+<body>
+  <button id="add" onclick="addSeries()">Add point</button>
+  <template id="t" is="dom-bind">
+    <vaadin-line-chart id="mainchart">
+       <data-series name="Total Reindeer Population" data=[[mySeriesData]]>
+            <color>red</color>
+      </data-series>
+
+      <plot-options>
+        <series point-interval="1" point-start="1959">  </series>
+      </plot-options>
+    </vaadin-line-chart>
+  </template id="t" is="dom-bind">
+
+  <script>
+    var t = document.querySelector('#t');
+    t.mySeriesData= [181091, 201485, 188105, 188136];
+
+    function addSeries() {
+        var y = Math.floor((Math.random() * 100000));
+        t.$.mainchart.chart.series[0].addPoint(y);
+    };
+
+  </script>
+</body>
+----
+
+[[charts.data.2darray]]
+==== Adding series as a multi-dimensional array
+In case of using two-dimensional array, the first value is x value and the second value
+is y value. If the first value is a string, it is applied as the name of the point,
+ and the x value is incremented following the above rules. For
+ [classname]#vaadin-arearange-chart#
+  the arrays will be interpreted as [x, low, high].
+ In this cases, the X value can be skipped altogether to make use of
+'point-start' and 'point-interval' properties.
+
+[source,javascript]
+----
+mySeriesData: {
+  type: Array,
+  value: [
+    [1, 1.1, 4.7],
+    [2, 1.8, 6.4],
+    [3, 1.7, 6.9],
+    [4, 2.6, 7.4],
+    [6, 3.3, 9.3],
+    [10, 3.0, 7.9],
+    [12, 3.9, 6.0],
+    [16, 3.9, 5.5]
+  ]
+}
+----
+
+[[charts.data.objarray]]
+==== Adding series as an array of objects
+In case of using an array of objects, these objects stores point configurations.
+
+Data points are associated with some visual representation parameters:
+marker style, selected state, legend index, and dial style (for gauges).
+Most of them can be configured at the level of individual data series items,
+the series, or in the overall plot options for the chart.
+The configuration options are described in
+ <<charts-configuration#charts.configuration,"Chart
+ Configuration">>.
+ Some parameters, such as the sliced option for pie charts is only meaningful
+ to configure at item level.
+
+[source,javascript]
+----
+ properties: {
+   mySeriesData: {
+     type: Array,
+     value:
+      [
+      181091,
+      {y:188105,
+        marker: {
+          symbol: 'square',
+          fillColor: "green",
+          radius: 10
+        }
+      },
+      201485,
+      188136
+      ]
+   }
+ }
+----
+
+[[charts.data.dataseries.add]]
+===== Adding and Removing Data Items
+As shown above to add new points you should add new elements
+to the bound property, which contains an array of points.
+All changes (add,update,remove) of the bound property affect
+the chart data series.
+
+[source,javascript]
+----
+<script>
+      Polymer({
+          is: 'example1-chart',
+          properties: {
+            mySeriesData: {
+              type: Array,
+              value: [181091, 201485, 188105,188136]
+            }
+          },
+          _addSeriesPoint: function () {
+              var y = Math.floor((Math.random() * 100000));
+              this.push('mySeriesData', y);
+          }
+      });
+</script>
+----
+
+You can also change the chart data series using JavaScript API of HighCharts.
+New [classname]#Point# items are added to a series with the
+[methodname]#addPoint()# method of a [classname]#Series# class. To remove an
+item from a series use [methodname]#remove()# of a [classname]#Point# class.
+
+[source,html]
+----
+<dom-module id="add-update-example">
+     <template>
+         <button id="add" on-click="_addSeries">
+          Add point
+         </button>
+
+         <vaadin-line-chart id="mainchart"
+          on-point-click="pointClickListener">
+            <data-series data=[[mySeriesData]]>
+                 <color>red</color>
+           </data-series>
+         </vaadin-line-chart>
+     </template>
+     <script>
+      Polymer({
+        is: 'add-update-example',
+        properties: {
+          mySeriesData: {
+            type: Array,
+            value: [181091, 201485, 188105, 188136]
+          }
+        },
+        pointClickListener: function (e) {
+          if (e.detail.point.series.data.length > 1) {
+            e.detail.point.remove();
+            // Use udpate method instead of remove to update
+            //e.detail.point.update(400000);
+          }
+        },
+        _addSeries: function () {
+          var y = Math.floor((Math.random() * 100000));
+          this.$.mainchart.chart.series[0].addPoint(y);
+        },
+      });
+     </script>
+</dom-module>
+----
+
+The [methodname]#addPoint()# method takes the data item and
+ three optional rendering parameters.
+
+If the [parameter]#redraw# parameter is 'false' , the chart is not
+ updated immediately. This is useful if you are adding many points
+ and do not want the chart to be redrawn every  time a  new point is added.
+ After adding all the points you need to call [methodname]#redraw()# method.
+
+The [parameter]#shift# parameter, when 'true' , causes removal of the first
+data point in the series in an optimized manner, thereby allowing an animated
+chart that moves to left as new points are added. This is most meaningful with
+data with even intervals.
+
+The [parameter]#animation# parameter, when 'true', the series updating will
+ be animated with default animation options. The animation can also be a
+ configuration object with properties duration and easing.
+
+[[charts.data.dataseries.update]]
+===== Updating Data Items
+You can update data points with the [methodname]#update()# method in the
+  [classname]#Point# class.
+
+[[charts.data.htmltable]]
+===== HTML table as a data source
+An HTML table can be used a data source. You need to create a html-table, where
+a table rows specify data series points and cells in the row specify x and y
+coordinates.
+Afterwards you need to assign the table id as an attribute to a data tag.
+
+[source,html]
+----
+<dom-module id="html-table">
+    <template>
+      <vaadin-line-chart id="html-table-data">
+        <data table="datatable">
+        </data>
+        <y-axis allow-decimals="false">
+            <title>Units</title>
+        </y-axis>
+    </vaadin-line-chart>
+
+    <table id="datatable">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Ford Avg price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th>1955</th>
+            <td>2272</td>
+        </tr>
+        <tr>
+            <th>1956</th>
+            <td>2450</td>
+        </tr>
+        </tbody>
+    </table>
+    </template>
+
+    <script>
+          Polymer({});
+    </script>
+</dom-module>
+----
+
+[[charts.data.drilldown]]
+==== Drill-Down
+
+Vaadin Charts allows drilling down from a chart to a more detailed view by
+clicking an item in the top-level view. To enable this feature, you need to
+provide a separate data series for each of the detailed views by adding the
+'drilldown' tag. When the user clicks on a
+drill-down item, the current series is animated into the the linked drill-down
+series.
+
+[source,html]
+----
+<data-series>
+  <name>MSIE</name>
+    <data>
+      <point>
+        <name>MSIE</name>
+        <y>60</y>
+        <drilldown>MSIE Versions</drilldown>
+      </point>
+    </data>
+</data-series>
+  <data-series id="MSIE Versions" drilldown="true">
+    <name>MSIE Versions</name>
+      <data>
+        <point>
+          <name>MSIE 6.0</name>
+            <y>64</y>
+        </point>
+        <point>
+          <name>MSIE 7.0</name>
+            <y>7.35</y>
+        </point>
+        ...
+    </data>
+  </data-series>
+</dom-module>
+----
+
+A customizable back button is provided to navigate back to the main
+series, as shown in
+<<charts-data#figure.charts.data.drilldown.drilldown-details,"Detailed
+series after a drill-down">>.
+
+[[figure.charts.data.drilldown.drilldown-details]]
+.Detailed series after a drill-down
+image::img/charts-drilldown-details.png[, 100%, 100%]
