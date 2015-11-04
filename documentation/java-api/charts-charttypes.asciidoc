@@ -55,8 +55,8 @@ data point properties. The markers can also be configured for each data point.
 [[charts.charttypes.area]]
 == Area Charts
 
-Area charts are like line charts, except that the area between the line and the
-Y axis is painted with a transparent color. In addition to the base type, chart
+Area charts are like line charts, except that they fill the area between the line and some
+threshold value on Y axis. The threshold depends on the chart type. In addition to the base type, chart
 type combinations for spline interpolation and ranges are supported.
 
 [[table.charttypes.area.subtypes]]

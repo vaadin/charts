@@ -1,0 +1,1505 @@
+---
+title: Chart Types
+order: 3
+layout: page
+---
+
+[[charts.charttypes]]
+= Chart Types
+
+Vaadin Charts comes with over a dozen different chart types. The type is specified when the chart element `v-<type>-chart`
+is added to a html page. The '<type>' should be replaced with the wanted type, for example `v-line-chart` would show
+a chart where data is presented by lines.
+
+The supported chart types are listed here:
+
+[options="compact"]
+*   area
+*   arearange
+*   areaspline
+*   areasplinerange
+*   bar
+*   boxplot
+*   bubble
+*   column
+*   columnrange
+*   errorbar
+*   funnel
+*   gauge
+*   heatmap
+*   line
+*   pie
+*   polygon
+*   pyramid
+*   scatter
+*   solidgauge
+*   sparkline
+*   spline
+*   treemap
+*   waterfall
+
+Each chart type has its specific plot options and supports its specific
+collection of chart features. They also have specific requirements for the data
+series. The type specific plot options can be specified under the `plot-options`
+element with a type specific `'type'` element, where the ''type'' should be replaced
+with the wanted type.
+
+Here is an example for a pie chart.
+[source,html]
+----
+<plot-options>
+  <pie>
+    ...
+  </pie>
+</plot-options>
+----
+
+The basic chart types and their variants are covered in the following
+subsections.
+
+[[charts.charttypes.line]]
+== Line and Spline Charts
+
+Line charts connect the series of data points with lines. In the basic 'line'
+charts the lines are straight, while in 'spline' charts the lines are smooth
+polynomial interpolations between the data points.
+
+[source,html]
+----
+<vaadin-line-chart></vaadin-line-chart>
+<vaadin-spline-chart></vaadin-spline-chart>
+----
+
+
+[[charts.charttypes.line.plotoptions]]
+=== Plot Options
+
+The `color` property in the line plot options defines the line color,
+`line-width` the line width, and `dash-style` the dash
+pattern for the lines.
+
+See <<charts.charttypes.scatter>> for plot options regarding markers and other
+data point properties. The markers can also be configured for each data point.
+
+
+
+[[charts.charttypes.area]]
+== Area Charts
+
+Area charts are like line charts, except that they fill the area between the line and some
+threshold value on Y axis. The threshold depends on the chart type.
+In addition to the base type, chart type combinations for spline interpolation and ranges are supported.
+
+[source,html]
+----
+<vaadin-area-chart></vaadin-area-chart>
+<vaadin-arearange-chart></vaadin-arearange-chart>
+<vaadin-areaspline-chart></vaadin-areaspline-chart>
+<vaadin-areasplinerange-chart></vaadin-areasplinerange-chart>
+----
+
+In area range charts, the area between a lower and upper value is painted with a
+transparent color. The data series must specify the minimum and maximum values
+for the Y coordinates.
+
+Here is an example of a data series for area range chart.
+[source,html]
+----
+<data-series>
+    <data>
+        /* [date, min, max] */
+        [1388538000000, 1.1, 4.7],
+        [1388624400000, 1.8, 6.4],
+        ...
+        [1419987600000, 1.6, 4.2]
+    </data>
+</data-series>
+----
+
+[[charts.charttypes.area.plotoptions]]
+=== Plot Options
+
+Area charts support __stacking__, so that multiple series are piled on top of
+each other. The 'normal' stacking mode does a normal summative stacking, while
+the 'percent' handles them as proportions.
+
+[source,html]
+----
+<plot-options>
+  <area-chart>
+    <stacking>normal</stacking>
+  </area-chart>
+</plot-options>
+----
+
+Note! The plot options for area chart are exceptionally specified in an element called
+`area-chart`. By convention, the `area` should be used but that is reserved
+tag name in
+http://www.w3.org/html/wg/drafts/html/master/single-page.html#the-area-element[html specification].
+
+The fill color for the area is defined with the `fill-color` element
+and its transparency with `fill-opacity` (the opposite of
+transparency) with a value between '0.0' and '1.0'.
+
+The `color` property in the line plot options defines the line color,
+`line-width` the line width, and `dash-style` the dash
+pattern for the lines.
+
+See <<charts.charttypes.scatter>> for plot options regarding markers and other
+data point properties. The markers can also be configured for each data point.
+
+[[charts.charttypes.columnbar]]
+== Column and Bar Charts
+
+Column and bar charts illustrate values as vertical or horizontal bars,
+respectively. The two chart types are essentially equivalent, just as if the
+orientation of the axes was inverted.
+
+[source,html]
+----
+<vaadin-column-chart></vaadin-column-chart>
+<vaadin-bar-chart></vaadin-bar-chart>
+<vaadin-columnrange-chart></vaadin-columnrange-chart>
+----
+
+Multiple data series, that is, two-dimensional data, are shown with thinner bars
+or columns grouped by their category, as described in
+<<dummy/../../charts/webcomponents-api/charts-basic-use#charts.basic-use.two-dimensional,"Displaying
+Multiple Series">>. Enabling stacking with `stacking` element in plot
+options stacks the columns or bars of different series on top of each other.
+
+You can also have column range charts that illustrate a range
+between a lower and an upper value, as described in
+<<charts.charttypes.rangecharts>>. They require the use of
+data series where lower and upper values are defined.
+
+See the http://demo.vaadin.com/charts3-api/[API] documentation for details regarding the plot options.
+
+
+[[charts.charttypes.errorbar]]
+== Error Bars
+
+An error bars visualize errors, or high and low values, in statistical data.
+They typically represent high and low values in data or a multitude of standard
+deviation, a percentile, or a quantile. The high and low values are represented
+as horizontal lines, or "whiskers", connected by a vertical stem.
+
+While error bars technically are a chart type
+`vaadin-errorbar-chart`, you normally use them together with some
+primary chart type, such as a scatter or column chart.
+
+[[figure.charts.charttypes.errorbar]]
+.Error Bars in a Scatter Chart
+image::img/charts-errorbar.png[]
+
+To display the error bars for data points, you need to have a separate data
+series for the low and high values. The type of the data series needs to be
+'errorbar'.
+
+[source, html]
+----
+<vaadin-scatter-chart>
+  <legend>
+    <enabled>false</enabled>
+  </legend>
+  <title>Average and Extreme Tempetures in Turku</title>
+  <x-axis>
+    <title>Month</title>
+    <categories>Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec</categories>
+  </x-axis>
+  <y-axis>
+    <title>Temperature °C</title>
+  </y-axis>
+  <plot-options>
+    <errorbar>
+      <stem-color>#808080</stem-color>
+      <stem-width>2</stem-width>
+      <stem-dash-style>Dash</stem-dash-style>
+      <whisker-color>#A52A2A</whisker-color>
+      <whisker-length>80%</whisker-length>
+      <whisker-width>2</whisker-width>
+    </errorbar>
+  </plot-options>
+  <data-series type=errorbar>
+    <data>
+      [-9, -3], [-10, -3], [-8, 1], [-2, 7], [3, 14], [8, 19], [12, 22],
+      [11, 21], [7, 15], [2, 9], [-1, 4], [-5, 0]
+    </data>
+  </data-series>
+  <data-series>
+    <data>
+      -6, -6.5, -4, 3, 9, 14, 17, 16, 11, 6, 2, -2.5
+    </data>
+  </data-series>
+</vaadin-scatter-chart>
+----
+
+Note that you should add the error bar series first, to have it rendered lower
+in the chart.
+
+[[charts.charttypes.errorbar.plotoptions]]
+=== Plot Options
+
+`whisker-color`, `whisker-width`, `whisker-length`:: The color, width (vertical thickness), and length of the horizontal "whiskers"
+that indicate high and low values.
+
+`stem-color`, `stem-width`, `stem-dash-style`:: The color, width (thickness), and line style of the vertical "stems" that
+connect the whiskers. In box plot charts, which also have stems, they extend
+from the quadrintile box.
+
+
+[[charts.charttypes.boxplot]]
+== Box Plot Charts
+
+Box plot charts display the distribution of statistical variables. A data point
+has a median, represented with a horizontal line, upper and lower quartiles,
+represented by a box, and a low and high value, represented with T-shaped
+"whiskers". The exact semantics of the box symbols are up to you.
+
+Box plot chart is closely related to the error bar chart described in
+<<charts.charttypes.errorbar>>, sharing the box and whisker elements.
+
+[[figure.charts.charttypes.boxplot]]
+.Box Plot Chart
+image::img/charts-boxplot.png[]
+
+The chart element for box plot charts is `vaadin-bloxplot-chart`. You
+normally have just one data series, so it is meaningful to disable the legend.
+
+[source,html]
+----
+<vaadin-boxplot-chart>
+  <legend>
+    <enabled>false</enabled>
+  </legend>
+  <title>Orienteering Split Times</title>
+  ...
+</vaadin-boxplot-chart>
+----
+
+[[charts.charttypes.boxplot.plotoptions]]
+=== Plot Options
+
+The plot options for box plot have the same properties as the plot options of error bar but
+it also adds a couple of more for median indicator line:
+
+`median-color`, `median-width`:: Color and width (vertical thickness) of the horizontal median indicator line.
+
+For example:
+
+[source,html]
+----
+<!-- Set median line color and thickness -->
+<plot-options>
+  <boxplot>
+    <median-color>#0000FF</median-color>
+    <median-width>3</median-width>
+  </boxplot>
+</plot-options>
+----
+
+
+[[charts.charttypes.boxplot.datamodel]]
+=== Data Model
+
+The data points in box plots have five different values of one sample: the mininum value ('low'),
+first quartile ('q1'), median ('median'), third quartile ('q3') and maximum ('high').
+
+[source,html]
+----
+<data-series>
+  <data>
+    <!-- Orienteering control point times for runners
+        [low, q1, median, q3, high]   -->
+    [63.0,108.25,154.0,180.5,463.0],
+    [107.0,149.0,281.5,333.25,520.0],
+    [56.0,112.0,151.5,157.75,483.0],
+    [194.0,319.75,371.0,451.0,885.0],
+    [63.0,101.5,155.5,162.25,371.0],
+    [72.0,95.25,136.5,155.75,217.0],
+    [158.0,217.25,304.0,359.75,733.0],
+    [80.0,105.5,120.0,144.25,240.0]
+  </data>
+</data-series>
+----
+
+The data points can be also be defined as objects with the properties 'low', 'q1', 'medium',
+'q2' and 'high'.
+
+[source,html]
+----
+<data-series>
+  <data>
+    <!-- Orienteering control point times for runners -->
+    { low: 63.0, q1: 108.25, median: 154.0, q3: 180.5, high: 463.0 },
+    { low: 107.0, q1: 149.0, median: 281.5, q3: 333.25, high: 520.0 },
+    ...
+    { low: 80.0, q1: 105.5, median: 120.0, q3: 144.25, high: 240.0 }
+  </data>
+</data-series>
+----
+
+If the minimum and maximum attributes represent an even smaller quantile, or a
+larger multiple of standard deviation, you can have outliers. You can plot them
+with a separate data series, with
+
+[[charts.charttypes.scatter]]
+== Scatter Charts
+
+Scatter charts display a set of unconnected data points. The name refers to
+freely given X and Y coordinates. Also Z coordinate can be given if
+<<dummy/../../charts/webcomponents-api/charts-configuration#charts.basic-use.3d.options,"3D is enabled">>.
+
+[[figure.charts.charttypes.scatter]]
+.Scatter Chart
+image::img/charts-scatter.png[]
+
+The chart element of a scatter chart is `vaadin-scatter-chart`.
+
+Here is an example
+of a scatter chart where 300 random points in the unit circle is shown.
+
+[source,html]
+----
+<template id="scatterExample" is="dom-bind">
+  <div style="width:450px;height:400px">
+  <vaadin-scatter-chart>
+    <title>Random Sphere</title>
+    <legend>
+      <enabled>false</enabled>
+    </legend>
+    <y-axis>
+      <title>Y</title>
+      <min>-1</min>
+      <max>1</max>
+    </y-axis>
+    <x-axis>
+      <grid-line-width>1</grid-line-width>
+      <title>X</title>
+      <min>-1</min>
+      <max>1</max>
+    </x-axis>
+    <data-series name="Data" data="[[sphereData]]">
+    </data-series>
+  </vaadin-scatter-chart>
+  </div>
+</template>
+<script>
+  var scatter = document.querySelector('#scatterExample');
+  scatter.addEventListener('dom-change', function() {
+      data = [];
+      for (i=0; i<300; i++) {
+          data.push(createRandomPoint());
+      }
+      scatter.sphereData = data;
+
+      function createRandomPoint() {
+          lng = Math.random() * 2 * Math.PI;
+          lat = Math.random() * Math.PI - Math.PI/2;
+          z = Math.cos(lng) * Math.cos(lat);
+          colorLevel = parseInt(Math.round((1-z)*127));
+
+          return {x: Math.cos(lat) * Math.sin(lng),
+                  y: Math.sin(lat),
+                  marker: {
+                    fillColor: "rgb("+(255-colorLevel)+",0,"+colorLevel+")",
+                    radius: (z+1)*5,
+                    lineWidth: 1,
+                    lineColor: "black",
+                    symbol: Math.random() > 0.9 ? "diamond" : "circle"
+                  }
+          };
+      }
+  });
+</script>
+----
+
+The result was shown in <<figure.charts.charttypes.scatter>>.
+
+[[charts.charttypes.scatter.markers]]
+=== Data Point Markers
+
+Scatter charts and other charts that display data points, such as line and
+spline charts, visualize the points with __markers__. The markers can be
+configured with the [classname]#Marker# property objects available from the plot
+options of the relevant chart types, as well as at the level of each data point.
+
+For example, to set the marker for an individual data point:
+
+[source,javascript]
+----
+{ x: 1,  y: 1, marker: { ... } }
+----
+
+
+[[charts.charttypes.scatter.markerproperties]]
+=== Marker Shape Properties
+
+The colors of the marker can be specified with `lineColor` (border) and `fillColor` (content) elements.
+
+Marker size is determined by the `radius` element, which is given
+in pixels. The actual visual radius includes also the line width.
+
+[source,javascript]
+----
+marker: {
+  fillColor: "rgb("+(255-colorLevel)+",0,"+colorLevel+")",
+  radius: (z+1)*5,
+  lineWidth: 1,
+  lineColor: "black"
+}
+----
+
+[[charts.charttypes.scatter.markersymbols]]
+=== Marker Symbols
+
+Markers are visualized either with a shape or an image symbol. You can choose
+the shape from a number of built-in shapes ('circle', 'square',
+'diamond', 'triangle' or 'triangle_down').
+These shapes are drawn with a line and fill, which you can set as described
+above.
+
+[source,javascript]
+----
+marker: {
+  symbol: Math.random() > 0.9 ? "diamond" : "circle"
+}
+----
+
+You can also use any image accessible by a URL as a marker. Anyway, the line,
+radius, and color properties are not applicable to image symbols.
+
+[source, javascript]
+----
+symbol: "url(img/vaadin-logo.png)"
+----
+
+
+
+[[figure.charts.charttypes.scatter.vaadin]]
+.Scatter with image markers
+image::img/charts-scatter-vaadin.png[]
+
+
+[[charts.charttypes.bubble]]
+== Bubble Charts
+
+Bubble charts are a special type of scatter charts for representing
+three-dimensional data points with different point sizes. We demonstrated the
+same possibility with scatter charts in <<charts.charttypes.scatter>>, but the
+bubble charts make it easier to define the size of a point by its third (Z)
+dimension, instead of the radius property. The bubble size is scaled
+automatically, just like for other dimensions. The default point style is also
+more bubbly.
+
+[[figure.charts.charttypes.bubble]]
+.Bubble Chart
+image::img/charts-bubble.png[]
+
+The chart element of a bubble chart is `vaadin-bubble-chart`. Its has a single
+chart-specific property, `display-negative`, which controls whether
+bubbles with negative values are displayed at all. More typically, you want to
+configure the bubble `marker`. The Z coordinate value is available in the formatter
+JavaScript with `this.point.z` reference.
+
+The bubble radius is scaled linearly between a minimum and maximum radius. If
+you would rather scale by the area of the bubble, you can approximate that by
+taking square root of the Z values.
+
+ifdef::web[]
+In the following example, we overlay a bubble chart over a world map background.
+We customize the bubbles to be more round with spherical color gradient.
+endif::web[]
+
+ifdef::web[]
+
+[source,html]
+----
+<vaadin-bubble-chart>
+  <legend>
+    <enabled>false</enabled>
+  </legend>
+  <title>Champagne Consumption by Country</title>
+  <tooltip formatter= "function () { return this.point.name + ': ' +
+                                      Math.round(100*(this.point.z * this.point.z))/100.0 +
+                                      ' M bottles'; }">
+  </tooltip>
+  <chart>
+    <plot-background-image>
+      img/neocreo_Blue_World_Map_640x.png
+    </plot-background-image>
+  </chart>
+  <x-axis>
+    <title></title>
+    <min>-180</min>
+    <max>180</max>
+    <labels enabled="false"></labels>
+  </x-axis>
+  <y-axis>
+    <title></title>
+    <min>-90</min>
+    <max>90</max>
+    <labels enabled="false"></labels>
+    <tick-amount>0</tick-amount>
+  </y-axis>
+  <plot-options>
+    <bubble>
+      <marker>
+        <fill-color>
+          <radial-gradient cx="0.5" cy="0.3" r="0.7"></radial-gradient>
+          <stops>
+            <position>0</position>
+            <color>rgba(255, 255, 255, 0.5)</color>
+          </stops>
+          <stops>
+            <position>1</position>
+            <color>rgba(170, 70, 67, 0.5)</color>
+          </stops>
+        </fill-color>
+      </marker>
+    </bubble>
+  </plot-options>
+  <data-series>
+    <data>
+      { x: 1.799, y: 55.200, z: 13.476, name: "France"},
+      { x: -1.725, y: 64.800, z: 5.876, name: "United Kingdom"},
+      { x: -90.328, y: 45.600, z: 4.401, name: "United States"},
+      { x: 7.895, y: 61.200, z: 3.768, name: "Germany"},
+      { x: 3.512, y: 60.996, z: 3.092, name: "Belgium"},
+      { x: 129.470, y: 43.200, z: 2.811, name: "Japan"},
+      { x: 128.355, y: -32.400, z: 2.207, name: "Australia"},
+      { x: -78.990, y: 72.000, z: 1.261, name: "Canada"},
+      { x: 83.147, y: 72.000, z: 1.158, name: "Russia"},
+      { x: 98.862, y: 42.000, z: 1.149, name: "China"}
+    </data>
+  </data-series>
+</vaadin-bubble-chart>
+----
+endif::web[]
+
+
+[[charts.charttypes.pie]]
+== Pie Charts
+
+A pie chart illustrates data values as sectors of size proportionate to the sum
+of all values. The pie chart element is `vaadin-pie-chart` and
+type-specific settings can be done under `plot-options` element as
+described later.
+
+A ready pie chart is shown in <<figure.charts.charttypes.pie>>.
+
+[[figure.charts.charttypes.pie]]
+.Pie Chart
+image::img/charts-pie.png[]
+
+[[charts.charttypes.pie.plotoptions]]
+=== Plot Options
+
+The chart-specific options of a pie chart are configured with a
+[classname]#PlotOptionsPie#.
+
+[source,html]
+----
+<plot-options>
+  <pie>
+    <inner-size>0</inner-size> <!-- Non-0 results in a donut -->
+    <size>75%</size> <!-- Default -->
+    <center>50%, 50%</center> <!-- Default -->
+  </pie>
+</plot-options>
+----
+
+`inner-size`:: A pie with inner size greater than zero is a "donut". The inner size can be expressed either as number of pixels or as a relative percentage of the chart area with a string (such as "60%") See the section later on donuts.
+`size`:: The size of the pie can be expressed either as number of pixels or as a relative percentage of the chart area with a string (such as "80%"). The default size is 75%, to leave space for the labels.
+`center`:: The X and Y coordinates of the center of the pie can be expressed either as numbers of pixels or as a relative percentage of the chart sizes with a string. The default is "50%", "50%".
+
+
+
+[[charts.charttypes.pie.data]]
+=== Data Model
+
+The labels for the pie slices are determined from the labels of the data
+points.
+
+[source,html]
+----
+<data-series name="Diameter">
+  <data>
+    ["Mercury", 4900],
+    ["Venus", 12100],
+    ["Earth", 12800],
+    ["Mars", 6800],
+    ["Jupiter", 143000],
+    ["Saturn", 125000],
+    ["Uranus", 51100],
+    ["Neptune", 49500]
+  </data>
+</data-series>
+----
+
+If a data point has the 'sliced' property enabled, it is shown as
+slightly cut away from the pie.
+
+[source,javascript]
+----
+{name: "Earth", y: 12800, sliced: true}
+----
+
+
+[[charts.charttypes.pie.donut]]
+=== Donut Charts
+
+Setting the `inner-size` of the plot options of a pie chart to a
+larger than zero value results in an empty hole at the center of the pie.
+
+[source,html]
+----
+<plot-options>
+  <pie>
+    <inner-size>60%</inner-size>
+  </pie>
+</plot-options>
+----
+
+As you can set the plot options also for each data series, you can put two pie
+charts on top of each other, with a smaller one fitted in the "hole" of the
+donut. This way, you can make pie charts with more details on the outer rim, as
+done in the example below:
+
+[source,html]
+----
+<data-series name="Browsers" size="60%">
+  <data-labels distance="-30" formatter="function() {
+                            return this.y > 5 ? this.point.name : null;
+                          }">
+      <color>rgb(255,255,255)</color>
+  </data-labels>
+  <data>
+      ...
+  </data>
+</data-series>
+
+<data-series name="Versions" inner-size="60%">
+  <data-labels formatter="function() {
+            return this.y > 1 ? ''+ this.point.name +': '+ this.y +'%' : null;
+          }">
+  </data-labels>
+  <data>
+      ...
+  </data>
+<data-series>
+----
+
+The result is illustrated in <<figure.charts.charttypes.pie.donut>>.
+
+[[figure.charts.charttypes.pie.donut]]
+.Overlaid Pie and Donut Chart
+image::img/charts-donut.png[]
+
+
+
+[[charts.charttypes.gauge]]
+== Gauges
+
+A `vaadin-gauge-chart` is an one-dimensional chart with a circular Y-axis, where a rotating
+pointer points to a value on the axis. A gauge can, in fact, have multiple
+Y-axes to display multiple scales.
+
+A `vaadin-solidgauge-chart` is otherwise like a regular gauge, except that a solid color
+arc is used to indicate current value instead of a pointer. The color of the
+indicator arc can be configured to change according to color stops.
+
+Let us first consider `vaadin-gauge-chart` the following gauge.
+After the settings done in the subsequent sections, it will show as in
+<<figure.charts.charttypes.gauge>>.
+
+[[figure.charts.charttypes.gauge]]
+.A Gauge
+image::img/charts-gauge.png[]
+
+[[charts.charttypes.gauge.conf]]
+=== Gauge Configuration
+
+The start and end angles of the gauge can be configured in the `pane` element.
+The angles can be given as -360 to 360 degrees, with 0 at the top of the circle.
+
+[source,html]
+----
+<vaadin-gauge-chart>
+  <title>Speedometer</title>
+  <pane start-angle="-150" end-angle="150">
+  </pane>
+  ...
+</vaadin-gauge-chart>
+----
+
+
+[[charts.charttypes.gauge.axis]]
+=== Axis Configuration
+
+A gauge has only an Y-axis. You need to provide both a minimum and maximum value
+for it.
+
+[source,html]
+----
+<y-axis min="0" max="200"
+        tick-pixel-interval="30" tick-width="2" tick-length="10" tick-color="#666">
+    <title>km/h</title>
+    <labels step="2" rotation="auto"></labels>
+    <plot-bands from="0" to="120" color="#55BF3B"></plot-bands>
+    <plot-bands from="120" to="160" color="#DDDF0D"></plot-bands>
+    <plot-bands from="160" to="200" color="#DF5353"></plot-bands>
+</y-axis>
+----
+
+You can do all kinds of other configuration to the axis - please see the
+http://demo.vaadin.com/charts3-api/[API]
+documentation for all the available parameters.
+
+
+[[charts.charttypes.gauge.data]]
+=== Setting Gauge Data
+
+A gauge only displays a single value per data series, which you can define as follows:
+
+[source,html]
+----
+<data-series name="Speed">
+    <data>
+        80
+    </data>
+</data-series>
+----
+
+[[charts.charttypes.solidgauge]]
+== Solid Gauges
+
+A solid gauge is much like a regular gauge described previously; a
+one-dimensional chart with a circular Y-axis. However, instead of a rotating
+pointer, the value is indicated by a rotating arc with solid color. The color of
+the indicator arc can be configured to change according to the value using color
+stops.
+
+Let us consider the following solid gauge:
+
+[source,html]
+----
+<vaadin-solidgauge-chart id=solidgauge>
+    <title>Speed</title>
+    <legend enabled="false"></legend>
+    <tooltip enabled="false"></tooltip>
+    ...
+</vaadin-solidgauge-chart>
+
+----
+
+After the settings done in the subsequent sections, it will show as in
+<<figure.charts.charttypes.solidgauge>>.
+
+[[figure.charts.charttypes.solidgauge]]
+.A Solid Gauge
+image::img/charts-solidgauge.png[]
+
+While solid gauge is much like a regular gauge, the configuration differs
+
+[[charts.charttypes.solidgauge.conf]]
+=== Configuration
+
+The solid gauge must be configured in the drawing `pane` element of the chart.
+The gauge arc spans an angle, which is specified as -360 to 360
+degrees, with 0 degrees at the top of the arc. Typically, a semi-arc is used,
+where you use -90 and 90 for the angles, and move the center lower than you
+would have with a full circle. You can also adjust the size of the gauge pane;
+enlargening it allows positioning tick labels better.
+
+The shape of the gauge
+display is defined as the background of the pane. You at least need to set the
+shape as either 'arc' or 'solid'. You typically also want to set background
+color and inner and outer radius.
+
+[source,html]
+----
+<pane start-angle="-90" end-angle="90" size="125%" center='["50%", "70%"]'>
+    <background background-color="#EEE" inner-radius="60%"
+                outer-radius="100%" shape="arc">
+    </background>
+</pane>
+----
+
+[[charts.charttypes.solidgauge.axis]]
+=== Axis Configuration
+
+A gauge only has an Y-axis. You must define the value range ( 'min' and
+'max').
+
+You can configure color stops for the indicator arc. The stops are defined with
+`stops` elements having the stop points from 0.0 to 1.0 and color values.
+
+[source,html]
+----
+<y-axis min="0" max="200" line-width="0" minor-tick-width="0" tick-width="0">
+    <stops>0.1, #55BF3B</stops>
+    <stops>0.5, #DDDF0D</stops>
+    <stops>0.9, #DF5353</stops>
+    <labels enabled="false" ></labels>
+</y-axis>
+----
+
+Setting rotatation to 'auto' makes gauge
+labels rotate perpendicular to the center.
+
+[source,html]
+----
+<y-axis min="0" max="200" line-width="0" minor-tick-width="0" tick-width="0">
+    ...
+    <labels enabled="true" rotation="auto">
+    </labels>
+</y-axis>
+----
+
+You can do all kinds of other configuration to the axis - please see the
+http://demo.vaadin.com/charts3-api/[API]
+documentation for all the available parameters.
+
+[[charts.charttypes.solidgauge.plotoptions]]
+=== Plot Options
+
+Solid gauges do not currently have any chart type specific plot options. See
+<<dummy/../../charts/charts-configuration#charts.configuration.plotoptions,"Plot
+Options">> for common options.
+
+[source,html]
+----
+<plot-options>
+    <solidgauge>
+        <data-labels y="5" border-width="0"></data-labels>
+    </solidgauge>
+</plot-options>
+----
+
+
+[[charts.charttypes.solidgauge.data]]
+=== Setting and Updating Gauge Data
+
+A gauge only displays a single value, which you can define as a data series of
+length one, such as as follows:
+
+[source,html]
+----
+<data-series name="Speed">
+    <data>80</data>
+</data-series>
+----
+
+Gauges are especially meaningful for displaying changing values. Here is an example
+how to update the value from JavaScript.
+
+[source,html]
+----
+<vaadin-solidgauge-chart id=solidgauge>
+    ...
+</vaadin-solidgauge-chart>
+
+<button onclick="updateSolidGauge()">Update</button>
+<script>
+  function updateSolidGauge() {
+    var chart = document.querySelector("#solidgauge").chart;
+    var point = chart.series[0].data[0];
+    point.update(Math.round(Math.random()*chart.yAxis[0].max));
+  }
+</script>
+----
+
+
+
+[[charts.charttypes.rangecharts]]
+== Area and Column Range Charts
+
+Ranged charts display an area or column between a minimum and maximum value,
+instead of a singular data point. An
+area range is created with `vaadin-arearange-chart` element, and a column range
+with `vaadin-columnrange-chart`.
+
+Consider the following example:
+
+[source,html]
+----
+<vaadin-arearange-chart>
+    <title>Extreme Temperature Range in Finland</title>
+    <subtitle>http://ilmatieteenlaitos.fi/lampotilaennatyksia</subtitle>
+    <legend enabled="false"></legend>
+    <y-axis>
+        <title>Temperature °C</title>
+        <labels step=2></labels>
+    </y-axis>
+    <x-axis>
+      <title>Month</title>
+      <categories>
+        "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+      </categories>
+    </x-axis>
+    <data-series name="Temperature">
+        <data>
+           <!-- Kittilä, Pokka 28.1.1999 / Maarianhamina 6.1.1973 -->
+           [-51.5,10.9],
+           [-49.0,11.8],
+           [-44.3,17.5],
+           [-36.0,25.5],
+           [-24.6,31.0],
+           [-7.0,33.8],
+           [-5.0,37.2],
+           [-10.8,33.8],
+           [-18.7,28.8],
+           [-31.8,19.4],
+           [-42.0,14.1],
+           [-47.0,10.8]
+        </data>
+    </data-series>
+</vaadin-arearange-chart>
+----
+
+The resulting chart, as well as the same chart with a column range, is shown in
+<<figure.charts.charttypes.rangecharts>>.
+
+[[figure.charts.charttypes.rangecharts]]
+.Area and Column Range Chart
+image::img/charts-arearange.png[]
+
+
+[[charts.charttypes.polar]]
+== Polar, Wind Rose, and Spiderweb Charts
+
+Most chart types having two axes can be displayed in __polar__ coordinates,
+where the X axis is curved on a circle and Y axis from the center of the circle
+to its rim. Polar chart is not a chart type in itself, but can be enabled for
+most chart types with `<polar>true</polar>` in the `chart` options.
+Therefore all chart type specific features are usable with polar
+charts.
+
+[source,html]
+----
+<vaadin-line-chart >
+    <chart>
+      <polar>true</polar>
+    </chart>
+    ...
+</vaadin-line-chart>
+----
+
+Vaadin Charts allows many sorts of typical polar chart types, such as 'wind
+rose', a polar column graph, or 'spiderweb', a polar chart with categorical
+data and a more polygonal visual style.
+
+You need to define the sector of the polar projection with a `pane` element.
+The sector is defined as degrees from the north
+direction.
+
+[source,html]
+----
+<pane start-angle="0" end-angle="360"> <!-- Full Circle -->
+</pane>
+----
+
+The polar and spiderweb charts are illustrated in
+<<figure.charts.charttypes.polar>>.
+
+[[figure.charts.charttypes.polar]]
+.Wind Rose and Spiderweb Charts
+image::img/charts-polarspiderweb.png[]
+
+[[charts.charttypes.polar.spiderweb]]
+=== Spiderweb Charts
+
+A __spiderweb__ chart is a commonly used visual style of a polar chart with a
+polygonal shape rather than a circle. The data and the X axis should be
+categorical to make the polygonal interpolation meaningful. The sector is
+assumed to be full circle, so no angles for the pane need to be specified.
+
+ifdef::web[Note the style settings done in the axis in the example below:]
+
+ifdef::web[]
+
+[source,html]
+----
+<vaadin-line-chart >
+    <title>Extreme Temperature Range in Finland</title>
+    <subtitle>http://ilmatieteenlaitos.fi/lampotilaennatyksia</subtitle>
+    <legend enabled="false"></legend>
+    <credit enabled="false"></credit>
+    <chart>
+      <polar>true</polar>
+    </chart>
+    <y-axis tick-interval=10>
+        <labels>
+          <step>1</step>
+        </labels>
+        <grid-line-interpolation>polygon</grid-line-interpolation>
+    </y-axis>
+    <x-axis>
+      <tickmark-placement>on</tickmark-placement>
+      <line-width>0</line-width>
+      <grid-line-width>0</grid-line-width>
+      <categories>"Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"</categories>
+    </x-axis>
+    <data-series name="Speed">
+        <data>
+            10.9, 11.8, 17.5, 25.5, 31.0, 33.8,
+            37.2, 33.8, 28.8, 19.4, 14.1, 10.8
+        </data>
+    </data-series>
+</vaadin-line-chart>
+----
+endif::web[]
+
+
+
+[[charts.charttypes.funnel]]
+== Funnel and Pyramid Charts
+
+Funnel and pyramid charts are typically used to visualize stages in a sales
+processes, and for other purposes to visualize subsets of diminishing size. A
+funnel or pyramid chart has layers much like a stacked column: in funnel from
+top-to-bottom and in pyramid from bottom-to-top. The top of the funnel has width
+of the drawing area of the chart, and dinimishes in size down to a funnel "neck"
+that continues as a column to the bottom. A pyramid diminishes from bottom to
+top and does not have a neck.
+
+[[figure.charts.charttypes.funnel]]
+.Funnel and Pyramid Charts
+image::img/charts-funnel.png[]
+
+Funnels have chart element `vaadin-funnel-chart`, and pyramids have `vaadin-pyramid-chart`.
+
+The labels of the funnel blocks are by default placed on the right side of the
+blocks, together with a connector. You can configure their style in the plot
+options.
+
+ifdef::web[]
+Here is an example.
+
+[source,html]
+----
+<vaadin-funnel-chart>
+  <title>Monster Funnel</title>
+  <chart spacing-right=120>
+  </chart>
+  <plot-options>
+      <funnel>
+        <neck-height>20%</neck-height>
+        <neck-width>20%</neck-width>
+      </funnel>
+      <series>
+          <data-labels format="<b>{point.name}</b> ({point.y:.0f})" color="black">
+          </data-labels>
+      </series>
+  </plot-options>
+  <legend enabled="false"></legend>
+  <data-series name="Unique users">
+      <data>
+          ['Monsters Met',   340],
+          ['Engaged', 235],
+          ['Killed', 187],
+          ['Tinned', 70],
+          ['Eaten', 50]
+      </data>
+  </data-series>
+----
+
+endif::web[]
+
+ifdef::web[]
+[[charts.charttypes.funnel.plotoptions]]
+=== Plot Options
+
+In addition to common chart options, the funnel and pyramid charts support the following
+shared options: `width`, `height`, `depth`,
+`allow-point-select`, `border-color`,
+`border-width`, `center`, `sliced-offset`, and
+`visible`. See
+<<dummy/../../charts/charts-configuration#charts.configuration.plotoptions,"Plot
+Options">> for detailed descriptions.
+
+They have the following chart type specific properties:
+
+`neck-height` (only funnel):: Height of the neck part of the funnel either as pixels or as percentage of the entire funnel height.
+`neck-width` (only funnel):: Width of the neck part of the funnel either as pixels or as percentage of the top of the funnel.
+`reversed`:: Whether the chart is reversed upside down from the normal direction from diminishing from the top to bottom.
+The default is __false__ for funnel and __true__ for pyramid.
+
+endif::web[]
+
+
+[[charts.charttypes.waterfall]]
+== Waterfall Charts
+
+Waterfall charts are used for visualizing level changes from an initial level to
+a final level through a number of changes in the level. The changes are given as
+delta values, and you can have a number of intermediate totals, which are
+calculated automatically.
+
+[[figure.charts.charttypes.waterfall]]
+.Waterfall Charts
+image::img/charts-waterfall.png[]
+
+Waterfall charts are defined with an element `vaadin-waterfall-chart`.
+
+ifdef::web[For example:]
+
+ifdef::web[]
+
+[source, html]
+----
+<vaadin-waterfall-chart>
+  <title>Changes in Reindeer Population in 2011</title>
+  <legend enabled="false"></legend>
+  <chart align-ticks=true></chart>
+  <x-axis type="category"></x-axis>
+  <y-axis>
+    <title>Population (thousands)</title>
+    <max>330000</max>
+  </y-axis>
+  ...
+</vaadin-waterfall-chart>
+----
+endif::web[]
+
+ifdef::web[]
+The example continues in the following subsections.
+endif::web[]
+
+ifdef::web[]
+[[charts.charttypes.waterfall.plotoptions]]
+=== Plot Options
+
+Waterfall charts have the following chart type specific properties:
+
+`up-color`:: Overwrites the color for the positive values. For negative values, the `color` is used.
+
+
+In the following, we define the colors, as well as the style and placement of
+the labels for the columns:
+
+ifdef::web[]
+
+[source,html]
+----
+<plot-options>
+  <waterfall>
+    <up-color>#0000FF</up-color>
+    <color>#FF0000</color>
+    <point-padding>0</point-padding>
+    <data-labels enabled="true"
+                 formatter="function() { return Math.floor(this.y/1000) + 'k'; }"
+                 y = -20
+                 vertical-align="top"
+                 color="black">
+    </data-labels>
+  </waterfall>
+</plot-options>
+
+----
+endif::web[]
+
+endif::web[]
+
+ifdef::web[]
+[[charts.charttypes.waterfall.datamodel]]
+=== Data Series
+
+The data series for waterfall charts consists of changes (deltas) starting from
+an initial value and one or more cumulative sums. There should be at least a
+final sum, and optionally intermediate sums. No value is needed for the sums as they
+are calculated automatically. For intermediate sums, you should set the
+`isIntermediateSum` property to 'true'.
+
+ifdef::web[]
+
+[source,html]
+----
+<data-series name="reindeer">
+  <data>
+    {x: 0, y: 306503, name: "Start", color: "#000000"},
+    {x: 1, y: -3330, name: "Predators"},
+    {x: 2, y: -103332, name: "Slaughter"},
+    {x: 3, y: 104052, name: "Reproduction"},
+    {x: 4, name: "End", isSum: true, color: "#000000"}
+  </data>
+</data-series>
+----
+endif::web[]
+
+endif::web[]
+
+
+[[charts.charttypes.heatmap]]
+== Heat Maps
+
+A heat map is a two-dimensional grid, where the color of a grid cell indicates a
+value.
+
+[[figure.charts.charttypes.heatmap]]
+.Heat Maps
+image::img/charts-heatmap.png[]
+
+Heat maps are defined with a chart element `vaadin-heatmap-chart`.
+
+ifdef::web[For example:]
+
+ifdef::web[]
+[source,html]
+----
+<vaadin-heatmap-chart>
+  <title>Heat Data</title>
+  <chart align-ticks=true></chart>
+  <plot-options>
+    <heatmap>
+      <border-color>white</border-color>
+      <border-width>2</border-width>
+      <data-labels enabled="true">
+      </data-labels>
+    </heatmap>
+  </plot-options>
+  <color-axis>
+    <min>-51.5</min>
+    <max>37.2</max>
+    <min-color>#00FFFF</min-color>
+    <max-color>#FF0000</max-color>
+  </color-axis>
+  <x-axis>
+    <title>Month</title>
+    <categories>"Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"</categories>
+  </x-axis>
+  <y-axis>
+    <title text=""></title>
+    <categories>"High °C", "Low °C"</categories>
+  </y-axis>
+  <data-series name="heat">
+    <data>
+      [0, 0, 10.9],
+      [0, 1, -51.5],
+      [1, 0, 11.8],
+      ...
+      [11, 1, -47]
+    </data>
+  </data-series>
+</vaadin-heatmap-chart>
+----
+endif::web[]
+
+[[charts.charttypes.treemap]]
+== Tree Maps
+
+A tree map is used to display hierarchical data. It consists of a group of
+rectangles that contains other rectangles, where the size of a rectangle
+indicates the item value.
+
+[[figure.charts.charttypes.treemap]]
+.Tree Maps
+image::img/charts-treemap.png[]
+
+Tree maps are defined with a chart element `vaadin-treemap-chart`.
+
+ifdef::web[For example:]
+
+ifdef::web[]
+
+[source,html]
+----
+<vaadin-treemap-chart id="treemap-with-levels">
+  <title>Fruit consumption</title>
+  <plot-options>
+      <treemap layout-algorithm="stripes" alternate-starting-direction="true">
+          <levels level="1" layout-algorithm="sliceAndDice">
+              <data-labels enabled="true" align="left" vertical-align="top">
+                  <style font-size="15px" font-weight="bold"></style>
+              </data-labels>
+          </levels>
+      </treemap>
+  </plot-options>
+  <data-series>
+      <data>
+          <point>
+              <id>A</id>
+              <name>Apples</name>
+              <color>#EC2500</color>
+          </point>
+          <point>
+              <id>B</id>
+              <name>Bananas</name>
+              <color>#ECE100</color>
+          </point>
+          <point>
+              <id>O</id>
+              <name>Oranges</name>
+              <color>#EC9800</color>
+          </point>
+
+          <point>
+              <name>Anne</name>
+              <parent>A</parent>
+              <value>5</value>
+          </point>
+          <point>
+              <name>Rick</name>
+              <parent>A</parent>
+              <value>3</value>
+          </point>
+          <point>
+              <name>Peter</name>
+              <parent>A</parent>
+              <value>4</value>
+          </point>
+
+          <point>
+              <name>Anne</name>
+              <parent>B</parent>
+              <value>4</value>
+          </point>
+          <point>
+              <name>Rick</name>
+              <parent>B</parent>
+              <value>10</value>
+          </point>
+          <point>
+              <name>Peter</name>
+              <parent>B</parent>
+              <value>1</value>
+          </point>
+
+          <point>
+              <name>Anne</name>
+              <parent>O</parent>
+              <value>1</value>
+          </point>
+          <point>
+              <name>Rick</name>
+              <parent>O</parent>
+              <value>3</value>
+          </point>
+          <point>
+              <name>Peter</name>
+              <parent>O</parent>
+              <value>3</value>
+          </point>
+
+          <point>
+              <name>Susanne</name>
+              <parent>Kiwi</parent>
+              <value>2</value>
+              <color>#9EDE00</color>
+          </point>
+      </data>
+  </data-series>
+</vaadin-treemap-chart>
+----
+endif::web[]
+
+ifdef::web[]
+[[charts.charttypes.treemap.plotoptions]]
+=== Plot Options
+
+Tree map charts have following chart type
+specific properties:
+
+`allow-drill-to-node`:: When enabled the user can click on a point which is a
+parent and zoom in on its children. Defaults to false.
+`alternate-starting-direction`:: Enabling this option will make the treemap
+alternate the drawing direction between vertical and horizontal. The next levels
+starting direction will always be the opposite of the previous. Defaults value
+is [literal]#++false++#.
+`layout-algorithm`:: This option decides which algorithm is used for setting
+position and dimensions of the points. Available algorithms are
+'sliceAndDice', 'stripes', 'squarified' or 'strip'. Default value is
+'sliceAndDice'.
+`layout-starting-direction`:: Defines which direction the layout algorithm will
+start drawing. Possible values are 'horizontal' and 'vertical'.
+Default value is 'vertical'.
+`level-is-constant`:: Used together with the `levels` and
+`allow-drill-to-node` options. When set to [literal]#++false++#
+the first level visible when drilling is considered to be level one. Otherwise
+the level will be the same as the tree structure. Defaults value is
+[literal]#++true++#.
+`levels`:: Set options on specific levels. Takes precedence over series
+options, but not point options.
+
+
+endif::web[]
+
+ifdef::web[]
+[[charts.charttypes.treemap.dataseries]]
+=== Tree Map Data Series
+
+Tree maps require hierarchical data.
+The item hierarchy is defined with the `parent` property in the
+data point. Parent argument is the `id` value of the parent.
+If no matching `id` is found or if
+value is null then the parent will be rendered as a root item.
+
+[source,html]
+----
+<point>
+    <id>A</id>
+    <name>Apples</name>
+    <color>#EC2500</color>
+</point>
+<point>
+    <name>Anne</name>
+    <parent>A</parent>
+    <value>5</value>
+</point>
+----
+
+endif::web[]
+
+
+[[charts.charttypes.polygon]]
+== Polygons
+
+A polygon can be used to draw any freeform filled or stroked shape in the
+Cartesian plane.
+
+Polygons consist of connected data points where the both x and y
+properties should be set.
+
+[[figure.charts.charttypes.polygon]]
+.Polygon combined with Scatter
+image::img/charts-polygon.png[]
+
+Polygons are defined with a chart element  `vaadin-polygon-chart`.
+
+ifdef::web[For example:]
+
+ifdef::web[]
+
+[source,html]
+----
+<vaadin-polygon-chart id="scatter-and-polygon">
+  <title>Height vs Weight</title>
+  <subtitle>Polygon series</subtitle>
+  <x-axis grid-line-width="1" start-on-tick="true"
+          end-on-tick="true" show-last-label="true">
+      <title>Height (cm)</title>
+  </x-axis>
+  <y-axis >
+      <title>Weight (kg)</title>
+  </y-axis>
+  <tooltip header-format="<b>{series.name}</b><br>"
+           point-format="{point.x} cm; {point.y} kg">
+  </tooltip>
+  <data-series name="Target">
+      <data>[153, 42], [149, 46], [149, 55], [152, 60], [159, 70], [170, 77], [180, 70],
+          [180, 60], [173, 52], [166, 45]</data>
+  </data-series>
+  <data-series name="Observations" type="scatter">
+      <data>
+          [161.2, 51.6], [167.5, 59.0], [159.5, 49.2], [157.0, 63.0], [155.8, 53.6],
+          ...
+          [176.5, 71.8], [164.4, 55.5], [160.7, 48.6], [174.0, 66.4], [163.8, 67.3]
+        </data>
+  </data-series>
+</vaadin-polygon-chart>
+----
+endif::web[]
