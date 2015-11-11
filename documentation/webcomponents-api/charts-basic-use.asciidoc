@@ -64,7 +64,7 @@ title and subtitle to the chart.
 ----
 <vaadin-bar-chart>
   <title>Planets</title>
-  <subTitle>The bigger they are the harder they pull</subTitle>
+  <subtitle>The bigger they are the harder they pull</subtitle>
   ...
 </vaadin-bar-chart>
 ----
