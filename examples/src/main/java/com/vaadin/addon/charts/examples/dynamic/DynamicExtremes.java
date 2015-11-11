@@ -22,8 +22,6 @@ public class DynamicExtremes extends AbstractVaadinChartExample {
 
     @Override
     protected Component getChart() {
-        // FIXME no events until CHARTS-155
-
         final Chart chart = new Chart();
         chart.setHeight("450px");
         chart.setWidth("100%");
@@ -96,31 +94,17 @@ public class DynamicExtremes extends AbstractVaadinChartExample {
 
             @Override
             public void valueChange(Property.ValueChangeEvent event) {
-
-                YAxis axis = chart.getConfiguration().getyAxes().get(0);
-                // FIXME missing generated API
-                // used to be
-                // chart.getConfiguration().getyAxes().get(0).setExtremes(-10,
-                // 30);
                 if ((Boolean) event.getProperty().getValue()) {
-                    axis.setMin(10);
-                    axis.setMax(15);
-                    // chart.drawChart();
+                    chart.getConfiguration().getyAxes().getAxis(0)
+                            .setExtremes(10, 15);
                 } else {
-                    axis.setMin(-10);
-                    axis.setMax(30);
-                    // chart.drawChart();
-
-                    // chart.getConfiguration().getyAxes().get(0).setExtremes(-10,
-                    // 30);
+                    chart.getConfiguration().getyAxes().getAxis(0)
+                            .setExtremes(-10, 30);
                 }
-                chart.drawChart();
-                // chart.markAsDirty();
             }
         });
 
         VerticalLayout layout = new VerticalLayout(chart, extremes);
         return layout;
     }
-
 }

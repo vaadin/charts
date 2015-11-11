@@ -51,8 +51,8 @@ import com.vaadin.util.ReflectTools;
 /**
  * Chart is a Vaadin component that is used to visualize data.
  * <p>
- * All configuration and data is given through a {@link Configuration}
- * object. Here is a simple usage example:
+ * All configuration and data is given through a {@link Configuration} object.
+ * Here is a simple usage example:
  * <p>
  * <code><pre>
  * Chart chart = new Chart(ChartType.COLUMN);
@@ -67,8 +67,7 @@ import com.vaadin.util.ReflectTools;
  * <p>
  * Unless otherwise documented, dynamic changes to the chart configuration are
  * not immediately reflected to an already drawn component. To redraw the chart
- * you should call {@link #drawChart()} or
- * {@link #drawChart(Configuration)}.
+ * you should call {@link #drawChart()} or {@link #drawChart(Configuration)}.
  * <p>
  * The implementation relies on the <a
  * href="http://www.highcharts.com/">HighCharts JS</a> library. Developers can
@@ -391,11 +390,10 @@ public class Chart extends AbstractComponent {
      * will automatically be updated to reflect this unless explicitly told not
      * to. The methods listed below can be used as an example.
      * 
-     * @see DataSeries#add(com.vaadin.addon.charts.model.series.DataSeriesItem)
-     * @see DataSeries#addData(com.vaadin.addon.charts.model.series.DataSeriesItem,
-     *      boolean)
-     * @see DataSeries#removeData(com.vaadin.addon.charts.model.series.DataSeriesItem)
-     * @see DataSeries#updateData(com.vaadin.addon.charts.model.series.DataSeriesItem)
+     * @see DataSeries#add(DataSeriesItem)
+     * @see DataSeries#addData(DataSeriesItem, boolean)
+     * @see DataSeries#removeData(DataSeriesItem)
+     * @see DataSeries#updateData(DataSeriesItem)
      * 
      * @param configuration
      */

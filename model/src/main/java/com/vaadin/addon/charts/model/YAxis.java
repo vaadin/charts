@@ -1,7 +1,5 @@
 package com.vaadin.addon.charts.model;
-
-import com.vaadin.addon.charts.model.AbstractConfigurationObject;
-public class YAxis extends AbstractConfigurationObject {
+public class YAxis extends Axis {
 
 	private static final long serialVersionUID = 1L;
 	private Boolean allowDecimals;
@@ -22,10 +20,8 @@ public class YAxis extends AbstractConfigurationObject {
 	private Object lineColor;
 	private Number lineWidth;
 	private Number linkedTo;
-	private Number max;
 	private Object maxColor;
 	private Number maxPadding;
-	private Number min;
 	private Object minColor;
 	private Number minPadding;
 	private Number minRange;
@@ -212,14 +208,6 @@ public class YAxis extends AbstractConfigurationObject {
 		this.linkedTo = linkedTo;
 	}
 
-	public Number getMax() {
-		return max;
-	}
-
-	public void setMax(Number max) {
-		this.max = max;
-	}
-
 	public Object getMaxColor() {
 		return maxColor;
 	}
@@ -234,14 +222,6 @@ public class YAxis extends AbstractConfigurationObject {
 
 	public void setMaxPadding(Number maxPadding) {
 		this.maxPadding = maxPadding;
-	}
-
-	public Number getMin() {
-		return min;
-	}
-
-	public void setMin(Number min) {
-		this.min = min;
 	}
 
 	public Object getMinColor() {

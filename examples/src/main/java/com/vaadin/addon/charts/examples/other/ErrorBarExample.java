@@ -57,7 +57,7 @@ public class ErrorBarExample extends AbstractVaadinChartExample {
         // primaryAxis.getLabels().setFormatter("this.value + '°C'");
 
         YAxis secondaryAxis = new YAxis();
-        conf.getyAxes().add(secondaryAxis);
+        conf.addyAxis(secondaryAxis);
         title = new Title("Rainfall");
         secondaryAxis.setTitle(title);
         style = new Style();

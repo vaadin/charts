@@ -1,6 +1,4 @@
 package com.vaadin.addon.charts.model;
-
-import com.vaadin.addon.charts.model.AbstractPlotOptions;
 public class PlotOptionsSeries extends AbstractPlotOptions {
 
 	private static final long serialVersionUID = 1L;

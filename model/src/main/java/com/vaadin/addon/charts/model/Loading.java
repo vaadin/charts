@@ -1,6 +1,5 @@
 package com.vaadin.addon.charts.model;
 
-import com.vaadin.addon.charts.model.AbstractConfigurationObject;
 import com.vaadin.addon.charts.model.style.Style;
 public class Loading extends AbstractConfigurationObject {
 

@@ -185,7 +185,6 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
 
     @Override
     protected Component getChart() {
-        // FIXME no events until CHARTS-155
         VerticalLayout lo = new VerticalLayout();
         lo.setWidth("100%");
         lo.setHeight("600px");

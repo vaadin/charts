@@ -25,24 +25,27 @@ import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.vaadin.addon.charts.events.AxisRescaledEvent;
 import com.vaadin.addon.charts.events.ConfigurationChangeListener;
 import com.vaadin.addon.charts.events.DataAddedEvent;
 import com.vaadin.addon.charts.events.DataRemovedEvent;
 import com.vaadin.addon.charts.events.DataUpdatedEvent;
 import com.vaadin.addon.charts.events.ItemSlicedEvent;
 import com.vaadin.addon.charts.events.SeriesStateEvent;
+import com.vaadin.addon.charts.shared.ChartClientRpc;
 
 /**
  * Chart's configuration root object containing all the child objects that are
  * used to configure chart, axes, legend, titles etc.
  */
-public class Configuration extends AbstractConfigurationObject {
+public class Configuration extends AbstractConfigurationObject implements
+        ChartConfiguration {
 
     private Chart chart;
     private Title title;
     private Subtitle subtitle;
-    private List<XAxis> xAxis;
-    private List<YAxis> yAxis;
+    private AxisList<XAxis> xAxis;
+    private AxisList<YAxis> yAxis;
     // private ZAxis zAxis;
     // private AxisList colorAxis;
     private Tooltip tooltip;
@@ -236,16 +239,16 @@ public class Configuration extends AbstractConfigurationObject {
     public XAxis getxAxis() {
 
         if (xAxis == null) {
-            xAxis = new ArrayList<XAxis>();
+            xAxis = new AxisList<XAxis>();
         }
 
-        if (xAxis.size() == 0) {
+        if (xAxis.getNumberOfAxes() == 0) {
             XAxis x = new XAxis();
-            // x.setConfiguration(this);
-            xAxis.add(x);
+            x.setConfiguration(this);
+            xAxis.addAxis(x);
         }
 
-        return xAxis.get(0);
+        return xAxis.getAxis(0);
     }
 
     /**
@@ -255,7 +258,7 @@ public class Configuration extends AbstractConfigurationObject {
         if (xAxis == null) {
             return 0;
         } else {
-            return xAxis.size();
+            return xAxis.getNumberOfAxes();
         }
     }
 
@@ -264,7 +267,7 @@ public class Configuration extends AbstractConfigurationObject {
      */
     public XAxis getxAxis(int index) {
         if (index >= 0 && xAxis != null && getNumberOfxAxes() > index) {
-            return xAxis.get(index);
+            return xAxis.getAxis(index);
         } else {
             return null;
         }
@@ -286,9 +289,12 @@ public class Configuration extends AbstractConfigurationObject {
      */
     public void addxAxis(XAxis axis) {
         if (xAxis == null) {
-            xAxis = new ArrayList<XAxis>();
+            xAxis = new AxisList<XAxis>();
         }
-        xAxis.add(axis);
+        if (axis.getConfiguration() == null) {
+            axis.setConfiguration(this);
+        }
+        xAxis.addAxis(axis);
     }
 
     /**
@@ -302,16 +308,16 @@ public class Configuration extends AbstractConfigurationObject {
      */
     public YAxis getyAxis() {
         if (yAxis == null) {
-            yAxis = new ArrayList<YAxis>();
+            yAxis = new AxisList<YAxis>();
         }
 
-        if (yAxis.size() == 0) {
+        if (yAxis.getNumberOfAxes() == 0) {
             YAxis y = new YAxis();
-            // y.setConfiguration(this);
-            yAxis.add(y);
+            y.setConfiguration(this);
+            yAxis.addAxis(y);
         }
 
-        return yAxis.get(0);
+        return yAxis.getAxis(0);
     }
 
     /**
@@ -321,7 +327,7 @@ public class Configuration extends AbstractConfigurationObject {
         if (yAxis == null) {
             return 0;
         } else {
-            return yAxis.size();
+            return yAxis.getNumberOfAxes();
         }
     }
 
@@ -330,7 +336,7 @@ public class Configuration extends AbstractConfigurationObject {
      */
     public YAxis getyAxis(int index) {
         if (index >= 0 && yAxis != null && getNumberOfyAxes() > index) {
-            return yAxis.get(index);
+            return yAxis.getAxis(index);
         } else {
             return null;
         }
@@ -353,15 +359,18 @@ public class Configuration extends AbstractConfigurationObject {
      */
     public void addyAxis(YAxis axis) {
         if (yAxis == null) {
-            yAxis = new ArrayList<YAxis>();
+            yAxis = new AxisList<YAxis>();
         }
-        yAxis.add(axis);
+        if (axis.getConfiguration() == null) {
+            axis.setConfiguration(this);
+        }
+        yAxis.addAxis(axis);
     }
 
     /**
      * @return A list of all defined Y-axes, null if none are found.
      */
-    public List<YAxis> getyAxes() {
+    public AxisList getyAxes() {
         if (yAxis != null) {
             return yAxis;
         } else {
@@ -690,77 +699,76 @@ public class Configuration extends AbstractConfigurationObject {
         }
     }
 
-    // TODO common interface for axes
-    // /**
-    // * Gets the axis dimension.
-    // *
-    // * @param axis
-    // * Axis to check.
-    // * @return Dimension, as defined in ChartClientRpc.
-    // */
-    //
-    // private short getAxisDimension(Axis axis) {
-    // if (xAxis.getAxes().contains(axis)) {
-    // return ChartClientRpc.X_AXIS;
-    // } else if (yAxis.getAxes().contains(axis)) {
-    // return ChartClientRpc.Y_AXIS;
-    // } else if (colorAxis.getAxes().contains(axis)) {
-    // return ChartClientRpc.COLOR_AXIS;
-    // } else {
-    // return -1;
-    // }
-    // }
-    //
-    // /**
-    // * Returns axis index in the dimension.
-    // *
-    // * @param dimension
-    // * Dimension of the axis.
-    // * @param axis
-    // * Axis to get index for.
-    // * @return Index of the axis at given dimension.
-    // */
-    // private int getAxisIndex(short dimension, Axis axis) {
-    // switch (dimension) {
-    // case ChartClientRpc.X_AXIS:
-    // return xAxis.getAxes().indexOf(axis);
-    // case ChartClientRpc.Y_AXIS:
-    // return yAxis.getAxes().indexOf(axis);
-    // case ChartClientRpc.COLOR_AXIS:
-    // return colorAxis.getAxes().indexOf(axis);
-    // default:
-    // return -1;
-    // }
-    // }
-    //
-    // /**
-    // * Fires axis rescaled event.
-    // *
-    // * @param axis
-    // * Axis that is the source of the event.
-    // * @param minimum
-    // * New minimum.
-    // * @param maximum
-    // * New maximum.
-    // * @param redraw
-    // * Whether or not to redraw.
-    // * @param animate
-    // * Whether or not to animate.
-    // */
-    // void fireAxesRescaled(Axis axis, Number minimum, Number maximum,
-    // boolean redraw, boolean animate) {
-    //
-    // // determine the dimension of the axis, either x or y
-    // short axisType = getAxisDimension(axis);
-    //
-    // int axisIndex = getAxisIndex(axisType, axis);
-    //
-    // AxisRescaledEvent event = new AxisRescaledEvent(axisType, axisIndex,
-    // minimum, maximum, redraw, animate);
-    // for (ConfigurationChangeListener listener : changeListeners) {
-    // listener.axisRescaled(event);
-    // }
-    // }
+    /**
+     * Gets the axis dimension.
+     * 
+     * @param axis
+     *            Axis to check.
+     * @return Dimension, as defined in ChartClientRpc.
+     */
+    private short getAxisDimension(Axis axis) {
+        if (xAxis.contains(axis)) {
+            return ChartClientRpc.X_AXIS;
+        } else if (yAxis.contains(axis)) {
+            return ChartClientRpc.Y_AXIS;
+            // } else if (colorAxis.getAxes().contains(axis)) {
+            // return ChartClientRpc.COLOR_AXIS;
+        } else {
+            return -1;
+        }
+    }
+
+    /**
+     * Returns axis index in the dimension.
+     * 
+     * @param dimension
+     *            Dimension of the axis.
+     * @param axis
+     *            Axis to get index for.
+     * @return Index of the axis at given dimension.
+     */
+    private int getAxisIndex(short dimension, Axis axis) {
+        switch (dimension) {
+        case ChartClientRpc.X_AXIS:
+            return xAxis.indexOf(axis);
+        case ChartClientRpc.Y_AXIS:
+            return yAxis.indexOf(axis);
+            // case ChartClientRpc.COLOR_AXIS:
+            // return colorAxis.getAxes().indexOf(axis);
+        default:
+            return -1;
+        }
+    }
+
+    /**
+     * Fires axis rescaled event.
+     * 
+     * @param axis
+     *            Axis that is the source of the event.
+     * @param minimum
+     *            New minimum.
+     * @param maximum
+     *            New maximum.
+     * @param redraw
+     *            Whether or not to redraw.
+     * @param animate
+     *            Whether or not to animate.
+     */
+    @Override
+    public void fireAxesRescaled(Axis axis, Number minimum, Number maximum,
+            boolean redraw, boolean animate) {
+
+        // determine the dimension of the axis, either x or y
+        short axisType = getAxisDimension(axis);
+
+        int axisIndex = getAxisIndex(axisType, axis);
+
+        AxisRescaledEvent event = new AxisRescaledEvent(axisType, axisIndex,
+                minimum, maximum, redraw, animate);
+        for (ConfigurationChangeListener listener : changeListeners) {
+            listener.axisRescaled(event);
+        }
+    }
 
     /**
      * Fires point sliced event

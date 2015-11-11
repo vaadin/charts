@@ -9,12 +9,14 @@ import java.util.List;
 import org.junit.Test;
 
 import com.vaadin.addon.charts.model.AbstractConfigurationObject;
+import com.vaadin.addon.charts.model.AxisList;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.Drilldown;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.Title;
+import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
 
 /**
@@ -63,30 +65,30 @@ public class ConfigurationObjectJSONSerializationTest {
         assertEquals("{\"object\":\"#0000FF\"}", toJSON(object));
     }
 
-    // @Test
-    // public void toString_AxisListWithOneItem_SerializedAsSingleAxis() {
-    // AxisList axisList = new AxisList();
-    // axisList.addAxis(new XAxis());
-    // ObjectContainer object = new ObjectContainer(axisList);
-    // String axisJson = "{\"axisIndex\":0}";
-    //
-    // assertEquals("{\"object\":" + axisJson + "}", object.toString());
-    // }
+    @Test
+    public void toString_AxisListWithOneItem_SerializedAsSingleAxis() {
+        AxisList axisList = new AxisList();
+        axisList.addAxis(new XAxis());
+        ObjectContainer object = new ObjectContainer(axisList);
+        String axisJson = "{\"axisIndex\":0}";
 
-    // @Test
-    // public void toString_AxisListWithTwoItems_SerializedAsAxisArray() {
-    // AxisList axisList = new AxisList();
-    // axisList.addAxis(new XAxis());
-    // axisList.addAxis(new XAxis());
-    // ObjectContainer object = new ObjectContainer(axisList);
-    // String axisJson1 = "{\"axisIndex\":0}";
-    // String axisJson2 = "{\"axisIndex\":1}";
-    //
-    // String expected = String.format("{\"object\":[%s,%s]}", axisJson1,
-    // axisJson2);
-    //
-    // assertEquals(expected, object.toString());
-    // }
+        assertEquals("{\"object\":" + axisJson + "}", toJSON(object));
+    }
+
+    @Test
+    public void toString_AxisListWithTwoItems_SerializedAsAxisArray() {
+        AxisList axisList = new AxisList();
+        axisList.addAxis(new XAxis());
+        axisList.addAxis(new XAxis());
+        ObjectContainer object = new ObjectContainer(axisList);
+        String axisJson1 = "{\"axisIndex\":0}";
+        String axisJson2 = "{\"axisIndex\":1}";
+
+        String expected = String.format("{\"object\":[%s,%s]}", axisJson1,
+                axisJson2);
+
+        assertEquals(expected, toJSON(object));
+    }
 
     // @Test
     // public void toString_PaneListWithOneItem_SerializedAsSinglePane() {

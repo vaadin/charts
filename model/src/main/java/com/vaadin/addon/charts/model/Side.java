@@ -1,6 +1,4 @@
 package com.vaadin.addon.charts.model;
-
-import com.vaadin.addon.charts.model.AbstractConfigurationObject;
 public class Side extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;

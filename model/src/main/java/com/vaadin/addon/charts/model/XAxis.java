@@ -1,7 +1,5 @@
 package com.vaadin.addon.charts.model;
-
-import com.vaadin.addon.charts.model.AbstractConfigurationObject;
-public class XAxis extends AbstractConfigurationObject {
+public class XAxis extends Axis {
 
 	private static final long serialVersionUID = 1L;
 	private Boolean allowDecimals;
@@ -21,9 +19,7 @@ public class XAxis extends AbstractConfigurationObject {
 	private Object lineColor;
 	private Number lineWidth;
 	private Number linkedTo;
-	private Number max;
 	private Number maxPadding;
-	private Number min;
 	private Number minPadding;
 	private Number minRange;
 	private Number minTickInterval;
@@ -198,28 +194,12 @@ public class XAxis extends AbstractConfigurationObject {
 		this.linkedTo = linkedTo;
 	}
 
-	public Number getMax() {
-		return max;
-	}
-
-	public void setMax(Number max) {
-		this.max = max;
-	}
-
 	public Number getMaxPadding() {
 		return maxPadding;
 	}
 
 	public void setMaxPadding(Number maxPadding) {
 		this.maxPadding = maxPadding;
-	}
-
-	public Number getMin() {
-		return min;
-	}
-
-	public void setMin(Number min) {
-		this.min = min;
 	}
 
 	public Number getMinPadding() {

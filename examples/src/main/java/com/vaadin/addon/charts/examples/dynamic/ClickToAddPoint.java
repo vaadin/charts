@@ -43,7 +43,6 @@ public class ClickToAddPoint extends AbstractVaadinChartExample {
 
     @Override
     protected Component getChart() {
-        // FIXME no events until CHARTS-155
         lastAction.setId("lastAction");
         eventDetails.setId("eventDetails");
         chart = new Chart();

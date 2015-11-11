@@ -19,7 +19,6 @@ public class Events extends AbstractVaadinChartExample {
 
     @Override
     protected Component getChart() {
-        // FIXME no events until CHARTS-155
         final Chart chart = new Chart();
         chart.setHeight("450px");
         chart.setWidth("100%");

@@ -27,6 +27,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.vaadin.addon.charts.ChartOptions;
 import com.vaadin.addon.charts.model.AbstractConfigurationObject;
+import com.vaadin.addon.charts.model.serializers.AxisListSerializer;
 import com.vaadin.addon.charts.model.serializers.ChartEnumSerializer;
 import com.vaadin.addon.charts.model.serializers.ChartOptionsBeanSerializerModifier;
 import com.vaadin.addon.charts.model.serializers.DateSerializer;
@@ -64,6 +65,7 @@ public class ChartSerialization implements Serializable {
 
                 .registerModule(ChartEnumSerializer.getModule())
                 .registerModule(SolidColorSerializer.getModule())
+                .registerModule(AxisListSerializer.getModule())
                 .registerModule(DateSerializer.getModule());
 
         // serializer modifier used when basic serializer isn't enough

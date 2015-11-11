@@ -76,10 +76,10 @@ public class ConfigurationJSONSerializationTest {
     public void configurationJSONSerialization_configurationSerializedWithYAxis_yAxisConfigurationNotSerialized() {
         Configuration conf = new Configuration();
         YAxis axis = new YAxis();
-        // axis.setConfiguration(conf);
+        axis.setConfiguration(conf);
         conf.addyAxis(axis);
         assertEquals(
-                "{\"yAxis\":[{}],\"plotOptions\":{},\"series\":[],\"exporting\":{\"enabled\":false}}",
+                "{\"yAxis\":{\"axisIndex\":0},\"plotOptions\":{},\"series\":[],\"exporting\":{\"enabled\":false}}",
                 toJSON(conf));
     }
 }

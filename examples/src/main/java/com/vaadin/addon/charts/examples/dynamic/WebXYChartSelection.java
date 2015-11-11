@@ -30,8 +30,6 @@ public class WebXYChartSelection extends AbstractVaadinChartExample {
     }
 
     private Chart createScatterChart() {
-        // FIXME no events until CHARTS-155
-
         final Chart scatterChart = new Chart(ChartType.SCATTER);
         scatterChart.setId("chart");
         scatterChart.getConfiguration().getChart()
