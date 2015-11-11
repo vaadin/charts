@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+  <link rel="import" href="bower_components/vaadin-charts/charts-component.html">
+</head>
+<body>
+
+  <vaadin-line-chart >
+    <title>X labels</title>
+    <subTitle>Reindeer Kills by Predators by Counties</subTitle>
+    <x-axis>
+      <categories>Muddusjärvi, Ivalo, Oraniemi, Salla, Alakitka</categories>
+      <labels>
+        <align>center</align>
+        <style color="green"></style>
+        <rotation>-45</rotation>
+        <step>2</step>
+      </labels>
+    </x-axis>
+    <y-axis>
+      <title>Kills</title>
+    </y-axis>
+    <data-series name="Bear">
+      <data>8, 30, 37, 13, 3</data>
+    </data-series>
+    <data-series name="Wolf">
+      <data>0, 1, 0, 23, 10</data>
+    </data-series>
+    <data-series name="Wolverine">
+      <data>7, 30, 22, 4, 9</data>
+    </data-series>
+    <data-series name="Lynx">
+      <data>0, 2, 2, 1, 0</data>
+    </data-series>
+  </vaadin-line-chart>
+
+
+  <template id="fade" is="dom-bind">
+    <div style="width:450px;height:400px">
+      <vaadin-scatter-chart id="fadeChart">
+        <title>Distance fade</title>
+        <legend>
+          <enabled>false</enabled>
+        </legend>
+        <chart margin="100">
+          <options3d enabled="true"
+                     alpha=10
+                     beta=30
+                     depth=300
+                     view-distance=100>
+            <frame3d>
+              <back size="1" color="#F5F5DC"></back>
+            </frame3d>
+          </options3d>
+        </chart>
+        <y-axis>
+          <title>Y</title>
+          <min>-1</min>
+          <max>1</max>
+        </y-axis>
+        <x-axis>
+          <grid-line-width>1</grid-line-width>
+          <title>X</title>
+          <min>-1</min>
+          <max>1</max>
+        </x-axis>
+        <z-axis>
+          <grid-line-width>1</grid-line-width>
+          <title>Z</title>
+          <show-first-label>false</show-first-label>
+          <step>1</step>
+        </z-axis>
+        <data-series name="Data" data="[[distanceFadeData]]">
+          <color-by-point>true</color-by-point>
+        </data-series>
+      </vaadin-scatter-chart>
+    </div>
+  </template>
+
+  <div style="width:450px;height:400px">
+  <vaadin-scatter-chart>
+    <title>Scatter - In 3D!</title>
+    <legend>
+      <enabled>false</enabled>
+    </legend>
+    <chart margin="100">
+      <options3d enabled="true"
+                 alpha=10
+                 beta=30
+                 depth=300
+                 view-distance="100">
+        <frame3d>
+          <back size="1" color="#F5F5DC"></back>
+        </frame3d>
+      </options3d>
+    </chart>
+    <y-axis>
+      <title>Y</title>
+      <min>-1</min>
+      <max>1</max>
+    </y-axis>
+    <x-axis>
+      <grid-line-width>1</grid-line-width>
+      <title>X</title>
+      <min>-1</min>
+      <max>1</max>
+    </x-axis>
+    <z-axis>
+      <grid-line-width>1</grid-line-width>
+      <title>Z</title>
+      <show-first-label>false</show-first-label>
+      <step>1</step>
+    </z-axis>
+    <data-series name="Data">
+      <color-by-point>true</color-by-point>
+      <data>
+        {x: 0.0, y: 0.0, z:0.0},
+        {x:1.0, y:0.0, z:0.0},
+        {x:0.0, y:1.0, z:0.0},
+        {x:0.0, y:0.0, z:1.0},
+        {x:-1.0, y:0.0, z:0.0},
+        {x:0.0, y:-1.0, z:0.0},
+        {x:0.0, y:0.0, z:-1.0}
+      </data>
+    </data-series>
+  </vaadin-scatter-chart>
+  </div>
+
+  <!-- The data
+  Source: V. Maijala, H. Norberg, J. Kumpula, M. Nieminen
+  Calf production and mortality in the Finnish
+  reindeer herding area. 2002. -->
+  <vaadin-pie-chart>
+    <title>Planets - In 3D!</title>
+    <subTitle>The bigger they are the harder they pull</subTitle>
+    <legend>
+      <enabled>false</enabled>
+    </legend>
+    <chart>
+      <options3d>
+        <enabled>true</enabled>
+        <alpha>60</alpha>
+        <!-- <beta>30</beta> -->
+        <depth>135</depth> <!-- Default is 100 -->
+        <viewDistance>100</viewDistance> <!-- Default -->
+      </options3d>
+    </chart>
+    <plot-options>
+      <pie>
+        <depth>45</depth>
+        <data-labels enabled=true formatter="function () {
+          var categories = this.series.chart.xAxis[0].categories;
+          return categories[this.point.x];
+        }">
+        </data-labels>
+      </pie>
+    </plot-options>
+    <x-axis>
+      <title>Planet</title>
+      <categories>Mercury, Venus, Earth, Mars,
+                  Jupiter, Saturn, Uranus, Neptune</categories>
+    </x-axis>
+    <data-series name="Diameter">
+      <data>
+        4900, 12100, 12800, 6800,
+        143000, 125000, 51100, 49500
+      </data>
+    </data-series>
+  </vaadin-pie-chart>
+
+
+  <vaadin-pie-chart>
+    <title>Combination</title>
+    <subTitle>Reindeer Kills by Predators by Counties</subTitle>
+    <x-axis>
+      <categories>Muddusjärvi, Ivalo, Oraniemi, Salla, Alakitka</categories>
+    </x-axis>
+    <y-axis>
+      <title>Kills</title>
+    </y-axis>
+    <data-series name="Bear">
+      <type>column</type>
+      <color>blue</color>
+      <data>8, 30, 37, 13, 3</data>
+    </data-series>
+    <data-series name="Wolf">
+      <type>line</type>
+      <color>red</color>
+      <data>0, 1, 0, 23, 10</data>
+    </data-series>
+  </vaadin-pie-chart>
+
+  <vaadin-line-chart >
+    <title>Line</title>
+    <subTitle>Reindeer Kills by Predators by Counties</subTitle>
+    <x-axis>
+      <categories>Muddusjärvi, Ivalo, Oraniemi, Salla, Alakitka</categories>
+    </x-axis>
+    <y-axis>
+      <title>Kills</title>
+    </y-axis>
+    <data-series name="Bear">
+      <data>8, 30, 37, 13, 3</data>
+    </data-series>
+    <data-series name="Wolf">
+      <data>0, 1, 0, 23, 10</data>
+    </data-series>
+    <data-series name="Wolverine">
+      <data>7, 30, 22, 4, 9</data>
+    </data-series>
+    <data-series name="Lynx">
+      <data>0, 2, 2, 1, 0</data>
+    </data-series>
+  </vaadin-line-chart>
+
+  <vaadin-column-chart >
+    <title>Column</title>
+    <subTitle>Reindeer Kills by Predators by Counties</subTitle>
+    <x-axis>
+      <categories>Muddusjärvi, Ivalo, Oraniemi, Salla, Alakitka</categories>
+    </x-axis>
+    <y-axis>
+      <title>Kills</title>
+    </y-axis>
+    <data-series name="Bear">
+      <data>8, 30, 37, 13, 3</data>
+    </data-series>
+    <data-series name="Wolf">
+      <data>0, 1, 0, 23, 10</data>
+    </data-series>
+    <data-series name="Wolverine">
+      <data>7, 30, 22, 4, 9</data>
+    </data-series>
+    <data-series name="Lynx">
+      <data>0, 2, 2, 1, 0</data>
+    </data-series>
+  </vaadin-column-chart>
+
+  <vaadin-column-chart >
+    <title>Stacked column</title>
+    <subTitle>Reindeer Kills by Predators by Counties</subTitle>
+    <plot-options>
+      <column>
+        <stacking>normal</stacking>
+      </column>
+    </plot-options>
+    <x-axis>
+      <categories>Muddusjärvi, Ivalo, Oraniemi, Salla, Alakitka</categories>
+    </x-axis>
+    <y-axis>
+      <title>Kills</title>
+    </y-axis>
+    <data-series name="Bear">
+      <data>8, 30, 37, 13, 3</data>
+    </data-series>
+    <data-series name="Wolf">
+      <data>0, 1, 0, 23, 10</data>
+    </data-series>
+    <data-series name="Wolverine">
+      <data>7, 30, 22, 4, 9</data>
+    </data-series>
+    <data-series name="Lynx">
+      <data>0, 2, 2, 1, 0</data>
+    </data-series>
+  </vaadin-column-chart>
+
+  <vaadin-bar-chart >
+    <title>Bar</title>
+    <subTitle>Reindeer Kills by Predators by Counties</subTitle>
+    <x-axis>
+      <categories>Muddusjärvi, Ivalo, Oraniemi, Salla, Alakitka</categories>
+    </x-axis>
+    <y-axis>
+      <title>Kills</title>
+    </y-axis>
+    <data-series name="Bear">
+      <data>8, 30, 37, 13, 3</data>
+    </data-series>
+    <data-series name="Wolf">
+      <data>0, 1, 0, 23, 10</data>
+    </data-series>
+    <data-series name="Wolverine">
+      <data>7, 30, 22, 4, 9</data>
+    </data-series>
+    <data-series name="Lynx">
+      <data>0, 2, 2, 1, 0</data>
+    </data-series>
+  </vaadin-bar-chart>
+</body>
+<script>
+  var fade = document.querySelector('#fade');
+  fade.addEventListener('dom-change', function() {
+        var viewX = 0; var viewY = 0; var viewZ = 0;
+        calculateViewPoint();
+
+        fade.distanceFadeData =  [createPoint(0.0, 0.0, 0.0),
+                                  createPoint(1.0, 0.0, 0.0),
+                                  createPoint(0.0, 1.0, 0.0),
+                                  createPoint(0.0, 0.0, 1.0),
+                                  createPoint(-1.0, 0.0, 0.0),
+                                  createPoint(0.0, -1.0, 0.0),
+                                  createPoint(0.0, 0.0, -1.0)];
+
+        function calculateViewPoint() {
+          var viewDist = 2;
+          var fadeChart = document.querySelector('#fadeChart');
+          var alpha = fadeChart.chart.options.chart.options3d.alpha;
+          var beta = fadeChart.chart.options.chart.options3d.beta;
+          var theta = alpha * Math.PI / 180;
+          var phi = beta * Math.PI / 180;
+          viewX = viewDist * Math.sin(theta) * Math.cos(phi);
+          viewY = viewDist * Math.sin(theta) * Math.sin(phi);
+          viewZ = - viewDist * Math.cos(theta);
+        }
+
+        function createPoint(x, y, z) {
+            var distance = calculateDistance(x,y,z);
+            var grayness = parseInt(distance*75);
+            return {x: x, y: y, z: z, radius: 1+ 10/distance, color: createColor(grayness)};
+        }
+
+        function createColor(color) {
+            return "rgb("+color+","+color+","+color+")";
+        }
+
+        function calculateDistance(x, y, z) {
+            console.log(viewX);
+            return Math.sqrt(Math.pow(viewX - x, 2) +
+                           Math.pow(viewY - y, 2) +
+                           Math.pow(viewZ - z, 2));
+        }
+  });
+</script>
+</html>

@@ -10,5 +10,7 @@ chart-plugin-demo/src/main/webapp/VAADIN/
 chart-export-demo/src/main/webapp/VAADIN/
 chart-export-demo/target/
 
+documentation/examples/**/bower_components
+
 # Mac
 *.DS_Store

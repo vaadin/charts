@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+  <link rel="import" href="bower_components/vaadin-charts/vaadin-line-chart.html">
+</head>
+<body>
+  <div style="width:400px;height:300px">
+    <vaadin-line-chart >
+      <title>Planets</title>
+      <subTitle>The bigger they are the harder they pull</subTitle>
+      <legend>
+        <enabled>false</enabled>
+      </legend>
+      <plot-options>
+        <line>
+          <marker enabled="false"></marker>
+        </line>
+      </plot-options>
+      <x-axis>
+        <title>Planet</title>
+        <categories>Mercury, Venus, Earth, Mars,
+                    Jupiter, Saturn, Uranus, Neptune</categories>
+      </x-axis>
+      <y-axis>
+        <title>Diameter</title>
+        <labels formatter = "function () { return this.value / 1000 + 'Mm';}">
+          <step>2</step>
+        </labels>
+      </y-axis>
+      <data-series name="Diameter">
+        <data>
+          4900, 12100, 12800, 6800,
+          143000, 125000, 51100, 49500
+        </data>
+      </data-series>
+    </vaadin-line-chart>
+  </div>
+</body>
+</html>
