@@ -5,7 +5,7 @@ layout: page
 ---
 
 [[charts.data]]
-=== Chart Data
+= Chart Data
 
 Chart data is stored in data series model, which contains visual representation
 information about the data points in addition to their values. Data can be attached
@@ -58,7 +58,7 @@ The points can be added to a series in three ways: as a one-dimensional array,
  as a multi-dimensional array or as array of objects.
 
 [[charts.data.1darray]]
-==== Adding series as a one-dimensional array
+== Adding series as a one-dimensional array
 
 In case of using one-dimensional array, the data points are assumed to be at
  a constant interval on the X axis, starting from the
@@ -77,7 +77,7 @@ Please, see more details about these in the Polymer
   <button id="add" onclick="addSeries()">Add point</button>
   <template id="t" is="dom-bind">
     <vaadin-line-chart id="mainchart">
-       <data-series name="Total Reindeer Population" data=[[mySeriesData]]>
+       <data-series name="Total Reindeer Population" data="[[mySeriesData]]">
             <color>red</color>
       </data-series>
 
@@ -85,7 +85,7 @@ Please, see more details about these in the Polymer
         <series point-interval="1" point-start="1959">  </series>
       </plot-options>
     </vaadin-line-chart>
-  </template id="t" is="dom-bind">
+  </template>
 
   <script>
     var t = document.querySelector('#t');
@@ -101,7 +101,7 @@ Please, see more details about these in the Polymer
 ----
 
 [[charts.data.2darray]]
-==== Adding series as a multi-dimensional array
+== Adding series as a multi-dimensional array
 In case of using two-dimensional array, the first value is x value and the second value
 is y value. If the first value is a string, it is applied as the name of the point,
  and the x value is incremented following the above rules. For
@@ -128,7 +128,7 @@ mySeriesData: {
 ----
 
 [[charts.data.objarray]]
-==== Adding series as an array of objects
+== Adding series as an array of objects
 In case of using an array of objects, these objects stores point configurations.
 
 Data points are associated with some visual representation parameters:
@@ -164,7 +164,7 @@ The configuration options are described in
 ----
 
 [[charts.data.dataseries.add]]
-===== Adding and Removing Data Items
+=== Adding and Removing Data Items
 As shown above to add new points you should add new elements
 to the bound property, which contains an array of points.
 All changes (add,update,remove) of the bound property affect
@@ -204,7 +204,7 @@ item from a series use [methodname]#remove()# of a [classname]#Point# class.
 
          <vaadin-line-chart id="mainchart"
           on-point-click="pointClickListener">
-            <data-series data=[[mySeriesData]]>
+            <data-series data="[[mySeriesData]]">
                  <color>red</color>
            </data-series>
          </vaadin-line-chart>
@@ -252,12 +252,12 @@ The [parameter]#animation# parameter, when 'true', the series updating will
  configuration object with properties duration and easing.
 
 [[charts.data.dataseries.update]]
-===== Updating Data Items
+=== Updating Data Items
 You can update data points with the [methodname]#update()# method in the
   [classname]#Point# class.
 
 [[charts.data.htmltable]]
-===== HTML table as a data source
+=== HTML table as a data source
 An HTML table can be used a data source. You need to create a html-table, where
 a table rows specify data series points and cells in the row specify x and y
 coordinates.
@@ -302,7 +302,7 @@ Afterwards you need to assign the table id as an attribute to a data tag.
 ----
 
 [[charts.data.drilldown]]
-==== Drill-Down
+== Drill-Down
 
 Vaadin Charts allows drilling down from a chart to a more detailed view by
 clicking an item in the top-level view. To enable this feature, you need to
