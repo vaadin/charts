@@ -1,12 +1,16 @@
 package com.vaadin.addon.charts.model;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 public class YAxis extends Axis {
 
 	private static final long serialVersionUID = 1L;
 	private Boolean allowDecimals;
 	private Object alternateGridColor;
 	private Breaks[] breaks;
-	private String[] categories;
+	private ArrayList<String> categories;
 	private Number ceiling;
+	private Crosshair crosshair;
 	private Object dateTimeLabelFormats;
 	private Boolean endOnTick;
 	private Number floor;
@@ -36,8 +40,8 @@ public class YAxis extends Axis {
 	private Number minorTickWidth;
 	private Number offset;
 	private Boolean opposite;
-	private PlotBands[] plotBands;
-	private PlotLines[] plotLines;
+	private ArrayList<PlotBand> plotBands;
+	private ArrayList<PlotLine> plotLines;
 	private Boolean reversed;
 	private Boolean reversedStacks;
 	private Boolean showEmpty;
@@ -60,6 +64,8 @@ public class YAxis extends Axis {
 	private Title title;
 	private String type;
 	private Object[] units;
+	private Boolean visible;
+	private Number pane;
 
 	public YAxis() {
 	}
@@ -89,11 +95,24 @@ public class YAxis extends Axis {
 	}
 
 	public String[] getCategories() {
-		return categories;
+		String[] arr = new String[categories.size()];
+		categories.toArray(arr);
+		return arr;
 	}
 
-	public void setCategories(String[] categories) {
-		this.categories = categories;
+	public void setCategories(String... categories) {
+		this.categories = new ArrayList<String>(Arrays.asList(categories));
+	}
+
+	public void addCategory(String category) {
+		if (this.categories == null) {
+			this.categories = new ArrayList<String>();
+		}
+		this.categories.add(category);
+	}
+
+	public void removeCategory(String category) {
+		this.categories.remove(category);
 	}
 
 	public Number getCeiling() {
@@ -102,6 +121,14 @@ public class YAxis extends Axis {
 
 	public void setCeiling(Number ceiling) {
 		this.ceiling = ceiling;
+	}
+
+	public Crosshair getCrosshair() {
+		return crosshair;
+	}
+
+	public void setCrosshair(Crosshair crosshair) {
+		this.crosshair = crosshair;
 	}
 
 	public Object getDateTimeLabelFormats() {
@@ -336,20 +363,46 @@ public class YAxis extends Axis {
 		this.opposite = opposite;
 	}
 
-	public PlotBands[] getPlotBands() {
-		return plotBands;
+	public PlotBand[] getPlotBands() {
+		PlotBand[] arr = new PlotBand[plotBands.size()];
+		plotBands.toArray(arr);
+		return arr;
 	}
 
-	public void setPlotBands(PlotBands[] plotBands) {
-		this.plotBands = plotBands;
+	public void setPlotBands(PlotBand... plotBands) {
+		this.plotBands = new ArrayList<PlotBand>(Arrays.asList(plotBands));
 	}
 
-	public PlotLines[] getPlotLines() {
-		return plotLines;
+	public void addPlotBand(PlotBand plotBand) {
+		if (this.plotBands == null) {
+			this.plotBands = new ArrayList<PlotBand>();
+		}
+		this.plotBands.add(plotBand);
 	}
 
-	public void setPlotLines(PlotLines[] plotLines) {
-		this.plotLines = plotLines;
+	public void removePlotBand(PlotBand plotBand) {
+		this.plotBands.remove(plotBand);
+	}
+
+	public PlotLine[] getPlotLines() {
+		PlotLine[] arr = new PlotLine[plotLines.size()];
+		plotLines.toArray(arr);
+		return arr;
+	}
+
+	public void setPlotLines(PlotLine... plotLines) {
+		this.plotLines = new ArrayList<PlotLine>(Arrays.asList(plotLines));
+	}
+
+	public void addPlotLine(PlotLine plotLine) {
+		if (this.plotLines == null) {
+			this.plotLines = new ArrayList<PlotLine>();
+		}
+		this.plotLines.add(plotLine);
+	}
+
+	public void removePlotLine(PlotLine plotLine) {
+		this.plotLines.remove(plotLine);
 	}
 
 	public Boolean getReversed() {
@@ -526,5 +579,31 @@ public class YAxis extends Axis {
 
 	public void setUnits(Object[] units) {
 		this.units = units;
+	}
+
+	public Boolean getVisible() {
+		return visible;
+	}
+
+	public void setVisible(Boolean visible) {
+		this.visible = visible;
+	}
+
+	public Number getPane() {
+		return pane;
+	}
+
+	public void setPane(Number pane) {
+		this.pane = pane;
+	}
+
+	public void setTitle(String title) {
+		Title t = new Title();
+		t.setText(title);
+		this.setTitle(t);
+	}
+
+	public void setLinkedTo(YAxis axis) {
+		linkedTo = axis.getAxisIndex();
 	}
 }

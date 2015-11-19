@@ -1,17 +1,22 @@
 package com.vaadin.addon.charts.model;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 public class PlotOptionsPyramid extends AbstractPlotOptions {
 
 	private static final long serialVersionUID = 1L;
 	private Boolean allowPointSelect;
 	private Object borderColor;
 	private Number borderWidth;
-	private Number[] center;
+	private Object[] center;
 	private Object colors;
 	private String cursor;
 	private DataLabels dataLabels;
 	private Number depth;
 	private Boolean enableMouseTracking;
+	private Boolean getExtremesFromAll;
 	private Object height;
+	private ArrayList<String> keys;
 	private String linkedTo;
 	private Number minSize;
 	private Point point;
@@ -26,14 +31,9 @@ public class PlotOptionsPyramid extends AbstractPlotOptions {
 	private Boolean visible;
 	private Object width;
 	private String zoneAxis;
-	private Zones[] zones;
+	private ArrayList<Zones> zones;
 
 	public PlotOptionsPyramid() {
-	}
-
-	@Override
-	public ChartType getChartType() {
-		return ChartType.PYRAMID;
 	}
 
 	public Boolean getAllowPointSelect() {
@@ -60,12 +60,8 @@ public class PlotOptionsPyramid extends AbstractPlotOptions {
 		this.borderWidth = borderWidth;
 	}
 
-	public Number[] getCenter() {
+	public Object[] getCenter() {
 		return center;
-	}
-
-	public void setCenter(Number[] center) {
-		this.center = center;
 	}
 
 	public Object getColors() {
@@ -108,12 +104,41 @@ public class PlotOptionsPyramid extends AbstractPlotOptions {
 		this.enableMouseTracking = enableMouseTracking;
 	}
 
+	public Boolean getGetExtremesFromAll() {
+		return getExtremesFromAll;
+	}
+
+	public void setGetExtremesFromAll(Boolean getExtremesFromAll) {
+		this.getExtremesFromAll = getExtremesFromAll;
+	}
+
 	public Object getHeight() {
 		return height;
 	}
 
 	public void setHeight(Object height) {
 		this.height = height;
+	}
+
+	public String[] getKeys() {
+		String[] arr = new String[keys.size()];
+		keys.toArray(arr);
+		return arr;
+	}
+
+	public void setKeys(String... keys) {
+		this.keys = new ArrayList<String>(Arrays.asList(keys));
+	}
+
+	public void addKey(String key) {
+		if (this.keys == null) {
+			this.keys = new ArrayList<String>();
+		}
+		this.keys.add(key);
+	}
+
+	public void removeKey(String key) {
+		this.keys.remove(key);
 	}
 
 	public String getLinkedTo() {
@@ -229,10 +254,36 @@ public class PlotOptionsPyramid extends AbstractPlotOptions {
 	}
 
 	public Zones[] getZones() {
-		return zones;
+		Zones[] arr = new Zones[zones.size()];
+		zones.toArray(arr);
+		return arr;
 	}
 
-	public void setZones(Zones[] zones) {
-		this.zones = zones;
+	public void setZones(Zones... zones) {
+		this.zones = new ArrayList<Zones>(Arrays.asList(zones));
+	}
+
+	public void addZone(Zones zone) {
+		if (this.zones == null) {
+			this.zones = new ArrayList<Zones>();
+		}
+		this.zones.add(zone);
+	}
+
+	public void removeZone(Zones zone) {
+		this.zones.remove(zone);
+	}
+
+	@Override
+	public ChartType getChartType() {
+		return ChartType.PYRAMID;
+	}
+
+	public void setCenter(Number x, Number y) {
+		this.center = new Number[]{x, y};
+	}
+
+	public void setCenter(String x, String y) {
+		this.center = new String[]{x, y};
 	}
 }

@@ -1,4 +1,7 @@
 package com.vaadin.addon.charts.model;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 public class PlotOptionsHeatMap extends AbstractPlotOptions {
 
 	private static final long serialVersionUID = 1L;
@@ -15,7 +18,10 @@ public class PlotOptionsHeatMap extends AbstractPlotOptions {
 	private String cursor;
 	private DataLabels dataLabels;
 	private Boolean enableMouseTracking;
+	private Boolean getExtremesFromAll;
+	private ArrayList<String> keys;
 	private String linkedTo;
+	private Number maxPointWidth;
 	private Point point;
 	private Number rowsize;
 	private Boolean selected;
@@ -28,14 +34,9 @@ public class PlotOptionsHeatMap extends AbstractPlotOptions {
 	private Number turboThreshold;
 	private Boolean visible;
 	private String zoneAxis;
-	private Zones[] zones;
+	private ArrayList<Zones> zones;
 
 	public PlotOptionsHeatMap() {
-	}
-
-	@Override
-	public ChartType getChartType() {
-		return ChartType.HEATMAP;
 	}
 
 	public Boolean getAllowPointSelect() {
@@ -142,12 +143,49 @@ public class PlotOptionsHeatMap extends AbstractPlotOptions {
 		this.enableMouseTracking = enableMouseTracking;
 	}
 
+	public Boolean getGetExtremesFromAll() {
+		return getExtremesFromAll;
+	}
+
+	public void setGetExtremesFromAll(Boolean getExtremesFromAll) {
+		this.getExtremesFromAll = getExtremesFromAll;
+	}
+
+	public String[] getKeys() {
+		String[] arr = new String[keys.size()];
+		keys.toArray(arr);
+		return arr;
+	}
+
+	public void setKeys(String... keys) {
+		this.keys = new ArrayList<String>(Arrays.asList(keys));
+	}
+
+	public void addKey(String key) {
+		if (this.keys == null) {
+			this.keys = new ArrayList<String>();
+		}
+		this.keys.add(key);
+	}
+
+	public void removeKey(String key) {
+		this.keys.remove(key);
+	}
+
 	public String getLinkedTo() {
 		return linkedTo;
 	}
 
 	public void setLinkedTo(String linkedTo) {
 		this.linkedTo = linkedTo;
+	}
+
+	public Number getMaxPointWidth() {
+		return maxPointWidth;
+	}
+
+	public void setMaxPointWidth(Number maxPointWidth) {
+		this.maxPointWidth = maxPointWidth;
 	}
 
 	public Point getPoint() {
@@ -247,10 +285,28 @@ public class PlotOptionsHeatMap extends AbstractPlotOptions {
 	}
 
 	public Zones[] getZones() {
-		return zones;
+		Zones[] arr = new Zones[zones.size()];
+		zones.toArray(arr);
+		return arr;
 	}
 
-	public void setZones(Zones[] zones) {
-		this.zones = zones;
+	public void setZones(Zones... zones) {
+		this.zones = new ArrayList<Zones>(Arrays.asList(zones));
+	}
+
+	public void addZone(Zones zone) {
+		if (this.zones == null) {
+			this.zones = new ArrayList<Zones>();
+		}
+		this.zones.add(zone);
+	}
+
+	public void removeZone(Zones zone) {
+		this.zones.remove(zone);
+	}
+
+	@Override
+	public ChartType getChartType() {
+		return ChartType.HEATMAP;
 	}
 }

@@ -10,7 +10,7 @@ import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
-import com.vaadin.addon.charts.model.PlotLines;
+import com.vaadin.addon.charts.model.PlotLine;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
 import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.XAxis;
@@ -45,11 +45,11 @@ public class SplineUpdatingEachSecondWithTwoLines extends
 
         YAxis yAxis = configuration.getyAxis();
         yAxis.setTitle(new Title("Value"));
-        PlotLines plotline = new PlotLines();
+        PlotLine plotline = new PlotLine();
         plotline.setValue(0);
         plotline.setWidth(1);
         plotline.setColor(new SolidColor("#808080"));
-        yAxis.setPlotLines(new PlotLines[] { plotline });
+        yAxis.setPlotLines(new PlotLine[] { plotline });
 
         // FIXME missing generated API
         // configuration.getTooltip().setEnabled(false);

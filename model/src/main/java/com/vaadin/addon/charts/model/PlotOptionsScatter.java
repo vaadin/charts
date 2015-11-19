@@ -1,4 +1,7 @@
 package com.vaadin.addon.charts.model;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 public class PlotOptionsScatter extends AbstractPlotOptions {
 
 	private static final long serialVersionUID = 1L;
@@ -10,6 +13,8 @@ public class PlotOptionsScatter extends AbstractPlotOptions {
 	private String dashStyle;
 	private DataLabels dataLabels;
 	private Boolean enableMouseTracking;
+	private Boolean getExtremesFromAll;
+	private ArrayList<String> keys;
 	private Number lineWidth;
 	private String linkedTo;
 	private Marker marker;
@@ -22,6 +27,7 @@ public class PlotOptionsScatter extends AbstractPlotOptions {
 	private Object shadow;
 	private Boolean showCheckbox;
 	private Boolean showInLegend;
+	private Boolean softThreshold;
 	private States states;
 	private Boolean stickyTracking;
 	private Number threshold;
@@ -29,14 +35,9 @@ public class PlotOptionsScatter extends AbstractPlotOptions {
 	private Number turboThreshold;
 	private Boolean visible;
 	private String zoneAxis;
-	private Zones[] zones;
+	private ArrayList<Zones> zones;
 
 	public PlotOptionsScatter() {
-	}
-
-	@Override
-	public ChartType getChartType() {
-		return ChartType.SCATTER;
 	}
 
 	public Boolean getAllowPointSelect() {
@@ -101,6 +102,35 @@ public class PlotOptionsScatter extends AbstractPlotOptions {
 
 	public void setEnableMouseTracking(Boolean enableMouseTracking) {
 		this.enableMouseTracking = enableMouseTracking;
+	}
+
+	public Boolean getGetExtremesFromAll() {
+		return getExtremesFromAll;
+	}
+
+	public void setGetExtremesFromAll(Boolean getExtremesFromAll) {
+		this.getExtremesFromAll = getExtremesFromAll;
+	}
+
+	public String[] getKeys() {
+		String[] arr = new String[keys.size()];
+		keys.toArray(arr);
+		return arr;
+	}
+
+	public void setKeys(String... keys) {
+		this.keys = new ArrayList<String>(Arrays.asList(keys));
+	}
+
+	public void addKey(String key) {
+		if (this.keys == null) {
+			this.keys = new ArrayList<String>();
+		}
+		this.keys.add(key);
+	}
+
+	public void removeKey(String key) {
+		this.keys.remove(key);
 	}
 
 	public Number getLineWidth() {
@@ -199,6 +229,14 @@ public class PlotOptionsScatter extends AbstractPlotOptions {
 		this.showInLegend = showInLegend;
 	}
 
+	public Boolean getSoftThreshold() {
+		return softThreshold;
+	}
+
+	public void setSoftThreshold(Boolean softThreshold) {
+		this.softThreshold = softThreshold;
+	}
+
 	public States getStates() {
 		return states;
 	}
@@ -256,10 +294,28 @@ public class PlotOptionsScatter extends AbstractPlotOptions {
 	}
 
 	public Zones[] getZones() {
-		return zones;
+		Zones[] arr = new Zones[zones.size()];
+		zones.toArray(arr);
+		return arr;
 	}
 
-	public void setZones(Zones[] zones) {
-		this.zones = zones;
+	public void setZones(Zones... zones) {
+		this.zones = new ArrayList<Zones>(Arrays.asList(zones));
+	}
+
+	public void addZone(Zones zone) {
+		if (this.zones == null) {
+			this.zones = new ArrayList<Zones>();
+		}
+		this.zones.add(zone);
+	}
+
+	public void removeZone(Zones zone) {
+		this.zones.remove(zone);
+	}
+
+	@Override
+	public ChartType getChartType() {
+		return ChartType.SCATTER;
 	}
 }

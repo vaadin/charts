@@ -4,7 +4,7 @@ import org.junit.Ignore;
 
 import com.vaadin.addon.charts.examples.other.VUMeter;
 
-@Ignore("invalid pane2.setCenterXY API")
+@Ignore("NO API for invalid yAxis2.getTitle().setY(-40);")
 public class VUMeterTBTest extends AbstractSimpleScreenShotTestBenchTest {
 
     @Override

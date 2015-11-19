@@ -1,25 +1,13 @@
 package com.vaadin.addon.charts.examples.other;
 
-import java.util.Random;
-
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.model.Background;
-import com.vaadin.addon.charts.model.ChartType;
-import com.vaadin.addon.charts.model.Configuration;
-import com.vaadin.addon.charts.model.DataLabels;
-import com.vaadin.addon.charts.model.Dial;
-import com.vaadin.addon.charts.model.Labels;
-import com.vaadin.addon.charts.model.ListSeries;
-import com.vaadin.addon.charts.model.Pane;
-import com.vaadin.addon.charts.model.PlotBands;
-import com.vaadin.addon.charts.model.PlotOptionsGauge;
-import com.vaadin.addon.charts.model.TickPosition;
-import com.vaadin.addon.charts.model.Title;
-import com.vaadin.addon.charts.model.YAxis;
+import com.vaadin.addon.charts.model.*;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
+
+import java.util.Random;
 
 public class VUMeter extends AbstractVaadinChartExample {
 
@@ -57,22 +45,23 @@ public class VUMeter extends AbstractVaadinChartExample {
         // FIXME missing generated API
         pane1.setBackground(new Background[] {});
         pane2.setBackground(new Background[] {});
-        // pane1.setCenter("25%", "145%");
-        // pane2.setCenterXY("75%", "145%");
+
+        pane1.setCenter("25%", "145%");
+        pane2.setCenter("75%", "145%");
         pane1.setSize(300);
         pane2.setSize(300);
 
         configuration.addPane(pane1);
         configuration.addPane(pane2);
 
-        PlotBands plotBand1 = new PlotBands();
+        PlotBand plotBand1 = new PlotBand();
         plotBand1.setFrom(0);
         plotBand1.setTo(6);
         plotBand1.setColor(new SolidColor("#C02316"));
         plotBand1.setInnerRadius("100%");
         plotBand1.setOuterRadius("105%");
 
-        PlotBands plotBand2 = new PlotBands();
+        PlotBand plotBand2 = new PlotBand();
         plotBand1.setFrom(0);
         plotBand1.setTo(6);
         plotBand1.setColor(new SolidColor("#C02316"));
@@ -82,7 +71,7 @@ public class VUMeter extends AbstractVaadinChartExample {
 
         YAxis yAxis = new YAxis();
         // FIXME missing generated API
-        // yAxis.setPane(pane1);
+        yAxis.setPane(0);
         yAxis.setTitle(new Title(
                 "VU<br/><span style=\"font-size:8px\">Channel A</span>"));
         // FIXME missing generated API
@@ -96,10 +85,10 @@ public class VUMeter extends AbstractVaadinChartExample {
         yAxis.setLabels(new Labels());
         yAxis.getLabels().setDistance(20);
         // yAxis.getLabels().setRotationPerpendicular();
-        yAxis.setPlotBands(new PlotBands[] { plotBand1 });
+        yAxis.setPlotBands(plotBand1);
 
         YAxis yAxis2 = new YAxis();
-        // yAxis2.setPane(pane2);
+        yAxis2.setPane(1);
         yAxis2.setTitle(new Title(
                 "VU<br/><span style=\"font-size:8px\">Channel B</span>"));
         // yAxis2.getTitle().setY(-40);
@@ -111,7 +100,7 @@ public class VUMeter extends AbstractVaadinChartExample {
         yAxis2.setLabels(new Labels());
         yAxis2.getLabels().setDistance(20);
         // yAxis2.getLabels().setRotationPerpendicular();
-        yAxis2.setPlotBands(new PlotBands[] { plotBand2 });
+        yAxis2.setPlotBands( plotBand2);
 
         configuration.addyAxis(yAxis);
         configuration.addyAxis(yAxis2);

@@ -8,9 +8,9 @@ public class Marker extends AbstractConfigurationObject {
 	private Object lineColor;
 	private Number lineWidth;
 	private Number radius;
-	private States states;
 	private String symbol;
 	private Number width;
+	private States states;
 
 	public Marker() {
 	}
@@ -67,14 +67,6 @@ public class Marker extends AbstractConfigurationObject {
 		this.radius = radius;
 	}
 
-	public States getStates() {
-		return states;
-	}
-
-	public void setStates(States states) {
-		this.states = states;
-	}
-
 	public String getSymbol() {
 		return symbol;
 	}
@@ -89,5 +81,13 @@ public class Marker extends AbstractConfigurationObject {
 
 	public void setWidth(Number width) {
 		this.width = width;
+	}
+
+	public States getStates() {
+		return states;
+	}
+
+	public void setStates(States states) {
+		this.states = states;
 	}
 }

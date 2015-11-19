@@ -37,7 +37,7 @@ public class Basic3DColumn extends AbstractVaadinChartExample {
 
         YAxis y = new YAxis();
         y.setMin(0);
-        y.setTitle(new Title("Rainfall (mm)"));
+        y.setTitle("Rainfall (mm)");
         conf.addyAxis(y);
 
         Tooltip tooltip = new Tooltip();

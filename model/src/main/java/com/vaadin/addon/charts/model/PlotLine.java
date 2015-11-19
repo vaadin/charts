@@ -1,5 +1,5 @@
 package com.vaadin.addon.charts.model;
-public class PlotLines extends AbstractConfigurationObject {
+public class PlotLine extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
 	private Object color;
@@ -10,7 +10,7 @@ public class PlotLines extends AbstractConfigurationObject {
 	private Number width;
 	private Number zIndex;
 
-	public PlotLines() {
+	public PlotLine() {
 	}
 
 	public Object getColor() {

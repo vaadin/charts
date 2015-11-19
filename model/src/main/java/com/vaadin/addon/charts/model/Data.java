@@ -3,19 +3,49 @@ public class Data extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
 	private Object color;
-	private Number colorValue;
-	private Object dataLabels;
+	private DataLabels dataLabels;
 	private String drilldown;
 	private String id;
 	private Boolean isIntermediateSum;
 	private Boolean isSum;
-	private Number legendIndex;
-	private Marker marker;
 	private String name;
-	private String parent;
-	private Boolean sliced;
+	private Boolean selected;
 	private Number x;
 	private Number y;
+	private Number colorValue;
+	private String parent;
+	private Number value;
+	private Marker marker;
+	private Object innerRadius;
+	private Object radius;
+	private Number legendIndex;
+	private Boolean sliced;
+	private Number high;
+	private Number low;
+	private Number z;
+	private Number median;
+	private Number q1;
+	private Number q3;
+	private Object[] columns;
+	private Object complete;
+	private String csv;
+	private String dateFormat;
+	private String decimalPoint;
+	private Number endColumn;
+	private Number endRow;
+	private Boolean firstRowAsNames;
+	private String googleSpreadsheetKey;
+	private String googleSpreadsheetWorksheet;
+	private String itemDelimiter;
+	private String lineDelimiter;
+	private Object parseDate;
+	private Object parsed;
+	private Object[] rows;
+	private Object seriesMapping;
+	private Number startColumn;
+	private Number startRow;
+	private Boolean switchRowsAndColumns;
+	private Object table;
 
 	public Data() {
 	}
@@ -28,19 +58,11 @@ public class Data extends AbstractConfigurationObject {
 		this.color = color;
 	}
 
-	public Number getColorValue() {
-		return colorValue;
-	}
-
-	public void setColorValue(Number colorValue) {
-		this.colorValue = colorValue;
-	}
-
-	public Object getDataLabels() {
+	public DataLabels getDataLabels() {
 		return dataLabels;
 	}
 
-	public void setDataLabels(Object dataLabels) {
+	public void setDataLabels(DataLabels dataLabels) {
 		this.dataLabels = dataLabels;
 	}
 
@@ -76,22 +98,6 @@ public class Data extends AbstractConfigurationObject {
 		this.isSum = isSum;
 	}
 
-	public Number getLegendIndex() {
-		return legendIndex;
-	}
-
-	public void setLegendIndex(Number legendIndex) {
-		this.legendIndex = legendIndex;
-	}
-
-	public Marker getMarker() {
-		return marker;
-	}
-
-	public void setMarker(Marker marker) {
-		this.marker = marker;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -100,20 +106,12 @@ public class Data extends AbstractConfigurationObject {
 		this.name = name;
 	}
 
-	public String getParent() {
-		return parent;
+	public Boolean getSelected() {
+		return selected;
 	}
 
-	public void setParent(String parent) {
-		this.parent = parent;
-	}
-
-	public Boolean getSliced() {
-		return sliced;
-	}
-
-	public void setSliced(Boolean sliced) {
-		this.sliced = sliced;
+	public void setSelected(Boolean selected) {
+		this.selected = selected;
 	}
 
 	public Number getX() {
@@ -130,5 +128,277 @@ public class Data extends AbstractConfigurationObject {
 
 	public void setY(Number y) {
 		this.y = y;
+	}
+
+	public Number getColorValue() {
+		return colorValue;
+	}
+
+	public void setColorValue(Number colorValue) {
+		this.colorValue = colorValue;
+	}
+
+	public String getParent() {
+		return parent;
+	}
+
+	public void setParent(String parent) {
+		this.parent = parent;
+	}
+
+	public Number getValue() {
+		return value;
+	}
+
+	public void setValue(Number value) {
+		this.value = value;
+	}
+
+	public Marker getMarker() {
+		return marker;
+	}
+
+	public void setMarker(Marker marker) {
+		this.marker = marker;
+	}
+
+	public Object getInnerRadius() {
+		return innerRadius;
+	}
+
+	public void setInnerRadius(Object innerRadius) {
+		this.innerRadius = innerRadius;
+	}
+
+	public Object getRadius() {
+		return radius;
+	}
+
+	public void setRadius(Object radius) {
+		this.radius = radius;
+	}
+
+	public Number getLegendIndex() {
+		return legendIndex;
+	}
+
+	public void setLegendIndex(Number legendIndex) {
+		this.legendIndex = legendIndex;
+	}
+
+	public Boolean getSliced() {
+		return sliced;
+	}
+
+	public void setSliced(Boolean sliced) {
+		this.sliced = sliced;
+	}
+
+	public Number getHigh() {
+		return high;
+	}
+
+	public void setHigh(Number high) {
+		this.high = high;
+	}
+
+	public Number getLow() {
+		return low;
+	}
+
+	public void setLow(Number low) {
+		this.low = low;
+	}
+
+	public Number getZ() {
+		return z;
+	}
+
+	public void setZ(Number z) {
+		this.z = z;
+	}
+
+	public Number getMedian() {
+		return median;
+	}
+
+	public void setMedian(Number median) {
+		this.median = median;
+	}
+
+	public Number getQ1() {
+		return q1;
+	}
+
+	public void setQ1(Number q1) {
+		this.q1 = q1;
+	}
+
+	public Number getQ3() {
+		return q3;
+	}
+
+	public void setQ3(Number q3) {
+		this.q3 = q3;
+	}
+
+	public Object[] getColumns() {
+		return columns;
+	}
+
+	public void setColumns(Object[] columns) {
+		this.columns = columns;
+	}
+
+	public Object getComplete() {
+		return complete;
+	}
+
+	public void setComplete(Object complete) {
+		this.complete = complete;
+	}
+
+	public String getCsv() {
+		return csv;
+	}
+
+	public void setCsv(String csv) {
+		this.csv = csv;
+	}
+
+	public String getDateFormat() {
+		return dateFormat;
+	}
+
+	public void setDateFormat(String dateFormat) {
+		this.dateFormat = dateFormat;
+	}
+
+	public String getDecimalPoint() {
+		return decimalPoint;
+	}
+
+	public void setDecimalPoint(String decimalPoint) {
+		this.decimalPoint = decimalPoint;
+	}
+
+	public Number getEndColumn() {
+		return endColumn;
+	}
+
+	public void setEndColumn(Number endColumn) {
+		this.endColumn = endColumn;
+	}
+
+	public Number getEndRow() {
+		return endRow;
+	}
+
+	public void setEndRow(Number endRow) {
+		this.endRow = endRow;
+	}
+
+	public Boolean getFirstRowAsNames() {
+		return firstRowAsNames;
+	}
+
+	public void setFirstRowAsNames(Boolean firstRowAsNames) {
+		this.firstRowAsNames = firstRowAsNames;
+	}
+
+	public String getGoogleSpreadsheetKey() {
+		return googleSpreadsheetKey;
+	}
+
+	public void setGoogleSpreadsheetKey(String googleSpreadsheetKey) {
+		this.googleSpreadsheetKey = googleSpreadsheetKey;
+	}
+
+	public String getGoogleSpreadsheetWorksheet() {
+		return googleSpreadsheetWorksheet;
+	}
+
+	public void setGoogleSpreadsheetWorksheet(String googleSpreadsheetWorksheet) {
+		this.googleSpreadsheetWorksheet = googleSpreadsheetWorksheet;
+	}
+
+	public String getItemDelimiter() {
+		return itemDelimiter;
+	}
+
+	public void setItemDelimiter(String itemDelimiter) {
+		this.itemDelimiter = itemDelimiter;
+	}
+
+	public String getLineDelimiter() {
+		return lineDelimiter;
+	}
+
+	public void setLineDelimiter(String lineDelimiter) {
+		this.lineDelimiter = lineDelimiter;
+	}
+
+	public Object getParseDate() {
+		return parseDate;
+	}
+
+	public void setParseDate(Object parseDate) {
+		this.parseDate = parseDate;
+	}
+
+	public Object getParsed() {
+		return parsed;
+	}
+
+	public void setParsed(Object parsed) {
+		this.parsed = parsed;
+	}
+
+	public Object[] getRows() {
+		return rows;
+	}
+
+	public void setRows(Object[] rows) {
+		this.rows = rows;
+	}
+
+	public Object getSeriesMapping() {
+		return seriesMapping;
+	}
+
+	public void setSeriesMapping(Object seriesMapping) {
+		this.seriesMapping = seriesMapping;
+	}
+
+	public Number getStartColumn() {
+		return startColumn;
+	}
+
+	public void setStartColumn(Number startColumn) {
+		this.startColumn = startColumn;
+	}
+
+	public Number getStartRow() {
+		return startRow;
+	}
+
+	public void setStartRow(Number startRow) {
+		this.startRow = startRow;
+	}
+
+	public Boolean getSwitchRowsAndColumns() {
+		return switchRowsAndColumns;
+	}
+
+	public void setSwitchRowsAndColumns(Boolean switchRowsAndColumns) {
+		this.switchRowsAndColumns = switchRowsAndColumns;
+	}
+
+	public Object getTable() {
+		return table;
+	}
+
+	public void setTable(Object table) {
+		this.table = table;
 	}
 }

@@ -1,4 +1,6 @@
 package com.vaadin.addon.charts.model;
+
+import com.vaadin.addon.charts.model.style.Style;
 public class Tooltip extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
@@ -10,11 +12,25 @@ public class Tooltip extends AbstractConfigurationObject {
 	private Number hideDelay;
 	private String pointFormat;
 	private Object pointFormatter;
-	private String shape;
 	private Number valueDecimals;
 	private String valuePrefix;
 	private String valueSuffix;
 	private String xDateFormat;
+	private Boolean animation;
+	private Object backgroundColor;
+	private Object borderColor;
+	private Number borderRadius;
+	private Number borderWidth;
+	private Object[] crosshairs;
+	private Boolean enabled;
+	private String _fn_formatter;
+	private Object positioner;
+	private Boolean shadow;
+	private String shape;
+	private Boolean shared;
+	private Number snap;
+	private Style style;
+	private Boolean useHTML;
 
 	public Tooltip() {
 	}
@@ -83,14 +99,6 @@ public class Tooltip extends AbstractConfigurationObject {
 		this.pointFormatter = pointFormatter;
 	}
 
-	public String getShape() {
-		return shape;
-	}
-
-	public void setShape(String shape) {
-		this.shape = shape;
-	}
-
 	public Number getValueDecimals() {
 		return valueDecimals;
 	}
@@ -121,5 +129,129 @@ public class Tooltip extends AbstractConfigurationObject {
 
 	public void setXDateFormat(String xDateFormat) {
 		this.xDateFormat = xDateFormat;
+	}
+
+	public Boolean getAnimation() {
+		return animation;
+	}
+
+	public void setAnimation(Boolean animation) {
+		this.animation = animation;
+	}
+
+	public Object getBackgroundColor() {
+		return backgroundColor;
+	}
+
+	public void setBackgroundColor(Object backgroundColor) {
+		this.backgroundColor = backgroundColor;
+	}
+
+	public Object getBorderColor() {
+		return borderColor;
+	}
+
+	public void setBorderColor(Object borderColor) {
+		this.borderColor = borderColor;
+	}
+
+	public Number getBorderRadius() {
+		return borderRadius;
+	}
+
+	public void setBorderRadius(Number borderRadius) {
+		this.borderRadius = borderRadius;
+	}
+
+	public Number getBorderWidth() {
+		return borderWidth;
+	}
+
+	public void setBorderWidth(Number borderWidth) {
+		this.borderWidth = borderWidth;
+	}
+
+	public Object[] getCrosshairs() {
+		return crosshairs;
+	}
+
+	public void setCrosshairs(Object[] crosshairs) {
+		this.crosshairs = crosshairs;
+	}
+
+	public Tooltip(Boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public String getFormatter() {
+		return _fn_formatter;
+	}
+
+	public void setFormatter(String _fn_formatter) {
+		this._fn_formatter = _fn_formatter;
+	}
+
+	public Object getPositioner() {
+		return positioner;
+	}
+
+	public void setPositioner(Object positioner) {
+		this.positioner = positioner;
+	}
+
+	public Boolean getShadow() {
+		return shadow;
+	}
+
+	public void setShadow(Boolean shadow) {
+		this.shadow = shadow;
+	}
+
+	public String getShape() {
+		return shape;
+	}
+
+	public void setShape(String shape) {
+		this.shape = shape;
+	}
+
+	public Boolean getShared() {
+		return shared;
+	}
+
+	public void setShared(Boolean shared) {
+		this.shared = shared;
+	}
+
+	public Number getSnap() {
+		return snap;
+	}
+
+	public void setSnap(Number snap) {
+		this.snap = snap;
+	}
+
+	public Style getStyle() {
+		return style;
+	}
+
+	public void setStyle(Style style) {
+		this.style = style;
+	}
+
+	public Boolean getUseHTML() {
+		return useHTML;
+	}
+
+	public void setUseHTML(Boolean useHTML) {
+		this.useHTML = useHTML;
 	}
 }

@@ -1,4 +1,7 @@
 package com.vaadin.addon.charts.model;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 public class PlotOptionsColumnRange extends AbstractPlotOptions {
 
 	private static final long serialVersionUID = 1L;
@@ -17,10 +20,13 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	private Object edgeColor;
 	private Number edgeWidth;
 	private Boolean enableMouseTracking;
+	private Boolean getExtremesFromAll;
 	private Number groupPadding;
 	private Number groupZPadding;
 	private Boolean grouping;
+	private ArrayList<String> keys;
 	private String linkedTo;
+	private Number maxPointWidth;
 	private Number minPointLength;
 	private Point point;
 	private Number pointInterval;
@@ -36,19 +42,13 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	private Boolean showInLegend;
 	private States states;
 	private Boolean stickyTracking;
-	private Number threshold;
 	private Tooltip tooltip;
 	private Number turboThreshold;
 	private Boolean visible;
 	private String zoneAxis;
-	private Zones[] zones;
+	private ArrayList<Zones> zones;
 
 	public PlotOptionsColumnRange() {
-	}
-
-	@Override
-	public ChartType getChartType() {
-		return ChartType.COLUMNRANGE;
 	}
 
 	public Boolean getAllowPointSelect() {
@@ -171,6 +171,14 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 		this.enableMouseTracking = enableMouseTracking;
 	}
 
+	public Boolean getGetExtremesFromAll() {
+		return getExtremesFromAll;
+	}
+
+	public void setGetExtremesFromAll(Boolean getExtremesFromAll) {
+		this.getExtremesFromAll = getExtremesFromAll;
+	}
+
 	public Number getGroupPadding() {
 		return groupPadding;
 	}
@@ -195,12 +203,41 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 		this.grouping = grouping;
 	}
 
+	public String[] getKeys() {
+		String[] arr = new String[keys.size()];
+		keys.toArray(arr);
+		return arr;
+	}
+
+	public void setKeys(String... keys) {
+		this.keys = new ArrayList<String>(Arrays.asList(keys));
+	}
+
+	public void addKey(String key) {
+		if (this.keys == null) {
+			this.keys = new ArrayList<String>();
+		}
+		this.keys.add(key);
+	}
+
+	public void removeKey(String key) {
+		this.keys.remove(key);
+	}
+
 	public String getLinkedTo() {
 		return linkedTo;
 	}
 
 	public void setLinkedTo(String linkedTo) {
 		this.linkedTo = linkedTo;
+	}
+
+	public Number getMaxPointWidth() {
+		return maxPointWidth;
+	}
+
+	public void setMaxPointWidth(Number maxPointWidth) {
+		this.maxPointWidth = maxPointWidth;
 	}
 
 	public Number getMinPointLength() {
@@ -323,14 +360,6 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 		this.stickyTracking = stickyTracking;
 	}
 
-	public Number getThreshold() {
-		return threshold;
-	}
-
-	public void setThreshold(Number threshold) {
-		this.threshold = threshold;
-	}
-
 	public Tooltip getTooltip() {
 		return tooltip;
 	}
@@ -364,10 +393,28 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	}
 
 	public Zones[] getZones() {
-		return zones;
+		Zones[] arr = new Zones[zones.size()];
+		zones.toArray(arr);
+		return arr;
 	}
 
-	public void setZones(Zones[] zones) {
-		this.zones = zones;
+	public void setZones(Zones... zones) {
+		this.zones = new ArrayList<Zones>(Arrays.asList(zones));
+	}
+
+	public void addZone(Zones zone) {
+		if (this.zones == null) {
+			this.zones = new ArrayList<Zones>();
+		}
+		this.zones.add(zone);
+	}
+
+	public void removeZone(Zones zone) {
+		this.zones.remove(zone);
+	}
+
+	@Override
+	public ChartType getChartType() {
+		return ChartType.COLUMNRANGE;
 	}
 }

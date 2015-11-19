@@ -1,4 +1,7 @@
 package com.vaadin.addon.charts.model;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 public class PlotOptionsPie extends AbstractPlotOptions {
 
 	private static final long serialVersionUID = 1L;
@@ -6,15 +9,17 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	private Boolean animation;
 	private Object borderColor;
 	private Number borderWidth;
-	private Number[] center;
+	private Object[] center;
 	private Object colors;
 	private String cursor;
 	private DataLabels dataLabels;
 	private Number depth;
 	private Boolean enableMouseTracking;
 	private Number endAngle;
+	private Boolean getExtremesFromAll;
 	private Boolean ignoreHiddenPoint;
 	private Object innerSize;
+	private ArrayList<String> keys;
 	private String linkedTo;
 	private Number minSize;
 	private Point point;
@@ -29,14 +34,9 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	private Tooltip tooltip;
 	private Boolean visible;
 	private String zoneAxis;
-	private Zones[] zones;
+	private ArrayList<Zones> zones;
 
 	public PlotOptionsPie() {
-	}
-
-	@Override
-	public ChartType getChartType() {
-		return ChartType.PIE;
 	}
 
 	public Boolean getAllowPointSelect() {
@@ -71,12 +71,8 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 		this.borderWidth = borderWidth;
 	}
 
-	public Number[] getCenter() {
+	public Object[] getCenter() {
 		return center;
-	}
-
-	public void setCenter(Number[] center) {
-		this.center = center;
 	}
 
 	public Object getColors() {
@@ -127,6 +123,14 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 		this.endAngle = endAngle;
 	}
 
+	public Boolean getGetExtremesFromAll() {
+		return getExtremesFromAll;
+	}
+
+	public void setGetExtremesFromAll(Boolean getExtremesFromAll) {
+		this.getExtremesFromAll = getExtremesFromAll;
+	}
+
 	public Boolean getIgnoreHiddenPoint() {
 		return ignoreHiddenPoint;
 	}
@@ -141,6 +145,27 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 
 	public void setInnerSize(Object innerSize) {
 		this.innerSize = innerSize;
+	}
+
+	public String[] getKeys() {
+		String[] arr = new String[keys.size()];
+		keys.toArray(arr);
+		return arr;
+	}
+
+	public void setKeys(String... keys) {
+		this.keys = new ArrayList<String>(Arrays.asList(keys));
+	}
+
+	public void addKey(String key) {
+		if (this.keys == null) {
+			this.keys = new ArrayList<String>();
+		}
+		this.keys.add(key);
+	}
+
+	public void removeKey(String key) {
+		this.keys.remove(key);
 	}
 
 	public String getLinkedTo() {
@@ -256,10 +281,36 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	}
 
 	public Zones[] getZones() {
-		return zones;
+		Zones[] arr = new Zones[zones.size()];
+		zones.toArray(arr);
+		return arr;
 	}
 
-	public void setZones(Zones[] zones) {
-		this.zones = zones;
+	public void setZones(Zones... zones) {
+		this.zones = new ArrayList<Zones>(Arrays.asList(zones));
+	}
+
+	public void addZone(Zones zone) {
+		if (this.zones == null) {
+			this.zones = new ArrayList<Zones>();
+		}
+		this.zones.add(zone);
+	}
+
+	public void removeZone(Zones zone) {
+		this.zones.remove(zone);
+	}
+
+	@Override
+	public ChartType getChartType() {
+		return ChartType.PIE;
+	}
+
+	public void setCenter(Number x, Number y) {
+		this.center = new Number[]{x, y};
+	}
+
+	public void setCenter(String x, String y) {
+		this.center = new String[]{x, y};
 	}
 }

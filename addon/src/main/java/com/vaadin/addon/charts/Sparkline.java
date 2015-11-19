@@ -98,10 +98,8 @@ public class Sparkline extends Chart {
 
         axis.setLabels(new Labels(false));
         axis.setLineColor(new SolidColor(0, 0, 0, 0));
-        // TODO add setTitle with string arg
-        Title title = new Title();
-        title.setText("");
-        axis.setTitle(title);
+
+        axis.setTitle("");
         axis.setStartOnTick(false);
         axis.setEndOnTick(false);
     }
@@ -118,10 +116,8 @@ public class Sparkline extends Chart {
 
         axis.setLabels(new Labels(false));
         axis.setLineColor(new SolidColor(0, 0, 0, 0));
-        // TODO add setTitle with string arg
-        Title title = new Title();
-        title.setText("");
-        axis.setTitle(title);
+
+        axis.setTitle("");
         axis.setStartOnTick(false);
         axis.setEndOnTick(false);
     }

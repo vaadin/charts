@@ -2,9 +2,11 @@ package com.vaadin.addon.charts.model;
 public class Exporting extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
+	private Boolean allowHTML;
 	private Buttons buttons;
 	private Object chartOptions;
 	private Boolean enabled;
+	private Boolean fallbackToExportServer;
 	private String filename;
 	private Object formAttributes;
 	private Number scale;
@@ -15,6 +17,14 @@ public class Exporting extends AbstractConfigurationObject {
 	private Number width;
 
 	public Exporting() {
+	}
+
+	public Boolean getAllowHTML() {
+		return allowHTML;
+	}
+
+	public void setAllowHTML(Boolean allowHTML) {
+		this.allowHTML = allowHTML;
 	}
 
 	public Buttons getButtons() {
@@ -43,6 +53,14 @@ public class Exporting extends AbstractConfigurationObject {
 
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	public Boolean getFallbackToExportServer() {
+		return fallbackToExportServer;
+	}
+
+	public void setFallbackToExportServer(Boolean fallbackToExportServer) {
+		this.fallbackToExportServer = fallbackToExportServer;
 	}
 
 	public String getFilename() {

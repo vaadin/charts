@@ -1,4 +1,7 @@
 package com.vaadin.addon.charts.model;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 public class PlotOptionsTreeMap extends AbstractPlotOptions {
 
 	private static final long serialVersionUID = 1L;
@@ -6,7 +9,7 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 	private Boolean allowPointSelect;
 	private Boolean alternateStartingDirection;
 	private Boolean animation;
-	private Number borderColor;
+	private Object borderColor;
 	private Number borderWidth;
 	private Object color;
 	private Boolean colorByPoint;
@@ -15,12 +18,15 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 	private String cursor;
 	private DataLabels dataLabels;
 	private Boolean enableMouseTracking;
+	private Boolean getExtremesFromAll;
 	private Boolean interactByLeaf;
+	private ArrayList<String> keys;
 	private String layoutAlgorithm;
 	private String layoutStartingDirection;
 	private Boolean levelIsConstant;
 	private Levels[] levels;
 	private String linkedTo;
+	private Number maxPointWidth;
 	private Point point;
 	private Boolean selected;
 	private Object shadow;
@@ -32,14 +38,9 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 	private Number turboThreshold;
 	private Boolean visible;
 	private String zoneAxis;
-	private Zones[] zones;
+	private ArrayList<Zones> zones;
 
 	public PlotOptionsTreeMap() {
-	}
-
-	@Override
-	public ChartType getChartType() {
-		return ChartType.TREEMAP;
 	}
 
 	public Boolean getAllowDrillToNode() {
@@ -74,11 +75,11 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 		this.animation = animation;
 	}
 
-	public Number getBorderColor() {
+	public Object getBorderColor() {
 		return borderColor;
 	}
 
-	public void setBorderColor(Number borderColor) {
+	public void setBorderColor(Object borderColor) {
 		this.borderColor = borderColor;
 	}
 
@@ -146,12 +147,41 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 		this.enableMouseTracking = enableMouseTracking;
 	}
 
+	public Boolean getGetExtremesFromAll() {
+		return getExtremesFromAll;
+	}
+
+	public void setGetExtremesFromAll(Boolean getExtremesFromAll) {
+		this.getExtremesFromAll = getExtremesFromAll;
+	}
+
 	public Boolean getInteractByLeaf() {
 		return interactByLeaf;
 	}
 
 	public void setInteractByLeaf(Boolean interactByLeaf) {
 		this.interactByLeaf = interactByLeaf;
+	}
+
+	public String[] getKeys() {
+		String[] arr = new String[keys.size()];
+		keys.toArray(arr);
+		return arr;
+	}
+
+	public void setKeys(String... keys) {
+		this.keys = new ArrayList<String>(Arrays.asList(keys));
+	}
+
+	public void addKey(String key) {
+		if (this.keys == null) {
+			this.keys = new ArrayList<String>();
+		}
+		this.keys.add(key);
+	}
+
+	public void removeKey(String key) {
+		this.keys.remove(key);
 	}
 
 	public String getLayoutAlgorithm() {
@@ -192,6 +222,14 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 
 	public void setLinkedTo(String linkedTo) {
 		this.linkedTo = linkedTo;
+	}
+
+	public Number getMaxPointWidth() {
+		return maxPointWidth;
+	}
+
+	public void setMaxPointWidth(Number maxPointWidth) {
+		this.maxPointWidth = maxPointWidth;
 	}
 
 	public Point getPoint() {
@@ -283,10 +321,28 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 	}
 
 	public Zones[] getZones() {
-		return zones;
+		Zones[] arr = new Zones[zones.size()];
+		zones.toArray(arr);
+		return arr;
 	}
 
-	public void setZones(Zones[] zones) {
-		this.zones = zones;
+	public void setZones(Zones... zones) {
+		this.zones = new ArrayList<Zones>(Arrays.asList(zones));
+	}
+
+	public void addZone(Zones zone) {
+		if (this.zones == null) {
+			this.zones = new ArrayList<Zones>();
+		}
+		this.zones.add(zone);
+	}
+
+	public void removeZone(Zones zone) {
+		this.zones.remove(zone);
+	}
+
+	@Override
+	public ChartType getChartType() {
+		return ChartType.TREEMAP;
 	}
 }

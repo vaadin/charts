@@ -9,6 +9,7 @@ public class Lang extends AbstractConfigurationObject {
 	private String downloadPNG;
 	private String downloadSVG;
 	private String drillUpText;
+	private String invalidDate;
 	private Loading loading;
 	private String[] months;
 	private NoData noData;
@@ -77,6 +78,14 @@ public class Lang extends AbstractConfigurationObject {
 
 	public void setDrillUpText(String drillUpText) {
 		this.drillUpText = drillUpText;
+	}
+
+	public String getInvalidDate() {
+		return invalidDate;
+	}
+
+	public void setInvalidDate(String invalidDate) {
+		this.invalidDate = invalidDate;
 	}
 
 	public Loading getLoading() {

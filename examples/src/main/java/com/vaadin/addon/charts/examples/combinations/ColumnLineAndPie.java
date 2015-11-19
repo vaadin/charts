@@ -127,7 +127,7 @@ public class ColumnLineAndPie extends AbstractVaadinChartExample {
 
         PlotOptionsPie plotOptionsPie = new PlotOptionsPie();
         plotOptionsPie.setSize(100);
-        plotOptionsPie.setCenter(new Number[] { 100, 80 });
+        plotOptionsPie.setCenter(100, 80);
         plotOptionsPie.setShowInLegend(false);
         plotOptionsPie.setShowInLegend(false);
         series.setPlotOptions(plotOptionsPie);

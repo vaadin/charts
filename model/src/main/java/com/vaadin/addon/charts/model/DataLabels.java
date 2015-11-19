@@ -15,7 +15,7 @@ public class DataLabels extends AbstractConfigurationObject {
 	private Boolean defer;
 	private Boolean enabled;
 	private String format;
-	private Object formatter;
+	private String _fn_formatter;
 	private Boolean inside;
 	private String overflow;
 	private Number padding;
@@ -28,6 +28,15 @@ public class DataLabels extends AbstractConfigurationObject {
 	private Number x;
 	private Number y;
 	private Number zIndex;
+	private String connectorColor;
+	private Number connectorPadding;
+	private Number connectorWidth;
+	private Number distance;
+	private Boolean softConnector;
+	private Number xHigh;
+	private Number xLow;
+	private Number yHigh;
+	private Number yLow;
 
 	public DataLabels() {
 	}
@@ -124,12 +133,12 @@ public class DataLabels extends AbstractConfigurationObject {
 		this.format = format;
 	}
 
-	public Object getFormatter() {
-		return formatter;
+	public String getFormatter() {
+		return _fn_formatter;
 	}
 
-	public void setFormatter(Object formatter) {
-		this.formatter = formatter;
+	public void setFormatter(String _fn_formatter) {
+		this._fn_formatter = _fn_formatter;
 	}
 
 	public Boolean getInside() {
@@ -226,5 +235,77 @@ public class DataLabels extends AbstractConfigurationObject {
 
 	public void setZIndex(Number zIndex) {
 		this.zIndex = zIndex;
+	}
+
+	public String getConnectorColor() {
+		return connectorColor;
+	}
+
+	public void setConnectorColor(String connectorColor) {
+		this.connectorColor = connectorColor;
+	}
+
+	public Number getConnectorPadding() {
+		return connectorPadding;
+	}
+
+	public void setConnectorPadding(Number connectorPadding) {
+		this.connectorPadding = connectorPadding;
+	}
+
+	public Number getConnectorWidth() {
+		return connectorWidth;
+	}
+
+	public void setConnectorWidth(Number connectorWidth) {
+		this.connectorWidth = connectorWidth;
+	}
+
+	public Number getDistance() {
+		return distance;
+	}
+
+	public void setDistance(Number distance) {
+		this.distance = distance;
+	}
+
+	public Boolean getSoftConnector() {
+		return softConnector;
+	}
+
+	public void setSoftConnector(Boolean softConnector) {
+		this.softConnector = softConnector;
+	}
+
+	public Number getXHigh() {
+		return xHigh;
+	}
+
+	public void setXHigh(Number xHigh) {
+		this.xHigh = xHigh;
+	}
+
+	public Number getXLow() {
+		return xLow;
+	}
+
+	public void setXLow(Number xLow) {
+		this.xLow = xLow;
+	}
+
+	public Number getYHigh() {
+		return yHigh;
+	}
+
+	public void setYHigh(Number yHigh) {
+		this.yHigh = yHigh;
+	}
+
+	public Number getYLow() {
+		return yLow;
+	}
+
+	public void setYLow(Number yLow) {
+		this.yLow = yLow;
 	}
 }

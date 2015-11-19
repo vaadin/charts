@@ -1,5 +1,5 @@
 package com.vaadin.addon.charts.model;
-public class PlotBands extends AbstractConfigurationObject {
+public class PlotBand extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
 	private Object borderColor;
@@ -14,7 +14,7 @@ public class PlotBands extends AbstractConfigurationObject {
 	private Number to;
 	private Number zIndex;
 
-	public PlotBands() {
+	public PlotBand() {
 	}
 
 	public Object getBorderColor() {

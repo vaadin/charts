@@ -10,6 +10,11 @@ public class Title extends AbstractConfigurationObject {
 	private Number rotation;
 	private Style style;
 	private String text;
+	private Number x;
+	private Number y;
+	private Boolean floating;
+	private Boolean useHTML;
+	private String verticalAlign;
 
 	public Title() {
 	}
@@ -64,5 +69,45 @@ public class Title extends AbstractConfigurationObject {
 
 	public void setText(String text) {
 		this.text = text;
+	}
+
+	public Number getX() {
+		return x;
+	}
+
+	public void setX(Number x) {
+		this.x = x;
+	}
+
+	public Number getY() {
+		return y;
+	}
+
+	public void setY(Number y) {
+		this.y = y;
+	}
+
+	public Boolean getFloating() {
+		return floating;
+	}
+
+	public void setFloating(Boolean floating) {
+		this.floating = floating;
+	}
+
+	public Boolean getUseHTML() {
+		return useHTML;
+	}
+
+	public void setUseHTML(Boolean useHTML) {
+		this.useHTML = useHTML;
+	}
+
+	public String getVerticalAlign() {
+		return verticalAlign;
+	}
+
+	public void setVerticalAlign(String verticalAlign) {
+		this.verticalAlign = verticalAlign;
 	}
 }

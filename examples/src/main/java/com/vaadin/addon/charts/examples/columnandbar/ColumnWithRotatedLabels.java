@@ -36,11 +36,11 @@ public class ColumnWithRotatedLabels extends AbstractVaadinChartExample {
         conf.setTitle(new Title("World's largest cities per 2008"));
 
         XAxis xAxis = new XAxis();
-        xAxis.setCategories(new String[] { "Tokyo", "Jakarta", "New York",
+        xAxis.setCategories("Tokyo", "Jakarta", "New York",
                 "Seoul", "Manila", "Mumbai", "Sao Paulo", "Mexico City",
                 "Dehli", "Osaka", "Cairo", "Kolkata", "Los Angeles",
                 "Shanghai", "Moscow", "Beijing", "Buenos Aires", "Guangzhou",
-                "Shenzhen", "Istanbul" });
+                "Shenzhen", "Istanbul");
         Labels labels = new Labels();
         labels.setRotation(-45);
         // FIXME remove toString() once enums are used in model (CHARTS-159)

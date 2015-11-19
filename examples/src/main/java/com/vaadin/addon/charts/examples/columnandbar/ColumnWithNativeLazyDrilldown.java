@@ -50,7 +50,7 @@ public class ColumnWithNativeLazyDrilldown extends AbstractVaadinChartExample {
         conf.addxAxis(x);
 
         YAxis y = new YAxis();
-        y.setTitle(new Title("Total percent market share"));
+        y.setTitle("Total percent market share");
         conf.addyAxis(y);
 
         PlotOptionsColumn column = new PlotOptionsColumn();

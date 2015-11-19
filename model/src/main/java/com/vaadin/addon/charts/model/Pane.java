@@ -3,7 +3,7 @@ public class Pane extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
 	private Object[] background;
-	private Number[] center;
+	private Object[] center;
 	private Number endAngle;
 	private Object size;
 	private Number startAngle;
@@ -19,12 +19,8 @@ public class Pane extends AbstractConfigurationObject {
 		this.background = background;
 	}
 
-	public Number[] getCenter() {
+	public Object[] getCenter() {
 		return center;
-	}
-
-	public void setCenter(Number[] center) {
-		this.center = center;
 	}
 
 	public Number getEndAngle() {
@@ -49,5 +45,13 @@ public class Pane extends AbstractConfigurationObject {
 
 	public void setStartAngle(Number startAngle) {
 		this.startAngle = startAngle;
+	}
+
+	public void setCenter(Number x, Number y) {
+		this.center = new Number[]{x, y};
+	}
+
+	public void setCenter(String x, String y) {
+		this.center = new String[]{x, y};
 	}
 }

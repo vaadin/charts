@@ -34,7 +34,7 @@ public class SolidGauge extends AbstractVaadinChartExample {
 
         Pane pane = new Pane();
         // FIXME missing generated API
-        // pane.setCenterXY("50%", "85%");
+        pane.setCenter("50%", "85%");
         pane.setSize("140%");
         pane.setStartAngle(-90);
         pane.setEndAngle(90);

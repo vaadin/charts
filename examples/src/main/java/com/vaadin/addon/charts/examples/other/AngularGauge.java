@@ -9,7 +9,7 @@ import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.ListSeries;
-import com.vaadin.addon.charts.model.PlotBands;
+import com.vaadin.addon.charts.model.PlotBand;
 import com.vaadin.addon.charts.model.PlotOptionsGauge;
 import com.vaadin.addon.charts.model.TickPosition;
 import com.vaadin.addon.charts.model.Title;
@@ -91,22 +91,22 @@ public class AngularGauge extends AbstractVaadinChartExample {
         // FIXME missing generated API
         // yAxis.getLabels().setRotation("auto");
 
-        PlotBands plotband1 = new PlotBands();
+        PlotBand plotband1 = new PlotBand();
         plotband1.setFrom(0);
         plotband1.setTo(120);
         plotband1.setColor(new SolidColor("#55BF3B"));
 
-        PlotBands plotband2 = new PlotBands();
+        PlotBand plotband2 = new PlotBand();
         plotband2.setFrom(120);
         plotband2.setTo(160);
         plotband2.setColor(new SolidColor("#DDDF0D"));
 
-        PlotBands plotband3 = new PlotBands();
+        PlotBand plotband3 = new PlotBand();
         plotband3.setFrom(160);
         plotband3.setTo(200);
         plotband3.setColor(new SolidColor("#DF5353"));
 
-        yAxis.setPlotBands(new PlotBands[] { plotband1, plotband2, plotband3 });
+        yAxis.setPlotBands( plotband1, plotband2, plotband3);
 
         final ListSeries series = new ListSeries("Speed", 80);
         PlotOptionsGauge plotOptions = new PlotOptionsGauge();

@@ -8,7 +8,7 @@ import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.HorizontalAlign;
 import com.vaadin.addon.charts.model.Label;
 import com.vaadin.addon.charts.model.Legend;
-import com.vaadin.addon.charts.model.PlotLines;
+import com.vaadin.addon.charts.model.PlotLine;
 import com.vaadin.addon.charts.model.PlotOptionsBoxplot;
 import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.XAxis;
@@ -49,7 +49,7 @@ public class BoxPlotExample extends AbstractVaadinChartExample {
         YAxis yAxis = chart.getConfiguration().getyAxis();
 
         yAxis.setTitle(new Title("Observations"));
-        PlotLines plotLine = new PlotLines();
+        PlotLine plotLine = new PlotLine();
         plotLine.setColor(new SolidColor("red"));
         plotLine.setValue(932);
         plotLine.setWidth(1);
@@ -61,7 +61,7 @@ public class BoxPlotExample extends AbstractVaadinChartExample {
         style.setColor(new SolidColor("gray"));
         label.setStyle(style);
         plotLine.setLabel(label);
-        PlotLines plotLine2 = new PlotLines();
+        PlotLine plotLine2 = new PlotLine();
         plotLine2.setColor(new SolidColor("blue"));
         plotLine2.setValue(800);
         plotLine2.setWidth(1);
@@ -74,7 +74,7 @@ public class BoxPlotExample extends AbstractVaadinChartExample {
         label2.setStyle(style2);
         plotLine2.setLabel(label2);
 
-        yAxis.setPlotLines(new PlotLines[] { plotLine, plotLine2 });
+        yAxis.setPlotLines(new PlotLine[] { plotLine, plotLine2 });
 
         observations = new DataSeries();
         observations.setName("Observations");

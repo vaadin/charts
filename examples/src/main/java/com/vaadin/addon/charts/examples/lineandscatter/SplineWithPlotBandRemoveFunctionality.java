@@ -12,7 +12,7 @@ import com.vaadin.addon.charts.model.Label;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.Marker;
 import com.vaadin.addon.charts.model.MarkerSymbolEnum;
-import com.vaadin.addon.charts.model.PlotBands;
+import com.vaadin.addon.charts.model.PlotBand;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
 import com.vaadin.addon.charts.model.States;
 import com.vaadin.addon.charts.model.Title;
@@ -67,7 +67,7 @@ public class SplineWithPlotBandRemoveFunctionality extends
         // demonstrating plotbands
         yAxis.setAlternateGridColor(TRANSPARENT);
 
-        createPlotBands(yAxis);
+        createPlotBand(yAxis);
         // configuration
         // .getTooltip()
         // .setFormatter(
@@ -116,11 +116,11 @@ public class SplineWithPlotBandRemoveFunctionality extends
                 YAxis axis = chart.getConfiguration().getyAxis();
                 if (axis.getPlotBands() == null
                         || axis.getPlotBands().length == 0) {
-                    createPlotBands(chart.getConfiguration().getyAxis());
+                    createPlotBand(chart.getConfiguration().getyAxis());
                     removePlotBand.setCaption("Remove PlotBands");
                 } else {
                     chart.getConfiguration().getyAxis()
-                            .setPlotBands(new PlotBands[] {});
+                            .setPlotBands(new PlotBand[]{});
                     removePlotBand.setCaption("Restore PlotBands");
                 }
                 chart.drawChart(configuration);
@@ -130,63 +130,61 @@ public class SplineWithPlotBandRemoveFunctionality extends
         return new VerticalLayout(removePlotBand, chart);
     }
 
-    private void createPlotBands(YAxis yAxis) {
+    private void createPlotBand(YAxis yAxis) {
         Style style = new Style();
         style.setColor(LIGHT_GRAY);
 
-        final PlotBands lightAir = new PlotBands();
+        final PlotBand lightAir = new PlotBand();
         lightAir.setFrom(0.3);
         lightAir.setTo(1.5);
         lightAir.setColor(LIGHT_BLUE);
         lightAir.setLabel(new Label("Light air"));
         lightAir.getLabel().setStyle(style);
 
-        final PlotBands lightBreeze = new PlotBands();
+        final PlotBand lightBreeze = new PlotBand();
         lightBreeze.setFrom(1.5);
         lightBreeze.setTo(3.3);
         lightBreeze.setColor(TRANSPARENT);
         lightBreeze.setLabel(new Label("Light breeze"));
         lightBreeze.getLabel().setStyle(style);
 
-        final PlotBands gentleBreeze = new PlotBands();
+        final PlotBand gentleBreeze = new PlotBand();
         gentleBreeze.setFrom(3.3);
         gentleBreeze.setTo(5.5);
         gentleBreeze.setColor(LIGHT_BLUE);
         gentleBreeze.setLabel(new Label("Gentle breeze"));
         gentleBreeze.getLabel().setStyle(style);
 
-        final PlotBands moderateBreeze = new PlotBands();
+        final PlotBand moderateBreeze = new PlotBand();
         moderateBreeze.setFrom(5.5);
         moderateBreeze.setTo(8);
         moderateBreeze.setColor(TRANSPARENT);
         moderateBreeze.setLabel(new Label("Moderate breeze"));
         moderateBreeze.getLabel().setStyle(style);
 
-        final PlotBands freshBreeze = new PlotBands();
+        final PlotBand freshBreeze = new PlotBand();
         freshBreeze.setFrom(8);
         freshBreeze.setTo(11);
         freshBreeze.setColor(LIGHT_BLUE);
         freshBreeze.setLabel(new Label("Fresh breeze"));
         freshBreeze.getLabel().setStyle(style);
 
-        final PlotBands strongBreeze = new PlotBands();
+        final PlotBand strongBreeze = new PlotBand();
         strongBreeze.setFrom(11);
         strongBreeze.setTo(14);
         strongBreeze.setColor(TRANSPARENT);
         strongBreeze.setLabel(new Label("Strong breeze"));
         strongBreeze.getLabel().setStyle(style);
 
-        final PlotBands highWind = new PlotBands();
+        final PlotBand highWind = new PlotBand();
         highWind.setFrom(14);
         highWind.setTo(15);
         highWind.setColor(LIGHT_BLUE);
         highWind.setLabel(new Label("High wind"));
         highWind.getLabel().setStyle(style);
 
-        PlotBands[] result = new PlotBands[] { lightAir, lightBreeze,
+        yAxis.setPlotBands(lightAir, lightBreeze,
                 gentleBreeze, moderateBreeze, freshBreeze, strongBreeze,
-                highWind };
-
-        yAxis.setPlotBands(result);
+                highWind);
     }
 }

@@ -1,4 +1,7 @@
 package com.vaadin.addon.charts.model;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 public class PlotOptionsArea extends AbstractPlotOptions {
 
 	private static final long serialVersionUID = 1L;
@@ -14,6 +17,8 @@ public class PlotOptionsArea extends AbstractPlotOptions {
 	private Boolean enableMouseTracking;
 	private Object fillColor;
 	private Number fillOpacity;
+	private Boolean getExtremesFromAll;
+	private ArrayList<String> keys;
 	private Object lineColor;
 	private Number lineWidth;
 	private String linkedTo;
@@ -29,6 +34,7 @@ public class PlotOptionsArea extends AbstractPlotOptions {
 	private Object shadow;
 	private Boolean showCheckbox;
 	private Boolean showInLegend;
+	private Boolean softThreshold;
 	private String stacking;
 	private States states;
 	private String step;
@@ -39,14 +45,9 @@ public class PlotOptionsArea extends AbstractPlotOptions {
 	private Number turboThreshold;
 	private Boolean visible;
 	private String zoneAxis;
-	private Zones[] zones;
+	private ArrayList<Zones> zones;
 
 	public PlotOptionsArea() {
-	}
-
-	@Override
-	public ChartType getChartType() {
-		return ChartType.AREA;
 	}
 
 	public Boolean getAllowPointSelect() {
@@ -143,6 +144,35 @@ public class PlotOptionsArea extends AbstractPlotOptions {
 
 	public void setFillOpacity(Number fillOpacity) {
 		this.fillOpacity = fillOpacity;
+	}
+
+	public Boolean getGetExtremesFromAll() {
+		return getExtremesFromAll;
+	}
+
+	public void setGetExtremesFromAll(Boolean getExtremesFromAll) {
+		this.getExtremesFromAll = getExtremesFromAll;
+	}
+
+	public String[] getKeys() {
+		String[] arr = new String[keys.size()];
+		keys.toArray(arr);
+		return arr;
+	}
+
+	public void setKeys(String... keys) {
+		this.keys = new ArrayList<String>(Arrays.asList(keys));
+	}
+
+	public void addKey(String key) {
+		if (this.keys == null) {
+			this.keys = new ArrayList<String>();
+		}
+		this.keys.add(key);
+	}
+
+	public void removeKey(String key) {
+		this.keys.remove(key);
 	}
 
 	public Object getLineColor() {
@@ -265,6 +295,14 @@ public class PlotOptionsArea extends AbstractPlotOptions {
 		this.showInLegend = showInLegend;
 	}
 
+	public Boolean getSoftThreshold() {
+		return softThreshold;
+	}
+
+	public void setSoftThreshold(Boolean softThreshold) {
+		this.softThreshold = softThreshold;
+	}
+
 	public String getStacking() {
 		return stacking;
 	}
@@ -346,10 +384,28 @@ public class PlotOptionsArea extends AbstractPlotOptions {
 	}
 
 	public Zones[] getZones() {
-		return zones;
+		Zones[] arr = new Zones[zones.size()];
+		zones.toArray(arr);
+		return arr;
 	}
 
-	public void setZones(Zones[] zones) {
-		this.zones = zones;
+	public void setZones(Zones... zones) {
+		this.zones = new ArrayList<Zones>(Arrays.asList(zones));
+	}
+
+	public void addZone(Zones zone) {
+		if (this.zones == null) {
+			this.zones = new ArrayList<Zones>();
+		}
+		this.zones.add(zone);
+	}
+
+	public void removeZone(Zones zone) {
+		this.zones.remove(zone);
+	}
+
+	@Override
+	public ChartType getChartType() {
+		return ChartType.AREA;
 	}
 }

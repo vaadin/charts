@@ -6,10 +6,11 @@ public class Labels extends AbstractConfigurationObject {
 	private static final long serialVersionUID = 1L;
 	private String align;
 	private Number[] autoRotation;
+	private Number autoRotationLimit;
 	private Number distance;
 	private Boolean enabled;
 	private String format;
-	private Object formatter;
+	private String _fn_formatter;
 	private Number padding;
 	private Number rotation;
 	private Number staggerLines;
@@ -19,6 +20,7 @@ public class Labels extends AbstractConfigurationObject {
 	private Number x;
 	private Number y;
 	private Number zIndex;
+	private Items[] items;
 
 	public Labels() {
 	}
@@ -37,6 +39,14 @@ public class Labels extends AbstractConfigurationObject {
 
 	public void setAutoRotation(Number[] autoRotation) {
 		this.autoRotation = autoRotation;
+	}
+
+	public Number getAutoRotationLimit() {
+		return autoRotationLimit;
+	}
+
+	public void setAutoRotationLimit(Number autoRotationLimit) {
+		this.autoRotationLimit = autoRotationLimit;
 	}
 
 	public Number getDistance() {
@@ -67,12 +77,12 @@ public class Labels extends AbstractConfigurationObject {
 		this.format = format;
 	}
 
-	public Object getFormatter() {
-		return formatter;
+	public String getFormatter() {
+		return _fn_formatter;
 	}
 
-	public void setFormatter(Object formatter) {
-		this.formatter = formatter;
+	public void setFormatter(String _fn_formatter) {
+		this._fn_formatter = _fn_formatter;
 	}
 
 	public Number getPadding() {
@@ -145,5 +155,13 @@ public class Labels extends AbstractConfigurationObject {
 
 	public void setZIndex(Number zIndex) {
 		this.zIndex = zIndex;
+	}
+
+	public Items[] getItems() {
+		return items;
+	}
+
+	public void setItems(Items[] items) {
+		this.items = items;
 	}
 }

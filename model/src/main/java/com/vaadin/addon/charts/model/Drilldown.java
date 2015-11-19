@@ -6,6 +6,7 @@ public class Drilldown extends AbstractConfigurationObject {
 	private static final long serialVersionUID = 1L;
 	private Style activeAxisLabelStyle;
 	private Style activeDataLabelStyle;
+	private Boolean allowPointDrilldown;
 	private Object animation;
 	private DrillUpButton drillUpButton;
 	private PlotOptionsSeries series;
@@ -27,6 +28,14 @@ public class Drilldown extends AbstractConfigurationObject {
 
 	public void setActiveDataLabelStyle(Style activeDataLabelStyle) {
 		this.activeDataLabelStyle = activeDataLabelStyle;
+	}
+
+	public Boolean getAllowPointDrilldown() {
+		return allowPointDrilldown;
+	}
+
+	public void setAllowPointDrilldown(Boolean allowPointDrilldown) {
+		this.allowPointDrilldown = allowPointDrilldown;
 	}
 
 	public Object getAnimation() {

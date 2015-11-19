@@ -8,7 +8,7 @@ import com.vaadin.addon.charts.model.HorizontalAlign;
 import com.vaadin.addon.charts.model.LayoutDirection;
 import com.vaadin.addon.charts.model.Legend;
 import com.vaadin.addon.charts.model.ListSeries;
-import com.vaadin.addon.charts.model.PlotBands;
+import com.vaadin.addon.charts.model.PlotBand;
 import com.vaadin.addon.charts.model.PlotOptionsArea;
 import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.Tooltip;
@@ -52,12 +52,12 @@ public class AreaSpline extends AbstractVaadinChartExample {
         xAxis.setCategories(new String[] { "Monday", "Tuesday", "Wednesday",
                 "Thursday", "Friday", "Saturday", "Sunday" });
         // add blue background for the weekend
-        PlotBands plotBand = new PlotBands();
+        PlotBand plotBand = new PlotBand();
         plotBand.setFrom(4.5);
         plotBand.setTo(6.5);
         plotBand.setColor(LIGHT_BLUE);
         plotBand.setZIndex(1);
-        xAxis.setPlotBands(new PlotBands[] { plotBand });
+        xAxis.setPlotBands( plotBand);
         conf.addxAxis(xAxis);
 
         YAxis yAxis = new YAxis();

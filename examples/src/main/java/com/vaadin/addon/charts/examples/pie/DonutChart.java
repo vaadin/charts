@@ -47,7 +47,7 @@ public class DonutChart extends AbstractVaadinChartExample {
         conf.setTitle("Browser market share, April, 2011");
 
         YAxis yaxis = new YAxis();
-        yaxis.setTitle(new Title("Total percent market share"));
+        yaxis.setTitle("Total percent market share");
 
         PlotOptionsPie pie = new PlotOptionsPie();
         pie.setShadow(false);

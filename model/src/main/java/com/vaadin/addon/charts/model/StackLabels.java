@@ -7,7 +7,7 @@ public class StackLabels extends AbstractConfigurationObject {
 	private String align;
 	private Boolean enabled;
 	private String format;
-	private Object formatter;
+	private String _fn_formatter;
 	private Number rotation;
 	private Style style;
 	private String textAlign;
@@ -47,12 +47,12 @@ public class StackLabels extends AbstractConfigurationObject {
 		this.format = format;
 	}
 
-	public Object getFormatter() {
-		return formatter;
+	public String getFormatter() {
+		return _fn_formatter;
 	}
 
-	public void setFormatter(Object formatter) {
-		this.formatter = formatter;
+	public void setFormatter(String _fn_formatter) {
+		this._fn_formatter = _fn_formatter;
 	}
 
 	public Number getRotation() {

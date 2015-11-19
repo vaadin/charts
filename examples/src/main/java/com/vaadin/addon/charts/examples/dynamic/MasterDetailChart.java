@@ -8,20 +8,8 @@ import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.ChartSelectionEvent;
 import com.vaadin.addon.charts.ChartSelectionListener;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.model.AxisType;
-import com.vaadin.addon.charts.model.ChartType;
-import com.vaadin.addon.charts.model.Configuration;
-import com.vaadin.addon.charts.model.Hover;
-import com.vaadin.addon.charts.model.Labels;
-import com.vaadin.addon.charts.model.ListSeries;
-import com.vaadin.addon.charts.model.Marker;
-import com.vaadin.addon.charts.model.PlotBands;
-import com.vaadin.addon.charts.model.PlotOptionsArea;
-import com.vaadin.addon.charts.model.PlotOptionsLine;
-import com.vaadin.addon.charts.model.States;
-import com.vaadin.addon.charts.model.Title;
-import com.vaadin.addon.charts.model.YAxis;
-import com.vaadin.addon.charts.model.ZoomType;
+import com.vaadin.addon.charts.model.*;
+import com.vaadin.addon.charts.model.PlotBand;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.charts.util.Util;
@@ -199,8 +187,8 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
                 long end = event.getSelectionEnd().longValue();
 
                 // set plot band to highlight the selection on the master chart
-                PlotBands plotBand1 = new PlotBands();
-                PlotBands plotBand2 = new PlotBands();
+                PlotBand plotBand1 = new PlotBand();
+                PlotBand plotBand2 = new PlotBand();
                 plotBand1.setColor(new SolidColor(0, 0, 0, 0.2));
                 plotBand2.setColor(new SolidColor(0, 0, 0, 0.2));
                 plotBand1.setFrom(Util.toHighchartsTS(DEMO_DATASET_START));
@@ -208,8 +196,8 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
                 plotBand2.setFrom(end);
                 plotBand2.setTo(Util.toHighchartsTS(DEMO_DATASET_END));
 
-                masterChart.getConfiguration().getxAxis()
-                        .setPlotBands(new PlotBands[] { plotBand1, plotBand2 });
+
+                masterChart.getConfiguration().getxAxis().setPlotBands(plotBand1, plotBand2);
                 masterChart.drawChart();
 
                 List<Number> list = MasterDetailChart.this.getPartialList(
@@ -279,6 +267,7 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
         Marker marker = new Marker();
         marker.setEnabled(false);
         marker.setStates(states);
+        marker.setRadius(2);
         series.setMarker(marker);
         series.setAnimation(false);
 
@@ -319,11 +308,11 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
         configuration.getxAxis().setMinRange(14 * DAY_IN_MILLIS);
         configuration.getxAxis().setTitle(new Title(""));
 
-        PlotBands mask = new PlotBands();
+        PlotBand mask = new PlotBand();
         mask.setColor(new SolidColor(0, 0, 0, 0.2));
         mask.setFrom(Util.toHighchartsTS(DEMO_DATASET_START));
         mask.setTo(Util.toHighchartsTS(DEMO_DATASET_END));
-        configuration.getxAxis().setPlotBands(new PlotBands[] { mask });
+        configuration.getxAxis().setPlotBands(mask);
 
         YAxis yAxis = configuration.getyAxis();
         yAxis.setGridLineWidth(0);
