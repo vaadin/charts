@@ -1,7 +1,5 @@
 package com.vaadin.addon.charts.examples.other;
 
-import java.util.Random;
-
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.ChartType;
@@ -14,6 +12,8 @@ import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.ui.Component;
 
+import java.util.Random;
+
 public class SolidGauge extends AbstractVaadinChartExample {
 
     @Override
@@ -24,7 +24,7 @@ public class SolidGauge extends AbstractVaadinChartExample {
     @Override
     protected Component getChart() {
         final Chart chart = new Chart();
-        chart.setWidth("500px");
+        chart.setWidth(500,Unit.PIXELS);
 
         final Configuration configuration = chart.getConfiguration();
         // FIXME remove toString() once enums are used in model (CHARTS-159)

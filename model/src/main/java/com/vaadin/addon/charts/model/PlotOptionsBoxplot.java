@@ -2,6 +2,9 @@ package com.vaadin.addon.charts.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import com.vaadin.addon.charts.util.SizeWithUnit;
+import java.util.Date;
+import com.vaadin.addon.charts.util.Util;
 public class PlotOptionsBoxplot extends AbstractPlotOptions {
 
 	private static final long serialVersionUID = 1L;
@@ -46,7 +49,7 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 	private Number turboThreshold;
 	private Boolean visible;
 	private Object whiskerColor;
-	private Object whiskerLength;
+	private String whiskerLength;
 	private Number whiskerWidth;
 	private String zoneAxis;
 	private ArrayList<Zones> zones;
@@ -395,12 +398,45 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 		this.whiskerColor = whiskerColor;
 	}
 
-	public Object getWhiskerLength() {
-		return whiskerLength;
+	public float getWhiskerLength() {
+		String tmp = whiskerLength;
+		if (whiskerLength == null) {
+			return -1.0f;
+		}
+		if (this.whiskerLength.contains("%")) {
+			tmp = tmp.replace("%", "");
+		}
+		return Float.valueOf(tmp).floatValue();
 	}
 
-	public void setWhiskerLength(Object whiskerLength) {
-		this.whiskerLength = whiskerLength;
+	public Unit getWhiskerLengthUnit() {
+		if (this.whiskerLength == null) {
+			return Unit.PIXELS;
+		}
+		if (this.whiskerLength.contains("%")) {
+			return Unit.PERCENTAGE;
+		}
+		return Unit.PIXELS;
+	}
+
+	public void setWhiskerLength(String whiskerLength) {
+		SizeWithUnit tmp = SizeWithUnit.parseStringSize(whiskerLength);
+		if (tmp != null) {
+			setWhiskerLength(tmp.getSize(), tmp.getUnit());
+		} else {
+			setWhiskerLength(-1, Unit.PIXELS);
+		}
+	}
+
+	public void setWhiskerLength(float whiskerLength, Unit unit) {
+		String value = Float.toString(whiskerLength);
+		if (unit.equals(Unit.PERCENTAGE)) {
+			value += "%";
+		}
+		if (whiskerLength == -1) {
+			value = null;
+		}
+		this.whiskerLength = value;
 	}
 
 	public Number getWhiskerWidth() {
@@ -443,5 +479,9 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 	@Override
 	public ChartType getChartType() {
 		return ChartType.BOXPLOT;
+	}
+
+	public void setPointStart(Date date) {
+		this.pointStart = Util.toHighchartsTS(date);
 	}
 }

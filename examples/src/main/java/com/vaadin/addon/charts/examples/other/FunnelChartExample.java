@@ -35,10 +35,7 @@ public class FunnelChartExample extends AbstractVaadinChartExample {
 
         PlotOptionsFunnel options = new PlotOptionsFunnel();
         options.setReversed(true);
-        // FIXME missing generated API
-        // options.setNeckWidthPercentage(30);
         options.setNeckWidth("30%");
-        // options.setNeckHeightPercentage(30);
         options.setNeckHeight("30%");
 
         options.setWidth("70%");

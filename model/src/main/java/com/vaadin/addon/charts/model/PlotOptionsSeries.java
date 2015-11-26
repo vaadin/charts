@@ -2,6 +2,8 @@ package com.vaadin.addon.charts.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
+import com.vaadin.addon.charts.util.Util;
 public class PlotOptionsSeries extends AbstractPlotOptions {
 
 	private static final long serialVersionUID = 1L;
@@ -357,5 +359,9 @@ public class PlotOptionsSeries extends AbstractPlotOptions {
 
 	public void removeZone(Zones zone) {
 		this.zones.remove(zone);
+	}
+
+	public void setPointStart(Date date) {
+		this.pointStart = Util.toHighchartsTS(date);
 	}
 }

@@ -2,6 +2,8 @@ package com.vaadin.addon.charts.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
+import com.vaadin.addon.charts.util.Util;
 public class PlotOptionsColumnRange extends AbstractPlotOptions {
 
 	private static final long serialVersionUID = 1L;
@@ -416,5 +418,9 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	@Override
 	public ChartType getChartType() {
 		return ChartType.COLUMNRANGE;
+	}
+
+	public void setPointStart(Date date) {
+		this.pointStart = Util.toHighchartsTS(date);
 	}
 }

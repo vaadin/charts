@@ -1,4 +1,6 @@
 package com.vaadin.addon.charts.model;
+
+import com.vaadin.addon.charts.util.SizeWithUnit;
 public class Data extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
@@ -16,8 +18,8 @@ public class Data extends AbstractConfigurationObject {
 	private String parent;
 	private Number value;
 	private Marker marker;
-	private Object innerRadius;
-	private Object radius;
+	private String innerRadius;
+	private String radius;
 	private Number legendIndex;
 	private Boolean sliced;
 	private Number high;
@@ -162,20 +164,86 @@ public class Data extends AbstractConfigurationObject {
 		this.marker = marker;
 	}
 
-	public Object getInnerRadius() {
-		return innerRadius;
+	public float getInnerRadius() {
+		String tmp = innerRadius;
+		if (innerRadius == null) {
+			return -1.0f;
+		}
+		if (this.innerRadius.contains("%")) {
+			tmp = tmp.replace("%", "");
+		}
+		return Float.valueOf(tmp).floatValue();
 	}
 
-	public void setInnerRadius(Object innerRadius) {
-		this.innerRadius = innerRadius;
+	public Unit getInnerRadiusUnit() {
+		if (this.innerRadius == null) {
+			return Unit.PIXELS;
+		}
+		if (this.innerRadius.contains("%")) {
+			return Unit.PERCENTAGE;
+		}
+		return Unit.PIXELS;
 	}
 
-	public Object getRadius() {
-		return radius;
+	public void setInnerRadius(String innerRadius) {
+		SizeWithUnit tmp = SizeWithUnit.parseStringSize(innerRadius);
+		if (tmp != null) {
+			setInnerRadius(tmp.getSize(), tmp.getUnit());
+		} else {
+			setInnerRadius(-1, Unit.PIXELS);
+		}
 	}
 
-	public void setRadius(Object radius) {
-		this.radius = radius;
+	public void setInnerRadius(float innerRadius, Unit unit) {
+		String value = Float.toString(innerRadius);
+		if (unit.equals(Unit.PERCENTAGE)) {
+			value += "%";
+		}
+		if (innerRadius == -1) {
+			value = null;
+		}
+		this.innerRadius = value;
+	}
+
+	public float getRadius() {
+		String tmp = radius;
+		if (radius == null) {
+			return -1.0f;
+		}
+		if (this.radius.contains("%")) {
+			tmp = tmp.replace("%", "");
+		}
+		return Float.valueOf(tmp).floatValue();
+	}
+
+	public Unit getRadiusUnit() {
+		if (this.radius == null) {
+			return Unit.PIXELS;
+		}
+		if (this.radius.contains("%")) {
+			return Unit.PERCENTAGE;
+		}
+		return Unit.PIXELS;
+	}
+
+	public void setRadius(String radius) {
+		SizeWithUnit tmp = SizeWithUnit.parseStringSize(radius);
+		if (tmp != null) {
+			setRadius(tmp.getSize(), tmp.getUnit());
+		} else {
+			setRadius(-1, Unit.PIXELS);
+		}
+	}
+
+	public void setRadius(float radius, Unit unit) {
+		String value = Float.toString(radius);
+		if (unit.equals(Unit.PERCENTAGE)) {
+			value += "%";
+		}
+		if (radius == -1) {
+			value = null;
+		}
+		this.radius = value;
 	}
 
 	public Number getLegendIndex() {

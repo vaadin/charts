@@ -1,5 +1,6 @@
 package com.vaadin.addon.charts.model;
 
+import com.vaadin.addon.charts.util.SizeWithUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
 public class PlotOptionsPyramid extends AbstractPlotOptions {
@@ -15,7 +16,7 @@ public class PlotOptionsPyramid extends AbstractPlotOptions {
 	private Number depth;
 	private Boolean enableMouseTracking;
 	private Boolean getExtremesFromAll;
-	private Object height;
+	private String height;
 	private ArrayList<String> keys;
 	private String linkedTo;
 	private Number minSize;
@@ -29,7 +30,7 @@ public class PlotOptionsPyramid extends AbstractPlotOptions {
 	private Boolean stickyTracking;
 	private Tooltip tooltip;
 	private Boolean visible;
-	private Object width;
+	private String width;
 	private String zoneAxis;
 	private ArrayList<Zones> zones;
 
@@ -112,12 +113,45 @@ public class PlotOptionsPyramid extends AbstractPlotOptions {
 		this.getExtremesFromAll = getExtremesFromAll;
 	}
 
-	public Object getHeight() {
-		return height;
+	public float getHeight() {
+		String tmp = height;
+		if (height == null) {
+			return -1.0f;
+		}
+		if (this.height.contains("%")) {
+			tmp = tmp.replace("%", "");
+		}
+		return Float.valueOf(tmp).floatValue();
 	}
 
-	public void setHeight(Object height) {
-		this.height = height;
+	public Unit getHeightUnit() {
+		if (this.height == null) {
+			return Unit.PIXELS;
+		}
+		if (this.height.contains("%")) {
+			return Unit.PERCENTAGE;
+		}
+		return Unit.PIXELS;
+	}
+
+	public void setHeight(String height) {
+		SizeWithUnit tmp = SizeWithUnit.parseStringSize(height);
+		if (tmp != null) {
+			setHeight(tmp.getSize(), tmp.getUnit());
+		} else {
+			setHeight(-1, Unit.PIXELS);
+		}
+	}
+
+	public void setHeight(float height, Unit unit) {
+		String value = Float.toString(height);
+		if (unit.equals(Unit.PERCENTAGE)) {
+			value += "%";
+		}
+		if (height == -1) {
+			value = null;
+		}
+		this.height = value;
 	}
 
 	public String[] getKeys() {
@@ -237,12 +271,45 @@ public class PlotOptionsPyramid extends AbstractPlotOptions {
 		this.visible = visible;
 	}
 
-	public Object getWidth() {
-		return width;
+	public float getWidth() {
+		String tmp = width;
+		if (width == null) {
+			return -1.0f;
+		}
+		if (this.width.contains("%")) {
+			tmp = tmp.replace("%", "");
+		}
+		return Float.valueOf(tmp).floatValue();
 	}
 
-	public void setWidth(Object width) {
-		this.width = width;
+	public Unit getWidthUnit() {
+		if (this.width == null) {
+			return Unit.PIXELS;
+		}
+		if (this.width.contains("%")) {
+			return Unit.PERCENTAGE;
+		}
+		return Unit.PIXELS;
+	}
+
+	public void setWidth(String width) {
+		SizeWithUnit tmp = SizeWithUnit.parseStringSize(width);
+		if (tmp != null) {
+			setWidth(tmp.getSize(), tmp.getUnit());
+		} else {
+			setWidth(-1, Unit.PIXELS);
+		}
+	}
+
+	public void setWidth(float width, Unit unit) {
+		String value = Float.toString(width);
+		if (unit.equals(Unit.PERCENTAGE)) {
+			value += "%";
+		}
+		if (width == -1) {
+			value = null;
+		}
+		this.width = value;
 	}
 
 	public String getZoneAxis() {

@@ -1,11 +1,13 @@
 package com.vaadin.addon.charts.model;
+
+import com.vaadin.addon.charts.util.SizeWithUnit;
 public class Pane extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
 	private Object[] background;
 	private Object[] center;
 	private Number endAngle;
-	private Object size;
+	private String size;
 	private Number startAngle;
 
 	public Pane() {
@@ -31,12 +33,45 @@ public class Pane extends AbstractConfigurationObject {
 		this.endAngle = endAngle;
 	}
 
-	public Object getSize() {
-		return size;
+	public float getSize() {
+		String tmp = size;
+		if (size == null) {
+			return -1.0f;
+		}
+		if (this.size.contains("%")) {
+			tmp = tmp.replace("%", "");
+		}
+		return Float.valueOf(tmp).floatValue();
 	}
 
-	public void setSize(Object size) {
-		this.size = size;
+	public Unit getSizeUnit() {
+		if (this.size == null) {
+			return Unit.PIXELS;
+		}
+		if (this.size.contains("%")) {
+			return Unit.PERCENTAGE;
+		}
+		return Unit.PIXELS;
+	}
+
+	public void setSize(String size) {
+		SizeWithUnit tmp = SizeWithUnit.parseStringSize(size);
+		if (tmp != null) {
+			setSize(tmp.getSize(), tmp.getUnit());
+		} else {
+			setSize(-1, Unit.PIXELS);
+		}
+	}
+
+	public void setSize(float size, Unit unit) {
+		String value = Float.toString(size);
+		if (unit.equals(Unit.PERCENTAGE)) {
+			value += "%";
+		}
+		if (size == -1) {
+			value = null;
+		}
+		this.size = value;
 	}
 
 	public Number getStartAngle() {
@@ -45,6 +80,11 @@ public class Pane extends AbstractConfigurationObject {
 
 	public void setStartAngle(Number startAngle) {
 		this.startAngle = startAngle;
+	}
+
+	public Pane(Number startAngle, Number endAngle) {
+		this.startAngle = startAngle;
+		this.endAngle = endAngle;
 	}
 
 	public void setCenter(Number x, Number y) {

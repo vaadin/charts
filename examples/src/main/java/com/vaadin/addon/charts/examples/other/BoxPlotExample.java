@@ -130,7 +130,7 @@ public class BoxPlotExample extends AbstractVaadinChartExample {
             options.setStemWidth(4);
 
             options.setWhiskerColor(new SolidColor("magenta"));
-            options.setWhiskerLength(70);
+            options.setWhiskerLength("70");
             options.setWhiskerWidth(5);
         }
 

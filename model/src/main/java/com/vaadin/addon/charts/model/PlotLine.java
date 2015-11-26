@@ -68,4 +68,10 @@ public class PlotLine extends AbstractConfigurationObject {
 	public void setZIndex(Number zIndex) {
 		this.zIndex = zIndex;
 	}
+
+	public PlotLine(Number value, Number width, Object color) {
+		this.value = value;
+		this.width = width;
+		this.color = color;
+	}
 }

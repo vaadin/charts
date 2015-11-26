@@ -48,8 +48,8 @@ public class VUMeter extends AbstractVaadinChartExample {
 
         pane1.setCenter("25%", "145%");
         pane2.setCenter("75%", "145%");
-        pane1.setSize(300);
-        pane2.setSize(300);
+        pane1.setSize("300px");
+        pane2.setSize("300");
 
         configuration.addPane(pane1);
         configuration.addPane(pane2);

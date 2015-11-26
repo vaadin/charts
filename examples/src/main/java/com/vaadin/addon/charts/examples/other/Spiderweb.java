@@ -16,6 +16,8 @@ import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.ui.Component;
 
+
+
 @SuppressWarnings("serial")
 public class Spiderweb extends AbstractVaadinChartExample {
 
@@ -31,10 +33,10 @@ public class Spiderweb extends AbstractVaadinChartExample {
         Configuration conf = chart.getConfiguration();
         conf.getChart().setPolar(true);
         conf.setTitle("Budget vs spending");
-        // conf.getTitle().setX(-80);
+        conf.getTitle().setX(-80);
 
         Pane pane = new Pane();
-        pane.setSize("80%");
+        pane.setSize(80, com.vaadin.addon.charts.model.Unit.PERCENTAGE);
         conf.addPane(pane);
         // FIXME missing generated API
         // pane.setBackground(new Background[] {});
