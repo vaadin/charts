@@ -1,4 +1,6 @@
 package com.vaadin.addon.charts.model;
+
+import com.vaadin.addon.charts.model.style.Color;
 public class ContextButton extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
@@ -8,9 +10,9 @@ public class ContextButton extends AbstractConfigurationObject {
 	private Object[] menuItems;
 	private Object onclick;
 	private String symbol;
-	private Object symbolFill;
+	private Color symbolFill;
 	private Number symbolSize;
-	private Object symbolStroke;
+	private Color symbolStroke;
 	private Number symbolStrokeWidth;
 	private Number symbolX;
 	private Number symbolY;
@@ -76,11 +78,11 @@ public class ContextButton extends AbstractConfigurationObject {
 		this.symbol = symbol;
 	}
 
-	public Object getSymbolFill() {
+	public Color getSymbolFill() {
 		return symbolFill;
 	}
 
-	public void setSymbolFill(Object symbolFill) {
+	public void setSymbolFill(Color symbolFill) {
 		this.symbolFill = symbolFill;
 	}
 
@@ -92,11 +94,11 @@ public class ContextButton extends AbstractConfigurationObject {
 		this.symbolSize = symbolSize;
 	}
 
-	public Object getSymbolStroke() {
+	public Color getSymbolStroke() {
 		return symbolStroke;
 	}
 
-	public void setSymbolStroke(Object symbolStroke) {
+	public void setSymbolStroke(Color symbolStroke) {
 		this.symbolStroke = symbolStroke;
 	}
 

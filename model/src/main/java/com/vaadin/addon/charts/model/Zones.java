@@ -1,20 +1,22 @@
 package com.vaadin.addon.charts.model;
+
+import com.vaadin.addon.charts.model.style.Color;
 public class Zones extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
-	private Object color;
+	private Color color;
 	private String dashStyle;
-	private Object fillColor;
+	private Color fillColor;
 	private Number value;
 
 	public Zones() {
 	}
 
-	public Object getColor() {
+	public Color getColor() {
 		return color;
 	}
 
-	public void setColor(Object color) {
+	public void setColor(Color color) {
 		this.color = color;
 	}
 
@@ -26,11 +28,11 @@ public class Zones extends AbstractConfigurationObject {
 		this.dashStyle = dashStyle;
 	}
 
-	public Object getFillColor() {
+	public Color getFillColor() {
 		return fillColor;
 	}
 
-	public void setFillColor(Object fillColor) {
+	public void setFillColor(Color fillColor) {
 		this.fillColor = fillColor;
 	}
 

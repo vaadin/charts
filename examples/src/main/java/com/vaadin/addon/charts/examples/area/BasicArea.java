@@ -40,8 +40,7 @@ public class BasicArea extends AbstractVaadinChartExample {
         plotOptions.setPointStart(1940);
         Marker marker = new Marker();
         marker.setEnabled(false);
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        marker.setSymbol(MarkerSymbolEnum.CIRCLE.toString());
+        marker.setSymbol(MarkerSymbolEnum.CIRCLE);
         marker.setRadius(2);
         States states = new States();
         states.setHover(new Hover(true));

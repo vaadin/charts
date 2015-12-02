@@ -1,7 +1,5 @@
 package com.vaadin.addon.charts.examples.lineandscatter;
 
-import java.util.Date;
-
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.AxisType;
@@ -20,6 +18,8 @@ import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.charts.model.style.Style;
 import com.vaadin.ui.Component;
+
+import java.util.Date;
 
 public class SplineWithPlotBands extends AbstractVaadinChartExample {
 
@@ -127,7 +127,7 @@ public class SplineWithPlotBands extends AbstractVaadinChartExample {
         configuration.setPlotOptions(plotOptions);
         plotOptions.setMarker(new Marker(false));
         plotOptions.getMarker().setLineWidth(4);
-        plotOptions.getMarker().setSymbol(MarkerSymbolEnum.CIRCLE.toString());
+        plotOptions.getMarker().setSymbol(MarkerSymbolEnum.CIRCLE);
         States states = new States();
         Hover hover = new Hover(true);
         hover.setRadius(5);

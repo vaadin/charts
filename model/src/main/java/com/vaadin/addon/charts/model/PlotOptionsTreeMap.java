@@ -1,5 +1,6 @@
 package com.vaadin.addon.charts.model;
 
+import com.vaadin.addon.charts.model.style.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
 public class PlotOptionsTreeMap extends AbstractPlotOptions {
@@ -9,9 +10,9 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 	private Boolean allowPointSelect;
 	private Boolean alternateStartingDirection;
 	private Boolean animation;
-	private Object borderColor;
+	private Color borderColor;
 	private Number borderWidth;
-	private Object color;
+	private Color color;
 	private Boolean colorByPoint;
 	private Object colors;
 	private Number cropThreshold;
@@ -75,11 +76,11 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 		this.animation = animation;
 	}
 
-	public Object getBorderColor() {
+	public Color getBorderColor() {
 		return borderColor;
 	}
 
-	public void setBorderColor(Object borderColor) {
+	public void setBorderColor(Color borderColor) {
 		this.borderColor = borderColor;
 	}
 
@@ -91,11 +92,11 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 		this.borderWidth = borderWidth;
 	}
 
-	public Object getColor() {
+	public Color getColor() {
 		return color;
 	}
 
-	public void setColor(Object color) {
+	public void setColor(Color color) {
 		this.color = color;
 	}
 

@@ -1,5 +1,6 @@
 package com.vaadin.addon.charts.model;
 
+import com.vaadin.addon.charts.model.style.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -9,7 +10,7 @@ public class PlotOptionsScatter extends AbstractPlotOptions {
 	private static final long serialVersionUID = 1L;
 	private Boolean allowPointSelect;
 	private Boolean animation;
-	private Object color;
+	private Color color;
 	private Number cropThreshold;
 	private String cursor;
 	private String dashStyle;
@@ -20,7 +21,7 @@ public class PlotOptionsScatter extends AbstractPlotOptions {
 	private Number lineWidth;
 	private String linkedTo;
 	private Marker marker;
-	private Object negativeColor;
+	private Color negativeColor;
 	private Point point;
 	private Number pointInterval;
 	private String pointIntervalUnit;
@@ -58,11 +59,11 @@ public class PlotOptionsScatter extends AbstractPlotOptions {
 		this.animation = animation;
 	}
 
-	public Object getColor() {
+	public Color getColor() {
 		return color;
 	}
 
-	public void setColor(Object color) {
+	public void setColor(Color color) {
 		this.color = color;
 	}
 
@@ -159,11 +160,11 @@ public class PlotOptionsScatter extends AbstractPlotOptions {
 		this.marker = marker;
 	}
 
-	public Object getNegativeColor() {
+	public Color getNegativeColor() {
 		return negativeColor;
 	}
 
-	public void setNegativeColor(Object negativeColor) {
+	public void setNegativeColor(Color negativeColor) {
 		this.negativeColor = negativeColor;
 	}
 

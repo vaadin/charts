@@ -49,8 +49,7 @@ public class HeatMapExample extends AbstractVaadinChartExample {
 
         config.getLegend().setLayout(LayoutDirection.VERTICAL.toString());
         config.getLegend().setAlign(HorizontalAlign.RIGHT.toString());
-        // TODO: margin should allow single value too
-        // config.getLegend().setMargin(0);
+        config.getLegend().setMargin(0);
         config.getLegend().setVerticalAlign(VerticalAlign.TOP.toString());
         config.getLegend().setY(25);
         config.getLegend().setSymbolHeight(320);

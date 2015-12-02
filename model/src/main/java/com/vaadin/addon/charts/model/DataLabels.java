@@ -1,16 +1,17 @@
 package com.vaadin.addon.charts.model;
 
+import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.Style;
 public class DataLabels extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
 	private String align;
 	private Boolean allowOverlap;
-	private Object backgroundColor;
-	private Object borderColor;
+	private Color backgroundColor;
+	private Color borderColor;
 	private Number borderRadius;
 	private Number borderWidth;
-	private Object color;
+	private Color color;
 	private Boolean crop;
 	private Boolean defer;
 	private Boolean enabled;
@@ -57,19 +58,19 @@ public class DataLabels extends AbstractConfigurationObject {
 		this.allowOverlap = allowOverlap;
 	}
 
-	public Object getBackgroundColor() {
+	public Color getBackgroundColor() {
 		return backgroundColor;
 	}
 
-	public void setBackgroundColor(Object backgroundColor) {
+	public void setBackgroundColor(Color backgroundColor) {
 		this.backgroundColor = backgroundColor;
 	}
 
-	public Object getBorderColor() {
+	public Color getBorderColor() {
 		return borderColor;
 	}
 
-	public void setBorderColor(Object borderColor) {
+	public void setBorderColor(Color borderColor) {
 		this.borderColor = borderColor;
 	}
 
@@ -89,11 +90,11 @@ public class DataLabels extends AbstractConfigurationObject {
 		this.borderWidth = borderWidth;
 	}
 
-	public Object getColor() {
+	public Color getColor() {
 		return color;
 	}
 
-	public void setColor(Object color) {
+	public void setColor(Color color) {
 		this.color = color;
 	}
 

@@ -1,10 +1,11 @@
 package com.vaadin.addon.charts.model;
 
+import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.util.SizeWithUnit;
 public class Data extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
-	private Object color;
+	private Color color;
 	private DataLabels dataLabels;
 	private String drilldown;
 	private String id;
@@ -52,11 +53,11 @@ public class Data extends AbstractConfigurationObject {
 	public Data() {
 	}
 
-	public Object getColor() {
+	public Color getColor() {
 		return color;
 	}
 
-	public void setColor(Object color) {
+	public void setColor(Color color) {
 		this.color = color;
 	}
 

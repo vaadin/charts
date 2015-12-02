@@ -1,8 +1,10 @@
 package com.vaadin.addon.charts.model;
+
+import com.vaadin.addon.charts.model.style.Color;
 public class Crosshair extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
-	private Object color;
+	private Color color;
 	private String dashStyle;
 	private Boolean snap;
 	private Number width;
@@ -11,11 +13,11 @@ public class Crosshair extends AbstractConfigurationObject {
 	public Crosshair() {
 	}
 
-	public Object getColor() {
+	public Color getColor() {
 		return color;
 	}
 
-	public void setColor(Object color) {
+	public void setColor(Color color) {
 		this.color = color;
 	}
 

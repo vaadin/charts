@@ -1,16 +1,18 @@
 package com.vaadin.addon.charts.model;
+
+import com.vaadin.addon.charts.model.style.Color;
 public class Marker extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
 	private Boolean enabled;
-	private Object fillColor;
+	private Color fillColor;
 	private Number height;
-	private Object lineColor;
+	private Color lineColor;
 	private Number lineWidth;
 	private Number radius;
-	private String symbol;
 	private Number width;
 	private States states;
+	private MarkerSymbol symbol;
 
 	public Marker() {
 	}
@@ -27,11 +29,11 @@ public class Marker extends AbstractConfigurationObject {
 		this.enabled = enabled;
 	}
 
-	public Object getFillColor() {
+	public Color getFillColor() {
 		return fillColor;
 	}
 
-	public void setFillColor(Object fillColor) {
+	public void setFillColor(Color fillColor) {
 		this.fillColor = fillColor;
 	}
 
@@ -43,11 +45,11 @@ public class Marker extends AbstractConfigurationObject {
 		this.height = height;
 	}
 
-	public Object getLineColor() {
+	public Color getLineColor() {
 		return lineColor;
 	}
 
-	public void setLineColor(Object lineColor) {
+	public void setLineColor(Color lineColor) {
 		this.lineColor = lineColor;
 	}
 
@@ -67,14 +69,6 @@ public class Marker extends AbstractConfigurationObject {
 		this.radius = radius;
 	}
 
-	public String getSymbol() {
-		return symbol;
-	}
-
-	public void setSymbol(String symbol) {
-		this.symbol = symbol;
-	}
-
 	public Number getWidth() {
 		return width;
 	}
@@ -89,5 +83,13 @@ public class Marker extends AbstractConfigurationObject {
 
 	public void setStates(States states) {
 		this.states = states;
+	}
+
+	public MarkerSymbol getSymbol() {
+		return symbol;
+	}
+
+	public void setSymbol(MarkerSymbol symbol) {
+		this.symbol = symbol;
 	}
 }

@@ -1,15 +1,17 @@
 package com.vaadin.addon.charts.model;
 
+import com.vaadin.addon.charts.model.style.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import com.vaadin.addon.charts.util.Util;
+import com.vaadin.addon.charts.util.SizeWithUnit;
 public class PlotOptionsBubble extends AbstractPlotOptions {
 
 	private static final long serialVersionUID = 1L;
 	private Boolean allowPointSelect;
 	private Boolean animation;
-	private Object color;
+	private Color color;
 	private Number cropThreshold;
 	private String cursor;
 	private String dashStyle;
@@ -21,9 +23,7 @@ public class PlotOptionsBubble extends AbstractPlotOptions {
 	private Number lineWidth;
 	private String linkedTo;
 	private Marker marker;
-	private String maxSize;
-	private String minSize;
-	private Object negativeColor;
+	private Color negativeColor;
 	private Point point;
 	private Number pointInterval;
 	private String pointIntervalUnit;
@@ -45,6 +45,8 @@ public class PlotOptionsBubble extends AbstractPlotOptions {
 	private Number zThreshold;
 	private String zoneAxis;
 	private ArrayList<Zones> zones;
+	private String minSize;
+	private String maxSize;
 
 	public PlotOptionsBubble() {
 	}
@@ -65,11 +67,11 @@ public class PlotOptionsBubble extends AbstractPlotOptions {
 		this.animation = animation;
 	}
 
-	public Object getColor() {
+	public Color getColor() {
 		return color;
 	}
 
-	public void setColor(Object color) {
+	public void setColor(Color color) {
 		this.color = color;
 	}
 
@@ -174,27 +176,11 @@ public class PlotOptionsBubble extends AbstractPlotOptions {
 		this.marker = marker;
 	}
 
-	public String getMaxSize() {
-		return maxSize;
-	}
-
-	public void setMaxSize(String maxSize) {
-		this.maxSize = maxSize;
-	}
-
-	public String getMinSize() {
-		return minSize;
-	}
-
-	public void setMinSize(String minSize) {
-		this.minSize = minSize;
-	}
-
-	public Object getNegativeColor() {
+	public Color getNegativeColor() {
 		return negativeColor;
 	}
 
-	public void setNegativeColor(Object negativeColor) {
+	public void setNegativeColor(Color negativeColor) {
 		this.negativeColor = negativeColor;
 	}
 
@@ -386,5 +372,87 @@ public class PlotOptionsBubble extends AbstractPlotOptions {
 
 	public void setPointStart(Date date) {
 		this.pointStart = Util.toHighchartsTS(date);
+	}
+
+	public float getMinSize() {
+		String tmp = minSize;
+		if (minSize == null) {
+			return -1.0f;
+		}
+		if (this.minSize.contains("%")) {
+			tmp = tmp.replace("%", "");
+		}
+		return Float.valueOf(tmp).floatValue();
+	}
+
+	public Unit getMinSizeUnit() {
+		if (this.minSize == null) {
+			return Unit.PIXELS;
+		}
+		if (this.minSize.contains("%")) {
+			return Unit.PERCENTAGE;
+		}
+		return Unit.PIXELS;
+	}
+
+	public void setMinSize(String minSize) {
+		SizeWithUnit tmp = SizeWithUnit.parseStringSize(minSize);
+		if (tmp != null) {
+			setMinSize(tmp.getSize(), tmp.getUnit());
+		} else {
+			setMinSize(-1, Unit.PIXELS);
+		}
+	}
+
+	public void setMinSize(float minSize, Unit unit) {
+		String value = Float.toString(minSize);
+		if (unit.equals(Unit.PERCENTAGE)) {
+			value += "%";
+		}
+		if (minSize == -1) {
+			value = null;
+		}
+		this.minSize = value;
+	}
+
+	public float getMaxSize() {
+		String tmp = maxSize;
+		if (maxSize == null) {
+			return -1.0f;
+		}
+		if (this.maxSize.contains("%")) {
+			tmp = tmp.replace("%", "");
+		}
+		return Float.valueOf(tmp).floatValue();
+	}
+
+	public Unit getMaxSizeUnit() {
+		if (this.maxSize == null) {
+			return Unit.PIXELS;
+		}
+		if (this.maxSize.contains("%")) {
+			return Unit.PERCENTAGE;
+		}
+		return Unit.PIXELS;
+	}
+
+	public void setMaxSize(String maxSize) {
+		SizeWithUnit tmp = SizeWithUnit.parseStringSize(maxSize);
+		if (tmp != null) {
+			setMaxSize(tmp.getSize(), tmp.getUnit());
+		} else {
+			setMaxSize(-1, Unit.PIXELS);
+		}
+	}
+
+	public void setMaxSize(float maxSize, Unit unit) {
+		String value = Float.toString(maxSize);
+		if (unit.equals(Unit.PERCENTAGE)) {
+			value += "%";
+		}
+		if (maxSize == -1) {
+			value = null;
+		}
+		this.maxSize = value;
 	}
 }

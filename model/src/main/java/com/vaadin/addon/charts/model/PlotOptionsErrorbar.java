@@ -1,5 +1,6 @@
 package com.vaadin.addon.charts.model;
 
+import com.vaadin.addon.charts.model.style.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
 import com.vaadin.addon.charts.util.SizeWithUnit;
@@ -9,12 +10,12 @@ public class PlotOptionsErrorbar extends AbstractPlotOptions {
 
 	private static final long serialVersionUID = 1L;
 	private Boolean allowPointSelect;
-	private Object color;
+	private Color color;
 	private Boolean colorByPoint;
 	private Object colors;
 	private String cursor;
 	private Number depth;
-	private Object edgeColor;
+	private Color edgeColor;
 	private Number edgeWidth;
 	private Boolean enableMouseTracking;
 	private Boolean getExtremesFromAll;
@@ -23,7 +24,7 @@ public class PlotOptionsErrorbar extends AbstractPlotOptions {
 	private Number lineWidth;
 	private String linkedTo;
 	private Number maxPointWidth;
-	private Object negativeColor;
+	private Color negativeColor;
 	private Point point;
 	private Number pointInterval;
 	private String pointIntervalUnit;
@@ -34,14 +35,14 @@ public class PlotOptionsErrorbar extends AbstractPlotOptions {
 	private Number pointWidth;
 	private Boolean selected;
 	private States states;
-	private Object stemColor;
+	private Color stemColor;
 	private String stemDashStyle;
 	private Number stemWidth;
 	private Boolean stickyTracking;
 	private Tooltip tooltip;
 	private Number turboThreshold;
 	private Boolean visible;
-	private Object whiskerColor;
+	private Color whiskerColor;
 	private String whiskerLength;
 	private Number whiskerWidth;
 	private String zoneAxis;
@@ -58,11 +59,11 @@ public class PlotOptionsErrorbar extends AbstractPlotOptions {
 		this.allowPointSelect = allowPointSelect;
 	}
 
-	public Object getColor() {
+	public Color getColor() {
 		return color;
 	}
 
-	public void setColor(Object color) {
+	public void setColor(Color color) {
 		this.color = color;
 	}
 
@@ -98,11 +99,11 @@ public class PlotOptionsErrorbar extends AbstractPlotOptions {
 		this.depth = depth;
 	}
 
-	public Object getEdgeColor() {
+	public Color getEdgeColor() {
 		return edgeColor;
 	}
 
-	public void setEdgeColor(Object edgeColor) {
+	public void setEdgeColor(Color edgeColor) {
 		this.edgeColor = edgeColor;
 	}
 
@@ -183,11 +184,11 @@ public class PlotOptionsErrorbar extends AbstractPlotOptions {
 		this.maxPointWidth = maxPointWidth;
 	}
 
-	public Object getNegativeColor() {
+	public Color getNegativeColor() {
 		return negativeColor;
 	}
 
-	public void setNegativeColor(Object negativeColor) {
+	public void setNegativeColor(Color negativeColor) {
 		this.negativeColor = negativeColor;
 	}
 
@@ -271,11 +272,11 @@ public class PlotOptionsErrorbar extends AbstractPlotOptions {
 		this.states = states;
 	}
 
-	public Object getStemColor() {
+	public Color getStemColor() {
 		return stemColor;
 	}
 
-	public void setStemColor(Object stemColor) {
+	public void setStemColor(Color stemColor) {
 		this.stemColor = stemColor;
 	}
 
@@ -327,11 +328,11 @@ public class PlotOptionsErrorbar extends AbstractPlotOptions {
 		this.visible = visible;
 	}
 
-	public Object getWhiskerColor() {
+	public Color getWhiskerColor() {
 		return whiskerColor;
 	}
 
-	public void setWhiskerColor(Object whiskerColor) {
+	public void setWhiskerColor(Color whiskerColor) {
 		this.whiskerColor = whiskerColor;
 	}
 

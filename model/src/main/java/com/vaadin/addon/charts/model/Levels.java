@@ -1,11 +1,13 @@
 package com.vaadin.addon.charts.model;
+
+import com.vaadin.addon.charts.model.style.Color;
 public class Levels extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
-	private Object borderColor;
+	private Color borderColor;
 	private String borderDashStyle;
 	private Number borderWidth;
-	private Object color;
+	private Color color;
 	private DataLabels dataLabels;
 	private String layoutAlgorithm;
 	private String layoutStartingDirection;
@@ -14,11 +16,11 @@ public class Levels extends AbstractConfigurationObject {
 	public Levels() {
 	}
 
-	public Object getBorderColor() {
+	public Color getBorderColor() {
 		return borderColor;
 	}
 
-	public void setBorderColor(Object borderColor) {
+	public void setBorderColor(Color borderColor) {
 		this.borderColor = borderColor;
 	}
 
@@ -38,11 +40,11 @@ public class Levels extends AbstractConfigurationObject {
 		this.borderWidth = borderWidth;
 	}
 
-	public Object getColor() {
+	public Color getColor() {
 		return color;
 	}
 
-	public void setColor(Object color) {
+	public void setColor(Color color) {
 		this.color = color;
 	}
 

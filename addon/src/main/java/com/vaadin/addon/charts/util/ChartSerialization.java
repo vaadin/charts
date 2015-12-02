@@ -17,8 +17,6 @@ package com.vaadin.addon.charts.util;
  * #L%
  */
 
-import java.io.Serializable;
-
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
@@ -34,6 +32,9 @@ import com.vaadin.addon.charts.model.serializers.DateSerializer;
 import com.vaadin.addon.charts.model.serializers.DefaultBeanSerializerModifier;
 import com.vaadin.addon.charts.model.serializers.PaneListSerializer;
 import com.vaadin.addon.charts.model.serializers.SolidColorSerializer;
+import com.vaadin.addon.charts.model.serializers.StopSerializer;
+
+import java.io.Serializable;
 
 /**
  * Util class that handles the configuration needed for the model classes to be
@@ -65,6 +66,7 @@ public class ChartSerialization implements Serializable {
                 .setVisibility(PropertyAccessor.FIELD, Visibility.ANY)
 
                 .registerModule(ChartEnumSerializer.getModule())
+                .registerModule(StopSerializer.getModule())
                 .registerModule(SolidColorSerializer.getModule())
                 .registerModule(AxisListSerializer.getModule())
                 .registerModule(PaneListSerializer.getModule())

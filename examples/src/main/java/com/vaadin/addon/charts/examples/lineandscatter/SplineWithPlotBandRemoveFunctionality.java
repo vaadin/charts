@@ -1,7 +1,5 @@
 package com.vaadin.addon.charts.examples.lineandscatter;
 
-import java.util.Date;
-
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.AxisType;
@@ -23,6 +21,8 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.VerticalLayout;
+
+import java.util.Date;
 
 public class SplineWithPlotBandRemoveFunctionality extends
         AbstractVaadinChartExample {
@@ -77,7 +77,7 @@ public class SplineWithPlotBandRemoveFunctionality extends
         configuration.setPlotOptions(plotOptions);
         plotOptions.setMarker(new Marker(false));
         plotOptions.getMarker().setLineWidth(4);
-        plotOptions.getMarker().setSymbol(MarkerSymbolEnum.CIRCLE.toString());
+        plotOptions.getMarker().setSymbol(MarkerSymbolEnum.CIRCLE);
         States states = new States();
         Hover hover = new Hover(true);
         hover.setRadius(5);

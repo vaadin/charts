@@ -1,12 +1,13 @@
 package com.vaadin.addon.charts.model;
 
+import com.vaadin.addon.charts.model.style.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
 public class XAxis extends Axis {
 
 	private static final long serialVersionUID = 1L;
 	private Boolean allowDecimals;
-	private Object alternateGridColor;
+	private Color alternateGridColor;
 	private Breaks[] breaks;
 	private ArrayList<String> categories;
 	private Number ceiling;
@@ -14,23 +15,23 @@ public class XAxis extends Axis {
 	private DateTimeLabelFormats dateTimeLabelFormats;
 	private Boolean endOnTick;
 	private Number floor;
-	private Object gridLineColor;
+	private Color gridLineColor;
 	private String gridLineDashStyle;
 	private Number gridLineWidth;
 	private Number gridZIndex;
 	private String id;
 	private Labels labels;
-	private Object lineColor;
+	private Color lineColor;
 	private Number lineWidth;
 	private Number linkedTo;
 	private Number maxPadding;
 	private Number minPadding;
 	private Number minRange;
 	private Number minTickInterval;
-	private Object minorGridLineColor;
+	private Color minorGridLineColor;
 	private String minorGridLineDashStyle;
 	private Number minorGridLineWidth;
-	private Object minorTickColor;
+	private Color minorTickColor;
 	private Object minorTickInterval;
 	private Number minorTickLength;
 	private String minorTickPosition;
@@ -46,7 +47,7 @@ public class XAxis extends Axis {
 	private Number startOfWeek;
 	private Boolean startOnTick;
 	private Number tickAmount;
-	private Object tickColor;
+	private Color tickColor;
 	private Number tickInterval;
 	private Number tickLength;
 	private Number tickPixelInterval;
@@ -72,11 +73,11 @@ public class XAxis extends Axis {
 		this.allowDecimals = allowDecimals;
 	}
 
-	public Object getAlternateGridColor() {
+	public Color getAlternateGridColor() {
 		return alternateGridColor;
 	}
 
-	public void setAlternateGridColor(Object alternateGridColor) {
+	public void setAlternateGridColor(Color alternateGridColor) {
 		this.alternateGridColor = alternateGridColor;
 	}
 
@@ -150,11 +151,11 @@ public class XAxis extends Axis {
 		this.floor = floor;
 	}
 
-	public Object getGridLineColor() {
+	public Color getGridLineColor() {
 		return gridLineColor;
 	}
 
-	public void setGridLineColor(Object gridLineColor) {
+	public void setGridLineColor(Color gridLineColor) {
 		this.gridLineColor = gridLineColor;
 	}
 
@@ -198,11 +199,11 @@ public class XAxis extends Axis {
 		this.labels = labels;
 	}
 
-	public Object getLineColor() {
+	public Color getLineColor() {
 		return lineColor;
 	}
 
-	public void setLineColor(Object lineColor) {
+	public void setLineColor(Color lineColor) {
 		this.lineColor = lineColor;
 	}
 
@@ -254,11 +255,11 @@ public class XAxis extends Axis {
 		this.minTickInterval = minTickInterval;
 	}
 
-	public Object getMinorGridLineColor() {
+	public Color getMinorGridLineColor() {
 		return minorGridLineColor;
 	}
 
-	public void setMinorGridLineColor(Object minorGridLineColor) {
+	public void setMinorGridLineColor(Color minorGridLineColor) {
 		this.minorGridLineColor = minorGridLineColor;
 	}
 
@@ -278,11 +279,11 @@ public class XAxis extends Axis {
 		this.minorGridLineWidth = minorGridLineWidth;
 	}
 
-	public Object getMinorTickColor() {
+	public Color getMinorTickColor() {
 		return minorTickColor;
 	}
 
-	public void setMinorTickColor(Object minorTickColor) {
+	public void setMinorTickColor(Color minorTickColor) {
 		this.minorTickColor = minorTickColor;
 	}
 
@@ -432,11 +433,11 @@ public class XAxis extends Axis {
 		this.tickAmount = tickAmount;
 	}
 
-	public Object getTickColor() {
+	public Color getTickColor() {
 		return tickColor;
 	}
 
-	public void setTickColor(Object tickColor) {
+	public void setTickColor(Color tickColor) {
 		this.tickColor = tickColor;
 	}
 

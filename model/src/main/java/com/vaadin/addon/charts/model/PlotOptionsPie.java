@@ -1,5 +1,6 @@
 package com.vaadin.addon.charts.model;
 
+import com.vaadin.addon.charts.model.style.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
 public class PlotOptionsPie extends AbstractPlotOptions {
@@ -7,7 +8,7 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	private static final long serialVersionUID = 1L;
 	private Boolean allowPointSelect;
 	private Boolean animation;
-	private Object borderColor;
+	private Color borderColor;
 	private Number borderWidth;
 	private Object[] center;
 	private Object colors;
@@ -55,11 +56,11 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 		this.animation = animation;
 	}
 
-	public Object getBorderColor() {
+	public Color getBorderColor() {
 		return borderColor;
 	}
 
-	public void setBorderColor(Object borderColor) {
+	public void setBorderColor(Color borderColor) {
 		this.borderColor = borderColor;
 	}
 
@@ -306,11 +307,11 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 		return ChartType.PIE;
 	}
 
-	public void setCenter(Number x, Number y) {
-		this.center = new Number[]{x, y};
-	}
-
 	public void setCenter(String x, String y) {
 		this.center = new String[]{x, y};
+	}
+
+	public void setCenter(Number x, Number y) {
+		this.center = new Number[]{x, y};
 	}
 }

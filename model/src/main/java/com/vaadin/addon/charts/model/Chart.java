@@ -1,13 +1,14 @@
 package com.vaadin.addon.charts.model;
 
+import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.Style;
 public class Chart extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
 	private Boolean alignTicks;
 	private Object animation;
-	private Object backgroundColor;
-	private Object borderColor;
+	private Color backgroundColor;
+	private Color borderColor;
 	private Number borderRadius;
 	private Number borderWidth;
 	private String className;
@@ -15,7 +16,7 @@ public class Chart extends AbstractConfigurationObject {
 	private Number height;
 	private Boolean ignoreHiddenSeries;
 	private Boolean inverted;
-	private Object[] margin;
+	private Object margin;
 	private Number marginBottom;
 	private Number marginLeft;
 	private Number marginRight;
@@ -24,16 +25,16 @@ public class Chart extends AbstractConfigurationObject {
 	private String panKey;
 	private Boolean panning;
 	private String pinchType;
-	private Object plotBackgroundColor;
+	private Color plotBackgroundColor;
 	private String plotBackgroundImage;
-	private Object plotBorderColor;
+	private Color plotBorderColor;
 	private Number plotBorderWidth;
 	private Object plotShadow;
 	private Boolean polar;
 	private Boolean reflow;
 	private Object renderTo;
 	private ResetZoomButton resetZoomButton;
-	private Object selectionMarkerFill;
+	private Color selectionMarkerFill;
 	private Object shadow;
 	private Boolean showAxes;
 	private Number[] spacing;
@@ -65,19 +66,19 @@ public class Chart extends AbstractConfigurationObject {
 		this.animation = animation;
 	}
 
-	public Object getBackgroundColor() {
+	public Color getBackgroundColor() {
 		return backgroundColor;
 	}
 
-	public void setBackgroundColor(Object backgroundColor) {
+	public void setBackgroundColor(Color backgroundColor) {
 		this.backgroundColor = backgroundColor;
 	}
 
-	public Object getBorderColor() {
+	public Color getBorderColor() {
 		return borderColor;
 	}
 
-	public void setBorderColor(Object borderColor) {
+	public void setBorderColor(Color borderColor) {
 		this.borderColor = borderColor;
 	}
 
@@ -137,11 +138,11 @@ public class Chart extends AbstractConfigurationObject {
 		this.inverted = inverted;
 	}
 
-	public Object[] getMargin() {
+	public Object getMargin() {
 		return margin;
 	}
 
-	public void setMargin(Object[] margin) {
+	public void setMargin(Object margin) {
 		this.margin = margin;
 	}
 
@@ -209,11 +210,11 @@ public class Chart extends AbstractConfigurationObject {
 		this.pinchType = pinchType;
 	}
 
-	public Object getPlotBackgroundColor() {
+	public Color getPlotBackgroundColor() {
 		return plotBackgroundColor;
 	}
 
-	public void setPlotBackgroundColor(Object plotBackgroundColor) {
+	public void setPlotBackgroundColor(Color plotBackgroundColor) {
 		this.plotBackgroundColor = plotBackgroundColor;
 	}
 
@@ -225,11 +226,11 @@ public class Chart extends AbstractConfigurationObject {
 		this.plotBackgroundImage = plotBackgroundImage;
 	}
 
-	public Object getPlotBorderColor() {
+	public Color getPlotBorderColor() {
 		return plotBorderColor;
 	}
 
-	public void setPlotBorderColor(Object plotBorderColor) {
+	public void setPlotBorderColor(Color plotBorderColor) {
 		this.plotBorderColor = plotBorderColor;
 	}
 
@@ -281,11 +282,11 @@ public class Chart extends AbstractConfigurationObject {
 		this.resetZoomButton = resetZoomButton;
 	}
 
-	public Object getSelectionMarkerFill() {
+	public Color getSelectionMarkerFill() {
 		return selectionMarkerFill;
 	}
 
-	public void setSelectionMarkerFill(Object selectionMarkerFill) {
+	public void setSelectionMarkerFill(Color selectionMarkerFill) {
 		this.selectionMarkerFill = selectionMarkerFill;
 	}
 

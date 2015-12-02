@@ -1,16 +1,5 @@
 package com.vaadin.addon.charts;
 
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
-import junit.framework.Assert;
-
-import org.apache.commons.lang3.RandomStringUtils;
-import org.junit.Ignore;
-import org.junit.Test;
-
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataLabels;
@@ -27,7 +16,17 @@ import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
+import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.charts.util.SVGGenerator;
+import junit.framework.Assert;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.junit.Ignore;
+import org.junit.Test;
+
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class SVGGeneratorTest {
 
@@ -112,7 +111,7 @@ public class SVGGeneratorTest {
         legend.setY(100);
         legend.setFloating(true);
         legend.setBorderWidth(1);
-        legend.setBackgroundColor("#FFFFFF");
+        legend.setBackgroundColor(new SolidColor("#FFFFFF"));
         legend.setShadow(true);
         conf.setLegend(legend);
 

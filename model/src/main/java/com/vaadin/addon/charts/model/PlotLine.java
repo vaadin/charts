@@ -1,8 +1,10 @@
 package com.vaadin.addon.charts.model;
+
+import com.vaadin.addon.charts.model.style.Color;
 public class PlotLine extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
-	private Object color;
+	private Color color;
 	private String dashStyle;
 	private String id;
 	private Label label;
@@ -13,11 +15,11 @@ public class PlotLine extends AbstractConfigurationObject {
 	public PlotLine() {
 	}
 
-	public Object getColor() {
+	public Color getColor() {
 		return color;
 	}
 
-	public void setColor(Object color) {
+	public void setColor(Color color) {
 		this.color = color;
 	}
 
@@ -69,7 +71,7 @@ public class PlotLine extends AbstractConfigurationObject {
 		this.zIndex = zIndex;
 	}
 
-	public PlotLine(Number value, Number width, Object color) {
+	public PlotLine(Number value, Number width, Color color) {
 		this.value = value;
 		this.width = width;
 		this.color = color;

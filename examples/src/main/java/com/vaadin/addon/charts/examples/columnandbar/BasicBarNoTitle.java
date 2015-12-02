@@ -1,8 +1,5 @@
 package com.vaadin.addon.charts.examples.columnandbar;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.SkipFromDemo;
@@ -20,7 +17,11 @@ import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
+import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @SuppressWarnings("serial")
 @SkipFromDemo
@@ -69,7 +70,7 @@ public class BasicBarNoTitle extends AbstractVaadinChartExample {
         legend.setY(100);
         legend.setFloating(true);
         legend.setBorderWidth(1);
-        legend.setBackgroundColor("#FFFFFF");
+        legend.setBackgroundColor(new SolidColor("#FFFFFF"));
         legend.setShadow(true);
         conf.setLegend(legend);
 

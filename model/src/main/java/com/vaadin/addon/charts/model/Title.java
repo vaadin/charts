@@ -1,11 +1,13 @@
 package com.vaadin.addon.charts.model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import com.vaadin.addon.charts.model.style.Style;
 public class Title extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
 	private String align;
-	private Number[] margin;
+	private ArrayList<Number> margin;
 	private Number offset;
 	private Number rotation;
 	private Style style;
@@ -28,11 +30,24 @@ public class Title extends AbstractConfigurationObject {
 	}
 
 	public Number[] getMargin() {
-		return margin;
+		Number[] arr = new Number[margin.size()];
+		margin.toArray(arr);
+		return arr;
 	}
 
-	public void setMargin(Number[] margin) {
-		this.margin = margin;
+	public void setMargin(Number... margin) {
+		this.margin = new ArrayList<Number>(Arrays.asList(margin));
+	}
+
+	public void addMargin(Number margin) {
+		if (this.margin == null) {
+			this.margin = new ArrayList<Number>();
+		}
+		this.margin.add(margin);
+	}
+
+	public void removeMargin(Number margin) {
+		this.margin.remove(margin);
 	}
 
 	public Number getOffset() {

@@ -1,12 +1,13 @@
 package com.vaadin.addon.charts.model;
 
+import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.util.SizeWithUnit;
 public class PlotBand extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
-	private Object borderColor;
+	private Color borderColor;
 	private Number borderWidth;
-	private Object color;
+	private Color color;
 	private Number from;
 	private String id;
 	private String innerRadius;
@@ -19,11 +20,11 @@ public class PlotBand extends AbstractConfigurationObject {
 	public PlotBand() {
 	}
 
-	public Object getBorderColor() {
+	public Color getBorderColor() {
 		return borderColor;
 	}
 
-	public void setBorderColor(Object borderColor) {
+	public void setBorderColor(Color borderColor) {
 		this.borderColor = borderColor;
 	}
 
@@ -35,11 +36,11 @@ public class PlotBand extends AbstractConfigurationObject {
 		this.borderWidth = borderWidth;
 	}
 
-	public Object getColor() {
+	public Color getColor() {
 		return color;
 	}
 
-	public void setColor(Object color) {
+	public void setColor(Color color) {
 		this.color = color;
 	}
 
@@ -206,7 +207,7 @@ public class PlotBand extends AbstractConfigurationObject {
 		this.zIndex = zIndex;
 	}
 
-	public PlotBand(Number from, Number to, Object color) {
+	public PlotBand(Number from, Number to, Color color) {
 		this.from = from;
 		this.to = to;
 		this.color = color;

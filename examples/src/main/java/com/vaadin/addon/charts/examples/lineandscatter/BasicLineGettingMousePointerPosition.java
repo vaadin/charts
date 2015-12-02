@@ -20,6 +20,7 @@ import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.ZoomType;
 import com.vaadin.addon.charts.model.style.Color;
+import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.charts.model.style.Style;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Label;
@@ -79,7 +80,7 @@ public class BasicLineGettingMousePointerPosition extends
         legend.setVerticalAlign(VerticalAlign.TOP.toString());
         legend.setY(100);
         legend.setFloating(true);
-        legend.setBackgroundColor("#FFFFFF");
+        legend.setBackgroundColor(new SolidColor("#FFFFFF"));
         conf.setLegend(legend);
 
         DataSeries series = new DataSeries();

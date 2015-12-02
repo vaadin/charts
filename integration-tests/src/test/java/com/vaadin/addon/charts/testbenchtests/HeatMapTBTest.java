@@ -1,13 +1,10 @@
 package com.vaadin.addon.charts.testbenchtests;
 
-import org.junit.Ignore;
-
 import com.vaadin.addon.charts.examples.other.HeatMapExample;
 
 /**
  * Test for {@link HeatMapExample}
  */
-@Ignore("Missing legend.setMargin (int) ")
 public class HeatMapTBTest extends AbstractSimpleScreenShotTestBenchTest {
     @Override
     protected String getTestViewName() {

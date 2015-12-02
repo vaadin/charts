@@ -1,5 +1,6 @@
 package com.vaadin.addon.charts.model;
 
+import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.Style;
 public class Tooltip extends AbstractConfigurationObject {
 
@@ -17,8 +18,8 @@ public class Tooltip extends AbstractConfigurationObject {
 	private String valueSuffix;
 	private String xDateFormat;
 	private Boolean animation;
-	private Object backgroundColor;
-	private Object borderColor;
+	private Color backgroundColor;
+	private Color borderColor;
 	private Number borderRadius;
 	private Number borderWidth;
 	private Object[] crosshairs;
@@ -140,19 +141,19 @@ public class Tooltip extends AbstractConfigurationObject {
 		this.animation = animation;
 	}
 
-	public Object getBackgroundColor() {
+	public Color getBackgroundColor() {
 		return backgroundColor;
 	}
 
-	public void setBackgroundColor(Object backgroundColor) {
+	public void setBackgroundColor(Color backgroundColor) {
 		this.backgroundColor = backgroundColor;
 	}
 
-	public Object getBorderColor() {
+	public Color getBorderColor() {
 		return borderColor;
 	}
 
-	public void setBorderColor(Object borderColor) {
+	public void setBorderColor(Color borderColor) {
 		this.borderColor = borderColor;
 	}
 

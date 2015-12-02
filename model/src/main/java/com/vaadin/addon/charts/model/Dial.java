@@ -1,11 +1,13 @@
 package com.vaadin.addon.charts.model;
+
+import com.vaadin.addon.charts.model.style.Color;
 public class Dial extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
-	private Object backgroundColor;
+	private Color backgroundColor;
 	private String baseLength;
 	private Number baseWidth;
-	private Object borderColor;
+	private Color borderColor;
 	private Number borderWidth;
 	private String radius;
 	private String rearLength;
@@ -14,11 +16,11 @@ public class Dial extends AbstractConfigurationObject {
 	public Dial() {
 	}
 
-	public Object getBackgroundColor() {
+	public Color getBackgroundColor() {
 		return backgroundColor;
 	}
 
-	public void setBackgroundColor(Object backgroundColor) {
+	public void setBackgroundColor(Color backgroundColor) {
 		this.backgroundColor = backgroundColor;
 	}
 
@@ -38,11 +40,11 @@ public class Dial extends AbstractConfigurationObject {
 		this.baseWidth = baseWidth;
 	}
 
-	public Object getBorderColor() {
+	public Color getBorderColor() {
 		return borderColor;
 	}
 
-	public void setBorderColor(Object borderColor) {
+	public void setBorderColor(Color borderColor) {
 		this.borderColor = borderColor;
 	}
 

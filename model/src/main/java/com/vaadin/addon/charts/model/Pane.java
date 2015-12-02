@@ -96,11 +96,11 @@ public class Pane extends AbstractConfigurationObject {
 		this.endAngle = endAngle;
 	}
 
-	public void setCenter(Number x, Number y) {
-		this.center = new Number[]{x, y};
-	}
-
 	public void setCenter(String x, String y) {
 		this.center = new String[]{x, y};
+	}
+
+	public void setCenter(Number x, Number y) {
+		this.center = new Number[]{x, y};
 	}
 }

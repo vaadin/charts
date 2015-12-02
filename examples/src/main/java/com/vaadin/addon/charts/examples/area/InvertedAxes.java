@@ -13,6 +13,7 @@ import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
+import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
 
 @SuppressWarnings("serial")
@@ -52,7 +53,7 @@ public class InvertedAxes extends AbstractVaadinChartExample {
         legend.setX(-150);
         legend.setY(100);
         legend.setBorderWidth(1);
-        legend.setBackgroundColor("#ffffff");
+        legend.setBackgroundColor(new SolidColor("#ffffff"));
         conf.setLegend(legend);
 
         PlotOptionsArea plotOptions = new PlotOptionsArea();

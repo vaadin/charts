@@ -1,13 +1,14 @@
 package com.vaadin.addon.charts.model;
 
+import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.Style;
 public class Navigation extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
-	private Object activeColor;
+	private Color activeColor;
 	private Object animation;
 	private Number arrowSize;
-	private Object inactiveColor;
+	private Color inactiveColor;
 	private Style style;
 	private ButtonOptions buttonOptions;
 	private Style menuItemHoverStyle;
@@ -17,11 +18,11 @@ public class Navigation extends AbstractConfigurationObject {
 	public Navigation() {
 	}
 
-	public Object getActiveColor() {
+	public Color getActiveColor() {
 		return activeColor;
 	}
 
-	public void setActiveColor(Object activeColor) {
+	public void setActiveColor(Color activeColor) {
 		this.activeColor = activeColor;
 	}
 
@@ -41,11 +42,11 @@ public class Navigation extends AbstractConfigurationObject {
 		this.arrowSize = arrowSize;
 	}
 
-	public Object getInactiveColor() {
+	public Color getInactiveColor() {
 		return inactiveColor;
 	}
 
-	public void setInactiveColor(Object inactiveColor) {
+	public void setInactiveColor(Color inactiveColor) {
 		this.inactiveColor = inactiveColor;
 	}
 

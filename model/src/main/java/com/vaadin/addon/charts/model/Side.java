@@ -1,18 +1,20 @@
 package com.vaadin.addon.charts.model;
+
+import com.vaadin.addon.charts.model.style.Color;
 public class Side extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
-	private Object color;
+	private Color color;
 	private Number size;
 
 	public Side() {
 	}
 
-	public Object getColor() {
+	public Color getColor() {
 		return color;
 	}
 
-	public void setColor(Object color) {
+	public void setColor(Color color) {
 		this.color = color;
 	}
 

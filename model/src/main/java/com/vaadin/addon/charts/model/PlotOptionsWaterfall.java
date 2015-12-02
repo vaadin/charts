@@ -1,5 +1,6 @@
 package com.vaadin.addon.charts.model;
 
+import com.vaadin.addon.charts.model.style.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -9,17 +10,17 @@ public class PlotOptionsWaterfall extends AbstractPlotOptions {
 	private static final long serialVersionUID = 1L;
 	private Boolean allowPointSelect;
 	private Boolean animation;
-	private Object borderColor;
+	private Color borderColor;
 	private Number borderRadius;
 	private Number borderWidth;
-	private Object color;
+	private Color color;
 	private Boolean colorByPoint;
 	private Object colors;
 	private String cursor;
 	private String dashStyle;
 	private DataLabels dataLabels;
 	private Number depth;
-	private Object edgeColor;
+	private Color edgeColor;
 	private Number edgeWidth;
 	private Boolean enableMouseTracking;
 	private Boolean getExtremesFromAll;
@@ -27,7 +28,7 @@ public class PlotOptionsWaterfall extends AbstractPlotOptions {
 	private Number groupZPadding;
 	private Boolean grouping;
 	private ArrayList<String> keys;
-	private Object lineColor;
+	private Color lineColor;
 	private String linkedTo;
 	private Number maxPointWidth;
 	private Number minPointLength;
@@ -48,7 +49,7 @@ public class PlotOptionsWaterfall extends AbstractPlotOptions {
 	private Boolean stickyTracking;
 	private Number threshold;
 	private Tooltip tooltip;
-	private Object upColor;
+	private Color upColor;
 	private Boolean visible;
 	private String zoneAxis;
 	private ArrayList<Zones> zones;
@@ -72,11 +73,11 @@ public class PlotOptionsWaterfall extends AbstractPlotOptions {
 		this.animation = animation;
 	}
 
-	public Object getBorderColor() {
+	public Color getBorderColor() {
 		return borderColor;
 	}
 
-	public void setBorderColor(Object borderColor) {
+	public void setBorderColor(Color borderColor) {
 		this.borderColor = borderColor;
 	}
 
@@ -96,11 +97,11 @@ public class PlotOptionsWaterfall extends AbstractPlotOptions {
 		this.borderWidth = borderWidth;
 	}
 
-	public Object getColor() {
+	public Color getColor() {
 		return color;
 	}
 
-	public void setColor(Object color) {
+	public void setColor(Color color) {
 		this.color = color;
 	}
 
@@ -152,11 +153,11 @@ public class PlotOptionsWaterfall extends AbstractPlotOptions {
 		this.depth = depth;
 	}
 
-	public Object getEdgeColor() {
+	public Color getEdgeColor() {
 		return edgeColor;
 	}
 
-	public void setEdgeColor(Object edgeColor) {
+	public void setEdgeColor(Color edgeColor) {
 		this.edgeColor = edgeColor;
 	}
 
@@ -229,11 +230,11 @@ public class PlotOptionsWaterfall extends AbstractPlotOptions {
 		this.keys.remove(key);
 	}
 
-	public Object getLineColor() {
+	public Color getLineColor() {
 		return lineColor;
 	}
 
-	public void setLineColor(Object lineColor) {
+	public void setLineColor(Color lineColor) {
 		this.lineColor = lineColor;
 	}
 
@@ -397,11 +398,11 @@ public class PlotOptionsWaterfall extends AbstractPlotOptions {
 		this.tooltip = tooltip;
 	}
 
-	public Object getUpColor() {
+	public Color getUpColor() {
 		return upColor;
 	}
 
-	public void setUpColor(Object upColor) {
+	public void setUpColor(Color upColor) {
 		this.upColor = upColor;
 	}
 

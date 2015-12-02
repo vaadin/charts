@@ -60,7 +60,7 @@ public class SplineWithSymbols extends AbstractVaadinChartExample {
         DataSeries ls = new DataSeries();
         plotOptions = new PlotOptionsSpline();
         Marker marker = new Marker();
-        marker.setSymbol(MarkerSymbolEnum.SQUARE.toString());
+        marker.setSymbol(MarkerSymbolEnum.SQUARE);
         plotOptions.setMarker(marker);
         ls.setPlotOptions(plotOptions);
         ls.setName("Tokyo");
@@ -73,14 +73,14 @@ public class SplineWithSymbols extends AbstractVaadinChartExample {
                 .setSymbol(
                         new MarkerSymbolUrl(
                                 "http://www.highcharts.com/demo/gfx/sun.png")
-                                .toString());
+                                );
 
         configuration.addSeries(ls);
 
         ls = new DataSeries();
         plotOptions = new PlotOptionsSpline();
         marker = new Marker();
-        marker.setSymbol(MarkerSymbolEnum.DIAMOND.toString());
+        marker.setSymbol(MarkerSymbolEnum.DIAMOND);
         plotOptions.setMarker(marker);
         ls.setPlotOptions(plotOptions);
         ls.setName("London");
@@ -91,7 +91,7 @@ public class SplineWithSymbols extends AbstractVaadinChartExample {
                 .setSymbol(
                         new MarkerSymbolUrl(
                                 "http://www.highcharts.com/demo/gfx/snow.png")
-                                .toString());
+                                );
         configuration.addSeries(ls);
 
         chart.drawChart(configuration);

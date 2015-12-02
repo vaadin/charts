@@ -2,14 +2,19 @@ package com.vaadin.addon.charts.examples.other;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.model.Background;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataLabels;
+import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.Pane;
 import com.vaadin.addon.charts.model.PlotOptionsSolidGauge;
+import com.vaadin.addon.charts.model.Stop;
 import com.vaadin.addon.charts.model.Title;
+import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.YAxis;
+import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
 
 import java.util.Random;
@@ -33,22 +38,24 @@ public class SolidGauge extends AbstractVaadinChartExample {
         configuration.getTitle().setText("Speed");
 
         Pane pane = new Pane();
-        // FIXME missing generated API
+
         pane.setCenter("50%", "85%");
         pane.setSize("140%");
         pane.setStartAngle(-90);
         pane.setEndAngle(90);
         configuration.addPane(pane);
 
-        // configuration.getTooltip().setEnabled(false);
 
-        // Background bkg = new Background();
-        // bkg.setBackgroundColor(new SolidColor("#eeeeee"));
-        // bkg.setInnerRadius("60%");
-        // bkg.setOuterRadius("100%");
-        // bkg.setShape("arc");
-        // bkg.setBorderWidth(0);
-        // pane.setBackground(bkg);
+        configuration.getTooltip().setEnabled(false);
+
+        Background bkg = new Background();
+        bkg.setBackgroundColor(new SolidColor("#eeeeee"));
+        bkg.setInnerRadius("60%");
+        bkg.setOuterRadius("100%");
+        bkg.setShape("arc");
+        bkg.setBorderWidth(0);
+        // FIXME missing generated API
+        pane.setBackground(new Object[]{bkg});
 
         YAxis yaxis = configuration.getyAxis();
         yaxis.setLineWidth(0);
@@ -57,15 +64,16 @@ public class SolidGauge extends AbstractVaadinChartExample {
         yaxis.setMin(0);
         yaxis.setMax(200);
         yaxis.setTitle(new Title(""));
-        // FIXME missing generated API
-        // yaxis.getTitle().setY(-70);
+        yaxis.getTitle().setY(-70);
+        yaxis.setLabels(new Labels());
         yaxis.getLabels().setY(16);
-        // Stop stop1 = new Stop(0.1f, SolidColor.GREEN);
-        // Stop stop2 = new Stop(0.5f, SolidColor.YELLOW);
-        // Stop stop3 = new Stop(0.9f, SolidColor.RED);
-        // yaxis.setStops(stop1, stop2, stop3);
+        Stop stop1 = new Stop(0.1f, SolidColor.GREEN);
+        Stop stop2 = new Stop(0.5f, SolidColor.YELLOW);
+        Stop stop3 = new Stop(0.9f, SolidColor.RED);
+        yaxis.setStops(new Stop[]{stop1, stop2, stop3});
 
         PlotOptionsSolidGauge plotOptions = new PlotOptionsSolidGauge();
+        plotOptions.setTooltip(new Tooltip());
         plotOptions.getTooltip().setValueSuffix(" km/h");
         DataLabels labels = new DataLabels();
         labels.setY(5);

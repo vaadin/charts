@@ -1,10 +1,12 @@
 package com.vaadin.addon.charts.model;
+
+import com.vaadin.addon.charts.model.style.Color;
 public class Select extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
 	private Boolean enabled;
-	private Object fillColor;
-	private Object lineColor;
+	private Color fillColor;
+	private Color lineColor;
 	private Number lineWidth;
 	private Number radius;
 
@@ -23,19 +25,19 @@ public class Select extends AbstractConfigurationObject {
 		this.enabled = enabled;
 	}
 
-	public Object getFillColor() {
+	public Color getFillColor() {
 		return fillColor;
 	}
 
-	public void setFillColor(Object fillColor) {
+	public void setFillColor(Color fillColor) {
 		this.fillColor = fillColor;
 	}
 
-	public Object getLineColor() {
+	public Color getLineColor() {
 		return lineColor;
 	}
 
-	public void setLineColor(Object lineColor) {
+	public void setLineColor(Color lineColor) {
 		this.lineColor = lineColor;
 	}
 

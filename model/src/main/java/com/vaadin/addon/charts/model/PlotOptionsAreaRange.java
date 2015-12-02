@@ -1,5 +1,6 @@
 package com.vaadin.addon.charts.model;
 
+import com.vaadin.addon.charts.model.style.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -9,22 +10,22 @@ public class PlotOptionsAreaRange extends AbstractPlotOptions {
 	private static final long serialVersionUID = 1L;
 	private Boolean allowPointSelect;
 	private Boolean animation;
-	private Object color;
+	private Color color;
 	private Boolean connectNulls;
 	private Number cropThreshold;
 	private String cursor;
 	private String dashStyle;
 	private DataLabels dataLabels;
 	private Boolean enableMouseTracking;
-	private Object fillColor;
+	private Color fillColor;
 	private Number fillOpacity;
 	private Boolean getExtremesFromAll;
 	private ArrayList<String> keys;
-	private Object lineColor;
+	private Color lineColor;
 	private Number lineWidth;
 	private String linkedTo;
-	private Object negativeColor;
-	private Object negativeFillColor;
+	private Color negativeColor;
+	private Color negativeFillColor;
 	private Point point;
 	private Number pointInterval;
 	private String pointIntervalUnit;
@@ -64,11 +65,11 @@ public class PlotOptionsAreaRange extends AbstractPlotOptions {
 		this.animation = animation;
 	}
 
-	public Object getColor() {
+	public Color getColor() {
 		return color;
 	}
 
-	public void setColor(Object color) {
+	public void setColor(Color color) {
 		this.color = color;
 	}
 
@@ -120,11 +121,11 @@ public class PlotOptionsAreaRange extends AbstractPlotOptions {
 		this.enableMouseTracking = enableMouseTracking;
 	}
 
-	public Object getFillColor() {
+	public Color getFillColor() {
 		return fillColor;
 	}
 
-	public void setFillColor(Object fillColor) {
+	public void setFillColor(Color fillColor) {
 		this.fillColor = fillColor;
 	}
 
@@ -165,11 +166,11 @@ public class PlotOptionsAreaRange extends AbstractPlotOptions {
 		this.keys.remove(key);
 	}
 
-	public Object getLineColor() {
+	public Color getLineColor() {
 		return lineColor;
 	}
 
-	public void setLineColor(Object lineColor) {
+	public void setLineColor(Color lineColor) {
 		this.lineColor = lineColor;
 	}
 
@@ -189,19 +190,19 @@ public class PlotOptionsAreaRange extends AbstractPlotOptions {
 		this.linkedTo = linkedTo;
 	}
 
-	public Object getNegativeColor() {
+	public Color getNegativeColor() {
 		return negativeColor;
 	}
 
-	public void setNegativeColor(Object negativeColor) {
+	public void setNegativeColor(Color negativeColor) {
 		this.negativeColor = negativeColor;
 	}
 
-	public Object getNegativeFillColor() {
+	public Color getNegativeFillColor() {
 		return negativeFillColor;
 	}
 
-	public void setNegativeFillColor(Object negativeFillColor) {
+	public void setNegativeFillColor(Color negativeFillColor) {
 		this.negativeFillColor = negativeFillColor;
 	}
 

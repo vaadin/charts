@@ -1,5 +1,6 @@
 package com.vaadin.addon.charts.model;
 
+import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.util.SizeWithUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,7 +8,7 @@ public class PlotOptionsPyramid extends AbstractPlotOptions {
 
 	private static final long serialVersionUID = 1L;
 	private Boolean allowPointSelect;
-	private Object borderColor;
+	private Color borderColor;
 	private Number borderWidth;
 	private Object[] center;
 	private Object colors;
@@ -45,11 +46,11 @@ public class PlotOptionsPyramid extends AbstractPlotOptions {
 		this.allowPointSelect = allowPointSelect;
 	}
 
-	public Object getBorderColor() {
+	public Color getBorderColor() {
 		return borderColor;
 	}
 
-	public void setBorderColor(Object borderColor) {
+	public void setBorderColor(Color borderColor) {
 		this.borderColor = borderColor;
 	}
 
@@ -346,11 +347,11 @@ public class PlotOptionsPyramid extends AbstractPlotOptions {
 		return ChartType.PYRAMID;
 	}
 
-	public void setCenter(Number x, Number y) {
-		this.center = new Number[]{x, y};
-	}
-
 	public void setCenter(String x, String y) {
 		this.center = new String[]{x, y};
+	}
+
+	public void setCenter(Number x, Number y) {
+		this.center = new Number[]{x, y};
 	}
 }
