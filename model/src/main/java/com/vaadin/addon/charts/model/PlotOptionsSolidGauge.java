@@ -12,7 +12,6 @@ public class PlotOptionsSolidGauge extends AbstractPlotOptions {
 	private Boolean getExtremesFromAll;
 	private ArrayList<String> keys;
 	private Number overshoot;
-	private Point point;
 	private Boolean selected;
 	private Boolean showCheckbox;
 	private Boolean showInLegend;
@@ -94,14 +93,6 @@ public class PlotOptionsSolidGauge extends AbstractPlotOptions {
 
 	public void setOvershoot(Number overshoot) {
 		this.overshoot = overshoot;
-	}
-
-	public Point getPoint() {
-		return point;
-	}
-
-	public void setPoint(Point point) {
-		this.point = point;
 	}
 
 	public Boolean getSelected() {

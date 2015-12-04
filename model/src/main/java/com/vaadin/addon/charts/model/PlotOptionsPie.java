@@ -23,7 +23,6 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	private ArrayList<String> keys;
 	private String linkedTo;
 	private Number minSize;
-	private Point point;
 	private Boolean selected;
 	private Object shadow;
 	private Boolean showInLegend;
@@ -183,14 +182,6 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 
 	public void setMinSize(Number minSize) {
 		this.minSize = minSize;
-	}
-
-	public Point getPoint() {
-		return point;
-	}
-
-	public void setPoint(Point point) {
-		this.point = point;
 	}
 
 	public Boolean getSelected() {

@@ -29,4 +29,5 @@ public class ChartState extends AbstractComponentState {
     public int paintCount;
     public String jsonState;
 
+    public boolean seriesVisibilityTogglingDisabled;
 }

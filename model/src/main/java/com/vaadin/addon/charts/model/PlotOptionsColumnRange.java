@@ -31,7 +31,6 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	private String linkedTo;
 	private Number maxPointWidth;
 	private Number minPointLength;
-	private Point point;
 	private Number pointInterval;
 	private String pointIntervalUnit;
 	private Number pointPadding;
@@ -249,14 +248,6 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 
 	public void setMinPointLength(Number minPointLength) {
 		this.minPointLength = minPointLength;
-	}
-
-	public Point getPoint() {
-		return point;
-	}
-
-	public void setPoint(Point point) {
-		this.point = point;
 	}
 
 	public Number getPointInterval() {

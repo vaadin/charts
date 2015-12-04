@@ -26,11 +26,8 @@ import com.vaadin.addon.charts.util.Util;
  * The PointClickEvent class stores data for click events on the points of the
  * chart.
  */
-public class PointClickEvent extends com.vaadin.ui.Component.Event {
+public class PointClickEvent extends AbstractPointEvent {
 
-    private final String category;
-    private final Series series;
-    private int pointIndex;
     private MouseEventDetails details;
 
     /**
@@ -44,11 +41,8 @@ public class PointClickEvent extends com.vaadin.ui.Component.Event {
      */
     public PointClickEvent(Chart source, MouseEventDetails details,
             Series series, String category, int pointIndex) {
-        super(source);
+        super(source,series,category,pointIndex);
         this.details = details;
-        this.series = series;
-        this.category = category;
-        this.pointIndex = pointIndex;
     }
 
     /**
@@ -71,27 +65,6 @@ public class PointClickEvent extends com.vaadin.ui.Component.Event {
      */
     public double getY() {
         return details.getyValue();
-    }
-
-    /**
-     * @return the series containing the point that was clicked
-     */
-    public Series getSeries() {
-        return series;
-    }
-
-    /**
-     * @return the name of the category for the point that was clicked.
-     */
-    public String getCategory() {
-        return category;
-    }
-
-    /**
-     * @return the index of the point in its series that was clicked
-     */
-    public int getPointIndex() {
-        return pointIndex;
     }
 
     /**

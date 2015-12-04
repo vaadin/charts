@@ -138,4 +138,24 @@ public class HighchartWidget extends Widget {
     public void addDrilldown(String series, int seriesIndex, int pointIndex) {
         jsOverlay.addDrilldown(series, seriesIndex, pointIndex);
     }
+
+    public int getYAxisIndex(HighchartAxis axis) {
+        JsArray<HighchartAxis> yAxes = jsOverlay.getyAxes();
+        for (int i = 0; i < yAxes.length(); i++) {
+            if (yAxes.get(i) == axis) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public int getXAxisIndex(HighchartAxis axis) {
+        JsArray<HighchartAxis> xAxes = jsOverlay.getxAxes();
+        for (int i = 0; i < xAxes.length(); i++) {
+            if (xAxes.get(i) == axis) {
+                return i;
+            }
+        }
+        return -1;
+    }
 }

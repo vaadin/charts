@@ -18,7 +18,6 @@ public class PlotOptionsGauge extends AbstractPlotOptions {
 	private Color negativeColor;
 	private Number overshoot;
 	private Pivot pivot;
-	private Point point;
 	private Boolean selected;
 	private Boolean showCheckbox;
 	private Boolean showInLegend;
@@ -141,14 +140,6 @@ public class PlotOptionsGauge extends AbstractPlotOptions {
 
 	public void setPivot(Pivot pivot) {
 		this.pivot = pivot;
-	}
-
-	public Point getPoint() {
-		return point;
-	}
-
-	public void setPoint(Point point) {
-		this.point = point;
 	}
 
 	public Boolean getSelected() {

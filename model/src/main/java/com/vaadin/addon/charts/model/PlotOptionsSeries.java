@@ -18,14 +18,12 @@ public class PlotOptionsSeries extends AbstractPlotOptions {
 	private String dashStyle;
 	private DataLabels dataLabels;
 	private Boolean enableMouseTracking;
-	private Events events;
 	private Boolean getExtremesFromAll;
 	private ArrayList<String> keys;
 	private Number lineWidth;
 	private String linkedTo;
 	private Marker marker;
 	private Color negativeColor;
-	private Point point;
 	private Number pointInterval;
 	private String pointIntervalUnit;
 	private Object pointPlacement;
@@ -128,14 +126,6 @@ public class PlotOptionsSeries extends AbstractPlotOptions {
 		this.enableMouseTracking = enableMouseTracking;
 	}
 
-	public Events getEvents() {
-		return events;
-	}
-
-	public void setEvents(Events events) {
-		this.events = events;
-	}
-
 	public Boolean getGetExtremesFromAll() {
 		return getExtremesFromAll;
 	}
@@ -195,14 +185,6 @@ public class PlotOptionsSeries extends AbstractPlotOptions {
 
 	public void setNegativeColor(Color negativeColor) {
 		this.negativeColor = negativeColor;
-	}
-
-	public Point getPoint() {
-		return point;
-	}
-
-	public void setPoint(Point point) {
-		this.point = point;
 	}
 
 	public Number getPointInterval() {

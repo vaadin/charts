@@ -28,7 +28,6 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 	private Levels[] levels;
 	private String linkedTo;
 	private Number maxPointWidth;
-	private Point point;
 	private Boolean selected;
 	private Object shadow;
 	private Boolean showCheckbox;
@@ -231,14 +230,6 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 
 	public void setMaxPointWidth(Number maxPointWidth) {
 		this.maxPointWidth = maxPointWidth;
-	}
-
-	public Point getPoint() {
-		return point;
-	}
-
-	public void setPoint(Point point) {
-		this.point = point;
 	}
 
 	public Boolean getSelected() {

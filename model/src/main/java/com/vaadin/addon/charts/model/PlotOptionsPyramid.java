@@ -21,7 +21,6 @@ public class PlotOptionsPyramid extends AbstractPlotOptions {
 	private ArrayList<String> keys;
 	private String linkedTo;
 	private Number minSize;
-	private Point point;
 	private Boolean reversed;
 	private Boolean selected;
 	private Object shadow;
@@ -190,14 +189,6 @@ public class PlotOptionsPyramid extends AbstractPlotOptions {
 
 	public void setMinSize(Number minSize) {
 		this.minSize = minSize;
-	}
-
-	public Point getPoint() {
-		return point;
-	}
-
-	public void setPoint(Point point) {
-		this.point = point;
 	}
 
 	public Boolean getReversed() {

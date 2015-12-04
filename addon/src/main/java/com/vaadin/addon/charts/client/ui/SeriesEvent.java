@@ -19,9 +19,9 @@ package com.vaadin.addon.charts.client.ui;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
-public class LegendItemClickEvent extends JavaScriptObject {
+public class SeriesEvent extends JavaScriptObject {
 
-    protected LegendItemClickEvent() {
+    protected SeriesEvent() {
 
     }
 

@@ -24,7 +24,6 @@ public class PlotOptionsBubble extends AbstractPlotOptions {
 	private String linkedTo;
 	private Marker marker;
 	private Color negativeColor;
-	private Point point;
 	private Number pointInterval;
 	private String pointIntervalUnit;
 	private Number pointStart;
@@ -182,14 +181,6 @@ public class PlotOptionsBubble extends AbstractPlotOptions {
 
 	public void setNegativeColor(Color negativeColor) {
 		this.negativeColor = negativeColor;
-	}
-
-	public Point getPoint() {
-		return point;
-	}
-
-	public void setPoint(Point point) {
-		this.point = point;
 	}
 
 	public Number getPointInterval() {

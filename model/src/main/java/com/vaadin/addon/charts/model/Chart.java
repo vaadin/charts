@@ -12,7 +12,6 @@ public class Chart extends AbstractConfigurationObject {
 	private Number borderRadius;
 	private Number borderWidth;
 	private String className;
-	private Events events;
 	private Number height;
 	private Boolean ignoreHiddenSeries;
 	private Boolean inverted;
@@ -104,14 +103,6 @@ public class Chart extends AbstractConfigurationObject {
 
 	public void setClassName(String className) {
 		this.className = className;
-	}
-
-	public Events getEvents() {
-		return events;
-	}
-
-	public void setEvents(Events events) {
-		this.events = events;
 	}
 
 	public Number getHeight() {

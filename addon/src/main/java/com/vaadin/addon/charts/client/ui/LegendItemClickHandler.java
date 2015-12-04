@@ -21,5 +21,5 @@ package com.vaadin.addon.charts.client.ui;
  * Client side LegendItemClickHandler
  */
 public interface LegendItemClickHandler {
-    void onClick(LegendItemClickEvent event);
+    boolean onClick(SeriesEvent event);
 }

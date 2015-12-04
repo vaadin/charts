@@ -23,7 +23,6 @@ public class PlotOptionsHeatMap extends AbstractPlotOptions {
 	private ArrayList<String> keys;
 	private String linkedTo;
 	private Number maxPointWidth;
-	private Point point;
 	private Number rowsize;
 	private Boolean selected;
 	private Object shadow;
@@ -187,14 +186,6 @@ public class PlotOptionsHeatMap extends AbstractPlotOptions {
 
 	public void setMaxPointWidth(Number maxPointWidth) {
 		this.maxPointWidth = maxPointWidth;
-	}
-
-	public Point getPoint() {
-		return point;
-	}
-
-	public void setPoint(Point point) {
-		this.point = point;
 	}
 
 	public Number getRowsize() {

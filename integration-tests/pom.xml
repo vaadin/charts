@@ -33,6 +33,11 @@
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-themes</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-client</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
         <dependency>
             <groupId>org.reflections</groupId>
@@ -41,8 +46,8 @@
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.4</version>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.0.1</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -111,7 +116,7 @@
                     <runTarget>http://localhost:9998/</runTarget>
                     <draftCompile>true</draftCompile>
                     <style>PRETTY</style>
-                    <module>com.vaadin.addon.charts.ChartsWithTimelineWidgetset</module>
+                    <module>com.vaadin.addon.charts.AppWidgetSet</module>
 
                     <!-- Skip in default phase, we only gwt compile for tests -->
                     <!--<skip>true</skip> -->
@@ -214,6 +219,7 @@
                             <maxIdleTime>60000</maxIdleTime>
                         </connector>
                     </connectors>
+                    <scanIntervalSeconds>1</scanIntervalSeconds>
                     <useProvidedScope>true</useProvidedScope>
                     <useTestClasspath>true</useTestClasspath>
                     <stopKey>STOP</stopKey>
@@ -224,7 +230,12 @@
                                 implementation="org.eclipse.jetty.util.resource.ResourceCollection">
                             <resourcesAsCSV>${project.build.directory}/testwebapp</resourcesAsCSV>
                         </baseResource>
+                        <extraClasspath>target/classes;../addon/target/classes;../examples/target/classes</extraClasspath>
                     </webApp>
+                    <scanTargets>
+                        <scanTarget>../addon/target/classes</scanTarget>
+                        <scanTarget>../examples/target/classes</scanTarget>
+                    </scanTargets>
                     <contextXml>${basedir}/src/test/resources/jetty-context.xml</contextXml>
                 </configuration>
             </plugin>

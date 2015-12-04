@@ -50,4 +50,18 @@ public interface ChartServerRpc extends ServerRpc {
 
     void onLegendItemClick(int seriesIndex, int seriesItemIndex);
 
+    void onCheckboxClick(boolean isChecked, int seriesIndex,
+        int seriesItemIndex);
+
+    void onSeriesHide(int seriesIndex, int seriesItemIndex);
+
+    void onSeriesShow(int seriesIndex, int seriesItemIndex);
+
+    void onXAxesExtremesChange(int axisIndex, double minimum, double maximum);
+
+    void onYAxesExtremesChange(int axisIndex, double minimum, double maximum);
+
+    void onPointSelect(int seriesIndex, String category, int pointIndex);
+
+    void onPointUnselect(int seriesIndex, String category, int pointIndex);
 }

@@ -28,7 +28,6 @@ public class PlotOptionsArea extends AbstractPlotOptions {
 	private Marker marker;
 	private Color negativeColor;
 	private Color negativeFillColor;
-	private Point point;
 	private Number pointInterval;
 	private String pointIntervalUnit;
 	private Object pointPlacement;
@@ -224,14 +223,6 @@ public class PlotOptionsArea extends AbstractPlotOptions {
 
 	public void setNegativeFillColor(Color negativeFillColor) {
 		this.negativeFillColor = negativeFillColor;
-	}
-
-	public Point getPoint() {
-		return point;
-	}
-
-	public void setPoint(Point point) {
-		this.point = point;
 	}
 
 	public Number getPointInterval() {

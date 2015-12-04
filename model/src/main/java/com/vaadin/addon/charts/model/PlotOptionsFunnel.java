@@ -23,7 +23,6 @@ public class PlotOptionsFunnel extends AbstractPlotOptions {
 	private Number minSize;
 	private String neckHeight;
 	private String neckWidth;
-	private Point point;
 	private Boolean reversed;
 	private Boolean selected;
 	private Object shadow;
@@ -274,14 +273,6 @@ public class PlotOptionsFunnel extends AbstractPlotOptions {
 			value = null;
 		}
 		this.neckWidth = value;
-	}
-
-	public Point getPoint() {
-		return point;
-	}
-
-	public void setPoint(Point point) {
-		this.point = point;
 	}
 
 	public Boolean getReversed() {

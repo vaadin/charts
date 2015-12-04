@@ -21,22 +21,31 @@ import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.user.client.Timer;
 import com.vaadin.addon.charts.Chart;
+import com.vaadin.addon.charts.client.ui.AfterSetExtremeHandler;
 import com.vaadin.addon.charts.client.ui.ChartClickEvent;
 import com.vaadin.addon.charts.client.ui.ChartClickHandler;
 import com.vaadin.addon.charts.client.ui.ChartDrilldownEvent;
 import com.vaadin.addon.charts.client.ui.ChartDrilldownHandler;
 import com.vaadin.addon.charts.client.ui.ChartSelectionEvent;
 import com.vaadin.addon.charts.client.ui.ChartSelectionHandler;
+import com.vaadin.addon.charts.client.ui.CheckboxClickEvent;
+import com.vaadin.addon.charts.client.ui.CheckboxClickHandler;
 import com.vaadin.addon.charts.client.ui.DrilldownEventDetailsBuilder;
 import com.vaadin.addon.charts.client.ui.HighchartConfig;
 import com.vaadin.addon.charts.client.ui.HighchartPoint;
 import com.vaadin.addon.charts.client.ui.HighchartSeries;
 import com.vaadin.addon.charts.client.ui.HighchartWidget;
-import com.vaadin.addon.charts.client.ui.LegendItemClickEvent;
+import com.vaadin.addon.charts.client.ui.PointEvent;
+import com.vaadin.addon.charts.client.ui.PointSelectHandler;
+import com.vaadin.addon.charts.client.ui.PointUnselectHandler;
+import com.vaadin.addon.charts.client.ui.SeriesEvent;
 import com.vaadin.addon.charts.client.ui.LegendItemClickHandler;
 import com.vaadin.addon.charts.client.ui.MouseEventDetailsBuilder;
 import com.vaadin.addon.charts.client.ui.PointClickEvent;
 import com.vaadin.addon.charts.client.ui.PointClickHandler;
+import com.vaadin.addon.charts.client.ui.SeriesHideHandler;
+import com.vaadin.addon.charts.client.ui.SeriesShowHandler;
+import com.vaadin.addon.charts.client.ui.SetExtremesEvent;
 import com.vaadin.client.BrowserInfo;
 import com.vaadin.client.ServerConnector;
 import com.vaadin.client.communication.RpcProxy;
@@ -59,6 +68,13 @@ public class ChartConnector extends AbstractComponentConnector {
     public static final String CHART_SELECTION_EVENT_ID = "cs";
     public static final String CHART_CLICK_EVENT_ID = "cl";
     public static final String CHART_DRILLUP_EVENT_ID = "du";
+    public static final String CHECKBOX_CLICK_EVENT_ID = "cbc";
+    public static final String HIDE_SERIES_EVENT_ID = "hs";
+    public static final String SHOW_SERIES_EVENT_ID = "ss";
+    public static final String X_AXES_EXTREMES_CHANGE_EVENT_ID = "xae";
+    public static final String Y_AXES_EXTREMES_CHANGE_EVENT_ID = "yae";
+    public static final String POINT_SELECT_EVENT_ID = "pse";
+    public static final String POINT_UNSELECT_EVENT_ID = "pus";
 
     public ChartConnector() {
         registerRpc(ChartClientRpc.class, new ChartClientRpc() {
@@ -213,9 +229,8 @@ public class ChartConnector extends AbstractComponentConnector {
         super.onStateChanged(stateChangeEvent);
         final HighchartConfig cfg = HighchartConfig.createFromServerSideString(
                 getState().confState, getState().jsonState);
-        if (getState().registeredEventListeners != null
-                && getState().registeredEventListeners
-                        .contains(CHART_CLICK_EVENT_ID)) {
+
+        if (listenerExistsForEvent(CHART_CLICK_EVENT_ID)) {
             cfg.setClickHandler(new ChartClickHandler() {
                 @Override
                 public void onClick(ChartClickEvent event) {
@@ -242,9 +257,7 @@ public class ChartConnector extends AbstractComponentConnector {
                 rpc.onChartDrillup();
             }
         });
-        if (getState().registeredEventListeners != null
-                && getState().registeredEventListeners
-                        .contains(POINT_CLICK_EVENT_ID)) {
+        if (listenerExistsForEvent(POINT_CLICK_EVENT_ID)) {
             cfg.setSeriesPointClickHandler(new PointClickHandler() {
 
                 @Override
@@ -263,9 +276,7 @@ public class ChartConnector extends AbstractComponentConnector {
             });
         }
 
-        if (getState().registeredEventListeners != null
-                && getState().registeredEventListeners
-                        .contains(CHART_SELECTION_EVENT_ID)) {
+        if (listenerExistsForEvent(CHART_SELECTION_EVENT_ID)) {
             cfg.setChartSelectionHandler(new ChartSelectionHandler() {
 
                 @Override
@@ -278,20 +289,107 @@ public class ChartConnector extends AbstractComponentConnector {
             });
         }
 
-        if (getState().registeredEventListeners != null
-                && getState().registeredEventListeners
-                        .contains(LEGENDITEM_CLICK_EVENT_ID)) {
-            cfg.setLegendItemClickHandler(new LegendItemClickHandler() {
+        // The legendItemClickHandler is always set so that series visibility
+        // toggling can be disabled
+        cfg.setLegendItemClickHandler(new LegendItemClickHandler() {
 
-                @Override
-                public void onClick(LegendItemClickEvent event) {
+            @Override
+            public boolean onClick(SeriesEvent event) {
+                if (listenerExistsForEvent(LEGENDITEM_CLICK_EVENT_ID)) {
                     int seriesIndex = getWidget().getSeriesIndex(
                             event.getSeries());
-
                     rpc.onLegendItemClick(seriesIndex,
-                            event.getSeriesItemIndex());
-                    event.preventDefault();
+                        event.getSeriesItemIndex());
                 }
+                return !getState().seriesVisibilityTogglingDisabled;
+            }
+        });
+
+        if (listenerExistsForEvent(CHECKBOX_CLICK_EVENT_ID)) {
+            cfg.setCheckboxClickHandler(new CheckboxClickHandler() {
+                @Override public void onClick(CheckboxClickEvent event) {
+                    int seriesIndex = getWidget().getSeriesIndex(
+                        event.getSeries());
+                    rpc.onCheckboxClick(event.isChecked(), seriesIndex, event.getSeriesItemIndex());
+                }
+            });
+        }
+
+        if (listenerExistsForEvent(HIDE_SERIES_EVENT_ID)) {
+            cfg.setSeriesHideHandler(new SeriesHideHandler() {
+                @Override
+                public void onHide(SeriesEvent event) {
+                    int seriesIndex = getWidget().getSeriesIndex(
+                        event.getSeries());
+                    rpc.onSeriesHide(seriesIndex, event.getSeriesItemIndex());
+                }
+            });
+        }
+
+        if (listenerExistsForEvent(SHOW_SERIES_EVENT_ID)) {
+            cfg.setSeriesShowHandler(new SeriesShowHandler() {
+                @Override
+                public void onShow(SeriesEvent event) {
+                    int seriesIndex = getWidget()
+                        .getSeriesIndex(event.getSeries());
+                    rpc.onSeriesShow(seriesIndex, event.getSeriesItemIndex());
+                }
+            });
+        }
+
+        if (listenerExistsForEvent(X_AXES_EXTREMES_CHANGE_EVENT_ID)) {
+            cfg.setXAxesAfterSetExtremeHandler(new AfterSetExtremeHandler() {
+                @Override
+                public void afterSetExtreme(SetExtremesEvent event) {
+                    int axisIndex = getWidget().getXAxisIndex(event.getAxis());
+                    double min = event.getMin();
+                    double max = event.getMax();
+                    rpc.onXAxesExtremesChange(axisIndex, min, max);
+                }
+            });
+        }
+
+        if (listenerExistsForEvent(Y_AXES_EXTREMES_CHANGE_EVENT_ID)) {
+            cfg.setYAxesAfterSetExtremeHandler(new AfterSetExtremeHandler() {
+                @Override
+                public void afterSetExtreme(SetExtremesEvent event) {
+                    int axisIndex = getWidget().getYAxisIndex(event.getAxis());
+                    double min = event.getMin();
+                    double max = event.getMax();
+                    rpc.onYAxesExtremesChange(axisIndex, min, max);
+                }
+            });
+        }
+
+        if (listenerExistsForEvent(POINT_SELECT_EVENT_ID)) {
+            cfg.setPointSelectHandler(new PointSelectHandler(){
+                @Override
+                public void onSelect(PointEvent event) {
+                    HighchartPoint point = event.getPoint();
+                    HighchartSeries series = point.getSeries();
+                    int seriesIndex = getWidget().getSeriesIndex(series);
+                    int pointIndex = series.indexOf(point);
+
+                    rpc.onPointSelect(seriesIndex, event.getCategory(),
+                        pointIndex);
+                }
+            });
+        }
+
+        if (listenerExistsForEvent(POINT_UNSELECT_EVENT_ID)) {
+            cfg.setPointUnselectHandler(new PointUnselectHandler() {
+
+                @Override
+                public void onUnselect(PointEvent event) {
+                    HighchartPoint point = event.getPoint();
+                    HighchartSeries series = point.getSeries();
+                    int seriesIndex = getWidget().getSeriesIndex(series);
+                    int pointIndex = series.indexOf(point);
+
+                    rpc.onPointUnselect(seriesIndex, event.getCategory(),
+                        pointIndex);
+                }
+
             });
         }
 
@@ -336,6 +434,11 @@ public class ChartConnector extends AbstractComponentConnector {
                 }
             }
         });
+    }
+
+    private boolean listenerExistsForEvent(String chartEventId) {
+        return getState().registeredEventListeners != null
+            && getState().registeredEventListeners.contains(chartEventId);
     }
 
     @Override

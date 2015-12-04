@@ -23,10 +23,7 @@ import com.vaadin.addon.charts.model.Series;
  * The LegendItemClickEvent class stores information on click events on the
  * charts's legend items.
  */
-public class LegendItemClickEvent extends com.vaadin.ui.Component.Event {
-
-    private Series series;
-    private int seriesItemIndex;
+public class LegendItemClickEvent extends AbstractSeriesEvent {
 
     /**
      * Constructs a LegendItemClickEvent
@@ -35,23 +32,9 @@ public class LegendItemClickEvent extends com.vaadin.ui.Component.Event {
      * @param seriesName
      */
     public LegendItemClickEvent(Chart source, Series series, int seriesItemIndex) {
-        super(source);
-        this.series = series;
-        this.seriesItemIndex = seriesItemIndex;
+        super(source, series, seriesItemIndex);
     }
 
-    /**
-     * @return the series which legend item was clicked
-     */
-    public Series getSeries() {
-        return series;
-    }
 
-    /**
-     * @return the item index of clicked legend item.
-     */
-    public int getSeriesItemIndex() {
-        return seriesItemIndex;
-    }
 
 }

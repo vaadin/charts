@@ -39,6 +39,8 @@ import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.Series;
+import com.vaadin.addon.charts.model.XAxis;
+import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.shared.ChartClientRpc;
 import com.vaadin.addon.charts.shared.ChartConnector;
 import com.vaadin.addon.charts.shared.ChartServerRpc;
@@ -74,7 +76,7 @@ import com.vaadin.util.ReflectTools;
  * also use its raw JS API via the {@link #drawChart(String)} method.
  * <p>
  * See more examples in Book of Vaadin or the online demos.
- * 
+ *
  * @see <a href="http://vaadin.com/book">Book of Vaadin</a>
  * @see <a href="https://vaadin.com/add-ons/charts">Vaadin Charts</a>
  */
@@ -84,7 +86,7 @@ public class Chart extends AbstractComponent {
     /**
      * Forwards changes broadcasted by configurations into client RPC method
      * calls.
-     * 
+     *
      * @since 2.0
      *
      */
@@ -136,13 +138,13 @@ public class Chart extends AbstractComponent {
         @Override
         public void seriesStateChanged(SeriesStateEvent event) {
             chart.getRpcProxy(ChartClientRpc.class).setSeriesEnabled(
-                    getSeriesIndex(event), event.isEnabled());
+                getSeriesIndex(event), event.isEnabled());
         }
 
         @Override
         public void animationChanged(boolean animation) {
             chart.getRpcProxy(ChartClientRpc.class).setAnimationEnabled(
-                    animation);
+                animation);
         }
 
         @Override
@@ -173,6 +175,7 @@ public class Chart extends AbstractComponent {
     }
 
     private final class ChartServerRpcImplementation implements ChartServerRpc {
+
         @Override
         public void onChartClick(MouseEventDetails details) {
             final ChartClickEvent chartClickEvent = new ChartClickEvent(
@@ -186,13 +189,8 @@ public class Chart extends AbstractComponent {
         public void onChartDrilldown(DrilldownEventDetails details) {
             final int seriesIndex = details.getPoint().getSeriesIndex();
             final int pointIndex = details.getPoint().getIndex();
-            Series series;
+            Series series = resolveSeriesFor(seriesIndex);
             DataSeriesItem item = null;
-            if (drilldownStack.isEmpty()) {
-                series = getSeriesBasedOnIndex(seriesIndex);
-            } else {
-                series = drilldownStack.peek();
-            }
             if (series instanceof DataSeries) {
                 DataSeries dataSeries = (DataSeries) series;
                 item = dataSeries.get(pointIndex);
@@ -207,8 +205,9 @@ public class Chart extends AbstractComponent {
                     drilldownStack.push(drilldownSeries);
                     getRpcProxy(ChartClientRpc.class)
                             .addDrilldown(
-                                    toJSON((AbstractConfigurationObject) drilldownSeries),
-                                    seriesIndex, pointIndex);
+                                toJSON(
+                                    (AbstractConfigurationObject) drilldownSeries),
+                                seriesIndex, pointIndex);
                 }
             }
         }
@@ -226,21 +225,10 @@ public class Chart extends AbstractComponent {
         public void onPointClick(MouseEventDetails details,
                 final int seriesIndex, final String category,
                 final int pointIndex) {
-            Series series;
-            if (drilldownStack.isEmpty()) {
-                series = getSeriesBasedOnIndex(seriesIndex);
-            } else {
-                series = drilldownStack.peek();
-            }
+            Series series = resolveSeriesFor(seriesIndex);
             final PointClickEvent pointClickEvent = new PointClickEvent(
-                    Chart.this, details, series, category, pointIndex);
+                Chart.this, details, series, category, pointIndex);
             fireEvent(pointClickEvent);
-        }
-
-        private Series getSeriesBasedOnIndex(final int seriesIndex) {
-            final Series series = getConfiguration().getSeries().get(
-                    seriesIndex);
-            return series;
         }
 
         @Override
@@ -255,19 +243,113 @@ public class Chart extends AbstractComponent {
 
         @Override
         public void onLegendItemClick(final int seriesIndex, int seriesItemIndex) {
-            Series series;
-            if (drilldownStack.isEmpty()) {
-                series = getSeriesBasedOnIndex(seriesIndex);
-            } else {
-                series = drilldownStack.peek();
-            }
+            Series series = resolveSeriesFor(seriesIndex);
             final LegendItemClickEvent legendItemClickEvent = new LegendItemClickEvent(
                     Chart.this, series, seriesItemIndex);
             fireEvent(legendItemClickEvent);
-
         }
+
+        @Override
+        public void onCheckboxClick(boolean isChecked, final int seriesIndex,
+            int seriesItemIndex) {
+            Series series = resolveSeriesFor(seriesIndex);
+            CheckboxClickEvent checkboxClickEvent = new CheckboxClickEvent(
+                    Chart.this, isChecked, series, seriesItemIndex);
+            fireEvent(checkboxClickEvent);
+        }
+
+        @Override
+        public void onSeriesHide(int seriesIndex, int seriesItemIndex) {
+            Series series = resolveSeriesFor(seriesIndex);
+            SeriesHideEvent seriesHideEvent = new SeriesHideEvent(
+                    Chart.this, series, seriesItemIndex);
+            fireEvent(seriesHideEvent);
+        }
+
+        @Override
+        public void onSeriesShow(int seriesIndex, int seriesItemIndex) {
+            Series series = resolveSeriesFor(seriesIndex);
+            SeriesShowEvent seriesShowEvent = new SeriesShowEvent(
+                    Chart.this, series, seriesItemIndex);
+            fireEvent(seriesShowEvent);
+        }
+
+        @Override
+        public void onXAxesExtremesChange(int axisIndex, double minimum,
+            double maximum) {
+            XAxis axis = getConfiguration().getxAxis(axisIndex);
+            XAxesExtremesChangeEvent event = new XAxesExtremesChangeEvent(
+                Chart.this, axis, minimum, maximum);
+            fireEvent(event);
+        }
+
+        @Override
+        public void onYAxesExtremesChange(int axisIndex, double minimum,
+            double maximum) {
+            YAxis axis = getConfiguration().getyAxis(axisIndex);
+            YAxesExtremesChangeEvent event = new YAxesExtremesChangeEvent(
+                Chart.this, axis, minimum, maximum);
+            fireEvent(event);
+        }
+
+        @Override
+        public void onPointSelect(int seriesIndex, String category,
+            int pointIndex) {
+            Series series = resolveSeriesFor(seriesIndex);
+            PointSelectEvent event = new PointSelectEvent(
+                Chart.this, series, category, pointIndex);
+            fireEvent(event);
+        }
+
+        @Override
+        public void onPointUnselect(int seriesIndex, String category,
+            int pointIndex) {
+            Series series = resolveSeriesFor(seriesIndex);
+            PointUnselectEvent event = new PointUnselectEvent(
+                Chart.this, series, category, pointIndex);
+            fireEvent(event);
+        }
+
+        private Series resolveSeriesFor(int seriesIndex) {
+            Series series;
+            if (drilldownStack.isEmpty()) {
+                series = getConfiguration().getSeries().get(seriesIndex);
+            } else {
+                series = drilldownStack.peek();
+            }
+            return series;
+        }
+
     }
 
+    private final static Method chartClickMethod = ReflectTools
+        .findMethod(ChartClickListener.class, "onClick", ChartClickEvent.class);
+    private final static Method chartDrillupMethod = ReflectTools.findMethod(
+        ChartDrillupListener.class, "onDrillup", ChartDrillupEvent.class);
+    private final static Method pointClickMethod = ReflectTools
+        .findMethod(PointClickListener.class, "onClick", PointClickEvent.class);
+    private final static Method chartSelectionMethod = ReflectTools.findMethod(
+        ChartSelectionListener.class, "onSelection", ChartSelectionEvent.class);
+    private final static Method legendItemClickMethod = ReflectTools.findMethod(
+        LegendItemClickListener.class, "onClick", LegendItemClickEvent.class);
+    private final static Method checkboxClickMethod = ReflectTools.findMethod(
+        CheckboxClickListener.class, "onClick", CheckboxClickEvent.class);
+    private final static Method showSeriesMethod = ReflectTools
+        .findMethod(SeriesShowListener.class, "onShow", SeriesShowEvent.class);
+    private final static Method hideSeriesMethod = ReflectTools
+        .findMethod(SeriesHideListener.class, "onHide", SeriesHideEvent.class);
+    private final static Method xAxesExtremesChangeMethod = ReflectTools
+        .findMethod(
+            XAxesExtremesChangeListener.class, "onXAxesExtremesChange",
+            XAxesExtremesChangeEvent.class);
+    private final static Method yAxesExtremesChangeMethod = ReflectTools
+        .findMethod(
+            YAxesExtremesChangeListener.class, "onYAxesExtremesChange",
+            YAxesExtremesChangeEvent.class);
+    private final static Method pointSelectMethod = ReflectTools.findMethod(
+        PointSelectListener.class, "onSelect", PointSelectEvent.class);
+    private final static Method pointUnselectMethod = ReflectTools.findMethod(
+        PointUnselectListener.class, "onUnselect", PointUnselectEvent.class);
     /**
      * Listens to events on the series attached to the chart and redraws as
      * necessary.
@@ -287,7 +369,7 @@ public class Chart extends AbstractComponent {
      * Constructs a chart component with default settings.
      * <p>
      * Default dimensions are 100% width and 400px height.
-     * 
+     *
      * @See {@link Chart}
      */
     public Chart() {
@@ -303,7 +385,7 @@ public class Chart extends AbstractComponent {
      * <p>
      * In charts with multiple series, the type can also be defined by setting
      * series specific plot options.
-     * 
+     *
      * @see #Chart()
      * @see AbstractSeries#setPlotOptions(com.vaadin.addon.charts.model.AbstractPlotOptions)
      * @param type
@@ -355,10 +437,10 @@ public class Chart extends AbstractComponent {
      * <p>
      * Note, that if further modifications are done to the configuration, the
      * method must be called again to redraw the UI.
-     * 
+     *
      * @see #getConfiguration()
      * @see #drawChart(Configuration)
-     * 
+     *
      * @param jsonConfig
      *            the chart configuration as a JSON string
      */
@@ -376,6 +458,21 @@ public class Chart extends AbstractComponent {
     }
 
     /**
+     * Sets the jsonConfig used to render this chart.
+     * <p>
+     * Note, that calling this method on already displayed component don't
+     * necessary update it. Developer should call {@link #drawChart()} or {@link
+     * #drawChart(String)} method to force re draw.
+     *
+     * @see #drawChart(String)
+     * @param jsonConf
+     */
+    public void setJsonConfig(String jsonConf) {
+        jsonConfig = jsonConf;
+        stateDirty = true;
+    }
+
+    /**
      * @return the chart configuration that is used for this chart
      * @see #drawChart(Configuration)
      */
@@ -384,17 +481,35 @@ public class Chart extends AbstractComponent {
     }
 
     /**
+     * Sets the configuration object used to render this chart.
+     * <p>
+     * Note, that calling this method on already displayed component don't
+     * necessary update it. Developer should call {@link #drawChart()} or {@link
+     * #drawChart(Configuration)} method to force re draw.
+     *
+     * @param configuration
+     */
+    public void setConfiguration(Configuration configuration) {
+        if (this.configuration != null) {
+            // unbound old configuration
+            this.configuration.removeChangeListener(changeListener);
+        }
+        this.configuration = configuration;
+        stateDirty = true;
+    }
+
+    /**
      * Draws a chart with the given configuration as a starting point.
      * <p>
      * Note that if you modify the underlying {@link Series} directly the chart
      * will automatically be updated to reflect this unless explicitly told not
      * to. The methods listed below can be used as an example.
-     * 
+     *
      * @see DataSeries#add(DataSeriesItem)
      * @see DataSeries#addData(DataSeriesItem, boolean)
      * @see DataSeries#removeData(DataSeriesItem)
      * @see DataSeries#updateData(DataSeriesItem)
-     * 
+     *
      * @param configuration
      */
     public void drawChart(Configuration configuration) {
@@ -412,7 +527,7 @@ public class Chart extends AbstractComponent {
 
     /**
      * Draws the chart using the current configuration.
-     * 
+     *
      * @see #getConfiguration()
      * @see #drawChart(Configuration)
      */
@@ -420,27 +535,10 @@ public class Chart extends AbstractComponent {
         drawChart(getConfiguration());
     }
 
-    private final static Method chartClickMethod = ReflectTools.findMethod(
-            ChartClickListener.class, "onClick", ChartClickEvent.class);
-
-    private final static Method chartDrillupMethod = ReflectTools.findMethod(
-            ChartDrillupListener.class, "onDrillup", ChartDrillupEvent.class);
-
-    private final static Method pointClickMethod = ReflectTools.findMethod(
-            PointClickListener.class, "onClick", PointClickEvent.class);
-
-    private final static Method chartSelectionMethod = ReflectTools.findMethod(
-            ChartSelectionListener.class, "onSelection",
-            ChartSelectionEvent.class);
-
-    private final static Method legendItemClickMethod = ReflectTools
-            .findMethod(LegendItemClickListener.class, "onClick",
-                    LegendItemClickEvent.class);
-
     /**
      * Adds chart click listener, which will be notified of clicks on the chart
      * area
-     * 
+     *
      * @param listener
      */
     public void addChartClickListener(ChartClickListener listener) {
@@ -449,40 +547,8 @@ public class Chart extends AbstractComponent {
     }
 
     /**
-     * Adds chart drillup listener, which will be notified of clicks on the
-     * 'Back to previous series' button.
-     * 
-     * @param listener
-     */
-    public void addChartDrillupListener(ChartDrillupListener listener) {
-        this.addListener(ChartConnector.CHART_DRILLUP_EVENT_ID,
-                ChartDrillupEvent.class, listener, chartDrillupMethod);
-    }
-
-    /**
-     * @see #setDrilldownCallback(DrilldownCallback)
-     * @return drilldownCallbackHandler
-     */
-    public DrilldownCallback getDrilldownCallback() {
-        return drilldownCallback;
-    }
-
-    /**
-     * Sets the Chart drilldown handler that's responsible for returning the
-     * drilldown series for each drilldown callback when doing async drilldown
-     * 
-     * @see DataSeries#addItemWithDrilldown(com.vaadin.addon.charts.model.series.DataSeriesItem)
-     *      addItemWithDrilldown to find out how to enable async drilldown
-     * 
-     * @param drilldownCallback
-     */
-    public void setDrilldownCallback(DrilldownCallback drilldownCallback) {
-        this.drilldownCallback = drilldownCallback;
-    }
-
-    /**
      * Removes a chart click listener.
-     * 
+     *
      * @see #addChartClickListener(ChartClickListener)
      * @param listener
      */
@@ -492,8 +558,19 @@ public class Chart extends AbstractComponent {
     }
 
     /**
+     * Adds chart drillup listener, which will be notified of clicks on the
+     * 'Back to previous series' button.
+     *
+     * @param listener
+     */
+    public void addChartDrillupListener(ChartDrillupListener listener) {
+        this.addListener(ChartConnector.CHART_DRILLUP_EVENT_ID,
+                ChartDrillupEvent.class, listener, chartDrillupMethod);
+    }
+
+    /**
      * Removes a chart drillup listener.
-     * 
+     *
      * @see #addChartDrillupListener(ChartDrillupListener)
      * @param listener
      */
@@ -503,19 +580,64 @@ public class Chart extends AbstractComponent {
     }
 
     /**
+     * Adds checkbox click listener, which will be notified when user has
+     * clicked a checkbox in the legend
+     *
+     * @param listener
+     */
+    public void addCheckBoxClickListener(CheckboxClickListener listener) {
+        this.addListener(
+            ChartConnector.CHECKBOX_CLICK_EVENT_ID, CheckboxClickEvent.class,
+            listener, checkboxClickMethod);
+    }
+
+    /**
+     * Removes a checkbox click listener
+     *
+     * @see #addCheckBoxClickListener(CheckboxClickListener)
+     * @param listener
+     */
+    public void removeCheckBoxClickListener(CheckboxClickListener listener) {
+        this.removeListener(
+            ChartConnector.CHECKBOX_CLICK_EVENT_ID, CheckboxClickEvent.class,
+            listener);
+    }
+
+    /**
+     * @return drilldownCallbackHandler
+     * @see #setDrilldownCallback(DrilldownCallback)
+     */
+    public DrilldownCallback getDrilldownCallback() {
+        return drilldownCallback;
+    }
+
+    /**
+     * Sets the Chart drilldown handler that's responsible for returning the
+     * drilldown series for each drilldown callback when doing async drilldown
+     *
+     * @see DataSeries#addItemWithDrilldown(com.vaadin.addon.charts.model.series.DataSeriesItem)
+     *      addItemWithDrilldown to find out how to enable async drilldown
+     *
+     * @param drilldownCallback
+     */
+    public void setDrilldownCallback(DrilldownCallback drilldownCallback) {
+        this.drilldownCallback = drilldownCallback;
+    }
+
+    /**
      * Adds a point click listener, which will be notified of clicks on the
      * points, bars or columns in the chart
-     * 
+     *
      * @param listener
      */
     public void addPointClickListener(PointClickListener listener) {
         this.addListener(ChartConnector.POINT_CLICK_EVENT_ID,
-                PointClickEvent.class, listener, pointClickMethod);
+            PointClickEvent.class, listener, pointClickMethod);
     }
 
     /**
      * Removes a point click listener.
-     * 
+     *
      * @see #addPointClickListener(PointClickListener)
      * @param listener
      */
@@ -525,14 +647,13 @@ public class Chart extends AbstractComponent {
     }
 
     /**
-     * Adds a chart selection listener<br />
-     * <br />
-     * 
+     * Adds a chart selection listener<br /> <br />
+     * <p>
      * Note that if a chart selection listener is set, default action for
      * selection is prevented. Most commonly this means that client side zoom
      * doesn't work and you are responsible for setting the zoom, etc in the
      * listener implementation.
-     * 
+     *
      * @param listener
      */
     public void addChartSelectionListener(ChartSelectionListener listener) {
@@ -542,7 +663,7 @@ public class Chart extends AbstractComponent {
 
     /**
      * Removes a chart selection listener.
-     * 
+     *
      * @see #addChartSelectionListener(ChartSelectionListener)
      * @param listener
      */
@@ -554,27 +675,169 @@ public class Chart extends AbstractComponent {
     /**
      * Adds a legend item click listener, which will be notified of clicks on
      * the legend's items
-     * 
+     * <p>
+     * Note that adding a legend item click listener also disabled the default
+     * behaviour to toggle series visibility. If that is not desired, you can
+     * enable it again by calling setSeriesVisibilityTogglingDisabled(<code>true</code>)
+     *
      * @param listener
      */
     public void addLegendItemClickListener(LegendItemClickListener listener) {
         this.addListener(ChartConnector.LEGENDITEM_CLICK_EVENT_ID,
                 LegendItemClickEvent.class, listener, legendItemClickMethod);
+        setSeriesVisibilityTogglingDisabled(true);
     }
 
     /**
      * Removes a legend item click listener.
-     * 
+     *
      * @see #addLegendItemClickListener(LegendItemClickListener)
      * @param listener
      */
-    public void removeLegendItemClickListener(LegendItemClickListener listener) {
+    public void removeLegendItemClickListener(
+        LegendItemClickListener listener) {
         this.removeListener(ChartConnector.LEGENDITEM_CLICK_EVENT_ID,
                 LegendItemClickEvent.class, listener);
     }
 
-    private void readObject(ObjectInputStream in) throws IOException,
-            ClassNotFoundException {
+    /**
+     * Adds a series hide listener, which will be notified when a series is
+     * hidden
+     *
+     * @param listener
+     */
+    public void addSeriesHideListener(SeriesHideListener listener) {
+        this.addListener(ChartConnector.HIDE_SERIES_EVENT_ID,
+                SeriesHideEvent.class, listener, hideSeriesMethod);
+    }
+
+    /**
+     * Removes a series hide listener.
+     *
+     * @see #addSeriesHideListener(SeriesHideListener)
+     * @param listener
+     */
+    public void removeSeriesHideListener(SeriesHideListener listener) {
+        this.removeListener(ChartConnector.HIDE_SERIES_EVENT_ID,
+                SeriesHideEvent.class, listener);
+    }
+
+    /**
+     * Adds a series show listener, which will be notified when a series is
+     * shown
+     *
+     * @param listener
+     */
+    public void addSeriesShowListener(SeriesShowListener listener) {
+        this.addListener(ChartConnector.SHOW_SERIES_EVENT_ID,
+                SeriesShowEvent.class, listener, showSeriesMethod);
+    }
+
+    /**
+     * Removes a series show listener.
+     *
+     * @see #addSeriesShowListener(SeriesShowListener)
+     * @param listener
+     */
+    public void removeSeriesShowListener(SeriesShowListener listener) {
+        this.removeListener(ChartConnector.SHOW_SERIES_EVENT_ID,
+                SeriesShowEvent.class, listener);
+    }
+
+    /**
+     * Adds a x axes extremes change listener, which will be notified when an x
+     * axis extremes are changed.
+     *
+     * @param listener
+     */
+    public void addXAxesExtremesChangeListener(
+        XAxesExtremesChangeListener listener) {
+        this.addListener(ChartConnector.X_AXES_EXTREMES_CHANGE_EVENT_ID,
+                XAxesExtremesChangeEvent.class, listener, xAxesExtremesChangeMethod);
+    }
+
+    /**
+     * Removes a x axes extremes change listener.
+     *
+     * @see #addSeriesShowListener(SeriesShowListener)
+     * @param listener
+     */
+    public void removeXAxesExtremesChangeListener(
+        XAxesExtremesChangeListener listener) {
+        this.removeListener(ChartConnector.X_AXES_EXTREMES_CHANGE_EVENT_ID,
+                XAxesExtremesChangeEvent.class, listener);
+    }
+
+    /**
+     * Adds a y axes extremes change listener, which will be notified when an y
+     * axis extremes are changed.
+     *
+     * @param listener
+     */
+    public void addYAxesExtremesChangeListener(
+        YAxesExtremesChangeListener listener) {
+        this.addListener(ChartConnector.Y_AXES_EXTREMES_CHANGE_EVENT_ID,
+                YAxesExtremesChangeEvent.class, listener, yAxesExtremesChangeMethod);
+    }
+
+    /**
+     * Removes a y axes extremes change listener.
+     *
+     * @see #addSeriesShowListener(SeriesShowListener)
+     * @param listener
+     */
+    public void removeYAxesExtremesChangeListener(
+        YAxesExtremesChangeListener listener) {
+        this.removeListener(ChartConnector.Y_AXES_EXTREMES_CHANGE_EVENT_ID,
+                YAxesExtremesChangeEvent.class, listener);
+    }
+
+    /**
+     * Adds a point select listener, which will be notified when an data point
+     * is selected.
+     *
+     * @param listener
+     */
+    public void addPointSelectListener(PointSelectListener listener) {
+        this.addListener(ChartConnector.POINT_SELECT_EVENT_ID,
+                PointSelectEvent.class, listener, pointSelectMethod);
+    }
+
+    /**
+     * Removes a point select listener.
+     *
+     * @see #addPointSelectListener(PointSelectListener)
+     * @param listener
+     */
+    public void removePointSelectListener(PointSelectListener listener) {
+        this.removeListener(ChartConnector.POINT_SELECT_EVENT_ID,
+                PointSelectEvent.class, listener);
+    }
+
+    /**
+     * Adds a point unselect listener, which will be notified when an data point
+     * is unselected.
+     *
+     * @param listener
+     */
+    public void addPointUnselectListener(PointUnselectListener listener) {
+        this.addListener(ChartConnector.POINT_UNSELECT_EVENT_ID,
+            PointUnselectEvent.class, listener, pointUnselectMethod);
+    }
+
+    /**
+     * Removes a point unselect listener.
+     *
+     * @see #addPointUnselectListener(PointUnselectListener)
+     * @param listener
+     */
+    public void removePointUnselectListener(PointUnselectListener listener) {
+        this.removeListener(ChartConnector.POINT_UNSELECT_EVENT_ID,
+            PointUnselectEvent.class, listener);
+    }
+
+    private void readObject(ObjectInputStream in)
+        throws IOException, ClassNotFoundException {
         in.defaultReadObject();
         if (getUI() != null) {
             configuration.addChangeListener(changeListener);
@@ -582,36 +845,14 @@ public class Chart extends AbstractComponent {
     }
 
     /**
-     * Sets the jsonConfig used to render this chart.
-     * <p>
-     * Note, that calling this method on already displayed component don't
-     * necessary update it. Developer should call {@link #drawChart()} or
-     * {@link #drawChart(String)} method to force re draw.
-     * 
-     * @see #drawChart(String)
-     * 
-     * @param jsonConf
+     * The series visibility is toggled by default if user clicks the series
+     * item in the legend. Calling setSeriesVisibilityTogglingDisabled(<code>true</code>)
+     * will disable this behaviour.
+     *
+     * @param disabled
      */
-    public void setJsonConfig(String jsonConf) {
-        jsonConfig = jsonConf;
-        stateDirty = true;
+    public void setSeriesVisibilityTogglingDisabled(boolean disabled) {
+        getState().seriesVisibilityTogglingDisabled = disabled;
     }
 
-    /**
-     * Sets the configuration object used to render this chart.
-     * <p>
-     * Note, that calling this method on already displayed component don't
-     * necessary update it. Developer should call {@link #drawChart()} or
-     * {@link #drawChart(Configuration)} method to force re draw.
-     * 
-     * @param configuration
-     */
-    public void setConfiguration(Configuration configuration) {
-        if (this.configuration != null) {
-            // unbound old configuration
-            this.configuration.removeChangeListener(changeListener);
-        }
-        this.configuration = configuration;
-        stateDirty = true;
-    }
 }
