@@ -32,6 +32,7 @@ import com.vaadin.addon.charts.model.serializers.ChartEnumSerializer;
 import com.vaadin.addon.charts.model.serializers.ChartOptionsBeanSerializerModifier;
 import com.vaadin.addon.charts.model.serializers.DateSerializer;
 import com.vaadin.addon.charts.model.serializers.DefaultBeanSerializerModifier;
+import com.vaadin.addon.charts.model.serializers.PaneListSerializer;
 import com.vaadin.addon.charts.model.serializers.SolidColorSerializer;
 
 /**
@@ -66,6 +67,7 @@ public class ChartSerialization implements Serializable {
                 .registerModule(ChartEnumSerializer.getModule())
                 .registerModule(SolidColorSerializer.getModule())
                 .registerModule(AxisListSerializer.getModule())
+                .registerModule(PaneListSerializer.getModule())
                 .registerModule(DateSerializer.getModule());
 
         // serializer modifier used when basic serializer isn't enough

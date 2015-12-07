@@ -58,7 +58,7 @@ public class Configuration extends AbstractConfigurationObject implements
     private List<Series> series = new ArrayList<Series>();
     private Drilldown drilldown;
 
-    private List<Pane> pane;
+    private PaneList pane;
     private Exporting exporting = new Exporting(false);
 
     @JsonIgnore
@@ -631,14 +631,13 @@ public class Configuration extends AbstractConfigurationObject implements
      */
     public Pane getPane() {
         if (pane == null) {
-            pane = new ArrayList<Pane>();
+            pane = new PaneList();
+        }
+        if (pane.getNumberOfPanes() == 0) {
+            pane.addPane(new Pane());
         }
 
-        if (pane.size() == 0) {
-            pane.add(new Pane());
-        }
-
-        return pane.get(0);
+        return pane.getPane(0);
     }
 
     /**
@@ -650,9 +649,9 @@ public class Configuration extends AbstractConfigurationObject implements
      */
     public void addPane(Pane pane) {
         if (this.pane == null) {
-            this.pane = new ArrayList<Pane>();
+            this.pane = new PaneList();
         }
-        this.pane.add(pane);
+        this.pane.addPane(pane);
     }
 
     /**

@@ -14,6 +14,8 @@ import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.Drilldown;
 import com.vaadin.addon.charts.model.ListSeries;
+import com.vaadin.addon.charts.model.Pane;
+import com.vaadin.addon.charts.model.PaneList;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.XAxis;
@@ -90,30 +92,30 @@ public class ConfigurationObjectJSONSerializationTest {
         assertEquals(expected, toJSON(object));
     }
 
-    // @Test
-    // public void toString_PaneListWithOneItem_SerializedAsSinglePane() {
-    // PaneList paneList = new PaneList();
-    // paneList.addPane(new Pane());
-    // ObjectContainer object = new ObjectContainer(paneList);
-    // String paneJson = "{\"paneIndex\":0}";
-    //
-    // assertEquals("{\"object\":" + paneJson + "}", object.toString());
-    // }
+    @Test
+    public void toString_PaneListWithOneItem_SerializedAsSinglePane() {
+        PaneList paneList = new PaneList();
+        paneList.addPane(new Pane());
+        ObjectContainer object = new ObjectContainer(paneList);
+        String paneJson = "{\"paneIndex\":0}";
 
-    // @Test
-    // public void toString_PaneListWithTwoItems_SerializedAsPaneArray() {
-    // PaneList paneList = new PaneList();
-    // paneList.addPane(new Pane());
-    // paneList.addPane(new Pane());
-    // ObjectContainer object = new ObjectContainer(paneList);
-    // String paneJson1 = "{\"paneIndex\":0}";
-    // String paneJson2 = "{\"paneIndex\":1}";
-    //
-    // String expected = String.format("{\"object\":[%s,%s]}", paneJson1,
-    // paneJson2);
-    //
-    // assertEquals(expected, object.toString());
-    // }
+        assertEquals("{\"object\":" + paneJson + "}", toJSON(object));
+    }
+
+    @Test
+    public void toString_PaneListWithTwoItems_SerializedAsPaneArray() {
+        PaneList paneList = new PaneList();
+        paneList.addPane(new Pane());
+        paneList.addPane(new Pane());
+        ObjectContainer object = new ObjectContainer(paneList);
+        String paneJson1 = "{\"paneIndex\":0}";
+        String paneJson2 = "{\"paneIndex\":1}";
+
+        String expected = String.format("{\"object\":[%s,%s]}", paneJson1,
+                paneJson2);
+
+        assertEquals(expected, toJSON(object));
+    }
 
     @Test
     public void toJSON_seriesWithLinePlotOptions_PlotOptionsAndTypeFlattenedToSeriesLevel() {

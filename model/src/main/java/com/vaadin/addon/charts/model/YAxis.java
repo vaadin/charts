@@ -598,6 +598,14 @@ public class YAxis extends Axis {
 		this.pane = pane;
 	}
 
+	public void setPane(Pane pane) {
+		if (pane.getPaneIndex() == null) {
+			throw new IllegalStateException(
+					"Pane must be attached to configuration");
+		}
+		this.pane = pane.getPaneIndex();
+	}
+
 	public void setTitle(String title) {
 		Title t = new Title();
 		t.setText(title);
