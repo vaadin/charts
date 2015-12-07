@@ -45,15 +45,14 @@ public class ColumnRangeResourceUsage extends AbstractVaadinChartExample {
         conf.addyAxis(yAxis);
 
         Tooltip tooltip = new Tooltip();
-        // tooltip.setFormatter("this.series.name +': '+ Highcharts.dateFormat('%H:%M', this.point.low) + ' - ' + Highcharts.dateFormat('%H:%M', this.point.high)");
+        tooltip.setFormatter("this.series.name +': '+ Highcharts.dateFormat('%H:%M', this.point.low) + ' - ' + Highcharts.dateFormat('%H:%M', this.point.high)");
         conf.setTooltip(tooltip);
 
         PlotOptionsColumnRange columnRange = new PlotOptionsColumnRange();
         columnRange.setGrouping(false);
         DataLabels dataLabels = new DataLabels(true);
-        // FIXME missing generated API
-        // dataLabels
-        // .setFormatter("this.y == this.point.low ? '' : this.series.name");
+        dataLabels
+                .setFormatter("this.y == this.point.low ? '' : this.series.name");
         dataLabels.setInside(true);
         dataLabels.setColor(new SolidColor("white"));
         columnRange.setDataLabels(dataLabels);

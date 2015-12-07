@@ -13,6 +13,7 @@ import com.vaadin.addon.charts.model.Options3d;
 import com.vaadin.addon.charts.model.PlotOptionsScatter;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
+import com.vaadin.addon.charts.model.ZAxis;
 import com.vaadin.ui.Component;
 
 public class Basic3DScatter extends AbstractVaadinChartExample {
@@ -54,20 +55,20 @@ public class Basic3DScatter extends AbstractVaadinChartExample {
         x.setMin(-3);
         x.setMax(3);
         // FIXME missing generated API
-        // x.setExtremes(-3, 3);
+        x.setExtremes(-3, 3);
 
         if (getCurrentTheme().getxAxis().getGridLineColor() != null) {
             x.setGridLineColor(getCurrentTheme().getxAxis().getGridLineColor());
         }
 
         YAxis y = scatterChart.getConfiguration().getyAxis();
-        // y.setExtremes(-1, 1);
+        y.setExtremes(-1, 1);
         y.setMin(-1);
         y.setMax(1);
 
-        // ZAxis z = scatterChart.getConfiguration().getzAxis();
-        // z.setMin(0);
-        // z.setMax(1);
+        ZAxis z = scatterChart.getConfiguration().getzAxis();
+        z.setMin(0);
+        z.setMax(1);
 
         Options3d options3d = new Options3d();
         options3d.setEnabled(true);

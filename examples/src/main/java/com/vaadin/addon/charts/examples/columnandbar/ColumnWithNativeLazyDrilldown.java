@@ -16,7 +16,6 @@ import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
 import com.vaadin.addon.charts.model.Series;
-import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
@@ -45,7 +44,6 @@ public class ColumnWithNativeLazyDrilldown extends AbstractVaadinChartExample {
         conf.getLegend().setEnabled(false);
 
         XAxis x = new XAxis();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
         x.setType(AxisType.CATEGORY.toString());
         conf.addxAxis(x);
 
@@ -58,8 +56,7 @@ public class ColumnWithNativeLazyDrilldown extends AbstractVaadinChartExample {
         column.setDataLabels(new DataLabels(true));
         column.getDataLabels().setFormat("{y}%");
 
-        // FIXME missing generated API
-        // column.getDataLabels().setFormatter("this.y +'%'");
+        column.getDataLabels().setFormatter("this.y +'%'");
 
         conf.setPlotOptions(column);
 

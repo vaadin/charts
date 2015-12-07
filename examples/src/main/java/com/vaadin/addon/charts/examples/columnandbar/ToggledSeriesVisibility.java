@@ -76,7 +76,7 @@ public class ToggledSeriesVisibility extends AbstractVaadinChartExample {
         conf.setLegend(legend);
 
         Tooltip tooltip = new Tooltip();
-        // tooltip.setFormatter("this.x +': '+ this.y +' mm'");
+        tooltip.setFormatter("this.x +': '+ this.y +' mm'");
         conf.setTooltip(tooltip);
 
         PlotOptionsColumn plot = new PlotOptionsColumn();

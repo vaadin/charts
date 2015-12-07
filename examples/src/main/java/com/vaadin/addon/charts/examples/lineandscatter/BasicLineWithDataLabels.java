@@ -38,10 +38,10 @@ public class BasicLineWithDataLabels extends AbstractVaadinChartExample {
         YAxis yAxis = configuration.getyAxis();
         yAxis.setTitle(new Title("Temperature (°C)"));
 
-        // configuration
-        // .getTooltip()
-        // .setFormatter(
-        // "'<b>'+ this.series.name +'</b><br/>'+this.x +': '+ this.y +'°C'");
+        configuration
+                .getTooltip()
+                .setFormatter(
+                        "'<b>'+ this.series.name +'</b><br/>'+this.x +': '+ this.y +'°C'");
 
         PlotOptionsLine plotOptions = new PlotOptionsLine();
         plotOptions.setDataLabels(new DataLabels(true));

@@ -36,11 +36,10 @@ public class ColumnWithRotatedLabels extends AbstractVaadinChartExample {
         conf.setTitle(new Title("World's largest cities per 2008"));
 
         XAxis xAxis = new XAxis();
-        xAxis.setCategories("Tokyo", "Jakarta", "New York",
-                "Seoul", "Manila", "Mumbai", "Sao Paulo", "Mexico City",
-                "Dehli", "Osaka", "Cairo", "Kolkata", "Los Angeles",
-                "Shanghai", "Moscow", "Beijing", "Buenos Aires", "Guangzhou",
-                "Shenzhen", "Istanbul");
+        xAxis.setCategories("Tokyo", "Jakarta", "New York", "Seoul", "Manila",
+                "Mumbai", "Sao Paulo", "Mexico City", "Dehli", "Osaka",
+                "Cairo", "Kolkata", "Los Angeles", "Shanghai", "Moscow",
+                "Beijing", "Buenos Aires", "Guangzhou", "Shenzhen", "Istanbul");
         Labels labels = new Labels();
         labels.setRotation(-45);
         // FIXME remove toString() once enums are used in model (CHARTS-159)
@@ -62,8 +61,8 @@ public class ColumnWithRotatedLabels extends AbstractVaadinChartExample {
         conf.setLegend(legend);
 
         Tooltip tooltip = new Tooltip();
-        // tooltip.setFormatter("'<b>'+ this.x +'</b><br/>'+'Population in 2008: '"
-        // + "+ Highcharts.numberFormat(this.y, 1) +' millions'");
+        tooltip.setFormatter("'<b>'+ this.x +'</b><br/>'+'Population in 2008: '"
+                + "+ Highcharts.numberFormat(this.y, 1) +' millions'");
         conf.setTooltip(tooltip);
 
         ListSeries serie = new ListSeries("Population", new Number[] { 34.4,
@@ -76,8 +75,7 @@ public class ColumnWithRotatedLabels extends AbstractVaadinChartExample {
         dataLabels.setAlign(HorizontalAlign.RIGHT.toString());
         dataLabels.setX(4);
         dataLabels.setY(10);
-        // FIXME missing generated API
-        // dataLabels.setFormatter("this.y");
+        dataLabels.setFormatter("this.y");
         PlotOptionsColumn plotOptionsColumn = new PlotOptionsColumn();
         plotOptionsColumn.setDataLabels(dataLabels);
         serie.setPlotOptions(plotOptionsColumn);

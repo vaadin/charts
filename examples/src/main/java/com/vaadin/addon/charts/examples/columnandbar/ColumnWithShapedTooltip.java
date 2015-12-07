@@ -50,9 +50,8 @@ public class ColumnWithShapedTooltip extends AbstractVaadinChartExample {
         conf.setPlotOptions(plotOptions);
 
         Tooltip tooltip = new Tooltip();
-        // tooltip.setFormatter("function() { return '<b>'+ this.x +'</b><br/>"
-        // +
-        // "'+this.series.name +': '+ this.y +'<br/>'+'Total: '+ this.point.stackTotal;}");
+        tooltip.setFormatter("function() { return '<b>'+ this.x +'</b><br/>"
+                + "'+this.series.name +': '+ this.y +'<br/>'+'Total: '+ this.point.stackTotal;}");
         tooltip.setShape(Shape.CIRCLE.toString());
         conf.setTooltip(tooltip);
 

@@ -2,18 +2,18 @@ package com.vaadin.addon.charts.model;
 public class DrillUpButton extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
-	private Object position;
+	private Position position;
 	private String relativeTo;
 	private Object theme;
 
 	public DrillUpButton() {
 	}
 
-	public Object getPosition() {
+	public Position getPosition() {
 		return position;
 	}
 
-	public void setPosition(Object position) {
+	public void setPosition(Position position) {
 		this.position = position;
 	}
 

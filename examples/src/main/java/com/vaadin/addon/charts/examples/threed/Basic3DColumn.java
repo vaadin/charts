@@ -8,7 +8,6 @@ import com.vaadin.addon.charts.model.Frame;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.Options3d;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
-import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
@@ -41,7 +40,7 @@ public class Basic3DColumn extends AbstractVaadinChartExample {
         conf.addyAxis(y);
 
         Tooltip tooltip = new Tooltip();
-        // tooltip.setFormatter("this.x +': '+ this.y +' mm'");
+        tooltip.setFormatter("this.x +': '+ this.y +' mm'");
         conf.setTooltip(tooltip);
 
         PlotOptionsColumn plot = new PlotOptionsColumn();

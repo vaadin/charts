@@ -41,10 +41,9 @@ public class PieWithGradientFill extends AbstractVaadinChartExample {
         dataLabels.setColor(SolidColor.BLACK);
         dataLabels.setFormat("<b>{point.name}</b>: {percentage} %");
 
-        // FIXME missing generated API
-        // dataLabels.setConnectorColor(SolidColor.BLACK);
-        // dataLabels
-        // .setFormatter("'<b>'+ this.point.name +'</b>: '+ this.percentage +' %'");
+        dataLabels.setConnectorColor(SolidColor.BLACK.toString());
+        dataLabels
+                .setFormatter("'<b>'+ this.point.name +'</b>: '+ this.percentage +' %'");
         plotOptions.setDataLabels(dataLabels);
         conf.setPlotOptions(plotOptions);
         final DataSeries series = getBrowserMarketShareSeries();

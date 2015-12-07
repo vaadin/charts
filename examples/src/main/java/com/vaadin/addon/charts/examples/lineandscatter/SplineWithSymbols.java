@@ -43,12 +43,11 @@ public class SplineWithSymbols extends AbstractVaadinChartExample {
         yAxis.setTitle(new Title("Temperature"));
         Labels labels = new Labels();
         labels.setFormat("{value}°");
-        // FIXME missing generated API
-        // labels.setFormatter("this.value +'°'");
+        labels.setFormatter("this.value +'°'");
         yAxis.setLabels(labels);
 
         // FIXME missing generated API
-        // configuration.getTooltip().setShared(true);
+        configuration.getTooltip().setShared(true);
         // configuration.getTooltip().setCrosshairs(true);
 
         PlotOptionsSpline plotOptions = new PlotOptionsSpline();

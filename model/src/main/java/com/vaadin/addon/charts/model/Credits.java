@@ -6,7 +6,7 @@ public class Credits extends AbstractConfigurationObject {
 	private static final long serialVersionUID = 1L;
 	private Boolean enabled;
 	private String href;
-	private Object position;
+	private Position position;
 	private Style style;
 	private String text;
 
@@ -33,11 +33,11 @@ public class Credits extends AbstractConfigurationObject {
 		this.href = href;
 	}
 
-	public Object getPosition() {
+	public Position getPosition() {
 		return position;
 	}
 
-	public void setPosition(Object position) {
+	public void setPosition(Position position) {
 		this.position = position;
 	}
 

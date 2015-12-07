@@ -11,6 +11,7 @@ import com.vaadin.addon.charts.model.LayoutDirection;
 import com.vaadin.addon.charts.model.PlotOptionsHeatMap;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.VerticalAlign;
+import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
 
 public class HeatMapExample extends AbstractVaadinChartExample {
@@ -42,13 +43,13 @@ public class HeatMapExample extends AbstractVaadinChartExample {
                 new String[] { "Monday", "Tuesday", "Wednesday", "Thursday",
                         "Friday" });
 
-        // FIXME missing generated API
-        // config.getColorAxis().setMin(0);
-        // config.getColorAxis().setMinColor(SolidColor.WHITE);
-        // config.getColorAxis().setMaxColor((SolidColor) getThemeColors()[0]);
+        config.getColorAxis().setMin(0);
+        config.getColorAxis().setMinColor(SolidColor.WHITE);
+        config.getColorAxis().setMaxColor(getThemeColors()[0]);
 
         config.getLegend().setLayout(LayoutDirection.VERTICAL.toString());
         config.getLegend().setAlign(HorizontalAlign.RIGHT.toString());
+        // TODO: margin should allow single value too
         // config.getLegend().setMargin(0);
         config.getLegend().setVerticalAlign(VerticalAlign.TOP.toString());
         config.getLegend().setY(25);

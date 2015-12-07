@@ -23,7 +23,7 @@ package com.vaadin.addon.charts.model;
  * 
  * position: { align: 'right', x: -10, verticalAlign: 'bottom', y: -5 }
  */
-public class CreditPosition extends AbstractConfigurationObject {
+public class Position extends AbstractConfigurationObject {
     private VerticalAlign verticalAlign;
     private HorizontalAlign align;
     private Number x;

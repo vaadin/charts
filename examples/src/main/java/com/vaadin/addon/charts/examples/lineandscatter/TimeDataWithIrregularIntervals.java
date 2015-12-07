@@ -41,7 +41,7 @@ public class TimeDataWithIrregularIntervals extends AbstractVaadinChartExample {
         configuration.getSubTitle().setText(
                 "An example of irregular time data in Highcharts JS");
 
-        // configuration.getTooltip().setFormatter("");
+        configuration.getTooltip().setFormatter("");
 
         configuration.getxAxis().setType(AxisType.DATETIME.toString());
         configuration.getxAxis().setDateTimeLabelFormats(
@@ -51,10 +51,10 @@ public class TimeDataWithIrregularIntervals extends AbstractVaadinChartExample {
         yAxis.setTitle(new Title("Snow depth (m)"));
         yAxis.setMin(0);
 
-        // configuration
-        // .getTooltip()
-        // .setFormatter(
-        // "'<b>'+ this.series.name +'</b><br/>\'+ Highcharts.dateFormat('%e. %b', this.x) +': '+ this.y +' m'");
+        configuration
+                .getTooltip()
+                .setFormatter(
+                        "'<b>'+ this.series.name +'</b><br/>\'+ Highcharts.dateFormat('%e. %b', this.x) +': '+ this.y +' m'");
 
         DataSeries ls = new DataSeries();
         ls.setPlotOptions(new PlotOptionsSpline());

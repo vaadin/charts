@@ -47,8 +47,7 @@ public class MultipleAxes extends AbstractVaadinChartExample {
         YAxis y1 = new YAxis();
         Labels labels = new Labels();
         labels.setFormat("{value}°C");
-        // FIXME missing generated API
-        // labels.setFormatter("return this.value +'°C'");
+        labels.setFormatter("return this.value +'°C'");
         Style style = new Style();
         style.setColor(colors[1]);
         labels.setStyle(style);
@@ -68,7 +67,7 @@ public class MultipleAxes extends AbstractVaadinChartExample {
         y2.setTitle(title);
         labels = new Labels();
         labels.setFormat("{value} mm");
-        // labels.setFormatter("this.value +' mm'");
+        labels.setFormatter("this.value +' mm'");
         style = new Style();
         style.setColor(colors[0]);
         labels.setStyle(style);
@@ -84,7 +83,7 @@ public class MultipleAxes extends AbstractVaadinChartExample {
         y3.setTitle(title);
         labels = new Labels();
         labels.setFormat("{value} mb");
-        // labels.setFormatter("this.value +' mb'");
+        labels.setFormatter("this.value +' mb'");
         style = new Style();
         style.setColor(colors[2]);
         labels.setStyle(style);
@@ -93,10 +92,9 @@ public class MultipleAxes extends AbstractVaadinChartExample {
         chart.drawChart(conf);
 
         Tooltip tooltip = new Tooltip();
-        // tooltip.setFormatter("function() { "
-        // +
-        // "var unit = { 'Rainfall': 'mm', 'Temperature': '°C', 'Sea-Level Pressure': 'mb' }[this.series.name];"
-        // + "return ''+ this.x +': '+ this.y +' '+ unit; }");
+        tooltip.setFormatter("function() { "
+                + "var unit = { 'Rainfall': 'mm', 'Temperature': '°C', 'Sea-Level Pressure': 'mb' }[this.series.name];"
+                + "return ''+ this.x +': '+ this.y +' '+ unit; }");
         conf.setTooltip(tooltip);
 
         Legend legend = new Legend();

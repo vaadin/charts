@@ -84,8 +84,7 @@ public class Clock extends AbstractVaadinChartExample {
         yAxis.getTitle().getStyle().setFontWeight(FontWeight.BOLD);
         yAxis.getTitle().getStyle().setFontSize("8px");
         yAxis.getTitle().getStyle().setLineHeight("10px");
-        // FIXME missing generated API
-        // yAxis.getTitle().setY(10);
+        yAxis.getTitle().setY(10);
 
         final DataSeries series = new DataSeries();
         final DataSeriesItem hour = new DataSeriesItem();

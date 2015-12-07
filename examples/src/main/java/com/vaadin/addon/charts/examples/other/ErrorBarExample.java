@@ -52,9 +52,7 @@ public class ErrorBarExample extends AbstractVaadinChartExample {
         primaryAxis.setTitle(title);
         // FIXME remove initialization after CHARTS-154
         primaryAxis.setLabels(new Labels());
-        primaryAxis.getLabels().setFormat("{value}°C");
-        // FIXME missing generated API
-        // primaryAxis.getLabels().setFormatter("this.value + '°C'");
+        primaryAxis.getLabels().setFormatter("this.value + '°C'");
 
         YAxis secondaryAxis = new YAxis();
         conf.addyAxis(secondaryAxis);
@@ -65,13 +63,11 @@ public class ErrorBarExample extends AbstractVaadinChartExample {
         title.setStyle(style);
         // FIXME remove initialization after CHARTS-154
         secondaryAxis.setLabels(new Labels());
-        secondaryAxis.getLabels().setFormat("{value} mm");
-        // secondaryAxis.getLabels().setFormatter("this.value + ' mm'");
+        secondaryAxis.getLabels().setFormatter("this.value + ' mm'");
         secondaryAxis.getLabels().setStyle(style);
         secondaryAxis.setOpposite(true);
 
-        // FIXME missing generated API
-        // conf.getTooltip().setShared(true);
+        conf.getTooltip().setShared(true);
 
         DataSeries rainfall = new DataSeries("Rainfall");
 

@@ -48,9 +48,8 @@ public class ContainerSeriesWithHighAndLow extends AbstractVaadinChartExample {
 
         PlotOptionsColumnRange columnRange = new PlotOptionsColumnRange();
         columnRange.setDataLabels(new DataLabels(true));
-        // FIXME missing generated API
-        // columnRange.getDataLabels().setFormatter(
-        // "function() {return this.y + '°C';}");
+        columnRange.getDataLabels().setFormatter(
+                "function() {return this.y + '°C';}");
         conf.setPlotOptions(columnRange);
 
         conf.getLegend().setEnabled(false);

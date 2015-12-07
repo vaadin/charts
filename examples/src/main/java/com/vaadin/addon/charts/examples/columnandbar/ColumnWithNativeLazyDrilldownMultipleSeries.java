@@ -59,8 +59,7 @@ public class ColumnWithNativeLazyDrilldownMultipleSeries extends
         PlotOptionsColumn column = new PlotOptionsColumn();
         column.setCursor(Cursor.POINTER.toString());
         column.setDataLabels(new DataLabels(true));
-        // FIXME missing generated API
-        // column.getDataLabels().setFormatter("this.y +'%'");
+        column.getDataLabels().setFormatter("this.y +'%'");
 
         conf.setPlotOptions(column);
 

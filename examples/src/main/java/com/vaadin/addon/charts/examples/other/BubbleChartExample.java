@@ -44,7 +44,6 @@ public class BubbleChartExample extends AbstractVaadinChartExample {
 
         PlotOptionsBubble opts = new PlotOptionsBubble();
         opts.setNegativeColor(getThemeColors()[3]);
-        // FIXME missing generated API
         opts.setMaxSize("120");
         opts.setMinSize("3");
 

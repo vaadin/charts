@@ -148,6 +148,18 @@ public class ChartConnector extends AbstractComponentConnector {
                             getWidget().updatexAxis(axisIndex, minimum,
                                     maximum, redraw, animate);
                             break;
+                        case Y_AXIS:
+                            getWidget().updateyAxis(axisIndex, minimum,
+                                    maximum, redraw, animate);
+                            break;
+                        case Z_AXIS:
+                            getWidget().updatezAxis(axisIndex, minimum,
+                                    maximum, redraw, animate);
+                            break;
+                        case COLOR_AXIS:
+                            getWidget().updateColorAxis(axisIndex, minimum,
+                                    maximum, redraw, animate);
+                            break;
                         default:
                             getWidget().updateyAxis(axisIndex, minimum,
                                     maximum, redraw, animate);

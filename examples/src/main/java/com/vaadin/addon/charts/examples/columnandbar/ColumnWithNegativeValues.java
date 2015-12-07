@@ -37,7 +37,7 @@ public class ColumnWithNegativeValues extends AbstractVaadinChartExample {
         conf.addxAxis(xAxis);
 
         Tooltip tooltip = new Tooltip();
-        // tooltip.setFormatter("function() { return ''+ this.series.name +': '+ this.y +'';}");
+        tooltip.setFormatter("function() { return ''+ this.series.name +': '+ this.y +'';}");
         conf.setTooltip(tooltip);
 
         conf.setCredits(new Credits(false));

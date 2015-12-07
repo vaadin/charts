@@ -115,15 +115,13 @@ public class SplineWithPlotBands extends AbstractVaadinChartExample {
         highWind.setLabel(new Label("High wind"));
         highWind.getLabel().setStyle(style);
 
-        yAxis.setPlotBands(lightAir, lightBreeze,gentleBreeze,
-                moderateBreeze, freshBreeze, strongBreeze,
-                highWind);
+        yAxis.setPlotBands(lightAir, lightBreeze, gentleBreeze, moderateBreeze,
+                freshBreeze, strongBreeze, highWind);
 
-        // FIXME missing generated API
-        // configuration
-        // .getTooltip()
-        // .setFormatter(
-        // "Highcharts.dateFormat('%e. %b %Y, %H:00', this.x) +': '+ this.y +' m/s'");
+        configuration
+                .getTooltip()
+                .setFormatter(
+                        "Highcharts.dateFormat('%e. %b %Y, %H:00', this.x) +': '+ this.y +' m/s'");
 
         PlotOptionsSpline plotOptions = new PlotOptionsSpline();
         configuration.setPlotOptions(plotOptions);

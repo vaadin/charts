@@ -70,6 +70,16 @@ public class HighchartJsOverlay extends JavaScriptObject {
          return this.yAxis;
     }-*/;
 
+    public final native JsArray<HighchartAxis> getzAxes()
+    /*-{
+         return this.zAxis;
+    }-*/;
+
+    public final native JsArray<HighchartAxis> getColorAxes()
+    /*-{
+         return this.colorAxis;
+    }-*/;
+
     public final native void setAnimation(boolean animation)
     /*-{
         this.animation = animation;

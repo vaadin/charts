@@ -42,9 +42,8 @@ public class Basic3DPie extends AbstractVaadinChartExample {
         // FIXME remove toString() once enums are used in model (CHARTS-159)
         plotOptions.setCursor(Cursor.POINTER.toString());
         DataLabels dataLabels = new DataLabels(true);
-        // FIXME missing generated API
-        // dataLabels
-        // .setFormatter("'<b>'+ this.point.name +'</b>: '+ this.percentage +' %'");
+        dataLabels
+                .setFormatter("'<b>'+ this.point.name +'</b>: '+ this.percentage +' %'");
         plotOptions.setDataLabels(dataLabels);
 
         plotOptions.setDepth(45);

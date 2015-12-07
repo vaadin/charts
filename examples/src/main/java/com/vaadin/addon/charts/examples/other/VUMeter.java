@@ -1,13 +1,25 @@
 package com.vaadin.addon.charts.examples.other;
 
+import java.util.Random;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.model.*;
+import com.vaadin.addon.charts.model.Background;
+import com.vaadin.addon.charts.model.ChartType;
+import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.DataLabels;
+import com.vaadin.addon.charts.model.Dial;
+import com.vaadin.addon.charts.model.Labels;
+import com.vaadin.addon.charts.model.ListSeries;
+import com.vaadin.addon.charts.model.Pane;
+import com.vaadin.addon.charts.model.PlotBand;
+import com.vaadin.addon.charts.model.PlotOptionsGauge;
+import com.vaadin.addon.charts.model.TickPosition;
+import com.vaadin.addon.charts.model.Title;
+import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
-
-import java.util.Random;
 
 public class VUMeter extends AbstractVaadinChartExample {
 
@@ -70,12 +82,11 @@ public class VUMeter extends AbstractVaadinChartExample {
         plotBand2.setOuterRadius("105%");
 
         YAxis yAxis = new YAxis();
-        // FIXME missing generated API
         yAxis.setPane(0);
         yAxis.setTitle(new Title(
                 "VU<br/><span style=\"font-size:8px\">Channel A</span>"));
         // FIXME missing generated API
-        // yAxis.getTitle().setY(-40);
+        yAxis.getTitle().setY(-40);
         yAxis.setMin(-20);
         yAxis.setMax(6);
         // FIXME remove toString() once enums are used in model (CHARTS-159)
@@ -100,7 +111,7 @@ public class VUMeter extends AbstractVaadinChartExample {
         yAxis2.setLabels(new Labels());
         yAxis2.getLabels().setDistance(20);
         // yAxis2.getLabels().setRotationPerpendicular();
-        yAxis2.setPlotBands( plotBand2);
+        yAxis2.setPlotBands(plotBand2);
 
         configuration.addyAxis(yAxis);
         configuration.addyAxis(yAxis2);

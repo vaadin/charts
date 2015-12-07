@@ -8,8 +8,20 @@ import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.ChartSelectionEvent;
 import com.vaadin.addon.charts.ChartSelectionListener;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.model.*;
+import com.vaadin.addon.charts.model.AxisType;
+import com.vaadin.addon.charts.model.ChartType;
+import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.Hover;
+import com.vaadin.addon.charts.model.Labels;
+import com.vaadin.addon.charts.model.ListSeries;
+import com.vaadin.addon.charts.model.Marker;
 import com.vaadin.addon.charts.model.PlotBand;
+import com.vaadin.addon.charts.model.PlotOptionsArea;
+import com.vaadin.addon.charts.model.PlotOptionsLine;
+import com.vaadin.addon.charts.model.States;
+import com.vaadin.addon.charts.model.Title;
+import com.vaadin.addon.charts.model.YAxis;
+import com.vaadin.addon.charts.model.ZoomType;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.charts.util.Util;
@@ -196,8 +208,8 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
                 plotBand2.setFrom(end);
                 plotBand2.setTo(Util.toHighchartsTS(DEMO_DATASET_END));
 
-
-                masterChart.getConfiguration().getxAxis().setPlotBands(plotBand1, plotBand2);
+                masterChart.getConfiguration().getxAxis()
+                        .setPlotBands(plotBand1, plotBand2);
                 masterChart.drawChart();
 
                 List<Number> list = MasterDetailChart.this.getPartialList(
@@ -249,11 +261,11 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
         configuration.getyAxis().setTitle(new Title((String) null));
         configuration.getyAxis().setMinRange(0.1);
 
-        // configuration
-        // .getTooltip()
-        // .setFormatter(
-        // "function() {var point = this.points[0];return '<b>'+ point.series.name +'</b><br/>'+Highcharts.dateFormat('%A %B %e %Y', this.x) + ':<br/>'+'1 USD = '+ Highcharts.numberFormat(point.y, 2) +' EUR';}");
-        // configuration.getTooltip().setShared(true);
+        configuration
+                .getTooltip()
+                .setFormatter(
+                        "function() {var point = this.points[0];return '<b>'+ point.series.name +'</b><br/>'+Highcharts.dateFormat('%A %B %e %Y', this.x) + ':<br/>'+'1 USD = '+ Highcharts.numberFormat(point.y, 2) +' EUR';}");
+        configuration.getTooltip().setShared(true);
 
         PlotOptionsLine series = new PlotOptionsLine();
         series.setPointInterval(DAY_IN_MILLIS);

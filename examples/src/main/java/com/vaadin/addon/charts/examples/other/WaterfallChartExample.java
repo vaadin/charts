@@ -58,8 +58,7 @@ public class WaterfallChartExample extends AbstractVaadinChartExample {
         // FIXME remove toString() once enums are used in model (CHARTS-159)
         dataLabels.setVerticalAlign(VerticalAlign.TOP.toString());
         dataLabels.setY(-30);
-        // FIXME missing generated API
-        // dataLabels.setFormatter("this.y / 1000 + 'k'");
+        dataLabels.setFormatter("this.y / 1000 + 'k'");
         opts.setDataLabels(dataLabels);
 
         dataSeries.setPlotOptions(opts);

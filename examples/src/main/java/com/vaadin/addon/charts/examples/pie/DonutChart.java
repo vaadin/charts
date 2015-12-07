@@ -11,7 +11,6 @@ import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.PlotOptionsPie;
-import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.SolidColor;
@@ -61,12 +60,10 @@ public class DonutChart extends AbstractVaadinChartExample {
         innerSeries.setPlotOptions(innerPieOptions);
         innerPieOptions.setSize(237);
         innerPieOptions.setDataLabels(new DataLabels());
-        // FIXME missing generated API
-        // innerPieOptions.getDataLabels().setFormatter(
-        // "this.y > 5 ? this.point.name : null");
+        innerPieOptions.getDataLabels().setFormatter(
+                "this.y > 5 ? this.point.name : null");
         innerPieOptions.getDataLabels().setColor(new SolidColor(255, 255, 255));
-        // FIXME missing generated API
-        // innerPieOptions.getDataLabels().setDistance(-30);
+        innerPieOptions.getDataLabels().setDistance(-30);
 
         Color[] innerColors = Arrays.copyOf(colors, 5);
         innerSeries.setData(new String[] { "MSIE", "Firefox", "Chrome",
@@ -80,9 +77,10 @@ public class DonutChart extends AbstractVaadinChartExample {
         outerSeriesOptions.setInnerSize(237);
         outerSeriesOptions.setSize(318);
         outerSeriesOptions.setDataLabels(new DataLabels());
-        // FIXME missing generated API
-        // outerSeriesOptions .getDataLabels() .setFormatter(
-        // "this.y > 1 ? '<b>'+ this.point.name +':</b> '+ this.y +'%' : null");
+        outerSeriesOptions
+                .getDataLabels()
+                .setFormatter(
+                        "this.y > 1 ? '<b>'+ this.point.name +':</b> '+ this.y +'%' : null");
 
         DataSeriesItem[] outerItems = new DataSeriesItem[] {
                 /* @formatter:off */

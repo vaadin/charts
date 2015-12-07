@@ -106,7 +106,7 @@ public class AngularGauge extends AbstractVaadinChartExample {
         plotband3.setTo(200);
         plotband3.setColor(new SolidColor("#DF5353"));
 
-        yAxis.setPlotBands( plotband1, plotband2, plotband3);
+        yAxis.setPlotBands(plotband1, plotband2, plotband3);
 
         final ListSeries series = new ListSeries("Speed", 80);
         PlotOptionsGauge plotOptions = new PlotOptionsGauge();

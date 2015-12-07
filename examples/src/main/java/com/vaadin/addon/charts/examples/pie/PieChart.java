@@ -44,9 +44,8 @@ public class PieChart extends AbstractVaadinChartExample {
         dataLabels.setEnabled(true);
         dataLabels.setFormat("<b>{point.name}</b>: {point.percentage} %");
 
-        // FIXME missing generated API
-        // dataLabels
-        // .setFormatter("'<b>'+ this.point.name +'</b>: '+ this.percentage +' %'");
+        dataLabels
+                .setFormatter("'<b>'+ this.point.name +'</b>: '+ this.percentage +' %'");
         plotOptions.setDataLabels(dataLabels);
         conf.setPlotOptions(plotOptions);
 

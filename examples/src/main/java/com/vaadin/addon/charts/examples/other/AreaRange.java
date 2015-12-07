@@ -35,7 +35,7 @@ public class AreaRange extends AbstractVaadinChartExample {
         Tooltip tooltip = new Tooltip();
         // FIXME missing generated API
         // tooltip.setCrosshairs(true);
-        // tooltip.setShared(true);
+        tooltip.setShared(true);
         tooltip.setValueSuffix("°C");
         conf.setTooltip(tooltip);
 

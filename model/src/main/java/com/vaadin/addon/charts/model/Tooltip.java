@@ -4,7 +4,7 @@ import com.vaadin.addon.charts.model.style.Style;
 public class Tooltip extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
-	private Object dateTimeLabelFormats;
+	private DateTimeLabelFormats dateTimeLabelFormats;
 	private Boolean followPointer;
 	private Boolean followTouchMove;
 	private String footerFormat;
@@ -35,11 +35,12 @@ public class Tooltip extends AbstractConfigurationObject {
 	public Tooltip() {
 	}
 
-	public Object getDateTimeLabelFormats() {
+	public DateTimeLabelFormats getDateTimeLabelFormats() {
 		return dateTimeLabelFormats;
 	}
 
-	public void setDateTimeLabelFormats(Object dateTimeLabelFormats) {
+	public void setDateTimeLabelFormats(
+			DateTimeLabelFormats dateTimeLabelFormats) {
 		this.dateTimeLabelFormats = dateTimeLabelFormats;
 	}
 

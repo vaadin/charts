@@ -1,10 +1,7 @@
 package com.vaadin.addon.charts.testbenchtests;
 
-import org.junit.Ignore;
-
 import com.vaadin.addon.charts.examples.other.WaterfallChartExample;
 
-@Ignore("missing labels.setFormatter for functions")
 public class WaterfallChartExampleTBTest extends
         AbstractSimpleScreenShotTestBenchTest {
 

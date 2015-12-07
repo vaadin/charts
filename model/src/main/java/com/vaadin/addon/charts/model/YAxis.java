@@ -11,7 +11,7 @@ public class YAxis extends Axis {
 	private ArrayList<String> categories;
 	private Number ceiling;
 	private Crosshair crosshair;
-	private Object dateTimeLabelFormats;
+	private DateTimeLabelFormats dateTimeLabelFormats;
 	private Boolean endOnTick;
 	private Number floor;
 	private Object gridLineColor;
@@ -131,11 +131,12 @@ public class YAxis extends Axis {
 		this.crosshair = crosshair;
 	}
 
-	public Object getDateTimeLabelFormats() {
+	public DateTimeLabelFormats getDateTimeLabelFormats() {
 		return dateTimeLabelFormats;
 	}
 
-	public void setDateTimeLabelFormats(Object dateTimeLabelFormats) {
+	public void setDateTimeLabelFormats(
+			DateTimeLabelFormats dateTimeLabelFormats) {
 		this.dateTimeLabelFormats = dateTimeLabelFormats;
 	}
 

@@ -11,7 +11,6 @@ import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
-import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
@@ -50,8 +49,7 @@ public class ColumnWithNativeDrilldownMultipleSeries extends
         PlotOptionsColumn column = new PlotOptionsColumn();
         column.setCursor(Cursor.POINTER.toString());
         column.setDataLabels(new DataLabels(true));
-        // FIXME missing generated API
-        // column.getDataLabels().setFormatter("this.y +'%'");
+        column.getDataLabels().setFormatter("this.y +'%'");
 
         conf.setPlotOptions(column);
 

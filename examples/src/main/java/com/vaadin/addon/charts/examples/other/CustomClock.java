@@ -5,6 +5,7 @@ import java.util.Calendar;
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.SkipFromDemo;
+import com.vaadin.addon.charts.model.Background;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataLabels;
@@ -47,17 +48,16 @@ public class CustomClock extends AbstractVaadinChartExample {
         GradientColor gradient1 = GradientColor.createRadial(0.5, -0.4, 1.9);
         gradient1.addColorStop(0.5, new SolidColor(255, 255, 255, 0.2));
         gradient1.addColorStop(0.5, new SolidColor(200, 200, 200, 0.2));
-        // FIXME missing generated API
 
-        // Background[] background = new Background[2];
-        // background[0] = new Background();
-        //
-        // background[1] = new Background();
-        // background[1].setBackgroundColor(gradient1);
-        // background[1].setBorderWidth(1);
-        // background[1].setOuterRadius("107%");
-        //
-        // configuration.getPane().setBackground(background);
+        Background[] background = new Background[2];
+        background[0] = new Background();
+
+        background[1] = new Background();
+        background[1].setBackgroundColor(gradient1);
+        background[1].setBorderWidth(1);
+        background[1].setOuterRadius("107%");
+
+        configuration.getPane().setBackground(background);
 
         YAxis yAxis = configuration.getyAxis();
         yAxis.getLabels().setDistance(-20);
@@ -84,7 +84,7 @@ public class CustomClock extends AbstractVaadinChartExample {
         yAxis.getTitle().getStyle().setFontWeight(FontWeight.BOLD);
         yAxis.getTitle().getStyle().setFontSize("8px");
         yAxis.getTitle().getStyle().setLineHeight("10px");
-        // yAxis.getTitle().setY(10);
+        yAxis.getTitle().setY(10);
 
         final DataSeries series = new DataSeries();
         final DataSeriesItem second = new DataSeriesItem();

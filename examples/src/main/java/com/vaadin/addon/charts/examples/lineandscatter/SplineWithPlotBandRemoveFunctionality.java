@@ -68,10 +68,10 @@ public class SplineWithPlotBandRemoveFunctionality extends
         yAxis.setAlternateGridColor(TRANSPARENT);
 
         createPlotBand(yAxis);
-        // configuration
-        // .getTooltip()
-        // .setFormatter(
-        // "Highcharts.dateFormat('%e. %b %Y, %H:00', this.x) +': '+ this.y +' m/s'");
+        configuration
+                .getTooltip()
+                .setFormatter(
+                        "Highcharts.dateFormat('%e. %b %Y, %H:00', this.x) +': '+ this.y +' m/s'");
 
         PlotOptionsSpline plotOptions = new PlotOptionsSpline();
         configuration.setPlotOptions(plotOptions);
@@ -120,7 +120,7 @@ public class SplineWithPlotBandRemoveFunctionality extends
                     removePlotBand.setCaption("Remove PlotBands");
                 } else {
                     chart.getConfiguration().getyAxis()
-                            .setPlotBands(new PlotBand[]{});
+                            .setPlotBands(new PlotBand[] {});
                     removePlotBand.setCaption("Restore PlotBands");
                 }
                 chart.drawChart(configuration);
@@ -183,8 +183,7 @@ public class SplineWithPlotBandRemoveFunctionality extends
         highWind.setLabel(new Label("High wind"));
         highWind.getLabel().setStyle(style);
 
-        yAxis.setPlotBands(lightAir, lightBreeze,
-                gentleBreeze, moderateBreeze, freshBreeze, strongBreeze,
-                highWind);
+        yAxis.setPlotBands(lightAir, lightBreeze, gentleBreeze, moderateBreeze,
+                freshBreeze, strongBreeze, highWind);
     }
 }

@@ -2,6 +2,7 @@ package com.vaadin.addon.charts.examples.other;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.model.Background;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.HorizontalAlign;
@@ -40,8 +41,7 @@ public class WindRose extends AbstractVaadinChartExample {
         Pane pane = new Pane();
         pane.setSize("85%");
         conf.addPane(pane);
-        // FIXME missing generated API
-        // pane.setBackground(new Background[] {});
+        pane.setBackground(new Background[] {});
 
         conf.getLegend().setReversed(false);
         conf.getLegend().setAlign(HorizontalAlign.RIGHT.toString());
@@ -62,8 +62,7 @@ public class WindRose extends AbstractVaadinChartExample {
         // FIXME remove initialization after CHARTS-154
         yAxis.setLabels(new Labels());
         yAxis.getLabels().setFormat("{value}%");
-        // FIXME missing generated API
-        // yaxs.getLabels().setFormatter("function() {return this.value + '%';}");
+        yAxis.getLabels().setFormatter("function() {return this.value + '%';}");
         conf.addxAxis(axis);
         conf.addyAxis(yAxis);
 

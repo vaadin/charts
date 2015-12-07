@@ -71,12 +71,12 @@ public class TimeDataWithIrregularIntervalsAndLocalizedTexts extends
                 "Lumen syvyys Vikjafjellet-tunturilla, Norja");
         configuration.getSubTitle().setText("Lokalisointiesimerkki");
 
-        // configuration.getTooltip().setFormatter("");
+        configuration.getTooltip().setFormatter("");
 
         configuration.getxAxis().setType(AxisType.DATETIME.toString());
         configuration.getxAxis().setDateTimeLabelFormats(
                 new DateTimeLabelFormats());
-        // configuration.getxAxis().getDateTimeLabelFormats().setMonth("%B");
+        configuration.getxAxis().getDateTimeLabelFormats().setMonth("%B");
 
         YAxis yAxis = configuration.getyAxis();
         yAxis.setTitle(new Title("Lumen syvyys (m)"));
@@ -86,9 +86,8 @@ public class TimeDataWithIrregularIntervalsAndLocalizedTexts extends
         PlotOptionsSpline plotOptionsSpline = new PlotOptionsSpline();
         plotOptionsSpline.setDataLabels(new DataLabels(true));
         plotOptionsSpline.setEnableMouseTracking(false);
-        // FIXME missing generated API
-        // plotOptionsSpline.getDataLabels().setFormatter(
-        // "return Highcharts.dateFormat('%a %d %B',this.x);");
+        plotOptionsSpline.getDataLabels().setFormatter(
+                "return Highcharts.dateFormat('%a %d %B',this.x);");
         ls.setPlotOptions(plotOptionsSpline);
 
         ls.setName("Talvi 2009-2010");

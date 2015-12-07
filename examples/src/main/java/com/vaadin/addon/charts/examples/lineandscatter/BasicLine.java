@@ -46,10 +46,10 @@ public class BasicLine extends AbstractVaadinChartExample {
         yAxis.setTitle(new Title("Temperature (°C)"));
         yAxis.getTitle().setAlign(VerticalAlign.MIDDLE.toString());
 
-        // configuration
-        // .getTooltip()
-        // .setFormatter(
-        // "'<b>'+ this.series.name +'</b><br/>'+this.x +': '+ this.y +'°C'");
+        configuration
+                .getTooltip()
+                .setFormatter(
+                        "'<b>'+ this.series.name +'</b><br/>'+this.x +': '+ this.y +'°C'");
 
         PlotOptionsLine plotOptions = new PlotOptionsLine();
         plotOptions.setDataLabels(new DataLabels(true));

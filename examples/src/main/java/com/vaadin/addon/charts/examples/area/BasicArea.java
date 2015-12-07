@@ -53,9 +53,7 @@ public class BasicArea extends AbstractVaadinChartExample {
         Labels labels = new Labels();
         // Display x axis value (year) as non formatted integer
         // FIXME missing generated API
-        labels.setFormatter("function() {" +
-                "return this.value;" +
-                "}");
+        labels.setFormatter("function() {" + "return this.value;" + "}");
         xAxis.setLabels(labels);
         conf.addxAxis(xAxis);
 
@@ -63,14 +61,12 @@ public class BasicArea extends AbstractVaadinChartExample {
         yAxis.setTitle(new Title("Nuclear weapon states"));
         labels = new Labels();
         // display y axis value in kilos as there is such a pile of weapons
-        // FIXME missing generated API
-        // labels.setFormatter("this.value / 1000 +'k'");
+        labels.setFormatter("this.value / 1000 +'k'");
         yAxis.setLabels(labels);
         conf.addyAxis(yAxis);
 
         Tooltip tooltip = new Tooltip();
-        // FIXME missing generated API
-        // tooltip.setFormatter("this.series.name +' produced <b>'+ Highcharts.numberFormat(this.y, 0) +'</b><br/>warheads in '+ this.x");
+        tooltip.setFormatter("this.series.name +' produced <b>'+ Highcharts.numberFormat(this.y, 0) +'</b><br/>warheads in '+ this.x");
         conf.setTooltip(tooltip);
 
         final Number usaNumbers[] = new Number[] { null, null, null, null,

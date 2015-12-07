@@ -95,6 +95,18 @@ public class HighchartWidget extends Widget {
         axes.get(axisIndex).setExtremes(minimum, maximum, redraw, animate);
     }
 
+    public void updatezAxis(int axisIndex, double minimum, double maximum,
+            boolean redraw, boolean animate) {
+        JsArray<HighchartAxis> axes = jsOverlay.getzAxes();
+        axes.get(axisIndex).setExtremes(minimum, maximum, redraw, animate);
+    }
+
+    public void updateColorAxis(int axisIndex, double minimum, double maximum,
+            boolean redraw, boolean animate) {
+        JsArray<HighchartAxis> axes = jsOverlay.getColorAxes();
+        axes.get(axisIndex).setExtremes(minimum, maximum, redraw, animate);
+    }
+
     public void setAnimation(boolean animation) {
         jsOverlay.setAnimation(animation);
     }

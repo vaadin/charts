@@ -61,8 +61,7 @@ public class ColumnWithNativeLazyDrilldownByIndex extends
         column.setCursor(Cursor.POINTER.toString());
         column.setDataLabels(new DataLabels(true));
         column.getDataLabels().setFormat("{y}%");
-        // FIXME missing generated API
-        // column.getDataLabels().setFormatter("this.y +'%'");
+        column.getDataLabels().setFormatter("this.y +'%'");
 
         conf.setPlotOptions(column);
 

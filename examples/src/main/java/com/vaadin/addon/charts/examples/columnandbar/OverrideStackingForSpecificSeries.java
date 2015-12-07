@@ -48,8 +48,8 @@ public class OverrideStackingForSpecificSeries extends
         conf.addyAxis(yAxis);
 
         Tooltip tooltip = new Tooltip();
-        // tooltip.setFormatter("'<b>'+ this.x +'</b><br/>'+this.series.name +': '"
-        // + "+ this.y +'<br/>'+'Total: '+ this.point.stackTotal");
+        tooltip.setFormatter("'<b>'+ this.x +'</b><br/>'+this.series.name +': '"
+                + "+ this.y +'<br/>'+'Total: '+ this.point.stackTotal");
         conf.setTooltip(tooltip);
 
         PlotOptionsColumn plotOptions = new PlotOptionsColumn();

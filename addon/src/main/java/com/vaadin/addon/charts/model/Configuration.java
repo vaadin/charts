@@ -46,8 +46,8 @@ public class Configuration extends AbstractConfigurationObject implements
     private Subtitle subtitle;
     private AxisList<XAxis> xAxis;
     private AxisList<YAxis> yAxis;
-    // private ZAxis zAxis;
-    // private AxisList colorAxis;
+    private AxisList<ZAxis> zAxis;
+    private AxisList<ColorAxis> colorAxis;
     private Tooltip tooltip;
     private Legend legend;
     private Credits credits;
@@ -370,7 +370,7 @@ public class Configuration extends AbstractConfigurationObject implements
     /**
      * @return A list of all defined Y-axes, null if none are found.
      */
-    public AxisList getyAxes() {
+    public AxisList<YAxis> getyAxes() {
         if (yAxis != null) {
             return yAxis;
         } else {
@@ -378,28 +378,84 @@ public class Configuration extends AbstractConfigurationObject implements
         }
     }
 
-    // /**
-    // * Returns the Z-axis. An axis will be created if no axis is defined.
-    // *
-    // * @return the Z-axis
-    // */
-    // public ZAxis getzAxis() {
-    // if (zAxis == null) {
-    // zAxis = new ZAxis();
-    // }
-    //
-    // return zAxis;
-    // }
-    //
-    // /**
-    // * Set the z-axis of the configuration, or null to remove.
-    // *
-    // * @param zAxis
-    // * the zAxis to add
-    // */
-    // public void setzAxis(ZAxis zAxis) {
-    // this.zAxis = zAxis;
-    // }
+    /**
+     * Returns the Z-axis. In case there are multiple axes defined (a list),
+     * only the first axis is returned. If none exist, a Z-axis will be created.
+     * 
+     * @return The first Z-axis
+     * @see #getzAxes()
+     */
+    public ZAxis getzAxis() {
+        if (zAxis == null) {
+            zAxis = new AxisList<ZAxis>();
+        }
+
+        if (zAxis.getNumberOfAxes() == 0) {
+            ZAxis y = new ZAxis();
+            y.setConfiguration(this);
+            zAxis.addAxis(y);
+        }
+
+        return zAxis.getAxis(0);
+    }
+
+    /**
+     * @return The number of Z-axes defined
+     */
+    public int getNumberOfzAxes() {
+        if (zAxis == null) {
+            return 0;
+        } else {
+            return zAxis.getNumberOfAxes();
+        }
+    }
+
+    /**
+     * @return The Z-axis with the given index or null if the index is not valid
+     */
+    public ZAxis getzAxis(int index) {
+        if (index >= 0 && zAxis != null && getNumberOfzAxes() > index) {
+            return zAxis.getAxis(index);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Removes all defined Z-axes
+     */
+    public void removezAxes() {
+        zAxis = null;
+    }
+
+    /**
+     * Adds a Z-axis.
+     *
+     * @param axis
+     *            The Z-axis to add.
+     * @see #getzAxes()
+     * @see #getzAxis()
+     */
+    public void addzAxis(ZAxis axis) {
+        if (zAxis == null) {
+            zAxis = new AxisList<ZAxis>();
+        }
+        if (axis.getConfiguration() == null) {
+            axis.setConfiguration(this);
+        }
+        zAxis.addAxis(axis);
+    }
+
+    /**
+     * @return A list of all defined Z-axes, null if none are found.
+     */
+    public AxisList<ZAxis> getzAxes() {
+        if (zAxis != null) {
+            return zAxis;
+        } else {
+            return null;
+        }
+    }
 
     /**
      * @see #setTooltip(Tooltip)
@@ -711,8 +767,10 @@ public class Configuration extends AbstractConfigurationObject implements
             return ChartClientRpc.X_AXIS;
         } else if (yAxis.contains(axis)) {
             return ChartClientRpc.Y_AXIS;
-            // } else if (colorAxis.getAxes().contains(axis)) {
-            // return ChartClientRpc.COLOR_AXIS;
+        } else if (zAxis.getAxes().contains(axis)) {
+            return ChartClientRpc.Z_AXIS;
+        } else if (colorAxis.getAxes().contains(axis)) {
+            return ChartClientRpc.COLOR_AXIS;
         } else {
             return -1;
         }
@@ -733,8 +791,10 @@ public class Configuration extends AbstractConfigurationObject implements
             return xAxis.indexOf(axis);
         case ChartClientRpc.Y_AXIS:
             return yAxis.indexOf(axis);
-            // case ChartClientRpc.COLOR_AXIS:
-            // return colorAxis.getAxes().indexOf(axis);
+        case ChartClientRpc.Z_AXIS:
+            return zAxis.indexOf(axis);
+        case ChartClientRpc.COLOR_AXIS:
+            return colorAxis.getAxes().indexOf(axis);
         default:
             return -1;
         }
@@ -814,78 +874,73 @@ public class Configuration extends AbstractConfigurationObject implements
         changeListeners.remove(listener);
     }
 
-    // /**
-    // * Returns the color axis. This is used in color-based diagrams, like heat
-    // * maps. In case of multiple axes defined, the first axis is returned. An
-    // * axis will be created if no axis is defined.
-    // *
-    // * @return the color axis.
-    // */
-    // public ColorAxis getColorAxis() {
-    //
-    // if (colorAxis == null) {
-    // colorAxis = new AxisList();
-    // }
-    //
-    // if (colorAxis.getNumberOfAxes() == 0) {
-    // ColorAxis c = new ColorAxis();
-    // c.setConfiguration(this);
-    // colorAxis.addAxis(c);
-    // }
-    //
-    // return (ColorAxis) colorAxis.getAxis(0);
-    // }
-    //
-    // /**
-    // * @return the number of color axes defined
-    // */
-    // public int getNumberOfColorAxes() {
-    // if (colorAxis == null) {
-    // return 0;
-    // } else {
-    // return colorAxis.getNumberOfAxes();
-    // }
-    // }
-    //
-    // /**
-    // * @return The Color-axis with the given index or null if the index is not
-    // * valid
-    // */
-    // public ColorAxis getColorAxis(int index) {
-    // if (index > 0 && colorAxis != null && getNumberOfColorAxes() > index) {
-    // return (ColorAxis) colorAxis.getAxis(index);
-    // } else {
-    // return null;
-    // }
-    // }
-    //
-    // /**
-    // * Removes all defined color-axes
-    // */
-    // public void removeColorAxes() {
-    // if (colorAxis != null) {
-    // for (Axis a : colorAxis.getAxes()) {
-    // if (a != null) {
-    // a.setConfiguration(null);
-    // }
-    // }
-    // }
-    // colorAxis = null;
-    // }
-    //
-    // /**
-    // * Adds a color-axis to the configuration
-    // *
-    // * @param axis
-    // * The color Axis to add.
-    // * @see #getColorAxis()
-    // */
-    // public void addColorAxis(ColorAxis axis) {
-    // if (colorAxis == null) {
-    // colorAxis = new AxisList();
-    // }
-    // colorAxis.addAxis(axis);
-    // axis.setConfiguration(this);
-    // }
+    /**
+     * Returns the color axis. This is used in color-based diagrams, like heat
+     * maps. In case of multiple axes defined, the first axis is returned. An
+     * axis will be created if no axis is defined.
+     *
+     * @return the color axis.
+     */
+    public ColorAxis getColorAxis() {
+
+        if (colorAxis == null) {
+            colorAxis = new AxisList<ColorAxis>();
+        }
+
+        if (colorAxis.getNumberOfAxes() == 0) {
+            ColorAxis c = new ColorAxis();
+            c.setConfiguration(this);
+            colorAxis.addAxis(c);
+        }
+
+        return colorAxis.getAxis(0);
+    }
+
+    /**
+     * @return the number of color axes defined
+     */
+    public int getNumberOfColorAxes() {
+        if (colorAxis == null) {
+            return 0;
+        } else {
+            return colorAxis.getNumberOfAxes();
+        }
+    }
+
+    /**
+     * @return The Color-axis with the given index or null if the index is not
+     *         valid
+     */
+    public ColorAxis getColorAxis(int index) {
+        if (index > 0 && colorAxis != null && getNumberOfColorAxes() > index) {
+            return colorAxis.getAxis(index);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Removes all defined color-axes
+     */
+    public void removeColorAxes() {
+        colorAxis = null;
+    }
+
+    /**
+     * Adds a color-axis to the configuration
+     *
+     * @param axis
+     *            The color Axis to add.
+     * @see #getColorAxis()
+     */
+    public void addColorAxis(ColorAxis axis) {
+        if (colorAxis == null) {
+            colorAxis = new AxisList<ColorAxis>();
+        }
+        if (axis.getConfiguration() == null) {
+            axis.setConfiguration(this);
+        }
+        colorAxis.addAxis(axis);
+    }
 
 }

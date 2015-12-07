@@ -56,8 +56,7 @@ public class BasicColumn extends AbstractVaadinChartExample {
         conf.setLegend(legend);
 
         Tooltip tooltip = new Tooltip();
-        // FIXME missing generated API
-        // tooltip.setFormatter("this.x +': '+ this.y +' mm'");
+        tooltip.setFormatter("this.x +': '+ this.y +' mm'");
         conf.setTooltip(tooltip);
 
         PlotOptionsColumn plot = new PlotOptionsColumn();

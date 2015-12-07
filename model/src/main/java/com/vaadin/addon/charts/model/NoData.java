@@ -5,7 +5,7 @@ public class NoData extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
 	private Object attr;
-	private Object position;
+	private Position position;
 	private Style style;
 
 	public NoData() {
@@ -19,11 +19,11 @@ public class NoData extends AbstractConfigurationObject {
 		this.attr = attr;
 	}
 
-	public Object getPosition() {
+	public Position getPosition() {
 		return position;
 	}
 
-	public void setPosition(Object position) {
+	public void setPosition(Position position) {
 		this.position = position;
 	}
 

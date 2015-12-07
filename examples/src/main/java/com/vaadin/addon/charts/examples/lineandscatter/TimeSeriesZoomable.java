@@ -206,8 +206,7 @@ public class TimeSeriesZoomable extends AbstractVaadinChartExample {
         yAxis.setStartOnTick(false);
         yAxis.setShowFirstLabel(false);
 
-        // FIXME missing generated API
-        // configuration.getTooltip().setShared(true);
+        configuration.getTooltip().setShared(true);
 
         PlotOptionsArea plotOptions = new PlotOptionsArea();
 

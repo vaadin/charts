@@ -52,13 +52,12 @@ public class StackedArea extends AbstractVaadinChartExample {
         YAxis yAxis = new YAxis();
         yAxis.setTitle(new Title("Billions"));
         Labels labels = new Labels();
-        // FIXME missing generated API
-        // labels.setFormatter("this.value / 1000");
+        labels.setFormatter("this.value / 1000");
         yAxis.setLabels(labels);
         conf.addyAxis(yAxis);
 
         Tooltip tooltip = new Tooltip();
-        // tooltip.setFormatter("this.x +': '+ Highcharts.numberFormat(this.y, 0, ',') +' millions'");
+        tooltip.setFormatter("this.x +': '+ Highcharts.numberFormat(this.y, 0, ',') +' millions'");
         conf.setTooltip(tooltip);
 
         PlotOptionsArea plotOptions = new PlotOptionsArea();

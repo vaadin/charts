@@ -45,7 +45,6 @@ public class BarWithNegativeStack extends AbstractVaadinChartExample {
         x2.setCategories(categories);
         x2.setOpposite(true);
         x2.setReversed(false);
-        // FIXME missing generated API
         x2.setLinkedTo(0);
 
         YAxis y = new YAxis();
@@ -60,8 +59,7 @@ public class BarWithNegativeStack extends AbstractVaadinChartExample {
         conf.setPlotOptions(plot);
 
         Tooltip tooltip = new Tooltip();
-        // FIXME missing generated API
-        // tooltip.setFormatter("'<b>'+ this.series.name +', age '+ this.point.category +'</b><br/>'+ 'Population: '+ Highcharts.numberFormat(Math.abs(this.point.y), 0)");
+        tooltip.setFormatter("'<b>'+ this.series.name +', age '+ this.point.category +'</b><br/>'+ 'Population: '+ Highcharts.numberFormat(Math.abs(this.point.y), 0)");
         conf.setTooltip(tooltip);
 
         conf.addSeries(new ListSeries("Male", -1746181, -1884428, -2089758,

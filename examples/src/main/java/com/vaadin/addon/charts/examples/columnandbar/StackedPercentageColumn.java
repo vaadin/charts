@@ -40,7 +40,7 @@ public class StackedPercentageColumn extends AbstractVaadinChartExample {
         conf.addyAxis(yAxis);
 
         Tooltip tooltip = new Tooltip();
-        // tooltip.setFormatter("this.series.name +': '+ this.y +' ('+ Math.round(this.percentage) +'%)'");
+        tooltip.setFormatter("this.series.name +': '+ this.y +' ('+ Math.round(this.percentage) +'%)'");
         conf.setTooltip(tooltip);
 
         PlotOptionsColumn plotOptions = new PlotOptionsColumn();

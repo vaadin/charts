@@ -87,9 +87,10 @@ public class GaugeWithDualAxes extends AbstractVaadinChartExample {
 
         PlotOptionsGauge plotOptionsGauge = new PlotOptionsGauge();
         plotOptionsGauge.setDataLabels(new DataLabels());
-        // FIXME missing generated API
-        // plotOptionsGauge .getDataLabels() .setFormatter(
-        // "function() {return '<span style=\"color:#339\">'+ this.y + ' km/h</span><br/>' + '<span style=\"color:#933\">' + Math.round(this.y * 0.621) + ' mph</span>';}");
+        plotOptionsGauge
+                .getDataLabels()
+                .setFormatter(
+                        "function() {return '<span style=\"color:#339\">'+ this.y + ' km/h</span><br/>' + '<span style=\"color:#933\">' + Math.round(this.y * 0.621) + ' mph</span>';}");
         GradientColor gradient = GradientColor.createLinear(0, 0, 0, 1);
         gradient.addColorStop(0, new SolidColor("#DDD"));
         gradient.addColorStop(1, new SolidColor("#FFF"));

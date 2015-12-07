@@ -53,7 +53,7 @@ public class BasicBar extends AbstractVaadinChartExample {
         conf.addyAxis(y);
 
         Tooltip tooltip = new Tooltip();
-        // tooltip.setFormatter("this.series.name +': '+ this.y +' millions'");
+        tooltip.setFormatter("this.series.name +': '+ this.y +' millions'");
         conf.setTooltip(tooltip);
 
         PlotOptionsBar plot = new PlotOptionsBar();

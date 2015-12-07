@@ -40,9 +40,7 @@ public class SplineInverted extends AbstractVaadinChartExample {
         xAxis.setReversed(false);
         xAxis.setTitle(new Title("Altitude"));
         Labels labels = new Labels();
-        labels.setFormat("{value}km");
-        // FIXME missing generated API
-        // labels.setFormatter("this.value + 'km'");
+        labels.setFormatter("this.value + 'km'");
         labels.setEnabled(true);
         xAxis.setLabels(labels);
         xAxis.setMaxPadding(0.05);
@@ -55,11 +53,10 @@ public class SplineInverted extends AbstractVaadinChartExample {
 
         Labels labelsy = new Labels();
         labelsy.setEnabled(true);
-        labelsy.setFormat("{value}°");
-        // labelsy.setFormatter("this.value + '°'");
+        labelsy.setFormatter("this.value + '°'");
         yAxis.setLabels(labelsy);
 
-        // configuration.getTooltip().setFormatter("this.x +' km: '+this.y +'°C'");
+        configuration.getTooltip().setFormatter("this.x +' km: '+this.y +'°C'");
 
         PlotOptionsSpline plotOptions = new PlotOptionsSpline();
         plotOptions.setMarker(new Marker(true));

@@ -2,13 +2,11 @@ package com.vaadin.addon.charts.testbenchtests;
 
 import java.io.IOException;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.vaadin.addon.charts.examples.lineandscatter.TimeDataWithIrregularIntervalsAndLocalizedTexts;
 import com.vaadin.testbench.By;
 
-@Ignore("missing getDataLabels().setFormatter for functions")
 public class TimeDataWithLocalizationsTBTest extends AbstractParallelTest {
 
     boolean screenshotErrors = false;

@@ -52,8 +52,7 @@ public class PercentageArea extends AbstractVaadinChartExample {
         conf.addyAxis(yAxis);
 
         Tooltip tooltip = new Tooltip();
-        // FIXME missing generated API
-        // tooltip.setFormatter("this.series.name + ': ' +this.x +': '+ Highcharts.numberFormat(this.percentage, 1) +'% ('+ Highcharts.numberFormat(this.y, 0, ',') +' millions)'");
+        tooltip.setFormatter("this.series.name + ': ' +this.x +': '+ Highcharts.numberFormat(this.percentage, 1) +'% ('+ Highcharts.numberFormat(this.y, 0, ',') +' millions)'");
         conf.setTooltip(tooltip);
 
         PlotOptionsArea plotOptions = new PlotOptionsArea();

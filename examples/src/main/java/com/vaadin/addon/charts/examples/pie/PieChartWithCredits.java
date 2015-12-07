@@ -4,13 +4,14 @@ import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
-import com.vaadin.addon.charts.model.CreditPosition;
 import com.vaadin.addon.charts.model.Credits;
 import com.vaadin.addon.charts.model.Cursor;
 import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
+import com.vaadin.addon.charts.model.HorizontalAlign;
 import com.vaadin.addon.charts.model.PlotOptionsPie;
+import com.vaadin.addon.charts.model.Position;
 import com.vaadin.ui.Component;
 
 @SuppressWarnings("serial")
@@ -37,10 +38,10 @@ public class PieChartWithCredits extends AbstractVaadinChartExample {
         conf.setTitle("Browser market shares at a specific website, 2010");
 
         Credits credits = new Credits("Custom Credit");
-        credits.setPosition(new CreditPosition());
-        // FIXME missing generated API
-        // credits.getPosition().setHorizontalAlign(HorizontalAlign.LEFT.toString());
-        // credits.getPosition().setX(200);
+        credits.setPosition(new Position());
+        credits.getPosition().setHorizontalAlign(
+                HorizontalAlign.LEFT);
+        credits.getPosition().setX(200);
         conf.setCredits(credits);
 
         PlotOptionsPie plotOptions = new PlotOptionsPie();
@@ -48,8 +49,8 @@ public class PieChartWithCredits extends AbstractVaadinChartExample {
         plotOptions.setCursor(Cursor.POINTER.toString());
         DataLabels dataLabels = new DataLabels(true);
         // FIXME missing generated API
-        // dataLabels
-        // .setFormatter("'<b>'+ this.point.name +'</b>: '+ this.percentage +' %'");
+         dataLabels
+         .setFormatter("'<b>'+ this.point.name +'</b>: '+ this.percentage +' %'");
         plotOptions.setDataLabels(dataLabels);
         conf.setPlotOptions(plotOptions);
 

@@ -7,7 +7,7 @@ import com.vaadin.addon.charts.examples.other.HeatMapExample;
 /**
  * Test for {@link HeatMapExample}
  */
-@Ignore("config.getColorAxis missing")
+@Ignore("Missing legend.setMargin (int) ")
 public class HeatMapTBTest extends AbstractSimpleScreenShotTestBenchTest {
     @Override
     protected String getTestViewName() {

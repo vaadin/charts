@@ -36,8 +36,7 @@ public class AreaWithNegativeValues extends AbstractVaadinChartExample {
         conf.setCredits(new Credits(false));
 
         Tooltip tooltip = new Tooltip();
-        // FIXME missing generated API
-        // tooltip.setFormatter("this.series.name +': '+ this.y");
+        tooltip.setFormatter("this.series.name +': '+ this.y");
         conf.setTooltip(tooltip);
 
         conf.addSeries(new ListSeries("John", 5, 3, 4, 7, 2));
