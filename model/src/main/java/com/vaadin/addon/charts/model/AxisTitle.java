@@ -16,42 +16,87 @@ public class AxisTitle extends AbstractConfigurationObject {
 	public AxisTitle() {
 	}
 
+	/**
+	 * @see #setAlign(String)
+	 */
 	public String getAlign() {
 		return align;
 	}
 
+	/**
+	 * Alignment of the title relative to the axis values. Possible values are
+	 * "low", "middle" or "high".
+	 * <p>
+	 * Defaults to: middle
+	 */
 	public void setAlign(String align) {
 		this.align = align;
 	}
 
+	/**
+	 * @see #setMargin(Number)
+	 */
 	public Number getMargin() {
 		return margin;
 	}
 
+	/**
+	 * The pixel distance between the axis labels and the title. Positive values
+	 * are outside the axis line, negative are inside.
+	 * <p>
+	 * Defaults to: 40
+	 */
 	public void setMargin(Number margin) {
 		this.margin = margin;
 	}
 
+	/**
+	 * @see #setOffset(Number)
+	 */
 	public Number getOffset() {
 		return offset;
 	}
 
+	/**
+	 * The distance of the axis title from the axis line. By default, this
+	 * distance is computed from the offset width of the labels, the labels'
+	 * distance from the axis and the title's margin. However when the offset
+	 * option is set, it overrides all this.
+	 */
 	public void setOffset(Number offset) {
 		this.offset = offset;
 	}
 
+	/**
+	 * @see #setRotation(Number)
+	 */
 	public Number getRotation() {
 		return rotation;
 	}
 
+	/**
+	 * The rotation of the text in degrees. 0 is horizontal, 270 is vertical
+	 * reading from bottom to top.
+	 * <p>
+	 * Defaults to: 270
+	 */
 	public void setRotation(Number rotation) {
 		this.rotation = rotation;
 	}
 
+	/**
+	 * @see #setStyle(Style)
+	 */
 	public Style getStyle() {
 		return style;
 	}
 
+	/**
+	 * CSS styles for the title. When titles are rotated they are rendered using
+	 * vector graphic techniques and not all styles are applicable.
+	 * <p>
+	 * Defaults to: { "color": "#707070", "fontWeight": "bold" }
+	 */
 	public void setStyle(Style style) {
 		this.style = style;
 	}
@@ -60,26 +105,53 @@ public class AxisTitle extends AbstractConfigurationObject {
 		this.text = text;
 	}
 
+	/**
+	 * @see #setText(String)
+	 */
 	public String getText() {
 		return text;
 	}
 
+	/**
+	 * The actual text of the axis title. Horizontal texts can contain HTML, but
+	 * rotated texts are painted using vector techniques and must be clean text.
+	 * The Y axis title is disabled by setting the <code>text</code> option to
+	 * <code>null</code>.
+	 * <p>
+	 * Defaults to: Values
+	 */
 	public void setText(String text) {
 		this.text = text;
 	}
 
+	/**
+	 * @see #setX(Number)
+	 */
 	public Number getX() {
 		return x;
 	}
 
+	/**
+	 * Horizontal pixel offset of the title position.
+	 * <p>
+	 * Defaults to: 0
+	 */
 	public void setX(Number x) {
 		this.x = x;
 	}
 
+	/**
+	 * @see #setY(Number)
+	 */
 	public Number getY() {
 		return y;
 	}
 
+	/**
+	 * Vertical pixel offset of the title position.
+	 * <p>
+	 * Defaults to:
+	 */
 	public void setY(Number y) {
 		this.y = y;
 	}

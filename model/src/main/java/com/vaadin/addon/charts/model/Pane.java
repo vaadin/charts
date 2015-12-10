@@ -1,6 +1,11 @@
 package com.vaadin.addon.charts.model;
 
 import com.vaadin.addon.charts.util.SizeWithUnit;
+/**
+ * Applies only to polar charts and angular gauges. This configuration object
+ * holds general options for the combined X and Y axes set. Each xAxis or yAxis
+ * can reference the pane by index.
+ */
 public class Pane extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
@@ -14,30 +19,57 @@ public class Pane extends AbstractConfigurationObject {
 	public Pane() {
 	}
 
+	/**
+	 * @see #setPaneIndex(Integer)
+	 */
 	Integer getPaneIndex() {
 		return paneIndex;
 	}
 
+	/**
+	 * 
+	 */
 	void setPaneIndex(Integer paneIndex) {
 		this.paneIndex = paneIndex;
 	}
 
+	/**
+	 * @see #setBackground(Object[])
+	 */
 	public Object[] getBackground() {
 		return background;
 	}
 
+	/**
+	 * An object, or array of objects, for backgrounds. Sub options include
+	 * <code>backgroundColor</code> (can be solid or gradient),
+	 * <code>shape</code> ("solid" or "arc"), <code>innerWidth</code>,
+	 * <code>outerWidth</code>, <code>borderWidth</code>,
+	 * <code>borderColor</code>.
+	 */
 	public void setBackground(Object[] background) {
 		this.background = background;
 	}
 
+	/**
+	 * @see #setCenter(Object[])
+	 */
 	public Object[] getCenter() {
 		return center;
 	}
 
+	/**
+	 * @see #setEndAngle(Number)
+	 */
 	public Number getEndAngle() {
 		return endAngle;
 	}
 
+	/**
+	 * The end angle of the polar X axis or gauge value axis, given in degrees
+	 * where 0 is north. Defaults to <a href="#pane.startAngle">startAngle</a> +
+	 * 360.
+	 */
 	public void setEndAngle(Number endAngle) {
 		this.endAngle = endAngle;
 	}
@@ -83,10 +115,17 @@ public class Pane extends AbstractConfigurationObject {
 		this.size = value;
 	}
 
+	/**
+	 * @see #setStartAngle(Number)
+	 */
 	public Number getStartAngle() {
 		return startAngle;
 	}
 
+	/**
+	 * The start angle of the polar X axis or gauge axis, given in degrees where
+	 * 0 is north. Defaults to 0.
+	 */
 	public void setStartAngle(Number startAngle) {
 		this.startAngle = startAngle;
 	}

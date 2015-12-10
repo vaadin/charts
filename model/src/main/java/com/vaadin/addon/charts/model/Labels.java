@@ -25,34 +25,76 @@ public class Labels extends AbstractConfigurationObject {
 	public Labels() {
 	}
 
+	/**
+	 * @see #setAlign(String)
+	 */
 	public String getAlign() {
 		return align;
 	}
 
+	/**
+	 * What part of the string the given position is anchored to. Can be one of
+	 * <code>"left"</code>, <code>"center"</code> or <code>"right"</code>.
+	 * <p>
+	 * Defaults to: right
+	 */
 	public void setAlign(String align) {
 		this.align = align;
 	}
 
+	/**
+	 * @see #setAutoRotation(Number[])
+	 */
 	public Number[] getAutoRotation() {
 		return autoRotation;
 	}
 
+	/**
+	 * For horizontal axes, the allowed degrees of label rotation to prevent
+	 * overlapping labels. If there is enough space, labels are not rotated. As
+	 * the chart gets narrower, it will start rotating the labels -45 degrees,
+	 * then remove every second label and try again with rotations 0 and -45
+	 * etc. Set it to <code>false</code> to disable rotation, which will cause
+	 * the labels to word-wrap if possible.
+	 * <p>
+	 * Defaults to: [-45]
+	 */
 	public void setAutoRotation(Number[] autoRotation) {
 		this.autoRotation = autoRotation;
 	}
 
+	/**
+	 * @see #setAutoRotationLimit(Number)
+	 */
 	public Number getAutoRotationLimit() {
 		return autoRotationLimit;
 	}
 
+	/**
+	 * When each category width is more than this many pixels, we don't apply
+	 * auto rotation. Instead, we lay out the axis label with word wrap. A lower
+	 * limit makes sense when the label contains multiple short words that don't
+	 * extend the available horizontal space for each label.
+	 * <p>
+	 * Defaults to: 80
+	 */
 	public void setAutoRotationLimit(Number autoRotationLimit) {
 		this.autoRotationLimit = autoRotationLimit;
 	}
 
+	/**
+	 * @see #setDistance(Number)
+	 */
 	public Number getDistance() {
 		return distance;
 	}
 
+	/**
+	 * Angular gauges and solid gauges only. The label's pixel distance from the
+	 * perimeter of the plot area.
+	 * <p>
+	 * Defaults to: 15
+	 */
 	public void setDistance(Number distance) {
 		this.distance = distance;
 	}
@@ -61,18 +103,36 @@ public class Labels extends AbstractConfigurationObject {
 		this.enabled = enabled;
 	}
 
+	/**
+	 * @see #setEnabled(Boolean)
+	 */
 	public Boolean getEnabled() {
 		return enabled;
 	}
 
+	/**
+	 * Enable or disable the axis labels.
+	 * <p>
+	 * Defaults to: true
+	 */
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 	}
 
+	/**
+	 * @see #setFormat(String)
+	 */
 	public String getFormat() {
 		return format;
 	}
 
+	/**
+	 * A <a href=
+	 * "http://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting"
+	 * >format string</a> for the axis label.
+	 * <p>
+	 * Defaults to: {value}
+	 */
 	public void setFormat(String format) {
 		this.format = format;
 	}
@@ -85,82 +145,172 @@ public class Labels extends AbstractConfigurationObject {
 		this._fn_formatter = _fn_formatter;
 	}
 
+	/**
+	 * @see #setPadding(Number)
+	 */
 	public Number getPadding() {
 		return padding;
 	}
 
+	/**
+	 * The pixel padding for axis labels, to ensure white space between them.
+	 * <p>
+	 * Defaults to: 5
+	 */
 	public void setPadding(Number padding) {
 		this.padding = padding;
 	}
 
+	/**
+	 * @see #setRotation(Number)
+	 */
 	public Number getRotation() {
 		return rotation;
 	}
 
+	/**
+	 * Rotation of the labels in degrees.
+	 * <p>
+	 * Defaults to: 0
+	 */
 	public void setRotation(Number rotation) {
 		this.rotation = rotation;
 	}
 
+	/**
+	 * @see #setStaggerLines(Number)
+	 */
 	public Number getStaggerLines() {
 		return staggerLines;
 	}
 
+	/**
+	 * Horizontal axes only. The number of lines to spread the labels over to
+	 * make room or tighter labels. .
+	 */
 	public void setStaggerLines(Number staggerLines) {
 		this.staggerLines = staggerLines;
 	}
 
+	/**
+	 * @see #setStep(Number)
+	 */
 	public Number getStep() {
 		return step;
 	}
 
+	/**
+	 * <p>
+	 * To show only every <em>n</em>'th label on the axis, set the step to
+	 * <em>n</em>. Setting the step to 2 shows every other label.
+	 * </p>
+	 * 
+	 * <p>
+	 * By default, the step is calculated automatically to avoid overlap. To
+	 * prevent this, set it to 1. This usually only happens on a category axis,
+	 * and is often a sign that you have chosen the wrong axis type. Read more
+	 * at <a href="http://www.highcharts.com/docs/chart-concepts/axes">Axis
+	 * docs</a> => What axis should I use?
+	 * </p>
+	 */
 	public void setStep(Number step) {
 		this.step = step;
 	}
 
+	/**
+	 * @see #setStyle(Style)
+	 */
 	public Style getStyle() {
 		return style;
 	}
 
+	/**
+	 * CSS styles for the label. Use <code>whiteSpace: 'nowrap'</code> to
+	 * prevent wrapping of category labels. Use
+	 * <code>textOverflow: 'none'</code> to prevent ellipsis (dots).
+	 * <p>
+	 * Defaults to: {"color":"#6D869F","fontWeight":"bold"}
+	 */
 	public void setStyle(Style style) {
 		this.style = style;
 	}
 
+	/**
+	 * @see #setUseHTML(Boolean)
+	 */
 	public Boolean getUseHTML() {
 		return useHTML;
 	}
 
+	/**
+	 * Whether to <a href=
+	 * "http://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#html"
+	 * >use HTML</a> to render the labels.
+	 * <p>
+	 * Defaults to: false
+	 */
 	public void setUseHTML(Boolean useHTML) {
 		this.useHTML = useHTML;
 	}
 
+	/**
+	 * @see #setX(Number)
+	 */
 	public Number getX() {
 		return x;
 	}
 
+	/**
+	 * The x position offset of the label relative to the tick position on the
+	 * axis. Defaults to -15 for left axis, 15 for right axis.
+	 */
 	public void setX(Number x) {
 		this.x = x;
 	}
 
+	/**
+	 * @see #setY(Number)
+	 */
 	public Number getY() {
 		return y;
 	}
 
+	/**
+	 * The y position offset of the label relative to the tick position on the
+	 * axis.
+	 * <p>
+	 * Defaults to: 3
+	 */
 	public void setY(Number y) {
 		this.y = y;
 	}
 
+	/**
+	 * @see #setZIndex(Number)
+	 */
 	public Number getZIndex() {
 		return zIndex;
 	}
 
+	/**
+	 * The Z index for the axis labels.
+	 * <p>
+	 * Defaults to: 7
+	 */
 	public void setZIndex(Number zIndex) {
 		this.zIndex = zIndex;
 	}
 
+	/**
+	 * @see #setItems(Items[])
+	 */
 	public Items[] getItems() {
 		return items;
 	}
 
+	/**
+	 * A HTML label that can be positioned anywhere in the chart area.
+	 */
 	public void setItems(Items[] items) {
 		this.items = items;
 	}

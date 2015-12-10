@@ -1,4 +1,10 @@
 package com.vaadin.addon.charts.model;
+/**
+ * Options to render charts in 3 dimensions. This feature requires
+ * <code>highcharts-3d.js</code>, found in the download package or online at <a
+ * href="http://code.highcharts.com/highcharts-3d.js">code.highcharts.com/
+ * highcharts-3d.js</a>.
+ */
 public class Options3d extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
@@ -12,26 +18,50 @@ public class Options3d extends AbstractConfigurationObject {
 	public Options3d() {
 	}
 
+	/**
+	 * @see #setAlpha(Number)
+	 */
 	public Number getAlpha() {
 		return alpha;
 	}
 
+	/**
+	 * One of the two rotation angles for the chart.
+	 * <p>
+	 * Defaults to: 0
+	 */
 	public void setAlpha(Number alpha) {
 		this.alpha = alpha;
 	}
 
+	/**
+	 * @see #setBeta(Number)
+	 */
 	public Number getBeta() {
 		return beta;
 	}
 
+	/**
+	 * One of the two rotation angles for the chart.
+	 * <p>
+	 * Defaults to: 0
+	 */
 	public void setBeta(Number beta) {
 		this.beta = beta;
 	}
 
+	/**
+	 * @see #setDepth(Number)
+	 */
 	public Number getDepth() {
 		return depth;
 	}
 
+	/**
+	 * The total depth of the chart.
+	 * <p>
+	 * Defaults to: 100
+	 */
 	public void setDepth(Number depth) {
 		this.depth = depth;
 	}
@@ -40,26 +70,51 @@ public class Options3d extends AbstractConfigurationObject {
 		this.enabled = enabled;
 	}
 
+	/**
+	 * @see #setEnabled(Boolean)
+	 */
 	public Boolean getEnabled() {
 		return enabled;
 	}
 
+	/**
+	 * Wether to render the chart using the 3D functionality.
+	 * <p>
+	 * Defaults to: false
+	 */
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 	}
 
+	/**
+	 * @see #setFrame(Frame)
+	 */
 	public Frame getFrame() {
 		return frame;
 	}
 
+	/**
+	 * Provides the option to draw a frame around the charts by defining a
+	 * bottom, front and back panel.
+	 */
 	public void setFrame(Frame frame) {
 		this.frame = frame;
 	}
 
+	/**
+	 * @see #setViewDistance(Number)
+	 */
 	public Number getViewDistance() {
 		return viewDistance;
 	}
 
+	/**
+	 * Defines the distance the viewer is standing in front of the chart, this
+	 * setting is important to calculate the perspective effect in column and
+	 * scatter charts. It is not used for 3D pie charts.
+	 * <p>
+	 * Defaults to: 100
+	 */
 	public void setViewDistance(Number viewDistance) {
 		this.viewDistance = viewDistance;
 	}
