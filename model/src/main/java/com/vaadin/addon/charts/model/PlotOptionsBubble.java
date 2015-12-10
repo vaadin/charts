@@ -50,6 +50,11 @@ public class PlotOptionsBubble extends AbstractPlotOptions {
 	public PlotOptionsBubble() {
 	}
 
+	@Override
+	public ChartType getChartType() {
+		return ChartType.BUBBLE;
+	}
+
 	public Boolean getAllowPointSelect() {
 		return allowPointSelect;
 	}
@@ -354,11 +359,6 @@ public class PlotOptionsBubble extends AbstractPlotOptions {
 
 	public void removeZone(Zones zone) {
 		this.zones.remove(zone);
-	}
-
-	@Override
-	public ChartType getChartType() {
-		return ChartType.BUBBLE;
 	}
 
 	public void setPointStart(Date date) {

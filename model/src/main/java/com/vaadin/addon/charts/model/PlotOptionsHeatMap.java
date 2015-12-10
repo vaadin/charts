@@ -39,6 +39,11 @@ public class PlotOptionsHeatMap extends AbstractPlotOptions {
 	public PlotOptionsHeatMap() {
 	}
 
+	@Override
+	public ChartType getChartType() {
+		return ChartType.HEATMAP;
+	}
+
 	public Boolean getAllowPointSelect() {
 		return allowPointSelect;
 	}
@@ -295,10 +300,5 @@ public class PlotOptionsHeatMap extends AbstractPlotOptions {
 
 	public void removeZone(Zones zone) {
 		this.zones.remove(zone);
-	}
-
-	@Override
-	public ChartType getChartType() {
-		return ChartType.HEATMAP;
 	}
 }

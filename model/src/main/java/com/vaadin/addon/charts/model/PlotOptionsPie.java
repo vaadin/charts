@@ -39,6 +39,11 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	public PlotOptionsPie() {
 	}
 
+	@Override
+	public ChartType getChartType() {
+		return ChartType.PIE;
+	}
+
 	public Boolean getAllowPointSelect() {
 		return allowPointSelect;
 	}
@@ -291,11 +296,6 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 
 	public void removeZone(Zones zone) {
 		this.zones.remove(zone);
-	}
-
-	@Override
-	public ChartType getChartType() {
-		return ChartType.PIE;
 	}
 
 	public void setCenter(String x, String y) {

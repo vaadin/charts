@@ -26,6 +26,11 @@ public class PlotOptionsSolidGauge extends AbstractPlotOptions {
 	public PlotOptionsSolidGauge() {
 	}
 
+	@Override
+	public ChartType getChartType() {
+		return ChartType.SOLIDGAUGE;
+	}
+
 	public Boolean getAnimation() {
 		return animation;
 	}
@@ -186,10 +191,5 @@ public class PlotOptionsSolidGauge extends AbstractPlotOptions {
 
 	public void removeZone(Zones zone) {
 		this.zones.remove(zone);
-	}
-
-	@Override
-	public ChartType getChartType() {
-		return ChartType.SOLIDGAUGE;
 	}
 }

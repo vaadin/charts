@@ -48,6 +48,11 @@ public class PlotOptionsAreaRange extends AbstractPlotOptions {
 	public PlotOptionsAreaRange() {
 	}
 
+	@Override
+	public ChartType getChartType() {
+		return ChartType.AREARANGE;
+	}
+
 	public Boolean getAllowPointSelect() {
 		return allowPointSelect;
 	}
@@ -354,20 +359,15 @@ public class PlotOptionsAreaRange extends AbstractPlotOptions {
 		this.zones.remove(zone);
 	}
 
+	public void setPointStart(Date date) {
+		this.pointStart = Util.toHighchartsTS(date);
+	}
+
 	public Number getThreshold() {
 		return threshold;
 	}
 
 	public void setThreshold(Number threshold) {
 		this.threshold = threshold;
-	}
-
-	@Override
-	public ChartType getChartType() {
-		return ChartType.AREARANGE;
-	}
-
-	public void setPointStart(Date date) {
-		this.pointStart = Util.toHighchartsTS(date);
 	}
 }

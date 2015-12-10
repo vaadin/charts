@@ -2,6 +2,7 @@ package com.vaadin.addon.charts.examples.lineandscatter;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataLabels;
@@ -9,7 +10,6 @@ import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.Shape;
-import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
@@ -40,7 +40,7 @@ public class BasicLineWithCallouts extends AbstractVaadinChartExample {
                         "Aug", "Sep", "Oct", "Nov", "Dec" });
 
         YAxis yAxis = configuration.getyAxis();
-        yAxis.setTitle(new Title("Temperature (°C)"));
+        yAxis.setTitle(new AxisTitle("Temperature (°C)"));
 
         configuration
                 .getTooltip()

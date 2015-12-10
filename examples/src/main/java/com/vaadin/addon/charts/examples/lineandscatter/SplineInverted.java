@@ -2,6 +2,7 @@ package com.vaadin.addon.charts.examples.lineandscatter;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
@@ -9,7 +10,6 @@ import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.Legend;
 import com.vaadin.addon.charts.model.Marker;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
-import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
@@ -38,7 +38,7 @@ public class SplineInverted extends AbstractVaadinChartExample {
 
         XAxis xAxis = configuration.getxAxis();
         xAxis.setReversed(false);
-        xAxis.setTitle(new Title("Altitude"));
+        xAxis.setTitle(new AxisTitle("Altitude"));
         Labels labels = new Labels();
         labels.setFormatter("this.value + 'km'");
         labels.setEnabled(true);
@@ -48,7 +48,7 @@ public class SplineInverted extends AbstractVaadinChartExample {
 
         YAxis yAxis = configuration.getyAxis();
         yAxis.setLineWidth(2);
-        yAxis.setTitle(new Title("Temperature"));
+        yAxis.setTitle(new AxisTitle("Temperature"));
         yAxis.getTitle().setAlign(VerticalAlign.MIDDLE.toString());
 
         Labels labelsy = new Labels();

@@ -7,7 +7,7 @@ public class Data extends AbstractConfigurationObject {
 	private static final long serialVersionUID = 1L;
 	private Color color;
 	private DataLabels dataLabels;
-	private String drilldown;
+	private Drilldown drilldown;
 	private String id;
 	private Boolean isIntermediateSum;
 	private Boolean isSum;
@@ -69,11 +69,11 @@ public class Data extends AbstractConfigurationObject {
 		this.dataLabels = dataLabels;
 	}
 
-	public String getDrilldown() {
+	public Drilldown getDrilldown() {
 		return drilldown;
 	}
 
-	public void setDrilldown(String drilldown) {
+	public void setDrilldown(Drilldown drilldown) {
 		this.drilldown = drilldown;
 	}
 

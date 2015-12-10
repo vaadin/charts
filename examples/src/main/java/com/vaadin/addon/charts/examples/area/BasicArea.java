@@ -2,6 +2,7 @@ package com.vaadin.addon.charts.examples.area;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.Hover;
@@ -57,7 +58,7 @@ public class BasicArea extends AbstractVaadinChartExample {
         conf.addxAxis(xAxis);
 
         YAxis yAxis = new YAxis();
-        yAxis.setTitle(new Title("Nuclear weapon states"));
+        yAxis.setTitle(new AxisTitle("Nuclear weapon states"));
         labels = new Labels();
         // display y axis value in kilos as there is such a pile of weapons
         labels.setFormatter("this.value / 1000 +'k'");

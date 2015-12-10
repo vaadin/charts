@@ -57,6 +57,11 @@ public class PlotOptionsColumn extends AbstractPlotOptions {
 	public PlotOptionsColumn() {
 	}
 
+	@Override
+	public ChartType getChartType() {
+		return ChartType.COLUMN;
+	}
+
 	public Boolean getAllowPointSelect() {
 		return allowPointSelect;
 	}
@@ -441,11 +446,6 @@ public class PlotOptionsColumn extends AbstractPlotOptions {
 
 	public void removeZone(Zones zone) {
 		this.zones.remove(zone);
-	}
-
-	@Override
-	public ChartType getChartType() {
-		return ChartType.COLUMN;
 	}
 
 	public void setPointStart(Date date) {

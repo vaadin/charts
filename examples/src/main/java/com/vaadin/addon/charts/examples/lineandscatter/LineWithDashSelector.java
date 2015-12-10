@@ -2,6 +2,7 @@ package com.vaadin.addon.charts.examples.lineandscatter;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DashStyle;
@@ -11,7 +12,6 @@ import com.vaadin.addon.charts.model.LayoutDirection;
 import com.vaadin.addon.charts.model.Legend;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
-import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.data.Property.ValueChangeEvent;
@@ -50,7 +50,7 @@ public class LineWithDashSelector extends AbstractVaadinChartExample {
 
         YAxis yAxis = configuration.getyAxis();
         yAxis.setMin(-5d);
-        yAxis.setTitle(new Title("Temperature (°C)"));
+        yAxis.setTitle(new AxisTitle("Temperature (°C)"));
         yAxis.getTitle().setAlign(VerticalAlign.MIDDLE.toString());
 
         configuration

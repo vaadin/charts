@@ -57,6 +57,11 @@ public class PlotOptionsBar extends AbstractPlotOptions {
 	public PlotOptionsBar() {
 	}
 
+	@Override
+	public ChartType getChartType() {
+		return ChartType.BAR;
+	}
+
 	public Boolean getAllowPointSelect() {
 		return allowPointSelect;
 	}
@@ -441,11 +446,6 @@ public class PlotOptionsBar extends AbstractPlotOptions {
 
 	public void removeZone(Zones zone) {
 		this.zones.remove(zone);
-	}
-
-	@Override
-	public ChartType getChartType() {
-		return ChartType.BAR;
 	}
 
 	public void setPointStart(Date date) {

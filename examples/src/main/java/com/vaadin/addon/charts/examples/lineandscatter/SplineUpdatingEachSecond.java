@@ -1,9 +1,8 @@
 package com.vaadin.addon.charts.examples.lineandscatter;
 
-import java.util.Random;
-
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.AxisType;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
@@ -11,11 +10,12 @@ import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.PlotLine;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
-import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
+
+import java.util.Random;
 
 public class SplineUpdatingEachSecond extends AbstractVaadinChartExample {
 
@@ -41,7 +41,7 @@ public class SplineUpdatingEachSecond extends AbstractVaadinChartExample {
         xAxis.setTickPixelInterval(150);
 
         YAxis yAxis = configuration.getyAxis();
-        yAxis.setTitle(new Title("Value"));
+        yAxis.setTitle(new AxisTitle("Value"));
         PlotLine plotline = new PlotLine();
         plotline.setValue(0);
         plotline.setWidth(1);

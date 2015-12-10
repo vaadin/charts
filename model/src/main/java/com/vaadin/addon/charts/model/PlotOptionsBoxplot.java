@@ -57,6 +57,11 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 	public PlotOptionsBoxplot() {
 	}
 
+	@Override
+	public ChartType getChartType() {
+		return ChartType.BOXPLOT;
+	}
+
 	public Boolean getAllowPointSelect() {
 		return allowPointSelect;
 	}
@@ -466,11 +471,6 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 
 	public void removeZone(Zones zone) {
 		this.zones.remove(zone);
-	}
-
-	@Override
-	public ChartType getChartType() {
-		return ChartType.BOXPLOT;
 	}
 
 	public void setPointStart(Date date) {

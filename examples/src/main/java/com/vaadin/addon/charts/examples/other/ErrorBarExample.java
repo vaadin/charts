@@ -2,6 +2,7 @@ package com.vaadin.addon.charts.examples.other;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
@@ -9,7 +10,6 @@ import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
 import com.vaadin.addon.charts.model.PlotOptionsErrorbar;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
-import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.ZoomType;
@@ -45,7 +45,7 @@ public class ErrorBarExample extends AbstractVaadinChartExample {
 
         YAxis primaryAxis = conf.getyAxis();
 
-        Title title = new Title("Temperature");
+        AxisTitle title = new AxisTitle("Temperature");
         Style style = new Style();
         style.setColor(colors[0]);
         title.setStyle(style);
@@ -56,7 +56,7 @@ public class ErrorBarExample extends AbstractVaadinChartExample {
 
         YAxis secondaryAxis = new YAxis();
         conf.addyAxis(secondaryAxis);
-        title = new Title("Rainfall");
+        title = new AxisTitle("Rainfall");
         secondaryAxis.setTitle(title);
         style = new Style();
         style.setColor(colors[1]);

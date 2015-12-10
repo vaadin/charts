@@ -1,18 +1,12 @@
 package com.vaadin.addon.charts.model.junittests;
 
-import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
-import static org.junit.Assert.assertEquals;
-
-import java.util.Arrays;
-import java.util.List;
-
-import org.junit.Test;
-
 import com.vaadin.addon.charts.model.AbstractConfigurationObject;
 import com.vaadin.addon.charts.model.AxisList;
+import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.Drilldown;
+import com.vaadin.addon.charts.model.LegendTitle;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.Pane;
 import com.vaadin.addon.charts.model.PaneList;
@@ -20,6 +14,13 @@ import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
+import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Tests for the JSON serialization in {@link AbstractConfigurationObject}.
@@ -140,7 +141,17 @@ public class ConfigurationObjectJSONSerializationTest {
 
         assertEquals("{\"text\":null}", toJSON(title));
     }
+    @Test
+    public void toJSON_AxisTitleWithNullValue_NullSerializedToText() {
+        AxisTitle title = new AxisTitle();
 
+        assertEquals("{\"text\":null}", toJSON(title));
+    }
+    @Test
+    public void toJSON_LegendTitleWithNullValue_NullSerializedToText() {
+        LegendTitle title = new LegendTitle();
+        assertEquals("{\"text\":null}", toJSON(title));
+    }
     @Test
     public void toJSON_drilldownWithConfiguration_drilldownSerializedToText() {
         Drilldown drilldown = new Drilldown();

@@ -1,18 +1,18 @@
 package com.vaadin.addon.charts.examples.container;
 
-import java.io.Serializable;
-
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.SkipFromDemo;
+import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.AxisType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.ContainerDataSeries;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
-import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.Component;
+
+import java.io.Serializable;
 
 @SkipFromDemo
 public class BeansFromContainer extends AbstractVaadinChartExample {
@@ -44,7 +44,7 @@ public class BeansFromContainer extends AbstractVaadinChartExample {
 
         // Create Y Axis
         YAxis y = new YAxis();
-        y.setTitle(new Title("Amount"));
+        y.setTitle(new AxisTitle("Amount"));
         configuration.addyAxis(y);
 
         // use category names from beans on x axis instead of index

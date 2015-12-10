@@ -2,6 +2,7 @@ package com.vaadin.addon.charts.examples.area;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.ListSeries;
@@ -48,7 +49,7 @@ public class PercentageArea extends AbstractVaadinChartExample {
         conf.addxAxis(xAxis);
 
         YAxis yAxis = new YAxis();
-        yAxis.setTitle(new Title("Percent"));
+        yAxis.setTitle(new AxisTitle("Percent"));
         conf.addyAxis(yAxis);
 
         Tooltip tooltip = new Tooltip();

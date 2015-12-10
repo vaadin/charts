@@ -2,6 +2,7 @@ package com.vaadin.addon.charts.examples.other;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.BoxPlotItem;
 import com.vaadin.addon.charts.model.DashStyle;
 import com.vaadin.addon.charts.model.DataSeries;
@@ -10,7 +11,6 @@ import com.vaadin.addon.charts.model.Label;
 import com.vaadin.addon.charts.model.Legend;
 import com.vaadin.addon.charts.model.PlotLine;
 import com.vaadin.addon.charts.model.PlotOptionsBoxplot;
-import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
@@ -43,12 +43,12 @@ public class BoxPlotExample extends AbstractVaadinChartExample {
         chart.getConfiguration().setLegend(legend);
 
         XAxis xaxis = chart.getConfiguration().getxAxis();
-        xaxis.setTitle(new Title("Experiment No."));
+        xaxis.setTitle(new AxisTitle("Experiment No."));
         xaxis.setCategories(new String[] { "1", "2", "3", "4", "5" });
 
         YAxis yAxis = chart.getConfiguration().getyAxis();
 
-        yAxis.setTitle(new Title("Observations"));
+        yAxis.setTitle(new AxisTitle("Observations"));
         PlotLine plotLine = new PlotLine();
         plotLine.setColor(new SolidColor("red"));
         plotLine.setValue(932);

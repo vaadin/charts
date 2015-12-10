@@ -2,6 +2,7 @@ package com.vaadin.addon.charts.examples.area;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.HorizontalAlign;
@@ -40,7 +41,7 @@ public class InvertedAxes extends AbstractVaadinChartExample {
         conf.addxAxis(xAxis);
 
         YAxis yAxis = new YAxis();
-        yAxis.setTitle(new Title("Number of units"));
+        yAxis.setTitle(new AxisTitle("Number of units"));
         yAxis.setMin(0);
         conf.addyAxis(yAxis);
 

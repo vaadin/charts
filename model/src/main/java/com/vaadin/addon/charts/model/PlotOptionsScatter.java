@@ -42,6 +42,11 @@ public class PlotOptionsScatter extends AbstractPlotOptions {
 	public PlotOptionsScatter() {
 	}
 
+	@Override
+	public ChartType getChartType() {
+		return ChartType.SCATTER;
+	}
+
 	public Boolean getAllowPointSelect() {
 		return allowPointSelect;
 	}
@@ -306,11 +311,6 @@ public class PlotOptionsScatter extends AbstractPlotOptions {
 
 	public void removeZone(Zones zone) {
 		this.zones.remove(zone);
-	}
-
-	@Override
-	public ChartType getChartType() {
-		return ChartType.SCATTER;
 	}
 
 	public void setPointStart(Date date) {

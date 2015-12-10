@@ -1,14 +1,10 @@
 package com.vaadin.addon.charts.examples.lineandscatter;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.ChartOptions;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.SkipFromDemo;
+import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.AxisType;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
@@ -18,13 +14,17 @@ import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.DateTimeLabelFormats;
 import com.vaadin.addon.charts.model.Lang;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
-import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.VerticalLayout;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @SkipFromDemo
 @SuppressWarnings({ "serial" })
@@ -79,7 +79,7 @@ public class TimeDataWithIrregularIntervalsAndLocalizedTexts extends
         configuration.getxAxis().getDateTimeLabelFormats().setMonth("%B");
 
         YAxis yAxis = configuration.getyAxis();
-        yAxis.setTitle(new Title("Lumen syvyys (m)"));
+        yAxis.setTitle(new AxisTitle("Lumen syvyys (m)"));
         yAxis.setMin(0);
 
         DataSeries ls = new DataSeries();

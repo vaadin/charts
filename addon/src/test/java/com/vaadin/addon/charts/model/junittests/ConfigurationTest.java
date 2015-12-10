@@ -1,25 +1,24 @@
 package com.vaadin.addon.charts.model.junittests;
 
-import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.model.AbstractPlotOptions;
+import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.ContainerDataSeries;
 import com.vaadin.addon.charts.model.ListSeries;
-import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.data.Container;
 import com.vaadin.data.Item;
 import com.vaadin.data.util.IndexedContainer;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class ConfigurationTest {
 
@@ -108,7 +107,7 @@ public class ConfigurationTest {
         xAxis.setCategories(new String[] { "A", "B", "C", "D", "E" });
         conf.addxAxis(xAxis);
         YAxis yAxis = new YAxis();
-        Title title = new Title();
+        AxisTitle title = new AxisTitle();
         title.setText("Numbers");
         yAxis.setTitle(title);
         conf.addyAxis(yAxis);

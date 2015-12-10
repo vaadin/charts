@@ -33,6 +33,11 @@ public class PlotOptionsGauge extends AbstractPlotOptions {
 	public PlotOptionsGauge() {
 	}
 
+	@Override
+	public ChartType getChartType() {
+		return ChartType.GAUGE;
+	}
+
 	public Boolean getAnimation() {
 		return animation;
 	}
@@ -241,10 +246,5 @@ public class PlotOptionsGauge extends AbstractPlotOptions {
 
 	public void removeZone(Zones zone) {
 		this.zones.remove(zone);
-	}
-
-	@Override
-	public ChartType getChartType() {
-		return ChartType.GAUGE;
 	}
 }

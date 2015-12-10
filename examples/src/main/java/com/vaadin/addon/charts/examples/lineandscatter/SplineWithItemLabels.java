@@ -1,18 +1,9 @@
 package com.vaadin.addon.charts.examples.lineandscatter;
 
-import static com.vaadin.addon.charts.model.Shape.CIRCLE;
-import static com.vaadin.addon.charts.model.VerticalAlign.MIDDLE;
-import static com.vaadin.addon.charts.model.style.FontWeight.BOLD;
-
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
-
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.SkipFromDemo;
+import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.AxisType;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
@@ -21,12 +12,21 @@ import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.Marker;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
-import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.charts.model.style.Style;
 import com.vaadin.addon.charts.util.Util;
 import com.vaadin.ui.Component;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
+import static com.vaadin.addon.charts.model.Shape.CIRCLE;
+import static com.vaadin.addon.charts.model.VerticalAlign.MIDDLE;
+import static com.vaadin.addon.charts.model.style.FontWeight.BOLD;
 
 @SkipFromDemo
 public class SplineWithItemLabels extends AbstractVaadinChartExample {
@@ -55,7 +55,7 @@ public class SplineWithItemLabels extends AbstractVaadinChartExample {
         configuration.getxAxis().setType(AxisType.DATETIME.toString());
 
         YAxis yAxis = configuration.getyAxis();
-        yAxis.setTitle(new Title("Wind speed (m/s)"));
+        yAxis.setTitle(new AxisTitle("Wind speed (m/s)"));
 
         PlotOptionsSpline plotOptions = new PlotOptionsSpline();
         configuration.setPlotOptions(plotOptions);

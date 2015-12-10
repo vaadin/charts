@@ -46,6 +46,11 @@ public class PlotOptionsSpline extends AbstractPlotOptions {
 	public PlotOptionsSpline() {
 	}
 
+	@Override
+	public ChartType getChartType() {
+		return ChartType.SPLINE;
+	}
+
 	public Boolean getAllowPointSelect() {
 		return allowPointSelect;
 	}
@@ -342,11 +347,6 @@ public class PlotOptionsSpline extends AbstractPlotOptions {
 
 	public void removeZone(Zones zone) {
 		this.zones.remove(zone);
-	}
-
-	@Override
-	public ChartType getChartType() {
-		return ChartType.SPLINE;
 	}
 
 	public void setPointStart(Date date) {

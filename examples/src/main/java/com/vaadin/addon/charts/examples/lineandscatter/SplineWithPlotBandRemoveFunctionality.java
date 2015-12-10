@@ -2,6 +2,7 @@ package com.vaadin.addon.charts.examples.lineandscatter;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.AxisType;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
@@ -13,7 +14,6 @@ import com.vaadin.addon.charts.model.MarkerSymbolEnum;
 import com.vaadin.addon.charts.model.PlotBand;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
 import com.vaadin.addon.charts.model.States;
-import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.charts.model.style.Style;
@@ -58,7 +58,7 @@ public class SplineWithPlotBandRemoveFunctionality extends
         configuration.getxAxis().setType(AxisType.DATETIME.toString());
 
         YAxis yAxis = configuration.getyAxis();
-        yAxis.setTitle(new Title("Wind speed (m/s)"));
+        yAxis.setTitle(new AxisTitle("Wind speed (m/s)"));
         yAxis.setMin(0);
         yAxis.setMinorGridLineWidth(0);
         yAxis.setGridLineWidth(0);

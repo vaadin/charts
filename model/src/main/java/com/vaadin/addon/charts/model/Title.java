@@ -7,16 +7,14 @@ public class Title extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
 	private String align;
+	private Boolean floating;
 	private ArrayList<Number> margin;
-	private Number offset;
-	private Number rotation;
 	private Style style;
 	private String text;
-	private Number x;
-	private Number y;
-	private Boolean floating;
 	private Boolean useHTML;
 	private String verticalAlign;
+	private Number x;
+	private Number y;
 
 	public Title() {
 	}
@@ -27,6 +25,14 @@ public class Title extends AbstractConfigurationObject {
 
 	public void setAlign(String align) {
 		this.align = align;
+	}
+
+	public Boolean getFloating() {
+		return floating;
+	}
+
+	public void setFloating(Boolean floating) {
+		this.floating = floating;
 	}
 
 	public Number[] getMargin() {
@@ -50,22 +56,6 @@ public class Title extends AbstractConfigurationObject {
 		this.margin.remove(margin);
 	}
 
-	public Number getOffset() {
-		return offset;
-	}
-
-	public void setOffset(Number offset) {
-		this.offset = offset;
-	}
-
-	public Number getRotation() {
-		return rotation;
-	}
-
-	public void setRotation(Number rotation) {
-		this.rotation = rotation;
-	}
-
 	public Style getStyle() {
 		return style;
 	}
@@ -86,30 +76,6 @@ public class Title extends AbstractConfigurationObject {
 		this.text = text;
 	}
 
-	public Number getX() {
-		return x;
-	}
-
-	public void setX(Number x) {
-		this.x = x;
-	}
-
-	public Number getY() {
-		return y;
-	}
-
-	public void setY(Number y) {
-		this.y = y;
-	}
-
-	public Boolean getFloating() {
-		return floating;
-	}
-
-	public void setFloating(Boolean floating) {
-		this.floating = floating;
-	}
-
 	public Boolean getUseHTML() {
 		return useHTML;
 	}
@@ -124,5 +90,21 @@ public class Title extends AbstractConfigurationObject {
 
 	public void setVerticalAlign(String verticalAlign) {
 		this.verticalAlign = verticalAlign;
+	}
+
+	public Number getX() {
+		return x;
+	}
+
+	public void setX(Number x) {
+		this.x = x;
+	}
+
+	public Number getY() {
+		return y;
+	}
+
+	public void setY(Number y) {
+		this.y = y;
 	}
 }

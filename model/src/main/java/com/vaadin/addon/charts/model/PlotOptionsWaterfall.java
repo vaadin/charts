@@ -56,6 +56,11 @@ public class PlotOptionsWaterfall extends AbstractPlotOptions {
 	public PlotOptionsWaterfall() {
 	}
 
+	@Override
+	public ChartType getChartType() {
+		return ChartType.WATERFALL;
+	}
+
 	public Boolean getAllowPointSelect() {
 		return allowPointSelect;
 	}
@@ -432,11 +437,6 @@ public class PlotOptionsWaterfall extends AbstractPlotOptions {
 
 	public void removeZone(Zones zone) {
 		this.zones.remove(zone);
-	}
-
-	@Override
-	public ChartType getChartType() {
-		return ChartType.WATERFALL;
 	}
 
 	public void setPointStart(Date date) {

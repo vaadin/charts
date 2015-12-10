@@ -39,6 +39,11 @@ public class PlotOptionsFunnel extends AbstractPlotOptions {
 	public PlotOptionsFunnel() {
 	}
 
+	@Override
+	public ChartType getChartType() {
+		return ChartType.FUNNEL;
+	}
+
 	public Boolean getAllowPointSelect() {
 		return allowPointSelect;
 	}
@@ -415,11 +420,6 @@ public class PlotOptionsFunnel extends AbstractPlotOptions {
 
 	public void removeZone(Zones zone) {
 		this.zones.remove(zone);
-	}
-
-	@Override
-	public ChartType getChartType() {
-		return ChartType.FUNNEL;
 	}
 
 	public void setCenter(String x, String y) {

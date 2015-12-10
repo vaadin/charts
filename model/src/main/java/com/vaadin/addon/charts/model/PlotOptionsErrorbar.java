@@ -50,6 +50,11 @@ public class PlotOptionsErrorbar extends AbstractPlotOptions {
 	public PlotOptionsErrorbar() {
 	}
 
+	@Override
+	public ChartType getChartType() {
+		return ChartType.ERRORBAR;
+	}
+
 	public Boolean getAllowPointSelect() {
 		return allowPointSelect;
 	}
@@ -403,11 +408,6 @@ public class PlotOptionsErrorbar extends AbstractPlotOptions {
 
 	public void removeZone(Zones zone) {
 		this.zones.remove(zone);
-	}
-
-	@Override
-	public ChartType getChartType() {
-		return ChartType.ERRORBAR;
 	}
 
 	public void setPointStart(Date date) {

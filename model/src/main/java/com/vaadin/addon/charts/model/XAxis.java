@@ -56,7 +56,7 @@ public class XAxis extends Axis {
 	private Number[] tickPositions;
 	private Number tickWidth;
 	private String tickmarkPlacement;
-	private Title title;
+	private AxisTitle title;
 	private String type;
 	private Object[] units;
 	private Boolean visible;
@@ -505,11 +505,11 @@ public class XAxis extends Axis {
 		this.tickmarkPlacement = tickmarkPlacement;
 	}
 
-	public Title getTitle() {
+	public AxisTitle getTitle() {
 		return title;
 	}
 
-	public void setTitle(Title title) {
+	public void setTitle(AxisTitle title) {
 		this.title = title;
 	}
 
@@ -554,7 +554,7 @@ public class XAxis extends Axis {
 	}
 
 	public void setTitle(String title) {
-		Title t = new Title();
+		AxisTitle t = new AxisTitle();
 		t.setText(title);
 		this.setTitle(t);
 	}

@@ -1,10 +1,8 @@
 package com.vaadin.addon.charts.examples.lineandscatter;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.AxisType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.Hover;
@@ -12,7 +10,6 @@ import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.Marker;
 import com.vaadin.addon.charts.model.PlotOptionsArea;
 import com.vaadin.addon.charts.model.States;
-import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.ZoomType;
 import com.vaadin.addon.charts.model.style.Color;
@@ -20,6 +17,9 @@ import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.server.Page;
 import com.vaadin.ui.Component;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class TimeSeriesZoomable extends AbstractVaadinChartExample {
 
@@ -196,12 +196,12 @@ public class TimeSeriesZoomable extends AbstractVaadinChartExample {
 
         configuration.getxAxis().setType(AxisType.DATETIME.toString());
         configuration.getxAxis().setMinRange(TWO_WEEKS);
-        configuration.getxAxis().setTitle(new Title(""));
+        configuration.getxAxis().setTitle(new AxisTitle(""));
 
         configuration.getLegend().setEnabled(false);
 
         YAxis yAxis = configuration.getyAxis();
-        yAxis.setTitle(new Title("Exchange rate"));
+        yAxis.setTitle(new AxisTitle("Exchange rate"));
         yAxis.setMin(0.6);
         yAxis.setStartOnTick(false);
         yAxis.setShowFirstLabel(false);

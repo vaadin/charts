@@ -43,6 +43,11 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 	public PlotOptionsTreeMap() {
 	}
 
+	@Override
+	public ChartType getChartType() {
+		return ChartType.TREEMAP;
+	}
+
 	public Boolean getAllowDrillToNode() {
 		return allowDrillToNode;
 	}
@@ -331,10 +336,5 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 
 	public void removeZone(Zones zone) {
 		this.zones.remove(zone);
-	}
-
-	@Override
-	public ChartType getChartType() {
-		return ChartType.TREEMAP;
 	}
 }

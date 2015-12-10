@@ -2,6 +2,7 @@ package com.vaadin.addon.charts.examples.columnandbar;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataLabels;
@@ -11,7 +12,6 @@ import com.vaadin.addon.charts.model.Legend;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.PlotOptionsBar;
 import com.vaadin.addon.charts.model.Series;
-import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.XAxis;
@@ -42,12 +42,12 @@ public class BasicBar extends AbstractVaadinChartExample {
         XAxis x = new XAxis();
         x.setCategories(new String[] { "Africa", "America", "Asia", "Europe",
                 "Oceania" });
-        x.setTitle(new Title((String) null));
+        x.setTitle(new AxisTitle((String) null));
         conf.addxAxis(x);
 
         YAxis y = new YAxis();
         y.setMin(0);
-        Title title = new Title("Population (millions)");
+        AxisTitle title = new AxisTitle("Population (millions)");
         // FIXME remove toString() once enums are used in model (CHARTS-159)
         title.setAlign(VerticalAlign.MIDDLE.toString());
         y.setTitle(title);

@@ -34,7 +34,7 @@ public class Legend extends AbstractConfigurationObject {
 	private Number symbolPadding;
 	private Number symbolRadius;
 	private Number symbolWidth;
-	private Title title;
+	private LegendTitle title;
 	private Boolean useHTML;
 	private String verticalAlign;
 	private Number width;
@@ -280,11 +280,11 @@ public class Legend extends AbstractConfigurationObject {
 		this.symbolWidth = symbolWidth;
 	}
 
-	public Title getTitle() {
+	public LegendTitle getTitle() {
 		return title;
 	}
 
-	public void setTitle(Title title) {
+	public void setTitle(LegendTitle title) {
 		this.title = title;
 	}
 

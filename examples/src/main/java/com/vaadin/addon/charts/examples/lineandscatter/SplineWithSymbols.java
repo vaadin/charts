@@ -2,6 +2,7 @@ package com.vaadin.addon.charts.examples.lineandscatter;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
@@ -10,7 +11,6 @@ import com.vaadin.addon.charts.model.Marker;
 import com.vaadin.addon.charts.model.MarkerSymbolEnum;
 import com.vaadin.addon.charts.model.MarkerSymbolUrl;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
-import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
@@ -40,7 +40,7 @@ public class SplineWithSymbols extends AbstractVaadinChartExample {
                         "Aug", "Sep", "Oct", "Nov", "Dec" });
 
         YAxis yAxis = configuration.getyAxis();
-        yAxis.setTitle(new Title("Temperature"));
+        yAxis.setTitle(new AxisTitle("Temperature"));
         Labels labels = new Labels();
         labels.setFormat("{value}°");
         labels.setFormatter("this.value +'°'");

@@ -23,8 +23,10 @@ import com.fasterxml.jackson.databind.SerializationConfig;
 import com.fasterxml.jackson.databind.ser.BeanSerializerModifier;
 import com.fasterxml.jackson.databind.ser.std.BeanSerializerBase;
 import com.vaadin.addon.charts.model.AbstractSeries;
+import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.ContainerDataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
+import com.vaadin.addon.charts.model.LegendTitle;
 import com.vaadin.addon.charts.model.Title;
 
 /**
@@ -48,7 +50,15 @@ public class DefaultBeanSerializerModifier extends BeanSerializerModifier {
         } else if (Title.class.isAssignableFrom(beanDesc.getBeanClass())) {
             return new BeanSerializerDelegator<Title>(
                     (BeanSerializerBase) serializer, new TitleBeanSerializer());
-        } else if (AbstractSeries.class.isAssignableFrom(beanDesc
+        } else if (AxisTitle.class.isAssignableFrom(beanDesc.getBeanClass())) {
+            return new BeanSerializerDelegator<AxisTitle>(
+                    (BeanSerializerBase) serializer, new AxisTitleBeanSerializer());
+        }
+        else if (LegendTitle.class.isAssignableFrom(beanDesc.getBeanClass())) {
+            return new BeanSerializerDelegator<LegendTitle>(
+                    (BeanSerializerBase) serializer, new LegendTitleBeanSerializer());
+        }
+        else if (AbstractSeries.class.isAssignableFrom(beanDesc
                 .getBeanClass())) {
             return new BeanSerializerDelegator<AbstractSeries>(
                     (BeanSerializerBase) serializer,

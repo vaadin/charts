@@ -2,6 +2,7 @@ package com.vaadin.addon.charts.examples.combinations;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.HorizontalAlign;
@@ -10,7 +11,6 @@ import com.vaadin.addon.charts.model.LayoutDirection;
 import com.vaadin.addon.charts.model.Legend;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
-import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.XAxis;
@@ -53,7 +53,7 @@ public class MultipleAxes extends AbstractVaadinChartExample {
         labels.setStyle(style);
         y1.setLabels(labels);
         y1.setOpposite(true);
-        Title title = new Title("Temperature");
+        AxisTitle title = new AxisTitle("Temperature");
         style = new Style();
         style.setColor(colors[1]);
         y1.setTitle(title);
@@ -61,7 +61,7 @@ public class MultipleAxes extends AbstractVaadinChartExample {
 
         YAxis y2 = new YAxis();
         y2.setGridLineWidth(0);
-        title = new Title("Rainfall");
+        title = new AxisTitle("Rainfall");
         style = new Style();
         style.setColor(colors[0]);
         y2.setTitle(title);
@@ -77,7 +77,7 @@ public class MultipleAxes extends AbstractVaadinChartExample {
         YAxis y3 = new YAxis();
         y3.setGridLineWidth(0);
         conf.addyAxis(y3);
-        title = new Title("Sea-Level Pressure");
+        title = new AxisTitle("Sea-Level Pressure");
         style = new Style();
         style.setColor(colors[2]);
         y3.setTitle(title);

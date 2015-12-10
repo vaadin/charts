@@ -1,13 +1,11 @@
 package com.vaadin.addon.charts.examples.columnandbar;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.DrilldownCallback;
 import com.vaadin.addon.charts.DrilldownEvent;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.SkipFromDemo;
+import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.AxisType;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
@@ -17,11 +15,13 @@ import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
 import com.vaadin.addon.charts.model.Series;
-import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.ui.Component;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @SuppressWarnings("serial")
 @SkipFromDemo
@@ -54,7 +54,7 @@ public class ColumnWithNativeLazyDrilldownByIndex extends
         conf.addxAxis(x);
 
         YAxis y = new YAxis();
-        y.setTitle(new Title("Total percent market share"));
+        y.setTitle(new AxisTitle("Total percent market share"));
         conf.addyAxis(y);
 
         PlotOptionsColumn column = new PlotOptionsColumn();

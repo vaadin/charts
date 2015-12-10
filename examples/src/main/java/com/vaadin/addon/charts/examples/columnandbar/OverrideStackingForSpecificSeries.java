@@ -3,6 +3,7 @@ package com.vaadin.addon.charts.examples.columnandbar;
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.SkipFromDemo;
+import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataLabels;
@@ -38,7 +39,7 @@ public class OverrideStackingForSpecificSeries extends
 
         YAxis yAxis = new YAxis();
         yAxis.setMin(0);
-        yAxis.setTitle(new Title("Total fruit consumption"));
+        yAxis.setTitle(new AxisTitle("Total fruit consumption"));
         StackLabels sLabels = new StackLabels(true);
         Style slStyle = new Style();
         slStyle.setFontWeight(FontWeight.BOLD);

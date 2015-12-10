@@ -4,13 +4,13 @@ import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.ExampleUtil;
 import com.vaadin.addon.charts.model.AbstractSeries;
+import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.ContainerDataSeries;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
 import com.vaadin.addon.charts.model.PlotOptionsPie;
 import com.vaadin.addon.charts.model.Series;
-import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.data.Container;
 import com.vaadin.ui.AbstractSelect.ItemCaptionMode;
@@ -105,7 +105,7 @@ public class ChartWithExternalContainer extends AbstractVaadinChartExample {
         configuration.getLegend().setEnabled(false);
 
         YAxis ax = new YAxis();
-        ax.setTitle(new Title(""));
+        ax.setTitle(new AxisTitle(""));
         configuration.addyAxis(ax);
 
         PlotOptionsColumn plotOptions = new PlotOptionsColumn();

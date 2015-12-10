@@ -3,6 +3,7 @@ package com.vaadin.addon.charts.examples.lineandscatter;
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.SkipFromDemo;
+import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataLabels;
@@ -12,7 +13,6 @@ import com.vaadin.addon.charts.model.HorizontalAlign;
 import com.vaadin.addon.charts.model.LayoutDirection;
 import com.vaadin.addon.charts.model.Legend;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
-import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.ui.Component;
@@ -46,7 +46,7 @@ public class LineWithMissingPoint extends AbstractVaadinChartExample {
 
         YAxis yAxis = configuration.getyAxis();
         yAxis.setMin(-5d);
-        yAxis.setTitle(new Title("Temperature (°C)"));
+        yAxis.setTitle(new AxisTitle("Temperature (°C)"));
         yAxis.getTitle().setAlign(VerticalAlign.HIGH.toString());
 
         configuration

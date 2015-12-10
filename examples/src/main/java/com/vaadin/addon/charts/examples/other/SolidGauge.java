@@ -2,6 +2,7 @@ package com.vaadin.addon.charts.examples.other;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.Background;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
@@ -11,7 +12,6 @@ import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.Pane;
 import com.vaadin.addon.charts.model.PlotOptionsSolidGauge;
 import com.vaadin.addon.charts.model.Stop;
-import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
@@ -63,7 +63,7 @@ public class SolidGauge extends AbstractVaadinChartExample {
         yaxis.setTickWidth(0);
         yaxis.setMin(0);
         yaxis.setMax(200);
-        yaxis.setTitle(new Title(""));
+        yaxis.setTitle(new AxisTitle(""));
         yaxis.getTitle().setY(-70);
         yaxis.setLabels(new Labels());
         yaxis.getLabels().setY(16);

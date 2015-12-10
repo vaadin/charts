@@ -37,6 +37,11 @@ public class PlotOptionsPyramid extends AbstractPlotOptions {
 	public PlotOptionsPyramid() {
 	}
 
+	@Override
+	public ChartType getChartType() {
+		return ChartType.PYRAMID;
+	}
+
 	public Boolean getAllowPointSelect() {
 		return allowPointSelect;
 	}
@@ -331,11 +336,6 @@ public class PlotOptionsPyramid extends AbstractPlotOptions {
 
 	public void removeZone(Zones zone) {
 		this.zones.remove(zone);
-	}
-
-	@Override
-	public ChartType getChartType() {
-		return ChartType.PYRAMID;
 	}
 
 	public void setCenter(String x, String y) {

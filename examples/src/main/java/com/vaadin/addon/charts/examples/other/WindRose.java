@@ -2,6 +2,7 @@ package com.vaadin.addon.charts.examples.other;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.Background;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
@@ -14,7 +15,6 @@ import com.vaadin.addon.charts.model.PlotOptionsColumn;
 import com.vaadin.addon.charts.model.PointPlacement;
 import com.vaadin.addon.charts.model.Stacking;
 import com.vaadin.addon.charts.model.TickmarkPlacement;
-import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
@@ -58,7 +58,7 @@ public class WindRose extends AbstractVaadinChartExample {
         yAxis.setMin(0);
         yAxis.setEndOnTick(false);
         yAxis.setShowLastLabel(true);
-        yAxis.setTitle(new Title("Frequency (%)"));
+        yAxis.setTitle(new AxisTitle("Frequency (%)"));
         // FIXME remove initialization after CHARTS-154
         yAxis.setLabels(new Labels());
         yAxis.getLabels().setFormat("{value}%");

@@ -1,21 +1,21 @@
 package com.vaadin.addon.charts.examples.combinations;
 
-import java.util.Random;
-
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.PlotOptionsPolygon;
 import com.vaadin.addon.charts.model.PlotOptionsScatter;
-import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.ZoomType;
 import com.vaadin.ui.Component;
+
+import java.util.Random;
 
 @SuppressWarnings("serial")
 public class ScatterAndPolygon extends AbstractVaadinChartExample {
@@ -45,10 +45,10 @@ public class ScatterAndPolygon extends AbstractVaadinChartExample {
         xAxis.setStartOnTick(true);
         xAxis.setEndOnTick(true);
         xAxis.setShowLastLabel(true);
-        xAxis.setTitle(new Title("Height (cm)"));
+        xAxis.setTitle(new AxisTitle("Height (cm)"));
 
         YAxis yAxis = conf.getyAxis();
-        yAxis.setTitle(new Title("Weight (kg)"));
+        yAxis.setTitle(new AxisTitle("Weight (kg)"));
 
         PlotOptionsScatter plotOptionsScatter = new PlotOptionsScatter();
         DataSeries scatter = new DataSeries();

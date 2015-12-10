@@ -1,13 +1,10 @@
 package com.vaadin.addon.charts.examples.dynamic;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.ChartSelectionEvent;
 import com.vaadin.addon.charts.ChartSelectionListener;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.AxisType;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
@@ -19,7 +16,6 @@ import com.vaadin.addon.charts.model.PlotBand;
 import com.vaadin.addon.charts.model.PlotOptionsArea;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.States;
-import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.ZoomType;
 import com.vaadin.addon.charts.model.style.GradientColor;
@@ -27,6 +23,10 @@ import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.charts.util.Util;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.VerticalLayout;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class MasterDetailChart extends AbstractVaadinChartExample {
 
@@ -258,7 +258,8 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
         configuration
                 .setSubTitle("Select an area by dragging across the lower chart");
         configuration.getxAxis().setType(AxisType.DATETIME.toString());
-        configuration.getyAxis().setTitle(new Title((String) null));
+        configuration.getyAxis().setTitle(new AxisTitle((String) null));
+
         configuration.getyAxis().setMinRange(0.1);
 
         configuration
@@ -318,7 +319,7 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
         configuration.getxAxis().setType(AxisType.DATETIME.toString());
         configuration.getxAxis().setShowLastLabel(true);
         configuration.getxAxis().setMinRange(14 * DAY_IN_MILLIS);
-        configuration.getxAxis().setTitle(new Title(""));
+        configuration.getxAxis().setTitle(new AxisTitle(""));
 
         PlotBand mask = new PlotBand();
         mask.setColor(new SolidColor(0, 0, 0, 0.2));
@@ -329,7 +330,7 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
         YAxis yAxis = configuration.getyAxis();
         yAxis.setGridLineWidth(0);
         yAxis.setLabels(new Labels(false));
-        yAxis.setTitle(new Title(""));
+        yAxis.setTitle(new AxisTitle(""));
         yAxis.setMin(0.6);
         yAxis.setShowFirstLabel(false);
 

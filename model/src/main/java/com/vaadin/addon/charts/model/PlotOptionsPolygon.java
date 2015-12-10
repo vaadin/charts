@@ -40,6 +40,11 @@ public class PlotOptionsPolygon extends AbstractPlotOptions {
 	public PlotOptionsPolygon() {
 	}
 
+	@Override
+	public ChartType getChartType() {
+		return ChartType.POLYGON;
+	}
+
 	public Boolean getAllowPointSelect() {
 		return allowPointSelect;
 	}
@@ -288,11 +293,6 @@ public class PlotOptionsPolygon extends AbstractPlotOptions {
 
 	public void removeZone(Zones zone) {
 		this.zones.remove(zone);
-	}
-
-	@Override
-	public ChartType getChartType() {
-		return ChartType.POLYGON;
 	}
 
 	public void setPointStart(Date date) {

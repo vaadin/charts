@@ -1,10 +1,8 @@
 package com.vaadin.addon.charts.examples.area;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.Labels;
@@ -20,6 +18,9 @@ import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @SuppressWarnings("serial")
 public class StackedArea extends AbstractVaadinChartExample {
@@ -50,7 +51,7 @@ public class StackedArea extends AbstractVaadinChartExample {
         conf.addxAxis(xAxis);
 
         YAxis yAxis = new YAxis();
-        yAxis.setTitle(new Title("Billions"));
+        yAxis.setTitle(new AxisTitle("Billions"));
         Labels labels = new Labels();
         labels.setFormatter("this.value / 1000");
         yAxis.setLabels(labels);

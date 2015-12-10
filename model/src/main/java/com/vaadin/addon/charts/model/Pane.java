@@ -4,14 +4,22 @@ import com.vaadin.addon.charts.util.SizeWithUnit;
 public class Pane extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
+	private Integer paneIndex;
 	private Object[] background;
 	private Object[] center;
 	private Number endAngle;
 	private String size;
 	private Number startAngle;
-	private Integer paneIndex;
 
 	public Pane() {
+	}
+
+	Integer getPaneIndex() {
+		return paneIndex;
+	}
+
+	void setPaneIndex(Integer paneIndex) {
+		this.paneIndex = paneIndex;
 	}
 
 	public Object[] getBackground() {
@@ -81,14 +89,6 @@ public class Pane extends AbstractConfigurationObject {
 
 	public void setStartAngle(Number startAngle) {
 		this.startAngle = startAngle;
-	}
-
-	Integer getPaneIndex() {
-		return paneIndex;
-	}
-
-	void setPaneIndex(Integer paneIndex) {
-		this.paneIndex = paneIndex;
 	}
 
 	public Pane(Number startAngle, Number endAngle) {

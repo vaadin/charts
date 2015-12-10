@@ -6,6 +6,7 @@ import com.vaadin.addon.charts.ChartClickListener;
 import com.vaadin.addon.charts.PointClickEvent;
 import com.vaadin.addon.charts.PointClickListener;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.HorizontalAlign;
@@ -13,7 +14,6 @@ import com.vaadin.addon.charts.model.LayoutDirection;
 import com.vaadin.addon.charts.model.Legend;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
-import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.XAxis;
@@ -55,14 +55,14 @@ public class BasicLineGettingMousePointerPosition extends
         conf.addxAxis(x);
 
         YAxis primary = new YAxis();
-        primary.setTitle(new Title("Temperature"));
+        primary.setTitle(new AxisTitle("Temperature"));
         Style style = new Style();
         style.setColor(colors[0]);
         primary.getTitle().setStyle(style);
         conf.addyAxis(primary);
 
         YAxis snd = new YAxis();
-        snd.setTitle(new Title("Rainfall"));
+        snd.setTitle(new AxisTitle("Rainfall"));
         snd.setOpposite(true);
         style = new Style();
         style.setColor(colors[1]);

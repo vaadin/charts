@@ -52,6 +52,11 @@ public class PlotOptionsAreaSpline extends AbstractPlotOptions {
 	public PlotOptionsAreaSpline() {
 	}
 
+	@Override
+	public ChartType getChartType() {
+		return ChartType.AREASPLINE;
+	}
+
 	public Boolean getAllowPointSelect() {
 		return allowPointSelect;
 	}
@@ -396,11 +401,6 @@ public class PlotOptionsAreaSpline extends AbstractPlotOptions {
 
 	public void removeZone(Zones zone) {
 		this.zones.remove(zone);
-	}
-
-	@Override
-	public ChartType getChartType() {
-		return ChartType.AREASPLINE;
 	}
 
 	public void setPointStart(Date date) {
