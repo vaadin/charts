@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts.examples.other;
 
+import java.util.Random;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.AxisTitle;
@@ -11,13 +13,11 @@ import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.Pane;
 import com.vaadin.addon.charts.model.PlotOptionsSolidGauge;
+import com.vaadin.addon.charts.model.SeriesTooltip;
 import com.vaadin.addon.charts.model.Stop;
-import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
-
-import java.util.Random;
 
 public class SolidGauge extends AbstractVaadinChartExample {
 
@@ -29,7 +29,7 @@ public class SolidGauge extends AbstractVaadinChartExample {
     @Override
     protected Component getChart() {
         final Chart chart = new Chart();
-        chart.setWidth(500,Unit.PIXELS);
+        chart.setWidth(500, Unit.PIXELS);
 
         final Configuration configuration = chart.getConfiguration();
         // FIXME remove toString() once enums are used in model (CHARTS-159)
@@ -45,7 +45,6 @@ public class SolidGauge extends AbstractVaadinChartExample {
         pane.setEndAngle(90);
         configuration.addPane(pane);
 
-
         configuration.getTooltip().setEnabled(false);
 
         Background bkg = new Background();
@@ -55,7 +54,7 @@ public class SolidGauge extends AbstractVaadinChartExample {
         bkg.setShape("arc");
         bkg.setBorderWidth(0);
         // FIXME missing generated API
-        pane.setBackground(new Object[]{bkg});
+        pane.setBackground(new Object[] { bkg });
 
         YAxis yaxis = configuration.getyAxis();
         yaxis.setLineWidth(0);
@@ -70,10 +69,10 @@ public class SolidGauge extends AbstractVaadinChartExample {
         Stop stop1 = new Stop(0.1f, SolidColor.GREEN);
         Stop stop2 = new Stop(0.5f, SolidColor.YELLOW);
         Stop stop3 = new Stop(0.9f, SolidColor.RED);
-        yaxis.setStops(new Stop[]{stop1, stop2, stop3});
+        yaxis.setStops(new Stop[] { stop1, stop2, stop3 });
 
         PlotOptionsSolidGauge plotOptions = new PlotOptionsSolidGauge();
-        plotOptions.setTooltip(new Tooltip());
+        plotOptions.setTooltip(new SeriesTooltip());
         plotOptions.getTooltip().setValueSuffix(" km/h");
         DataLabels labels = new DataLabels();
         labels.setY(5);

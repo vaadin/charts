@@ -10,7 +10,7 @@ import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
 import com.vaadin.addon.charts.model.PlotOptionsErrorbar;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
-import com.vaadin.addon.charts.model.Tooltip;
+import com.vaadin.addon.charts.model.SeriesTooltip;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.ZoomType;
 import com.vaadin.addon.charts.model.style.Color;
@@ -73,7 +73,7 @@ public class ErrorBarExample extends AbstractVaadinChartExample {
 
         PlotOptionsColumn column = new PlotOptionsColumn();
         column.setColor(colors[1]);
-        Tooltip tooltip = new Tooltip();
+        SeriesTooltip tooltip = new SeriesTooltip();
         tooltip.setPointFormat("<span style='font-weight: bold; color: {series.color}'>{series.name}</span>: <b>{point.y:.1f} mm</b> ");
         column.setTooltip(tooltip);
         rainfall.setPlotOptions(column);
@@ -84,7 +84,7 @@ public class ErrorBarExample extends AbstractVaadinChartExample {
         conf.addSeries(rainfallError);
         rainfallError.setyAxis(secondaryAxis);
         PlotOptionsErrorbar rainErrorOptions = new PlotOptionsErrorbar();
-        tooltip = new Tooltip();
+        tooltip = new SeriesTooltip();
         tooltip.setPointFormat("(error range: {point.low}-{point.high} mm)<br/>");
         rainErrorOptions.setTooltip(tooltip);
         rainfallError.setPlotOptions(rainErrorOptions);
@@ -93,7 +93,7 @@ public class ErrorBarExample extends AbstractVaadinChartExample {
         conf.addSeries(temperature);
         PlotOptionsSpline tempOptions = new PlotOptionsSpline();
         tempOptions.setColor(colors[0]);
-        tooltip = new Tooltip();
+        tooltip = new SeriesTooltip();
         tooltip.setPointFormat("<span style='font-weight: bold; color: {series.color}'>{series.name}</span>: <b>{point.y:.1f}°C");
         tempOptions.setTooltip(tooltip);
         temperature.setPlotOptions(tempOptions);
@@ -104,7 +104,7 @@ public class ErrorBarExample extends AbstractVaadinChartExample {
         SolidColor green = new SolidColor("green");
         tempErrorOptions.setStemColor(green);
         tempErrorOptions.setWhiskerColor(green);
-        tooltip = new Tooltip();
+        tooltip = new SeriesTooltip();
         tooltip.setPointFormat("(error range: {point.low}-{point.high}°C)<br/>");
         tempErrorOptions.setTooltip(tooltip);
         temperatureErrors.setPlotOptions(tempErrorOptions);

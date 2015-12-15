@@ -1,6 +1,9 @@
 package com.vaadin.addon.charts.model;
 
 import com.vaadin.addon.charts.model.style.Style;
+/**
+ * The axis title, showing next to the axis line.
+ */
 public class AxisTitle extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;

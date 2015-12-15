@@ -45,8 +45,6 @@ public class BubbleChartMaxSizePercentage extends AbstractVaadinChartExample {
 
         PlotOptionsBubble opts = new PlotOptionsBubble();
         opts.setNegativeColor(getThemeColors()[3]);
-        // FIXME missing generated API
-        // opts.setMaxSizeAsPercentage(50);
         opts.setMaxSize("50%");
         opts.setMinSize("3");
 

@@ -41,7 +41,7 @@ public class PlotOptionsAreaRange extends AbstractPlotOptions {
 	private States states;
 	private String step;
 	private Boolean stickyTracking;
-	private Tooltip tooltip;
+	private SeriesTooltip tooltip;
 	private Boolean trackByArea;
 	private Number turboThreshold;
 	private Boolean visible;
@@ -641,9 +641,9 @@ public class PlotOptionsAreaRange extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setTooltip(Tooltip)
+	 * @see #setTooltip(SeriesTooltip)
 	 */
-	public Tooltip getTooltip() {
+	public SeriesTooltip getTooltip() {
 		return tooltip;
 	}
 
@@ -652,7 +652,7 @@ public class PlotOptionsAreaRange extends AbstractPlotOptions {
 	 * Properties are inherited from <a href="#tooltip">tooltip</a>, but only
 	 * the following properties can be defined on a series level.
 	 */
-	public void setTooltip(Tooltip tooltip) {
+	public void setTooltip(SeriesTooltip tooltip) {
 		this.tooltip = tooltip;
 	}
 

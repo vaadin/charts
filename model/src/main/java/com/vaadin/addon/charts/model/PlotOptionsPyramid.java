@@ -33,7 +33,7 @@ public class PlotOptionsPyramid extends AbstractPlotOptions {
 	private Number slicedOffset;
 	private States states;
 	private Boolean stickyTracking;
-	private Tooltip tooltip;
+	private SeriesTooltip tooltip;
 	private Boolean visible;
 	private String width;
 	private String zoneAxis;
@@ -424,9 +424,9 @@ public class PlotOptionsPyramid extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setTooltip(Tooltip)
+	 * @see #setTooltip(SeriesTooltip)
 	 */
-	public Tooltip getTooltip() {
+	public SeriesTooltip getTooltip() {
 		return tooltip;
 	}
 
@@ -435,7 +435,7 @@ public class PlotOptionsPyramid extends AbstractPlotOptions {
 	 * Properties are inherited from <a href="#tooltip">tooltip</a>, but only
 	 * the following properties can be defined on a series level.
 	 */
-	public void setTooltip(Tooltip tooltip) {
+	public void setTooltip(SeriesTooltip tooltip) {
 		this.tooltip = tooltip;
 	}
 

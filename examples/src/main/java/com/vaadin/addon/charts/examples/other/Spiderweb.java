@@ -2,6 +2,7 @@ package com.vaadin.addon.charts.examples.other;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.model.Background;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.HorizontalAlign;
@@ -15,8 +16,6 @@ import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.ui.Component;
-
-
 
 @SuppressWarnings("serial")
 public class Spiderweb extends AbstractVaadinChartExample {
@@ -38,8 +37,7 @@ public class Spiderweb extends AbstractVaadinChartExample {
         Pane pane = new Pane();
         pane.setSize(80, com.vaadin.addon.charts.model.Unit.PERCENTAGE);
         conf.addPane(pane);
-        // FIXME missing generated API
-        // pane.setBackground(new Background[] {});
+        pane.setBackground(new Background[] {});
 
         XAxis axis = new XAxis();
         axis.setCategories(new String[] { "Sales", "Marketing", "Development",
@@ -55,7 +53,7 @@ public class Spiderweb extends AbstractVaadinChartExample {
         conf.addxAxis(axis);
         conf.addyAxis(yaxs);
 
-        // conf.getTooltip().setShared(true);
+        conf.getTooltip().setShared(true);
         conf.getTooltip().setValuePrefix("$");
 
         conf.getLegend().setAlign(HorizontalAlign.RIGHT.toString());

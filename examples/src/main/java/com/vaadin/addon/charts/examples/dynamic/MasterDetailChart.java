@@ -1,5 +1,9 @@
 package com.vaadin.addon.charts.examples.dynamic;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.ChartSelectionEvent;
 import com.vaadin.addon.charts.ChartSelectionListener;
@@ -23,10 +27,6 @@ import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.charts.util.Util;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.VerticalLayout;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 public class MasterDetailChart extends AbstractVaadinChartExample {
 
@@ -334,8 +334,7 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
         yAxis.setMin(0.6);
         yAxis.setShowFirstLabel(false);
 
-        // FIXME missing generated API
-        // configuration.getTooltip().setEnabled(false);
+        configuration.getTooltip().setEnabled(false);
 
         configuration.getLegend().setEnabled(false);
         configuration.getCredits().setEnabled(false);

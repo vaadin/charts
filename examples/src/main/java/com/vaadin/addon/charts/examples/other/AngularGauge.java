@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts.examples.other;
 
+import java.util.Random;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.AxisTitle;
@@ -10,14 +12,12 @@ import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.PlotBand;
 import com.vaadin.addon.charts.model.PlotOptionsGauge;
+import com.vaadin.addon.charts.model.SeriesTooltip;
 import com.vaadin.addon.charts.model.TickPosition;
-import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
-
-import java.util.Random;
 
 public class AngularGauge extends AbstractVaadinChartExample {
 
@@ -110,7 +110,7 @@ public class AngularGauge extends AbstractVaadinChartExample {
 
         final ListSeries series = new ListSeries("Speed", 80);
         PlotOptionsGauge plotOptions = new PlotOptionsGauge();
-        plotOptions.setTooltip(new Tooltip());
+        plotOptions.setTooltip(new SeriesTooltip());
         plotOptions.getTooltip().setValueSuffix(" km/h");
         series.setPlotOptions(plotOptions);
         configuration.setSeries(series);

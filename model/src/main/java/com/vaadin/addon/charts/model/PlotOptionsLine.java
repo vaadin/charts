@@ -38,7 +38,7 @@ public class PlotOptionsLine extends AbstractPlotOptions {
 	private String step;
 	private Boolean stickyTracking;
 	private Number threshold;
-	private Tooltip tooltip;
+	private SeriesTooltip tooltip;
 	private Number turboThreshold;
 	private Boolean visible;
 	private String zoneAxis;
@@ -654,9 +654,9 @@ public class PlotOptionsLine extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setTooltip(Tooltip)
+	 * @see #setTooltip(SeriesTooltip)
 	 */
-	public Tooltip getTooltip() {
+	public SeriesTooltip getTooltip() {
 		return tooltip;
 	}
 
@@ -665,7 +665,7 @@ public class PlotOptionsLine extends AbstractPlotOptions {
 	 * Properties are inherited from <a href="#tooltip">tooltip</a>, but only
 	 * the following properties can be defined on a series level.
 	 */
-	public void setTooltip(Tooltip tooltip) {
+	public void setTooltip(SeriesTooltip tooltip) {
 		this.tooltip = tooltip;
 	}
 

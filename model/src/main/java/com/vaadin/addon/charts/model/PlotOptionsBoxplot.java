@@ -51,7 +51,7 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 	private String stemDashStyle;
 	private Number stemWidth;
 	private Boolean stickyTracking;
-	private Tooltip tooltip;
+	private SeriesTooltip tooltip;
 	private Number turboThreshold;
 	private Boolean visible;
 	private Color whiskerColor;
@@ -730,9 +730,9 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setTooltip(Tooltip)
+	 * @see #setTooltip(SeriesTooltip)
 	 */
-	public Tooltip getTooltip() {
+	public SeriesTooltip getTooltip() {
 		return tooltip;
 	}
 
@@ -741,7 +741,7 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 	 * Properties are inherited from <a href="#tooltip">tooltip</a>, but only
 	 * the following properties can be defined on a series level.
 	 */
-	public void setTooltip(Tooltip tooltip) {
+	public void setTooltip(SeriesTooltip tooltip) {
 		this.tooltip = tooltip;
 	}
 

@@ -3,6 +3,9 @@ package com.vaadin.addon.charts.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import com.vaadin.addon.charts.model.style.Style;
+/**
+ * The chart's main title.
+ */
 public class Title extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;

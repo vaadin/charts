@@ -10,8 +10,8 @@ import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.PlotOptionsGauge;
+import com.vaadin.addon.charts.model.SeriesTooltip;
 import com.vaadin.addon.charts.model.TickPosition;
-import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
@@ -95,7 +95,7 @@ public class GaugeWithDualAxes extends AbstractVaadinChartExample {
         gradient.addColorStop(0, new SolidColor("#DDD"));
         gradient.addColorStop(1, new SolidColor("#FFF"));
         plotOptionsGauge.getDataLabels().setBackgroundColor(gradient);
-        plotOptionsGauge.setTooltip(new Tooltip());
+        plotOptionsGauge.setTooltip(new SeriesTooltip());
         plotOptionsGauge.getTooltip().setValueSuffix(" km/h");
         series.setPlotOptions(plotOptionsGauge);
 

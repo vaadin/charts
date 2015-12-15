@@ -1,6 +1,9 @@
 package com.vaadin.addon.charts.model;
 
 import com.vaadin.addon.charts.model.style.Style;
+/**
+ * A title to be added on top of the legend.
+ */
 public class LegendTitle extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;

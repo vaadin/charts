@@ -1,5 +1,15 @@
 package com.vaadin.addon.charts.examples.lineandscatter;
 
+import static com.vaadin.addon.charts.model.Shape.CIRCLE;
+import static com.vaadin.addon.charts.model.VerticalAlign.MIDDLE;
+import static com.vaadin.addon.charts.model.style.FontWeight.BOLD;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.SkipFromDemo;
@@ -15,18 +25,7 @@ import com.vaadin.addon.charts.model.PlotOptionsSpline;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.charts.model.style.Style;
-import com.vaadin.addon.charts.util.Util;
 import com.vaadin.ui.Component;
-
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
-
-import static com.vaadin.addon.charts.model.Shape.CIRCLE;
-import static com.vaadin.addon.charts.model.VerticalAlign.MIDDLE;
-import static com.vaadin.addon.charts.model.style.FontWeight.BOLD;
 
 @SkipFromDemo
 public class SplineWithItemLabels extends AbstractVaadinChartExample {
@@ -61,8 +60,7 @@ public class SplineWithItemLabels extends AbstractVaadinChartExample {
         configuration.setPlotOptions(plotOptions);
         plotOptions.setMarker(new Marker(false));
         plotOptions.setPointInterval(ONE_HOUR);
-        // Missing generated API PlotOptionsSpline.setPointStart(Date)
-        plotOptions.setPointStart(Util.toHighchartsTS(toDate("2009,9,6")));
+        plotOptions.setPointStart(toDate("2009,9,6"));
         DataSeries ds = new DataSeries();
         ds.setName("Hestavollane");
         ds.setData(4.3, 5.1, 4.3, 5.2, 5.4, 4.7, 3.5, 4.1, 5.6, 7.4, 6.9, 7.1,

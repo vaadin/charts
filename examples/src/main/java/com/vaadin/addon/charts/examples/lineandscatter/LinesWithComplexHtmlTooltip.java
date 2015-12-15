@@ -20,10 +20,9 @@ public class LinesWithComplexHtmlTooltip extends AbstractVaadinChartExample {
         chart.setHeight("450px");
         chart.setWidth("100%");
 
-        // FIXME missing generated API
         Tooltip tooltip = new Tooltip();
-        // tooltip.setShared(true);
-        // tooltip.setUseHTML(true);
+        tooltip.setShared(true);
+        tooltip.setUseHTML(true);
         tooltip.setHeaderFormat("<small>{point.key}</small><table>");
         tooltip.setPointFormat("<tr><td style=\"color: {series.color}\">{series.name}: </td><td style=\"text-align: right\"><b>{point.y} EUR</b></td></tr>");
         tooltip.setFooterFormat("</table>");

@@ -50,7 +50,7 @@ public class PlotOptionsWaterfall extends AbstractPlotOptions {
 	private States states;
 	private Boolean stickyTracking;
 	private Number threshold;
-	private Tooltip tooltip;
+	private SeriesTooltip tooltip;
 	private Color upColor;
 	private Boolean visible;
 	private String zoneAxis;
@@ -817,9 +817,9 @@ public class PlotOptionsWaterfall extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setTooltip(Tooltip)
+	 * @see #setTooltip(SeriesTooltip)
 	 */
-	public Tooltip getTooltip() {
+	public SeriesTooltip getTooltip() {
 		return tooltip;
 	}
 
@@ -828,7 +828,7 @@ public class PlotOptionsWaterfall extends AbstractPlotOptions {
 	 * Properties are inherited from <a href="#tooltip">tooltip</a>, but only
 	 * the following properties can be defined on a series level.
 	 */
-	public void setTooltip(Tooltip tooltip) {
+	public void setTooltip(SeriesTooltip tooltip) {
 		this.tooltip = tooltip;
 	}
 

@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts.examples.lineandscatter;
 
+import java.util.Random;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.SkipFromDemo;
@@ -15,8 +17,6 @@ import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
-
-import java.util.Random;
 
 @SkipFromDemo
 public class SplineUpdatingEachSecondWithTwoLines extends
@@ -52,7 +52,7 @@ public class SplineUpdatingEachSecondWithTwoLines extends
         yAxis.setPlotLines(new PlotLine[] { plotline });
 
         // FIXME missing generated API
-        // configuration.getTooltip().setEnabled(false);
+        configuration.getTooltip().setEnabled(false);
         configuration.getLegend().setEnabled(false);
 
         final DataSeries series = new DataSeries();

@@ -1,141 +1,26 @@
 package com.vaadin.addon.charts.model;
-
-import com.vaadin.addon.charts.model.style.Color;
-import com.vaadin.addon.charts.model.style.Style;
 /**
- * Options for the tooltip that appears when the user hovers over a series or
- * point.
+ * A configuration object for the tooltip rendering of each single series.
+ * Properties are inherited from <a href="#tooltip">tooltip</a>, but only the
+ * following properties can be defined on a series level.
  */
-public class Tooltip extends AbstractConfigurationObject {
+public class SeriesTooltip extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
-	private Boolean animation;
-	private Color backgroundColor;
-	private Color borderColor;
-	private Number borderRadius;
-	private Number borderWidth;
-	private Object[] crosshairs;
 	private DateTimeLabelFormats dateTimeLabelFormats;
-	private Boolean enabled;
 	private Boolean followPointer;
 	private Boolean followTouchMove;
 	private String footerFormat;
-	private String _fn_formatter;
 	private String headerFormat;
 	private Number hideDelay;
 	private String pointFormat;
 	private Object pointFormatter;
-	private Object positioner;
-	private Boolean shadow;
-	private String shape;
-	private Boolean shared;
-	private Number snap;
-	private Style style;
-	private Boolean useHTML;
 	private Number valueDecimals;
 	private String valuePrefix;
 	private String valueSuffix;
 	private String xDateFormat;
 
-	public Tooltip() {
-	}
-
-	/**
-	 * @see #setAnimation(Boolean)
-	 */
-	public Boolean getAnimation() {
-		return animation;
-	}
-
-	/**
-	 * Enable or disable animation of the tooltip. In slow legacy IE browsers
-	 * the animation is disabled by default.
-	 * <p>
-	 * Defaults to: true
-	 */
-	public void setAnimation(Boolean animation) {
-		this.animation = animation;
-	}
-
-	/**
-	 * @see #setBackgroundColor(Color)
-	 */
-	public Color getBackgroundColor() {
-		return backgroundColor;
-	}
-
-	/**
-	 * The background color or gradient for the tooltip.
-	 * <p>
-	 * Defaults to: rgba(255, 255, 255, 0.85)
-	 */
-	public void setBackgroundColor(Color backgroundColor) {
-		this.backgroundColor = backgroundColor;
-	}
-
-	/**
-	 * @see #setBorderColor(Color)
-	 */
-	public Color getBorderColor() {
-		return borderColor;
-	}
-
-	/**
-	 * The color of the tooltip border. When <code>null</code>, the border takes
-	 * the color of the corresponding series or point.
-	 * <p>
-	 * Defaults to: null
-	 */
-	public void setBorderColor(Color borderColor) {
-		this.borderColor = borderColor;
-	}
-
-	/**
-	 * @see #setBorderRadius(Number)
-	 */
-	public Number getBorderRadius() {
-		return borderRadius;
-	}
-
-	/**
-	 * The radius of the rounded border corners.
-	 * <p>
-	 * Defaults to: 3
-	 */
-	public void setBorderRadius(Number borderRadius) {
-		this.borderRadius = borderRadius;
-	}
-
-	/**
-	 * @see #setBorderWidth(Number)
-	 */
-	public Number getBorderWidth() {
-		return borderWidth;
-	}
-
-	/**
-	 * The pixel width of the tooltip border.
-	 * <p>
-	 * Defaults to: 1
-	 */
-	public void setBorderWidth(Number borderWidth) {
-		this.borderWidth = borderWidth;
-	}
-
-	/**
-	 * @see #setCrosshairs(Object[])
-	 */
-	public Object[] getCrosshairs() {
-		return crosshairs;
-	}
-
-	/**
-	 * Since 4.1, the crosshair definitions are moved to the Axis object in
-	 * order for a better separation from the tooltip. See <a
-	 * href="#xAxis.crosshair">xAxis.crosshair<a>.
-	 */
-	public void setCrosshairs(Object[] crosshairs) {
-		this.crosshairs = crosshairs;
+	public SeriesTooltip() {
 	}
 
 	/**
@@ -177,26 +62,6 @@ public class Tooltip extends AbstractConfigurationObject {
 	public void setDateTimeLabelFormats(
 			DateTimeLabelFormats dateTimeLabelFormats) {
 		this.dateTimeLabelFormats = dateTimeLabelFormats;
-	}
-
-	public Tooltip(Boolean enabled) {
-		this.enabled = enabled;
-	}
-
-	/**
-	 * @see #setEnabled(Boolean)
-	 */
-	public Boolean getEnabled() {
-		return enabled;
-	}
-
-	/**
-	 * Enable or disable the tooltip.
-	 * <p>
-	 * Defaults to: true
-	 */
-	public void setEnabled(Boolean enabled) {
-		this.enabled = enabled;
 	}
 
 	/**
@@ -257,14 +122,6 @@ public class Tooltip extends AbstractConfigurationObject {
 	 */
 	public void setFooterFormat(String footerFormat) {
 		this.footerFormat = footerFormat;
-	}
-
-	public String getFormatter() {
-		return _fn_formatter;
-	}
-
-	public void setFormatter(String _fn_formatter) {
-		this._fn_formatter = _fn_formatter;
 	}
 
 	/**
@@ -353,143 +210,6 @@ public class Tooltip extends AbstractConfigurationObject {
 	 */
 	public void setPointFormatter(Object pointFormatter) {
 		this.pointFormatter = pointFormatter;
-	}
-
-	/**
-	 * @see #setPositioner(Object)
-	 */
-	public Object getPositioner() {
-		return positioner;
-	}
-
-	/**
-	 * <p>
-	 * A callback function to place the tooltip in a default position. The
-	 * callback receives three parameters: <code>labelWidth</code>,
-	 * <code>labelHeight</code> and <code>point</code>, where point contains
-	 * values for <code>plotX</code> and <code>plotY</code> telling where the
-	 * reference point is in the plot area. Add <code>chart.plotLeft</code> and
-	 * <code>chart.plotTop</code> to get the full coordinates.
-	 * </p>
-	 * 
-	 * <p>
-	 * The return should be an object containing x and y values, for example
-	 * <code>{ x: 100, y: 100 }</code>.
-	 * </p>
-	 */
-	public void setPositioner(Object positioner) {
-		this.positioner = positioner;
-	}
-
-	/**
-	 * @see #setShadow(Boolean)
-	 */
-	public Boolean getShadow() {
-		return shadow;
-	}
-
-	/**
-	 * Whether to apply a drop shadow to the tooltip.
-	 * <p>
-	 * Defaults to: true
-	 */
-	public void setShadow(Boolean shadow) {
-		this.shadow = shadow;
-	}
-
-	/**
-	 * @see #setShape(String)
-	 */
-	public String getShape() {
-		return shape;
-	}
-
-	/**
-	 * The name of a symbol to use for the border around the tooltip. In
-	 * Highcharts 3.x and less, the shape was <code>square</code>.
-	 * <p>
-	 * Defaults to: callout
-	 */
-	public void setShape(String shape) {
-		this.shape = shape;
-	}
-
-	/**
-	 * @see #setShared(Boolean)
-	 */
-	public Boolean getShared() {
-		return shared;
-	}
-
-	/**
-	 * When the tooltip is shared, the entire plot area will capture mouse
-	 * movement or touch events. Tooltip texts for series types with ordered
-	 * data (not pie, scatter, flags etc) will be shown in a single bubble. This
-	 * is recommended for single series charts and for tablet/mobile optimized
-	 * charts.
-	 * <p>
-	 * Defaults to: false
-	 */
-	public void setShared(Boolean shared) {
-		this.shared = shared;
-	}
-
-	/**
-	 * @see #setSnap(Number)
-	 */
-	public Number getSnap() {
-		return snap;
-	}
-
-	/**
-	 * Proximity snap for graphs or single points. Does not apply to bars,
-	 * columns and pie slices. It defaults to 10 for mouse-powered devices and
-	 * 25 for touch devices. Note that since Highcharts 4.1 the whole plot area
-	 * by default captures pointer events in order to show the tooltip, so for
-	 * tooltip.snap to make sense, <a
-	 * href="#plotOptions.series.stickyTracking">stickyTracking</a> must be
-	 * <code>false</code>.
-	 */
-	public void setSnap(Number snap) {
-		this.snap = snap;
-	}
-
-	/**
-	 * @see #setStyle(Style)
-	 */
-	public Style getStyle() {
-		return style;
-	}
-
-	/**
-	 * CSS styles for the tooltip. The tooltip can also be styled through the
-	 * CSS class <code>.highcharts-tooltip</code>.
-	 * <p>
-	 * Defaults to: { "color": "#333333", "cursor": "default", "fontSize":
-	 * "12px", "padding": "8px", "pointerEvents": "none", "whiteSpace": "nowrap"
-	 * }
-	 */
-	public void setStyle(Style style) {
-		this.style = style;
-	}
-
-	/**
-	 * @see #setUseHTML(Boolean)
-	 */
-	public Boolean getUseHTML() {
-		return useHTML;
-	}
-
-	/**
-	 * Use HTML to render the contents of the tooltip instead of SVG. Using HTML
-	 * allows advanced formatting like tables and images in the tooltip. It is
-	 * also recommended for rtl languages as it works around rtl bugs in early
-	 * Firefox.
-	 * <p>
-	 * Defaults to: false
-	 */
-	public void setUseHTML(Boolean useHTML) {
-		this.useHTML = useHTML;
 	}
 
 	/**

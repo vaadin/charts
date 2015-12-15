@@ -41,7 +41,7 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 	private Boolean showInLegend;
 	private States states;
 	private Boolean stickyTracking;
-	private Tooltip tooltip;
+	private SeriesTooltip tooltip;
 	private Number turboThreshold;
 	private Boolean visible;
 	private String zoneAxis;
@@ -576,9 +576,9 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setTooltip(Tooltip)
+	 * @see #setTooltip(SeriesTooltip)
 	 */
-	public Tooltip getTooltip() {
+	public SeriesTooltip getTooltip() {
 		return tooltip;
 	}
 
@@ -586,7 +586,7 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 	 * <p>
 	 * Defaults to:
 	 */
-	public void setTooltip(Tooltip tooltip) {
+	public void setTooltip(SeriesTooltip tooltip) {
 		this.tooltip = tooltip;
 	}
 
