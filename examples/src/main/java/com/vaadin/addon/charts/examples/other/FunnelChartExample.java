@@ -3,7 +3,7 @@ package com.vaadin.addon.charts.examples.other;
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.Configuration;
-import com.vaadin.addon.charts.model.DataLabels;
+import com.vaadin.addon.charts.model.DataLabelsFunnel;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.PlotOptionsFunnel;
@@ -40,7 +40,7 @@ public class FunnelChartExample extends AbstractVaadinChartExample {
 
         options.setWidth("70%");
 
-        DataLabels dataLabels = new DataLabels();
+        DataLabelsFunnel dataLabels = new DataLabelsFunnel();
         dataLabels.setFormat("<b>{point.name}</b> ({point.y:,.0f})");
         options.setDataLabels(dataLabels);
 

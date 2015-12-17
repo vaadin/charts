@@ -1,7 +1,5 @@
 package com.vaadin.addon.charts.examples.other;
 
-import java.util.Random;
-
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.Background;
@@ -19,6 +17,8 @@ import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
+
+import java.util.Random;
 
 public class VUMeter extends AbstractVaadinChartExample {
 
@@ -78,8 +78,8 @@ public class VUMeter extends AbstractVaadinChartExample {
         // FIXME remove initialization after CHARTS-154
         yAxis.setLabels(new Labels());
         yAxis.getLabels().setDistance(20);
-        // FIXME missing generated API
-        // yAxis.getLabels().setRotationPerpendicular();
+
+        yAxis.getLabels().setRotationPerpendicular();
         yAxis.setPlotBands(plotBand1);
 
         YAxis yAxis2 = new YAxis();
@@ -92,7 +92,7 @@ public class VUMeter extends AbstractVaadinChartExample {
         yAxis2.setMinorTickPosition(TickPosition.OUTSIDE.toString());
         yAxis2.setLabels(new Labels());
         yAxis2.getLabels().setDistance(20);
-        // yAxis2.getLabels().setRotationPerpendicular();
+        yAxis2.getLabels().setRotationPerpendicular();
         yAxis2.setPlotBands(plotBand2);
 
         configuration.addyAxis(yAxis);

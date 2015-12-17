@@ -2,18 +2,20 @@ package com.vaadin.addon.charts.model;
 
 import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.Style;
-public class DataLabels extends AbstractConfigurationObject {
+public class DataLabelsFunnel extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
-	private String align;
-	private Boolean allowOverlap;
 	private Color backgroundColor;
 	private Color borderColor;
 	private Number borderRadius;
 	private Number borderWidth;
 	private Color color;
+	private String connectorColor;
+	private Number connectorPadding;
+	private Number connectorWidth;
 	private Boolean crop;
 	private Boolean defer;
+	private Number distance;
 	private Boolean enabled;
 	private String format;
 	private String _fn_formatter;
@@ -23,59 +25,15 @@ public class DataLabels extends AbstractConfigurationObject {
 	private Number rotation;
 	private Object shadow;
 	private String shape;
+	private Boolean softConnector;
 	private Style style;
 	private Boolean useHTML;
 	private String verticalAlign;
 	private Number x;
 	private Number y;
 	private Number zIndex;
-	private String connectorColor;
-	private Number connectorPadding;
-	private Number connectorWidth;
-	private Number distance;
-	private Boolean softConnector;
 
-	public DataLabels() {
-	}
-
-	/**
-	 * @see #setAlign(String)
-	 */
-	public String getAlign() {
-		return align;
-	}
-
-	/**
-	 * The alignment of the data label compared to the point. If
-	 * <code>right</code>, the right side of the label should be touching the
-	 * point. For points with an extent, like columns, the alignments also
-	 * dictates how to align it inside the box, as given with the <a
-	 * href="#plotOptions.column.dataLabels.inside">inside</a> option. Can be
-	 * one of "left", "center" or "right".
-	 * <p>
-	 * Defaults to: center
-	 */
-	public void setAlign(String align) {
-		this.align = align;
-	}
-
-	/**
-	 * @see #setAllowOverlap(Boolean)
-	 */
-	public Boolean getAllowOverlap() {
-		return allowOverlap;
-	}
-
-	/**
-	 * Whether to allow data labels to overlap. To make the labels less
-	 * sensitive for overlapping, the <a
-	 * href="#plotOptions.series.dataLabels.padding">dataLabels.padding</a> can
-	 * be set to 0.
-	 * <p>
-	 * Defaults to: false
-	 */
-	public void setAllowOverlap(Boolean allowOverlap) {
-		this.allowOverlap = allowOverlap;
+	public DataLabelsFunnel() {
 	}
 
 	/**
@@ -154,6 +112,55 @@ public class DataLabels extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * @see #setConnectorColor(String)
+	 */
+	public String getConnectorColor() {
+		return connectorColor;
+	}
+
+	/**
+	 * The color of the line connecting the data label to the pie slice. The
+	 * default color is the same as the point's color.
+	 * <p>
+	 * Defaults to: {point.color}
+	 */
+	public void setConnectorColor(String connectorColor) {
+		this.connectorColor = connectorColor;
+	}
+
+	/**
+	 * @see #setConnectorPadding(Number)
+	 */
+	public Number getConnectorPadding() {
+		return connectorPadding;
+	}
+
+	/**
+	 * The distance from the data label to the connector.
+	 * <p>
+	 * Defaults to: 5
+	 */
+	public void setConnectorPadding(Number connectorPadding) {
+		this.connectorPadding = connectorPadding;
+	}
+
+	/**
+	 * @see #setConnectorWidth(Number)
+	 */
+	public Number getConnectorWidth() {
+		return connectorWidth;
+	}
+
+	/**
+	 * The width of the line connecting the data label to the pie slice.
+	 * <p>
+	 * Defaults to: 1
+	 */
+	public void setConnectorWidth(Number connectorWidth) {
+		this.connectorWidth = connectorWidth;
+	}
+
+	/**
 	 * @see #setCrop(Boolean)
 	 */
 	public Boolean getCrop() {
@@ -188,7 +195,25 @@ public class DataLabels extends AbstractConfigurationObject {
 		this.defer = defer;
 	}
 
-	public DataLabels(Boolean enabled) {
+	/**
+	 * @see #setDistance(Number)
+	 */
+	public Number getDistance() {
+		return distance;
+	}
+
+	/**
+	 * The distance of the data label from the pie's edge. Negative numbers put
+	 * the data label on top of the pie slices. Connectors are only shown for
+	 * data labels outside the pie.
+	 * <p>
+	 * Defaults to: 30
+	 */
+	public void setDistance(Number distance) {
+		this.distance = distance;
+	}
+
+	public DataLabelsFunnel(Boolean enabled) {
 		this.enabled = enabled;
 	}
 
@@ -202,7 +227,7 @@ public class DataLabels extends AbstractConfigurationObject {
 	/**
 	 * Enable or disable the data labels.
 	 * <p>
-	 * Defaults to: false
+	 * Defaults to: true
 	 */
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
@@ -342,6 +367,22 @@ public class DataLabels extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * @see #setSoftConnector(Boolean)
+	 */
+	public Boolean getSoftConnector() {
+		return softConnector;
+	}
+
+	/**
+	 * Whether to render the connector as a soft arc or a line with sharp break.
+	 * <p>
+	 * Defaults to: true
+	 */
+	public void setSoftConnector(Boolean softConnector) {
+		this.softConnector = softConnector;
+	}
+
+	/**
 	 * @see #setStyle(Style)
 	 */
 	public Style getStyle() {
@@ -440,88 +481,5 @@ public class DataLabels extends AbstractConfigurationObject {
 	 */
 	public void setZIndex(Number zIndex) {
 		this.zIndex = zIndex;
-	}
-
-	/**
-	 * @see #setConnectorColor(String)
-	 */
-	public String getConnectorColor() {
-		return connectorColor;
-	}
-
-	/**
-	 * The color of the line connecting the data label to the pie slice. The
-	 * default color is the same as the point's color.
-	 * <p>
-	 * Defaults to: {point.color}
-	 */
-	public void setConnectorColor(String connectorColor) {
-		this.connectorColor = connectorColor;
-	}
-
-	/**
-	 * @see #setConnectorPadding(Number)
-	 */
-	public Number getConnectorPadding() {
-		return connectorPadding;
-	}
-
-	/**
-	 * The distance from the data label to the connector.
-	 * <p>
-	 * Defaults to: 5
-	 */
-	public void setConnectorPadding(Number connectorPadding) {
-		this.connectorPadding = connectorPadding;
-	}
-
-	/**
-	 * @see #setConnectorWidth(Number)
-	 */
-	public Number getConnectorWidth() {
-		return connectorWidth;
-	}
-
-	/**
-	 * The width of the line connecting the data label to the pie slice.
-	 * <p>
-	 * Defaults to: 1
-	 */
-	public void setConnectorWidth(Number connectorWidth) {
-		this.connectorWidth = connectorWidth;
-	}
-
-	/**
-	 * @see #setDistance(Number)
-	 */
-	public Number getDistance() {
-		return distance;
-	}
-
-	/**
-	 * The distance of the data label from the pie's edge. Negative numbers put
-	 * the data label on top of the pie slices. Connectors are only shown for
-	 * data labels outside the pie.
-	 * <p>
-	 * Defaults to: 30
-	 */
-	public void setDistance(Number distance) {
-		this.distance = distance;
-	}
-
-	/**
-	 * @see #setSoftConnector(Boolean)
-	 */
-	public Boolean getSoftConnector() {
-		return softConnector;
-	}
-
-	/**
-	 * Whether to render the connector as a soft arc or a line with sharp break.
-	 * <p>
-	 * Defaults to: true
-	 */
-	public void setSoftConnector(Boolean softConnector) {
-		this.softConnector = softConnector;
 	}
 }

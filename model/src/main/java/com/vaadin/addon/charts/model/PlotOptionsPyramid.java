@@ -18,7 +18,7 @@ public class PlotOptionsPyramid extends AbstractPlotOptions {
 	private Object[] center;
 	private Object colors;
 	private String cursor;
-	private DataLabels dataLabels;
+	private DataLabelsFunnel dataLabels;
 	private Number depth;
 	private Boolean enableMouseTracking;
 	private Boolean getExtremesFromAll;
@@ -135,16 +135,16 @@ public class PlotOptionsPyramid extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setDataLabels(DataLabels)
+	 * @see #setDataLabels(DataLabelsFunnel)
 	 */
-	public DataLabels getDataLabels() {
+	public DataLabelsFunnel getDataLabels() {
 		return dataLabels;
 	}
 
 	/**
 	 * 
 	 */
-	public void setDataLabels(DataLabels dataLabels) {
+	public void setDataLabels(DataLabelsFunnel dataLabels) {
 		this.dataLabels = dataLabels;
 	}
 

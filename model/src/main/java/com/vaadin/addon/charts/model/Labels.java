@@ -12,7 +12,6 @@ public class Labels extends AbstractConfigurationObject {
 	private String format;
 	private String _fn_formatter;
 	private Number padding;
-	private Number rotation;
 	private Number staggerLines;
 	private Number step;
 	private Style style;
@@ -21,6 +20,7 @@ public class Labels extends AbstractConfigurationObject {
 	private Number y;
 	private Number zIndex;
 	private Items[] items;
+	private String rotation;
 
 	public Labels() {
 	}
@@ -162,22 +162,6 @@ public class Labels extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setRotation(Number)
-	 */
-	public Number getRotation() {
-		return rotation;
-	}
-
-	/**
-	 * Rotation of the labels in degrees.
-	 * <p>
-	 * Defaults to: 0
-	 */
-	public void setRotation(Number rotation) {
-		this.rotation = rotation;
-	}
-
-	/**
 	 * @see #setStaggerLines(Number)
 	 */
 	public Number getStaggerLines() {
@@ -313,5 +297,21 @@ public class Labels extends AbstractConfigurationObject {
 	 */
 	public void setItems(Items[] items) {
 		this.items = items;
+	}
+
+	public String getRotation() {
+		return rotation;
+	}
+
+	public void setRotation(String rotation) {
+		this.rotation = rotation;
+	}
+
+	public void setRotation(Number rotation) {
+		this.rotation = rotation + "";
+	}
+
+	public void setRotationPerpendicular() {
+		this.rotation = "auto";
 	}
 }

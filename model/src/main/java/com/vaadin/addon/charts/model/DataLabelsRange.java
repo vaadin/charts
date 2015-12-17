@@ -2,7 +2,14 @@ package com.vaadin.addon.charts.model;
 
 import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.Style;
-public class DataLabels extends AbstractConfigurationObject {
+/**
+ * Extended data labels for range series types. Range series data labels have no
+ * <code>x</code> and <code>y</code> options. Instead, they have
+ * <code>xLow</code>, <code>xHigh</code>, <code>yLow</code> and
+ * <code>yHigh</code> options to allow the higher and lower data label sets
+ * individually.
+ */
+public class DataLabelsRange extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
 	private String align;
@@ -26,16 +33,13 @@ public class DataLabels extends AbstractConfigurationObject {
 	private Style style;
 	private Boolean useHTML;
 	private String verticalAlign;
-	private Number x;
-	private Number y;
+	private Number xHigh;
+	private Number xLow;
+	private Number yHigh;
+	private Number yLow;
 	private Number zIndex;
-	private String connectorColor;
-	private Number connectorPadding;
-	private Number connectorWidth;
-	private Number distance;
-	private Boolean softConnector;
 
-	public DataLabels() {
+	public DataLabelsRange() {
 	}
 
 	/**
@@ -188,7 +192,7 @@ public class DataLabels extends AbstractConfigurationObject {
 		this.defer = defer;
 	}
 
-	public DataLabels(Boolean enabled) {
+	public DataLabelsRange(Boolean enabled) {
 		this.enabled = enabled;
 	}
 
@@ -394,35 +398,67 @@ public class DataLabels extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setX(Number)
+	 * @see #setXHigh(Number)
 	 */
-	public Number getX() {
-		return x;
+	public Number getXHigh() {
+		return xHigh;
 	}
 
 	/**
-	 * The x position offset of the label relative to the point.
+	 * X offset of the higher data labels relative to the point value.
 	 * <p>
 	 * Defaults to: 0
 	 */
-	public void setX(Number x) {
-		this.x = x;
+	public void setXHigh(Number xHigh) {
+		this.xHigh = xHigh;
 	}
 
 	/**
-	 * @see #setY(Number)
+	 * @see #setXLow(Number)
 	 */
-	public Number getY() {
-		return y;
+	public Number getXLow() {
+		return xLow;
 	}
 
 	/**
-	 * The y position offset of the label relative to the point.
+	 * X offset of the lower data labels relative to the point value.
+	 * <p>
+	 * Defaults to: 0
+	 */
+	public void setXLow(Number xLow) {
+		this.xLow = xLow;
+	}
+
+	/**
+	 * @see #setYHigh(Number)
+	 */
+	public Number getYHigh() {
+		return yHigh;
+	}
+
+	/**
+	 * Y offset of the higher data labels relative to the point value.
 	 * <p>
 	 * Defaults to: -6
 	 */
-	public void setY(Number y) {
-		this.y = y;
+	public void setYHigh(Number yHigh) {
+		this.yHigh = yHigh;
+	}
+
+	/**
+	 * @see #setYLow(Number)
+	 */
+	public Number getYLow() {
+		return yLow;
+	}
+
+	/**
+	 * Y offset of the lower data labels relative to the point value.
+	 * <p>
+	 * Defaults to: 16
+	 */
+	public void setYLow(Number yLow) {
+		this.yLow = yLow;
 	}
 
 	/**
@@ -440,88 +476,5 @@ public class DataLabels extends AbstractConfigurationObject {
 	 */
 	public void setZIndex(Number zIndex) {
 		this.zIndex = zIndex;
-	}
-
-	/**
-	 * @see #setConnectorColor(String)
-	 */
-	public String getConnectorColor() {
-		return connectorColor;
-	}
-
-	/**
-	 * The color of the line connecting the data label to the pie slice. The
-	 * default color is the same as the point's color.
-	 * <p>
-	 * Defaults to: {point.color}
-	 */
-	public void setConnectorColor(String connectorColor) {
-		this.connectorColor = connectorColor;
-	}
-
-	/**
-	 * @see #setConnectorPadding(Number)
-	 */
-	public Number getConnectorPadding() {
-		return connectorPadding;
-	}
-
-	/**
-	 * The distance from the data label to the connector.
-	 * <p>
-	 * Defaults to: 5
-	 */
-	public void setConnectorPadding(Number connectorPadding) {
-		this.connectorPadding = connectorPadding;
-	}
-
-	/**
-	 * @see #setConnectorWidth(Number)
-	 */
-	public Number getConnectorWidth() {
-		return connectorWidth;
-	}
-
-	/**
-	 * The width of the line connecting the data label to the pie slice.
-	 * <p>
-	 * Defaults to: 1
-	 */
-	public void setConnectorWidth(Number connectorWidth) {
-		this.connectorWidth = connectorWidth;
-	}
-
-	/**
-	 * @see #setDistance(Number)
-	 */
-	public Number getDistance() {
-		return distance;
-	}
-
-	/**
-	 * The distance of the data label from the pie's edge. Negative numbers put
-	 * the data label on top of the pie slices. Connectors are only shown for
-	 * data labels outside the pie.
-	 * <p>
-	 * Defaults to: 30
-	 */
-	public void setDistance(Number distance) {
-		this.distance = distance;
-	}
-
-	/**
-	 * @see #setSoftConnector(Boolean)
-	 */
-	public Boolean getSoftConnector() {
-		return softConnector;
-	}
-
-	/**
-	 * Whether to render the connector as a soft arc or a line with sharp break.
-	 * <p>
-	 * Defaults to: true
-	 */
-	public void setSoftConnector(Boolean softConnector) {
-		this.softConnector = softConnector;
 	}
 }

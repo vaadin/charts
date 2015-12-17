@@ -1,7 +1,5 @@
 package com.vaadin.addon.charts.examples.other;
 
-import java.util.Random;
-
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.AxisTitle;
@@ -18,6 +16,8 @@ import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
+
+import java.util.Random;
 
 public class AngularGauge extends AbstractVaadinChartExample {
 
@@ -88,8 +88,7 @@ public class AngularGauge extends AbstractVaadinChartExample {
         // FIXME remove initialization after CHARTS-154
         yAxis.setLabels(new Labels());
         yAxis.getLabels().setStep(2);
-        // FIXME missing generated API
-        // yAxis.getLabels().setRotation("auto");
+        yAxis.getLabels().setRotationPerpendicular();
 
         PlotBand plotband1 = new PlotBand();
         plotband1.setFrom(0);

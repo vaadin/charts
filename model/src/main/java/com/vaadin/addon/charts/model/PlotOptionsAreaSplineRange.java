@@ -19,7 +19,7 @@ public class PlotOptionsAreaSplineRange extends AbstractPlotOptions {
 	private Number cropThreshold;
 	private String cursor;
 	private String dashStyle;
-	private DataLabels dataLabels;
+	private DataLabelsRange dataLabels;
 	private Boolean enableMouseTracking;
 	private Color fillColor;
 	private Number fillOpacity;
@@ -216,9 +216,9 @@ public class PlotOptionsAreaSplineRange extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setDataLabels(DataLabels)
+	 * @see #setDataLabels(DataLabelsRange)
 	 */
-	public DataLabels getDataLabels() {
+	public DataLabelsRange getDataLabels() {
 		return dataLabels;
 	}
 
@@ -231,7 +231,7 @@ public class PlotOptionsAreaSplineRange extends AbstractPlotOptions {
 	 * <p>
 	 * Defaults to:
 	 */
-	public void setDataLabels(DataLabels dataLabels) {
+	public void setDataLabels(DataLabelsRange dataLabels) {
 		this.dataLabels = dataLabels;
 	}
 

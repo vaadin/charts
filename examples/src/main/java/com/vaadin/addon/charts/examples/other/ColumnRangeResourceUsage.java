@@ -6,7 +6,7 @@ import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.AxisType;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
-import com.vaadin.addon.charts.model.DataLabels;
+import com.vaadin.addon.charts.model.DataLabelsRange;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.PlotOptionsColumnRange;
@@ -50,7 +50,7 @@ public class ColumnRangeResourceUsage extends AbstractVaadinChartExample {
 
         PlotOptionsColumnRange columnRange = new PlotOptionsColumnRange();
         columnRange.setGrouping(false);
-        DataLabels dataLabels = new DataLabels(true);
+        DataLabelsRange dataLabels = new DataLabelsRange(true);
         dataLabels
                 .setFormatter("this.y == this.point.low ? '' : this.series.name");
         dataLabels.setInside(true);

@@ -63,7 +63,7 @@ public class Data extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
 	private Color color;
-	private DataLabels dataLabels;
+	private Object dataLabels;
 	private Drilldown drilldown;
 	private String id;
 	private Boolean isIntermediateSum;
@@ -128,9 +128,9 @@ public class Data extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setDataLabels(DataLabels)
+	 * @see #setDataLabels(Object)
 	 */
-	public DataLabels getDataLabels() {
+	public Object getDataLabels() {
 		return dataLabels;
 	}
 
@@ -139,7 +139,7 @@ public class Data extends AbstractConfigurationObject {
 	 * ones for <a class="internal"
 	 * href="#plotOptions.series.dataLabels">plotOptions.series.dataLabels</a>
 	 */
-	public void setDataLabels(DataLabels dataLabels) {
+	public void setDataLabels(Object dataLabels) {
 		this.dataLabels = dataLabels;
 	}
 

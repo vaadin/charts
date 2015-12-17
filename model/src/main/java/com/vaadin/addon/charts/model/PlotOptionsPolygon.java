@@ -20,7 +20,6 @@ public class PlotOptionsPolygon extends AbstractPlotOptions {
 	private Number cropThreshold;
 	private String cursor;
 	private String dashStyle;
-	private DataLabels dataLabels;
 	private Boolean enableMouseTracking;
 	private Boolean getExtremesFromAll;
 	private ArrayList<String> keys;
@@ -192,20 +191,6 @@ public class PlotOptionsPolygon extends AbstractPlotOptions {
 	 */
 	public void setDashStyle(String dashStyle) {
 		this.dashStyle = dashStyle;
-	}
-
-	/**
-	 * @see #setDataLabels(DataLabels)
-	 */
-	public DataLabels getDataLabels() {
-		return dataLabels;
-	}
-
-	/**
-	 * 
-	 */
-	public void setDataLabels(DataLabels dataLabels) {
-		this.dataLabels = dataLabels;
 	}
 
 	/**

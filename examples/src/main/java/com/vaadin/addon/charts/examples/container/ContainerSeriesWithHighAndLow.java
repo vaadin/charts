@@ -7,7 +7,7 @@ import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.ContainerDataSeries;
-import com.vaadin.addon.charts.model.DataLabels;
+import com.vaadin.addon.charts.model.DataLabelsRange;
 import com.vaadin.addon.charts.model.PlotOptionsColumnRange;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.XAxis;
@@ -47,7 +47,7 @@ public class ContainerSeriesWithHighAndLow extends AbstractVaadinChartExample {
         conf.setTooltip(tooltip);
 
         PlotOptionsColumnRange columnRange = new PlotOptionsColumnRange();
-        columnRange.setDataLabels(new DataLabels(true));
+        columnRange.setDataLabels(new DataLabelsRange(true));
         columnRange.getDataLabels().setFormatter(
                 "function() {return this.y + '°C';}");
         conf.setPlotOptions(columnRange);

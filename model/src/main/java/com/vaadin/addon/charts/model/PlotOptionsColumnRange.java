@@ -24,7 +24,7 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	private Object colors;
 	private Number cropThreshold;
 	private String cursor;
-	private DataLabels dataLabels;
+	private DataLabelsRange dataLabels;
 	private Number depth;
 	private Color edgeColor;
 	private Number edgeWidth;
@@ -260,9 +260,9 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setDataLabels(DataLabels)
+	 * @see #setDataLabels(DataLabelsRange)
 	 */
-	public DataLabels getDataLabels() {
+	public DataLabelsRange getDataLabels() {
 		return dataLabels;
 	}
 
@@ -275,7 +275,7 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	 * <p>
 	 * Defaults to:
 	 */
-	public void setDataLabels(DataLabels dataLabels) {
+	public void setDataLabels(DataLabelsRange dataLabels) {
 		this.dataLabels = dataLabels;
 	}
 
