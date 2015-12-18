@@ -34,7 +34,7 @@ public class FunnelChartExample extends AbstractVaadinChartExample {
         conf.getLegend().setEnabled(false);
 
         PlotOptionsFunnel options = new PlotOptionsFunnel();
-        options.setReversed(true);
+        options.setReversed(false);
         options.setNeckWidth("30%");
         options.setNeckHeight("30%");
 
