@@ -8,7 +8,7 @@ public class DrillUpButton extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
 	private Position position;
-	private String relativeTo;
+	private DrillUpButtonRelativeTo relativeTo;
 	private Object theme;
 
 	public DrillUpButton() {
@@ -33,9 +33,9 @@ public class DrillUpButton extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setRelativeTo(String)
+	 * @see #setRelativeTo(DrillUpButtonRelativeTo)
 	 */
-	public String getRelativeTo() {
+	public DrillUpButtonRelativeTo getRelativeTo() {
 		return relativeTo;
 	}
 
@@ -44,7 +44,7 @@ public class DrillUpButton extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to: plotBox
 	 */
-	public void setRelativeTo(String relativeTo) {
+	public void setRelativeTo(DrillUpButtonRelativeTo relativeTo) {
 		this.relativeTo = relativeTo;
 	}
 

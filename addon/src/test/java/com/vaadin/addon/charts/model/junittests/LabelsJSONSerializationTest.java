@@ -5,11 +5,12 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.Labels;
 
 /**
- * Tests that {@link Labels} configuration options are serialized correctly as
- * JSON
+ * Tests that {@link Labels} and {@link DataLabels} configuration options are
+ * serialized correctly as JSON
  *
  */
 public class LabelsJSONSerializationTest {
@@ -25,19 +26,17 @@ public class LabelsJSONSerializationTest {
         assertEquals(expected, json);
     }
 
-    // FIXME add autorotationlimit
-    // @Test
-    // public void
-    // toString_autoRotationLimitIsSet_labelsSerializedWithAutoRotationLimit() {
-    //
-    // Labels labels = new Labels(true);
-    // labels.setAutoRotationLimit(40);
-    //
-    // String json = labels.toString();
-    // String expected = "{\"enabled\":true,\"autoRotationLimit\":40}";
-    //
-    // assertEquals(expected, json);
-    // }
+    @Test
+    public void toString_autoRotationLimitIsSet_labelsSerializedWithAutoRotationLimit() {
+
+        Labels labels = new Labels(true);
+        labels.setAutoRotationLimit(40);
+
+        String json = toJSON(labels);
+        String expected = "{\"autoRotationLimit\":40,\"enabled\":true}";
+
+        assertEquals(expected, json);
+    }
 
     @Test
     public void toJSON_paddingIsSet_labelsSerializedWithPadding() {
@@ -51,18 +50,16 @@ public class LabelsJSONSerializationTest {
         assertEquals(expected, json);
     }
 
-    // FIXME test and add allowoverlap
-    // @Test
-    // public void toString_allowOverlapIsSet_labelsSerializedWithAllowOverlap()
-    // {
-    //
-    // Labels labels = new Labels(true);
-    // labels.setAllowOverlap(true);
-    //
-    // String json = labels.toString();
-    // String expected = "{\"enabled\":true,\"allowOverlap\":true}";
-    //
-    // assertEquals(expected, json);
-    // }
+    @Test
+    public void toString_allowOverlapIsSet_labelsSerializedWithAllowOverlap() {
+
+        DataLabels labels = new DataLabels(true);
+        labels.setAllowOverlap(true);
+
+        String json = toJSON(labels);
+        String expected = "{\"allowOverlap\":true,\"enabled\":true}";
+
+        assertEquals(expected, json);
+    }
 
 }

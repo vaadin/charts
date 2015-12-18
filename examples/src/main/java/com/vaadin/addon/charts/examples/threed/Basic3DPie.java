@@ -39,8 +39,7 @@ public class Basic3DPie extends AbstractVaadinChartExample {
         conf.setTitle("Browser market shares at a specific website, 2010");
 
         PlotOptionsPie plotOptions = new PlotOptionsPie();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        plotOptions.setCursor(Cursor.POINTER.toString());
+        plotOptions.setCursor(Cursor.POINTER);
         DataLabels dataLabels = new DataLabels(true);
         dataLabels
                 .setFormatter("'<b>'+ this.point.name +'</b>: '+ this.percentage +' %'");

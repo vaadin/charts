@@ -1,5 +1,8 @@
 package com.vaadin.addon.charts.examples.lineandscatter;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.AxisTitle;
@@ -17,9 +20,6 @@ import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.server.Page;
 import com.vaadin.ui.Component;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 public class TimeSeriesZoomable extends AbstractVaadinChartExample {
 
@@ -183,8 +183,7 @@ public class TimeSeriesZoomable extends AbstractVaadinChartExample {
         Color[] colors = getThemeColors();
 
         Configuration configuration = chart.getConfiguration();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        configuration.getChart().setZoomType(ZoomType.X.toString());
+        configuration.getChart().setZoomType(ZoomType.X);
         configuration.getChart().setSpacingRight(20);
 
         configuration.getTitle().setText(
@@ -194,7 +193,7 @@ public class TimeSeriesZoomable extends AbstractVaadinChartExample {
                 : "Click and drag in the plot area to zoom in";
         configuration.getSubTitle().setText(title);
 
-        configuration.getxAxis().setType(AxisType.DATETIME.toString());
+        configuration.getxAxis().setType(AxisType.DATETIME);
         configuration.getxAxis().setMinRange(TWO_WEEKS);
         configuration.getxAxis().setTitle(new AxisTitle(""));
 

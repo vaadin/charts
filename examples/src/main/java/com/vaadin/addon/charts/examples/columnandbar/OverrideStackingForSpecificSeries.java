@@ -54,8 +54,7 @@ public class OverrideStackingForSpecificSeries extends
         conf.setTooltip(tooltip);
 
         PlotOptionsColumn plotOptions = new PlotOptionsColumn();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        plotOptions.setStacking(Stacking.NORMAL.toString());
+        plotOptions.setStacking(Stacking.NORMAL);
         DataLabels labels = new DataLabels();
         labels.setEnabled(true);
         labels.setColor(new SolidColor("white"));
@@ -68,7 +67,7 @@ public class OverrideStackingForSpecificSeries extends
         ListSeries series = new ListSeries("Joe",
                 new Number[] { 3, 4, 4, 2, 5 });
         PlotOptionsColumn joePlotOptions = new PlotOptionsColumn();
-        joePlotOptions.setStacking(Stacking.NONE.toString());
+        joePlotOptions.setStacking(Stacking.NONE);
         series.setPlotOptions(joePlotOptions);
         conf.addSeries(series);
 

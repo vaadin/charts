@@ -23,14 +23,14 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 	private Boolean colorByPoint;
 	private Object colors;
 	private Number cropThreshold;
-	private String cursor;
+	private Cursor cursor;
 	private DataLabels dataLabels;
 	private Boolean enableMouseTracking;
 	private Boolean getExtremesFromAll;
 	private Boolean interactByLeaf;
 	private ArrayList<String> keys;
-	private String layoutAlgorithm;
-	private String layoutStartingDirection;
+	private TreeMapLayoutAlgorithm layoutAlgorithm;
+	private TreeMapLayoutStartingDirection layoutStartingDirection;
 	private Boolean levelIsConstant;
 	private Levels[] levels;
 	private String linkedTo;
@@ -256,9 +256,9 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setCursor(String)
+	 * @see #setCursor(Cursor)
 	 */
-	public String getCursor() {
+	public Cursor getCursor() {
 		return cursor;
 	}
 
@@ -267,7 +267,7 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 	 * the series, to signal to the user that the points and lines can be
 	 * clicked.
 	 */
-	public void setCursor(String cursor) {
+	public void setCursor(Cursor cursor) {
 		this.cursor = cursor;
 	}
 
@@ -361,9 +361,9 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setLayoutAlgorithm(String)
+	 * @see #setLayoutAlgorithm(TreeMapLayoutAlgorithm)
 	 */
-	public String getLayoutAlgorithm() {
+	public TreeMapLayoutAlgorithm getLayoutAlgorithm() {
 		return layoutAlgorithm;
 	}
 
@@ -374,14 +374,14 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 	 * <p>
 	 * Defaults to: sliceAndDice
 	 */
-	public void setLayoutAlgorithm(String layoutAlgorithm) {
+	public void setLayoutAlgorithm(TreeMapLayoutAlgorithm layoutAlgorithm) {
 		this.layoutAlgorithm = layoutAlgorithm;
 	}
 
 	/**
-	 * @see #setLayoutStartingDirection(String)
+	 * @see #setLayoutStartingDirection(TreeMapLayoutStartingDirection)
 	 */
-	public String getLayoutStartingDirection() {
+	public TreeMapLayoutStartingDirection getLayoutStartingDirection() {
 		return layoutStartingDirection;
 	}
 
@@ -391,7 +391,8 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 	 * <p>
 	 * Defaults to: vertical
 	 */
-	public void setLayoutStartingDirection(String layoutStartingDirection) {
+	public void setLayoutStartingDirection(
+			TreeMapLayoutStartingDirection layoutStartingDirection) {
 		this.layoutStartingDirection = layoutStartingDirection;
 	}
 

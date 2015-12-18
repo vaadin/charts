@@ -55,8 +55,7 @@ public class WaterfallChartExample extends AbstractVaadinChartExample {
         opts.setColor(color);
         opts.setUpColor(upColor);
         DataLabels dataLabels = new DataLabels(true);
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        dataLabels.setVerticalAlign(VerticalAlign.TOP.toString());
+        dataLabels.setVerticalAlign(VerticalAlign.TOP);
         dataLabels.setY(-30);
         dataLabels.setFormatter("this.y / 1000 + 'k'");
         opts.setDataLabels(dataLabels);
@@ -65,7 +64,7 @@ public class WaterfallChartExample extends AbstractVaadinChartExample {
 
         conf.addSeries(dataSeries);
 
-        conf.getxAxis().setType(AxisType.CATEGORY.toString());
+        conf.getxAxis().setType(AxisType.CATEGORY);
 
         return chart;
     }

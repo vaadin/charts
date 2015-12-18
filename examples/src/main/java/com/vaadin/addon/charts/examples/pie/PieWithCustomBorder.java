@@ -34,12 +34,12 @@ public class PieWithCustomBorder extends AbstractVaadinChartExample {
         PlotOptionsPie plotOptions = new PlotOptionsPie();
         plotOptions.setBorderColor(new SolidColor("green"));
         plotOptions.setBorderWidth(6);
-        plotOptions.setCursor(Cursor.POINTER.toString());
+        plotOptions.setCursor(Cursor.POINTER);
         DataLabels dataLabels = new DataLabels();
         dataLabels.setEnabled(true);
         dataLabels.setColor(SolidColor.BLACK);
         // FIXME missing generated API
-        dataLabels.setConnectorColor(SolidColor.BLACK.toString());
+        dataLabels.setConnectorColor(SolidColor.BLACK);
         dataLabels
                 .setFormatter("'<b>'+ this.point.name +'</b>: '+ this.percentage +' %'");
         plotOptions.setDataLabels(dataLabels);

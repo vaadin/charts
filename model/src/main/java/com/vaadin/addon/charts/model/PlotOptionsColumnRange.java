@@ -23,7 +23,7 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	private Boolean colorByPoint;
 	private Object colors;
 	private Number cropThreshold;
-	private String cursor;
+	private Cursor cursor;
 	private DataLabelsRange dataLabels;
 	private Number depth;
 	private Color edgeColor;
@@ -38,9 +38,9 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	private Number maxPointWidth;
 	private Number minPointLength;
 	private Number pointInterval;
-	private String pointIntervalUnit;
+	private IntervalUnit pointIntervalUnit;
 	private Number pointPadding;
-	private Object pointPlacement;
+	private PointPlacement pointPlacement;
 	private Number pointRange;
 	private Number pointStart;
 	private Number pointWidth;
@@ -244,9 +244,9 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setCursor(String)
+	 * @see #setCursor(Cursor)
 	 */
-	public String getCursor() {
+	public Cursor getCursor() {
 		return cursor;
 	}
 
@@ -255,7 +255,7 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	 * the series, to signal to the user that the points and lines can be
 	 * clicked.
 	 */
-	public void setCursor(String cursor) {
+	public void setCursor(Cursor cursor) {
 		this.cursor = cursor;
 	}
 
@@ -519,9 +519,9 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setPointIntervalUnit(String)
+	 * @see #setPointIntervalUnit(IntervalUnit)
 	 */
-	public String getPointIntervalUnit() {
+	public IntervalUnit getPointIntervalUnit() {
 		return pointIntervalUnit;
 	}
 
@@ -532,7 +532,7 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	 * it with <code>pointInterval</code> to draw quarters, 6 months, 10 years
 	 * etc.
 	 */
-	public void setPointIntervalUnit(String pointIntervalUnit) {
+	public void setPointIntervalUnit(IntervalUnit pointIntervalUnit) {
 		this.pointIntervalUnit = pointIntervalUnit;
 	}
 
@@ -553,9 +553,9 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setPointPlacement(Object)
+	 * @see #setPointPlacement(PointPlacement)
 	 */
-	public Object getPointPlacement() {
+	public PointPlacement getPointPlacement() {
 		return pointPlacement;
 	}
 
@@ -587,7 +587,7 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	 * Defaults to <code>null</code> in cartesian charts, <code>"between"</code>
 	 * in polar charts.
 	 */
-	public void setPointPlacement(Object pointPlacement) {
+	public void setPointPlacement(PointPlacement pointPlacement) {
 		this.pointPlacement = pointPlacement;
 	}
 

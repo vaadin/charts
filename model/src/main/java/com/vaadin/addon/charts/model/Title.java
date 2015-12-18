@@ -9,13 +9,13 @@ import com.vaadin.addon.charts.model.style.Style;
 public class Title extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
-	private String align;
+	private HorizontalAlign align;
 	private Boolean floating;
 	private ArrayList<Number> margin;
 	private Style style;
 	private String text;
 	private Boolean useHTML;
-	private String verticalAlign;
+	private VerticalAlign verticalAlign;
 	private Number x;
 	private Number y;
 
@@ -23,9 +23,9 @@ public class Title extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setAlign(String)
+	 * @see #setAlign(HorizontalAlign)
 	 */
-	public String getAlign() {
+	public HorizontalAlign getAlign() {
 		return align;
 	}
 
@@ -35,7 +35,7 @@ public class Title extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to: center
 	 */
-	public void setAlign(String align) {
+	public void setAlign(HorizontalAlign align) {
 		this.align = align;
 	}
 
@@ -134,9 +134,9 @@ public class Title extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setVerticalAlign(String)
+	 * @see #setVerticalAlign(VerticalAlign)
 	 */
-	public String getVerticalAlign() {
+	public VerticalAlign getVerticalAlign() {
 		return verticalAlign;
 	}
 
@@ -146,7 +146,7 @@ public class Title extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to:
 	 */
-	public void setVerticalAlign(String verticalAlign) {
+	public void setVerticalAlign(VerticalAlign verticalAlign) {
 		this.verticalAlign = verticalAlign;
 	}
 

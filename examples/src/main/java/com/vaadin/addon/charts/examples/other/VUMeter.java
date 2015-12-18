@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts.examples.other;
 
+import java.util.Random;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.Background;
@@ -17,8 +19,6 @@ import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
-
-import java.util.Random;
 
 public class VUMeter extends AbstractVaadinChartExample {
 
@@ -39,8 +39,7 @@ public class VUMeter extends AbstractVaadinChartExample {
         gradient.addColorStop(1, new SolidColor("#FFF4C6"));
 
         final Configuration configuration = chart.getConfiguration();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        configuration.getChart().setType(ChartType.GAUGE.toString());
+        configuration.getChart().setType(ChartType.GAUGE);
         configuration.getChart().setPlotBackgroundColor(gradient);
         configuration.getChart().setPlotBackgroundImage(null);
         configuration.getChart().setPlotBorderWidth(1);
@@ -72,9 +71,8 @@ public class VUMeter extends AbstractVaadinChartExample {
         yAxis.getTitle().setY(-40);
         yAxis.setMin(-20);
         yAxis.setMax(6);
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        yAxis.setTickPosition(TickPosition.OUTSIDE.toString());
-        yAxis.setMinorTickPosition(TickPosition.OUTSIDE.toString());
+        yAxis.setTickPosition(TickPosition.OUTSIDE);
+        yAxis.setMinorTickPosition(TickPosition.OUTSIDE);
         // FIXME remove initialization after CHARTS-154
         yAxis.setLabels(new Labels());
         yAxis.getLabels().setDistance(20);
@@ -88,8 +86,8 @@ public class VUMeter extends AbstractVaadinChartExample {
         yAxis2.getTitle().setY(-40);
         yAxis2.setMin(-20);
         yAxis2.setMax(6);
-        yAxis2.setTickPosition(TickPosition.OUTSIDE.toString());
-        yAxis2.setMinorTickPosition(TickPosition.OUTSIDE.toString());
+        yAxis2.setTickPosition(TickPosition.OUTSIDE);
+        yAxis2.setMinorTickPosition(TickPosition.OUTSIDE);
         yAxis2.setLabels(new Labels());
         yAxis2.getLabels().setDistance(20);
         yAxis2.getLabels().setRotationPerpendicular();

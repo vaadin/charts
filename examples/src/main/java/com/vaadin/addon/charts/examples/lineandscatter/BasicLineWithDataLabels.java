@@ -25,8 +25,7 @@ public class BasicLineWithDataLabels extends AbstractVaadinChartExample {
         chart.setWidth("100%");
 
         Configuration configuration = chart.getConfiguration();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        configuration.getChart().setType(ChartType.LINE.toString());
+        configuration.getChart().setType(ChartType.LINE);
 
         configuration.getTitle().setText("Monthly Average Temperature");
         configuration.getSubTitle().setText("Source: WorldClimate.com");

@@ -7,7 +7,7 @@ import com.vaadin.addon.charts.model.style.Color;
 public class ButtonOptions extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
-	private String align;
+	private HorizontalAlign align;
 	private Boolean enabled;
 	private Number height;
 	private Color symbolFill;
@@ -18,7 +18,7 @@ public class ButtonOptions extends AbstractConfigurationObject {
 	private Number symbolY;
 	private String text;
 	private Object theme;
-	private String verticalAlign;
+	private VerticalAlign verticalAlign;
 	private Number width;
 	private Number y;
 
@@ -26,9 +26,9 @@ public class ButtonOptions extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setAlign(String)
+	 * @see #setAlign(HorizontalAlign)
 	 */
-	public String getAlign() {
+	public HorizontalAlign getAlign() {
 		return align;
 	}
 
@@ -37,7 +37,7 @@ public class ButtonOptions extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to: right
 	 */
-	public void setAlign(String align) {
+	public void setAlign(HorizontalAlign align) {
 		this.align = align;
 	}
 
@@ -213,9 +213,9 @@ public class ButtonOptions extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setVerticalAlign(String)
+	 * @see #setVerticalAlign(VerticalAlign)
 	 */
-	public String getVerticalAlign() {
+	public VerticalAlign getVerticalAlign() {
 		return verticalAlign;
 	}
 
@@ -225,7 +225,7 @@ public class ButtonOptions extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to: top
 	 */
-	public void setVerticalAlign(String verticalAlign) {
+	public void setVerticalAlign(VerticalAlign verticalAlign) {
 		this.verticalAlign = verticalAlign;
 	}
 

@@ -1,5 +1,8 @@
 package com.vaadin.addon.charts.examples.columnandbar;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.SkipFromDemo;
@@ -19,9 +22,6 @@ import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @SuppressWarnings("serial")
 @SkipFromDemo
@@ -49,7 +49,7 @@ public class BasicBarNoTitle extends AbstractVaadinChartExample {
         YAxis y = new YAxis();
         y.setMin(0);
         AxisTitle title = new AxisTitle("Population (millions)");
-        title.setAlign(VerticalAlign.MIDDLE.toString());
+        title.setAlign(VerticalAlign.MIDDLE);
         y.setTitle(title);
         conf.addyAxis(y);
 
@@ -62,10 +62,9 @@ public class BasicBarNoTitle extends AbstractVaadinChartExample {
         conf.setPlotOptions(plot);
 
         Legend legend = new Legend();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        legend.setLayout(LayoutDirection.VERTICAL.toString());
-        legend.setAlign(HorizontalAlign.RIGHT.toString());
-        legend.setVerticalAlign(VerticalAlign.TOP.toString());
+        legend.setLayout(LayoutDirection.VERTICAL);
+        legend.setAlign(HorizontalAlign.RIGHT);
+        legend.setVerticalAlign(VerticalAlign.TOP);
         legend.setX(-100);
         legend.setY(100);
         legend.setFloating(true);

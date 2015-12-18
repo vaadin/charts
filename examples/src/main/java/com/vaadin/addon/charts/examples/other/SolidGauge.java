@@ -32,8 +32,7 @@ public class SolidGauge extends AbstractVaadinChartExample {
         chart.setWidth(500, Unit.PIXELS);
 
         final Configuration configuration = chart.getConfiguration();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        configuration.getChart().setType(ChartType.SOLIDGAUGE.toString());
+        configuration.getChart().setType(ChartType.SOLIDGAUGE);
 
         configuration.getTitle().setText("Speed");
 

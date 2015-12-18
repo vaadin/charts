@@ -5,13 +5,13 @@ package com.vaadin.addon.charts.model;
 public class Label extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
-	private String align;
+	private HorizontalAlign align;
 	private Number rotation;
 	private Object style;
 	private String text;
 	private String textAlign;
 	private Boolean useHTML;
-	private String verticalAlign;
+	private VerticalAlign verticalAlign;
 	private Number x;
 	private Number y;
 
@@ -19,9 +19,9 @@ public class Label extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setAlign(String)
+	 * @see #setAlign(HorizontalAlign)
 	 */
-	public String getAlign() {
+	public HorizontalAlign getAlign() {
 		return align;
 	}
 
@@ -31,7 +31,7 @@ public class Label extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to: left
 	 */
-	public void setAlign(String align) {
+	public void setAlign(HorizontalAlign align) {
 		this.align = align;
 	}
 
@@ -121,9 +121,9 @@ public class Label extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setVerticalAlign(String)
+	 * @see #setVerticalAlign(VerticalAlign)
 	 */
-	public String getVerticalAlign() {
+	public VerticalAlign getVerticalAlign() {
 		return verticalAlign;
 	}
 
@@ -133,7 +133,7 @@ public class Label extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to: top
 	 */
-	public void setVerticalAlign(String verticalAlign) {
+	public void setVerticalAlign(VerticalAlign verticalAlign) {
 		this.verticalAlign = verticalAlign;
 	}
 

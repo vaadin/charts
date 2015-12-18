@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import com.vaadin.addon.charts.util.Util;
+/**
+ */
 public class PlotOptionsBar extends AbstractPlotOptions {
 
 	private static final long serialVersionUID = 1L;
@@ -17,7 +19,7 @@ public class PlotOptionsBar extends AbstractPlotOptions {
 	private Boolean colorByPoint;
 	private Object colors;
 	private Number cropThreshold;
-	private String cursor;
+	private Cursor cursor;
 	private DataLabels dataLabels;
 	private Number depth;
 	private Color edgeColor;
@@ -33,9 +35,9 @@ public class PlotOptionsBar extends AbstractPlotOptions {
 	private Number minPointLength;
 	private Color negativeColor;
 	private Number pointInterval;
-	private String pointIntervalUnit;
+	private IntervalUnit pointIntervalUnit;
 	private Number pointPadding;
-	private Object pointPlacement;
+	private PointPlacement pointPlacement;
 	private Number pointRange;
 	private Number pointStart;
 	private Number pointWidth;
@@ -44,7 +46,7 @@ public class PlotOptionsBar extends AbstractPlotOptions {
 	private Boolean showCheckbox;
 	private Boolean showInLegend;
 	private Boolean softThreshold;
-	private String stacking;
+	private Stacking stacking;
 	private States states;
 	private Boolean stickyTracking;
 	private Number threshold;
@@ -242,9 +244,9 @@ public class PlotOptionsBar extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setCursor(String)
+	 * @see #setCursor(Cursor)
 	 */
-	public String getCursor() {
+	public Cursor getCursor() {
 		return cursor;
 	}
 
@@ -253,7 +255,7 @@ public class PlotOptionsBar extends AbstractPlotOptions {
 	 * the series, to signal to the user that the points and lines can be
 	 * clicked.
 	 */
-	public void setCursor(String cursor) {
+	public void setCursor(Cursor cursor) {
 		this.cursor = cursor;
 	}
 
@@ -528,9 +530,9 @@ public class PlotOptionsBar extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setPointIntervalUnit(String)
+	 * @see #setPointIntervalUnit(IntervalUnit)
 	 */
-	public String getPointIntervalUnit() {
+	public IntervalUnit getPointIntervalUnit() {
 		return pointIntervalUnit;
 	}
 
@@ -541,7 +543,7 @@ public class PlotOptionsBar extends AbstractPlotOptions {
 	 * it with <code>pointInterval</code> to draw quarters, 6 months, 10 years
 	 * etc.
 	 */
-	public void setPointIntervalUnit(String pointIntervalUnit) {
+	public void setPointIntervalUnit(IntervalUnit pointIntervalUnit) {
 		this.pointIntervalUnit = pointIntervalUnit;
 	}
 
@@ -562,9 +564,9 @@ public class PlotOptionsBar extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setPointPlacement(Object)
+	 * @see #setPointPlacement(PointPlacement)
 	 */
-	public Object getPointPlacement() {
+	public PointPlacement getPointPlacement() {
 		return pointPlacement;
 	}
 
@@ -596,7 +598,7 @@ public class PlotOptionsBar extends AbstractPlotOptions {
 	 * Defaults to <code>null</code> in cartesian charts, <code>"between"</code>
 	 * in polar charts.
 	 */
-	public void setPointPlacement(Object pointPlacement) {
+	public void setPointPlacement(PointPlacement pointPlacement) {
 		this.pointPlacement = pointPlacement;
 	}
 
@@ -752,9 +754,9 @@ public class PlotOptionsBar extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setStacking(String)
+	 * @see #setStacking(Stacking)
 	 */
-	public String getStacking() {
+	public Stacking getStacking() {
 		return stacking;
 	}
 
@@ -762,7 +764,7 @@ public class PlotOptionsBar extends AbstractPlotOptions {
 	 * Whether to stack the values of each series on top of each other. Possible
 	 * values are null to disable, "normal" to stack by value or "percent".
 	 */
-	public void setStacking(String stacking) {
+	public void setStacking(Stacking stacking) {
 		this.stacking = stacking;
 	}
 

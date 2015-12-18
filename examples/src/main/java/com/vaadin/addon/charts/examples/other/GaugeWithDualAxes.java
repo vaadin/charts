@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts.examples.other;
 
+import java.util.Random;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.ChartType;
@@ -15,8 +17,6 @@ import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
 
-import java.util.Random;
-
 public class GaugeWithDualAxes extends AbstractVaadinChartExample {
 
     @Override
@@ -30,8 +30,7 @@ public class GaugeWithDualAxes extends AbstractVaadinChartExample {
         chart.setWidth("500px");
 
         final Configuration configuration = chart.getConfiguration();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        configuration.getChart().setType(ChartType.GAUGE.toString());
+        configuration.getChart().setType(ChartType.GAUGE);
         configuration.getChart().setAlignTicks(false);
         configuration.getChart().setPlotBackgroundColor(null);
         configuration.getChart().setPlotBackgroundImage(null);
@@ -77,8 +76,8 @@ public class GaugeWithDualAxes extends AbstractVaadinChartExample {
         yAxis2.setTickLength(5);
         yAxis2.setMinorTickLength(5);
         yAxis2.setEndOnTick(false);
-        yAxis2.setTickPosition(TickPosition.OUTSIDE.toString());
-        yAxis2.setMinorTickPosition(TickPosition.OUTSIDE.toString());
+        yAxis2.setTickPosition(TickPosition.OUTSIDE);
+        yAxis2.setMinorTickPosition(TickPosition.OUTSIDE);
 
         configuration.addyAxis(yAxis);
         configuration.addyAxis(yAxis2);

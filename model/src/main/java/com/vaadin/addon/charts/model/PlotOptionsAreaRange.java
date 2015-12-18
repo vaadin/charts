@@ -17,8 +17,8 @@ public class PlotOptionsAreaRange extends AbstractPlotOptions {
 	private Color color;
 	private Boolean connectNulls;
 	private Number cropThreshold;
-	private String cursor;
-	private String dashStyle;
+	private Cursor cursor;
+	private DashStyle dashStyle;
 	private DataLabelsRange dataLabels;
 	private Boolean enableMouseTracking;
 	private Color fillColor;
@@ -31,15 +31,15 @@ public class PlotOptionsAreaRange extends AbstractPlotOptions {
 	private Color negativeColor;
 	private Color negativeFillColor;
 	private Number pointInterval;
-	private String pointIntervalUnit;
-	private Object pointPlacement;
+	private IntervalUnit pointIntervalUnit;
+	private PointPlacement pointPlacement;
 	private Number pointStart;
 	private Boolean selected;
 	private Object shadow;
 	private Boolean showCheckbox;
 	private Boolean showInLegend;
 	private States states;
-	private String step;
+	private StepType step;
 	private Boolean stickyTracking;
 	private SeriesTooltip tooltip;
 	private Boolean trackByArea;
@@ -169,9 +169,9 @@ public class PlotOptionsAreaRange extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setCursor(String)
+	 * @see #setCursor(Cursor)
 	 */
-	public String getCursor() {
+	public Cursor getCursor() {
 		return cursor;
 	}
 
@@ -180,14 +180,14 @@ public class PlotOptionsAreaRange extends AbstractPlotOptions {
 	 * the series, to signal to the user that the points and lines can be
 	 * clicked.
 	 */
-	public void setCursor(String cursor) {
+	public void setCursor(Cursor cursor) {
 		this.cursor = cursor;
 	}
 
 	/**
-	 * @see #setDashStyle(String)
+	 * @see #setDashStyle(DashStyle)
 	 */
-	public String getDashStyle() {
+	public DashStyle getDashStyle() {
 		return dashStyle;
 	}
 
@@ -212,7 +212,7 @@ public class PlotOptionsAreaRange extends AbstractPlotOptions {
 	 * <p>
 	 * Defaults to: Solid
 	 */
-	public void setDashStyle(String dashStyle) {
+	public void setDashStyle(DashStyle dashStyle) {
 		this.dashStyle = dashStyle;
 	}
 
@@ -437,9 +437,9 @@ public class PlotOptionsAreaRange extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setPointIntervalUnit(String)
+	 * @see #setPointIntervalUnit(IntervalUnit)
 	 */
-	public String getPointIntervalUnit() {
+	public IntervalUnit getPointIntervalUnit() {
 		return pointIntervalUnit;
 	}
 
@@ -450,14 +450,14 @@ public class PlotOptionsAreaRange extends AbstractPlotOptions {
 	 * it with <code>pointInterval</code> to draw quarters, 6 months, 10 years
 	 * etc.
 	 */
-	public void setPointIntervalUnit(String pointIntervalUnit) {
+	public void setPointIntervalUnit(IntervalUnit pointIntervalUnit) {
 		this.pointIntervalUnit = pointIntervalUnit;
 	}
 
 	/**
-	 * @see #setPointPlacement(Object)
+	 * @see #setPointPlacement(PointPlacement)
 	 */
-	public Object getPointPlacement() {
+	public PointPlacement getPointPlacement() {
 		return pointPlacement;
 	}
 
@@ -489,7 +489,7 @@ public class PlotOptionsAreaRange extends AbstractPlotOptions {
 	 * Defaults to <code>null</code> in cartesian charts, <code>"between"</code>
 	 * in polar charts.
 	 */
-	public void setPointPlacement(Object pointPlacement) {
+	public void setPointPlacement(PointPlacement pointPlacement) {
 		this.pointPlacement = pointPlacement;
 	}
 
@@ -599,9 +599,9 @@ public class PlotOptionsAreaRange extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setStep(String)
+	 * @see #setStep(StepType)
 	 */
-	public String getStep() {
+	public StepType getStep() {
 		return step;
 	}
 
@@ -612,7 +612,7 @@ public class PlotOptionsAreaRange extends AbstractPlotOptions {
 	 * <p>
 	 * Defaults to: false
 	 */
-	public void setStep(String step) {
+	public void setStep(StepType step) {
 		this.step = step;
 	}
 

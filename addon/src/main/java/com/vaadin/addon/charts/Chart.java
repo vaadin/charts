@@ -138,13 +138,13 @@ public class Chart extends AbstractComponent {
         @Override
         public void seriesStateChanged(SeriesStateEvent event) {
             chart.getRpcProxy(ChartClientRpc.class).setSeriesEnabled(
-                getSeriesIndex(event), event.isEnabled());
+                    getSeriesIndex(event), event.isEnabled());
         }
 
         @Override
         public void animationChanged(boolean animation) {
             chart.getRpcProxy(ChartClientRpc.class).setAnimationEnabled(
-                animation);
+                    animation);
         }
 
         @Override
@@ -205,9 +205,8 @@ public class Chart extends AbstractComponent {
                     drilldownStack.push(drilldownSeries);
                     getRpcProxy(ChartClientRpc.class)
                             .addDrilldown(
-                                toJSON(
-                                    (AbstractConfigurationObject) drilldownSeries),
-                                seriesIndex, pointIndex);
+                                    toJSON((AbstractConfigurationObject) drilldownSeries),
+                                    seriesIndex, pointIndex);
                 }
             }
         }
@@ -227,7 +226,7 @@ public class Chart extends AbstractComponent {
                 final int pointIndex) {
             Series series = resolveSeriesFor(seriesIndex);
             final PointClickEvent pointClickEvent = new PointClickEvent(
-                Chart.this, details, series, category, pointIndex);
+                    Chart.this, details, series, category, pointIndex);
             fireEvent(pointClickEvent);
         }
 
@@ -251,7 +250,7 @@ public class Chart extends AbstractComponent {
 
         @Override
         public void onCheckboxClick(boolean isChecked, final int seriesIndex,
-            int seriesItemIndex) {
+                int seriesItemIndex) {
             Series series = resolveSeriesFor(seriesIndex);
             CheckboxClickEvent checkboxClickEvent = new CheckboxClickEvent(
                     Chart.this, isChecked, series, seriesItemIndex);
@@ -261,52 +260,52 @@ public class Chart extends AbstractComponent {
         @Override
         public void onSeriesHide(int seriesIndex, int seriesItemIndex) {
             Series series = resolveSeriesFor(seriesIndex);
-            SeriesHideEvent seriesHideEvent = new SeriesHideEvent(
-                    Chart.this, series, seriesItemIndex);
+            SeriesHideEvent seriesHideEvent = new SeriesHideEvent(Chart.this,
+                    series, seriesItemIndex);
             fireEvent(seriesHideEvent);
         }
 
         @Override
         public void onSeriesShow(int seriesIndex, int seriesItemIndex) {
             Series series = resolveSeriesFor(seriesIndex);
-            SeriesShowEvent seriesShowEvent = new SeriesShowEvent(
-                    Chart.this, series, seriesItemIndex);
+            SeriesShowEvent seriesShowEvent = new SeriesShowEvent(Chart.this,
+                    series, seriesItemIndex);
             fireEvent(seriesShowEvent);
         }
 
         @Override
         public void onXAxesExtremesChange(int axisIndex, double minimum,
-            double maximum) {
+                double maximum) {
             XAxis axis = getConfiguration().getxAxis(axisIndex);
             XAxesExtremesChangeEvent event = new XAxesExtremesChangeEvent(
-                Chart.this, axis, minimum, maximum);
+                    Chart.this, axis, minimum, maximum);
             fireEvent(event);
         }
 
         @Override
         public void onYAxesExtremesChange(int axisIndex, double minimum,
-            double maximum) {
+                double maximum) {
             YAxis axis = getConfiguration().getyAxis(axisIndex);
             YAxesExtremesChangeEvent event = new YAxesExtremesChangeEvent(
-                Chart.this, axis, minimum, maximum);
+                    Chart.this, axis, minimum, maximum);
             fireEvent(event);
         }
 
         @Override
         public void onPointSelect(int seriesIndex, String category,
-            int pointIndex) {
+                int pointIndex) {
             Series series = resolveSeriesFor(seriesIndex);
-            PointSelectEvent event = new PointSelectEvent(
-                Chart.this, series, category, pointIndex);
+            PointSelectEvent event = new PointSelectEvent(Chart.this, series,
+                    category, pointIndex);
             fireEvent(event);
         }
 
         @Override
         public void onPointUnselect(int seriesIndex, String category,
-            int pointIndex) {
+                int pointIndex) {
             Series series = resolveSeriesFor(seriesIndex);
-            PointUnselectEvent event = new PointUnselectEvent(
-                Chart.this, series, category, pointIndex);
+            PointUnselectEvent event = new PointUnselectEvent(Chart.this,
+                    series, category, pointIndex);
             fireEvent(event);
         }
 
@@ -322,34 +321,35 @@ public class Chart extends AbstractComponent {
 
     }
 
-    private final static Method chartClickMethod = ReflectTools
-        .findMethod(ChartClickListener.class, "onClick", ChartClickEvent.class);
+    private final static Method chartClickMethod = ReflectTools.findMethod(
+            ChartClickListener.class, "onClick", ChartClickEvent.class);
     private final static Method chartDrillupMethod = ReflectTools.findMethod(
-        ChartDrillupListener.class, "onDrillup", ChartDrillupEvent.class);
-    private final static Method pointClickMethod = ReflectTools
-        .findMethod(PointClickListener.class, "onClick", PointClickEvent.class);
+            ChartDrillupListener.class, "onDrillup", ChartDrillupEvent.class);
+    private final static Method pointClickMethod = ReflectTools.findMethod(
+            PointClickListener.class, "onClick", PointClickEvent.class);
     private final static Method chartSelectionMethod = ReflectTools.findMethod(
-        ChartSelectionListener.class, "onSelection", ChartSelectionEvent.class);
-    private final static Method legendItemClickMethod = ReflectTools.findMethod(
-        LegendItemClickListener.class, "onClick", LegendItemClickEvent.class);
+            ChartSelectionListener.class, "onSelection",
+            ChartSelectionEvent.class);
+    private final static Method legendItemClickMethod = ReflectTools
+            .findMethod(LegendItemClickListener.class, "onClick",
+                    LegendItemClickEvent.class);
     private final static Method checkboxClickMethod = ReflectTools.findMethod(
-        CheckboxClickListener.class, "onClick", CheckboxClickEvent.class);
-    private final static Method showSeriesMethod = ReflectTools
-        .findMethod(SeriesShowListener.class, "onShow", SeriesShowEvent.class);
-    private final static Method hideSeriesMethod = ReflectTools
-        .findMethod(SeriesHideListener.class, "onHide", SeriesHideEvent.class);
+            CheckboxClickListener.class, "onClick", CheckboxClickEvent.class);
+    private final static Method showSeriesMethod = ReflectTools.findMethod(
+            SeriesShowListener.class, "onShow", SeriesShowEvent.class);
+    private final static Method hideSeriesMethod = ReflectTools.findMethod(
+            SeriesHideListener.class, "onHide", SeriesHideEvent.class);
     private final static Method xAxesExtremesChangeMethod = ReflectTools
-        .findMethod(
-            XAxesExtremesChangeListener.class, "onXAxesExtremesChange",
-            XAxesExtremesChangeEvent.class);
+            .findMethod(XAxesExtremesChangeListener.class,
+                    "onXAxesExtremesChange", XAxesExtremesChangeEvent.class);
     private final static Method yAxesExtremesChangeMethod = ReflectTools
-        .findMethod(
-            YAxesExtremesChangeListener.class, "onYAxesExtremesChange",
-            YAxesExtremesChangeEvent.class);
+            .findMethod(YAxesExtremesChangeListener.class,
+                    "onYAxesExtremesChange", YAxesExtremesChangeEvent.class);
     private final static Method pointSelectMethod = ReflectTools.findMethod(
-        PointSelectListener.class, "onSelect", PointSelectEvent.class);
-    private final static Method pointUnselectMethod = ReflectTools.findMethod(
-        PointUnselectListener.class, "onUnselect", PointUnselectEvent.class);
+            PointSelectListener.class, "onSelect", PointSelectEvent.class);
+    private final static Method pointUnselectMethod = ReflectTools
+            .findMethod(PointUnselectListener.class, "onUnselect",
+                    PointUnselectEvent.class);
     /**
      * Listens to events on the series attached to the chart and redraws as
      * necessary.
@@ -395,8 +395,7 @@ public class Chart extends AbstractComponent {
         this();
         // configuration.setChart(new ChartModel(configuration, type));
         com.vaadin.addon.charts.model.Chart chart = new com.vaadin.addon.charts.model.Chart();
-        // TODO use charttype enum
-        chart.setType(type.toString());
+        chart.setType(type);
         // TODO chart-configuration reference?
         configuration.setChart(chart);
     }
@@ -461,8 +460,8 @@ public class Chart extends AbstractComponent {
      * Sets the jsonConfig used to render this chart.
      * <p>
      * Note, that calling this method on already displayed component don't
-     * necessary update it. Developer should call {@link #drawChart()} or {@link
-     * #drawChart(String)} method to force re draw.
+     * necessary update it. Developer should call {@link #drawChart()} or
+     * {@link #drawChart(String)} method to force re draw.
      *
      * @see #drawChart(String)
      * @param jsonConf
@@ -484,8 +483,8 @@ public class Chart extends AbstractComponent {
      * Sets the configuration object used to render this chart.
      * <p>
      * Note, that calling this method on already displayed component don't
-     * necessary update it. Developer should call {@link #drawChart()} or {@link
-     * #drawChart(Configuration)} method to force re draw.
+     * necessary update it. Developer should call {@link #drawChart()} or
+     * {@link #drawChart(Configuration)} method to force re draw.
      *
      * @param configuration
      */
@@ -586,9 +585,8 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void addCheckBoxClickListener(CheckboxClickListener listener) {
-        this.addListener(
-            ChartConnector.CHECKBOX_CLICK_EVENT_ID, CheckboxClickEvent.class,
-            listener, checkboxClickMethod);
+        this.addListener(ChartConnector.CHECKBOX_CLICK_EVENT_ID,
+                CheckboxClickEvent.class, listener, checkboxClickMethod);
     }
 
     /**
@@ -598,9 +596,8 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void removeCheckBoxClickListener(CheckboxClickListener listener) {
-        this.removeListener(
-            ChartConnector.CHECKBOX_CLICK_EVENT_ID, CheckboxClickEvent.class,
-            listener);
+        this.removeListener(ChartConnector.CHECKBOX_CLICK_EVENT_ID,
+                CheckboxClickEvent.class, listener);
     }
 
     /**
@@ -632,7 +629,7 @@ public class Chart extends AbstractComponent {
      */
     public void addPointClickListener(PointClickListener listener) {
         this.addListener(ChartConnector.POINT_CLICK_EVENT_ID,
-            PointClickEvent.class, listener, pointClickMethod);
+                PointClickEvent.class, listener, pointClickMethod);
     }
 
     /**
@@ -647,7 +644,8 @@ public class Chart extends AbstractComponent {
     }
 
     /**
-     * Adds a chart selection listener<br /> <br />
+     * Adds a chart selection listener<br />
+     * <br />
      * <p>
      * Note that if a chart selection listener is set, default action for
      * selection is prevented. Most commonly this means that client side zoom
@@ -678,7 +676,8 @@ public class Chart extends AbstractComponent {
      * <p>
      * Note that adding a legend item click listener also disabled the default
      * behaviour to toggle series visibility. If that is not desired, you can
-     * enable it again by calling setSeriesVisibilityTogglingDisabled(<code>true</code>)
+     * enable it again by calling setSeriesVisibilityTogglingDisabled(
+     * <code>true</code>)
      *
      * @param listener
      */
@@ -694,8 +693,7 @@ public class Chart extends AbstractComponent {
      * @see #addLegendItemClickListener(LegendItemClickListener)
      * @param listener
      */
-    public void removeLegendItemClickListener(
-        LegendItemClickListener listener) {
+    public void removeLegendItemClickListener(LegendItemClickListener listener) {
         this.removeListener(ChartConnector.LEGENDITEM_CLICK_EVENT_ID,
                 LegendItemClickEvent.class, listener);
     }
@@ -751,9 +749,10 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void addXAxesExtremesChangeListener(
-        XAxesExtremesChangeListener listener) {
+            XAxesExtremesChangeListener listener) {
         this.addListener(ChartConnector.X_AXES_EXTREMES_CHANGE_EVENT_ID,
-                XAxesExtremesChangeEvent.class, listener, xAxesExtremesChangeMethod);
+                XAxesExtremesChangeEvent.class, listener,
+                xAxesExtremesChangeMethod);
     }
 
     /**
@@ -763,7 +762,7 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void removeXAxesExtremesChangeListener(
-        XAxesExtremesChangeListener listener) {
+            XAxesExtremesChangeListener listener) {
         this.removeListener(ChartConnector.X_AXES_EXTREMES_CHANGE_EVENT_ID,
                 XAxesExtremesChangeEvent.class, listener);
     }
@@ -775,9 +774,10 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void addYAxesExtremesChangeListener(
-        YAxesExtremesChangeListener listener) {
+            YAxesExtremesChangeListener listener) {
         this.addListener(ChartConnector.Y_AXES_EXTREMES_CHANGE_EVENT_ID,
-                YAxesExtremesChangeEvent.class, listener, yAxesExtremesChangeMethod);
+                YAxesExtremesChangeEvent.class, listener,
+                yAxesExtremesChangeMethod);
     }
 
     /**
@@ -787,7 +787,7 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void removeYAxesExtremesChangeListener(
-        YAxesExtremesChangeListener listener) {
+            YAxesExtremesChangeListener listener) {
         this.removeListener(ChartConnector.Y_AXES_EXTREMES_CHANGE_EVENT_ID,
                 YAxesExtremesChangeEvent.class, listener);
     }
@@ -822,7 +822,7 @@ public class Chart extends AbstractComponent {
      */
     public void addPointUnselectListener(PointUnselectListener listener) {
         this.addListener(ChartConnector.POINT_UNSELECT_EVENT_ID,
-            PointUnselectEvent.class, listener, pointUnselectMethod);
+                PointUnselectEvent.class, listener, pointUnselectMethod);
     }
 
     /**
@@ -833,11 +833,11 @@ public class Chart extends AbstractComponent {
      */
     public void removePointUnselectListener(PointUnselectListener listener) {
         this.removeListener(ChartConnector.POINT_UNSELECT_EVENT_ID,
-            PointUnselectEvent.class, listener);
+                PointUnselectEvent.class, listener);
     }
 
-    private void readObject(ObjectInputStream in)
-        throws IOException, ClassNotFoundException {
+    private void readObject(ObjectInputStream in) throws IOException,
+            ClassNotFoundException {
         in.defaultReadObject();
         if (getUI() != null) {
             configuration.addChangeListener(changeListener);
@@ -846,8 +846,8 @@ public class Chart extends AbstractComponent {
 
     /**
      * The series visibility is toggled by default if user clicks the series
-     * item in the legend. Calling setSeriesVisibilityTogglingDisabled(<code>true</code>)
-     * will disable this behaviour.
+     * item in the legend. Calling setSeriesVisibilityTogglingDisabled(
+     * <code>true</code>) will disable this behaviour.
      *
      * @param disabled
      */

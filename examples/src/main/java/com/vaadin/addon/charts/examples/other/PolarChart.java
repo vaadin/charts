@@ -44,7 +44,6 @@ public class PolarChart extends AbstractVaadinChartExample {
         axis.setMax(360);
         // FIXME remove initialization after CHARTS-154
         axis.setLabels(new Labels());
-        axis.getLabels().setFormat("{value}°");
         axis.getLabels().setFormatter("function() {return this.value + '°';}");
         YAxis yaxs = new YAxis();
         yaxs.setMin(0);

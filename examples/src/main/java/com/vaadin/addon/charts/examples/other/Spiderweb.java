@@ -42,8 +42,7 @@ public class Spiderweb extends AbstractVaadinChartExample {
         XAxis axis = new XAxis();
         axis.setCategories(new String[] { "Sales", "Marketing", "Development",
                 "Customer Support", "Information Technology", "Administration" });
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        axis.setTickmarkPlacement(TickmarkPlacement.ON.toString());
+        axis.setTickmarkPlacement(TickmarkPlacement.ON);
         axis.setLineWidth(0);
 
         YAxis yaxs = new YAxis();
@@ -56,10 +55,10 @@ public class Spiderweb extends AbstractVaadinChartExample {
         conf.getTooltip().setShared(true);
         conf.getTooltip().setValuePrefix("$");
 
-        conf.getLegend().setAlign(HorizontalAlign.RIGHT.toString());
-        conf.getLegend().setVerticalAlign(VerticalAlign.TOP.toString());
+        conf.getLegend().setAlign(HorizontalAlign.RIGHT);
+        conf.getLegend().setVerticalAlign(VerticalAlign.TOP);
         conf.getLegend().setY(100);
-        conf.getLegend().setLayout(LayoutDirection.VERTICAL.toString());
+        conf.getLegend().setLayout(LayoutDirection.VERTICAL);
 
         ListSeries line1 = new ListSeries(43000, 19000, 60000, 35000, 17000,
                 10000);

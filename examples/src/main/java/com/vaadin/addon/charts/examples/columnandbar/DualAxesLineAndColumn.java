@@ -33,8 +33,7 @@ public class DualAxesLineAndColumn extends AbstractVaadinChartExample {
 
         Configuration conf = chart.getConfiguration();
 
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        conf.getChart().setZoomType(ZoomType.XY.toString());
+        conf.getChart().setZoomType(ZoomType.XY);
 
         conf.setTitle("Average Monthly Temperature and Rainfall in Tokyo");
         conf.setSubTitle("Source: WorldClimate.com");
@@ -64,10 +63,10 @@ public class DualAxesLineAndColumn extends AbstractVaadinChartExample {
         conf.setTooltip(tooltip);
 
         Legend legend = new Legend();
-        legend.setLayout(LayoutDirection.VERTICAL.toString());
-        legend.setAlign(HorizontalAlign.LEFT.toString());
+        legend.setLayout(LayoutDirection.VERTICAL);
+        legend.setAlign(HorizontalAlign.LEFT);
         legend.setX(120);
-        legend.setVerticalAlign(VerticalAlign.TOP.toString());
+        legend.setVerticalAlign(VerticalAlign.TOP);
         legend.setY(100);
         legend.setFloating(true);
         conf.setLegend(legend);

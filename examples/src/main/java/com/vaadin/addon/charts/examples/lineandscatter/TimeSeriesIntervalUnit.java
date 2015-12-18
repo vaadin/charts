@@ -37,8 +37,7 @@ public class TimeSeriesIntervalUnit extends AbstractVaadinChartExample {
 
         configuration.getTitle().setText("Point interval test");
 
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        configuration.getxAxis().setType(AxisType.DATETIME.toString());
+        configuration.getxAxis().setType(AxisType.DATETIME);
 
         final PlotOptionsSeries plotOptions = new PlotOptionsSeries();
         try {
@@ -49,7 +48,7 @@ public class TimeSeriesIntervalUnit extends AbstractVaadinChartExample {
             e.printStackTrace();
         }
         plotOptions.setPointInterval(1);
-        plotOptions.setPointIntervalUnit(IntervalUnit.MONTH.toString());
+        plotOptions.setPointIntervalUnit(IntervalUnit.MONTH);
 
         configuration.setPlotOptions(plotOptions);
         ListSeries ls = new ListSeries();

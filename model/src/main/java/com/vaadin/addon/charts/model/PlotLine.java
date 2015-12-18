@@ -8,7 +8,7 @@ public class PlotLine extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
 	private Color color;
-	private String dashStyle;
+	private DashStyle dashStyle;
 	private String id;
 	private Label label;
 	private Number value;
@@ -33,9 +33,9 @@ public class PlotLine extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setDashStyle(String)
+	 * @see #setDashStyle(DashStyle)
 	 */
-	public String getDashStyle() {
+	public DashStyle getDashStyle() {
 		return dashStyle;
 	}
 
@@ -47,7 +47,7 @@ public class PlotLine extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to: Solid
 	 */
-	public void setDashStyle(String dashStyle) {
+	public void setDashStyle(DashStyle dashStyle) {
 		this.dashStyle = dashStyle;
 	}
 

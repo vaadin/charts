@@ -15,8 +15,8 @@ public class PlotOptionsScatter extends AbstractPlotOptions {
 	private Boolean animation;
 	private Color color;
 	private Number cropThreshold;
-	private String cursor;
-	private String dashStyle;
+	private Cursor cursor;
+	private DashStyle dashStyle;
 	private DataLabels dataLabels;
 	private Boolean enableMouseTracking;
 	private Boolean getExtremesFromAll;
@@ -26,7 +26,7 @@ public class PlotOptionsScatter extends AbstractPlotOptions {
 	private Marker marker;
 	private Color negativeColor;
 	private Number pointInterval;
-	private String pointIntervalUnit;
+	private IntervalUnit pointIntervalUnit;
 	private Number pointStart;
 	private Boolean selected;
 	private Object shadow;
@@ -146,9 +146,9 @@ public class PlotOptionsScatter extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setCursor(String)
+	 * @see #setCursor(Cursor)
 	 */
-	public String getCursor() {
+	public Cursor getCursor() {
 		return cursor;
 	}
 
@@ -157,14 +157,14 @@ public class PlotOptionsScatter extends AbstractPlotOptions {
 	 * the series, to signal to the user that the points and lines can be
 	 * clicked.
 	 */
-	public void setCursor(String cursor) {
+	public void setCursor(Cursor cursor) {
 		this.cursor = cursor;
 	}
 
 	/**
-	 * @see #setDashStyle(String)
+	 * @see #setDashStyle(DashStyle)
 	 */
-	public String getDashStyle() {
+	public DashStyle getDashStyle() {
 		return dashStyle;
 	}
 
@@ -189,7 +189,7 @@ public class PlotOptionsScatter extends AbstractPlotOptions {
 	 * <p>
 	 * Defaults to: Solid
 	 */
-	public void setDashStyle(String dashStyle) {
+	public void setDashStyle(DashStyle dashStyle) {
 		this.dashStyle = dashStyle;
 	}
 
@@ -355,9 +355,9 @@ public class PlotOptionsScatter extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setPointIntervalUnit(String)
+	 * @see #setPointIntervalUnit(IntervalUnit)
 	 */
-	public String getPointIntervalUnit() {
+	public IntervalUnit getPointIntervalUnit() {
 		return pointIntervalUnit;
 	}
 
@@ -368,7 +368,7 @@ public class PlotOptionsScatter extends AbstractPlotOptions {
 	 * it with <code>pointInterval</code> to draw quarters, 6 months, 10 years
 	 * etc.
 	 */
-	public void setPointIntervalUnit(String pointIntervalUnit) {
+	public void setPointIntervalUnit(IntervalUnit pointIntervalUnit) {
 		this.pointIntervalUnit = pointIntervalUnit;
 	}
 

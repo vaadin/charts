@@ -19,7 +19,7 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 	private Color color;
 	private Boolean colorByPoint;
 	private Object colors;
-	private String cursor;
+	private Cursor cursor;
 	private Number depth;
 	private Color edgeColor;
 	private Number edgeWidth;
@@ -37,9 +37,9 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 	private Number medianWidth;
 	private Color negativeColor;
 	private Number pointInterval;
-	private String pointIntervalUnit;
+	private IntervalUnit pointIntervalUnit;
 	private Number pointPadding;
-	private Object pointPlacement;
+	private PointPlacement pointPlacement;
 	private Number pointRange;
 	private Number pointStart;
 	private Number pointWidth;
@@ -48,7 +48,7 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 	private Boolean showInLegend;
 	private States states;
 	private Color stemColor;
-	private String stemDashStyle;
+	private DashStyle stemDashStyle;
 	private Number stemWidth;
 	private Boolean stickyTracking;
 	private SeriesTooltip tooltip;
@@ -139,9 +139,9 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setCursor(String)
+	 * @see #setCursor(Cursor)
 	 */
-	public String getCursor() {
+	public Cursor getCursor() {
 		return cursor;
 	}
 
@@ -150,7 +150,7 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 	 * the series, to signal to the user that the points and lines can be
 	 * clicked.
 	 */
-	public void setCursor(String cursor) {
+	public void setCursor(Cursor cursor) {
 		this.cursor = cursor;
 	}
 
@@ -462,9 +462,9 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setPointIntervalUnit(String)
+	 * @see #setPointIntervalUnit(IntervalUnit)
 	 */
-	public String getPointIntervalUnit() {
+	public IntervalUnit getPointIntervalUnit() {
 		return pointIntervalUnit;
 	}
 
@@ -475,7 +475,7 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 	 * it with <code>pointInterval</code> to draw quarters, 6 months, 10 years
 	 * etc.
 	 */
-	public void setPointIntervalUnit(String pointIntervalUnit) {
+	public void setPointIntervalUnit(IntervalUnit pointIntervalUnit) {
 		this.pointIntervalUnit = pointIntervalUnit;
 	}
 
@@ -496,9 +496,9 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setPointPlacement(Object)
+	 * @see #setPointPlacement(PointPlacement)
 	 */
-	public Object getPointPlacement() {
+	public PointPlacement getPointPlacement() {
 		return pointPlacement;
 	}
 
@@ -530,7 +530,7 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 	 * Defaults to <code>null</code> in cartesian charts, <code>"between"</code>
 	 * in polar charts.
 	 */
-	public void setPointPlacement(Object pointPlacement) {
+	public void setPointPlacement(PointPlacement pointPlacement) {
 		this.pointPlacement = pointPlacement;
 	}
 
@@ -671,9 +671,9 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setStemDashStyle(String)
+	 * @see #setStemDashStyle(DashStyle)
 	 */
-	public String getStemDashStyle() {
+	public DashStyle getStemDashStyle() {
 		return stemDashStyle;
 	}
 
@@ -683,7 +683,7 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 	 * <p>
 	 * Defaults to: Solid
 	 */
-	public void setStemDashStyle(String stemDashStyle) {
+	public void setStemDashStyle(DashStyle stemDashStyle) {
 		this.stemDashStyle = stemDashStyle;
 	}
 

@@ -54,8 +54,7 @@ public class ContainerSeriesWithSpline extends AbstractVaadinChartExample {
         // Create chart config
         Configuration config = chart.getConfiguration();
 
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        config.getxAxis().setType(AxisType.DATETIME.toString());
+        config.getxAxis().setType(AxisType.DATETIME);
 
         // Wrap container in a container data series
         ContainerDataSeries cds = new ContainerDataSeries(indexedContainer);

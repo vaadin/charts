@@ -44,7 +44,7 @@ public class ColumnWithNativeLazyDrilldown extends AbstractVaadinChartExample {
         conf.getLegend().setEnabled(false);
 
         XAxis x = new XAxis();
-        x.setType(AxisType.CATEGORY.toString());
+        x.setType(AxisType.CATEGORY);
         conf.addxAxis(x);
 
         YAxis y = new YAxis();
@@ -52,7 +52,7 @@ public class ColumnWithNativeLazyDrilldown extends AbstractVaadinChartExample {
         conf.addyAxis(y);
 
         PlotOptionsColumn column = new PlotOptionsColumn();
-        column.setCursor(Cursor.POINTER.toString());
+        column.setCursor(Cursor.POINTER);
         column.setDataLabels(new DataLabels(true));
         column.getDataLabels().setFormat("{y}%");
 

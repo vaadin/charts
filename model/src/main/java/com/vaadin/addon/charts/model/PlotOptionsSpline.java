@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import com.vaadin.addon.charts.util.Util;
+/**
+ */
 public class PlotOptionsSpline extends AbstractPlotOptions {
 
 	private static final long serialVersionUID = 1L;
@@ -14,8 +16,8 @@ public class PlotOptionsSpline extends AbstractPlotOptions {
 	private Boolean connectEnds;
 	private Boolean connectNulls;
 	private Number cropThreshold;
-	private String cursor;
-	private String dashStyle;
+	private Cursor cursor;
+	private DashStyle dashStyle;
 	private DataLabels dataLabels;
 	private Boolean enableMouseTracking;
 	private Boolean getExtremesFromAll;
@@ -25,15 +27,15 @@ public class PlotOptionsSpline extends AbstractPlotOptions {
 	private Marker marker;
 	private Color negativeColor;
 	private Number pointInterval;
-	private String pointIntervalUnit;
-	private Object pointPlacement;
+	private IntervalUnit pointIntervalUnit;
+	private PointPlacement pointPlacement;
 	private Number pointStart;
 	private Boolean selected;
 	private Object shadow;
 	private Boolean showCheckbox;
 	private Boolean showInLegend;
 	private Boolean softThreshold;
-	private String stacking;
+	private Stacking stacking;
 	private States states;
 	private Boolean stickyTracking;
 	private Number threshold;
@@ -180,9 +182,9 @@ public class PlotOptionsSpline extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setCursor(String)
+	 * @see #setCursor(Cursor)
 	 */
-	public String getCursor() {
+	public Cursor getCursor() {
 		return cursor;
 	}
 
@@ -191,14 +193,14 @@ public class PlotOptionsSpline extends AbstractPlotOptions {
 	 * the series, to signal to the user that the points and lines can be
 	 * clicked.
 	 */
-	public void setCursor(String cursor) {
+	public void setCursor(Cursor cursor) {
 		this.cursor = cursor;
 	}
 
 	/**
-	 * @see #setDashStyle(String)
+	 * @see #setDashStyle(DashStyle)
 	 */
-	public String getDashStyle() {
+	public DashStyle getDashStyle() {
 		return dashStyle;
 	}
 
@@ -223,7 +225,7 @@ public class PlotOptionsSpline extends AbstractPlotOptions {
 	 * <p>
 	 * Defaults to: Solid
 	 */
-	public void setDashStyle(String dashStyle) {
+	public void setDashStyle(DashStyle dashStyle) {
 		this.dashStyle = dashStyle;
 	}
 
@@ -389,9 +391,9 @@ public class PlotOptionsSpline extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setPointIntervalUnit(String)
+	 * @see #setPointIntervalUnit(IntervalUnit)
 	 */
-	public String getPointIntervalUnit() {
+	public IntervalUnit getPointIntervalUnit() {
 		return pointIntervalUnit;
 	}
 
@@ -402,14 +404,14 @@ public class PlotOptionsSpline extends AbstractPlotOptions {
 	 * it with <code>pointInterval</code> to draw quarters, 6 months, 10 years
 	 * etc.
 	 */
-	public void setPointIntervalUnit(String pointIntervalUnit) {
+	public void setPointIntervalUnit(IntervalUnit pointIntervalUnit) {
 		this.pointIntervalUnit = pointIntervalUnit;
 	}
 
 	/**
-	 * @see #setPointPlacement(Object)
+	 * @see #setPointPlacement(PointPlacement)
 	 */
-	public Object getPointPlacement() {
+	public PointPlacement getPointPlacement() {
 		return pointPlacement;
 	}
 
@@ -441,7 +443,7 @@ public class PlotOptionsSpline extends AbstractPlotOptions {
 	 * Defaults to <code>null</code> in cartesian charts, <code>"between"</code>
 	 * in polar charts.
 	 */
-	public void setPointPlacement(Object pointPlacement) {
+	public void setPointPlacement(PointPlacement pointPlacement) {
 		this.pointPlacement = pointPlacement;
 	}
 
@@ -564,9 +566,9 @@ public class PlotOptionsSpline extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setStacking(String)
+	 * @see #setStacking(Stacking)
 	 */
-	public String getStacking() {
+	public Stacking getStacking() {
 		return stacking;
 	}
 
@@ -574,7 +576,7 @@ public class PlotOptionsSpline extends AbstractPlotOptions {
 	 * Whether to stack the values of each series on top of each other. Possible
 	 * values are null to disable, "normal" to stack by value or "percent".
 	 */
-	public void setStacking(String stacking) {
+	public void setStacking(Stacking stacking) {
 		this.stacking = stacking;
 	}
 

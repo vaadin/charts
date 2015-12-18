@@ -47,8 +47,7 @@ public class StackedAndGroupedColumn extends AbstractVaadinChartExample {
         conf.setTooltip(tooltip);
 
         PlotOptionsColumn plotOptions = new PlotOptionsColumn();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        plotOptions.setStacking(Stacking.NORMAL.toString());
+        plotOptions.setStacking(Stacking.NORMAL);
         conf.setPlotOptions(plotOptions);
 
         ListSeries serie = new ListSeries("John",

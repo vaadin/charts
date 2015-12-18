@@ -27,7 +27,7 @@ public class Tooltip extends AbstractConfigurationObject {
 	private Object pointFormatter;
 	private Object positioner;
 	private Boolean shadow;
-	private String shape;
+	private Shape shape;
 	private Boolean shared;
 	private Number snap;
 	private Style style;
@@ -398,9 +398,9 @@ public class Tooltip extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setShape(String)
+	 * @see #setShape(Shape)
 	 */
-	public String getShape() {
+	public Shape getShape() {
 		return shape;
 	}
 
@@ -410,7 +410,7 @@ public class Tooltip extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to: callout
 	 */
-	public void setShape(String shape) {
+	public void setShape(Shape shape) {
 		this.shape = shape;
 	}
 

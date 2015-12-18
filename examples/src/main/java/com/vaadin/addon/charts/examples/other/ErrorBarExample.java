@@ -34,8 +34,7 @@ public class ErrorBarExample extends AbstractVaadinChartExample {
         Color[] colors = getThemeColors();
 
         // Enable xy zooming, test also with touch devices
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        conf.getChart().setZoomType(ZoomType.XY.toString());
+        conf.getChart().setZoomType(ZoomType.XY);
 
         conf.setTitle("Temperature vs Rainfall");
 

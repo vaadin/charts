@@ -9,7 +9,7 @@ public class Zones extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
 	private Color color;
-	private String dashStyle;
+	private DashStyle dashStyle;
 	private Color fillColor;
 	private Number value;
 
@@ -31,16 +31,16 @@ public class Zones extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setDashStyle(String)
+	 * @see #setDashStyle(DashStyle)
 	 */
-	public String getDashStyle() {
+	public DashStyle getDashStyle() {
 		return dashStyle;
 	}
 
 	/**
 	 * A name for the dash style to use for the graph.
 	 */
-	public void setDashStyle(String dashStyle) {
+	public void setDashStyle(DashStyle dashStyle) {
 		this.dashStyle = dashStyle;
 	}
 

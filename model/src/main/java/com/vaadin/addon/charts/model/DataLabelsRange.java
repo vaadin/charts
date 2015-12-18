@@ -12,7 +12,7 @@ import com.vaadin.addon.charts.model.style.Style;
 public class DataLabelsRange extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
-	private String align;
+	private HorizontalAlign align;
 	private Boolean allowOverlap;
 	private Color backgroundColor;
 	private Color borderColor;
@@ -29,10 +29,10 @@ public class DataLabelsRange extends AbstractConfigurationObject {
 	private Number padding;
 	private Number rotation;
 	private Object shadow;
-	private String shape;
+	private Shape shape;
 	private Style style;
 	private Boolean useHTML;
-	private String verticalAlign;
+	private VerticalAlign verticalAlign;
 	private Number xHigh;
 	private Number xLow;
 	private Number yHigh;
@@ -43,9 +43,9 @@ public class DataLabelsRange extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setAlign(String)
+	 * @see #setAlign(HorizontalAlign)
 	 */
-	public String getAlign() {
+	public HorizontalAlign getAlign() {
 		return align;
 	}
 
@@ -59,7 +59,7 @@ public class DataLabelsRange extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to: center
 	 */
-	public void setAlign(String align) {
+	public void setAlign(HorizontalAlign align) {
 		this.align = align;
 	}
 
@@ -329,9 +329,9 @@ public class DataLabelsRange extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setShape(String)
+	 * @see #setShape(Shape)
 	 */
-	public String getShape() {
+	public Shape getShape() {
 		return shape;
 	}
 
@@ -341,7 +341,7 @@ public class DataLabelsRange extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to: square
 	 */
-	public void setShape(String shape) {
+	public void setShape(Shape shape) {
 		this.shape = shape;
 	}
 
@@ -381,9 +381,9 @@ public class DataLabelsRange extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setVerticalAlign(String)
+	 * @see #setVerticalAlign(VerticalAlign)
 	 */
-	public String getVerticalAlign() {
+	public VerticalAlign getVerticalAlign() {
 		return verticalAlign;
 	}
 
@@ -393,7 +393,7 @@ public class DataLabelsRange extends AbstractConfigurationObject {
 	 * the data, for instance in a column chart, the label is above positive
 	 * values and below negative values.
 	 */
-	public void setVerticalAlign(String verticalAlign) {
+	public void setVerticalAlign(VerticalAlign verticalAlign) {
 		this.verticalAlign = verticalAlign;
 	}
 

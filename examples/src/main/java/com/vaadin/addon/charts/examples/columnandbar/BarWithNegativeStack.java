@@ -54,8 +54,7 @@ public class BarWithNegativeStack extends AbstractVaadinChartExample {
         conf.addyAxis(y);
 
         PlotOptionsSeries plot = new PlotOptionsSeries();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        plot.setStacking(Stacking.NORMAL.toString());
+        plot.setStacking(Stacking.NORMAL);
         conf.setPlotOptions(plot);
 
         Tooltip tooltip = new Tooltip();

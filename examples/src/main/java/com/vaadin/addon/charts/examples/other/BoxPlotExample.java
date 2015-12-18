@@ -54,9 +54,9 @@ public class BoxPlotExample extends AbstractVaadinChartExample {
         plotLine.setValue(932);
         plotLine.setWidth(1);
         plotLine.setZIndex(0);
-        plotLine.setDashStyle(DashStyle.DASHDOT.toString());
+        plotLine.setDashStyle(DashStyle.DASHDOT);
         Label label = new Label("Theoretical mean: 932");
-        label.setAlign(HorizontalAlign.CENTER.toString());
+        label.setAlign(HorizontalAlign.CENTER);
         Style style = new Style();
         style.setColor(new SolidColor("gray"));
         label.setStyle(style);
@@ -66,9 +66,9 @@ public class BoxPlotExample extends AbstractVaadinChartExample {
         plotLine2.setValue(800);
         plotLine2.setWidth(1);
         plotLine2.setZIndex(500);
-        plotLine2.setDashStyle(DashStyle.SHORTDASHDOTDOT.toString());
+        plotLine2.setDashStyle(DashStyle.SHORTDASHDOTDOT);
         Label label2 = new Label("Second plotline: 800");
-        label2.setAlign(HorizontalAlign.CENTER.toString());
+        label2.setAlign(HorizontalAlign.CENTER);
         Style style2 = new Style();
         style2.setColor(new SolidColor("gray"));
         label2.setStyle(style2);
@@ -125,8 +125,7 @@ public class BoxPlotExample extends AbstractVaadinChartExample {
             options.setMedianWidth(1);
 
             options.setStemColor(new SolidColor("green"));
-            // FIXME remove toString() once enums are used in model (CHARTS-159)
-            options.setStemDashStyle(DashStyle.SHORTDOT.toString());
+            options.setStemDashStyle(DashStyle.SHORTDOT);
             options.setStemWidth(4);
 
             options.setWhiskerColor(new SolidColor("magenta"));

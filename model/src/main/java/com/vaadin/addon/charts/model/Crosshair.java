@@ -9,7 +9,7 @@ public class Crosshair extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
 	private Color color;
-	private String dashStyle;
+	private DashStyle dashStyle;
 	private Boolean snap;
 	private Number width;
 	private Number zIndex;
@@ -36,9 +36,9 @@ public class Crosshair extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setDashStyle(String)
+	 * @see #setDashStyle(DashStyle)
 	 */
-	public String getDashStyle() {
+	public DashStyle getDashStyle() {
 		return dashStyle;
 	}
 
@@ -49,7 +49,7 @@ public class Crosshair extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to: Solid
 	 */
-	public void setDashStyle(String dashStyle) {
+	public void setDashStyle(DashStyle dashStyle) {
 		this.dashStyle = dashStyle;
 	}
 

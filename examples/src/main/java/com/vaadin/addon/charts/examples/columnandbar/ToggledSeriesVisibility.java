@@ -1,5 +1,8 @@
 package com.vaadin.addon.charts.examples.columnandbar;
 
+import java.util.Collection;
+import java.util.List;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.LegendItemClickEvent;
 import com.vaadin.addon.charts.LegendItemClickListener;
@@ -22,9 +25,6 @@ import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.OptionGroup;
-
-import java.util.Collection;
-import java.util.List;
 
 @SuppressWarnings("serial")
 public class ToggledSeriesVisibility extends AbstractVaadinChartExample {
@@ -65,11 +65,10 @@ public class ToggledSeriesVisibility extends AbstractVaadinChartExample {
         conf.addyAxis(y);
 
         Legend legend = new Legend();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        legend.setLayout(LayoutDirection.VERTICAL.toString());
+        legend.setLayout(LayoutDirection.VERTICAL);
         legend.setBackgroundColor(new SolidColor("#FFFFFF"));
-        legend.setAlign(HorizontalAlign.LEFT.toString());
-        legend.setVerticalAlign(VerticalAlign.TOP.toString());
+        legend.setAlign(HorizontalAlign.LEFT);
+        legend.setVerticalAlign(VerticalAlign.TOP);
         legend.setX(100);
         legend.setY(70);
         legend.setFloating(true);

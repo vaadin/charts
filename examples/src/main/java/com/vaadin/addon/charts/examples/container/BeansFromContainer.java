@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts.examples.container;
 
+import java.io.Serializable;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.SkipFromDemo;
@@ -11,8 +13,6 @@ import com.vaadin.addon.charts.model.PlotOptionsColumn;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.Component;
-
-import java.io.Serializable;
 
 @SkipFromDemo
 public class BeansFromContainer extends AbstractVaadinChartExample {
@@ -48,8 +48,7 @@ public class BeansFromContainer extends AbstractVaadinChartExample {
         configuration.addyAxis(y);
 
         // use category names from beans on x axis instead of index
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        configuration.getxAxis().setType(AxisType.CATEGORY.toString());
+        configuration.getxAxis().setType(AxisType.CATEGORY);
         configuration.setSeries(series);
 
         chart.setSizeFull();

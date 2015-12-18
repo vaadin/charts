@@ -50,8 +50,7 @@ public class ClickToAddPoint extends AbstractVaadinChartExample {
         chart.setWidth("500px");
 
         final Configuration configuration = chart.getConfiguration();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        configuration.getChart().setType(ChartType.SCATTER.toString());
+        configuration.getChart().setType(ChartType.SCATTER);
         configuration.getTitle().setText("User supplied data");
         configuration
                 .getSubTitle()

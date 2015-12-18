@@ -2,10 +2,12 @@ package com.vaadin.addon.charts.model;
 
 import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.Style;
+/**
+ */
 public class DataLabels extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
-	private String align;
+	private HorizontalAlign align;
 	private Boolean allowOverlap;
 	private Color backgroundColor;
 	private Color borderColor;
@@ -22,14 +24,14 @@ public class DataLabels extends AbstractConfigurationObject {
 	private Number padding;
 	private Number rotation;
 	private Object shadow;
-	private String shape;
+	private Shape shape;
 	private Style style;
 	private Boolean useHTML;
-	private String verticalAlign;
+	private VerticalAlign verticalAlign;
 	private Number x;
 	private Number y;
 	private Number zIndex;
-	private String connectorColor;
+	private Color connectorColor;
 	private Number connectorPadding;
 	private Number connectorWidth;
 	private Number distance;
@@ -39,9 +41,9 @@ public class DataLabels extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setAlign(String)
+	 * @see #setAlign(HorizontalAlign)
 	 */
-	public String getAlign() {
+	public HorizontalAlign getAlign() {
 		return align;
 	}
 
@@ -55,7 +57,7 @@ public class DataLabels extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to: center
 	 */
-	public void setAlign(String align) {
+	public void setAlign(HorizontalAlign align) {
 		this.align = align;
 	}
 
@@ -325,9 +327,9 @@ public class DataLabels extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setShape(String)
+	 * @see #setShape(Shape)
 	 */
-	public String getShape() {
+	public Shape getShape() {
 		return shape;
 	}
 
@@ -337,7 +339,7 @@ public class DataLabels extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to: square
 	 */
-	public void setShape(String shape) {
+	public void setShape(Shape shape) {
 		this.shape = shape;
 	}
 
@@ -377,9 +379,9 @@ public class DataLabels extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setVerticalAlign(String)
+	 * @see #setVerticalAlign(VerticalAlign)
 	 */
-	public String getVerticalAlign() {
+	public VerticalAlign getVerticalAlign() {
 		return verticalAlign;
 	}
 
@@ -389,7 +391,7 @@ public class DataLabels extends AbstractConfigurationObject {
 	 * the data, for instance in a column chart, the label is above positive
 	 * values and below negative values.
 	 */
-	public void setVerticalAlign(String verticalAlign) {
+	public void setVerticalAlign(VerticalAlign verticalAlign) {
 		this.verticalAlign = verticalAlign;
 	}
 
@@ -443,9 +445,9 @@ public class DataLabels extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setConnectorColor(String)
+	 * @see #setConnectorColor(Color)
 	 */
-	public String getConnectorColor() {
+	public Color getConnectorColor() {
 		return connectorColor;
 	}
 
@@ -455,7 +457,7 @@ public class DataLabels extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to: {point.color}
 	 */
-	public void setConnectorColor(String connectorColor) {
+	public void setConnectorColor(Color connectorColor) {
 		this.connectorColor = connectorColor;
 	}
 

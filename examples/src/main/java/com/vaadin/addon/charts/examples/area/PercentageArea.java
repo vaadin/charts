@@ -42,8 +42,7 @@ public class PercentageArea extends AbstractVaadinChartExample {
         conf.setSubTitle(new Subtitle("Source: Wikipedia.org"));
 
         XAxis xAxis = new XAxis();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        xAxis.setTickmarkPlacement(TickmarkPlacement.ON.toString());
+        xAxis.setTickmarkPlacement(TickmarkPlacement.ON);
         xAxis.setCategories(new String[] { "1750", "1800", "1850", "1900",
                 "1950", "1999", "2050" });
         conf.addxAxis(xAxis);
@@ -57,7 +56,7 @@ public class PercentageArea extends AbstractVaadinChartExample {
         conf.setTooltip(tooltip);
 
         PlotOptionsArea plotOptions = new PlotOptionsArea();
-        plotOptions.setStacking(Stacking.PERCENT.toString());
+        plotOptions.setStacking(Stacking.PERCENT);
         plotOptions.setLineWidth(1);
         Marker marker = new Marker();
         plotOptions.setMarker(marker);

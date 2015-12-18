@@ -80,15 +80,13 @@ public class ServerSideEvents extends AbstractVaadinChartExample {
         chart.setWidth("500px");
 
         final Configuration configuration = chart.getConfiguration();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        configuration.getChart().setType(ChartType.SCATTER.toString());
+        configuration.getChart().setType(ChartType.SCATTER);
         configuration.getTitle().setText("Test server side events.");
         configuration.getSubTitle().setText(
-            "When an event occurs, the details are shown below the chart");
+                "When an event occurs, the details are shown below the chart");
         configuration.setExporting(true);
         configuration.getChart().setAnimation(false);
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        configuration.getChart().setZoomType(ZoomType.XY.toString());
+        configuration.getChart().setZoomType(ZoomType.XY);
 
         XAxis xAxis = configuration.getxAxis();
         xAxis.setMinPadding(0.2);
@@ -141,7 +139,8 @@ public class ServerSideEvents extends AbstractVaadinChartExample {
         VerticalLayout layout = new VerticalLayout();
         layout.setSpacing(true);
         layout.addComponent(toggles);
-        HorizontalLayout chartAndListeners = new HorizontalLayout(chart, eventListeners);
+        HorizontalLayout chartAndListeners = new HorizontalLayout(chart,
+                eventListeners);
         chartAndListeners.setSizeUndefined();
         chartAndListeners.setSpacing(true);
         layout.addComponent(chartAndListeners);
@@ -161,7 +160,7 @@ public class ServerSideEvents extends AbstractVaadinChartExample {
                 logEvent(event);
             }
         };
-        addToggleForListener("Chart click",new ListenerToggle() {
+        addToggleForListener("Chart click", new ListenerToggle() {
             @Override
             public void add() {
                 chart.addChartClickListener(listener);
@@ -180,7 +179,7 @@ public class ServerSideEvents extends AbstractVaadinChartExample {
                 logEvent(event);
             }
         };
-        addToggleForListener("Point click",new ListenerToggle() {
+        addToggleForListener("Point click", new ListenerToggle() {
             @Override
             public void add() {
                 chart.addPointClickListener(pcListener);
@@ -199,7 +198,7 @@ public class ServerSideEvents extends AbstractVaadinChartExample {
                 logEvent(event);
             }
         };
-        addToggleForListener("Checkbox click",new ListenerToggle() {
+        addToggleForListener("Checkbox click", new ListenerToggle() {
             @Override
             public void add() {
                 chart.addCheckBoxClickListener(cbListener);
@@ -217,7 +216,7 @@ public class ServerSideEvents extends AbstractVaadinChartExample {
                 logEvent(event);
             }
         };
-        addToggleForListener("Legend item click",new ListenerToggle() {
+        addToggleForListener("Legend item click", new ListenerToggle() {
             @Override
             public void add() {
                 chart.addLegendItemClickListener(legendItemListener);
@@ -272,7 +271,7 @@ public class ServerSideEvents extends AbstractVaadinChartExample {
                 logEvent(event);
             }
         };
-        addToggleForListener("XAxes extremes change",new ListenerToggle() {
+        addToggleForListener("XAxes extremes change", new ListenerToggle() {
             @Override
             public void add() {
                 chart.addXAxesExtremesChangeListener(xaxesListener);
@@ -326,7 +325,7 @@ public class ServerSideEvents extends AbstractVaadinChartExample {
                 logEvent(event);
             }
         };
-        addToggleForListener("Point unselect",new ListenerToggle() {
+        addToggleForListener("Point unselect", new ListenerToggle() {
             @Override
             public void add() {
                 chart.addPointUnselectListener(unselectListener);
@@ -340,12 +339,13 @@ public class ServerSideEvents extends AbstractVaadinChartExample {
         return eventListeners;
     }
 
-    private void addToggleForListener(String caption, final ListenerToggle listenerToggle) {
+    private void addToggleForListener(String caption,
+            final ListenerToggle listenerToggle) {
         final CheckBox checkBox = new CheckBox(caption);
         checkBox.addValueChangeListener(new Property.ValueChangeListener() {
             @Override
             public void valueChange(Property.ValueChangeEvent event) {
-                if(checkBox.getValue()) {
+                if (checkBox.getValue()) {
                     listenerToggle.add();
                 } else {
                     listenerToggle.remove();
@@ -358,33 +358,34 @@ public class ServerSideEvents extends AbstractVaadinChartExample {
 
     private interface ListenerToggle {
         void add();
+
         void remove();
     }
 
     private Layout createControls() {
-        visibilityToggling = new CheckBox(
-            "Disable series visibility toggling");
+        visibilityToggling = new CheckBox("Disable series visibility toggling");
         visibilityToggling
-            .addValueChangeListener(new Property.ValueChangeListener() {
-                @Override
-                public void valueChange(Property.ValueChangeEvent event) {
-                    chart.setSeriesVisibilityTogglingDisabled(
-                        visibilityToggling.getValue());
-                }
-            });
+                .addValueChangeListener(new Property.ValueChangeListener() {
+                    @Override
+                    public void valueChange(Property.ValueChangeEvent event) {
+                        chart.setSeriesVisibilityTogglingDisabled(visibilityToggling
+                                .getValue());
+                    }
+                });
 
-        final Button firstSeriesVisible = new Button(
-            "Hide first series");
+        final Button firstSeriesVisible = new Button("Hide first series");
         firstSeriesVisible.setId("hideFirstSeries");
         firstSeriesVisible.addClickListener(new Button.ClickListener() {
             boolean hideSeries = true;
 
             @Override
             public void buttonClick(Button.ClickEvent event) {
-                Series firstSeries = chart.getConfiguration().getSeries().get(0);
+                Series firstSeries = chart.getConfiguration().getSeries()
+                        .get(0);
                 ((AbstractSeries) firstSeries).setVisible(!hideSeries);
                 hideSeries = !hideSeries;
-                String caption = hideSeries ? "Hide first series" : "Show first series";
+                String caption = hideSeries ? "Hide first series"
+                        : "Show first series";
                 firstSeriesVisible.setCaption(caption);
             }
         });
@@ -414,9 +415,7 @@ public class ServerSideEvents extends AbstractVaadinChartExample {
             @Override
             public void valueChange(Property.ValueChangeEvent event) {
                 ZoomType zoom = (ZoomType) zoomLevels.getValue();
-                // FIXME remove toString() once enums are used in model (CHARTS-159)
-                chart.getConfiguration().getChart()
-                    .setZoomType(zoom.toString());
+                chart.getConfiguration().getChart().setZoomType(zoom);
                 chart.drawChart();
             }
         });
@@ -460,19 +459,20 @@ public class ServerSideEvents extends AbstractVaadinChartExample {
         lastEvent.setValue(name);
         eventDetails.setValue(details);
         Label history = new Label(name + ": " + details + "\n");
-        history.setId("event"+eventNumber);
+        history.setId("event" + eventNumber);
         historyLayout.addComponentAsFirst(history);
         ++eventNumber;
     }
 
     private String createEventString(Event event) {
         ObjectMapper mapper = new ObjectMapper()
-            .setSerializationInclusion(JsonInclude.Include.NON_NULL)
-            .disable(SerializationFeature.FAIL_ON_EMPTY_BEANS)
-            .enable(SerializationFeature.INDENT_OUTPUT)
-            .setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE)
-            .setVisibility(PropertyAccessor.FIELD,
-                JsonAutoDetect.Visibility.ANY);
+                .setSerializationInclusion(JsonInclude.Include.NON_NULL)
+                .disable(SerializationFeature.FAIL_ON_EMPTY_BEANS)
+                .enable(SerializationFeature.INDENT_OUTPUT)
+                .setVisibility(PropertyAccessor.ALL,
+                        JsonAutoDetect.Visibility.NONE)
+                .setVisibility(PropertyAccessor.FIELD,
+                        JsonAutoDetect.Visibility.ANY);
 
         try {
             return mapper.writeValueAsString(event);

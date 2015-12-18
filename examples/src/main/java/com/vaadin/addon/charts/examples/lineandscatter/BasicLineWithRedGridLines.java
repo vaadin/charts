@@ -31,8 +31,7 @@ public class BasicLineWithRedGridLines extends AbstractVaadinChartExample {
         chart.setWidth("100%");
 
         Configuration configuration = chart.getConfiguration();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        configuration.getChart().setType(ChartType.LINE.toString());
+        configuration.getChart().setType(ChartType.LINE);
         configuration.getChart().setMarginRight(130);
         configuration.getChart().setMarginBottom(25);
 
@@ -46,9 +45,9 @@ public class BasicLineWithRedGridLines extends AbstractVaadinChartExample {
         YAxis yAxis = configuration.getyAxis();
         yAxis.setMin(-5d);
         yAxis.setTitle(new AxisTitle("Temperature (°C)"));
-        yAxis.getTitle().setAlign(VerticalAlign.MIDDLE.toString());
+        yAxis.getTitle().setAlign(VerticalAlign.MIDDLE);
         yAxis.setGridLineColor(new SolidColor("red"));
-        yAxis.setGridLineDashStyle(DashStyle.DASHDOT.toString());
+        yAxis.setGridLineDashStyle(DashStyle.DASHDOT);
         yAxis.setGridLineWidth(3);
 
         XAxis xAxis = configuration.getxAxis();

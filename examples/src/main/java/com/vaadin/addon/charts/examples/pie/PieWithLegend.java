@@ -38,8 +38,7 @@ public class PieWithLegend extends AbstractVaadinChartExample {
 
         PlotOptionsPie plotOptions = new PlotOptionsPie();
         plotOptions.setAllowPointSelect(true);
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        plotOptions.setCursor(Cursor.POINTER.toString());
+        plotOptions.setCursor(Cursor.POINTER);
         plotOptions.setShowInLegend(true);
         Labels dataLabels = new Labels();
         dataLabels.setEnabled(true);

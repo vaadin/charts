@@ -34,8 +34,7 @@ public class MultipleAxes extends AbstractVaadinChartExample {
         Configuration conf = chart.getConfiguration();
         Color[] colors = getThemeColors();
 
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        conf.getChart().setZoomType(ZoomType.XY.toString());
+        conf.getChart().setZoomType(ZoomType.XY);
         conf.setTitle("Average Monthly Weather Data for Tokyo");
         conf.setSubTitle("Source: WorldClimate.com");
 
@@ -98,10 +97,10 @@ public class MultipleAxes extends AbstractVaadinChartExample {
         conf.setTooltip(tooltip);
 
         Legend legend = new Legend();
-        legend.setLayout(LayoutDirection.VERTICAL.toString());
-        legend.setAlign(HorizontalAlign.LEFT.toString());
+        legend.setLayout(LayoutDirection.VERTICAL);
+        legend.setAlign(HorizontalAlign.LEFT);
         legend.setX(120);
-        legend.setVerticalAlign(VerticalAlign.TOP.toString());
+        legend.setVerticalAlign(VerticalAlign.TOP);
         legend.setY(80);
         legend.setFloating(true);
         conf.setLegend(legend);

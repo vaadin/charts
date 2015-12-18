@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts.examples.lineandscatter;
 
+import java.util.Date;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.AxisTitle;
@@ -18,8 +20,6 @@ import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.charts.model.style.Style;
 import com.vaadin.ui.Component;
-
-import java.util.Date;
 
 public class SplineWithPlotBands extends AbstractVaadinChartExample {
 
@@ -42,8 +42,7 @@ public class SplineWithPlotBands extends AbstractVaadinChartExample {
         chart.setWidth("100%");
 
         Configuration configuration = chart.getConfiguration();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        configuration.getChart().setType(ChartType.SPLINE.toString());
+        configuration.getChart().setType(ChartType.SPLINE);
 
         configuration.getTitle().setText("Wind speed during two days");
         configuration
@@ -51,7 +50,7 @@ public class SplineWithPlotBands extends AbstractVaadinChartExample {
                 .setText(
                         "October 6th and 7th 2009 at two locations in Vik i Sogn, Norway");
 
-        configuration.getxAxis().setType(AxisType.DATETIME.toString());
+        configuration.getxAxis().setType(AxisType.DATETIME);
 
         YAxis yAxis = configuration.getyAxis();
         yAxis.setTitle(new AxisTitle("Wind speed (m/s)"));

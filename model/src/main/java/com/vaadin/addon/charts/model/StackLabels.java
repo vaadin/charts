@@ -10,7 +10,7 @@ import com.vaadin.addon.charts.model.style.Style;
 public class StackLabels extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
-	private String align;
+	private HorizontalAlign align;
 	private Boolean enabled;
 	private String format;
 	private String _fn_formatter;
@@ -18,7 +18,7 @@ public class StackLabels extends AbstractConfigurationObject {
 	private Style style;
 	private String textAlign;
 	private Boolean useHTML;
-	private String verticalAlign;
+	private VerticalAlign verticalAlign;
 	private Number x;
 	private Number y;
 
@@ -26,9 +26,9 @@ public class StackLabels extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setAlign(String)
+	 * @see #setAlign(HorizontalAlign)
 	 */
-	public String getAlign() {
+	public HorizontalAlign getAlign() {
 		return align;
 	}
 
@@ -38,7 +38,7 @@ public class StackLabels extends AbstractConfigurationObject {
 	 * default value is calculated at runtime and depends on orientation and
 	 * whether the stack is positive or negative.
 	 */
-	public void setAlign(String align) {
+	public void setAlign(HorizontalAlign align) {
 		this.align = align;
 	}
 
@@ -159,9 +159,9 @@ public class StackLabels extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setVerticalAlign(String)
+	 * @see #setVerticalAlign(VerticalAlign)
 	 */
-	public String getVerticalAlign() {
+	public VerticalAlign getVerticalAlign() {
 		return verticalAlign;
 	}
 
@@ -171,7 +171,7 @@ public class StackLabels extends AbstractConfigurationObject {
 	 * default value is calculated at runtime and depends on orientation and
 	 * whether the stack is positive or negative.
 	 */
-	public void setVerticalAlign(String verticalAlign) {
+	public void setVerticalAlign(VerticalAlign verticalAlign) {
 		this.verticalAlign = verticalAlign;
 	}
 

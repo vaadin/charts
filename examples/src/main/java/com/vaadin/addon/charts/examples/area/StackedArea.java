@@ -1,5 +1,8 @@
 package com.vaadin.addon.charts.examples.area;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.AxisTitle;
@@ -18,9 +21,6 @@ import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @SuppressWarnings("serial")
 public class StackedArea extends AbstractVaadinChartExample {
@@ -44,8 +44,7 @@ public class StackedArea extends AbstractVaadinChartExample {
         conf.setSubTitle(new Subtitle("Source: Wikipedia.org"));
 
         XAxis xAxis = new XAxis();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        xAxis.setTickmarkPlacement(TickmarkPlacement.ON.toString());
+        xAxis.setTickmarkPlacement(TickmarkPlacement.ON);
         xAxis.setCategories(new String[] { "1750", "1800", "1850", "1900",
                 "1950", "1999", "2050" });
         conf.addxAxis(xAxis);
@@ -62,7 +61,7 @@ public class StackedArea extends AbstractVaadinChartExample {
         conf.setTooltip(tooltip);
 
         PlotOptionsArea plotOptions = new PlotOptionsArea();
-        plotOptions.setStacking(Stacking.NORMAL.toString());
+        plotOptions.setStacking(Stacking.NORMAL);
         conf.setPlotOptions(plotOptions);
 
         List<Series> series = new ArrayList<Series>();

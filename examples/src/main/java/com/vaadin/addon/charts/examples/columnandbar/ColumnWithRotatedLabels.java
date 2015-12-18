@@ -42,9 +42,8 @@ public class ColumnWithRotatedLabels extends AbstractVaadinChartExample {
                 "Cairo", "Kolkata", "Los Angeles", "Shanghai", "Moscow",
                 "Beijing", "Buenos Aires", "Guangzhou", "Shenzhen", "Istanbul");
         Labels labels = new Labels();
-        labels.setRotation(-45+"");
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        labels.setAlign(HorizontalAlign.RIGHT.toString());
+        labels.setRotation(-45 + "");
+        labels.setAlign(HorizontalAlign.RIGHT);
         Style style = new Style();
         style.setFontSize("13px");
         style.setFontFamily("Verdana, sans-serif");
@@ -73,7 +72,7 @@ public class ColumnWithRotatedLabels extends AbstractVaadinChartExample {
         dataLabels.setEnabled(true);
         dataLabels.setRotation(-90);
         dataLabels.setColor(new SolidColor(255, 255, 255));
-        dataLabels.setAlign(HorizontalAlign.RIGHT.toString());
+        dataLabels.setAlign(HorizontalAlign.RIGHT);
         dataLabels.setX(4);
         dataLabels.setY(10);
         dataLabels.setFormatter("this.y");

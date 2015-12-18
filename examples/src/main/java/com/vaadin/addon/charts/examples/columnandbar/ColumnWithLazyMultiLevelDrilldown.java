@@ -1,5 +1,8 @@
 package com.vaadin.addon.charts.examples.columnandbar;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.ChartDrillupEvent;
 import com.vaadin.addon.charts.ChartDrillupListener;
@@ -24,9 +27,6 @@ import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @SuppressWarnings("serial")
 @SkipFromDemo
@@ -61,8 +61,7 @@ public class ColumnWithLazyMultiLevelDrilldown extends
         conf.getLegend().setEnabled(false);
 
         XAxis x = new XAxis();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        x.setType(AxisType.CATEGORY.toString());
+        x.setType(AxisType.CATEGORY);
         conf.addxAxis(x);
 
         YAxis y = new YAxis();
@@ -70,7 +69,7 @@ public class ColumnWithLazyMultiLevelDrilldown extends
         conf.addyAxis(y);
 
         PlotOptionsColumn column = new PlotOptionsColumn();
-        column.setCursor(Cursor.POINTER.toString());
+        column.setCursor(Cursor.POINTER);
         column.setDataLabels(new DataLabels(true));
 
         conf.setPlotOptions(column);

@@ -29,8 +29,7 @@ public class SplineWithSymbols extends AbstractVaadinChartExample {
         chart.setWidth("100%");
 
         Configuration configuration = chart.getConfiguration();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        configuration.getChart().setType(ChartType.SPLINE.toString());
+        configuration.getChart().setType(ChartType.SPLINE);
 
         configuration.getTitle().setText("Monthly Average Temperature");
         configuration.getSubTitle().setText("Source: WorldClimate.com");
@@ -72,8 +71,7 @@ public class SplineWithSymbols extends AbstractVaadinChartExample {
                 .getMarker()
                 .setSymbol(
                         new MarkerSymbolUrl(
-                                "http://www.highcharts.com/demo/gfx/sun.png")
-                                );
+                                "http://www.highcharts.com/demo/gfx/sun.png"));
 
         configuration.addSeries(ls);
 
@@ -90,8 +88,7 @@ public class SplineWithSymbols extends AbstractVaadinChartExample {
                 .getMarker()
                 .setSymbol(
                         new MarkerSymbolUrl(
-                                "http://www.highcharts.com/demo/gfx/snow.png")
-                                );
+                                "http://www.highcharts.com/demo/gfx/snow.png"));
         configuration.addSeries(ls);
 
         chart.drawChart(configuration);

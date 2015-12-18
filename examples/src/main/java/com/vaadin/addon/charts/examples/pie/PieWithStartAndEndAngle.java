@@ -30,8 +30,7 @@ public class PieWithStartAndEndAngle extends AbstractVaadinChartExample {
         PlotOptionsPie plotOptions = new PlotOptionsPie();
         plotOptions.setStartAngle(45);
         plotOptions.setEndAngle(180);
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        plotOptions.setCursor(Cursor.POINTER.toString());
+        plotOptions.setCursor(Cursor.POINTER);
         DataLabels dataLabels = new DataLabels(true);
         dataLabels.setFormat("<b>{point.name}</b>: {percentage} %");
 

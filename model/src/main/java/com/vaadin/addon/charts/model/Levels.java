@@ -9,12 +9,12 @@ public class Levels extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
 	private Color borderColor;
-	private String borderDashStyle;
+	private DashStyle borderDashStyle;
 	private Number borderWidth;
 	private Color color;
 	private Object dataLabels;
-	private String layoutAlgorithm;
-	private String layoutStartingDirection;
+	private TreeMapLayoutAlgorithm layoutAlgorithm;
+	private TreeMapLayoutStartingDirection layoutStartingDirection;
 	private Number level;
 
 	public Levels() {
@@ -35,9 +35,9 @@ public class Levels extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setBorderDashStyle(String)
+	 * @see #setBorderDashStyle(DashStyle)
 	 */
-	public String getBorderDashStyle() {
+	public DashStyle getBorderDashStyle() {
 		return borderDashStyle;
 	}
 
@@ -47,7 +47,7 @@ public class Levels extends AbstractConfigurationObject {
 	 * href"#plotOptions.scatter.dashStyle">plotOptions.scatter.dashStyle</a>
 	 * for possible options.
 	 */
-	public void setBorderDashStyle(String borderDashStyle) {
+	public void setBorderDashStyle(DashStyle borderDashStyle) {
 		this.borderDashStyle = borderDashStyle;
 	}
 
@@ -99,30 +99,31 @@ public class Levels extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setLayoutAlgorithm(String)
+	 * @see #setLayoutAlgorithm(TreeMapLayoutAlgorithm)
 	 */
-	public String getLayoutAlgorithm() {
+	public TreeMapLayoutAlgorithm getLayoutAlgorithm() {
 		return layoutAlgorithm;
 	}
 
 	/**
 	 * Can set the layoutAlgorithm option on a specific level.
 	 */
-	public void setLayoutAlgorithm(String layoutAlgorithm) {
+	public void setLayoutAlgorithm(TreeMapLayoutAlgorithm layoutAlgorithm) {
 		this.layoutAlgorithm = layoutAlgorithm;
 	}
 
 	/**
-	 * @see #setLayoutStartingDirection(String)
+	 * @see #setLayoutStartingDirection(TreeMapLayoutStartingDirection)
 	 */
-	public String getLayoutStartingDirection() {
+	public TreeMapLayoutStartingDirection getLayoutStartingDirection() {
 		return layoutStartingDirection;
 	}
 
 	/**
 	 * Can set the layoutStartingDirection option on a specific level.
 	 */
-	public void setLayoutStartingDirection(String layoutStartingDirection) {
+	public void setLayoutStartingDirection(
+			TreeMapLayoutStartingDirection layoutStartingDirection) {
 		this.layoutStartingDirection = layoutStartingDirection;
 	}
 

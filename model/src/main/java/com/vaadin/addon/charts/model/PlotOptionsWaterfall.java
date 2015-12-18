@@ -19,8 +19,8 @@ public class PlotOptionsWaterfall extends AbstractPlotOptions {
 	private Color color;
 	private Boolean colorByPoint;
 	private Object colors;
-	private String cursor;
-	private String dashStyle;
+	private Cursor cursor;
+	private DashStyle dashStyle;
 	private DataLabels dataLabels;
 	private Number depth;
 	private Color edgeColor;
@@ -36,9 +36,9 @@ public class PlotOptionsWaterfall extends AbstractPlotOptions {
 	private Number maxPointWidth;
 	private Number minPointLength;
 	private Number pointInterval;
-	private String pointIntervalUnit;
+	private IntervalUnit pointIntervalUnit;
 	private Number pointPadding;
-	private Object pointPlacement;
+	private PointPlacement pointPlacement;
 	private Number pointRange;
 	private Number pointStart;
 	private Number pointWidth;
@@ -221,9 +221,9 @@ public class PlotOptionsWaterfall extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setCursor(String)
+	 * @see #setCursor(Cursor)
 	 */
-	public String getCursor() {
+	public Cursor getCursor() {
 		return cursor;
 	}
 
@@ -232,14 +232,14 @@ public class PlotOptionsWaterfall extends AbstractPlotOptions {
 	 * the series, to signal to the user that the points and lines can be
 	 * clicked.
 	 */
-	public void setCursor(String cursor) {
+	public void setCursor(Cursor cursor) {
 		this.cursor = cursor;
 	}
 
 	/**
-	 * @see #setDashStyle(String)
+	 * @see #setDashStyle(DashStyle)
 	 */
-	public String getDashStyle() {
+	public DashStyle getDashStyle() {
 		return dashStyle;
 	}
 
@@ -263,7 +263,7 @@ public class PlotOptionsWaterfall extends AbstractPlotOptions {
 	 * <p>
 	 * Defaults to: Dot
 	 */
-	public void setDashStyle(String dashStyle) {
+	public void setDashStyle(DashStyle dashStyle) {
 		this.dashStyle = dashStyle;
 	}
 
@@ -537,9 +537,9 @@ public class PlotOptionsWaterfall extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setPointIntervalUnit(String)
+	 * @see #setPointIntervalUnit(IntervalUnit)
 	 */
-	public String getPointIntervalUnit() {
+	public IntervalUnit getPointIntervalUnit() {
 		return pointIntervalUnit;
 	}
 
@@ -550,7 +550,7 @@ public class PlotOptionsWaterfall extends AbstractPlotOptions {
 	 * it with <code>pointInterval</code> to draw quarters, 6 months, 10 years
 	 * etc.
 	 */
-	public void setPointIntervalUnit(String pointIntervalUnit) {
+	public void setPointIntervalUnit(IntervalUnit pointIntervalUnit) {
 		this.pointIntervalUnit = pointIntervalUnit;
 	}
 
@@ -571,9 +571,9 @@ public class PlotOptionsWaterfall extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setPointPlacement(Object)
+	 * @see #setPointPlacement(PointPlacement)
 	 */
-	public Object getPointPlacement() {
+	public PointPlacement getPointPlacement() {
 		return pointPlacement;
 	}
 
@@ -605,7 +605,7 @@ public class PlotOptionsWaterfall extends AbstractPlotOptions {
 	 * Defaults to <code>null</code> in cartesian charts, <code>"between"</code>
 	 * in polar charts.
 	 */
-	public void setPointPlacement(Object pointPlacement) {
+	public void setPointPlacement(PointPlacement pointPlacement) {
 		this.pointPlacement = pointPlacement;
 	}
 

@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts.examples.other;
 
+import java.util.Calendar;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.AxisTitle;
@@ -15,8 +17,6 @@ import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
-
-import java.util.Calendar;
 
 @SuppressWarnings("serial")
 public class ColumnRangeResourceUsage extends AbstractVaadinChartExample {
@@ -40,8 +40,7 @@ public class ColumnRangeResourceUsage extends AbstractVaadinChartExample {
 
         YAxis yAxis = new YAxis();
         yAxis.setTitle(new AxisTitle("Time"));
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        yAxis.setType(AxisType.DATETIME.toString());
+        yAxis.setType(AxisType.DATETIME);
         conf.addyAxis(yAxis);
 
         Tooltip tooltip = new Tooltip();

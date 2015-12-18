@@ -26,8 +26,7 @@ public class Events extends AbstractVaadinChartExample {
         final Configuration configuration = chart.getConfiguration();
         configuration.setTitle("Click to add point");
 
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        configuration.getChart().setType(ChartType.SPLINE.toString());
+        configuration.getChart().setType(ChartType.SPLINE);
 
         final ListSeries series = new ListSeries(29.9, 71.5, 106.4, 129.2,
                 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4);

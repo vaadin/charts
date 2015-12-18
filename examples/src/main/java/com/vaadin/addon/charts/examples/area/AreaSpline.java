@@ -40,11 +40,10 @@ public class AreaSpline extends AbstractVaadinChartExample {
         conf.setTitle(new Title("Average fruit consumption during one week"));
 
         Legend legend = new Legend();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        legend.setLayout(LayoutDirection.VERTICAL.toString());
-        legend.setAlign(HorizontalAlign.LEFT.toString());
+        legend.setLayout(LayoutDirection.VERTICAL);
+        legend.setAlign(HorizontalAlign.LEFT);
         legend.setFloating(true);
-        legend.setVerticalAlign(VerticalAlign.TOP.toString());
+        legend.setVerticalAlign(VerticalAlign.TOP);
         legend.setX(150);
         legend.setY(100);
         conf.setLegend(legend);
@@ -58,7 +57,7 @@ public class AreaSpline extends AbstractVaadinChartExample {
         plotBand.setTo(6.5);
         plotBand.setColor(LIGHT_BLUE);
         plotBand.setZIndex(1);
-        xAxis.setPlotBands( plotBand);
+        xAxis.setPlotBands(plotBand);
         conf.addxAxis(xAxis);
 
         YAxis yAxis = new YAxis();

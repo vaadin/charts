@@ -38,9 +38,8 @@ public class AreaWithMissingPoints extends AbstractVaadinChartExample {
                 "* Jane\'s banana consumption is unknown");
         subTitle.setFloating(true);
         subTitle.setY(15);
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        subTitle.setAlign(HorizontalAlign.RIGHT.toString());
-        subTitle.setVerticalAlign(VerticalAlign.BOTTOM.toString());
+        subTitle.setAlign(HorizontalAlign.RIGHT);
+        subTitle.setVerticalAlign(VerticalAlign.BOTTOM);
         conf.setSubTitle(subTitle);
 
         XAxis xAxis = new XAxis();
@@ -49,10 +48,10 @@ public class AreaWithMissingPoints extends AbstractVaadinChartExample {
         conf.addxAxis(xAxis);
 
         Legend legend = new Legend();
-        legend.setLayout(LayoutDirection.VERTICAL.toString());
-        legend.setAlign(HorizontalAlign.LEFT.toString());
+        legend.setLayout(LayoutDirection.VERTICAL);
+        legend.setAlign(HorizontalAlign.LEFT);
         legend.setFloating(true);
-        legend.setVerticalAlign(VerticalAlign.TOP.toString());
+        legend.setVerticalAlign(VerticalAlign.TOP);
         legend.setX(150);
         legend.setY(100);
         legend.setBorderWidth(1);

@@ -27,7 +27,7 @@ public class XAxis extends Axis {
 	private Boolean endOnTick;
 	private Number floor;
 	private Color gridLineColor;
-	private String gridLineDashStyle;
+	private DashStyle gridLineDashStyle;
 	private Number gridLineWidth;
 	private Number gridZIndex;
 	private String id;
@@ -40,12 +40,12 @@ public class XAxis extends Axis {
 	private Number minRange;
 	private Number minTickInterval;
 	private Color minorGridLineColor;
-	private String minorGridLineDashStyle;
+	private DashStyle minorGridLineDashStyle;
 	private Number minorGridLineWidth;
 	private Color minorTickColor;
 	private Object minorTickInterval;
 	private Number minorTickLength;
-	private String minorTickPosition;
+	private TickPosition minorTickPosition;
 	private Number minorTickWidth;
 	private Number offset;
 	private Boolean opposite;
@@ -62,13 +62,13 @@ public class XAxis extends Axis {
 	private Number tickInterval;
 	private Number tickLength;
 	private Number tickPixelInterval;
-	private String tickPosition;
+	private TickPosition tickPosition;
 	private Object tickPositioner;
 	private Number[] tickPositions;
 	private Number tickWidth;
-	private String tickmarkPlacement;
+	private TickmarkPlacement tickmarkPlacement;
 	private AxisTitle title;
-	private String type;
+	private AxisType type;
 	private Object[] units;
 	private Boolean visible;
 	private Number pane;
@@ -260,9 +260,9 @@ public class XAxis extends Axis {
 	}
 
 	/**
-	 * @see #setGridLineDashStyle(String)
+	 * @see #setGridLineDashStyle(DashStyle)
 	 */
-	public String getGridLineDashStyle() {
+	public DashStyle getGridLineDashStyle() {
 		return gridLineDashStyle;
 	}
 
@@ -274,7 +274,7 @@ public class XAxis extends Axis {
 	 * <p>
 	 * Defaults to: Solid
 	 */
-	public void setGridLineDashStyle(String gridLineDashStyle) {
+	public void setGridLineDashStyle(DashStyle gridLineDashStyle) {
 		this.gridLineDashStyle = gridLineDashStyle;
 	}
 
@@ -498,9 +498,9 @@ public class XAxis extends Axis {
 	}
 
 	/**
-	 * @see #setMinorGridLineDashStyle(String)
+	 * @see #setMinorGridLineDashStyle(DashStyle)
 	 */
-	public String getMinorGridLineDashStyle() {
+	public DashStyle getMinorGridLineDashStyle() {
 		return minorGridLineDashStyle;
 	}
 
@@ -512,7 +512,7 @@ public class XAxis extends Axis {
 	 * <p>
 	 * Defaults to: Solid
 	 */
-	public void setMinorGridLineDashStyle(String minorGridLineDashStyle) {
+	public void setMinorGridLineDashStyle(DashStyle minorGridLineDashStyle) {
 		this.minorGridLineDashStyle = minorGridLineDashStyle;
 	}
 
@@ -600,9 +600,9 @@ public class XAxis extends Axis {
 	}
 
 	/**
-	 * @see #setMinorTickPosition(String)
+	 * @see #setMinorTickPosition(TickPosition)
 	 */
-	public String getMinorTickPosition() {
+	public TickPosition getMinorTickPosition() {
 		return minorTickPosition;
 	}
 
@@ -612,7 +612,7 @@ public class XAxis extends Axis {
 	 * <p>
 	 * Defaults to: outside
 	 */
-	public void setMinorTickPosition(String minorTickPosition) {
+	public void setMinorTickPosition(TickPosition minorTickPosition) {
 		this.minorTickPosition = minorTickPosition;
 	}
 
@@ -916,9 +916,9 @@ public class XAxis extends Axis {
 	}
 
 	/**
-	 * @see #setTickPosition(String)
+	 * @see #setTickPosition(TickPosition)
 	 */
-	public String getTickPosition() {
+	public TickPosition getTickPosition() {
 		return tickPosition;
 	}
 
@@ -928,7 +928,7 @@ public class XAxis extends Axis {
 	 * <p>
 	 * Defaults to: outside
 	 */
-	public void setTickPosition(String tickPosition) {
+	public void setTickPosition(TickPosition tickPosition) {
 		this.tickPosition = tickPosition;
 	}
 
@@ -985,9 +985,9 @@ public class XAxis extends Axis {
 	}
 
 	/**
-	 * @see #setTickmarkPlacement(String)
+	 * @see #setTickmarkPlacement(TickmarkPlacement)
 	 */
-	public String getTickmarkPlacement() {
+	public TickmarkPlacement getTickmarkPlacement() {
 		return tickmarkPlacement;
 	}
 
@@ -999,7 +999,7 @@ public class XAxis extends Axis {
 	 * <p>
 	 * Defaults to: null
 	 */
-	public void setTickmarkPlacement(String tickmarkPlacement) {
+	public void setTickmarkPlacement(TickmarkPlacement tickmarkPlacement) {
 		this.tickmarkPlacement = tickmarkPlacement;
 	}
 
@@ -1018,9 +1018,9 @@ public class XAxis extends Axis {
 	}
 
 	/**
-	 * @see #setType(String)
+	 * @see #setType(AxisType)
 	 */
-	public String getType() {
+	public AxisType getType() {
 		return type;
 	}
 
@@ -1035,7 +1035,7 @@ public class XAxis extends Axis {
 	 * <p>
 	 * Defaults to: linear
 	 */
-	public void setType(String type) {
+	public void setType(AxisType type) {
 		this.type = type;
 	}
 

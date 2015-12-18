@@ -28,10 +28,9 @@ public class UtcTimeDataAndTooltipDateFormat extends AbstractVaadinChartExample 
 
         Configuration configuration = chart.getConfiguration();
         configuration.setTitle("Time and date in tooltip");
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        configuration.getChart().setType(ChartType.SPLINE.toString());
+        configuration.getChart().setType(ChartType.SPLINE);
 
-        configuration.getxAxis().setType(AxisType.DATETIME.toString());
+        configuration.getxAxis().setType(AxisType.DATETIME);
 
         // Finnish convention for date formatting
         configuration.getTooltip().setXDateFormat("%d.%m. %Y %H:%M");

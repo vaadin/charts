@@ -32,8 +32,7 @@ public class WebXYChartSelection extends AbstractVaadinChartExample {
     private Chart createScatterChart() {
         final Chart scatterChart = new Chart(ChartType.SCATTER);
         scatterChart.setId("chart");
-        scatterChart.getConfiguration().getChart()
-                .setZoomType(ZoomType.XY.toString());
+        scatterChart.getConfiguration().getChart().setZoomType(ZoomType.XY);
         scatterChart.getConfiguration().disableCredits();
         scatterChart.getConfiguration().setTitle("Selections as area ranges");
         scatterChart

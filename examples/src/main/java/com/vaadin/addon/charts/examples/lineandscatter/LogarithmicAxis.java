@@ -28,8 +28,7 @@ public class LogarithmicAxis extends AbstractVaadinChartExample {
         configuration.getxAxis().setTickInterval(1);
 
         YAxis yAxis = configuration.getyAxis();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        yAxis.setType(AxisType.LOGARITHMIC.toString());
+        yAxis.setType(AxisType.LOGARITHMIC);
         yAxis.setMinorTickInterval(0.1);
 
         configuration.getTooltip()

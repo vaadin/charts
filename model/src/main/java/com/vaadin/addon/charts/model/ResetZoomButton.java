@@ -7,7 +7,7 @@ public class ResetZoomButton extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
 	private Position position;
-	private String relativeTo;
+	private ResetZoomButtonRelativeTo relativeTo;
 	private Object theme;
 
 	public ResetZoomButton() {
@@ -30,9 +30,9 @@ public class ResetZoomButton extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setRelativeTo(String)
+	 * @see #setRelativeTo(ResetZoomButtonRelativeTo)
 	 */
-	public String getRelativeTo() {
+	public ResetZoomButtonRelativeTo getRelativeTo() {
 		return relativeTo;
 	}
 
@@ -42,7 +42,7 @@ public class ResetZoomButton extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to: plot
 	 */
-	public void setRelativeTo(String relativeTo) {
+	public void setRelativeTo(ResetZoomButtonRelativeTo relativeTo) {
 		this.relativeTo = relativeTo;
 	}
 

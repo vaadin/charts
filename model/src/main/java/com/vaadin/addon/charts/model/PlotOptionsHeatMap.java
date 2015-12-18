@@ -27,7 +27,7 @@ public class PlotOptionsHeatMap extends AbstractPlotOptions {
 	private Object colors;
 	private Number colsize;
 	private Number cropThreshold;
-	private String cursor;
+	private Cursor cursor;
 	private DataLabels dataLabels;
 	private Boolean enableMouseTracking;
 	private Boolean getExtremesFromAll;
@@ -254,9 +254,9 @@ public class PlotOptionsHeatMap extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setCursor(String)
+	 * @see #setCursor(Cursor)
 	 */
-	public String getCursor() {
+	public Cursor getCursor() {
 		return cursor;
 	}
 
@@ -265,7 +265,7 @@ public class PlotOptionsHeatMap extends AbstractPlotOptions {
 	 * the series, to signal to the user that the points and lines can be
 	 * clicked.
 	 */
-	public void setCursor(String cursor) {
+	public void setCursor(Cursor cursor) {
 		this.cursor = cursor;
 	}
 

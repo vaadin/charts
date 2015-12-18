@@ -44,8 +44,7 @@ public class ModifyOnePoint extends AbstractVaadinChartExample {
         configuration.setTitle("One point is different");
         // configuration.getTooltip().setEnabled(false);
 
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        configuration.getChart().setType(ChartType.SPLINE.toString());
+        configuration.getChart().setType(ChartType.SPLINE);
 
         series = new DataSeries();
         series.add(createBasicPoint(1, 4));

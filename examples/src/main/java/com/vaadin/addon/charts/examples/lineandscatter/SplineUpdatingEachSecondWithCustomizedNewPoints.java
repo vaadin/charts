@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts.examples.lineandscatter;
 
+import java.util.Random;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.SkipFromDemo;
@@ -16,8 +18,6 @@ import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
-
-import java.util.Random;
 
 @SkipFromDemo
 public class SplineUpdatingEachSecondWithCustomizedNewPoints extends
@@ -36,12 +36,11 @@ public class SplineUpdatingEachSecondWithCustomizedNewPoints extends
         chart.setWidth("500px");
 
         final Configuration configuration = chart.getConfiguration();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        configuration.getChart().setType(ChartType.SPLINE.toString());
+        configuration.getChart().setType(ChartType.SPLINE);
         configuration.getTitle().setText("Live random data");
 
         XAxis xAxis = configuration.getxAxis();
-        xAxis.setType(AxisType.DATETIME.toString());
+        xAxis.setType(AxisType.DATETIME);
         xAxis.setTickPixelInterval(150);
 
         YAxis yAxis = configuration.getyAxis();

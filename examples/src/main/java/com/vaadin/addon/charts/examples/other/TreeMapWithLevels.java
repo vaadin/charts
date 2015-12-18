@@ -28,20 +28,17 @@ public class TreeMapWithLevels extends AbstractVaadinChartExample {
         Chart chart = new Chart(ChartType.TREEMAP);
 
         PlotOptionsTreeMap plotOptions = new PlotOptionsTreeMap();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        plotOptions.setLayoutAlgorithm(TreeMapLayoutAlgorithm.STRIPES
-                .toString());
+        plotOptions.setLayoutAlgorithm(TreeMapLayoutAlgorithm.STRIPES);
         plotOptions.setAlternateStartingDirection(true);
 
         Levels level1 = new Levels();
         level1.setLevel(1);
-        level1.setLayoutAlgorithm(TreeMapLayoutAlgorithm.SLICEANDDICE
-                .toString());
+        level1.setLayoutAlgorithm(TreeMapLayoutAlgorithm.SLICEANDDICE);
 
         DataLabels dataLabels = new DataLabels();
         dataLabels.setEnabled(true);
-        dataLabels.setAlign(HorizontalAlign.LEFT.toString());
-        dataLabels.setVerticalAlign(VerticalAlign.TOP.toString());
+        dataLabels.setAlign(HorizontalAlign.LEFT);
+        dataLabels.setVerticalAlign(VerticalAlign.TOP);
 
         Style style = new Style();
         style.setFontSize("15px");

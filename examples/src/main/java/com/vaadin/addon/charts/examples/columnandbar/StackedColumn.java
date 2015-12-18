@@ -49,10 +49,9 @@ public class StackedColumn extends AbstractVaadinChartExample {
         conf.addyAxis(yAxis);
 
         Legend legend = new Legend();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        legend.setAlign(HorizontalAlign.RIGHT.toString());
+        legend.setAlign(HorizontalAlign.RIGHT);
         legend.setFloating(true);
-        legend.setVerticalAlign(VerticalAlign.TOP.toString());
+        legend.setVerticalAlign(VerticalAlign.TOP);
         legend.setX(-100);
         legend.setY(20);
         conf.setLegend(legend);
@@ -63,7 +62,7 @@ public class StackedColumn extends AbstractVaadinChartExample {
         conf.setTooltip(tooltip);
 
         PlotOptionsColumn plotOptions = new PlotOptionsColumn();
-        plotOptions.setStacking(Stacking.NORMAL.toString());
+        plotOptions.setStacking(Stacking.NORMAL);
         DataLabels labels = new DataLabels(true);
         labels.setColor(new SolidColor("white"));
         plotOptions.setDataLabels(labels);

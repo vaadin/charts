@@ -50,8 +50,7 @@ public class StackedBar extends AbstractVaadinChartExample {
         conf.setTooltip(tooltip);
 
         PlotOptionsSeries plot = new PlotOptionsSeries();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        plot.setStacking(Stacking.NORMAL.toString());
+        plot.setStacking(Stacking.NORMAL);
         conf.setPlotOptions(plot);
 
         conf.addSeries(new ListSeries("John", 5, 3, 4, 7, 2));

@@ -45,12 +45,11 @@ public class ColumnWithShapedLabels extends AbstractVaadinChartExample {
         conf.addyAxis(yAxis);
 
         PlotOptionsColumn plotOptions = new PlotOptionsColumn();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        plotOptions.setStacking(Stacking.NORMAL.toString());
+        plotOptions.setStacking(Stacking.NORMAL);
         DataLabels labels = new DataLabels(true);
         labels.setBackgroundColor(SolidColor.BURLYWOOD);
         labels.setColor(new SolidColor("white"));
-        labels.setShape(Shape.DIAMOND.toString());
+        labels.setShape(Shape.DIAMOND);
 
         plotOptions.setDataLabels(labels);
         conf.setPlotOptions(plotOptions);

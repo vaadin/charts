@@ -16,7 +16,7 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	private Number borderWidth;
 	private Object[] center;
 	private Object colors;
-	private String cursor;
+	private Cursor cursor;
 	private DataLabels dataLabels;
 	private Number depth;
 	private Boolean enableMouseTracking;
@@ -158,9 +158,9 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setCursor(String)
+	 * @see #setCursor(Cursor)
 	 */
-	public String getCursor() {
+	public Cursor getCursor() {
 		return cursor;
 	}
 
@@ -169,7 +169,7 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	 * the series, to signal to the user that the points and lines can be
 	 * clicked.
 	 */
-	public void setCursor(String cursor) {
+	public void setCursor(Cursor cursor) {
 		this.cursor = cursor;
 	}
 

@@ -38,8 +38,7 @@ public class ColumnWithNativeDrilldownMultipleSeries extends
         conf.getLegend().setEnabled(false);
 
         XAxis x = new XAxis();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        x.setType(AxisType.CATEGORY.toString());
+        x.setType(AxisType.CATEGORY);
         conf.addxAxis(x);
 
         YAxis y = new YAxis();
@@ -47,7 +46,7 @@ public class ColumnWithNativeDrilldownMultipleSeries extends
         conf.addyAxis(y);
 
         PlotOptionsColumn column = new PlotOptionsColumn();
-        column.setCursor(Cursor.POINTER.toString());
+        column.setCursor(Cursor.POINTER);
         column.setDataLabels(new DataLabels(true));
         column.getDataLabels().setFormatter("this.y +'%'");
 

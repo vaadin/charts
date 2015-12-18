@@ -83,8 +83,7 @@ public class ChartWithExternalContainer extends AbstractVaadinChartExample {
         final Chart chart = new Chart();
 
         final Configuration configuration = chart.getConfiguration();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        configuration.getChart().setType(ChartType.PIE.toString());
+        configuration.getChart().setType(ChartType.PIE);
         configuration.getTitle().setText("Order item quantities");
         configuration.getLegend().setEnabled(false);
 
@@ -100,7 +99,7 @@ public class ChartWithExternalContainer extends AbstractVaadinChartExample {
         final Chart chart = new Chart();
 
         final Configuration configuration = chart.getConfiguration();
-        configuration.getChart().setType(ChartType.COLUMN.toString());
+        configuration.getChart().setType(ChartType.COLUMN);
         configuration.getTitle().setText("Order item totals");
         configuration.getLegend().setEnabled(false);
 

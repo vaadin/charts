@@ -33,10 +33,9 @@ public class DateAxisAndClickEvent extends AbstractVaadinChartExample {
 
         Configuration configuration = chart.getConfiguration();
         configuration.setTitle("Date axis and click events");
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        configuration.getChart().setType(ChartType.SPLINE.toString());
+        configuration.getChart().setType(ChartType.SPLINE);
 
-        configuration.getxAxis().setType(AxisType.DATETIME.toString());
+        configuration.getxAxis().setType(AxisType.DATETIME);
 
         Calendar c = Calendar.getInstance();
         c.set(Calendar.MILLISECOND, 0);
@@ -70,7 +69,7 @@ public class DateAxisAndClickEvent extends AbstractVaadinChartExample {
                  * convert it to Date object at their local time zone.
                  */
                 Notification.show("Clicked @ "
-                        + Util.toServerDate(timeStampShiftedToUc).toString());
+                        + Util.toServerDate(timeStampShiftedToUc));
             }
         });
 
@@ -83,7 +82,7 @@ public class DateAxisAndClickEvent extends AbstractVaadinChartExample {
                  */;
                 double timeStampShiftedToUc = event.getX();
                 Notification.show("Clicked Point with Date value "
-                        + Util.toServerDate(timeStampShiftedToUc).toString());
+                        + Util.toServerDate(timeStampShiftedToUc));
             }
         });
 

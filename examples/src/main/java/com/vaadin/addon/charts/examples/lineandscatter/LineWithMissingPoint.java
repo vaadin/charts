@@ -32,8 +32,7 @@ public class LineWithMissingPoint extends AbstractVaadinChartExample {
         chart.setWidth("100%");
 
         Configuration configuration = chart.getConfiguration();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        configuration.getChart().setType(ChartType.LINE.toString());
+        configuration.getChart().setType(ChartType.LINE);
         configuration.getChart().setMarginRight(130);
         configuration.getChart().setMarginBottom(25);
 
@@ -47,7 +46,7 @@ public class LineWithMissingPoint extends AbstractVaadinChartExample {
         YAxis yAxis = configuration.getyAxis();
         yAxis.setMin(-5d);
         yAxis.setTitle(new AxisTitle("Temperature (°C)"));
-        yAxis.getTitle().setAlign(VerticalAlign.HIGH.toString());
+        yAxis.getTitle().setAlign(VerticalAlign.HIGH);
 
         configuration
                 .getTooltip()
@@ -59,9 +58,9 @@ public class LineWithMissingPoint extends AbstractVaadinChartExample {
         configuration.setPlotOptions(plotOptions);
 
         Legend legend = configuration.getLegend();
-        legend.setLayout(LayoutDirection.VERTICAL.toString());
-        legend.setAlign(HorizontalAlign.RIGHT.toString());
-        legend.setVerticalAlign(VerticalAlign.TOP.toString());
+        legend.setLayout(LayoutDirection.VERTICAL);
+        legend.setAlign(HorizontalAlign.RIGHT);
+        legend.setVerticalAlign(VerticalAlign.TOP);
         legend.setX(-10d);
         legend.setY(100d);
         legend.setBorderWidth(0);

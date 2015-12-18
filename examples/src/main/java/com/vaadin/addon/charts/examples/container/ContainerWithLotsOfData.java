@@ -78,8 +78,7 @@ public class ContainerWithLotsOfData extends AbstractVaadinChartExample {
         final Chart chart = new Chart();
 
         final Configuration configuration = chart.getConfiguration();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        configuration.getChart().setType(ChartType.AREA.toString());
+        configuration.getChart().setType(ChartType.AREA);
         configuration.getTitle().setText("Data from Vaadin Container");
 
         configuration.getLegend().setEnabled(false);

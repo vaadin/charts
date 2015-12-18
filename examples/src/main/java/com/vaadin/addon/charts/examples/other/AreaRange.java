@@ -28,8 +28,7 @@ public class AreaRange extends AbstractVaadinChartExample {
 
         conf.setTitle("Temperature variation by day");
 
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        conf.getxAxis().setType(DATETIME.toString());
+        conf.getxAxis().setType(DATETIME);
         conf.addyAxis(new YAxis());
 
         Tooltip tooltip = new Tooltip();

@@ -28,8 +28,7 @@ public class SplineInverted extends AbstractVaadinChartExample {
         chart.setWidth("500px");
 
         Configuration configuration = chart.getConfiguration();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        configuration.getChart().setType(ChartType.SPLINE.toString());
+        configuration.getChart().setType(ChartType.SPLINE);
         configuration.getChart().setInverted(true);
 
         configuration.getTitle().setText("Atmosphere Temperature by Altitude");
@@ -49,7 +48,7 @@ public class SplineInverted extends AbstractVaadinChartExample {
         YAxis yAxis = configuration.getyAxis();
         yAxis.setLineWidth(2);
         yAxis.setTitle(new AxisTitle("Temperature"));
-        yAxis.getTitle().setAlign(VerticalAlign.MIDDLE.toString());
+        yAxis.getTitle().setAlign(VerticalAlign.MIDDLE);
 
         Labels labelsy = new Labels();
         labelsy.setEnabled(true);

@@ -39,18 +39,16 @@ public class PieChartWithCredits extends AbstractVaadinChartExample {
 
         Credits credits = new Credits("Custom Credit");
         credits.setPosition(new Position());
-        credits.getPosition().setHorizontalAlign(
-                HorizontalAlign.LEFT);
+        credits.getPosition().setHorizontalAlign(HorizontalAlign.LEFT);
         credits.getPosition().setX(200);
         conf.setCredits(credits);
 
         PlotOptionsPie plotOptions = new PlotOptionsPie();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        plotOptions.setCursor(Cursor.POINTER.toString());
+        plotOptions.setCursor(Cursor.POINTER);
         DataLabels dataLabels = new DataLabels(true);
         // FIXME missing generated API
-         dataLabels
-         .setFormatter("'<b>'+ this.point.name +'</b>: '+ this.percentage +' %'");
+        dataLabels
+                .setFormatter("'<b>'+ this.point.name +'</b>: '+ this.percentage +' %'");
         plotOptions.setDataLabels(dataLabels);
         conf.setPlotOptions(plotOptions);
 

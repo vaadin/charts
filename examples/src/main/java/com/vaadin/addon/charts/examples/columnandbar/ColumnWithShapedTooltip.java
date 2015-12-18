@@ -45,15 +45,14 @@ public class ColumnWithShapedTooltip extends AbstractVaadinChartExample {
         conf.addyAxis(yAxis);
 
         PlotOptionsColumn plotOptions = new PlotOptionsColumn();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        plotOptions.setStacking(Stacking.NORMAL.toString());
+        plotOptions.setStacking(Stacking.NORMAL);
 
         conf.setPlotOptions(plotOptions);
 
         Tooltip tooltip = new Tooltip();
         tooltip.setFormatter("function() { return '<b>'+ this.x +'</b><br/>"
                 + "'+this.series.name +': '+ this.y +'<br/>'+'Total: '+ this.point.stackTotal;}");
-        tooltip.setShape(Shape.CIRCLE.toString());
+        tooltip.setShape(Shape.CIRCLE);
         conf.setTooltip(tooltip);
 
         conf.addSeries(new ListSeries("John", new Number[] { 5, 3, 4, 7, 2 }));

@@ -27,7 +27,7 @@ public class Chart extends AbstractConfigurationObject {
 	private Options3d options3d;
 	private String panKey;
 	private Boolean panning;
-	private String pinchType;
+	private PinchType pinchType;
 	private Color plotBackgroundColor;
 	private String plotBackgroundImage;
 	private Color plotBorderColor;
@@ -46,9 +46,9 @@ public class Chart extends AbstractConfigurationObject {
 	private Number spacingRight;
 	private Number spacingTop;
 	private Style style;
-	private String type;
+	private ChartType type;
 	private Number width;
-	private String zoomType;
+	private ZoomType zoomType;
 
 	public Chart() {
 	}
@@ -392,9 +392,9 @@ public class Chart extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setPinchType(String)
+	 * @see #setPinchType(PinchType)
 	 */
-	public String getPinchType() {
+	public PinchType getPinchType() {
 		return pinchType;
 	}
 
@@ -407,7 +407,7 @@ public class Chart extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to: null
 	 */
-	public void setPinchType(String pinchType) {
+	public void setPinchType(PinchType pinchType) {
 		this.pinchType = pinchType;
 	}
 
@@ -738,9 +738,9 @@ public class Chart extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setType(String)
+	 * @see #setType(ChartType)
 	 */
-	public String getType() {
+	public ChartType getType() {
 		return type;
 	}
 
@@ -750,7 +750,7 @@ public class Chart extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to: line
 	 */
-	public void setType(String type) {
+	public void setType(ChartType type) {
 		this.type = type;
 	}
 
@@ -770,9 +770,9 @@ public class Chart extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setZoomType(String)
+	 * @see #setZoomType(ZoomType)
 	 */
-	public String getZoomType() {
+	public ZoomType getZoomType() {
 		return zoomType;
 	}
 
@@ -780,7 +780,7 @@ public class Chart extends AbstractConfigurationObject {
 	 * Decides in what dimensions the user can zoom by dragging the mouse. Can
 	 * be one of <code>x</code>, <code>y</code> or <code>xy</code>.
 	 */
-	public void setZoomType(String zoomType) {
+	public void setZoomType(ZoomType zoomType) {
 		this.zoomType = zoomType;
 	}
 }

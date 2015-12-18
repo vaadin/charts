@@ -9,7 +9,7 @@ import com.vaadin.addon.charts.model.style.Style;
 public class Legend extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
-	private String align;
+	private HorizontalAlign align;
 	private Color backgroundColor;
 	private Color borderColor;
 	private Number borderRadius;
@@ -25,7 +25,7 @@ public class Legend extends AbstractConfigurationObject {
 	private Number itemWidth;
 	private String labelFormat;
 	private Object labelFormatter;
-	private String layout;
+	private LayoutDirection layout;
 	private Number lineHeight;
 	private Number margin;
 	private Number maxHeight;
@@ -40,7 +40,7 @@ public class Legend extends AbstractConfigurationObject {
 	private Number symbolWidth;
 	private LegendTitle title;
 	private Boolean useHTML;
-	private String verticalAlign;
+	private VerticalAlign verticalAlign;
 	private Number width;
 	private Number x;
 	private Number y;
@@ -49,9 +49,9 @@ public class Legend extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setAlign(String)
+	 * @see #setAlign(HorizontalAlign)
 	 */
-	public String getAlign() {
+	public HorizontalAlign getAlign() {
 		return align;
 	}
 
@@ -69,7 +69,7 @@ public class Legend extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to: center
 	 */
-	public void setAlign(String align) {
+	public void setAlign(HorizontalAlign align) {
 		this.align = align;
 	}
 
@@ -335,9 +335,9 @@ public class Legend extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setLayout(String)
+	 * @see #setLayout(LayoutDirection)
 	 */
-	public String getLayout() {
+	public LayoutDirection getLayout() {
 		return layout;
 	}
 
@@ -346,7 +346,7 @@ public class Legend extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to: horizontal
 	 */
-	public void setLayout(String layout) {
+	public void setLayout(LayoutDirection layout) {
 		this.layout = layout;
 	}
 
@@ -589,9 +589,9 @@ public class Legend extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setVerticalAlign(String)
+	 * @see #setVerticalAlign(VerticalAlign)
 	 */
-	public String getVerticalAlign() {
+	public VerticalAlign getVerticalAlign() {
 		return verticalAlign;
 	}
 
@@ -610,7 +610,7 @@ public class Legend extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to: bottom
 	 */
-	public void setVerticalAlign(String verticalAlign) {
+	public void setVerticalAlign(VerticalAlign verticalAlign) {
 		this.verticalAlign = verticalAlign;
 	}
 

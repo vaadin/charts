@@ -1,5 +1,16 @@
 package com.vaadin.addon.charts;
 
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import junit.framework.Assert;
+
+import org.apache.commons.lang3.RandomStringUtils;
+import org.junit.Ignore;
+import org.junit.Test;
+
 import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
@@ -18,15 +29,6 @@ import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.charts.util.SVGGenerator;
-import junit.framework.Assert;
-import org.apache.commons.lang3.RandomStringUtils;
-import org.junit.Ignore;
-import org.junit.Test;
-
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 public class SVGGeneratorTest {
 
@@ -91,7 +93,7 @@ public class SVGGeneratorTest {
         YAxis y = new YAxis();
         y.setMin(0);
         AxisTitle title = new AxisTitle("Population (millions)");
-        title.setAlign(VerticalAlign.HIGH.toString());
+        title.setAlign(VerticalAlign.HIGH);
         y.setTitle(title);
         conf.addyAxis(y);
 
@@ -104,9 +106,9 @@ public class SVGGeneratorTest {
         conf.setPlotOptions(plot);
 
         Legend legend = new Legend();
-        legend.setLayout(LayoutDirection.VERTICAL.toString());
-        legend.setAlign(HorizontalAlign.RIGHT.toString());
-        legend.setVerticalAlign(VerticalAlign.TOP.toString());
+        legend.setLayout(LayoutDirection.VERTICAL);
+        legend.setAlign(HorizontalAlign.RIGHT);
+        legend.setVerticalAlign(VerticalAlign.TOP);
         legend.setX(-100);
         legend.setY(100);
         legend.setFloating(true);
@@ -130,12 +132,12 @@ public class SVGGeneratorTest {
     public void testWide() throws InterruptedException, URISyntaxException {
 
         Configuration conf = new Configuration();
-        conf.getChart().setType(ChartType.COLUMN.toString());
+        conf.getChart().setType(ChartType.COLUMN);
         conf.getChart().setMarginRight(200);
         Legend legend = conf.getLegend();
-        legend.setLayout(LayoutDirection.VERTICAL.toString());
-        legend.setAlign(HorizontalAlign.RIGHT.toString());
-        legend.setVerticalAlign(VerticalAlign.MIDDLE.toString());
+        legend.setLayout(LayoutDirection.VERTICAL);
+        legend.setAlign(HorizontalAlign.RIGHT);
+        legend.setVerticalAlign(VerticalAlign.MIDDLE);
         legend.setBorderWidth(0);
 
         Random r = new Random();

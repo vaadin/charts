@@ -77,8 +77,7 @@ public class ResizeInsideVaadinComponent extends AbstractVaadinChartExample {
         conf.setTitle("Temperature variation by day");
 
         XAxis axis = new XAxis();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        axis.setType(AxisType.DATETIME.toString());
+        axis.setType(AxisType.DATETIME);
         conf.addxAxis(axis);
         conf.addyAxis(new YAxis());
 

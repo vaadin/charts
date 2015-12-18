@@ -50,8 +50,7 @@ public class SplineWithItemLabels extends AbstractVaadinChartExample {
                 .setText(
                         "October 6th and 7th 2009 at two locations in Vik i Sogn, Norway");
 
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        configuration.getxAxis().setType(AxisType.DATETIME.toString());
+        configuration.getxAxis().setType(AxisType.DATETIME);
 
         YAxis yAxis = configuration.getyAxis();
         yAxis.setTitle(new AxisTitle("Wind speed (m/s)"));
@@ -95,10 +94,10 @@ public class SplineWithItemLabels extends AbstractVaadinChartExample {
         dataLabels.setStyle(new Style());
         dataLabels.getStyle().setFontWeight(BOLD);
         dataLabels.setY(-20);
-        dataLabels.setShape(CIRCLE.toString());
+        dataLabels.setShape(CIRCLE);
         dataLabels.setBackgroundColor(SolidColor.BLUEVIOLET);
         dataLabels.setColor(SolidColor.WHITESMOKE);
-        dataLabels.setVerticalAlign(MIDDLE.toString());
+        dataLabels.setVerticalAlign(MIDDLE);
         return dataLabels;
     }
 

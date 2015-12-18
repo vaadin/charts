@@ -1,7 +1,5 @@
 package com.vaadin.addon.charts.model;
 
-import com.google.gwt.user.client.ui.Label;
-
 /*
  * #%L
  * Vaadin Charts
@@ -20,19 +18,18 @@ import com.google.gwt.user.client.ui.Label;
  */
 
 /**
- * The name of a symbol to use for the border around the {@link Label} or
- * {@link Tooltip}.
+ * The layout algorithm used by {@link ChartType#TREEMAP} charts.
  */
-public enum Shape implements ChartEnum {
+public enum TreeMapLayoutAlgorithm implements ChartEnum {
 
-    CALLOUT("callout"), CIRCLE("circle"), DIAMOND("diamond"), SQUARE("square"), TRIANGLE(
-            "triangle"), TRIANGLE_DOWN("triangle-down");
-
-    Shape(String type) {
-        this.type = type;
-    }
+    SLICEANDDICE("sliceAndDice"), STRIPES("stripes"), SQUARIFIED("squarified"), STRIP(
+            "strip");
 
     private String type;
+
+    TreeMapLayoutAlgorithm(String type) {
+        this.type = type;
+    }
 
     @Override
     public String toString() {

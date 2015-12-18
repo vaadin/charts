@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts.examples.other;
 
+import java.util.Random;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.AxisTitle;
@@ -17,8 +19,6 @@ import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
 
-import java.util.Random;
-
 public class AngularGauge extends AbstractVaadinChartExample {
 
     @Override
@@ -32,8 +32,7 @@ public class AngularGauge extends AbstractVaadinChartExample {
         chart.setWidth("500px");
 
         final Configuration configuration = chart.getConfiguration();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        configuration.getChart().setType(ChartType.GAUGE.toString());
+        configuration.getChart().setType(ChartType.GAUGE);
         configuration.getChart().setPlotBackgroundColor(null);
         configuration.getChart().setPlotBackgroundImage(null);
         configuration.getChart().setPlotBorderWidth(0);
@@ -76,12 +75,12 @@ public class AngularGauge extends AbstractVaadinChartExample {
         yAxis.setMinorTickInterval("auto");
         yAxis.setMinorTickWidth(1);
         yAxis.setMinorTickLength(10);
-        yAxis.setMinorTickPosition(TickPosition.INSIDE.toString());
+        yAxis.setMinorTickPosition(TickPosition.INSIDE);
         yAxis.setMinorTickColor(new SolidColor("#666"));
         yAxis.setGridLineWidth(0);
         yAxis.setTickPixelInterval(30);
         yAxis.setTickWidth(2);
-        yAxis.setTickPosition(TickPosition.INSIDE.toString());
+        yAxis.setTickPosition(TickPosition.INSIDE);
         yAxis.setTickLength(10);
         yAxis.setTickColor(new SolidColor("#666"));
 

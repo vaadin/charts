@@ -18,21 +18,21 @@ package com.vaadin.addon.charts.model;
  */
 
 /**
- * The layout algorithm used by {@link ChartType#TREEMAP} charts.
+ * What frame the button should be placed related to. Can be either "plot" or
+ * "chart". Defaults to plot.
  */
-public enum TreeMapLayoutAlgorithm implements ChartEnum {
+public enum ResetZoomButtonRelativeTo implements ChartEnum {
 
-    SLICEANDDICE("sliceAndDice"), STRIPES("stripes"), SQUARIFIED("squarified"), STRIP(
-            "strip");
+    PLOT("plot"), CHART("chart");
 
-    private String type;
-
-    TreeMapLayoutAlgorithm(String type) {
-        this.type = type;
+    ResetZoomButtonRelativeTo(String frame) {
+        this.frame = frame;
     }
+
+    private String frame;
 
     @Override
     public String toString() {
-        return type.toString();
+        return frame;
     }
 }

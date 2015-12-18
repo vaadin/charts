@@ -46,11 +46,10 @@ public class InvertedAxes extends AbstractVaadinChartExample {
         conf.addyAxis(yAxis);
 
         Legend legend = new Legend();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        legend.setLayout(LayoutDirection.VERTICAL.toString());
-        legend.setAlign(HorizontalAlign.LEFT.toString());
+        legend.setLayout(LayoutDirection.VERTICAL);
+        legend.setAlign(HorizontalAlign.LEFT);
         legend.setFloating(true);
-        legend.setVerticalAlign(VerticalAlign.TOP.toString());
+        legend.setVerticalAlign(VerticalAlign.TOP);
         legend.setX(-150);
         legend.setY(100);
         legend.setBorderWidth(1);

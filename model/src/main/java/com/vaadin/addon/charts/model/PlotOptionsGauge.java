@@ -12,7 +12,7 @@ public class PlotOptionsGauge extends AbstractPlotOptions {
 	private static final long serialVersionUID = 1L;
 	private Boolean animation;
 	private Color color;
-	private String cursor;
+	private Cursor cursor;
 	private DataLabels dataLabels;
 	private Dial dial;
 	private Boolean enableMouseTracking;
@@ -98,9 +98,9 @@ public class PlotOptionsGauge extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setCursor(String)
+	 * @see #setCursor(Cursor)
 	 */
-	public String getCursor() {
+	public Cursor getCursor() {
 		return cursor;
 	}
 
@@ -109,7 +109,7 @@ public class PlotOptionsGauge extends AbstractPlotOptions {
 	 * the series, to signal to the user that the points and lines can be
 	 * clicked.
 	 */
-	public void setCursor(String cursor) {
+	public void setCursor(Cursor cursor) {
 		this.cursor = cursor;
 	}
 

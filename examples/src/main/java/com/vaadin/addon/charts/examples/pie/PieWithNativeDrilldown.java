@@ -43,8 +43,7 @@ public class PieWithNativeDrilldown extends AbstractVaadinChartExample {
         conf.getLegend().setEnabled(false);
 
         PlotOptionsPie column = new PlotOptionsPie();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        column.setCursor(Cursor.POINTER.toString());
+        column.setCursor(Cursor.POINTER);
         column.setDataLabels(new DataLabels(true));
 
         conf.setPlotOptions(column);

@@ -1,5 +1,13 @@
 package com.vaadin.addon.charts.model.junittests;
 
+import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.model.AbstractPlotOptions;
 import com.vaadin.addon.charts.model.AxisTitle;
@@ -12,13 +20,6 @@ import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.data.Container;
 import com.vaadin.data.Item;
 import com.vaadin.data.util.IndexedContainer;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
-import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class ConfigurationTest {
 
@@ -100,8 +101,7 @@ public class ConfigurationTest {
     public void setSeries_containerDataSeriesWithName_NameAppearsInLegend() {
 
         Configuration conf = new Configuration();
-        // FIXME use enums directly
-        conf.getChart().setType(ChartType.AREA.toString());
+        conf.getChart().setType(ChartType.AREA);
 
         XAxis xAxis = new XAxis();
         xAxis.setCategories(new String[] { "A", "B", "C", "D", "E" });

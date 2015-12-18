@@ -27,8 +27,7 @@ public class HeatMapExample extends AbstractVaadinChartExample {
         Chart chart = new Chart();
 
         Configuration config = chart.getConfiguration();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        config.getChart().setType(ChartType.HEATMAP.toString());
+        config.getChart().setType(ChartType.HEATMAP);
         config.getChart().setMarginTop(40);
         config.getChart().setMarginBottom(40);
 
@@ -47,10 +46,10 @@ public class HeatMapExample extends AbstractVaadinChartExample {
         config.getColorAxis().setMinColor(SolidColor.WHITE);
         config.getColorAxis().setMaxColor(getThemeColors()[0]);
 
-        config.getLegend().setLayout(LayoutDirection.VERTICAL.toString());
-        config.getLegend().setAlign(HorizontalAlign.RIGHT.toString());
+        config.getLegend().setLayout(LayoutDirection.VERTICAL);
+        config.getLegend().setAlign(HorizontalAlign.RIGHT);
         config.getLegend().setMargin(0);
-        config.getLegend().setVerticalAlign(VerticalAlign.TOP.toString());
+        config.getLegend().setVerticalAlign(VerticalAlign.TOP);
         config.getLegend().setY(25);
         config.getLegend().setSymbolHeight(320);
 

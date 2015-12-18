@@ -1,10 +1,12 @@
 package com.vaadin.addon.charts.model;
 
 import com.vaadin.addon.charts.model.style.Style;
+/**
+ */
 public class Labels extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
-	private String align;
+	private HorizontalAlign align;
 	private Number[] autoRotation;
 	private Number autoRotationLimit;
 	private Number distance;
@@ -26,9 +28,9 @@ public class Labels extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setAlign(String)
+	 * @see #setAlign(HorizontalAlign)
 	 */
-	public String getAlign() {
+	public HorizontalAlign getAlign() {
 		return align;
 	}
 
@@ -38,7 +40,7 @@ public class Labels extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to: right
 	 */
-	public void setAlign(String align) {
+	public void setAlign(HorizontalAlign align) {
 		this.align = align;
 	}
 

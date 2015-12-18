@@ -44,15 +44,15 @@ public class WindRose extends AbstractVaadinChartExample {
         pane.setBackground(new Background[] {});
 
         conf.getLegend().setReversed(false);
-        conf.getLegend().setAlign(HorizontalAlign.RIGHT.toString());
-        conf.getLegend().setVerticalAlign(VerticalAlign.TOP.toString());
+        conf.getLegend().setAlign(HorizontalAlign.RIGHT);
+        conf.getLegend().setVerticalAlign(VerticalAlign.TOP);
         conf.getLegend().setY(100);
-        conf.getLegend().setLayout(LayoutDirection.VERTICAL.toString());
+        conf.getLegend().setLayout(LayoutDirection.VERTICAL);
 
         XAxis axis = new XAxis();
         axis.setCategories(new String[] { "< 0.5 m/s", "0.5-2 m/s", "2-4 m/s",
                 "4-6 m/s", "6-8 m/s", "8-10 m/s", "> 10 m/s" });
-        axis.setTickmarkPlacement(TickmarkPlacement.ON.toString());
+        axis.setTickmarkPlacement(TickmarkPlacement.ON);
 
         YAxis yAxis = new YAxis();
         yAxis.setMin(0);
@@ -69,7 +69,7 @@ public class WindRose extends AbstractVaadinChartExample {
         conf.getTooltip().setValueSuffix("%");
 
         PlotOptionsColumn series = new PlotOptionsColumn();
-        series.setStacking(Stacking.NORMAL.toString());
+        series.setStacking(Stacking.NORMAL);
         series.setShadow(false);
         series.setGroupPadding(0);
         series.setPointPlacement(PointPlacement.ON);

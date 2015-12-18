@@ -30,8 +30,7 @@ public class StepLines extends AbstractVaadinChartExample {
         ls.setName("Right");
         ls.setData(1, 2, 3, 4, null, 6, 7, null, 9);
         PlotOptionsLine options = new PlotOptionsLine();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        options.setStep(StepType.RIGHT.toString());
+        options.setStep(StepType.RIGHT);
         ls.setPlotOptions(options);
         configuration.addSeries(ls);
 
@@ -39,7 +38,7 @@ public class StepLines extends AbstractVaadinChartExample {
         ls.setName("Center");
         ls.setData(5, 6, 7, 8, null, 10, 11, null, 13);
         options = new PlotOptionsLine();
-        options.setStep(StepType.CENTER.toString());
+        options.setStep(StepType.CENTER);
         ls.setPlotOptions(options);
         configuration.addSeries(ls);
 
@@ -47,7 +46,7 @@ public class StepLines extends AbstractVaadinChartExample {
         ls.setName("Left");
         ls.setData(9, 10, 11, 12, null, 14, 15, null, 17);
         options = new PlotOptionsLine();
-        options.setStep(StepType.LEFT.toString());
+        options.setStep(StepType.LEFT);
         ls.setPlotOptions(options);
         configuration.addSeries(ls);
 

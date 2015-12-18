@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts.examples.combinations;
 
+import java.util.Random;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.AxisTitle;
@@ -15,8 +17,6 @@ import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.ZoomType;
 import com.vaadin.ui.Component;
 
-import java.util.Random;
-
 @SuppressWarnings("serial")
 public class ScatterAndPolygon extends AbstractVaadinChartExample {
 
@@ -31,8 +31,7 @@ public class ScatterAndPolygon extends AbstractVaadinChartExample {
         Configuration conf = chart.getConfiguration();
 
         chart.setId("chart");
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        conf.getChart().setZoomType(ZoomType.XY.toString());
+        conf.getChart().setZoomType(ZoomType.XY);
         conf.disableCredits();
         conf.setTitle("Height vs Weight");
         conf.setSubTitle("Polygon series in Highcharts.");

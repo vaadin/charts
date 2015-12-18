@@ -1,5 +1,11 @@
 package com.vaadin.addon.charts.examples.lineandscatter;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.AxisTitle;
@@ -12,12 +18,6 @@ import com.vaadin.addon.charts.model.DateTimeLabelFormats;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.ui.Component;
-
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
 
 public class TimeDataWithIrregularIntervals extends AbstractVaadinChartExample {
 
@@ -33,8 +33,7 @@ public class TimeDataWithIrregularIntervals extends AbstractVaadinChartExample {
         chart.setWidth("100%");
 
         Configuration configuration = chart.getConfiguration();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        configuration.getChart().setType(ChartType.SPLINE.toString());
+        configuration.getChart().setType(ChartType.SPLINE);
 
         configuration.getTitle().setText(
                 "Snow depth in the Vikjafjellet mountain, Norway");
@@ -43,7 +42,7 @@ public class TimeDataWithIrregularIntervals extends AbstractVaadinChartExample {
 
         configuration.getTooltip().setFormatter("");
 
-        configuration.getxAxis().setType(AxisType.DATETIME.toString());
+        configuration.getxAxis().setType(AxisType.DATETIME);
         configuration.getxAxis().setDateTimeLabelFormats(
                 new DateTimeLabelFormats("%e. %b", "%b"));
 

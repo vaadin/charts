@@ -257,7 +257,7 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
         configuration.setTitle("Historical USD to EUR Exchange Rate");
         configuration
                 .setSubTitle("Select an area by dragging across the lower chart");
-        configuration.getxAxis().setType(AxisType.DATETIME.toString());
+        configuration.getxAxis().setType(AxisType.DATETIME);
         configuration.getyAxis().setTitle(new AxisTitle((String) null));
 
         configuration.getyAxis().setMinRange(0.1);
@@ -306,7 +306,7 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
         masterChart.setId("master-chart");
 
         Configuration configuration = masterChart.getConfiguration();
-        configuration.getChart().setZoomType(ZoomType.X.toString());
+        configuration.getChart().setZoomType(ZoomType.X);
 
         configuration.getChart().setReflow(false);
         configuration.getChart().setBorderWidth(0);
@@ -316,7 +316,7 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
 
         configuration.getTitle().setText("");
 
-        configuration.getxAxis().setType(AxisType.DATETIME.toString());
+        configuration.getxAxis().setType(AxisType.DATETIME);
         configuration.getxAxis().setShowLastLabel(true);
         configuration.getxAxis().setMinRange(14 * DAY_IN_MILLIS);
         configuration.getxAxis().setTitle(new AxisTitle(""));

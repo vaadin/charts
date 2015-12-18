@@ -31,9 +31,7 @@ public class TreeMapWithColorAxis extends AbstractVaadinChartExample {
         chart.getConfiguration().addColorAxis(colorAxis);
 
         PlotOptionsTreeMap plotOptions = new PlotOptionsTreeMap();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        plotOptions.setLayoutAlgorithm(TreeMapLayoutAlgorithm.SQUARIFIED
-                .toString());
+        plotOptions.setLayoutAlgorithm(TreeMapLayoutAlgorithm.SQUARIFIED);
 
         TreeSeries series = createSeries();
 

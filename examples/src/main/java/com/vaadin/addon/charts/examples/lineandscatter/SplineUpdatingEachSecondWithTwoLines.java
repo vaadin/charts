@@ -35,12 +35,11 @@ public class SplineUpdatingEachSecondWithTwoLines extends
         chart.setWidth("500px");
 
         final Configuration configuration = chart.getConfiguration();
-        // FIXME remove toString() once enums are used in model (CHARTS-159)
-        configuration.getChart().setType(ChartType.SPLINE.toString());
+        configuration.getChart().setType(ChartType.SPLINE);
         configuration.getTitle().setText("Live random data");
 
         XAxis xAxis = configuration.getxAxis();
-        xAxis.setType(AxisType.DATETIME.toString());
+        xAxis.setType(AxisType.DATETIME);
         xAxis.setTickPixelInterval(150);
 
         YAxis yAxis = configuration.getyAxis();

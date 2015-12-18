@@ -7,7 +7,7 @@ import com.vaadin.addon.charts.model.style.Style;
 public class AxisTitle extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
-	private String align;
+	private VerticalAlign align;
 	private Number margin;
 	private Number offset;
 	private Number rotation;
@@ -20,9 +20,9 @@ public class AxisTitle extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setAlign(String)
+	 * @see #setAlign(VerticalAlign)
 	 */
-	public String getAlign() {
+	public VerticalAlign getAlign() {
 		return align;
 	}
 
@@ -32,7 +32,7 @@ public class AxisTitle extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to: middle
 	 */
-	public void setAlign(String align) {
+	public void setAlign(VerticalAlign align) {
 		this.align = align;
 	}
 

@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts.examples.other;
 
+import java.util.Calendar;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.AxisTitle;
@@ -19,8 +21,6 @@ import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.charts.model.style.Style;
 
-import java.util.Calendar;
-
 public class Clock extends AbstractVaadinChartExample {
 
     @Override
@@ -35,7 +35,7 @@ public class Clock extends AbstractVaadinChartExample {
         chart.setHeight("200px");
 
         final Configuration configuration = chart.getConfiguration();
-        configuration.getChart().setType(ChartType.GAUGE.toString());
+        configuration.getChart().setType(ChartType.GAUGE);
         configuration.getChart().setPlotBackgroundColor(null);
         configuration.getChart().setPlotBackgroundImage(null);
         configuration.getChart().setPlotBorderWidth(0);
@@ -69,12 +69,12 @@ public class Clock extends AbstractVaadinChartExample {
         yAxis.setMinorTickInterval("auto");
         yAxis.setMinorTickWidth(1);
         yAxis.setMinorTickLength(5);
-        yAxis.setMinorTickPosition(TickPosition.INSIDE.toString());
+        yAxis.setMinorTickPosition(TickPosition.INSIDE);
         yAxis.setMinorGridLineWidth(0);
         yAxis.setMinorTickColor(new SolidColor("#666"));
         yAxis.setTickInterval(1);
         yAxis.setTickWidth(2);
-        yAxis.setTickPosition(TickPosition.INSIDE.toString());
+        yAxis.setTickPosition(TickPosition.INSIDE);
         yAxis.setTickLength(10);
         yAxis.setTickColor(new SolidColor("#666"));
 

@@ -2,6 +2,8 @@ package com.vaadin.addon.charts.model;
 
 import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.Style;
+/**
+ */
 public class DataLabelsFunnel extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
@@ -10,7 +12,7 @@ public class DataLabelsFunnel extends AbstractConfigurationObject {
 	private Number borderRadius;
 	private Number borderWidth;
 	private Color color;
-	private String connectorColor;
+	private Color connectorColor;
 	private Number connectorPadding;
 	private Number connectorWidth;
 	private Boolean crop;
@@ -24,11 +26,11 @@ public class DataLabelsFunnel extends AbstractConfigurationObject {
 	private Number padding;
 	private Number rotation;
 	private Object shadow;
-	private String shape;
+	private Shape shape;
 	private Boolean softConnector;
 	private Style style;
 	private Boolean useHTML;
-	private String verticalAlign;
+	private VerticalAlign verticalAlign;
 	private Number x;
 	private Number y;
 	private Number zIndex;
@@ -112,9 +114,9 @@ public class DataLabelsFunnel extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setConnectorColor(String)
+	 * @see #setConnectorColor(Color)
 	 */
-	public String getConnectorColor() {
+	public Color getConnectorColor() {
 		return connectorColor;
 	}
 
@@ -124,7 +126,7 @@ public class DataLabelsFunnel extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to: {point.color}
 	 */
-	public void setConnectorColor(String connectorColor) {
+	public void setConnectorColor(Color connectorColor) {
 		this.connectorColor = connectorColor;
 	}
 
@@ -350,9 +352,9 @@ public class DataLabelsFunnel extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setShape(String)
+	 * @see #setShape(Shape)
 	 */
-	public String getShape() {
+	public Shape getShape() {
 		return shape;
 	}
 
@@ -362,7 +364,7 @@ public class DataLabelsFunnel extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to: square
 	 */
-	public void setShape(String shape) {
+	public void setShape(Shape shape) {
 		this.shape = shape;
 	}
 
@@ -418,9 +420,9 @@ public class DataLabelsFunnel extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setVerticalAlign(String)
+	 * @see #setVerticalAlign(VerticalAlign)
 	 */
-	public String getVerticalAlign() {
+	public VerticalAlign getVerticalAlign() {
 		return verticalAlign;
 	}
 
@@ -430,7 +432,7 @@ public class DataLabelsFunnel extends AbstractConfigurationObject {
 	 * the data, for instance in a column chart, the label is above positive
 	 * values and below negative values.
 	 */
-	public void setVerticalAlign(String verticalAlign) {
+	public void setVerticalAlign(VerticalAlign verticalAlign) {
 		this.verticalAlign = verticalAlign;
 	}
 
