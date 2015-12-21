@@ -1,6 +1,6 @@
 ---
 title: Chart Types
-order: 3
+order: 4
 layout: page
 ---
 
@@ -76,9 +76,9 @@ type combinations for spline interpolation and ranges are supported.
 In area range charts, the area between a lower and upper value is painted with a
 transparent color. The data series must specify the minimum and maximum values
 for the Y coordinates, defined either with [classname]#RangeSeries#, as
-described in <<dummy/../../../charts/charts-data#charts.data.rangeseries,"Range
+described in <<dummy/../../../charts/java-api/charts-data#charts.data.rangeseries,"Range
 Series">>, or with [classname]#DataSeries#, described in
-<<dummy/../../../charts/charts-data#charts.data.dataseries,"Generic Data Series">>.
+<<dummy/../../../charts/java-api/charts-data#charts.data.dataseries,"Generic Data Series">>.
 
 [[charts.charttypes.area.plotoptions]]
 === Plot Options
@@ -111,7 +111,7 @@ orientation of the axes was inverted.
 
 Multiple data series, that is, two-dimensional data, are shown with thinner bars
 or columns grouped by their category, as described in
-<<dummy/../../../charts/charts-basic-use#charts.basic-use.two-dimensional,"Displaying
+<<dummy/../../../charts/java-api/charts-basic-use#charts.basic-use.two-dimensional,"Displaying
 Multiple Series">>. Enabling stacking with [methodname]#setStacking()# in plot
 options stacks the columns or bars of different series on top of each other.
 
@@ -865,7 +865,7 @@ documentation for all the available parameters.
 === Plot Options
 
 Solid gauges do not currently have any chart type specific plot options. See
-<<dummy/../../../charts/charts-configuration#charts.configuration.plotoptions,"Plot
+<<dummy/../../../charts/java-api/charts-configuration#charts.configuration.plotoptions,"Plot
 Options">> for common options.
 
 [source, java]
@@ -920,7 +920,7 @@ layout.addComponent(update);
 Ranged charts display an area or column between a minimum and maximum value,
 instead of a singular data point. They require the use of
 [classname]#RangeSeries#, as described in
-<<dummy/../../../charts/charts-data#charts.data.rangeseries,"Range Series">>. An
+<<dummy/../../../charts/java-api/charts-data#charts.data.rangeseries,"Range Series">>. An
 area range is created with [parameter]#AREARANGE# chart type, and a column range
 with [parameter]#COLUMNRANGE# chart type.
 
@@ -1128,7 +1128,7 @@ shared options: [parameter]#width#, [parameter]#height#, [parameter]#depth#,
 [parameter]#allowPointSelect#, [parameter]#borderColor#,
 [parameter]#borderWidth#, [parameter]#center#, [parameter]#slicedOffset#, and
 [parameter]#visible#. See
-<<dummy/../../../charts/charts-configuration#charts.configuration.plotoptions,"Plot
+<<dummy/../../../charts/java-api/charts-configuration#charts.configuration.plotoptions,"Plot
 Options">> for detailed descriptions.
 
 They have the following chart type specific properties:

@@ -3,6 +3,7 @@
 
 This chapter provides the documentation for the Vaadin Charts add-on.
 
+include::charts-getting-started.asciidoc[leveloffset=+2]
 
 include::charts-overview.asciidoc[leveloffset=+2]
 

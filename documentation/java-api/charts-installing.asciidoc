@@ -1,6 +1,6 @@
 ---
 title: Installing Vaadin Charts
-order: 1
+order: 2
 layout: page
 ---
 
@@ -10,7 +10,7 @@ layout: page
 As with most Vaadin add-ons, you can install Vaadin Charts as a Maven or Ivy
 dependency in your project, or from an installation package. For general
 instructions on installing add-ons, please see
-<<dummy/../../framework/addons/addons-overview.asciidoc#addons.overview,"Using
+<<dummy/../../../framework/addons/addons-overview.asciidoc#addons.overview,"Using
 Vaadin Add-ons">>.
 
 Vaadin Charts requires Vaadin 7.3 or later.

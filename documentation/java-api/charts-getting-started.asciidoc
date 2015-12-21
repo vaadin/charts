@@ -1,6 +1,6 @@
 ---
-title: Getting started with Java
-order: 2
+title: Getting started
+order: 1
 layout: page
 ---
 

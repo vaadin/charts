@@ -1,6 +1,6 @@
 ---
 title: Chart Types
-order: 3
+order: 4
 layout: page
 ---
 
@@ -164,7 +164,7 @@ orientation of the axes was inverted.
 
 Multiple data series, that is, two-dimensional data, are shown with thinner bars
 or columns grouped by their category, as described in
-<<dummy/../../charts/webcomponents-api/charts-basic-use#charts.basic-use.two-dimensional,"Displaying
+<<dummy/../../../charts/webcomponents-api/charts-basic-use#charts.basic-use.two-dimensional,"Displaying
 Multiple Series">>. Enabling stacking with `stacking` element in plot
 options stacks the columns or bars of different series on top of each other.
 
@@ -348,7 +348,7 @@ with a separate data series, with
 
 Scatter charts display a set of unconnected data points. The name refers to
 freely given X and Y coordinates. Also Z coordinate can be given if
-<<dummy/../../charts/webcomponents-api/charts-configuration#charts.basic-use.3d.options,"3D is enabled">>.
+<<dummy/../../../charts/webcomponents-api/charts-configuration#charts.basic-use.3d.options,"3D is enabled">>.
 
 [[figure.charts.charttypes.scatter]]
 .Scatter Chart
@@ -865,7 +865,7 @@ documentation for all the available parameters.
 === Plot Options
 
 Solid gauges do not currently have any chart type specific plot options. See
-<<dummy/../../charts/charts-configuration#charts.configuration.plotoptions,"Plot
+<<dummy/../../../charts/charts-configuration#charts.configuration.plotoptions,"Plot
 Options">> for common options.
 
 [source,html]
@@ -1118,7 +1118,7 @@ shared options: `width`, `height`, `depth`,
 `allow-point-select`, `border-color`,
 `border-width`, `center`, `sliced-offset`, and
 `visible`. See
-<<dummy/../../charts/charts-configuration#charts.configuration.plotoptions,"Plot
+<<dummy/../../../charts/charts-configuration#charts.configuration.plotoptions,"Plot
 Options">> for detailed descriptions.
 
 They have the following chart type specific properties:

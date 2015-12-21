@@ -1,6 +1,6 @@
 ---
 title: Chart Configuration
-order: 4
+order: 5
 layout: page
 ---
 
@@ -40,7 +40,7 @@ summarized in the following:
 * [methodname]#yAxis#: [classname]#YAxis# (see <<charts.configuration.axes>>)
 
 
-For data configuration, see <<dummy/../../../charts/charts-data#charts.data,"Chart
+For data configuration, see <<dummy/../../../charts/java-api/charts-data#charts.data,"Chart
 Data">>.
 
 [[charts.configuration.plotoptions]]

@@ -1,6 +1,6 @@
 ---
-title: Getting started with Web Components
-order: 3
+title: Getting started
+order: 1
 layout: page
 ---
 

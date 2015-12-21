@@ -1,6 +1,6 @@
 ---
 title: Chart Configuration
-order: 4
+order: 5
 layout: page
 ---
 
@@ -49,7 +49,7 @@ summarized in the following:
 
 * `y-axis`: the Y axis or value axis (see <<charts.configuration.axes>>)
 
-Please, see more details about these in the http://demo.vaadin.com/charts3-api/[API]. For data configuration, see <<dummy/../../../charts/charts-data#charts.data,"Chart
+Please, see more details about these in the http://demo.vaadin.com/charts3-api/[API]. For data configuration, see <<dummy/../../../charts/webcomponents-api/charts-data#charts.data,"Chart
 Data">>.
 
 [[charts.configuration.plotoptions]]
