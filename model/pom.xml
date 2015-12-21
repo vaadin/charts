@@ -14,6 +14,9 @@
 	<name>Vaadin Charts Model</name>
 	<inceptionYear>2012</inceptionYear>
 
+	<properties>
+		<license.projectName>Vaadin Charts</license.projectName>
+	</properties> 
 	<repositories>
 		<repository>
 			<id>Vaadin releases</id>
