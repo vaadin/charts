@@ -18,6 +18,7 @@ import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
+import com.vaadin.addon.charts.model.style.Style;
 import com.vaadin.ui.Component;
 
 @SuppressWarnings("serial")
@@ -64,6 +65,9 @@ public class StackedColumn extends AbstractVaadinChartExample {
         PlotOptionsColumn plotOptions = new PlotOptionsColumn();
         plotOptions.setStacking(Stacking.NORMAL);
         DataLabels labels = new DataLabels(true);
+        Style style=new Style();
+        style.setTextShadow("0 0 3px black");
+        labels.setStyle(style);
         labels.setColor(new SolidColor("white"));
         plotOptions.setDataLabels(labels);
         conf.setPlotOptions(plotOptions);

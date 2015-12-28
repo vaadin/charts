@@ -15,6 +15,7 @@ import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
+import com.vaadin.addon.charts.model.style.Style;
 import com.vaadin.ui.Component;
 
 @SuppressWarnings("serial")
@@ -50,6 +51,10 @@ public class ColumnWithShapedLabels extends AbstractVaadinChartExample {
         labels.setBackgroundColor(SolidColor.BURLYWOOD);
         labels.setColor(new SolidColor("white"));
         labels.setShape(Shape.DIAMOND);
+
+        Style style=new Style();
+        style.setTextShadow("0 0 3px black");
+        labels.setStyle(style);
 
         plotOptions.setDataLabels(labels);
         conf.setPlotOptions(plotOptions);

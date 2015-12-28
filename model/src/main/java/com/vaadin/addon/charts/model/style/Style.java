@@ -32,7 +32,7 @@ public class Style extends AbstractConfigurationObject {
     private String top;
     private StylePosition position;
     private String lineHeight;
-
+    private String textShadow;
     /**
      * @see #setColor(Color)
      */
@@ -159,4 +159,19 @@ public class Style extends AbstractConfigurationObject {
         return lineHeight;
     }
 
+    /**
+     * @see #setTextShadow(String)
+     */
+    public String getTextShadow(){
+        return textShadow;
+    }
+
+    /**
+     * Sets the <code>textShadow</code> CSS attribute
+     *
+     * @param textShadow
+     */
+    public void setTextShadow(String textShadow) {
+        this.textShadow=textShadow;
+    }
 }
