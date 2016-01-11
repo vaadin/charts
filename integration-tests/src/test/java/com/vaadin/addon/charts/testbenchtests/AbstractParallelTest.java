@@ -14,6 +14,8 @@ import java.util.List;
 import org.junit.internal.AssumptionViolatedException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.vaadin.testbench.Parameters;
 import com.vaadin.testbench.annotations.BrowserConfiguration;
@@ -55,7 +57,7 @@ public abstract class AbstractParallelTest extends ParallelTest {
 
         new File(ERROR_IMAGE_ROOT).mkdirs();
         Parameters.setScreenshotErrorDirectory(ERROR_IMAGE_ROOT);
-        Parameters.setScreenshotComparisonTolerance(0.01);
+        Parameters.setScreenshotComparisonTolerance(0.05);
         Parameters.setScreenshotReferenceDirectory(REF_IMAGE_ROOT);
 
         try {
@@ -67,6 +69,18 @@ public abstract class AbstractParallelTest extends ParallelTest {
         testBench = (TestBenchCommands) getDriver();
 
         configBrowser();
+    }
+
+    /**
+     * Waits until the chart element has been rendered on screen. This is
+     * necessary in the cases where the test grid is overloaded.
+     */
+    protected void waitUntilChartRendered() {
+        new WebDriverWait(driver, 90).until(
+            ExpectedConditions
+                .presenceOfElementLocated(
+                    com.vaadin.testbench.By.className("highcharts-container")));
+        getTestBenchCommandExecutor().waitForVaadin();
     }
 
     private boolean getBooleanProperty(String key) {
@@ -180,16 +194,8 @@ public abstract class AbstractParallelTest extends ParallelTest {
         return result;
     }
 
-    protected void sleep(int ms) {
-        try {
-            Thread.sleep(ms);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    protected void waitBetweenShots() {
-        sleep(5000);
+    protected void waitForVaadin() {
+        getTestBenchCommandExecutor().waitForVaadin();
     }
 
     /**

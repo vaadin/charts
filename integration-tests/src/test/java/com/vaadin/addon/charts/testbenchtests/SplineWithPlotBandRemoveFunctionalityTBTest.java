@@ -21,16 +21,16 @@ public class SplineWithPlotBandRemoveFunctionalityTBTest extends
         button.click();
         button.click();
 
-        waitBetweenShots();
+        waitForVaadin();
         captureAndCompare("1-start");
 
         button.click();
-        waitBetweenShots();
+        waitForVaadin();
         captureAndCompare("2-removed");
 
         button.click();
 
-        waitBetweenShots();
+        waitForVaadin();
         captureAndCompare("1-start");
 
     }

@@ -26,7 +26,7 @@ public class MasterDetailTBTest extends AbstractParallelTest {
     public void test() throws IOException, AssertionError {
         driver.get(getTestUrl());
 
-        waitBetweenShots();
+        waitForVaadin();
         captureAndCompare("before");
 
         WebElement findElement = driver.findElement(By.id("master-chart"));
@@ -34,7 +34,7 @@ public class MasterDetailTBTest extends AbstractParallelTest {
                 .clickAndHold().moveByOffset(100, 0).release().build();
         click.perform();
 
-        waitBetweenShots();
+        waitForVaadin();
         captureAndCompare("after");
     }
 }

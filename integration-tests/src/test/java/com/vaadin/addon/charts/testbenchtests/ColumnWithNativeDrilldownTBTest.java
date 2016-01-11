@@ -21,7 +21,7 @@ public class ColumnWithNativeDrilldownTBTest extends AbstractParallelTest {
     public void test() throws IOException, AssertionError {
         driver.get(getTestUrl());
 
-        waitBetweenShots();
+        waitForVaadin();
         captureAndCompare("before");
 
         WebElement findElement = driver.findElement(By.id("chart"));
@@ -30,7 +30,7 @@ public class ColumnWithNativeDrilldownTBTest extends AbstractParallelTest {
                 .moveToElement(findElement, 0, 0).build();
         moveAndClick.perform();
 
-        waitBetweenShots();
+        waitForVaadin();
         captureAndCompare("after");
     }
 

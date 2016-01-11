@@ -34,13 +34,13 @@ public class ClickToAddPointTBTest extends
 
         click.perform();
 
-        sleep(1000); // FIXME investigate why randomly fails without this
+        waitForVaadin(); // FIXME investigate why randomly fails without this
 
         Assert.assertTrue(eventLogText().startsWith("Added"));
 
         click.perform();
 
-        sleep(1000); // FIXME investigate why randomly fails without this
+        waitForVaadin(); // FIXME investigate why randomly fails without this
 
         Assert.assertTrue(eventLogText().startsWith("Removed"));
     }

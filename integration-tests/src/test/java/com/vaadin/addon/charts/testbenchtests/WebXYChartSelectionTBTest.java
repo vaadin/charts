@@ -26,7 +26,7 @@ public class WebXYChartSelectionTBTest extends
         Action click = new Actions(driver).moveToElement(findElement, 100, 100)
                 .clickAndHold().moveByOffset(200, 50).release().build();
         click.perform();
-        sleep(1000);
+        waitForVaadin();
     }
 
 }

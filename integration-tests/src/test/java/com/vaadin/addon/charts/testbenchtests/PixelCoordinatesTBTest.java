@@ -34,10 +34,10 @@ public class PixelCoordinatesTBTest extends
         // 80,315 should not be expected in UI
         click = new Actions(driver).moveToElement(findElement, 84, 315).build();
         click.perform();
-        sleep(1000);
+        waitForVaadin();
         click = new Actions(driver).moveToElement(findElement, 85, 315).build();
         click.perform();
-        sleep(1000);
+        waitForVaadin();
         click = new Actions(driver).click().build();
         click.perform();
 
@@ -46,7 +46,7 @@ public class PixelCoordinatesTBTest extends
                 .click().build();
 
         click.perform();
-        sleep(100);
+        waitForVaadin();
     }
 
     @Override

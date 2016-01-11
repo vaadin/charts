@@ -20,7 +20,6 @@ import com.vaadin.addon.charts.examples.dynamic.ServerSideEvents;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.Series;
 import com.vaadin.testbench.By;
-import com.vaadin.testbench.annotations.RunLocally;
 import com.vaadin.testbench.elements.ButtonElement;
 import com.vaadin.testbench.elements.LabelElement;
 import com.vaadin.testbench.parallel.Browser;
@@ -50,9 +49,15 @@ public class ServerSideEventsTBTest extends AbstractParallelTest {
         return "dynamic";
     }
 
+    private void openTestUI() {
+        driver.get(getTestUrl());
+        waitUntilChartRendered();
+    }
+
     @Test
     public void chartClick_occured_eventIsFired() {
-        driver.get(getTestUrl());
+        skipBrowser("Clicking chart through Testbench does not work reliably", Browser.IE8);
+        openTestUI();
         WebElement chart = driver.findElement(By.className("vaadin-chart"));
 
         new Actions(driver).moveToElement(chart, 200, 200).click().build()
@@ -61,10 +66,13 @@ public class ServerSideEventsTBTest extends AbstractParallelTest {
         assertLastEventIsType(ChartClickEvent.class);
     }
 
+
     @Test
     public void pointClick_occured_eventIsFired() {
         skipBrowser("Datapoint click through Testbench does not work correctly", Browser.CHROME, Browser.PHANTOMJS);
-        driver.get(getTestUrl());
+        skipBrowser("Uses VML for rendering, selectors won't work", Browser.IE8);
+        openTestUI();
+
         WebElement firstMarker = findLastDataPointOfTheFirstSeries();
 
         click(firstMarker);
@@ -74,7 +82,8 @@ public class ServerSideEventsTBTest extends AbstractParallelTest {
 
     @Test
     public void legendItemClick_occuredWhileVisibilityTogglingDisabled_eventIsFired() {
-        driver.get(getTestUrl());
+        skipBrowser("Uses VML for rendering, selectors won't work", Browser.IE8);
+        openTestUI();
         WebElement disableVisibilityToggling = findDisableVisibityToggle();
         click(disableVisibilityToggling);
         WebElement legendItem = findLegendItem();
@@ -86,7 +95,8 @@ public class ServerSideEventsTBTest extends AbstractParallelTest {
 
     @Test
     public void legendItemClick_occuredWhileVisibilityTogglingEnabled_eventAndSeriesHideEventAreFired() {
-        driver.get(getTestUrl());
+        skipBrowser("Uses VML for rendering, selectors won't work", Browser.IE8);
+        openTestUI();
         WebElement legendItem = findLegendItem();
 
         click(legendItem);
@@ -97,7 +107,8 @@ public class ServerSideEventsTBTest extends AbstractParallelTest {
 
     @Test
     public void checkBoxClick_occured_eventIsFired() {
-        driver.get(getTestUrl());
+        skipBrowser("Uses VML for rendering, selectors won't work", Browser.IE8);
+        openTestUI();
         WebElement checkBox = findCheckBox();
 
         click(checkBox);
@@ -107,7 +118,8 @@ public class ServerSideEventsTBTest extends AbstractParallelTest {
 
     @Test
     public void checkBoxClick_secondCheckboxClicked_secondSeriesIsReturned() {
-        driver.get(getTestUrl());
+        skipBrowser("Uses VML for rendering, selectors won't work", Browser.IE8);
+        openTestUI();
         WebElement secondCheckBox = findSecondCheckbox();
 
         click(secondCheckBox);
@@ -120,7 +132,8 @@ public class ServerSideEventsTBTest extends AbstractParallelTest {
 
     @Test
     public void checkBoxClick_seriesWasNotSelected_checkBoxIsChecked() {
-        driver.get(getTestUrl());
+        skipBrowser("Uses VML for rendering, selectors won't work", Browser.IE8);
+        openTestUI();
         WebElement secondCheckBox = findSecondCheckbox();
 
         click(secondCheckBox);
@@ -134,7 +147,8 @@ public class ServerSideEventsTBTest extends AbstractParallelTest {
 
     @Test
     public void hideSeries_occuredFromLegendClick_eventIsFired() {
-        driver.get(getTestUrl());
+        skipBrowser("Uses VML for rendering, selectors won't work", Browser.IE8);
+        openTestUI();
         WebElement legendItem = findLegendItem();
 
         click(legendItem);
@@ -144,7 +158,7 @@ public class ServerSideEventsTBTest extends AbstractParallelTest {
 
     @Test
     public void hideSeries_occuredFromServer_eventIsFired() {
-        driver.get(getTestUrl());
+        openTestUI();
         WebElement hideSeries = findHideFirstSeriesButton();
 
         click(hideSeries);
@@ -154,7 +168,8 @@ public class ServerSideEventsTBTest extends AbstractParallelTest {
 
     @Test
     public void showSeries_occuredFromLegendClick_eventIsFired() {
-        driver.get(getTestUrl());
+        skipBrowser("Uses VML for rendering, selectors won't work", Browser.IE8);
+        openTestUI();
         WebElement legendItem = findLegendItem();
         click(legendItem);
 
@@ -165,7 +180,7 @@ public class ServerSideEventsTBTest extends AbstractParallelTest {
 
     @Test
     public void showSeries_occuredFromServer_eventIsFired() {
-        driver.get(getTestUrl());
+        openTestUI();
         WebElement hideSeriesToggle = findHideFirstSeriesButton();
         click(hideSeriesToggle);
 
@@ -176,8 +191,9 @@ public class ServerSideEventsTBTest extends AbstractParallelTest {
 
     @Test
     public void setXAxesExtremes_occured_eventIsFired() {
+        skipBrowser("Uses VML for rendering, selectors won't work", Browser.IE8);
         skipBrowser("Selecting area through Testbench does not work correctly", Browser.CHROME, Browser.PHANTOMJS);
-        driver.get(getTestUrl());
+        openTestUI();
         WebElement chart = driver.findElement(By.className("vaadin-chart"));
 
         new Actions(driver).moveToElement(chart, 200, 100).click().clickAndHold()
@@ -189,7 +205,7 @@ public class ServerSideEventsTBTest extends AbstractParallelTest {
     @Test
     public void setYAxesExtremes_occured_eventIsFired() {
         skipBrowser("Selecting area through Testbench does not work correctly", Browser.CHROME, Browser.PHANTOMJS);
-        driver.get(getTestUrl());
+        openTestUI();
         WebElement chart = driver.findElement(By.className("vaadin-chart"));
 
         new Actions(driver).moveToElement(chart, 200, 100).click().clickAndHold()
@@ -203,7 +219,8 @@ public class ServerSideEventsTBTest extends AbstractParallelTest {
     @Test
     public void unselect_occured_eventIsFired() {
         skipBrowser("Datapoint click through Testbench does not work correctly", Browser.CHROME, Browser.PHANTOMJS);
-        driver.get(getTestUrl());
+        skipBrowser("Uses VML for rendering, selectors won't work", Browser.IE8);
+        openTestUI();
         WebElement lastDataPointOfTheFirstSeries = findLastDataPointOfTheFirstSeries();
 
         click(lastDataPointOfTheFirstSeries);
@@ -214,7 +231,8 @@ public class ServerSideEventsTBTest extends AbstractParallelTest {
     @Test
     public void select_occured_eventIsFired() {
         skipBrowser("Datapoint click through Testbench does not work correctly", Browser.CHROME, Browser.PHANTOMJS);
-        driver.get(getTestUrl());
+        skipBrowser("Uses VML for rendering, selectors won't work", Browser.IE8);
+        openTestUI();
         WebElement lastDataPointOfTheFirstSeries = findLastDataPointOfTheFirstSeries();
 
         click(lastDataPointOfTheFirstSeries);
@@ -258,6 +276,7 @@ public class ServerSideEventsTBTest extends AbstractParallelTest {
 
     private void click(WebElement secondCheckBox) {
         new Actions(driver).click(secondCheckBox).build().perform();
+        getTestBenchCommandExecutor().waitForVaadin();
     }
 
     private WebElement findHideFirstSeriesButton() {

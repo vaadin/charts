@@ -20,6 +20,7 @@ package com.vaadin.addon.charts.client.ui;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.user.client.Element;
+import com.vaadin.addon.charts.shared.ChartConnector;
 
 public class HighchartConfig extends JavaScriptObject {
 
@@ -171,12 +172,13 @@ public class HighchartConfig extends JavaScriptObject {
 
     public static final native void setAfterExtremesHandlerTo(JavaScriptObject axes, AfterSetExtremeHandler handler)
     /*-{
-        axes.map(function(axis) {
+        for(var i = 0; i < axes.length; ++i) {
+            var axis = axes[i];
             if(!axis.events) axis.events = {};
             axis.events.afterSetExtremes = $entry(function(e) {
                 return handler.@com.vaadin.addon.charts.client.ui.AfterSetExtremeHandler::afterSetExtreme(Lcom/vaadin/addon/charts/client/ui/SetExtremesEvent;)(e);
             });
-        });
+        }
     }-*/;
 
     public final native void setSeriesPointClickHandler(
@@ -268,6 +270,18 @@ public class HighchartConfig extends JavaScriptObject {
         if(!this.chart) this.chart = {};
         this.chart.renderTo = element;
         return new $wnd.Highcharts.Chart(this);
+    }-*/;
+
+    public native final void setChartsRenderingObserver(ChartConnector.ChartsRenderingObserver handler)
+    /*-{
+        @com.vaadin.addon.charts.client.ui.HighchartConfig::ensureObjectStructure(Lcom/google/gwt/core/client/JavaScriptObject;Ljava/lang/String;)(this,"chart.events");
+        @com.vaadin.addon.charts.client.ui.HighchartConfig::ensureObjectStructure(Lcom/google/gwt/core/client/JavaScriptObject;Ljava/lang/String;)(this,"plotOptions.series.events");
+        this.chart.events.load = $entry(function(e) {
+            return handler.@com.vaadin.addon.charts.shared.ChartConnector.ChartsRenderingObserver::onLoad()();
+        });
+        this.plotOptions.series.events.afterAnimate = $entry(function(e) {
+            return handler.@com.vaadin.addon.charts.shared.ChartConnector.ChartsRenderingObserver::onAfterSeriesAnimate()();
+        });
     }-*/;
 
 }

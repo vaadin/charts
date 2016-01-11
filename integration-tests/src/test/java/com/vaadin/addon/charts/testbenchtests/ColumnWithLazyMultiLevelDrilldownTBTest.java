@@ -25,7 +25,7 @@ public class ColumnWithLazyMultiLevelDrilldownTBTest extends
     public void test() throws IOException, AssertionError {
         driver.get(getTestUrl());
 
-        waitBetweenShots();
+        waitForVaadin();
 
         WebElement findElement = driver.findElement(By.id("chart"));
         Action moveAndClick = new Actions(driver)
@@ -47,7 +47,7 @@ public class ColumnWithLazyMultiLevelDrilldownTBTest extends
     }
 
     private void assertLogText(String text) {
-        sleep(1000);
+        waitForVaadin();
         assertTrue(
                 String.format("Couldn't find text '%s' from the log.", text),
                 logContainsText(text));

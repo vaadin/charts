@@ -25,7 +25,7 @@ public class ColumnWithNativeLazyDrilldownTBTest extends AbstractParallelTest {
 
         new WebDriverWait(driver, 120).until(ExpectedConditions
                 .presenceOfElementLocated(By.id("chart")));
-        waitBetweenShots();
+        waitForVaadin();
         captureAndCompare("before");
 
         WebElement findElement = driver.findElement(By.id("chart"));
@@ -39,7 +39,7 @@ public class ColumnWithNativeLazyDrilldownTBTest extends AbstractParallelTest {
                 .moveToElement(driver.findElement(By.className("v-ui")), 0, 0)
                 .build().perform();
 
-        waitBetweenShots();
+        waitForVaadin();
         captureAndCompare("after");
     }
 

@@ -12,12 +12,12 @@ public class TimeSeriesIntervalUnitTBTest extends AbstractParallelTest {
     public void test() throws IOException, AssertionError {
         driver.get(getTestUrl());
 
-        waitBetweenShots();
+        waitForVaadin();
         captureAndCompare("OneMonthInterval");
 
         $(ButtonElement.class).first().click();
 
-        waitBetweenShots();
+        waitForVaadin();
         captureAndCompare("OneDayInterval");
     }
 

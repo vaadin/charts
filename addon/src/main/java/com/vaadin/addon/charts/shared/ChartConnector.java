@@ -47,6 +47,7 @@ import com.vaadin.addon.charts.client.ui.SeriesHideHandler;
 import com.vaadin.addon.charts.client.ui.SeriesShowHandler;
 import com.vaadin.addon.charts.client.ui.SetExtremesEvent;
 import com.vaadin.client.BrowserInfo;
+import com.vaadin.client.DeferredWorker;
 import com.vaadin.client.ServerConnector;
 import com.vaadin.client.communication.RpcProxy;
 import com.vaadin.client.communication.StateChangeEvent;
@@ -59,7 +60,7 @@ import com.vaadin.shared.ui.Connect;
 
 @SuppressWarnings("serial")
 @Connect(Chart.class)
-public class ChartConnector extends AbstractComponentConnector {
+public class ChartConnector extends AbstractComponentConnector implements DeferredWorker {
 
     ChartServerRpc rpc = RpcProxy.create(ChartServerRpc.class, this);
     protected ElementResizeListener resizeListener;
@@ -76,7 +77,11 @@ public class ChartConnector extends AbstractComponentConnector {
     public static final String POINT_SELECT_EVENT_ID = "pse";
     public static final String POINT_UNSELECT_EVENT_ID = "pus";
 
+    private ChartsRenderingObserver chartsRenderingObserver;
+
     public ChartConnector() {
+        chartsRenderingObserver = new ChartsRenderingObserver();
+
         registerRpc(ChartClientRpc.class, new ChartClientRpc() {
             @Override
             public void addPoint(final String pointJson, final int seriesIndex,
@@ -229,6 +234,9 @@ public class ChartConnector extends AbstractComponentConnector {
         super.onStateChanged(stateChangeEvent);
         final HighchartConfig cfg = HighchartConfig.createFromServerSideString(
                 getState().confState, getState().jsonState);
+
+        chartsRenderingObserver.startRendering();
+        cfg.setChartsRenderingObserver(chartsRenderingObserver);
 
         if (listenerExistsForEvent(CHART_CLICK_EVENT_ID)) {
             cfg.setClickHandler(new ChartClickHandler() {
@@ -394,45 +402,50 @@ public class ChartConnector extends AbstractComponentConnector {
         }
 
         Scheduler.get().scheduleDeferred(new ScheduledCommand() {
-            @Override
-            public void execute() {
-                getWidget().init(cfg);
-                // Add resize listener lazily here. If done in init like in
-                // examples it will be called
-                // way too early, like before the widget is not even rendered
-                // yet
-                if (resizeListener == null) {
-                    resizeListener = new ElementResizeListener() {
+                                             @Override
+                                             public void execute() {
+                                                 getWidget().init(cfg);
+                                                 int numberOfSeries = getWidget().getNumberOfSeries();
+                                                 chartsRenderingObserver.setNumberOfSeries(
+                                                     numberOfSeries);
+                                                 // Add resize listener lazily here. If done in init like in
+                                                 // examples it will be called
+                                                 // way too early, like before the widget is not even rendered
+                                                 // yet
+                                                 if (resizeListener == null) {
+                                                     resizeListener = new ElementResizeListener() {
 
-                        @Override
-                        public void onElementResize(ElementResizeEvent e) {
-                            getWidget().updateSize();
-                        }
-                    };
+                                                         @Override
+                                                         public void onElementResize(ElementResizeEvent e) {
+                                                             getWidget().updateSize();
+                                                         }
+                                                     };
 
-                    getLayoutManager().addElementResizeListener(
-                            getWidget().getElement(), resizeListener);
-                }
+                                                     getLayoutManager().addElementResizeListener(
+                                                         getWidget().getElement(), resizeListener);
+                                                 }
 
-                if (BrowserInfo.get().isIE()) {
-                    // Workaround for Vaadin bug in IE (?), scrollbars...
-                    ServerConnector parent2 = getParent();
-                    if (parent2 instanceof WindowConnector) {
-                        final WindowConnector w = (WindowConnector) parent2;
-                        new Timer() {
+                                                 if (BrowserInfo.get().isIE()) {
+                                                     // Workaround for Vaadin bug in IE (?), scrollbars...
+                                                     ServerConnector parent2 = getParent();
+                                                     if (parent2 instanceof WindowConnector) {
+                                                         final WindowConnector w = (WindowConnector) parent2;
+                                                         new Timer() {
 
-                            @Override
-                            public void run() {
-                                VWindow widget2 = w.getWidget();
-                                widget2.setWidth(widget2.getOffsetWidth()
-                                        + "px");
-                                widget2.setHeight(widget2.getOffsetHeight()
-                                        + "px");
-                            }
-                        }.schedule(10);
-                    }
-                }
-            }
+                                                             @Override
+                                                             public void run() {
+                                                                 VWindow widget2 = w.getWidget();
+                                                                 widget2.setWidth(widget2.getOffsetWidth()
+                                                                         + "px");
+                                                                 widget2.setHeight(widget2.getOffsetHeight()
+                                                                         + "px");
+                                                             }
+                                                         }.schedule(10);
+                                                     }
+                                                 }
+                                             }
+
+
         });
     }
 
@@ -451,4 +464,53 @@ public class ChartConnector extends AbstractComponentConnector {
         super.onUnregister();
     }
 
+    public static class ChartsRenderingObserver {
+
+        private int numberOfSeries;
+        private int numberOfRenderedSeries;
+        private boolean loaded;
+        private boolean seriesAndDataLabelsRendered;
+
+        public void startRendering() {
+            numberOfSeries = 0;
+            numberOfRenderedSeries = 0;
+            loaded = false;
+            seriesAndDataLabelsRendered = false;
+        }
+
+        public void onLoad() {
+            loaded = true;
+        }
+
+
+        public void onAfterSeriesAnimate() {
+            ++numberOfRenderedSeries;
+            if(numberOfRenderedSeries >= numberOfSeries) {
+                // After the series are rendered, the datalabels are rendered
+                // with 200ms animation duration. There is no event at the moment to catch
+                // when rendering of datalabels are done, so we add 500ms delay
+                // before assuming the series and data labels are rendered.
+                Timer timer = new Timer() {
+                    @Override
+                    public void run() {
+                        seriesAndDataLabelsRendered = true;
+                    }
+                };
+                timer.schedule(500);
+            }
+        }
+
+        public boolean isWorkPending() {
+            return !loaded || !seriesAndDataLabelsRendered;
+        }
+
+        public void setNumberOfSeries(int numberOfSeries) {
+            this.numberOfSeries = numberOfSeries;
+        }
+    }
+
+    @Override
+    public boolean isWorkPending() {
+        return chartsRenderingObserver.isWorkPending();
+    }
 }

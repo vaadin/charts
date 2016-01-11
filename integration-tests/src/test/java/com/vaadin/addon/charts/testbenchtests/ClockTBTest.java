@@ -14,8 +14,4 @@ public class ClockTBTest extends AbstractSimpleScreenShotTestBenchTest {
         return "other";
     }
 
-    @Override
-    protected int getScreenShotDelay() {
-        return 8000;
-    }
 }

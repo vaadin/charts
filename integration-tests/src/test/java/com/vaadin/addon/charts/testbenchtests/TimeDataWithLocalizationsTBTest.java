@@ -18,15 +18,15 @@ public class TimeDataWithLocalizationsTBTest extends AbstractParallelTest {
         // click default first to give focus to button
         driver.findElement(By.id("en-button")).click();
 
-        waitBetweenShots();
+        waitForVaadin();
         captureAndCompare("1-start");
 
         driver.findElement(By.id("fi-button")).click();
-        waitBetweenShots();
+        waitForVaadin();
         captureAndCompare("2-removed");
 
         driver.findElement(By.id("en-button")).click();
-        waitBetweenShots();
+        waitForVaadin();
         captureAndCompare("1-start");
 
     }

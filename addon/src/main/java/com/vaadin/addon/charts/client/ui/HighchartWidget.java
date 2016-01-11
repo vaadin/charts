@@ -158,4 +158,8 @@ public class HighchartWidget extends Widget {
         }
         return -1;
     }
+
+    public int getNumberOfSeries() {
+        return jsOverlay.getSeries().length();
+    }
 }

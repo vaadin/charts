@@ -12,12 +12,12 @@ public class BasicLineWithAutoRotationTBTest extends AbstractParallelTest {
     public void test() throws IOException, AssertionError {
         driver.get(getTestUrl());
 
-        waitBetweenShots();
+        waitForVaadin();
         captureAndCompare("InitialWidth");
 
         $(ButtonElement.class).first().click();
 
-        waitBetweenShots();
+        waitForVaadin();
         captureAndCompare("FinalWidth");
     }
 

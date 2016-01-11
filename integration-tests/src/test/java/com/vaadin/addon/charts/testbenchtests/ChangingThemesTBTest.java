@@ -13,33 +13,32 @@ public class ChangingThemesTBTest extends AbstractParallelTest {
     public void test() throws IOException, AssertionError {
         driver.get(getTestUrl());
 
-        waitBetweenShots();
-        waitBetweenShots();
+        waitForVaadin();
 
         captureAndCompare("1-start");
 
         driver.findElement(By.id("vaadin-button")).click();
-        waitBetweenShots();
+        waitForVaadin();
         captureAndCompare("2-vaadin");
 
         driver.findElement(By.id("grid-button")).click();
-        waitBetweenShots();
+        waitForVaadin();
         captureAndCompare("3-grid");
 
         driver.findElement(By.id("skies-button")).click();
-        waitBetweenShots();
+        waitForVaadin();
         captureAndCompare("4-skies");
 
         driver.findElement(By.id("gray-button")).click();
-        waitBetweenShots();
+        waitForVaadin();
         captureAndCompare("5-gray");
 
         driver.findElement(By.id("vl-button")).click();
-        waitBetweenShots();
+        waitForVaadin();
         captureAndCompare("6-valoLight");
 
         driver.findElement(By.id("vd-button")).click();
-        waitBetweenShots();
+        waitForVaadin();
         captureAndCompare("7-valoDark");
 
     }

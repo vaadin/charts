@@ -37,7 +37,7 @@ public class TimelineTBTest extends AbstractParallelTest {
         } catch (Exception e) {
 
         }
-        waitBetweenShots();
+        waitForVaadin();
         captureAndCompare(imageQualifier);
     }
 
@@ -84,7 +84,7 @@ public class TimelineTBTest extends AbstractParallelTest {
 
         // for some reason V update 7.0.x -> 7.1.7 seems to make this unstable
         // without extra pause
-        sleep(2000);
+        waitForVaadin();
 
         WebElement reset = driver.findElement(By
                 .vaadin("ROOT::PID_Sreset-button/domChild[0]/domChild[0]"));
