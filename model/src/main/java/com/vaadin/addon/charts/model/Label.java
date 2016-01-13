@@ -4,7 +4,7 @@ package com.vaadin.addon.charts.model;
  * #%L
  * Vaadin Charts
  * %%
- * Copyright (C) 2012 - 2015 Vaadin Ltd
+ * Copyright (C) 2012 - 2016 Vaadin Ltd
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
@@ -16,6 +16,8 @@ package com.vaadin.addon.charts.model;
  * If not, see <https://vaadin.com/license/cval-3>.
  * #L%
  */
+
+import com.vaadin.addon.charts.model.style.Style;
 /**
  * Text labels for the plot bands
  */
@@ -24,7 +26,7 @@ public class Label extends AbstractConfigurationObject {
 	private static final long serialVersionUID = 1L;
 	private HorizontalAlign align;
 	private Number rotation;
-	private Object style;
+	private Style style;
 	private String text;
 	private String textAlign;
 	private Boolean useHTML;
@@ -68,16 +70,16 @@ public class Label extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setStyle(Object)
+	 * @see #setStyle(Style)
 	 */
-	public Object getStyle() {
+	public Style getStyle() {
 		return style;
 	}
 
 	/**
 	 * CSS styles for the text label.
 	 */
-	public void setStyle(Object style) {
+	public void setStyle(Style style) {
 		this.style = style;
 	}
 

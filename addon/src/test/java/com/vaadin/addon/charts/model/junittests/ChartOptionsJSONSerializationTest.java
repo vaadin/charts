@@ -1,14 +1,6 @@
 package com.vaadin.addon.charts.model.junittests;
 
-import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vaadin.addon.charts.ChartOptions;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
@@ -16,7 +8,19 @@ import com.vaadin.addon.charts.model.Lang;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.charts.model.style.Theme;
+import com.vaadin.addon.charts.util.ChartSerialization;
 import com.vaadin.ui.UI;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
+
+import java.io.IOException;
+
+import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ChartOptionsJSONSerializationTest {
@@ -86,20 +90,48 @@ public class ChartOptionsJSONSerializationTest {
     }
 
     @Test
-    public void toJSON_LangWithFinnishLocale_LocaleSerialized() {
-        final Lang fi = new Lang();
-        fi.setDecimalPoint(",");
-        fi.setShortMonths(new String[] { "Tammi", "Helmi", "Maalis", "Huhti",
-                "Touko", "Kesä", "Heinä", "Elo", "Syys", "Loka", "Marras",
-                "Joulu" });
-        fi.setMonths(new String[] { "Tammikuu", "Helmikuu", "Maaliskuu",
+    public void toJSON_LangWithFinnishLocale_LocaleSerialized_Months() throws IOException {
+        final String[] fiMonths=new String[] {"Tammikuu", "Helmikuu", "Maaliskuu",
                 "Huhtikuu", "Toukokuu", "Kesäkuu", "Heinäkuu", "Elokuu",
-                "Syyskuu", "Lokakuu", "Marraskuu", "Joulukuu" });
-        fi.setWeekdays(new String[] { "Ma", "Ti", "Ke", "To", "Pe", "La", "Su" });
+                "Syyskuu", "Lokakuu", "Marraskuu", "Joulukuu"};
+        final Lang fi = new Lang();
+        fi.setMonths(fiMonths);
 
         options.setLang(fi);
+        String json = toJSON(options);
+        ObjectMapper om = ChartSerialization.createObjectMapper();
+        ChartOptions chartOptions = om.readValue(json, ChartOptions.class);
 
-        assertEquals(LangWithFinnishLocale, toJSON(options));
+        Assert.assertArrayEquals(fiMonths, chartOptions.getLang().getMonths());
+    }
+
+    @Test
+    public void toJSON_LangWithFinnishLocale_LocaleSerialized_ShortMonths() throws IOException {
+        final String[] fiShortMonths=new String[]{"Tammi", "Helmi", "Maalis", "Huhti",
+                "Touko", "Kesä", "Heinä", "Elo", "Syys", "Loka", "Marras",
+                "Joulu"};
+        final Lang fi = new Lang();
+        fi.setShortMonths(fiShortMonths);
+        options.setLang(fi);
+        String json = toJSON(options);
+        ObjectMapper om = ChartSerialization.createObjectMapper();
+        ChartOptions fromJson = om.readValue(json, ChartOptions.class);
+
+        Assert.assertArrayEquals(fiShortMonths, fromJson.getLang().getShortMonths());
+    }
+
+    @Test
+    public void toJSON_LangWithFinnishLocale_LocaleSerialized_Days() throws IOException {
+        final String[] fiDays=new String[]{"Ma", "Ti", "Ke", "To", "Pe", "La", "Su"};
+        final Lang fi = new Lang();
+        fi.setWeekdays(fiDays);
+
+        options.setLang(fi);
+        String json = toJSON(options);
+        ObjectMapper om = ChartSerialization.createObjectMapper();
+        ChartOptions chartOptions = om.readValue(json, ChartOptions.class);
+
+        Assert.assertArrayEquals(fiDays,  chartOptions.getLang().getWeekdays());
     }
 
     @Test

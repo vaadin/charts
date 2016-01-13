@@ -1,8 +1,5 @@
 package com.vaadin.addon.charts.examples.pie;
 
-import java.util.Arrays;
-import java.util.Random;
-
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.ChartType;
@@ -17,12 +14,14 @@ import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.charts.themes.ValoLightTheme;
 import com.vaadin.ui.Component;
 
+import java.util.Arrays;
+import java.util.Random;
+
 @SuppressWarnings("serial")
 public class DonutChart extends AbstractVaadinChartExample {
 
     private static Random rand = new Random(0);
     private static Color[] colors = new ValoLightTheme().getColors();
-
     @Override
     public String getDescription() {
         return "Donut chart";
@@ -58,7 +57,7 @@ public class DonutChart extends AbstractVaadinChartExample {
         innerSeries.setName("Browsers");
         PlotOptionsPie innerPieOptions = new PlotOptionsPie();
         innerSeries.setPlotOptions(innerPieOptions);
-        innerPieOptions.setSize(237);
+        innerPieOptions.setSize("237px");
         innerPieOptions.setDataLabels(new DataLabels());
         innerPieOptions.getDataLabels().setFormatter(
                 "this.y > 5 ? this.point.name : null");
@@ -74,8 +73,8 @@ public class DonutChart extends AbstractVaadinChartExample {
         outerSeries.setName("Versions");
         PlotOptionsPie outerSeriesOptions = new PlotOptionsPie();
         outerSeries.setPlotOptions(outerSeriesOptions);
-        outerSeriesOptions.setInnerSize(237);
-        outerSeriesOptions.setSize(318);
+        outerSeriesOptions.setInnerSize("237px");
+        outerSeriesOptions.setSize("318px");
         outerSeriesOptions.setDataLabels(new DataLabels());
         outerSeriesOptions
                 .getDataLabels()

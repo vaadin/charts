@@ -4,7 +4,7 @@ package com.vaadin.addon.charts.model;
  * #%L
  * Vaadin Charts
  * %%
- * Copyright (C) 2012 - 2015 Vaadin Ltd
+ * Copyright (C) 2012 - 2016 Vaadin Ltd
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
@@ -60,7 +60,7 @@ public class XAxis extends Axis {
 	private DashStyle minorGridLineDashStyle;
 	private Number minorGridLineWidth;
 	private Color minorTickColor;
-	private Object minorTickInterval;
+	private String minorTickInterval;
 	private Number minorTickLength;
 	private TickPosition minorTickPosition;
 	private Number minorTickWidth;
@@ -80,13 +80,11 @@ public class XAxis extends Axis {
 	private Number tickLength;
 	private Number tickPixelInterval;
 	private TickPosition tickPosition;
-	private Object tickPositioner;
 	private Number[] tickPositions;
 	private Number tickWidth;
 	private TickmarkPlacement tickmarkPlacement;
 	private AxisTitle title;
 	private AxisType type;
-	private Object[] units;
 	private Boolean visible;
 	private Number pane;
 
@@ -566,9 +564,9 @@ public class XAxis extends Axis {
 	}
 
 	/**
-	 * @see #setMinorTickInterval(Object)
+	 * @see #setMinorTickInterval(String)
 	 */
-	public Object getMinorTickInterval() {
+	public String getMinorTickInterval() {
 		return minorTickInterval;
 	}
 
@@ -596,7 +594,7 @@ public class XAxis extends Axis {
 	 * not supported.
 	 * </p>
 	 */
-	public void setMinorTickInterval(Object minorTickInterval) {
+	public void setMinorTickInterval(String minorTickInterval) {
 		this.minorTickInterval = minorTickInterval;
 	}
 
@@ -950,25 +948,6 @@ public class XAxis extends Axis {
 	}
 
 	/**
-	 * @see #setTickPositioner(Object)
-	 */
-	public Object getTickPositioner() {
-		return tickPositioner;
-	}
-
-	/**
-	 * A callback function returning array defining where the ticks are laid out
-	 * on the axis. This overrides the default behaviour of <a
-	 * href="#xAxis.tickPixelInterval">tickPixelInterval</a> and <a
-	 * href="#xAxis.tickInterval">tickInterval</a>. The automatic tick positions
-	 * are accessible through <code>this.tickPositions</code> and can be
-	 * modified by the callback.
-	 */
-	public void setTickPositioner(Object tickPositioner) {
-		this.tickPositioner = tickPositioner;
-	}
-
-	/**
 	 * @see #setTickPositions(Number[])
 	 */
 	public Number[] getTickPositions() {
@@ -1054,53 +1033,6 @@ public class XAxis extends Axis {
 	 */
 	public void setType(AxisType type) {
 		this.type = type;
-	}
-
-	/**
-	 * @see #setUnits(Object[])
-	 */
-	public Object[] getUnits() {
-		return units;
-	}
-
-	/**
-	 * Datetime axis only. An array determining what time intervals the ticks
-	 * are allowed to fall on. Each array item is an array where the first value
-	 * is the time unit and the second value another array of allowed multiples.
-	 * Defaults to:
-	 * 
-	 * <pre>
-	 * units: [[
-	 * 		'millisecond', // unit name
-	 * 		[1, 2, 5, 10, 20, 25, 50, 100, 200, 500] // allowed multiples
-	 * 	], [
-	 * 		'second',
-	 * 		[1, 2, 5, 10, 15, 30]
-	 * 	], [
-	 * 		'minute',
-	 * 		[1, 2, 5, 10, 15, 30]
-	 * 	], [
-	 * 		'hour',
-	 * 		[1, 2, 3, 4, 6, 8, 12]
-	 * 	], [
-	 * 		'day',
-	 * 		[1]
-	 * 	], [
-	 * 		'week',
-	 * 		[1]
-	 * 	], [
-	 * 		'month',
-	 * 		[1, 3, 6]
-	 * 	], [
-	 * 		'year',
-	 * 		null
-	 * 	]]
-	 * </pre>
-	 * <p>
-	 * Defaults to:
-	 */
-	public void setUnits(Object[] units) {
-		this.units = units;
 	}
 
 	/**

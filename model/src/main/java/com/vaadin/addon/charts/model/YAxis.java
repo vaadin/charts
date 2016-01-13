@@ -4,7 +4,7 @@ package com.vaadin.addon.charts.model;
  * #%L
  * Vaadin Charts
  * %%
- * Copyright (C) 2012 - 2015 Vaadin Ltd
+ * Copyright (C) 2012 - 2016 Vaadin Ltd
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
@@ -63,7 +63,7 @@ public class YAxis extends Axis {
 	private DashStyle minorGridLineDashStyle;
 	private Number minorGridLineWidth;
 	private Color minorTickColor;
-	private Object minorTickInterval;
+	private String minorTickInterval;
 	private Number minorTickLength;
 	private TickPosition minorTickPosition;
 	private Number minorTickWidth;
@@ -620,9 +620,9 @@ public class YAxis extends Axis {
 	}
 
 	/**
-	 * @see #setMinorTickInterval(Object)
+	 * @see #setMinorTickInterval(String)
 	 */
-	public Object getMinorTickInterval() {
+	public String getMinorTickInterval() {
 		return minorTickInterval;
 	}
 
@@ -650,7 +650,7 @@ public class YAxis extends Axis {
 	 * not supported.
 	 * </p>
 	 */
-	public void setMinorTickInterval(Object minorTickInterval) {
+	public void setMinorTickInterval(String minorTickInterval) {
 		this.minorTickInterval = minorTickInterval;
 	}
 

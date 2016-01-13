@@ -4,7 +4,7 @@ package com.vaadin.addon.charts.model;
  * #%L
  * Vaadin Charts
  * %%
- * Copyright (C) 2012 - 2015 Vaadin Ltd
+ * Copyright (C) 2012 - 2016 Vaadin Ltd
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
@@ -36,7 +36,7 @@ public class Chart extends AbstractConfigurationObject {
 	private Number height;
 	private Boolean ignoreHiddenSeries;
 	private Boolean inverted;
-	private Object margin;
+	private Number[] margin;
 	private Number marginBottom;
 	private Number marginLeft;
 	private Number marginRight;
@@ -266,9 +266,9 @@ public class Chart extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setMargin(Object)
+	 * @see #setMargin(Number[])
 	 */
-	public Object getMargin() {
+	public Number[] getMargin() {
 		return margin;
 	}
 
@@ -289,7 +289,7 @@ public class Chart extends AbstractConfigurationObject {
 	 * </p>
 	 * Defaults to <code>[null]</code>.
 	 */
-	public void setMargin(Object margin) {
+	public void setMargin(Number[] margin) {
 		this.margin = margin;
 	}
 

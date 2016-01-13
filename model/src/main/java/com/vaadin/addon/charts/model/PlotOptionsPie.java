@@ -4,7 +4,7 @@ package com.vaadin.addon.charts.model;
  * #%L
  * Vaadin Charts
  * %%
- * Copyright (C) 2012 - 2015 Vaadin Ltd
+ * Copyright (C) 2012 - 2016 Vaadin Ltd
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
@@ -18,6 +18,7 @@ package com.vaadin.addon.charts.model;
  */
 
 import com.vaadin.addon.charts.model.style.Color;
+import com.vaadin.addon.charts.util.SizeWithUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
 /**
@@ -31,8 +32,8 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	private Boolean animation;
 	private Color borderColor;
 	private Number borderWidth;
-	private Object[] center;
-	private Object colors;
+	private String[] center;
+	private Color[] colors;
 	private Cursor cursor;
 	private DataLabels dataLabels;
 	private Number depth;
@@ -40,14 +41,14 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	private Number endAngle;
 	private Boolean getExtremesFromAll;
 	private Boolean ignoreHiddenPoint;
-	private Object innerSize;
+	private String innerSize;
 	private ArrayList<String> keys;
 	private String linkedTo;
 	private Number minSize;
 	private Boolean selected;
 	private Object shadow;
 	private Boolean showInLegend;
-	private Object size;
+	private String size;
 	private Number slicedOffset;
 	private Number startAngle;
 	private States states;
@@ -153,16 +154,23 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setCenter(Object[])
+	 * The center of the pie chart relative to the plot area. Can be percentages
+	 * or pixel values. The default behaviour (as of 3.0) is to center the pie
+	 * so that all slices and data labels are within the plot area. As a
+	 * consequence, the pie may actually jump around in a chart with dynamic
+	 * values, as the data labels move. In that case, the center should be
+	 * explicitly set, for example to <code>["50%", "50%"]</code>.
+	 * <p>
+	 * Defaults to: [null, null]
 	 */
-	public Object[] getCenter() {
-		return center;
+	public void setCenter(String[] center) {
+		this.center = center;
 	}
 
 	/**
-	 * @see #setColors(Object)
+	 * @see #setColors(Color[])
 	 */
-	public Object getColors() {
+	public Color[] getColors() {
 		return colors;
 	}
 
@@ -170,7 +178,7 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	 * A series specific or series type specific color set to use instead of the
 	 * global <a href="#colors">colors</a>.
 	 */
-	public void setColors(Object colors) {
+	public void setColors(Color[] colors) {
 		this.colors = colors;
 	}
 
@@ -298,29 +306,45 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 		this.ignoreHiddenPoint = ignoreHiddenPoint;
 	}
 
-	/**
-	 * @see #setInnerSize(Object)
-	 */
-	public Object getInnerSize() {
-		return innerSize;
+	public float getInnerSize() {
+		String tmp = innerSize;
+		if (innerSize == null) {
+			return -1.0f;
+		}
+		if (this.innerSize.contains("%")) {
+			tmp = tmp.replace("%", "");
+		}
+		return Float.valueOf(tmp).floatValue();
 	}
 
-	/**
-	 * <p>
-	 * The size of the inner diameter for the pie. A size greater than 0 renders
-	 * a donut chart. Can be a percentage or pixel value. Percentages are
-	 * relative to the pie size. Pixel values are given as integers.
-	 * </p>
-	 * 
-	 * <p>
-	 * Note: in Highcharts < 4.1.2, the percentage was relative to the plot
-	 * area, not the pie size.
-	 * </p>
-	 * <p>
-	 * Defaults to: 0
-	 */
-	public void setInnerSize(Object innerSize) {
-		this.innerSize = innerSize;
+	public Unit getInnerSizeUnit() {
+		if (this.innerSize == null) {
+			return Unit.PIXELS;
+		}
+		if (this.innerSize.contains("%")) {
+			return Unit.PERCENTAGE;
+		}
+		return Unit.PIXELS;
+	}
+
+	public void setInnerSize(String innerSize) {
+		SizeWithUnit tmp = SizeWithUnit.parseStringSize(innerSize);
+		if (tmp != null) {
+			setInnerSize(tmp.getSize(), tmp.getUnit());
+		} else {
+			setInnerSize(-1, Unit.PIXELS);
+		}
+	}
+
+	public void setInnerSize(float innerSize, Unit unit) {
+		String value = Float.toString(innerSize);
+		if (unit.equals(Unit.PERCENTAGE)) {
+			value += "%";
+		}
+		if (innerSize == -1) {
+			value = null;
+		}
+		this.innerSize = value;
 	}
 
 	public String[] getKeys() {
@@ -435,25 +459,45 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 		this.showInLegend = showInLegend;
 	}
 
-	/**
-	 * @see #setSize(Object)
-	 */
-	public Object getSize() {
-		return size;
+	public float getSize() {
+		String tmp = size;
+		if (size == null) {
+			return -1.0f;
+		}
+		if (this.size.contains("%")) {
+			tmp = tmp.replace("%", "");
+		}
+		return Float.valueOf(tmp).floatValue();
 	}
 
-	/**
-	 * The diameter of the pie relative to the plot area. Can be a percentage or
-	 * pixel value. Pixel values are given as integers. The default behaviour
-	 * (as of 3.0) is to scale to the plot area and give room for data labels
-	 * within the plot area. As a consequence, the size of the pie may vary when
-	 * points are updated and data labels more around. In that case it is best
-	 * to set a fixed value, for example <code>"75%"</code>.
-	 * <p>
-	 * Defaults to:
-	 */
-	public void setSize(Object size) {
-		this.size = size;
+	public Unit getSizeUnit() {
+		if (this.size == null) {
+			return Unit.PIXELS;
+		}
+		if (this.size.contains("%")) {
+			return Unit.PERCENTAGE;
+		}
+		return Unit.PIXELS;
+	}
+
+	public void setSize(String size) {
+		SizeWithUnit tmp = SizeWithUnit.parseStringSize(size);
+		if (tmp != null) {
+			setSize(tmp.getSize(), tmp.getUnit());
+		} else {
+			setSize(-1, Unit.PIXELS);
+		}
+	}
+
+	public void setSize(float size, Unit unit) {
+		String value = Float.toString(size);
+		if (unit.equals(Unit.PERCENTAGE)) {
+			value += "%";
+		}
+		if (size == -1) {
+			value = null;
+		}
+		this.size = value;
 	}
 
 	/**
@@ -598,7 +642,7 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 		this.center = new String[]{x, y};
 	}
 
-	public void setCenter(Number x, Number y) {
-		this.center = new Number[]{x, y};
+	public String[] getCenter() {
+		return this.center;
 	}
 }

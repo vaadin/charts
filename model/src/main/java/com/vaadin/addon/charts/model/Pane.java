@@ -4,7 +4,7 @@ package com.vaadin.addon.charts.model;
  * #%L
  * Vaadin Charts
  * %%
- * Copyright (C) 2012 - 2015 Vaadin Ltd
+ * Copyright (C) 2012 - 2016 Vaadin Ltd
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
@@ -27,8 +27,8 @@ public class Pane extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
 	private Integer paneIndex;
-	private Object[] background;
-	private Object[] center;
+	private Background[] background;
+	private String[] center;
 	private Number endAngle;
 	private String size;
 	private Number startAngle;
@@ -51,9 +51,9 @@ public class Pane extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setBackground(Object[])
+	 * @see #setBackground(Background[])
 	 */
-	public Object[] getBackground() {
+	public Background[] getBackground() {
 		return background;
 	}
 
@@ -64,15 +64,19 @@ public class Pane extends AbstractConfigurationObject {
 	 * <code>outerWidth</code>, <code>borderWidth</code>,
 	 * <code>borderColor</code>.
 	 */
-	public void setBackground(Object[] background) {
+	public void setBackground(Background[] background) {
 		this.background = background;
 	}
 
 	/**
-	 * @see #setCenter(Object[])
+	 * The center of a polar chart or angular gauge, given as an array of [x, y]
+	 * positions. Positions can be given as integers that transform to pixels,
+	 * or as percentages of the plot area size.
+	 * <p>
+	 * Defaults to: ["50%", "50%"]
 	 */
-	public Object[] getCenter() {
-		return center;
+	public void setCenter(String[] center) {
+		this.center = center;
 	}
 
 	/**
@@ -156,7 +160,7 @@ public class Pane extends AbstractConfigurationObject {
 		this.center = new String[]{x, y};
 	}
 
-	public void setCenter(Number x, Number y) {
-		this.center = new Number[]{x, y};
+	public String[] getCenter() {
+		return this.center;
 	}
 }

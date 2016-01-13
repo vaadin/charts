@@ -4,7 +4,7 @@ package com.vaadin.addon.charts.model;
  * #%L
  * Vaadin Charts
  * %%
- * Copyright (C) 2012 - 2015 Vaadin Ltd
+ * Copyright (C) 2012 - 2016 Vaadin Ltd
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
@@ -41,7 +41,7 @@ public class PlotOptionsHeatMap extends AbstractPlotOptions {
 	private Number borderWidth;
 	private Color color;
 	private Boolean colorByPoint;
-	private Object colors;
+	private Color[] colors;
 	private Number colsize;
 	private Number cropThreshold;
 	private Cursor cursor;
@@ -213,9 +213,9 @@ public class PlotOptionsHeatMap extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setColors(Object)
+	 * @see #setColors(Color[])
 	 */
-	public Object getColors() {
+	public Color[] getColors() {
 		return colors;
 	}
 
@@ -226,7 +226,7 @@ public class PlotOptionsHeatMap extends AbstractPlotOptions {
 	 * <p>
 	 * Defaults to:
 	 */
-	public void setColors(Object colors) {
+	public void setColors(Color[] colors) {
 		this.colors = colors;
 	}
 

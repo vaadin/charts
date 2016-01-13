@@ -5,12 +5,14 @@ import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.Crosshair;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.Marker;
 import com.vaadin.addon.charts.model.MarkerSymbolEnum;
 import com.vaadin.addon.charts.model.MarkerSymbolUrl;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
+import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
@@ -45,9 +47,13 @@ public class SplineWithSymbols extends AbstractVaadinChartExample {
         labels.setFormatter("this.value +'°'");
         yAxis.setLabels(labels);
 
-        // FIXME missing generated API
+
         configuration.getTooltip().setShared(true);
-        // configuration.getTooltip().setCrosshairs(true);
+
+        XAxis xAxis = configuration.getxAxis();
+        Crosshair crosshair=new Crosshair();
+        crosshair.setWidth(3);
+        xAxis.setCrosshair(crosshair);
 
         PlotOptionsSpline plotOptions = new PlotOptionsSpline();
         configuration.setPlotOptions(plotOptions);
@@ -66,7 +72,6 @@ public class SplineWithSymbols extends AbstractVaadinChartExample {
 
         ls.setData(7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3,
                 13.9, 9.6);
-        // FIXME missing generated API
         ls.get("26.5")
                 .getMarker()
                 .setSymbol(

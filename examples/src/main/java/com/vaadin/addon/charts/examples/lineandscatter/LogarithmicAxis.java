@@ -29,7 +29,7 @@ public class LogarithmicAxis extends AbstractVaadinChartExample {
 
         YAxis yAxis = configuration.getyAxis();
         yAxis.setType(AxisType.LOGARITHMIC);
-        yAxis.setMinorTickInterval(0.1);
+        yAxis.setMinorTickInterval("0.1");
 
         configuration.getTooltip()
                 .setHeaderFormat("<b>{series.name}</b><br />");

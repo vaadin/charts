@@ -4,7 +4,7 @@ package com.vaadin.addon.charts.model;
  * #%L
  * Vaadin Charts
  * %%
- * Copyright (C) 2012 - 2015 Vaadin Ltd
+ * Copyright (C) 2012 - 2016 Vaadin Ltd
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
@@ -22,8 +22,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import com.vaadin.addon.charts.util.Util;
-/**
- */
 public class PlotOptionsBar extends AbstractPlotOptions {
 
 	private static final long serialVersionUID = 1L;
@@ -34,7 +32,7 @@ public class PlotOptionsBar extends AbstractPlotOptions {
 	private Number borderWidth;
 	private Color color;
 	private Boolean colorByPoint;
-	private Object colors;
+	private Color[] colors;
 	private Number cropThreshold;
 	private Cursor cursor;
 	private DataLabels dataLabels;
@@ -220,9 +218,9 @@ public class PlotOptionsBar extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setColors(Object)
+	 * @see #setColors(Color[])
 	 */
-	public Object getColors() {
+	public Color[] getColors() {
 		return colors;
 	}
 
@@ -233,7 +231,7 @@ public class PlotOptionsBar extends AbstractPlotOptions {
 	 * <p>
 	 * Defaults to:
 	 */
-	public void setColors(Object colors) {
+	public void setColors(Color[] colors) {
 		this.colors = colors;
 	}
 

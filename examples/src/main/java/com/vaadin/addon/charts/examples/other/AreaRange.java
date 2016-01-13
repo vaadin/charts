@@ -1,15 +1,16 @@
 package com.vaadin.addon.charts.examples.other;
 
-import static com.vaadin.addon.charts.model.AxisType.DATETIME;
-
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.Crosshair;
 import com.vaadin.addon.charts.model.RangeSeries;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.ui.Component;
+
+import static com.vaadin.addon.charts.model.AxisType.DATETIME;
 
 @SuppressWarnings("serial")
 public class AreaRange extends AbstractVaadinChartExample {
@@ -32,8 +33,7 @@ public class AreaRange extends AbstractVaadinChartExample {
         conf.addyAxis(new YAxis());
 
         Tooltip tooltip = new Tooltip();
-        // FIXME missing generated API
-        // tooltip.setCrosshairs(true);
+        conf.getxAxis().setCrosshair(new Crosshair());
         tooltip.setShared(true);
         tooltip.setValueSuffix("°C");
         conf.setTooltip(tooltip);

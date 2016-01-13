@@ -1,7 +1,5 @@
 package com.vaadin.addon.charts.examples.other;
 
-import java.util.Random;
-
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.AxisTitle;
@@ -18,6 +16,8 @@ import com.vaadin.addon.charts.model.Stop;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
+
+import java.util.Random;
 
 public class SolidGauge extends AbstractVaadinChartExample {
 
@@ -52,8 +52,7 @@ public class SolidGauge extends AbstractVaadinChartExample {
         bkg.setOuterRadius("100%");
         bkg.setShape("arc");
         bkg.setBorderWidth(0);
-        // FIXME missing generated API
-        pane.setBackground(new Object[] { bkg });
+        pane.setBackground(new Background[]{bkg});
 
         YAxis yaxis = configuration.getyAxis();
         yaxis.setLineWidth(0);

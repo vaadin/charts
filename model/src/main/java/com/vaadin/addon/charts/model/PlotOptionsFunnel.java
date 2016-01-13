@@ -4,7 +4,7 @@ package com.vaadin.addon.charts.model;
  * #%L
  * Vaadin Charts
  * %%
- * Copyright (C) 2012 - 2015 Vaadin Ltd
+ * Copyright (C) 2012 - 2016 Vaadin Ltd
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
@@ -32,8 +32,8 @@ public class PlotOptionsFunnel extends AbstractPlotOptions {
 	private Boolean allowPointSelect;
 	private Color borderColor;
 	private Number borderWidth;
-	private Object[] center;
-	private Object colors;
+	private String[] center;
+	private Color[] colors;
 	private Cursor cursor;
 	private DataLabelsFunnel dataLabels;
 	private Number depth;
@@ -116,16 +116,19 @@ public class PlotOptionsFunnel extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setCenter(Object[])
+	 * The center of the series. By default, it is centered in the middle of the
+	 * plot area, so it fills the plot area height.
+	 * <p>
+	 * Defaults to: ["50%", "50%"]
 	 */
-	public Object[] getCenter() {
-		return center;
+	public void setCenter(String[] center) {
+		this.center = center;
 	}
 
 	/**
-	 * @see #setColors(Object)
+	 * @see #setColors(Color[])
 	 */
-	public Object getColors() {
+	public Color[] getColors() {
 		return colors;
 	}
 
@@ -133,7 +136,7 @@ public class PlotOptionsFunnel extends AbstractPlotOptions {
 	 * A series specific or series type specific color set to use instead of the
 	 * global <a href="#colors">colors</a>.
 	 */
-	public void setColors(Object colors) {
+	public void setColors(Color[] colors) {
 		this.colors = colors;
 	}
 
@@ -638,7 +641,7 @@ public class PlotOptionsFunnel extends AbstractPlotOptions {
 		this.center = new String[]{x, y};
 	}
 
-	public void setCenter(Number x, Number y) {
-		this.center = new Number[]{x, y};
+	public String[] getCenter() {
+		return this.center;
 	}
 }

@@ -4,7 +4,7 @@ package com.vaadin.addon.charts.model;
  * #%L
  * Vaadin Charts
  * %%
- * Copyright (C) 2012 - 2015 Vaadin Ltd
+ * Copyright (C) 2012 - 2016 Vaadin Ltd
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
@@ -31,7 +31,6 @@ public class Tooltip extends AbstractConfigurationObject {
 	private Color borderColor;
 	private Number borderRadius;
 	private Number borderWidth;
-	private Object[] crosshairs;
 	private DateTimeLabelFormats dateTimeLabelFormats;
 	private Boolean enabled;
 	private Boolean followPointer;
@@ -137,22 +136,6 @@ public class Tooltip extends AbstractConfigurationObject {
 	 */
 	public void setBorderWidth(Number borderWidth) {
 		this.borderWidth = borderWidth;
-	}
-
-	/**
-	 * @see #setCrosshairs(Object[])
-	 */
-	public Object[] getCrosshairs() {
-		return crosshairs;
-	}
-
-	/**
-	 * Since 4.1, the crosshair definitions are moved to the Axis object in
-	 * order for a better separation from the tooltip. See <a
-	 * href="#xAxis.crosshair">xAxis.crosshair<a>.
-	 */
-	public void setCrosshairs(Object[] crosshairs) {
-		this.crosshairs = crosshairs;
 	}
 
 	/**

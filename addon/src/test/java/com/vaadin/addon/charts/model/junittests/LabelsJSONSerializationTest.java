@@ -1,12 +1,15 @@
 package com.vaadin.addon.charts.model.junittests;
 
-import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.Labels;
+import com.vaadin.addon.charts.util.ChartSerialization;
+import org.junit.Test;
+
+import java.io.IOException;
+
+import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Tests that {@link Labels} and {@link DataLabels} configuration options are
@@ -27,39 +30,44 @@ public class LabelsJSONSerializationTest {
     }
 
     @Test
-    public void toString_autoRotationLimitIsSet_labelsSerializedWithAutoRotationLimit() {
+    public void toJSON_autoRotationLimitIsSet_labelsSerializedWithAutoRotationLimit() throws IOException {
 
         Labels labels = new Labels(true);
         labels.setAutoRotationLimit(40);
 
-        String json = toJSON(labels);
-        String expected = "{\"autoRotationLimit\":40,\"enabled\":true}";
+        ObjectMapper om = ChartSerialization.createObjectMapper();
 
-        assertEquals(expected, json);
+        String json = toJSON(labels);
+        Labels fromJson = om.readValue(json, Labels.class);
+
+        assertEquals(40,fromJson.getAutoRotationLimit());
     }
 
     @Test
-    public void toJSON_paddingIsSet_labelsSerializedWithPadding() {
+    public void toJSON_paddingIsSet_labelsSerializedWithPadding() throws IOException {
 
         Labels labels = new Labels(true);
         labels.setPadding(8);
 
-        String json = toJSON(labels);
-        String expected = "{\"enabled\":true,\"padding\":8}";
+        ObjectMapper om = ChartSerialization.createObjectMapper();
 
-        assertEquals(expected, json);
+        String json = toJSON(labels);
+        Labels fromJson = om.readValue(json, Labels.class);
+
+        assertEquals(8,fromJson.getPadding());
     }
 
     @Test
-    public void toString_allowOverlapIsSet_labelsSerializedWithAllowOverlap() {
+    public void toJSON_allowOverlapIsSet_labelsSerializedWithAllowOverlap() throws IOException {
 
         DataLabels labels = new DataLabels(true);
         labels.setAllowOverlap(true);
+        ObjectMapper om = ChartSerialization.createObjectMapper();
 
         String json = toJSON(labels);
-        String expected = "{\"allowOverlap\":true,\"enabled\":true}";
+        DataLabels fromJson = om.readValue(json, DataLabels.class);
 
-        assertEquals(expected, json);
+        assertEquals(true,fromJson.getAllowOverlap());
     }
 
 }
