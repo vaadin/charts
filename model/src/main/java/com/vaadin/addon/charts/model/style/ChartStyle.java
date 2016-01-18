@@ -32,6 +32,7 @@ public class ChartStyle extends AbstractConfigurationObject {
     private Color plotBorderColor;
     private String className;
     private Number borderWidth;
+    private Color borderColor;
     private Number borderRadius;
     private Style style;
 
@@ -241,4 +242,23 @@ public class ChartStyle extends AbstractConfigurationObject {
         this.style = style;
     }
 
+
+
+    /**
+     * @see #setBorderColor(Color)
+     * @return The color of the plot border, null if not defined
+     */
+    public Color getBorderColor() {
+        return borderColor;
+    }
+
+    /**
+     *Sets the color of the outer chart border. Defaults to #4572A7.
+     *
+     * @param borderColor
+     */
+
+    public void setBorderColor(Color borderColor) {
+        this.borderColor = borderColor;
+    }
 }

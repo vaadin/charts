@@ -27,6 +27,7 @@ public class TooltipStyle extends AbstractConfigurationObject {
     private Color backgroundColor;
     private Number borderWidth;
     private Number borderRadius;
+    private Color borderColor;
     private Boolean followPointer = false;
     private Style style = new Style();
 
@@ -111,4 +112,22 @@ public class TooltipStyle extends AbstractConfigurationObject {
         this.followPointer = followPointer;
     }
 
+
+    /**
+     * @see #setBorderColor(Color)
+     * @return The color of the plot border, null if not defined
+     */
+    public Color getBorderColor() {
+        return borderColor;
+    }
+
+    /**
+     * Sets the color of the tooltip border. When null, the border takes the color
+     * of the corresponding series or point. Defaults to null.
+     *
+     * @param borderColor
+     */
+    public void setBorderColor(Color borderColor) {
+        this.borderColor = borderColor;
+    }
 }
