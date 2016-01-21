@@ -23,7 +23,7 @@ for ( var i = 0; i < system.args.length; i += 1) {
 
 var fs = require('fs');
 
-function render(configstr, themeStr, langStr, width, height) {
+function render(configstr, themeStr, langStr, width, height, timeline) {
 
 	var page = require('webpage').create(), HC = {}, pick, scaleAndClipPage, input, constr, callback, callbackStr, optionsStr, output, outputExtension, pdfOutput, svg, svgFile, svgElem, timer;
 
@@ -121,7 +121,7 @@ function render(configstr, themeStr, langStr, width, height) {
 		themesStr = fs.read(theme);
 	}
 
-	var renderer = function(width, height, str, callbackStr, themeStr, langStr) {
+	var renderer = function(width, height, str, callbackStr, themeStr, langStr, timeline) {
 		opt = JSON.parse(str);
 
 		var imagesLoadedMsg = 'Highcharts.imagesLoaded:7a7dfcb5df73aaa51e67c9f38c5b07cb', chart, nodes, nodeIter, elem, opacity;
@@ -220,12 +220,17 @@ function render(configstr, themeStr, langStr, width, height) {
 			});
 		}
 
-		chart = new Highcharts.Chart(opt, callback);
+		if(timeline) {
+			chart = new Highcharts.StockChart(opt, callback);
+		} else {
+			chart = new Highcharts.Chart(opt, callback);
+		}
 
 		// ensure images are all loaded
 		loadImages();
 
-		var svg = cont.firstChild.innerHTML;
+		var container = cont.querySelector('.highcharts-container');
+		var svg = container.innerHTML;
 		
 		// Sanitize (the issue numbers are HighCharts')
 		svg = svg
@@ -256,7 +261,7 @@ function render(configstr, themeStr, langStr, width, height) {
 
 	};
 	// load chart in page and return svg height and width
-	svg = page.evaluate(renderer, width, height, configstr, callbackStr, themeStr, langStr);
+	svg = page.evaluate(renderer, width, height, configstr, callbackStr, themeStr, langStr, timeline);
 
 	page.close();
 	return svg.html;
@@ -270,7 +275,8 @@ function serve() {
 	var configstr = system.stdin.readLine();
 	if(configstr) {
 		var line;
-		var width = parseInt(configstr);
+		var timeline = parseInt(configstr);
+		var width = parseInt(system.stdin.readLine());
 		var height = parseInt(system.stdin.readLine());
 		if(width < 0) {
 			width = 600;
@@ -278,6 +284,7 @@ function serve() {
 		if(height < 0) {
 			height = 400;
 		}
+
 		var themeStr = system.stdin.readLine();
 		while((line = system.stdin.readLine()) != "___Lang:start") {
 			themeStr += line;
@@ -290,8 +297,9 @@ function serve() {
 		while((line = system.stdin.readLine()) != "___VaadinSVGGenerator:run") {
 			configstr += line;
 		}
+
 		try {
-			var svgresponse = render(configstr, themeStr, langStr, width, height);
+			var svgresponse = render(configstr, themeStr, langStr, width, height, timeline);
 			console.log(svgresponse);
 			setTimeout(serve(), 5);
 		} catch (e) {
@@ -302,7 +310,7 @@ function serve() {
 	}
 }
 
-console.log("OK, ready.");
+console.log("OK, ready. \n");
 
 serve();
 

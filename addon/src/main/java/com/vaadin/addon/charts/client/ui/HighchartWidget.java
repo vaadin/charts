@@ -35,12 +35,12 @@ public class HighchartWidget extends Widget {
         getElement().setInnerHTML(loading);
     }
 
-    public void init(HighchartConfig config) {
+    public void init(HighchartConfig config, boolean timeline) {
         HighchartJsOverlay old = jsOverlay;
         if (old != null) {
             old.destroy();
         }
-        jsOverlay = config.renderTo(getElement());
+        jsOverlay = config.renderTo(getElement(), timeline);
     }
 
     public void addPoint(String pointJson, int seriesIndex, boolean shift) {

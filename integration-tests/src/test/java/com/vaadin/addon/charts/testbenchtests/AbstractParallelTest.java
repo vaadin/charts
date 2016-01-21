@@ -199,6 +199,19 @@ public abstract class AbstractParallelTest extends ParallelTest {
     }
 
     /**
+     * This method is just a workaround until the waitForVaadin() would work
+     * also when a chart is dynamically changed. Currently, it only works
+     * for initial rendering of the chart.
+     */
+    protected void waitForDynamicChanges() {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * Exception which is thrown when some specific browser is wanted to be skipped.
      * Extends AssumptionViolatedException which causes JUnit to ignore the running
      * test.

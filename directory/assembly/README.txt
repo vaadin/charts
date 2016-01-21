@@ -80,19 +80,20 @@ Third Party Licensing
 =====================
 
 This Add-on component and related documentation is a derivative work of
-Highcharts JS product ("Highchart JS").
+Highstock JS product ("Highstock JS").
 
 Highsoft Solutions AS retains all rights, title and interest in and to the
-Highchart JS (resource files: highcharts.js, highcharts-more.js and
-highcharts.src.js)
+Highstock JS (resource files: highstock.js, highcharts-more.js, highcharts-3d.js,
+standalone-framework.js, no-data-to-display.js, drilldown.js, exporting.js,
+funnel.js, heatmap.js, solid-gauge.js and treemap.js)
 
-Using Vaadin Charts Add-on does not require a separate Highcharts JS license
+Using Vaadin Charts Add-on does not require a separate Highstock JS license
 purchase.
 
 Please note that:
-- A valid Highcharts JS license does not entitle you to use Vaadin Charts Add-on under the terms of CVALv3.
+- A valid Highstock JS license does not entitle you to use Vaadin Charts Add-on under the terms of CVALv3.
 - The Vaadin Charts Add-on (CVALv3) license does not entitle you to use the
-Highcharts JS product in other ways than through the Vaadin Charts Add-on API.
+Highstock JS product in other ways than through the Vaadin Charts Add-on API.
 
 Vaadin Charts also requires Jackson library licensed under liberal Apache 2 license.
 

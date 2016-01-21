@@ -32,8 +32,8 @@ public interface HighchartResources extends ClientBundle {
     public static final HighchartResources INSTANCE = GWT
             .create(HighchartResources.class);
 
-    @Source("highcharts.js")
-    TextResource highcharts();
+    @Source("highstock.js")
+    TextResource highstock();
 
     @Source("vaadintheme.js")
     TextResource defaultTheme();

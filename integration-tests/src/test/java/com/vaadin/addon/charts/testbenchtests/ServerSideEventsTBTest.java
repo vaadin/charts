@@ -1,5 +1,12 @@
 package com.vaadin.addon.charts.testbenchtests;
 
+import java.lang.reflect.Type;
+
+import org.junit.Assert;
+import org.junit.Test;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializationContext;
@@ -21,16 +28,10 @@ import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.Series;
 import com.vaadin.testbench.By;
 import com.vaadin.testbench.elements.ButtonElement;
+import com.vaadin.testbench.elements.CheckBoxElement;
 import com.vaadin.testbench.elements.LabelElement;
 import com.vaadin.testbench.parallel.Browser;
 import com.vaadin.ui.Component;
-
-import org.junit.Assert;
-import org.junit.Test;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-
-import java.lang.reflect.Type;
 
 public class ServerSideEventsTBTest extends AbstractParallelTest {
 
@@ -56,20 +57,23 @@ public class ServerSideEventsTBTest extends AbstractParallelTest {
 
     @Test
     public void chartClick_occured_eventIsFired() {
-        skipBrowser("Clicking chart through Testbench does not work reliably", Browser.IE8);
+        skipBrowser("Clicking chart through Testbench does not work reliably",
+                Browser.IE8);
         openTestUI();
+        disableAxesEvents();
         WebElement chart = driver.findElement(By.className("vaadin-chart"));
 
         new Actions(driver).moveToElement(chart, 200, 200).click().build()
-            .perform();
+                .perform();
 
         assertLastEventIsType(ChartClickEvent.class);
     }
 
-
     @Test
     public void pointClick_occured_eventIsFired() {
-        skipBrowser("Datapoint click through Testbench does not work correctly", Browser.CHROME, Browser.PHANTOMJS);
+        skipBrowser(
+                "Datapoint click through Testbench does not work correctly",
+                Browser.CHROME, Browser.PHANTOMJS);
         skipBrowser("Uses VML for rendering, selectors won't work", Browser.IE8);
         openTestUI();
 
@@ -109,6 +113,7 @@ public class ServerSideEventsTBTest extends AbstractParallelTest {
     public void checkBoxClick_occured_eventIsFired() {
         skipBrowser("Uses VML for rendering, selectors won't work", Browser.IE8);
         openTestUI();
+        disableAxesEvents();
         WebElement checkBox = findCheckBox();
 
         click(checkBox);
@@ -120,6 +125,7 @@ public class ServerSideEventsTBTest extends AbstractParallelTest {
     public void checkBoxClick_secondCheckboxClicked_secondSeriesIsReturned() {
         skipBrowser("Uses VML for rendering, selectors won't work", Browser.IE8);
         openTestUI();
+        disableAxesEvents();
         WebElement secondCheckBox = findSecondCheckbox();
 
         click(secondCheckBox);
@@ -134,6 +140,7 @@ public class ServerSideEventsTBTest extends AbstractParallelTest {
     public void checkBoxClick_seriesWasNotSelected_checkBoxIsChecked() {
         skipBrowser("Uses VML for rendering, selectors won't work", Browser.IE8);
         openTestUI();
+        disableAxesEvents();
         WebElement secondCheckBox = findSecondCheckbox();
 
         click(secondCheckBox);
@@ -192,35 +199,40 @@ public class ServerSideEventsTBTest extends AbstractParallelTest {
     @Test
     public void setXAxesExtremes_occured_eventIsFired() {
         skipBrowser("Uses VML for rendering, selectors won't work", Browser.IE8);
-        skipBrowser("Selecting area through Testbench does not work correctly", Browser.CHROME, Browser.PHANTOMJS);
+        skipBrowser("Selecting area through Testbench does not work correctly",
+                Browser.CHROME, Browser.PHANTOMJS);
         openTestUI();
         WebElement chart = driver.findElement(By.className("vaadin-chart"));
 
-        new Actions(driver).moveToElement(chart, 200, 100).click().clickAndHold()
-            .moveByOffset(50, 0).release().build().perform();
+        new Actions(driver).moveToElement(chart, 200, 100).click()
+                .clickAndHold().moveByOffset(50, 0).release().build().perform();
 
         assertLastEventIsType(XAxesExtremesChangeEvent.class);
     }
 
     @Test
     public void setYAxesExtremes_occured_eventIsFired() {
-        skipBrowser("Selecting area through Testbench does not work correctly", Browser.CHROME, Browser.PHANTOMJS);
+        skipBrowser("Selecting area through Testbench does not work correctly",
+                Browser.CHROME, Browser.PHANTOMJS);
         openTestUI();
         WebElement chart = driver.findElement(By.className("vaadin-chart"));
 
-        new Actions(driver).moveToElement(chart, 200, 100).click().clickAndHold()
-            .moveByOffset(0, 50).release().build().perform();
+        new Actions(driver).moveToElement(chart, 200, 100).click()
+                .clickAndHold().moveByOffset(0, 50).release().build().perform();
 
         // There are two y axis. One event for each should be fired.
         assertLastEventIsType(YAxesExtremesChangeEvent.class);
-        assertNthHistoryEventIsType(YAxesExtremesChangeEvent.class,2);
+        assertNthHistoryEventIsType(YAxesExtremesChangeEvent.class, 2);
     }
 
     @Test
     public void unselect_occured_eventIsFired() {
-        skipBrowser("Datapoint click through Testbench does not work correctly", Browser.CHROME, Browser.PHANTOMJS);
+        skipBrowser(
+                "Datapoint click through Testbench does not work correctly",
+                Browser.CHROME, Browser.PHANTOMJS);
         skipBrowser("Uses VML for rendering, selectors won't work", Browser.IE8);
         openTestUI();
+        disableAxesEvents();
         WebElement lastDataPointOfTheFirstSeries = findLastDataPointOfTheFirstSeries();
 
         click(lastDataPointOfTheFirstSeries);
@@ -230,9 +242,12 @@ public class ServerSideEventsTBTest extends AbstractParallelTest {
 
     @Test
     public void select_occured_eventIsFired() {
-        skipBrowser("Datapoint click through Testbench does not work correctly", Browser.CHROME, Browser.PHANTOMJS);
+        skipBrowser(
+                "Datapoint click through Testbench does not work correctly",
+                Browser.CHROME, Browser.PHANTOMJS);
         skipBrowser("Uses VML for rendering, selectors won't work", Browser.IE8);
         openTestUI();
+        disableAxesEvents();
         WebElement lastDataPointOfTheFirstSeries = findLastDataPointOfTheFirstSeries();
 
         click(lastDataPointOfTheFirstSeries);
@@ -241,13 +256,13 @@ public class ServerSideEventsTBTest extends AbstractParallelTest {
     }
 
     private void assertLastEventIsType(
-        Class<? extends Component.Event> expectedEvent) {
+            Class<? extends Component.Event> expectedEvent) {
         LabelElement lastEvent = $(LabelElement.class).id("lastEvent");
         Assert.assertEquals(expectedEvent.getSimpleName(), lastEvent.getText());
     }
 
     private void assertFirstHistoryEventIsType(
-        Class<? extends Component.Event> expectedEvent) {
+            Class<? extends Component.Event> expectedEvent) {
         LabelElement lastEvent = $(LabelElement.class).id("event0");
         String eventHistory = lastEvent.getText();
         Assert.assertNotNull(eventHistory);
@@ -256,8 +271,9 @@ public class ServerSideEventsTBTest extends AbstractParallelTest {
     }
 
     private void assertNthHistoryEventIsType(
-        Class<? extends Component.Event> expectedEvent, int historyIndex) {
-        LabelElement lastEvent = $(LabelElement.class).id("event"+historyIndex);
+            Class<? extends Component.Event> expectedEvent, int historyIndex) {
+        LabelElement lastEvent = $(LabelElement.class).id(
+                "event" + historyIndex);
         String eventHistory = lastEvent.getText();
         Assert.assertNotNull(eventHistory);
         String eventType = eventHistory.split(":")[0];
@@ -267,9 +283,8 @@ public class ServerSideEventsTBTest extends AbstractParallelTest {
     private CheckboxClickEvent readCheckboxEventDetails() {
         String detailsJson = $(LabelElement.class).id("eventDetails").getText();
 
-        Gson gson = new GsonBuilder()
-            .registerTypeAdapter(Series.class, new DataSeriesDeserializer())
-            .create();
+        Gson gson = new GsonBuilder().registerTypeAdapter(Series.class,
+                new DataSeriesDeserializer()).create();
 
         return gson.fromJson(detailsJson, CheckboxClickEvent.class);
     }
@@ -293,24 +308,30 @@ public class ServerSideEventsTBTest extends AbstractParallelTest {
 
     private WebElement findSecondCheckbox() {
         return driver.findElements(
-            By.cssSelector(".vaadin-chart > input[type='checkbox']")).get(1);
+                By.cssSelector(".vaadin-chart > input[type='checkbox']"))
+                .get(1);
     }
 
     private WebElement findCheckBox() {
-        return driver.findElement(
-            By.cssSelector(".vaadin-chart > input[type='checkbox']"));
+        return driver.findElement(By
+                .cssSelector(".vaadin-chart > input[type='checkbox']"));
     }
 
     private WebElement findDisableVisibityToggle() {
-        return driver.findElement(
-            By.cssSelector(".v-checkbox > input[type='checkbox']"));
+        return driver.findElement(By
+                .cssSelector(".v-checkbox > input[type='checkbox']"));
     }
 
-    private static class DataSeriesDeserializer
-        implements JsonDeserializer<Series> {
+    private void disableAxesEvents() {
+        $(CheckBoxElement.class).id("XAxesExtremes").click();
+        $(CheckBoxElement.class).id("YAxesExtremes").click();
+    }
+
+    private static class DataSeriesDeserializer implements
+            JsonDeserializer<Series> {
         @Override
         public Series deserialize(JsonElement series, Type type,
-            JsonDeserializationContext jdc) throws JsonParseException {
+                JsonDeserializationContext jdc) throws JsonParseException {
             return new Gson().fromJson(series, DataSeries.class);
         }
     }

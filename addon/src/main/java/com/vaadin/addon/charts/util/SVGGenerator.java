@@ -27,12 +27,12 @@ import java.io.OutputStream;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 
-import org.apache.commons.io.IOUtils;
-
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.ChartOptions;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.themes.ValoLightTheme;
+
+import org.apache.commons.io.IOUtils;
 
 /**
  * This class can be used to render a Chart displayed on the browser of the
@@ -76,20 +76,33 @@ public class SVGGenerator {
         createTemporaryFiles();
     }
 
-    private static SVGGenerator INSTANCE;
+    // The process which is created in getInstance() method if needed
+    private static Process PHANTOM_JS_PROCESS;
+    // The phantomJS process given to generator when instance is created
+    private Process phantomJSProcess;
 
-    private Process process;
+    // Input data for SVG generation
+    private String options;
+    private String theme;
+    private String lang;
+    private int targetWidth = -1;
+    private int targetHeight = -1;
+    private boolean timeline;
 
     /**
      * Creates in new {@link SVGGenerator} instance. The preferred way to get an
      * instance is to use {@link #getInstance()} method.
      */
-    public SVGGenerator() {
+    public SVGGenerator(Process process) {
+        this.phantomJSProcess = process;
+    }
+
+    protected static Process startPhantomJS() {
         try {
             ArrayList<String> commands = new ArrayList<String>();
             commands.add(PHANTOM_EXEC);
             // comment out for debugging
-            // commands.add("--remote-debugger-port=9001");
+//            commands.add("--remote-debugger-port=9001");
 
             ensureTemporaryFiles();
 
@@ -98,7 +111,7 @@ public class SVGGenerator {
             commands.add("-jsstuff");
             commands.add(JS_STUFF.getAbsolutePath());
 
-            process = new ProcessBuilder(commands).start();
+            final Process process = new ProcessBuilder(commands).start();
             final BufferedReader bufferedReader = new BufferedReader(
                     new InputStreamReader(process.getInputStream()));
             String readLine = bufferedReader.readLine();
@@ -115,6 +128,8 @@ public class SVGGenerator {
                     }
                 }
             });
+
+            return process;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -128,86 +143,109 @@ public class SVGGenerator {
         // instances to ensure PhantomJS doesn't start to eat memory. With quick
         // test, the memory isn't a problem
         synchronized (SVGGenerator.class) {
-            if (INSTANCE == null) {
-                INSTANCE = new SVGGenerator();
+            if (PHANTOM_JS_PROCESS == null) {
+                PHANTOM_JS_PROCESS = startPhantomJS();
             }
         }
-        return INSTANCE;
+        return new SVGGenerator(PHANTOM_JS_PROCESS);
     }
 
     /**
-     * Generates an SVG file using given Vaadin Chart {@link Configuration}
-     * .
+     *
+     * @param theme
+     *           The theme that will be used to create the SVG graphics.
+     *           The default is the theme value in {@link ChartOptions#get()} object.
+     * @return
+     */
+    public SVGGenerator withTheme(String theme) {
+        this.theme = theme;
+        return this;
+    }
+
+    /**
+     *
+     * @param lang
+     *          The lang options that will be used to create the SVG graphics.
+     *          The default is the lang value in {@link ChartOptions#get()} object.
+     * @return
+     */
+    public SVGGenerator withLang(String lang) {
+        this.lang = lang;
+        return this;
+    }
+
+    /**
+     *
+     * @param width
+     *          The target width in pixels for the the chart.
+     *          The default value is -1.
+     * @return
+     */
+    public SVGGenerator withWidth(int width) {
+        this.targetWidth = width;
+        return this;
+    }
+
+    /**
+     *
+     * @param heigth
+     *          The target height in pixels for the chart.
+     *          The default value is -1.
+     * @return
+     */
+    public SVGGenerator withHeigth(int heigth) {
+        this.targetHeight = heigth;
+        return this;
+    }
+
+    /**
+     *
+     * @param timeline
+     *           The boolean if timeline should be visible in the chart.
+     *           The default value is false;
+     * @return
+     */
+    public SVGGenerator withTimeline(boolean timeline) {
+        this.timeline = timeline;
+        return this;
+    }
+
+    /**
+     * Generates an SVG file using given JSON configuration object.
      *
      * @param conf
-     *            the configuration that will be plotted as an SVG graphics
+     *          the configuration that will be plotted as an SVG graphics
+     *
      * @return String containing SVG graphics
-     * @see SVGGenerator
+     * @see #generate(String)
      */
-    public String generate(Configuration conf) {
+    public synchronized String generate(Configuration conf) {
         return generate(ChartSerialization.toJSON(conf));
     }
 
     /**
-     * Generates an SVG file using given Vaadin Chart {@link Configuration}
-     * .
-     *
-     * @param conf
-     *            the configuration that will be plotted as an SVG graphics
-     * @param targetWidth
-     *            the target width in pixels for the the chart
-     * @param targetHeight
-     *            the target height in pixels for the chart
-     * @return String containing SVG graphics
-     * @see SVGGenerator
-     */
-    public String generate(Configuration conf, int targetWidth, int targetHeight) {
-        return generate(ChartSerialization.toJSON(conf), targetWidth,
-                targetHeight);
-    }
-
-    /**
      * Generates an SVG file using given JSON configuration object.
      *
      * @param options
-     *            the json options string that will be plotted as an SVG
-     *            graphics
-     * @param targetWidth
-     *            the target width in pixels for the the chart
-     * @param targetHeight
-     *            the target height in pixels for the chart
-     * @return String containing SVG graphics
-     * @see SVGGenerator
-     * @see #generate(Configuration, int, int)
-     */
-    public synchronized String generate(String options, int targetWidth,
-            int targetHeight) {
-
-        return generate(options, getTheme(), getLang(), targetWidth,
-                targetHeight);
-    }
-
-    /**
-     * Generates an SVG file using given JSON configuration object.
+     *          the json options string that will be plotted as an SVG
+     *          graphics
      *
-     * @param options
-     *            the json options string that will be plotted as an SVG
-     *            graphics
-     * @param targetWidth
-     *            the target width in pixels for the the chart
-     * @param targetHeight
-     *            the target height in pixels for the chart
      * @return String containing SVG graphics
      * @see SVGGenerator
-     * @see #generate(Configuration, int, int)
+     * @see #withLang(String)
+     * @see #withTheme(String)
+     * @see #withTimeline(boolean)
+     * @see #withHeigth(int)
+     * @see #withWidth(int)
      */
-    public synchronized String generate(String options, String theme,
-            String lang, int targetWidth, int targetHeight) {
+    public synchronized String generate(String options) {
+        readDefaultInputValuesIfNeeded();
 
         try {
             ensureTemporaryFiles();
 
-            OutputStream out = process.getOutputStream();
+            OutputStream out = phantomJSProcess.getOutputStream();
+            out.write(getBytes((timeline ? 1 : 0) + "\n"));
             out.write(getBytes(targetWidth + "\n"));
             out.write(getBytes(targetHeight + "\n"));
             out.write(getBytes(theme));
@@ -219,7 +257,7 @@ public class SVGGenerator {
             out.flush();
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(
-                    process.getInputStream(), charset));
+                    phantomJSProcess.getInputStream(), charset));
 
             String line = reader.readLine();
             while (!line.startsWith("<svg")) {
@@ -239,20 +277,17 @@ public class SVGGenerator {
         }
     }
 
-    private byte[] getBytes(String string) {
-        return string.getBytes(charset);
+    private void readDefaultInputValuesIfNeeded() {
+        if(theme == null) {
+            theme = getTheme();
+        }
+        if(lang == null) {
+            lang = getLang();
+        }
     }
 
-    /**
-     * Generates an SVG file from given JSON string containing chart options.
-     *
-     * @param options
-     *            the json options string that will be plotted as an SVG
-     *            graphics
-     * @return SVG generated from options JSON
-     */
-    public String generate(String options) {
-        return generate(options, -1, -1);
+    private byte[] getBytes(String string) {
+        return string.getBytes(charset);
     }
 
     private String getTheme() {
@@ -288,16 +323,17 @@ public class SVGGenerator {
     }
 
     private void destroyPhantomInstance(String line) {
-        process.destroy();
-        process = null;
-        INSTANCE = null;
+        phantomJSProcess.destroy();
+        phantomJSProcess = null;
+        PHANTOM_JS_PROCESS = null;
         throw new RuntimeException("SVG generation failed: " + line);
     }
 
     public void destroy() {
-        if (process != null) {
-            process.destroy();
-            INSTANCE = null;
+        if (phantomJSProcess != null) {
+            phantomJSProcess.destroy();
+            phantomJSProcess = null;
+            PHANTOM_JS_PROCESS = null;
         }
     }
 
@@ -334,7 +370,7 @@ public class SVGGenerator {
                 JS_STUFF.deleteOnExit();
             }
             FileOutputStream out = new FileOutputStream(JS_STUFF);
-            String[] scripts = new String[] { "jquery.min.js", "highcharts.js",
+            String[] scripts = new String[] { "jquery.min.js", "highstock.js",
                     "highcharts-more.js", "funnel.js", "exporting.js",
                     "heatmap.js", "solid-gauge.js", "highcharts-3d.js",
                     "vaadintheme.js" };

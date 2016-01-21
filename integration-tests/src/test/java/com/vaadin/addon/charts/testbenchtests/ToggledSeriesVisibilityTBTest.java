@@ -25,15 +25,15 @@ public class ToggledSeriesVisibilityTBTest extends AbstractParallelTest {
 
         driver.findElements(By.tagName("input")).get(0).click();
         driver.findElements(By.tagName("input")).get(0).click();
-        waitForVaadin();
+        waitForDynamicChanges();
         captureAndCompare("1-start");
 
         driver.findElements(By.tagName("input")).get(0).click();
-        waitForVaadin();
+        waitForDynamicChanges();
         captureAndCompare("2-disable");
 
         driver.findElements(By.tagName("input")).get(1).click();
-        waitForVaadin();
+        waitForDynamicChanges();
         captureAndCompare("3-disable");
 
     }

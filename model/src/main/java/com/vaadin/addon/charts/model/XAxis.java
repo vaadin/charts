@@ -27,8 +27,8 @@ import java.util.Arrays;
  * the xAxis node is an array of configuration objects.
  * </p>
  * <p>
- * See <a class="internal" href="#axis.object">the Axis object</a> for
- * programmatic access to the axis.
+ * See <a class="internal" href="#Axis">the Axis object</a> for programmatic
+ * access to the axis.
  * </p>
  */
 public class XAxis extends Axis {
@@ -86,6 +86,8 @@ public class XAxis extends Axis {
 	private AxisTitle title;
 	private AxisType type;
 	private Boolean visible;
+	private Boolean ordinal;
+	private Number range;
 	private Number pane;
 
 	public XAxis() {
@@ -1050,6 +1052,42 @@ public class XAxis extends Axis {
 	 */
 	public void setVisible(Boolean visible) {
 		this.visible = visible;
+	}
+
+	/**
+	 * @see #setOrdinal(Boolean)
+	 */
+	public Boolean getOrdinal() {
+		return ordinal;
+	}
+
+	/**
+	 * In an ordinal axis, the points are equally spaced in the chart regardless
+	 * of the actual time or x distance between them. This means that missing
+	 * data for nights or weekends will not take up space in the chart.
+	 * <p>
+	 * Defaults to: true
+	 */
+	public void setOrdinal(Boolean ordinal) {
+		this.ordinal = ordinal;
+	}
+
+	/**
+	 * @see #setRange(Number)
+	 */
+	public Number getRange() {
+		return range;
+	}
+
+	/**
+	 * The zoomed range to display when only defining one or none of
+	 * <code>min</code> or <code>max</code>. For example, to show the latest
+	 * month, a range of one month can be set.
+	 * <p>
+	 * Defaults to: undefined
+	 */
+	public void setRange(Number range) {
+		this.range = range;
 	}
 
 	public Number getPane() {

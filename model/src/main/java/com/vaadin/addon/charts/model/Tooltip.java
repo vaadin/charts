@@ -52,6 +52,7 @@ public class Tooltip extends AbstractConfigurationObject {
 	private String valuePrefix;
 	private String valueSuffix;
 	private String xDateFormat;
+	private Number changeDecimals;
 
 	public Tooltip() {
 	}
@@ -552,5 +553,24 @@ public class Tooltip extends AbstractConfigurationObject {
 	 */
 	public void setXDateFormat(String xDateFormat) {
 		this.xDateFormat = xDateFormat;
+	}
+
+	/**
+	 * @see #setChangeDecimals(Number)
+	 */
+	public Number getChangeDecimals() {
+		return changeDecimals;
+	}
+
+	/**
+	 * How many decimals to show for the <code>point.change</code> value when
+	 * the <code>series.compare</code> option is set. This is overridable in
+	 * each series' tooltip options object. The default is to preserve all
+	 * decimals.
+	 * <p>
+	 * Defaults to:
+	 */
+	public void setChangeDecimals(Number changeDecimals) {
+		this.changeDecimals = changeDecimals;
 	}
 }

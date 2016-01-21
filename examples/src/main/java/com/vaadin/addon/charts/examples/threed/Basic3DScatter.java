@@ -67,7 +67,7 @@ public class Basic3DScatter extends AbstractVaadinChartExample {
         y.setMax(1);
 
         ZAxis z = scatterChart.getConfiguration().getzAxis();
-        z.setMin(0);
+        z.setMin(-1);
         z.setMax(1);
 
         Options3d options3d = new Options3d();

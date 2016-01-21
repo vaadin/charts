@@ -16,9 +16,6 @@ package com.vaadin.addon.charts.model;
  * If not, see <https://vaadin.com/license/cval-3>.
  * #L%
  */
-/**
- * A wrapper object for all the series options in specific states.
- */
 public class States extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
@@ -36,7 +33,7 @@ public class States extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * Options for the hovered series
+	 * 
 	 */
 	public void setHover(Hover hover) {
 		this.hover = hover;

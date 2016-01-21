@@ -33,7 +33,7 @@ import com.vaadin.addon.charts.util.SVGGenerator;
 public class SVGGeneratorTest {
 
     @Test
-    @Ignore("Phantomjs not installed on our build server")
+//    @Ignore("Phantomjs not installed on our build server")
     public void test() {
 
         Configuration conf = createConf();
@@ -128,7 +128,7 @@ public class SVGGeneratorTest {
     }
 
     @Test
-    @Ignore("Phantomjs not installed on our build server")
+//    @Ignore("Phantomjs not installed on our build server")
     public void testWide() throws InterruptedException, URISyntaxException {
 
         Configuration conf = new Configuration();
@@ -150,7 +150,9 @@ public class SVGGeneratorTest {
         }
 
         SVGGenerator instance = SVGGenerator.getInstance();
-        String generatedSVG = instance.generate(conf, 1200, 400);
+        String generatedSVG = instance.withHeigth(400)
+                                      .withWidth(1200)
+                                      .generate(conf);
 
         Assert.assertTrue(generatedSVG.contains("width=\"1200\""));
         Assert.assertTrue(generatedSVG.contains("height=\"400\""));

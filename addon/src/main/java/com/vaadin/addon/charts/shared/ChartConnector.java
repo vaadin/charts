@@ -404,7 +404,7 @@ public class ChartConnector extends AbstractComponentConnector implements Deferr
         Scheduler.get().scheduleDeferred(new ScheduledCommand() {
                                              @Override
                                              public void execute() {
-                                                 getWidget().init(cfg);
+                                                 getWidget().init(cfg, getState().timeline);
                                                  int numberOfSeries = getWidget().getNumberOfSeries();
                                                  chartsRenderingObserver.setNumberOfSeries(
                                                      numberOfSeries);

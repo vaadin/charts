@@ -22,9 +22,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import com.vaadin.addon.charts.util.Util;
-/**
- * 
- */
 public class PlotOptionsColumn extends AbstractPlotOptions {
 
 	private static final long serialVersionUID = 1L;
@@ -73,6 +70,9 @@ public class PlotOptionsColumn extends AbstractPlotOptions {
 	private Boolean visible;
 	private String zoneAxis;
 	private ArrayList<Zones> zones;
+	private String compare;
+	private DataGrouping dataGrouping;
+	private Number legendIndex;
 
 	public PlotOptionsColumn() {
 	}
@@ -119,12 +119,10 @@ public class PlotOptionsColumn extends AbstractPlotOptions {
 	 * <dt>duration</dt>
 	 * <dd>The duration of the animation in milliseconds.</dd>
 	 * <dt>easing</dt>
-	 * <dd>When using jQuery as the general framework, the easing can be set to
-	 * <code>linear</code> or <code>swing</code>. More easing functions are
-	 * available with the use of jQuery plug-ins, most notably the jQuery UI
-	 * suite. See <a href="http://api.jquery.com/animate/">the jQuery docs</a>.
-	 * When using MooTools as the general framework, use the property name
-	 * <code>transition</code> instead of <code>easing</code>.</dd>
+	 * <dd>A string reference to an easing function set on the <code>Math</code>
+	 * object. See <a href=
+	 * "http://jsfiddle.net/gh/get/jquery/1.7.2/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/"
+	 * >the easing demo</a>.</dd>
 	 * </dl>
 	 * <p>
 	 * Due to poor performance, animation is disabled in old IE browsers for
@@ -929,6 +927,57 @@ public class PlotOptionsColumn extends AbstractPlotOptions {
 
 	public void removeZone(Zones zone) {
 		this.zones.remove(zone);
+	}
+
+	/**
+	 * @see #setCompare(String)
+	 */
+	public String getCompare() {
+		return compare;
+	}
+
+	/**
+	 * Compare the values of the series against the first non-null, non-zero
+	 * value in the visible range. The y axis will show percentage or absolute
+	 * change depending on whether <code>compare</code> is set to
+	 * <code>"percent"</code> or <code>"value"</code>. When this is applied to
+	 * multiple series, it allows comparing the development of the series
+	 * against each other.
+	 * <p>
+	 * Defaults to: undefined
+	 */
+	public void setCompare(String compare) {
+		this.compare = compare;
+	}
+
+	/**
+	 * @see #setDataGrouping(DataGrouping)
+	 */
+	public DataGrouping getDataGrouping() {
+		return dataGrouping;
+	}
+
+	/**
+	 * 
+	 */
+	public void setDataGrouping(DataGrouping dataGrouping) {
+		this.dataGrouping = dataGrouping;
+	}
+
+	/**
+	 * @see #setLegendIndex(Number)
+	 */
+	public Number getLegendIndex() {
+		return legendIndex;
+	}
+
+	/**
+	 * The sequential index of the series within the legend.
+	 * <p>
+	 * Defaults to: 0
+	 */
+	public void setLegendIndex(Number legendIndex) {
+		this.legendIndex = legendIndex;
 	}
 
 	public void setPointStart(Date date) {

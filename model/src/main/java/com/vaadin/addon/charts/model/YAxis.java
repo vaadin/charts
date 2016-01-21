@@ -20,11 +20,11 @@ package com.vaadin.addon.charts.model;
 import com.vaadin.addon.charts.model.style.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
+import com.vaadin.addon.charts.util.SizeWithUnit;
 /**
  * <p>
- * The Y axis or value axis. Normally this is the vertical axis, though if the
- * chart is inverted this is the horizontal axis. In case of multiple axes, the
- * yAxis node is an array of configuration objects.
+ * The Y axis or value axis. In case of multiple axes, the yAxis node is an
+ * array of configuration objects.
  * </p>
  * <p>
  * See <a class="internal" href="#axis.object">the Axis object</a> for
@@ -93,6 +93,10 @@ public class YAxis extends Axis {
 	private AxisType type;
 	private Object[] units;
 	private Boolean visible;
+	private String height;
+	private Boolean ordinal;
+	private Number range;
+	private String top;
 	private Number pane;
 	private ArrayList<Stop> stops;
 
@@ -1208,6 +1212,124 @@ public class YAxis extends Axis {
 	 */
 	public void setVisible(Boolean visible) {
 		this.visible = visible;
+	}
+
+	public float getHeight() {
+		String tmp = height;
+		if (height == null) {
+			return -1.0f;
+		}
+		if (this.height.contains("%")) {
+			tmp = tmp.replace("%", "");
+		}
+		return Float.valueOf(tmp).floatValue();
+	}
+
+	public Unit getHeightUnit() {
+		if (this.height == null) {
+			return Unit.PIXELS;
+		}
+		if (this.height.contains("%")) {
+			return Unit.PERCENTAGE;
+		}
+		return Unit.PIXELS;
+	}
+
+	public void setHeight(String height) {
+		SizeWithUnit tmp = SizeWithUnit.parseStringSize(height);
+		if (tmp != null) {
+			setHeight(tmp.getSize(), tmp.getUnit());
+		} else {
+			setHeight(-1, Unit.PIXELS);
+		}
+	}
+
+	public void setHeight(float height, Unit unit) {
+		String value = Float.toString(height);
+		if (unit.equals(Unit.PERCENTAGE)) {
+			value += "%";
+		}
+		if (height == -1) {
+			value = null;
+		}
+		this.height = value;
+	}
+
+	/**
+	 * @see #setOrdinal(Boolean)
+	 */
+	public Boolean getOrdinal() {
+		return ordinal;
+	}
+
+	/**
+	 * In an ordinal axis, the points are equally spaced in the chart regardless
+	 * of the actual time or x distance between them. This means that missing
+	 * data for nights or weekends will not take up space in the chart.
+	 * <p>
+	 * Defaults to: true
+	 */
+	public void setOrdinal(Boolean ordinal) {
+		this.ordinal = ordinal;
+	}
+
+	/**
+	 * @see #setRange(Number)
+	 */
+	public Number getRange() {
+		return range;
+	}
+
+	/**
+	 * The zoomed range to display when only defining one or none of
+	 * <code>min</code> or <code>max</code>. For example, to show the latest
+	 * month, a range of one month can be set.
+	 * <p>
+	 * Defaults to: undefined
+	 */
+	public void setRange(Number range) {
+		this.range = range;
+	}
+
+	public float getTop() {
+		String tmp = top;
+		if (top == null) {
+			return -1.0f;
+		}
+		if (this.top.contains("%")) {
+			tmp = tmp.replace("%", "");
+		}
+		return Float.valueOf(tmp).floatValue();
+	}
+
+	public Unit getTopUnit() {
+		if (this.top == null) {
+			return Unit.PIXELS;
+		}
+		if (this.top.contains("%")) {
+			return Unit.PERCENTAGE;
+		}
+		return Unit.PIXELS;
+	}
+
+	public void setTop(String top) {
+		SizeWithUnit tmp = SizeWithUnit.parseStringSize(top);
+		if (tmp != null) {
+			setTop(tmp.getSize(), tmp.getUnit());
+		} else {
+			setTop(-1, Unit.PIXELS);
+		}
+	}
+
+	public void setTop(float top, Unit unit) {
+		String value = Float.toString(top);
+		if (unit.equals(Unit.PERCENTAGE)) {
+			value += "%";
+		}
+		if (top == -1) {
+			value = null;
+		}
+		this.top = value;
 	}
 
 	public Number getPane() {

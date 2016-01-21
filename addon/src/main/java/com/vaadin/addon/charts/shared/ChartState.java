@@ -30,4 +30,5 @@ public class ChartState extends AbstractComponentState {
     public String jsonState;
 
     public boolean seriesVisibilityTogglingDisabled;
+    public boolean timeline;
 }

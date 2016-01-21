@@ -39,7 +39,7 @@ public class ColumnWithNativeLazyDrilldownTBTest extends AbstractParallelTest {
                 .moveToElement(driver.findElement(By.className("v-ui")), 0, 0)
                 .build().perform();
 
-        waitForVaadin();
+        waitForDynamicChanges();
         captureAndCompare("after");
     }
 

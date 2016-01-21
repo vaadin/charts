@@ -17,10 +17,7 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 /**
- * Options for the export related buttons, print and export. In addition to the
- * default buttons listed here, custom buttons can be added. See <a
- * href="#navigation.buttonOptions">navigation.buttonOptions</a> for general
- * options.
+ * Options for the export related buttons, print and export.
  */
 public class Buttons extends AbstractConfigurationObject {
 

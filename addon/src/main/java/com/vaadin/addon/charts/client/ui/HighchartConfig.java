@@ -265,10 +265,13 @@ public class HighchartConfig extends JavaScriptObject {
        };
     }-*/;
 
-    public native final HighchartJsOverlay renderTo(Element element)
+    public native final HighchartJsOverlay renderTo(Element element, boolean timeline)
     /*-{
         if(!this.chart) this.chart = {};
         this.chart.renderTo = element;
+        if(timeline) {
+           return new $wnd.Highcharts.StockChart(this);
+        }
         return new $wnd.Highcharts.Chart(this);
     }-*/;
 

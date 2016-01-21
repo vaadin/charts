@@ -91,7 +91,10 @@ public class PlotOptionsFunnel extends AbstractPlotOptions {
 	}
 
 	/**
-	 * The color of the border surrounding each slice.
+	 * The color of the border surrounding each slice. When <code>null</code>,
+	 * the border takes the same color as the slice fill. This can be used
+	 * together with a <code>borderWidth</code> to fill drawing gaps created by
+	 * antialiazing artefacts in borderless pies.
 	 * <p>
 	 * Defaults to: #FFFFFF
 	 */
@@ -107,7 +110,16 @@ public class PlotOptionsFunnel extends AbstractPlotOptions {
 	}
 
 	/**
+	 * <p>
 	 * The width of the border surrounding each slice.
+	 * </p>
+	 * 
+	 * <p>
+	 * When setting the border width to 0, there may be small gaps between the
+	 * slices due to SVG antialiasing artefacts. To work around this, keep the
+	 * border width at 0.5 or 1, but set the <code>borderColor</code> to
+	 * <code>null</code> instead.
+	 * </p>
 	 * <p>
 	 * Defaults to: 1
 	 */

@@ -31,7 +31,7 @@ public class ColumnWithNativeLazyDrilldownByIndexTBTest extends
                 .moveToElement(findElement, 0, 0).build();
         moveAndClick.perform();
 
-        waitForVaadin();
+        waitForDynamicChanges();
         captureAndCompare("after");
     }
 

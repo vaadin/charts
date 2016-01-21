@@ -44,6 +44,7 @@ public class DataLabelsRange extends AbstractConfigurationObject {
 	private Boolean inside;
 	private String overflow;
 	private Number padding;
+	private Boolean reserveSpace;
 	private Number rotation;
 	private Object shadow;
 	private Shape shape;
@@ -307,6 +308,23 @@ public class DataLabelsRange extends AbstractConfigurationObject {
 	 */
 	public void setPadding(Number padding) {
 		this.padding = padding;
+	}
+
+	/**
+	 * @see #setReserveSpace(Boolean)
+	 */
+	public Boolean getReserveSpace() {
+		return reserveSpace;
+	}
+
+	/**
+	 * Whether to reserve space for the labels. This can be turned off when for
+	 * example the labels are rendered inside the plot area instead of outside.
+	 * <p>
+	 * Defaults to: true
+	 */
+	public void setReserveSpace(Boolean reserveSpace) {
+		this.reserveSpace = reserveSpace;
 	}
 
 	/**

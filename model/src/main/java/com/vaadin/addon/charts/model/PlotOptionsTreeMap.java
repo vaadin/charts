@@ -56,6 +56,7 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 	private Object shadow;
 	private Boolean showCheckbox;
 	private Boolean showInLegend;
+	private Number sortIndex;
 	private States states;
 	private Boolean stickyTracking;
 	private SeriesTooltip tooltip;
@@ -144,12 +145,10 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 	 * <dt>duration</dt>
 	 * <dd>The duration of the animation in milliseconds.</dd>
 	 * <dt>easing</dt>
-	 * <dd>When using jQuery as the general framework, the easing can be set to
-	 * <code>linear</code> or <code>swing</code>. More easing functions are
-	 * available with the use of jQuery plug-ins, most notably the jQuery UI
-	 * suite. See <a href="http://api.jquery.com/animate/">the jQuery docs</a>.
-	 * When using MooTools as the general framework, use the property name
-	 * <code>transition</code> instead of <code>easing</code>.</dd>
+	 * <dd>A string reference to an easing function set on the <code>Math</code>
+	 * object. See <a href=
+	 * "http://jsfiddle.net/gh/get/jquery/1.7.2/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/"
+	 * >the easing demo</a>.</dd>
 	 * </dl>
 	 * <p>
 	 * Due to poor performance, animation is disabled in old IE browsers for
@@ -553,6 +552,22 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 	 */
 	public void setShowInLegend(Boolean showInLegend) {
 		this.showInLegend = showInLegend;
+	}
+
+	/**
+	 * @see #setSortIndex(Number)
+	 */
+	public Number getSortIndex() {
+		return sortIndex;
+	}
+
+	/**
+	 * The sort index of the point inside the treemap level.
+	 * <p>
+	 * Defaults to:
+	 */
+	public void setSortIndex(Number sortIndex) {
+		this.sortIndex = sortIndex;
 	}
 
 	/**

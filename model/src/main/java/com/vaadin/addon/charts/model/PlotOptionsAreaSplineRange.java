@@ -44,6 +44,7 @@ public class PlotOptionsAreaSplineRange extends AbstractPlotOptions {
 	private ArrayList<String> keys;
 	private Color lineColor;
 	private Number lineWidth;
+	private String linecap;
 	private String linkedTo;
 	private Color negativeColor;
 	private Color negativeFillColor;
@@ -64,6 +65,12 @@ public class PlotOptionsAreaSplineRange extends AbstractPlotOptions {
 	private Boolean visible;
 	private String zoneAxis;
 	private ArrayList<Zones> zones;
+	private String compare;
+	private DataGrouping dataGrouping;
+	private Number gapSize;
+	private Number legendIndex;
+	private Number pointRange;
+	private Stacking stacking;
 
 	public PlotOptionsAreaSplineRange() {
 	}
@@ -110,12 +117,10 @@ public class PlotOptionsAreaSplineRange extends AbstractPlotOptions {
 	 * <dt>duration</dt>
 	 * <dd>The duration of the animation in milliseconds.</dd>
 	 * <dt>easing</dt>
-	 * <dd>When using jQuery as the general framework, the easing can be set to
-	 * <code>linear</code> or <code>swing</code>. More easing functions are
-	 * available with the use of jQuery plug-ins, most notably the jQuery UI
-	 * suite. See <a href="http://api.jquery.com/animate/">the jQuery docs</a>.
-	 * When using MooTools as the general framework, use the property name
-	 * <code>transition</code> instead of <code>easing</code>.</dd>
+	 * <dd>A string reference to an easing function set on the <code>Math</code>
+	 * object. See <a href=
+	 * "http://jsfiddle.net/gh/get/jquery/1.7.2/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/"
+	 * >the easing demo</a>.</dd>
 	 * </dl>
 	 * <p>
 	 * Due to poor performance, animation is disabled in old IE browsers for
@@ -374,6 +379,22 @@ public class PlotOptionsAreaSplineRange extends AbstractPlotOptions {
 	 */
 	public void setLineWidth(Number lineWidth) {
 		this.lineWidth = lineWidth;
+	}
+
+	/**
+	 * @see #setLinecap(String)
+	 */
+	public String getLinecap() {
+		return linecap;
+	}
+
+	/**
+	 * The line cap used for line ends and line joins on the graph.
+	 * <p>
+	 * Defaults to: round
+	 */
+	public void setLinecap(String linecap) {
+		this.linecap = linecap;
 	}
 
 	/**
@@ -760,6 +781,119 @@ public class PlotOptionsAreaSplineRange extends AbstractPlotOptions {
 
 	public void removeZone(Zones zone) {
 		this.zones.remove(zone);
+	}
+
+	/**
+	 * @see #setCompare(String)
+	 */
+	public String getCompare() {
+		return compare;
+	}
+
+	/**
+	 * Compare the values of the series against the first non-null, non-zero
+	 * value in the visible range. The y axis will show percentage or absolute
+	 * change depending on whether <code>compare</code> is set to
+	 * <code>"percent"</code> or <code>"value"</code>. When this is applied to
+	 * multiple series, it allows comparing the development of the series
+	 * against each other.
+	 * <p>
+	 * Defaults to: undefined
+	 */
+	public void setCompare(String compare) {
+		this.compare = compare;
+	}
+
+	/**
+	 * @see #setDataGrouping(DataGrouping)
+	 */
+	public DataGrouping getDataGrouping() {
+		return dataGrouping;
+	}
+
+	/**
+	 * 
+	 */
+	public void setDataGrouping(DataGrouping dataGrouping) {
+		this.dataGrouping = dataGrouping;
+	}
+
+	/**
+	 * @see #setGapSize(Number)
+	 */
+	public Number getGapSize() {
+		return gapSize;
+	}
+
+	/**
+	 * <p>
+	 * Defines when to display a gap in the graph. A gap size of 5 means that if
+	 * the distance between two points is greater than five times that of the
+	 * two closest points, the graph will be broken.
+	 * </p>
+	 * 
+	 * <p>
+	 * In practice, this option is most often used to visualize gaps in time
+	 * series. In a stock chart, intraday data is available for daytime hours,
+	 * while gaps will appear in nights and weekends.
+	 * </p>
+	 * <p>
+	 * Defaults to: 0
+	 */
+	public void setGapSize(Number gapSize) {
+		this.gapSize = gapSize;
+	}
+
+	/**
+	 * @see #setLegendIndex(Number)
+	 */
+	public Number getLegendIndex() {
+		return legendIndex;
+	}
+
+	/**
+	 * The sequential index of the series within the legend.
+	 * <p>
+	 * Defaults to: 0
+	 */
+	public void setLegendIndex(Number legendIndex) {
+		this.legendIndex = legendIndex;
+	}
+
+	/**
+	 * @see #setPointRange(Number)
+	 */
+	public Number getPointRange() {
+		return pointRange;
+	}
+
+	/**
+	 * The width of each point on the x axis. For example in a column chart with
+	 * one value each day, the pointRange would be 1 day (= 24 * 3600 * 1000
+	 * milliseconds). This is normally computed automatically, but this option
+	 * can be used to override the automatic value.
+	 * <p>
+	 * Defaults to: 0
+	 */
+	public void setPointRange(Number pointRange) {
+		this.pointRange = pointRange;
+	}
+
+	/**
+	 * @see #setStacking(Stacking)
+	 */
+	public Stacking getStacking() {
+		return stacking;
+	}
+
+	/**
+	 * Whether to stack the values of each series on top of each other. Possible
+	 * values are null to disable, "normal" to stack by value or "percent".
+	 * <p>
+	 * Defaults to: null
+	 */
+	public void setStacking(Stacking stacking) {
+		this.stacking = stacking;
 	}
 
 	public void setPointStart(Date date) {

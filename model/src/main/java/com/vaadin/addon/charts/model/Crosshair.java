@@ -20,7 +20,8 @@ package com.vaadin.addon.charts.model;
 import com.vaadin.addon.charts.model.style.Color;
 /**
  * Configure a crosshair that follows either the mouse pointer or the hovered
- * point.
+ * point. By default, the crosshair is enabled on the X axis and disabled on Y
+ * axis.
  */
 public class Crosshair extends AbstractConfigurationObject {
 
@@ -30,6 +31,7 @@ public class Crosshair extends AbstractConfigurationObject {
 	private Boolean snap;
 	private Number width;
 	private Number zIndex;
+	private Label label;
 
 	public Crosshair() {
 	}
@@ -119,5 +121,19 @@ public class Crosshair extends AbstractConfigurationObject {
 	 */
 	public void setZIndex(Number zIndex) {
 		this.zIndex = zIndex;
+	}
+
+	/**
+	 * @see #setLabel(Label)
+	 */
+	public Label getLabel() {
+		return label;
+	}
+
+	/**
+	 * A label on the axis next to the crosshair.
+	 */
+	public void setLabel(Label label) {
+		this.label = label;
 	}
 }

@@ -38,6 +38,7 @@ import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.PlotLine;
 import com.vaadin.addon.charts.model.PlotOptionsSeries;
 import com.vaadin.addon.charts.model.Series;
+import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.ZoomType;
@@ -113,7 +114,7 @@ public class ServerSideEvents extends AbstractVaadinChartExample {
         opt.setAllowPointSelect(true);
 
         configuration.setPlotOptions(opt);
-
+        configuration.setTooltip(new Tooltip(false));
         final DataSeries series1 = createDataSeries(0);
         final DataSeries series2 = createDataSeries(20);
         DataSeries series3 = createDataSeries(100);
@@ -160,7 +161,7 @@ public class ServerSideEvents extends AbstractVaadinChartExample {
                 logEvent(event);
             }
         };
-        addToggleForListener("Chart click", new ListenerToggle() {
+        addToggleForListener("Chart click", "ChartClick", new ListenerToggle() {
             @Override
             public void add() {
                 chart.addChartClickListener(listener);
@@ -179,7 +180,7 @@ public class ServerSideEvents extends AbstractVaadinChartExample {
                 logEvent(event);
             }
         };
-        addToggleForListener("Point click", new ListenerToggle() {
+        addToggleForListener("Point click", "PointClick", new ListenerToggle() {
             @Override
             public void add() {
                 chart.addPointClickListener(pcListener);
@@ -198,17 +199,18 @@ public class ServerSideEvents extends AbstractVaadinChartExample {
                 logEvent(event);
             }
         };
-        addToggleForListener("Checkbox click", new ListenerToggle() {
-            @Override
-            public void add() {
-                chart.addCheckBoxClickListener(cbListener);
-            }
+        addToggleForListener("Checkbox click", "CheckboxClick",
+                new ListenerToggle() {
+                    @Override
+                    public void add() {
+                        chart.addCheckBoxClickListener(cbListener);
+                    }
 
-            @Override
-            public void remove() {
-                chart.removeCheckBoxClickListener(cbListener);
-            }
-        });
+                    @Override
+                    public void remove() {
+                        chart.removeCheckBoxClickListener(cbListener);
+                    }
+                });
 
         final LegendItemClickListener legendItemListener = new LegendItemClickListener() {
             @Override
@@ -216,18 +218,19 @@ public class ServerSideEvents extends AbstractVaadinChartExample {
                 logEvent(event);
             }
         };
-        addToggleForListener("Legend item click", new ListenerToggle() {
-            @Override
-            public void add() {
-                chart.addLegendItemClickListener(legendItemListener);
-                visibilityToggling.setValue(true);
-            }
+        addToggleForListener("Legend item click", "LegendItemClick",
+                new ListenerToggle() {
+                    @Override
+                    public void add() {
+                        chart.addLegendItemClickListener(legendItemListener);
+                        visibilityToggling.setValue(true);
+                    }
 
-            @Override
-            public void remove() {
-                chart.removeLegendItemClickListener(legendItemListener);
-            }
-        });
+                    @Override
+                    public void remove() {
+                        chart.removeLegendItemClickListener(legendItemListener);
+                    }
+                });
 
         final SeriesHideListener hideListener = new SeriesHideListener() {
             @Override
@@ -235,7 +238,7 @@ public class ServerSideEvents extends AbstractVaadinChartExample {
                 logEvent(event);
             }
         };
-        addToggleForListener("Series hide", new ListenerToggle() {
+        addToggleForListener("Series hide", "SeriesHide", new ListenerToggle() {
             @Override
             public void add() {
                 chart.addSeriesHideListener(hideListener);
@@ -253,7 +256,7 @@ public class ServerSideEvents extends AbstractVaadinChartExample {
                 logEvent(event);
             }
         };
-        addToggleForListener("Series show", new ListenerToggle() {
+        addToggleForListener("Series show", "SeriesShow", new ListenerToggle() {
             @Override
             public void add() {
                 chart.addSeriesShowListener(show);
@@ -271,17 +274,18 @@ public class ServerSideEvents extends AbstractVaadinChartExample {
                 logEvent(event);
             }
         };
-        addToggleForListener("XAxes extremes change", new ListenerToggle() {
-            @Override
-            public void add() {
-                chart.addXAxesExtremesChangeListener(xaxesListener);
-            }
+        addToggleForListener("XAxes extremes change", "XAxesExtremes",
+                new ListenerToggle() {
+                    @Override
+                    public void add() {
+                        chart.addXAxesExtremesChangeListener(xaxesListener);
+                    }
 
-            @Override
-            public void remove() {
-                chart.removeXAxesExtremesChangeListener(xaxesListener);
-            }
-        });
+                    @Override
+                    public void remove() {
+                        chart.removeXAxesExtremesChangeListener(xaxesListener);
+                    }
+                });
 
         final YAxesExtremesChangeListener yaxesListener = new YAxesExtremesChangeListener() {
             @Override
@@ -289,17 +293,18 @@ public class ServerSideEvents extends AbstractVaadinChartExample {
                 logEvent(event);
             }
         };
-        addToggleForListener("Y axes extremes change", new ListenerToggle() {
-            @Override
-            public void add() {
-                chart.addYAxesExtremesChangeListener(yaxesListener);
-            }
+        addToggleForListener("Y axes extremes change", "YAxesExtremes",
+                new ListenerToggle() {
+                    @Override
+                    public void add() {
+                        chart.addYAxesExtremesChangeListener(yaxesListener);
+                    }
 
-            @Override
-            public void remove() {
-                chart.removeYAxesExtremesChangeListener(yaxesListener);
-            }
-        });
+                    @Override
+                    public void remove() {
+                        chart.removeYAxesExtremesChangeListener(yaxesListener);
+                    }
+                });
 
         final PointSelectListener selectListener = new PointSelectListener() {
             @Override
@@ -307,17 +312,18 @@ public class ServerSideEvents extends AbstractVaadinChartExample {
                 logEvent(event);
             }
         };
-        addToggleForListener("Point select", new ListenerToggle() {
-            @Override
-            public void add() {
-                chart.addPointSelectListener(selectListener);
-            }
+        addToggleForListener("Point select", "PointSelect",
+                new ListenerToggle() {
+                    @Override
+                    public void add() {
+                        chart.addPointSelectListener(selectListener);
+                    }
 
-            @Override
-            public void remove() {
-                chart.removePointSelectListener(selectListener);
-            }
-        });
+                    @Override
+                    public void remove() {
+                        chart.removePointSelectListener(selectListener);
+                    }
+                });
 
         final PointUnselectListener unselectListener = new PointUnselectListener() {
             @Override
@@ -325,23 +331,25 @@ public class ServerSideEvents extends AbstractVaadinChartExample {
                 logEvent(event);
             }
         };
-        addToggleForListener("Point unselect", new ListenerToggle() {
-            @Override
-            public void add() {
-                chart.addPointUnselectListener(unselectListener);
-            }
+        addToggleForListener("Point unselect", "PointUnselect",
+                new ListenerToggle() {
+                    @Override
+                    public void add() {
+                        chart.addPointUnselectListener(unselectListener);
+                    }
 
-            @Override
-            public void remove() {
-                chart.removePointUnselectListener(unselectListener);
-            }
-        });
+                    @Override
+                    public void remove() {
+                        chart.removePointUnselectListener(unselectListener);
+                    }
+                });
         return eventListeners;
     }
 
-    private void addToggleForListener(String caption,
+    private void addToggleForListener(String caption, String id,
             final ListenerToggle listenerToggle) {
         final CheckBox checkBox = new CheckBox(caption);
+        checkBox.setId(id);
         checkBox.addValueChangeListener(new Property.ValueChangeListener() {
             @Override
             public void valueChange(Property.ValueChangeEvent event) {

@@ -19,7 +19,8 @@ package com.vaadin.addon.charts.model;
 
 import com.vaadin.addon.charts.model.style.Color;
 /**
- * An array of objects representing plot lines on the X axis
+ * An array of lines stretching across the plot area, marking a specific value
+ * on one of the axes.
  */
 public class PlotLine extends AbstractConfigurationObject {
 

@@ -855,4 +855,11 @@ public class Chart extends AbstractComponent {
         getState().seriesVisibilityTogglingDisabled = disabled;
     }
 
+    public void setTimeline(boolean timeline) {
+        getState().timeline = timeline;
+    }
+
+    public boolean isTimeline() {
+        return getState().timeline;
+    }
 }

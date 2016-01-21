@@ -30,7 +30,7 @@ public class ColumnWithNativeDrilldownTBTest extends AbstractParallelTest {
                 .moveToElement(findElement, 0, 0).build();
         moveAndClick.perform();
 
-        waitForVaadin();
+        waitForDynamicChanges();
         captureAndCompare("after");
     }
 

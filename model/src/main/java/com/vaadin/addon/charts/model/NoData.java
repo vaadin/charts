@@ -30,6 +30,7 @@ public class NoData extends AbstractConfigurationObject {
 	private Object attr;
 	private Position position;
 	private Style style;
+	private Boolean useHTML;
 
 	public NoData() {
 	}
@@ -80,5 +81,21 @@ public class NoData extends AbstractConfigurationObject {
 	 */
 	public void setStyle(Style style) {
 		this.style = style;
+	}
+
+	/**
+	 * @see #setUseHTML(Boolean)
+	 */
+	public Boolean getUseHTML() {
+		return useHTML;
+	}
+
+	/**
+	 * Whether to insert the label as HTML, or as pseudo-HTML rendered with SVG.
+	 * <p>
+	 * Defaults to: false
+	 */
+	public void setUseHTML(Boolean useHTML) {
+		this.useHTML = useHTML;
 	}
 }

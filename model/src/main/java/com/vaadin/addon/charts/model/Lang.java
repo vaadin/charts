@@ -51,6 +51,9 @@ public class Lang extends AbstractConfigurationObject {
 	private String[] shortMonths;
 	private String thousandsSep;
 	private String[] weekdays;
+	private String rangeSelectorFrom;
+	private String rangeSelectorTo;
+	private String rangeSelectorZoom;
 
 	public Lang() {
 	}
@@ -363,5 +366,53 @@ public class Lang extends AbstractConfigurationObject {
 	 */
 	public void setWeekdays(String[] weekdays) {
 		this.weekdays = weekdays;
+	}
+
+	/**
+	 * @see #setRangeSelectorFrom(String)
+	 */
+	public String getRangeSelectorFrom() {
+		return rangeSelectorFrom;
+	}
+
+	/**
+	 * The text for the label for the "from" input box in the range selector.
+	 * <p>
+	 * Defaults to: From
+	 */
+	public void setRangeSelectorFrom(String rangeSelectorFrom) {
+		this.rangeSelectorFrom = rangeSelectorFrom;
+	}
+
+	/**
+	 * @see #setRangeSelectorTo(String)
+	 */
+	public String getRangeSelectorTo() {
+		return rangeSelectorTo;
+	}
+
+	/**
+	 * The text for the label for the "to" input box in the range selector.
+	 * <p>
+	 * Defaults to: To
+	 */
+	public void setRangeSelectorTo(String rangeSelectorTo) {
+		this.rangeSelectorTo = rangeSelectorTo;
+	}
+
+	/**
+	 * @see #setRangeSelectorZoom(String)
+	 */
+	public String getRangeSelectorZoom() {
+		return rangeSelectorZoom;
+	}
+
+	/**
+	 * The text for the label for the range selector buttons.
+	 * <p>
+	 * Defaults to: Zoom
+	 */
+	public void setRangeSelectorZoom(String rangeSelectorZoom) {
+		this.rangeSelectorZoom = rangeSelectorZoom;
 	}
 }
