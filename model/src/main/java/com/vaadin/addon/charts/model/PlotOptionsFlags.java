@@ -20,53 +20,51 @@ package com.vaadin.addon.charts.model;
 import com.vaadin.addon.charts.model.style.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
+import com.vaadin.addon.charts.model.style.Style;
 /**
  * 
  */
-public class Candlestick extends AbstractConfigurationObject {
+public class PlotOptionsFlags extends AbstractPlotOptions {
 
 	private static final long serialVersionUID = 1L;
 	private Boolean allowPointSelect;
-	private Boolean animation;
 	private Color color;
 	private Color[] colors;
 	private Number cropThreshold;
 	private Cursor cursor;
-	private DataGrouping dataGrouping;
 	private Boolean enableMouseTracking;
-	private Number groupPadding;
-	private Boolean grouping;
 	private ArrayList<String> keys;
 	private Number legendIndex;
 	private Color lineColor;
 	private Number lineWidth;
 	private String linkedTo;
 	private Number maxPointWidth;
-	private Number minPointLength;
-	private Number pointInterval;
+	private String onSeries;
 	private IntervalUnit pointIntervalUnit;
-	private Number pointPadding;
-	private PointPlacement pointPlacement;
-	private Number pointRange;
-	private Number pointStart;
-	private Number pointWidth;
 	private Boolean selected;
 	private Boolean shadow;
+	private Shape shape;
 	private Boolean showCheckbox;
 	private Boolean showInLegend;
 	private Boolean softThreshold;
+	private Number stackDistance;
 	private States states;
 	private Boolean stickyTracking;
+	private Style style;
 	private Number threshold;
 	private SeriesTooltip tooltip;
-	private Number turboThreshold;
-	private Color upColor;
-	private Color upLineColor;
+	private Boolean useHTML;
 	private Boolean visible;
+	private Number y;
 	private String zoneAxis;
 	private ArrayList<Zones> zones;
 
-	public Candlestick() {
+	public PlotOptionsFlags() {
+	}
+
+	@Override
+	public ChartType getChartType() {
+		return ChartType.FLAGS;
 	}
 
 	/**
@@ -84,42 +82,6 @@ public class Candlestick extends AbstractConfigurationObject {
 	 */
 	public void setAllowPointSelect(Boolean allowPointSelect) {
 		this.allowPointSelect = allowPointSelect;
-	}
-
-	/**
-	 * @see #setAnimation(Boolean)
-	 */
-	public Boolean getAnimation() {
-		return animation;
-	}
-
-	/**
-	 * <p>
-	 * Enable or disable the initial animation when a series is displayed. The
-	 * animation can also be set as a configuration object. Please note that
-	 * this option only applies to the initial animation of the series itself.
-	 * For other animations, see <a href="#chart.animation">chart.animation</a>
-	 * and the animation parameter under the API methods. The following
-	 * properties are supported:
-	 * </p>
-	 * <dl>
-	 * <dt>duration</dt>
-	 * <dd>The duration of the animation in milliseconds.</dd>
-	 * <dt>easing</dt>
-	 * <dd>A string reference to an easing function set on the <code>Math</code>
-	 * object. See <a href=
-	 * "http://jsfiddle.net/gh/get/jquery/1.7.2/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/"
-	 * >the easing demo</a>.</dd>
-	 * </dl>
-	 * <p>
-	 * Due to poor performance, animation is disabled in old IE browsers for
-	 * column charts and polar charts.
-	 * </p>
-	 * <p>
-	 * Defaults to: true
-	 */
-	public void setAnimation(Boolean animation) {
-		this.animation = animation;
 	}
 
 	/**
@@ -201,20 +163,6 @@ public class Candlestick extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setDataGrouping(DataGrouping)
-	 */
-	public DataGrouping getDataGrouping() {
-		return dataGrouping;
-	}
-
-	/**
-	 * 
-	 */
-	public void setDataGrouping(DataGrouping dataGrouping) {
-		this.dataGrouping = dataGrouping;
-	}
-
-	/**
 	 * @see #setEnableMouseTracking(Boolean)
 	 */
 	public Boolean getEnableMouseTracking() {
@@ -231,40 +179,6 @@ public class Candlestick extends AbstractConfigurationObject {
 	 */
 	public void setEnableMouseTracking(Boolean enableMouseTracking) {
 		this.enableMouseTracking = enableMouseTracking;
-	}
-
-	/**
-	 * @see #setGroupPadding(Number)
-	 */
-	public Number getGroupPadding() {
-		return groupPadding;
-	}
-
-	/**
-	 * Padding between each value groups, in x axis units.
-	 * <p>
-	 * Defaults to: 0.2
-	 */
-	public void setGroupPadding(Number groupPadding) {
-		this.groupPadding = groupPadding;
-	}
-
-	/**
-	 * @see #setGrouping(Boolean)
-	 */
-	public Boolean getGrouping() {
-		return grouping;
-	}
-
-	/**
-	 * Whether to group non-stacked columns or to let them render independent of
-	 * each other. Non-grouped columns will be laid out individually and overlap
-	 * each other.
-	 * <p>
-	 * Defaults to: true
-	 */
-	public void setGrouping(Boolean grouping) {
-		this.grouping = grouping;
 	}
 
 	public String[] getKeys() {
@@ -312,9 +226,10 @@ public class Candlestick extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * The color of the line/border of the candlestick.
+	 * The color of the line/border of the flag. Defaults to
+	 * <code>"black"</code>.
 	 * <p>
-	 * Defaults to: #000000
+	 * Defaults to: "black"
 	 */
 	public void setLineColor(Color lineColor) {
 		this.lineColor = lineColor;
@@ -375,47 +290,20 @@ public class Candlestick extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setMinPointLength(Number)
+	 * @see #setOnSeries(String)
 	 */
-	public Number getMinPointLength() {
-		return minPointLength;
+	public String getOnSeries() {
+		return onSeries;
 	}
 
 	/**
-	 * The minimal height for a column or width for a bar. By default, 0 values
-	 * are not shown. To visualize a 0 (or close to zero) point, set the minimal
-	 * point length to a pixel value like 3. In stacked column charts,
-	 * minPointLength might not be respected for tightly packed values.
+	 * The id of the series that the flags should be drawn on. If no id is
+	 * given, the flags are drawn on the x axis.
 	 * <p>
-	 * Defaults to: 0
+	 * Defaults to: undefined
 	 */
-	public void setMinPointLength(Number minPointLength) {
-		this.minPointLength = minPointLength;
-	}
-
-	/**
-	 * @see #setPointInterval(Number)
-	 */
-	public Number getPointInterval() {
-		return pointInterval;
-	}
-
-	/**
-	 * <p>
-	 * If no x values are given for the points in a series, pointInterval
-	 * defines the interval of the x values in milliseconds. For example, if a
-	 * series contains one value each day, set pointInterval to
-	 * <code>24 * 3600 * 1000</code>.
-	 * </p>
-	 * <p>
-	 * Since Highstock 2.1, it can be combined with
-	 * <code>pointIntervalUnit</code> to draw irregular intervals.
-	 * </p>
-	 * <p>
-	 * Defaults to: 1
-	 */
-	public void setPointInterval(Number pointInterval) {
-		this.pointInterval = pointInterval;
+	public void setOnSeries(String onSeries) {
+		this.onSeries = onSeries;
 	}
 
 	/**
@@ -434,120 +322,6 @@ public class Candlestick extends AbstractConfigurationObject {
 	 */
 	public void setPointIntervalUnit(IntervalUnit pointIntervalUnit) {
 		this.pointIntervalUnit = pointIntervalUnit;
-	}
-
-	/**
-	 * @see #setPointPadding(Number)
-	 */
-	public Number getPointPadding() {
-		return pointPadding;
-	}
-
-	/**
-	 * Padding between each column or bar, in x axis units.
-	 * <p>
-	 * Defaults to: 0.1
-	 */
-	public void setPointPadding(Number pointPadding) {
-		this.pointPadding = pointPadding;
-	}
-
-	/**
-	 * @see #setPointPlacement(PointPlacement)
-	 */
-	public PointPlacement getPointPlacement() {
-		return pointPlacement;
-	}
-
-	/**
-	 * <p>
-	 * Possible values: <code>null</code>, <code>"on"</code>,
-	 * <code>"between"</code>.
-	 * </p>
-	 * <p>
-	 * In a column chart, when pointPlacement is <code>"on"</code>, the point
-	 * will not create any padding of the X axis. In a polar column chart this
-	 * means that the first column points directly north. If the pointPlacement
-	 * is <code>"between"</code>, the columns will be laid out between ticks.
-	 * This is useful for example for visualising an amount between two points
-	 * in time or in a certain sector of a polar chart.
-	 * </p>
-	 * <p>
-	 * Since Highcharts 3.0.2, the point placement can also be numeric, where 0
-	 * is on the axis value, -0.5 is between this value and the previous, and
-	 * 0.5 is between this value and the next. Unlike the textual options,
-	 * numeric point placement options won't affect axis padding.
-	 * </p>
-	 * <p>
-	 * Note that pointPlacement needs a <a
-	 * href="#plotOptions.series.pointRange">pointRange</a> to work. For column
-	 * series this is computed, but for line-type series it needs to be set.
-	 * </p>
-	 * <p>
-	 * Defaults to <code>null</code> in cartesian charts, <code>"between"</code>
-	 * in polar charts.
-	 * <p>
-	 * Defaults to: null
-	 */
-	public void setPointPlacement(PointPlacement pointPlacement) {
-		this.pointPlacement = pointPlacement;
-	}
-
-	/**
-	 * @see #setPointRange(Number)
-	 */
-	public Number getPointRange() {
-		return pointRange;
-	}
-
-	/**
-	 * The width of each point on the x axis. For example in a column chart with
-	 * one value each day, the pointRange would be 1 day (= 24 * 3600 * 1000
-	 * milliseconds). This is normally computed automatically, but this option
-	 * can be used to override the automatic value. In a series on a categorized
-	 * axis the pointRange is 1 by default.
-	 * <p>
-	 * Defaults to: null
-	 */
-	public void setPointRange(Number pointRange) {
-		this.pointRange = pointRange;
-	}
-
-	/**
-	 * @see #setPointStart(Number)
-	 */
-	public Number getPointStart() {
-		return pointStart;
-	}
-
-	/**
-	 * If no x values are given for the points in a series, pointStart defines
-	 * on what value to start. On a datetime X axis, the number will be given as
-	 * milliseconds since 1970-01-01, for example
-	 * <code>Date.UTC(2011, 0, 1)</code>.
-	 * <p>
-	 * Defaults to: 0
-	 */
-	public void setPointStart(Number pointStart) {
-		this.pointStart = pointStart;
-	}
-
-	/**
-	 * @see #setPointWidth(Number)
-	 */
-	public Number getPointWidth() {
-		return pointWidth;
-	}
-
-	/**
-	 * A pixel value specifying a fixed width for each column or bar. When
-	 * <code>null</code>, the width is calculated from the
-	 * <code>pointPadding</code> and <code>groupPadding</code>.
-	 * <p>
-	 * Defaults to: null
-	 */
-	public void setPointWidth(Number pointWidth) {
-		this.pointWidth = pointWidth;
 	}
 
 	/**
@@ -585,6 +359,24 @@ public class Candlestick extends AbstractConfigurationObject {
 	 */
 	public void setShadow(Boolean shadow) {
 		this.shadow = shadow;
+	}
+
+	/**
+	 * @see #setShape(Shape)
+	 */
+	public Shape getShape() {
+		return shape;
+	}
+
+	/**
+	 * The shape of the marker. Can be one of "flag", "circlepin", "squarepin",
+	 * or an image on the format <code>url(/path-to-image.jpg)</code>.
+	 * Individual shapes can also be set for each point.
+	 * <p>
+	 * Defaults to: flag
+	 */
+	public void setShape(Shape shape) {
+		this.shape = shape;
 	}
 
 	/**
@@ -651,6 +443,23 @@ public class Candlestick extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * @see #setStackDistance(Number)
+	 */
+	public Number getStackDistance() {
+		return stackDistance;
+	}
+
+	/**
+	 * When multiple flags in the same series fall on the same value, this
+	 * number determines the vertical offset between them.
+	 * <p>
+	 * Defaults to: 12
+	 */
+	public void setStackDistance(Number stackDistance) {
+		this.stackDistance = stackDistance;
+	}
+
+	/**
 	 * @see #setStates(States)
 	 */
 	public States getStates() {
@@ -688,6 +497,30 @@ public class Candlestick extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * @see #setStyle(Style)
+	 */
+	public Style getStyle() {
+		return style;
+	}
+
+	/**
+	 * The text styles of the flag. Defaults to:
+	 * 
+	 * <pre>
+	 * style: {
+	 * 		fontSize: '11px',
+	 * 		fontWeight: 'bold',
+	 * 		textAlign: 'center'
+	 * 	}
+	 * </pre>
+	 * <p>
+	 * Defaults to:
+	 */
+	public void setStyle(Style style) {
+		this.style = style;
+	}
+
+	/**
 	 * @see #setThreshold(Number)
 	 */
 	public Number getThreshold() {
@@ -713,9 +546,10 @@ public class Candlestick extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * A configuration object for the tooltip rendering of each single series.
-	 * Properties are inherited from <a href="#tooltip">tooltip</a>, but only
-	 * the following properties can be defined on a series level.
+	 * Specific tooltip options for flag series. Flag series tooltips are
+	 * different from most other types in that a flag doesn't have a data value,
+	 * so the tooltip rather displays the <code>text</code> option for each
+	 * point.
 	 * <p>
 	 * Defaults to:
 	 */
@@ -724,57 +558,22 @@ public class Candlestick extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setTurboThreshold(Number)
+	 * @see #setUseHTML(Boolean)
 	 */
-	public Number getTurboThreshold() {
-		return turboThreshold;
+	public Boolean getUseHTML() {
+		return useHTML;
 	}
 
 	/**
-	 * When a series contains a data array that is longer than this, only one
-	 * dimensional arrays of numbers, or two dimensional arrays with x and y
-	 * values are allowed. Also, only the first point is tested, and the rest
-	 * are assumed to be the same format. This saves expensive data checking and
-	 * indexing in long series. Set it to <code>0</code> disable.
+	 * Whether to use HTML to render the flag texts. Using HTML allows for
+	 * advanced formatting, images and reliable bi-directional text rendering.
+	 * Note that exported images won't respect the HTML, and that HTML won't
+	 * respect Z-index settings.
 	 * <p>
-	 * Defaults to: 1000
+	 * Defaults to: false
 	 */
-	public void setTurboThreshold(Number turboThreshold) {
-		this.turboThreshold = turboThreshold;
-	}
-
-	/**
-	 * @see #setUpColor(Color)
-	 */
-	public Color getUpColor() {
-		return upColor;
-	}
-
-	/**
-	 * The fill color of the candlestick when values are rising. Defaults to
-	 * <code>"white"</code>.
-	 * <p>
-	 * Defaults to: "white"
-	 */
-	public void setUpColor(Color upColor) {
-		this.upColor = upColor;
-	}
-
-	/**
-	 * @see #setUpLineColor(Color)
-	 */
-	public Color getUpLineColor() {
-		return upLineColor;
-	}
-
-	/**
-	 * The specific line color for up candle sticks. The default is to inherit
-	 * the general <code>lineColor</code> setting.
-	 * <p>
-	 * Defaults to: null
-	 */
-	public void setUpLineColor(Color upLineColor) {
-		this.upLineColor = upLineColor;
+	public void setUseHTML(Boolean useHTML) {
+		this.useHTML = useHTML;
 	}
 
 	/**
@@ -791,6 +590,24 @@ public class Candlestick extends AbstractConfigurationObject {
 	 */
 	public void setVisible(Boolean visible) {
 		this.visible = visible;
+	}
+
+	/**
+	 * @see #setY(Number)
+	 */
+	public Number getY() {
+		return y;
+	}
+
+	/**
+	 * The y position of the top left corner of the flag relative to either the
+	 * series (if onSeries is defined), or the x axis. Defaults to
+	 * <code>-30</code>.
+	 * <p>
+	 * Defaults to: -30
+	 */
+	public void setY(Number y) {
+		this.y = y;
 	}
 
 	/**

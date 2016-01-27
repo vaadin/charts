@@ -60,6 +60,7 @@ public class Configuration extends AbstractConfigurationObject implements
 
     private PaneList pane;
     private Exporting exporting = new Exporting(false);
+    private RangeSelector rangeSelector;
 
     @JsonIgnore
     private final List<ConfigurationChangeListener> changeListeners = new ArrayList<ConfigurationChangeListener>();
@@ -652,6 +653,29 @@ public class Configuration extends AbstractConfigurationObject implements
             this.pane = new PaneList();
         }
         this.pane.addPane(pane);
+    }
+
+    /**
+     * Set settings for range selector.
+     * <p>
+     * This is only valid if the chart is configured
+     * to use timeline. See {@link com.vaadin.addon.charts.Chart#setTimeline(boolean)}
+     *
+     * @param rangeSelector
+     * @see RangeSelector
+     */
+    public void setRangeSelector(RangeSelector rangeSelector) {
+        this.rangeSelector = rangeSelector;
+    }
+
+    /**
+     * @see #setRangeSelector
+     */
+    public RangeSelector getRangeSelector() {
+        if(rangeSelector == null) {
+            rangeSelector = new RangeSelector();
+        }
+        return rangeSelector;
     }
 
     /**

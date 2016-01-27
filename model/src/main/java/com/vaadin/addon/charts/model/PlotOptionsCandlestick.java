@@ -20,18 +20,18 @@ package com.vaadin.addon.charts.model;
 import com.vaadin.addon.charts.model.style.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
+import com.vaadin.addon.charts.util.Util;
 /**
  * 
  */
-public class Ohlc extends AbstractConfigurationObject {
+public class PlotOptionsCandlestick extends AbstractPlotOptions {
 
 	private static final long serialVersionUID = 1L;
 	private Boolean allowPointSelect;
 	private Boolean animation;
 	private Color color;
-	private Boolean colorByPoint;
 	private Color[] colors;
-	private String compare;
 	private Number cropThreshold;
 	private Cursor cursor;
 	private DataGrouping dataGrouping;
@@ -40,6 +40,7 @@ public class Ohlc extends AbstractConfigurationObject {
 	private Boolean grouping;
 	private ArrayList<String> keys;
 	private Number legendIndex;
+	private Color lineColor;
 	private Number lineWidth;
 	private String linkedTo;
 	private Number maxPointWidth;
@@ -61,11 +62,18 @@ public class Ohlc extends AbstractConfigurationObject {
 	private Number threshold;
 	private SeriesTooltip tooltip;
 	private Number turboThreshold;
+	private Color upColor;
+	private Color upLineColor;
 	private Boolean visible;
 	private String zoneAxis;
 	private ArrayList<Zones> zones;
 
-	public Ohlc() {
+	public PlotOptionsCandlestick() {
+	}
+
+	@Override
+	public ChartType getChartType() {
+		return ChartType.CANDLESTICK;
 	}
 
 	/**
@@ -141,24 +149,6 @@ public class Ohlc extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setColorByPoint(Boolean)
-	 */
-	public Boolean getColorByPoint() {
-		return colorByPoint;
-	}
-
-	/**
-	 * When using automatic point colors pulled from the
-	 * <code>options.colors</code> collection, this option determines whether
-	 * the chart should receive one color per series or one color per point.
-	 * <p>
-	 * Defaults to: false
-	 */
-	public void setColorByPoint(Boolean colorByPoint) {
-		this.colorByPoint = colorByPoint;
-	}
-
-	/**
 	 * @see #setColors(Color[])
 	 */
 	public Color[] getColors() {
@@ -174,27 +164,6 @@ public class Ohlc extends AbstractConfigurationObject {
 	 */
 	public void setColors(Color[] colors) {
 		this.colors = colors;
-	}
-
-	/**
-	 * @see #setCompare(String)
-	 */
-	public String getCompare() {
-		return compare;
-	}
-
-	/**
-	 * Compare the values of the series against the first non-null, non-zero
-	 * value in the visible range. The y axis will show percentage or absolute
-	 * change depending on whether <code>compare</code> is set to
-	 * <code>"percent"</code> or <code>"value"</code>. When this is applied to
-	 * multiple series, it allows comparing the development of the series
-	 * against each other.
-	 * <p>
-	 * Defaults to: undefined
-	 */
-	public void setCompare(String compare) {
-		this.compare = compare;
 	}
 
 	/**
@@ -343,6 +312,22 @@ public class Ohlc extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * @see #setLineColor(Color)
+	 */
+	public Color getLineColor() {
+		return lineColor;
+	}
+
+	/**
+	 * The color of the line/border of the candlestick.
+	 * <p>
+	 * Defaults to: #000000
+	 */
+	public void setLineColor(Color lineColor) {
+		this.lineColor = lineColor;
+	}
+
+	/**
 	 * @see #setLineWidth(Number)
 	 */
 	public Number getLineWidth() {
@@ -350,7 +335,8 @@ public class Ohlc extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * The pixel width of the line/border. Defaults to <code>1</code>.
+	 * The pixel width of the candlestick line/border. Defaults to
+	 * <code>1</code>.
 	 * <p>
 	 * Defaults to: 1
 	 */
@@ -765,6 +751,40 @@ public class Ohlc extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * @see #setUpColor(Color)
+	 */
+	public Color getUpColor() {
+		return upColor;
+	}
+
+	/**
+	 * The fill color of the candlestick when values are rising. Defaults to
+	 * <code>"white"</code>.
+	 * <p>
+	 * Defaults to: "white"
+	 */
+	public void setUpColor(Color upColor) {
+		this.upColor = upColor;
+	}
+
+	/**
+	 * @see #setUpLineColor(Color)
+	 */
+	public Color getUpLineColor() {
+		return upLineColor;
+	}
+
+	/**
+	 * The specific line color for up candle sticks. The default is to inherit
+	 * the general <code>lineColor</code> setting.
+	 * <p>
+	 * Defaults to: null
+	 */
+	public void setUpLineColor(Color upLineColor) {
+		this.upLineColor = upLineColor;
+	}
+
+	/**
 	 * @see #setVisible(Boolean)
 	 */
 	public Boolean getVisible() {
@@ -815,5 +835,9 @@ public class Ohlc extends AbstractConfigurationObject {
 
 	public void removeZone(Zones zone) {
 		this.zones.remove(zone);
+	}
+
+	public void setPointStart(Date date) {
+		this.pointStart = Util.toHighchartsTS(date);
 	}
 }

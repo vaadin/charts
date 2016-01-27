@@ -57,9 +57,9 @@ public class PlotOptions extends AbstractConfigurationObject {
 	private PlotOptionsSpline spline;
 	private PlotOptionsTreeMap treemap;
 	private PlotOptionsWaterfall waterfall;
-	private Candlestick candlestick;
-	private Flags flags;
-	private Ohlc ohlc;
+	private PlotOptionsCandlestick candlestick;
+	private PlotOptionsFlags flags;
+	private PlotOptionsOhlc ohlc;
 
 	public PlotOptions() {
 	}
@@ -438,44 +438,44 @@ public class PlotOptions extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setCandlestick(Candlestick)
+	 * @see #setCandlestick(PlotOptionsCandlestick)
 	 */
-	public Candlestick getCandlestick() {
+	public PlotOptionsCandlestick getCandlestick() {
 		return candlestick;
 	}
 
 	/**
 	 * 
 	 */
-	public void setCandlestick(Candlestick candlestick) {
+	public void setCandlestick(PlotOptionsCandlestick candlestick) {
 		this.candlestick = candlestick;
 	}
 
 	/**
-	 * @see #setFlags(Flags)
+	 * @see #setFlags(PlotOptionsFlags)
 	 */
-	public Flags getFlags() {
+	public PlotOptionsFlags getFlags() {
 		return flags;
 	}
 
 	/**
 	 * 
 	 */
-	public void setFlags(Flags flags) {
+	public void setFlags(PlotOptionsFlags flags) {
 		this.flags = flags;
 	}
 
 	/**
-	 * @see #setOhlc(Ohlc)
+	 * @see #setOhlc(PlotOptionsOhlc)
 	 */
-	public Ohlc getOhlc() {
+	public PlotOptionsOhlc getOhlc() {
 		return ohlc;
 	}
 
 	/**
 	 * 
 	 */
-	public void setOhlc(Ohlc ohlc) {
+	public void setOhlc(PlotOptionsOhlc ohlc) {
 		this.ohlc = ohlc;
 	}
 }

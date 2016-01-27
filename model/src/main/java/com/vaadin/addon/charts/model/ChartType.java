@@ -121,6 +121,21 @@ public class ChartType implements ChartEnum {
      */
     public static final ChartType POLYGON = new ChartType("polygon");
 
+    /**
+     * @see PlotOptionsCandlestick
+     */
+    public static final ChartType CANDLESTICK = new ChartType("candlestick");
+
+    /**
+     * @see PlotOptionsFlags
+     */
+    public static final ChartType FLAGS = new ChartType("flags");
+
+    /**
+     * @see PlotOptionsOhlc
+     */
+    public static final ChartType OHLC = new ChartType("ohlc");
+
     private final String type;
 
     /**
