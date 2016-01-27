@@ -55,7 +55,7 @@ public class Chart extends AbstractConfigurationObject {
 	private Object renderTo;
 	private ResetZoomButton resetZoomButton;
 	private Color selectionMarkerFill;
-	private Object shadow;
+	private Boolean shadow;
 	private Boolean showAxes;
 	private Number[] spacing;
 	private Number spacingBottom;
@@ -592,9 +592,9 @@ public class Chart extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setShadow(Object)
+	 * @see #setShadow(Boolean)
 	 */
-	public Object getShadow() {
+	public Boolean getShadow() {
 		return shadow;
 	}
 
@@ -606,7 +606,7 @@ public class Chart extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to: false
 	 */
-	public void setShadow(Object shadow) {
+	public void setShadow(Boolean shadow) {
 		this.shadow = shadow;
 	}
 

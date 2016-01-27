@@ -46,7 +46,7 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	private String linkedTo;
 	private Number minSize;
 	private Boolean selected;
-	private Object shadow;
+	private Boolean shadow;
 	private Boolean showInLegend;
 	private String size;
 	private Number slicedOffset;
@@ -434,9 +434,9 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setShadow(Object)
+	 * @see #setShadow(Boolean)
 	 */
-	public Object getShadow() {
+	public Boolean getShadow() {
 		return shadow;
 	}
 
@@ -448,7 +448,7 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	 * <p>
 	 * Defaults to: false
 	 */
-	public void setShadow(Object shadow) {
+	public void setShadow(Boolean shadow) {
 		this.shadow = shadow;
 	}
 

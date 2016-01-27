@@ -42,7 +42,7 @@ public class Flags extends AbstractConfigurationObject {
 	private String onSeries;
 	private IntervalUnit pointIntervalUnit;
 	private Boolean selected;
-	private Object shadow;
+	private Boolean shadow;
 	private Shape shape;
 	private Boolean showCheckbox;
 	private Boolean showInLegend;
@@ -338,9 +338,9 @@ public class Flags extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setShadow(Object)
+	 * @see #setShadow(Boolean)
 	 */
-	public Object getShadow() {
+	public Boolean getShadow() {
 		return shadow;
 	}
 
@@ -352,7 +352,7 @@ public class Flags extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to: false
 	 */
-	public void setShadow(Object shadow) {
+	public void setShadow(Boolean shadow) {
 		this.shadow = shadow;
 	}
 

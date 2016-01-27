@@ -46,7 +46,7 @@ public class DataLabelsRange extends AbstractConfigurationObject {
 	private Number padding;
 	private Boolean reserveSpace;
 	private Number rotation;
-	private Object shadow;
+	private Boolean shadow;
 	private Shape shape;
 	private Style style;
 	private Boolean useHTML;
@@ -345,9 +345,9 @@ public class DataLabelsRange extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setShadow(Object)
+	 * @see #setShadow(Boolean)
 	 */
-	public Object getShadow() {
+	public Boolean getShadow() {
 		return shadow;
 	}
 
@@ -359,7 +359,7 @@ public class DataLabelsRange extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to: false
 	 */
-	public void setShadow(Object shadow) {
+	public void setShadow(Boolean shadow) {
 		this.shadow = shadow;
 	}
 

@@ -47,7 +47,7 @@ public class PlotOptionsSpline extends AbstractPlotOptions {
 	private PointPlacement pointPlacement;
 	private Number pointStart;
 	private Boolean selected;
-	private Object shadow;
+	private Boolean shadow;
 	private Boolean showCheckbox;
 	private Boolean showInLegend;
 	private Boolean softThreshold;
@@ -519,9 +519,9 @@ public class PlotOptionsSpline extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setShadow(Object)
+	 * @see #setShadow(Boolean)
 	 */
-	public Object getShadow() {
+	public Boolean getShadow() {
 		return shadow;
 	}
 
@@ -533,7 +533,7 @@ public class PlotOptionsSpline extends AbstractPlotOptions {
 	 * <p>
 	 * Defaults to: false
 	 */
-	public void setShadow(Object shadow) {
+	public void setShadow(Boolean shadow) {
 		this.shadow = shadow;
 	}
 

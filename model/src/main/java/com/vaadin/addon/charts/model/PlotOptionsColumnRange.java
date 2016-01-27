@@ -62,7 +62,7 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	private Number pointStart;
 	private Number pointWidth;
 	private Boolean selected;
-	private Object shadow;
+	private Boolean shadow;
 	private Boolean showCheckbox;
 	private Boolean showInLegend;
 	private States states;
@@ -679,9 +679,9 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setShadow(Object)
+	 * @see #setShadow(Boolean)
 	 */
-	public Object getShadow() {
+	public Boolean getShadow() {
 		return shadow;
 	}
 
@@ -693,7 +693,7 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	 * <p>
 	 * Defaults to: false
 	 */
-	public void setShadow(Object shadow) {
+	public void setShadow(Boolean shadow) {
 		this.shadow = shadow;
 	}
 

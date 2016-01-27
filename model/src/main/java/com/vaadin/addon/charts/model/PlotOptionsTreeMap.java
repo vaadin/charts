@@ -53,7 +53,7 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 	private String linkedTo;
 	private Number maxPointWidth;
 	private Boolean selected;
-	private Object shadow;
+	private Boolean shadow;
 	private Boolean showCheckbox;
 	private Boolean showInLegend;
 	private Number sortIndex;
@@ -501,9 +501,9 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setShadow(Object)
+	 * @see #setShadow(Boolean)
 	 */
-	public Object getShadow() {
+	public Boolean getShadow() {
 		return shadow;
 	}
 
@@ -515,7 +515,7 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 	 * <p>
 	 * Defaults to: false
 	 */
-	public void setShadow(Object shadow) {
+	public void setShadow(Boolean shadow) {
 		this.shadow = shadow;
 	}
 

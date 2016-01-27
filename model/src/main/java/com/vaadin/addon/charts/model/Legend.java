@@ -50,7 +50,7 @@ public class Legend extends AbstractConfigurationObject {
 	private Number padding;
 	private Boolean reversed;
 	private Boolean rtl;
-	private Object shadow;
+	private Boolean shadow;
 	private Number symbolHeight;
 	private Number symbolPadding;
 	private Number symbolRadius;
@@ -484,9 +484,9 @@ public class Legend extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setShadow(Object)
+	 * @see #setShadow(Boolean)
 	 */
-	public Object getShadow() {
+	public Boolean getShadow() {
 		return shadow;
 	}
 
@@ -499,7 +499,7 @@ public class Legend extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to: false
 	 */
-	public void setShadow(Object shadow) {
+	public void setShadow(Boolean shadow) {
 		this.shadow = shadow;
 	}
 
