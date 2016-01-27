@@ -69,7 +69,7 @@
 							<Implementation-Title>Vaadin Charts</Implementation-Title>
 
 							<!-- Comma-separated list of widgetsets in the package -->
-							<Vaadin-Widgetsets>com.vaadin.addon.charts.Widgetset,com.vaadin.addon.timeline.gwt.TimelineWidgetSet</Vaadin-Widgetsets>
+							<Vaadin-Widgetsets>com.vaadin.addon.charts.Widgetset</Vaadin-Widgetsets>
 						</manifestEntries>
 					</archive>
 					<excludes>
@@ -96,7 +96,7 @@
 					<excludeDependencies>*;scope=provided|runtime</excludeDependencies>
 					<!-- <excludeDependencies>vaadin-client,vaadin-server</excludeDependencies> -->
 					<instructions>
-						<Export-Package>com.vaadin.addon.charts,com.vaadin.addon.charts.events,com.vaadin.addon.charts.model,com.vaadin.addon.charts.model.style,com.vaadin.addon.charts.themes,com.vaadin.addon.charts.util,com.vaadin.addon.timeline</Export-Package>
+						<Export-Package>com.vaadin.addon.charts,com.vaadin.addon.charts.events,com.vaadin.addon.charts.model,com.vaadin.addon.charts.model.style,com.vaadin.addon.charts.themes,com.vaadin.addon.charts.util</Export-Package>
 						<!-- Ignore GWT dirt, not needed in osgi bundles, gwt compilation seldom
 							happens in such -->
 						<Import-Package>!com.google.gwt.*,
@@ -186,7 +186,6 @@
 					<instrumentation>
 						<ignores>
 							<ignore>com.vaadin.addon.charts.client.*</ignore>
-							<ignore>com.vaadin.addon.timeline.gwt.*</ignore>
 							<ignore>com.vaadin.addon.charts.model.*.get*</ignore>
 							<ignore>com.vaadin.addon.charts.model.*.is*</ignore>
 							<ignoreMethod>com.vaadin.addon.charts.model.*.get*</ignoreMethod>
@@ -194,7 +193,6 @@
 						</ignores>
 						<excludes>
 							<exclude>com/vaadin/addon/charts/client/**/*.class</exclude>
-							<exclude>com/vaadin/addon/timeline/gwt/**/*.class</exclude>
 						</excludes>
 					</instrumentation>
 				</configuration>

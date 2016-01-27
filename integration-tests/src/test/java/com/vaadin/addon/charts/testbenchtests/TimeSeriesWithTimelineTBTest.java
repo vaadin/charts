@@ -1,7 +1,6 @@
 package com.vaadin.addon.charts.testbenchtests;
 
-import com.vaadin.addon.charts.examples.lineandscatter.TimeSeriesWithTimeline;
-import com.vaadin.addon.charts.examples.lineandscatter.TimeSeriesZoomable;
+import com.vaadin.addon.charts.examples.timeline.TimeSeriesWithTimeline;
 
 public class TimeSeriesWithTimelineTBTest extends
         AbstractSimpleScreenShotTestBenchTest {
@@ -13,7 +12,7 @@ public class TimeSeriesWithTimelineTBTest extends
 
     @Override
     protected String getPackageName() {
-        return "lineandscatter";
+        return "timeline";
     }
 
 }

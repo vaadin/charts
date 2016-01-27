@@ -145,7 +145,6 @@
                     <instrumentation>
                         <ignores>
                             <ignore>com.vaadin.addon.charts.client.*</ignore>
-                            <ignore>com.vaadin.addon.timeline.gwt.*</ignore>
                             <ignore>com.vaadin.addon.charts.model.*.get*</ignore>
                             <ignore>com.vaadin.addon.charts.model.*.is*</ignore>
                             <ignoreMethod>com.vaadin.addon.charts.model.*.get*</ignoreMethod>
@@ -153,7 +152,6 @@
                         </ignores>
                         <excludes>
                             <exclude>com/vaadin/addon/charts/client/**/*.class</exclude>
-                            <exclude>com/vaadin/addon/timeline/gwt/**/*.class</exclude>
                         </excludes>
                     </instrumentation>
                 </configuration>

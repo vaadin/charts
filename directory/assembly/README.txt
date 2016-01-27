@@ -2,8 +2,7 @@ Vaadin Charts ${project.version}
 ===========================
 
 Vaadin Charts is based on popular Highcharts ${highcharts.version} JavaScript
-library. Vaadin Charts also  includes the previously separate Vaadin Timeline
-add-on, which uses the HTML5 canvas for drawing.
+library.
 
 Installation
 ============

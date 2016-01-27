@@ -1,4 +1,4 @@
-package com.vaadin.addon.charts.examples.lineandscatter;
+package com.vaadin.addon.charts.examples.timeline;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
