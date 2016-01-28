@@ -52,7 +52,6 @@ public class Chart extends AbstractConfigurationObject {
 	private Object plotShadow;
 	private Boolean polar;
 	private Boolean reflow;
-	private Object renderTo;
 	private ResetZoomButton resetZoomButton;
 	private Color selectionMarkerFill;
 	private Boolean shadow;
@@ -541,22 +540,6 @@ public class Chart extends AbstractConfigurationObject {
 	 */
 	public void setReflow(Boolean reflow) {
 		this.reflow = reflow;
-	}
-
-	/**
-	 * @see #setRenderTo(Object)
-	 */
-	public Object getRenderTo() {
-		return renderTo;
-	}
-
-	/**
-	 * The HTML element where the chart will be rendered. If it is a string, the
-	 * element by that id is used. The HTML element can also be passed by direct
-	 * reference.
-	 */
-	public void setRenderTo(Object renderTo) {
-		this.renderTo = renderTo;
 	}
 
 	/**

@@ -34,7 +34,6 @@ public class ButtonOptions extends AbstractConfigurationObject {
 	private Number symbolX;
 	private Number symbolY;
 	private String text;
-	private Object theme;
 	private VerticalAlign verticalAlign;
 	private Number width;
 	private Number y;
@@ -208,25 +207,6 @@ public class ButtonOptions extends AbstractConfigurationObject {
 	 */
 	public void setText(String text) {
 		this.text = text;
-	}
-
-	/**
-	 * @see #setTheme(Object)
-	 */
-	public Object getTheme() {
-		return theme;
-	}
-
-	/**
-	 * A configuration object for the button theme. The object accepts SVG
-	 * properties like <code>stroke-width</code>, <code>stroke</code> and
-	 * <code>fill</code>. Tri-state button styles are supported by the
-	 * <code>states.hover</code> and <code>states.select</code> objects.
-	 * <p>
-	 * Defaults to:
-	 */
-	public void setTheme(Object theme) {
-		this.theme = theme;
 	}
 
 	/**

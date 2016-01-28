@@ -27,8 +27,6 @@ public class ContextButton extends AbstractConfigurationObject {
 	private HorizontalAlign align;
 	private Boolean enabled;
 	private Number height;
-	private Object[] menuItems;
-	private Object onclick;
 	private String symbol;
 	private Color symbolFill;
 	private Number symbolSize;
@@ -96,46 +94,6 @@ public class ContextButton extends AbstractConfigurationObject {
 	 */
 	public void setHeight(Number height) {
 		this.height = height;
-	}
-
-	/**
-	 * @see #setMenuItems(Object[])
-	 */
-	public Object[] getMenuItems() {
-		return menuItems;
-	}
-
-	/**
-	 * <p>
-	 * A collection of config options for the menu items. Each options object
-	 * consists of a <code>text</code> option which is a string to show in the
-	 * menu item, as well as an <code>onclick</code> parameter which is a
-	 * callback function to run on click.
-	 * </p>
-	 * <p>
-	 * By default, there is the "Print" menu item plus one menu item for each of
-	 * the available export types. Menu items can be customized by defining a
-	 * new array of items and assigning <code>null</code> to unwanted positions
-	 * (see override example below).
-	 * </p>
-	 */
-	public void setMenuItems(Object[] menuItems) {
-		this.menuItems = menuItems;
-	}
-
-	/**
-	 * @see #setOnclick(Object)
-	 */
-	public Object getOnclick() {
-		return onclick;
-	}
-
-	/**
-	 * A click handler callback to use on the button directly instead of the
-	 * popup menu.
-	 */
-	public void setOnclick(Object onclick) {
-		this.onclick = onclick;
 	}
 
 	/**
