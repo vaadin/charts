@@ -27,7 +27,7 @@ public class Chart extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
 	private Boolean alignTicks;
-	private Object animation;
+	private Boolean animation;
 	private Color backgroundColor;
 	private Color borderColor;
 	private Number borderRadius;
@@ -91,9 +91,9 @@ public class Chart extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setAnimation(Object)
+	 * @see #setAnimation(Boolean)
 	 */
-	public Object getAnimation() {
+	public Boolean getAnimation() {
 		return animation;
 	}
 
@@ -126,7 +126,7 @@ public class Chart extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to: true
 	 */
-	public void setAnimation(Object animation) {
+	public void setAnimation(Boolean animation) {
 		this.animation = animation;
 	}
 

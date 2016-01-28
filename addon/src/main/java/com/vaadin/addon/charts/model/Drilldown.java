@@ -17,11 +17,11 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.vaadin.addon.charts.model.style.Style;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Options for drill down, the concept of inspecting increasingly high
@@ -31,7 +31,7 @@ public class Drilldown extends AbstractConfigurationObject {
 
     private Style activeAxisLabelStyle;
     private Style activeDataLabelStyle;
-    private Object animation;
+    private Boolean animation;
     private DrillUpButton drillUpButton;
     private List<Series> series = new ArrayList<Series>();
 
@@ -103,39 +103,10 @@ public class Drilldown extends AbstractConfigurationObject {
     }
 
     /**
-     * Checks if animation is set as a Boolean and if so, returns that setting.
-     * Otherwise returns <code>null</code>.
-     * 
-     * @see #setAnimation(Boolean)
-     * @return <code>null</code> when the animation is not set as Boolean,
-     *         otherwise a corresponding Boolean.
+     * @return true if animation is enabled false otherwse.
      */
-    public Boolean isAnimation() {
-        return animation instanceof Boolean ? (Boolean) animation : null;
-    }
-
-    /**
-     * Returns current animation settings. Can be a boolean (
-     * {@link #isAnimation()}), or an {@link Animation} instance.
-     * 
-     * @see #setAnimation(Boolean)
-     * @see #setAnimation(Animation)
-     * @return Current animation setting.
-     */
-    public Object getAnimation() {
+    public Boolean getAnimation() {
         return animation;
-    }
-
-    /**
-     * Set the animation for all drilldown animations. Animation of a drilldown
-     * occurs when drilling between a column point and a column series, or a pie
-     * slice and a full pie series. Drilldown can still be used between series
-     * and points of different types, but animation will not occur.
-     * 
-     * @param animation
-     */
-    public void setAnimation(Animation animation) {
-        this.animation = animation;
     }
 
     /**

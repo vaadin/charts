@@ -26,7 +26,7 @@ public class Navigation extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
 	private Color activeColor;
-	private Object animation;
+	private Boolean animation;
 	private Number arrowSize;
 	private Color inactiveColor;
 	private Style style;
@@ -55,9 +55,9 @@ public class Navigation extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setAnimation(Object)
+	 * @see #setAnimation(Boolean)
 	 */
-	public Object getAnimation() {
+	public Boolean getAnimation() {
 		return animation;
 	}
 
@@ -69,7 +69,7 @@ public class Navigation extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to: true
 	 */
-	public void setAnimation(Object animation) {
+	public void setAnimation(Boolean animation) {
 		this.animation = animation;
 	}
 

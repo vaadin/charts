@@ -38,7 +38,7 @@ public class Drilldown extends AbstractConfigurationObject {
 	private Style activeAxisLabelStyle;
 	private Style activeDataLabelStyle;
 	private Boolean allowPointDrilldown;
-	private Object animation;
+	private Boolean animation;
 	private DrillUpButton drillUpButton;
 	private PlotOptionsSeries series;
 
@@ -113,9 +113,9 @@ public class Drilldown extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setAnimation(Object)
+	 * @see #setAnimation(Boolean)
 	 */
-	public Object getAnimation() {
+	public Boolean getAnimation() {
 		return animation;
 	}
 
@@ -144,7 +144,7 @@ public class Drilldown extends AbstractConfigurationObject {
 	 * >the easing demo</a>.</dd>
 	 * </dl>
 	 */
-	public void setAnimation(Object animation) {
+	public void setAnimation(Boolean animation) {
 		this.animation = animation;
 	}
 
