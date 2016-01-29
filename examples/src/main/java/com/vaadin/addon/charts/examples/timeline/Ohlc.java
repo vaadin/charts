@@ -5,10 +5,14 @@ import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.timeline.util.StockPrices;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.DataGrouping;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.OhlcItem;
+import com.vaadin.addon.charts.model.PlotOptionsOhlc;
 import com.vaadin.addon.charts.model.PlotOptionsSeries;
 import com.vaadin.addon.charts.model.RangeSelector;
+import com.vaadin.addon.charts.model.TimeUnit;
+import com.vaadin.addon.charts.model.TimeUnitMultiples;
 import com.vaadin.ui.Component;
 
 public class Ohlc extends AbstractVaadinChartExample {
@@ -29,8 +33,13 @@ public class Ohlc extends AbstractVaadinChartExample {
         configuration.getTitle().setText("AAPL Stock Price");
 
         DataSeries dataSeries = new DataSeries();
-        for(StockPrices.OhlcData data : StockPrices
-            .fetchAaplOhlcPrice()) {
+        PlotOptionsOhlc plotOptionsOhlc = new PlotOptionsOhlc();
+        DataGrouping grouping = new DataGrouping();
+        grouping.addUnit(new TimeUnitMultiples(TimeUnit.WEEK, 1));
+        grouping.addUnit(new TimeUnitMultiples(TimeUnit.MONTH, 1, 2, 3, 4, 6));
+        plotOptionsOhlc.setDataGrouping(grouping);
+        dataSeries.setPlotOptions(plotOptionsOhlc);
+        for (StockPrices.OhlcData data : StockPrices.fetchAaplOhlcPrice()) {
             OhlcItem item = new OhlcItem();
             item.setX(data.getDate());
             item.setLow(data.getLow());

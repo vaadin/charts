@@ -16,6 +16,9 @@ package com.vaadin.addon.charts.model;
  * If not, see <https://vaadin.com/license/cval-3>.
  * #L%
  */
+
+import java.util.ArrayList;
+import java.util.Arrays;
 public class DataGrouping extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
@@ -24,7 +27,7 @@ public class DataGrouping extends AbstractConfigurationObject {
 	private Boolean forced;
 	private Number groupPixelWidth;
 	private Boolean smoothed;
-	private Object[] units;
+	private ArrayList<TimeUnitMultiples> units;
 
 	public DataGrouping() {
 	}
@@ -162,50 +165,24 @@ public class DataGrouping extends AbstractConfigurationObject {
 		this.smoothed = smoothed;
 	}
 
-	/**
-	 * @see #setUnits(Object[])
-	 */
-	public Object[] getUnits() {
-		return units;
+	public TimeUnitMultiples[] getUnits() {
+		TimeUnitMultiples[] arr = new TimeUnitMultiples[units.size()];
+		units.toArray(arr);
+		return arr;
 	}
 
-	/**
-	 * An array determining what time intervals the data is allowed to be
-	 * grouped to. Each array item is an array where the first value is the time
-	 * unit and the second value another array of allowed multiples. Defaults
-	 * to:
-	 * 
-	 * <pre>
-	 * units: [[
-	 * 		'millisecond', // unit name
-	 * 		[1, 2, 5, 10, 20, 25, 50, 100, 200, 500] // allowed multiples
-	 * 	], [
-	 * 		'second',
-	 * 		[1, 2, 5, 10, 15, 30]
-	 * 	], [
-	 * 		'minute',
-	 * 		[1, 2, 5, 10, 15, 30]
-	 * 	], [
-	 * 		'hour',
-	 * 		[1, 2, 3, 4, 6, 8, 12]
-	 * 	], [
-	 * 		'day',
-	 * 		[1]
-	 * 	], [
-	 * 		'week',
-	 * 		[1]
-	 * 	], [
-	 * 		'month',
-	 * 		[1, 3, 6]
-	 * 	], [
-	 * 		'year',
-	 * 		null
-	 * 	]]
-	 * </pre>
-	 * <p>
-	 * Defaults to:
-	 */
-	public void setUnits(Object[] units) {
-		this.units = units;
+	public void setUnits(TimeUnitMultiples... units) {
+		this.units = new ArrayList<TimeUnitMultiples>(Arrays.asList(units));
+	}
+
+	public void addUnit(TimeUnitMultiples unit) {
+		if (this.units == null) {
+			this.units = new ArrayList<TimeUnitMultiples>();
+		}
+		this.units.add(unit);
+	}
+
+	public void removeUnit(TimeUnitMultiples unit) {
+		this.units.remove(unit);
 	}
 }

@@ -85,6 +85,7 @@ public class XAxis extends Axis {
 	private TickmarkPlacement tickmarkPlacement;
 	private AxisTitle title;
 	private AxisType type;
+	private ArrayList<TimeUnitMultiples> units;
 	private Boolean visible;
 	private Boolean ordinal;
 	private Number range;
@@ -1035,6 +1036,27 @@ public class XAxis extends Axis {
 	 */
 	public void setType(AxisType type) {
 		this.type = type;
+	}
+
+	public TimeUnitMultiples[] getUnits() {
+		TimeUnitMultiples[] arr = new TimeUnitMultiples[units.size()];
+		units.toArray(arr);
+		return arr;
+	}
+
+	public void setUnits(TimeUnitMultiples... units) {
+		this.units = new ArrayList<TimeUnitMultiples>(Arrays.asList(units));
+	}
+
+	public void addUnit(TimeUnitMultiples unit) {
+		if (this.units == null) {
+			this.units = new ArrayList<TimeUnitMultiples>();
+		}
+		this.units.add(unit);
+	}
+
+	public void removeUnit(TimeUnitMultiples unit) {
+		this.units.remove(unit);
 	}
 
 	/**

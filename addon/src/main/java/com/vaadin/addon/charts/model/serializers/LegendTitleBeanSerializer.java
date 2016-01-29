@@ -24,7 +24,7 @@ import com.vaadin.addon.charts.model.LegendTitle;
 import java.io.IOException;
 
 /**
- * Serializer for {@link com.vaadin.addon.charts.model.Stop}.
+ * Serializer for {@link com.vaadin.addon.charts.model.LegendTitle}.
  *
  */
 public class LegendTitleBeanSerializer extends BeanSerializationDelegate<LegendTitle> {

@@ -24,7 +24,7 @@ import com.vaadin.addon.charts.model.AxisTitle;
 import java.io.IOException;
 
 /**
- * Serializer for {@link com.vaadin.addon.charts.model.Stop}.
+ * Serializer for {@link com.vaadin.addon.charts.model.AxisTitle}.
  *
  */
 public class AxisTitleBeanSerializer extends BeanSerializationDelegate<AxisTitle> {

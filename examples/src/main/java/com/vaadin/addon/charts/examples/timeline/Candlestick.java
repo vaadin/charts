@@ -5,10 +5,14 @@ import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.timeline.util.StockPrices;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.DataGrouping;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.OhlcItem;
+import com.vaadin.addon.charts.model.PlotOptionsCandlestick;
 import com.vaadin.addon.charts.model.PlotOptionsSeries;
 import com.vaadin.addon.charts.model.RangeSelector;
+import com.vaadin.addon.charts.model.TimeUnit;
+import com.vaadin.addon.charts.model.TimeUnitMultiples;
 import com.vaadin.ui.Component;
 
 public class Candlestick extends AbstractVaadinChartExample {
@@ -29,8 +33,13 @@ public class Candlestick extends AbstractVaadinChartExample {
         configuration.getTitle().setText("AAPL Stock Price");
 
         DataSeries dataSeries = new DataSeries();
-        for(StockPrices.OhlcData data : StockPrices
-            .fetchAaplOhlcPrice()) {
+        PlotOptionsCandlestick plotOptionsCandlestick = new PlotOptionsCandlestick();
+        DataGrouping grouping = new DataGrouping();
+        grouping.addUnit(new TimeUnitMultiples(TimeUnit.WEEK, 1));
+        grouping.addUnit(new TimeUnitMultiples(TimeUnit.MONTH, 1, 2, 3, 4, 6));
+        plotOptionsCandlestick.setDataGrouping(grouping);
+        dataSeries.setPlotOptions(plotOptionsCandlestick);
+        for (StockPrices.OhlcData data : StockPrices.fetchAaplOhlcPrice()) {
             OhlcItem item = new OhlcItem();
             item.setX(data.getDate());
             item.setLow(data.getLow());
@@ -46,7 +55,7 @@ public class Candlestick extends AbstractVaadinChartExample {
         configuration.setPlotOptions(plotOptionsSeries);
 
         RangeSelector rangeSelector = new RangeSelector();
-        rangeSelector.setSelected(1);
+        rangeSelector.setSelected(4);
         configuration.setRangeSelector(rangeSelector);
 
         chart.drawChart(configuration);
