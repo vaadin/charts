@@ -1,48 +1,65 @@
 ---
-title: Getting started
+title: Getting Started
 order: 1
 layout: page
 ---
 
-= Getting started with Vaadin Charts
+// Should the tutorial be included in the print edition?
+// It has quite a bit redundancy with other content.
+// If it's needed in some training or such, then include.
+// Otherwise, maybe not.
+= Getting Started with Vaadin Charts
+
+// General notes:
+// The tutorial has no screenshots. They would make it more visual.
 
 [[introduction]]
 == Introduction
 
-This tutorial walks you, step-by-step, through what needs to be done to create a new Vaadin application and add
-beautiful charts to it. We will be using Maven to set up the project and handle all dependencies.
+This tutorial walks you through the steps needed to create a new Vaadin application and show some elegant charts in it.
+We use Maven to set up the project and handle the dependencies.
 
 In this tutorial, you will learn how to:
 
-* Add Vaadin Charts to a project
-* Create a simple line chart
-* Create a combined chart with dual Y-axes
-* Configure settings to change the look of a chart
+. Add Vaadin Charts to a project
+. Create a simple line chart
+. Create a combined chart with dual Y-axes
+. Configure settings to change the look of a chart
 
-The final result of this tutorial can be explored at
-https://github.com/vaadin/charts-tutorial/tree/master/server[github]. Let's get to it.
+The final result of this tutorial can be explored in GitHub at https://github.com/vaadin/charts-tutorial/tree/master/server[github.com/vaadin/charts-tutorial/tree/master/server].
+Let us get to it.
 
 [[setup]]
 == Project Setup
 
-To start off, we need to create a new project where we can add some charts. We will use Maven to set up a project,
-which can be imported into your favorite IDE. Execute the following command to create the project.
-You can also use your IDE to generate a new maven project using the vaadin-archetype-application archetype,
-version 7.3.6.
+To start off, we need to create a new project where we can add the charts.
+For more details on this topic, please refer to <<charts-installing.asciidoc#, "Installing Vaadin Charts">> and link:../../framework/addons/addons-overview.html[Vaadin Add-ons].
 
+Here we use Maven to set up a project, using the command-line.
+You can then be import the project into your IDE. You can use the IDE to generate a new maven project using the `vaadin-archetype-application` archetype, version 7.3.6, but in the following we do it on command-line.
+// TODO Why is a specific Vaadin version used here?
+// I left it as is, as I didn't know if there is some unknown purpose for that.
+
+Execute the following command to create the project:
+
+[subs="normal"]
 ----
-mvn archetype:generate -DarchetypeGroupId=com.vaadin \
+[prompt]#+++$+++# [command]#mvn# archetype:generate -DarchetypeGroupId=com.vaadin \
  -DarchetypeArtifactId=vaadin-archetype-application \
- -DarchetypeVersion=7.3.6
+ -DarchetypeVersion=[replaceable]#7.3.6#
 ----
+// TODO Same version number question here.
 
-This asks you a few questions to set up the project. I answered like this:
+Archetype generation asks you a few parameters to set up the project.
+You need to give at least [parameter]#groupId# and [parameter]#artifactId#.
+You could answer as follows:
 
+[subs="normal"]
 ----
-Define value for property 'groupId': : com.vaadin
-Define value for property 'artifactId': : charts-tutorial
-Define value for property 'version': 1.0-SNAPSHOT: : <return>
-Define value for property 'package': com.vaadin: : <return>
+Define value for property 'groupId': : [replaceable]#com.vaadin#
+Define value for property 'artifactId': : [replaceable]#charts-tutorial#
+Define value for property 'version': 1.0-SNAPSHOT: : kbd:[Enter]
+Define value for property 'package': com.vaadin: : kbd:[Enter]
 [INFO] Using property: theme = mytheme
 Confirm properties configuration:
 groupId: com.vaadin
@@ -50,33 +67,41 @@ artifactId: charts-tutorial
 version: 1.0-SNAPSHOT
 package: com.vaadin
 theme: mytheme
-Y: : <return>
+Y: : kbd:[Enter]
 ----
 
-Now you should have a project generated for you in a directory named after the artifactId that you specified,
-i.e. charts-tutorial. You can run this new project by issuing the following command
+You now should have a project generated for you.
+It was created in a directory with the same name as the [parameter]#artifactId# parameter that you specified, such as, [filename]#charts-tutorial#.
 
+You can run the new project by issuing the following command:
+
+[subs="normal"]
 ----
-cd charts-tutorial
-mvn vaadin:compile jetty:run
+[prompt]#+++$+++# [command]#cd# [replaceable]#charts-tutorial#
+[prompt]#+++$+++# [command]#mvn# vaadin:compile jetty:run
 ----
 
-The command will compile all sources and start a local web server. Wait until it says “Started Jetty Server” and
-navigate to http://localhost:8080 using your favorite browser. Note that you don’t usually need to call
-'vaadin:compile' – this is only the needed the first time you compile a new project created with the
-application archetype or if the widget set has changed by yourself or if you add an add-on to your project as
-we’ll see later.
+The command will compile all sources and start a local web server.
+Wait until it says “Started Jetty Server” and navigate to http://localhost:8080 with your browser.
+Note that you do not usually need to call [parameter]#vaadin:compile#.
+It is only the needed in the following cases:
+the first time you compile a new project created with the application archetype,
+when you have changed the widget set somehow, or
+if you add an add-on to your project, as we will see later.
 
-In your browser, you should see a button titled “Click Me”. When you click it, the text “Thank you for clicking”
-appears below the button. Great! We can now move on to replace this button with a pretty chart! Stop the web server
-by pressing 'ctrl-C' in the window where you started it.
+In the browser, you should see a button titled [guibutton]#Click Me#.
+When you click it, the text [guilabel]#Thank you for clicking# appears below the button.
+Great!
+We can now move on to replace this button with a pretty chart!
+Stop the web server by pressing kbd:[Ctrl+C] in the window where you started it.
 
-Let's just first add the Vaadin Charts dependency to the project and compile the widget set. Open the pom.xml file
-and find the '<dependencies>' tag. Just before the end tag ('</dependencies>') add the following dependency declaration:
+Let us then add the Vaadin Charts dependency to the project.
+Open the [filename]#pom.xml# file and find the `<dependencies>` tag.
+Add the following dependency declaration just before the end tag (`</dependencies>`):
 
 [source,xml]
 ----
- ...
+...
    <dependency>
       <groupId>com.vaadin.addon</groupId>
       <artifactId>vaadin-charts</artifactId>
@@ -86,21 +111,27 @@ and find the '<dependencies>' tag. Just before the end tag ('</dependencies>') a
 ...
 ----
 
-After this, *we need to fetch a license for Vaadin Charts in order to be able to compile the widget set.* You can
-get a free trial key from https://vaadin.com/directory#!addon/vaadin-charts[Vaadin Directory]. Click the large orange
-“Free trial key” button to the right and copy and paste the key into a file named '.vaadin.charts.developer.license'
-in your https://en.wikipedia.org/wiki/Home_directory#Default_home_directory_per_operating_system[home directory].
-After this you can issue the following command to compile the widget set:
+_You need to have a license for Vaadin Charts in order to be able to compile the widget set._
+You can get a free trial key from https://vaadin.com/directory#!addon/vaadin-charts[Vaadin Directory].
+Click the large orange [guibutton]#Free trial key# button on the right.
+Then copy and paste the key into a file named [filename]#.vaadin.charts.developer.license# in your https://en.wikipedia.org/wiki/Home_directory#Default_home_directory_per_operating_system[home directory].
 
- mvn clean vaadin:update-widgetset vaadin:compile
+Once the key is in place, you can issue the following command to compile the widget set:
 
-Now we have created a new project, added the Vaadin Charts add-on to it and can move on to create our charts.
+[subs="normal"]
+----
+[prompt]#+++$+++# [command]#mvn# clean vaadin:update-widgetset vaadin:compile
+----
+
+You have now created a new project and enabled Vaadin Charts in it.
+You can now move on to create your charts.
 
 [[first.chart]]
 == Creating Your First Chart
 
-On to actual programming! Let's replace the button with an empty chart. Open the 'com.vaadin.MyVaadinUI' class and
-change the init method to the following:
+On to actual programming!
+Let us replace the button with an empty chart.
+Open the [classname]#com.vaadin.MyVaadinUI# class and change the [methodname]#init()# method to the following:
 
 [source,java]
 ----
@@ -114,10 +145,11 @@ protected void init(VaadinRequest request) {
 }
 ----
 
-Now run it by issuing 'mvn jetty:run' on the command line and load http://localhost:8080 in a browser. You should see
-an empty white box with the title “Chart title” and a small “Vaadin Charts” in the bottom right corner.
+Now run it by issuing 'mvn jetty:run' on the command line and load http://localhost:8080 in a browser.
+You should see an empty white box with the title [guilabel]#Chart title# and a small [guilabel]#Vaadin Charts# in the bottom right corner.
 
-Let's make the title say something else. Add the following lines at the end of the init method:
+Let us make the title say something else.
+Add the following lines at the end of the [methodname]#init()# method:
 
 [source,java]
 ----
@@ -125,31 +157,39 @@ Configuration conf = chart.getConfiguration();
 conf.setTitle("Hello Charts!");
 ----
 
-Stop the old jetty process by pressing 'ctrl-C' and start it again by issuing 'mvn jetty:run' once more. Reload your
-browser and the title of the chart should now read “Hello Charts!”. As you see, changing the properties of a chart is
-done through an instance of the 'Configuration' class. When creating a chart, it automatically creates an instance of
-the 'Configuration' class, and you can get it by calling 'getConfiguration()'.
+Stop the old jetty process by pressing kbd:[Ctrl+C] and restart it by issuing 'mvn jetty:run' once more.
+Reload the page in the browser.
+The title of the chart should now read [guilabel]#Hello Charts!#.
+As you see, changing the properties of a chart is done through an instance of the [classname]#Configuration# class.
+When creating a chart, it automatically creates an instance of the [classname]#Configuration# class.
+You can get a reference to it by calling [methodname]#getConfiguration()#.
+
+For more details, see <<charts-basic-use.asciidoc#, "Basic Use of Charts">>.
 
 [[bind.data]]
 === Adding Some Data
 
-Let's add some real data! Like any good TV chef, I’ve prepared a java class providing some data for us to create charts
-from. Download the file from
-https://raw.githubusercontent.com/vaadin/charts-tutorial/master/server/src/main/java/com/vaadin/ChartsData.java[here]
-and save it in the same package as the 'MyVaadinUI' class. Good, now we have some data to use.
+Let us add some real data!
+Like any good TV chef, we have prepared a Java class that provides some example data for us to create charts from.
+// This is a rather nuisance
+Download the file from the https://raw.githubusercontent.com/vaadin/charts-tutorial/master/server/src/main/java/com/vaadin/ChartsData.java[tutorial repository in GitHub] and save it in the same package as the [classname]#MyVaadinUI# class.
+Good, now we have some data to use.
 
-Next, we’ll make our chart into a line chart. This is done by altering the configuration as follows, just add it to
-the end of the init method:
+Next, we will turn our chart to a line chart.
+This is done by altering the configuration.
+Just add it to the end of the [methodname]#init()# method as follows:
 
 [source,java]
 ----
 conf.getChart().setType(ChartType.LINE);
 ----
 
-The 'ChartData' class contains data for the average shoe size per age for girls and boys. Let’s add the shoe size
-data for girls as a line to the chart. Data can be added to a chart by creating a Series object. Here we’ll use
-'DataSeries' and create individual 'DataSeriesItems' for each (shoe size, age) value pair. Continue the 'init'
-method like this:
+The [classname]#ChartData# class contains data for the average shoe size per age for girls and boys.
+Let us add the shoe size data for girls.
+Data can be added to a chart by creating a [interfacename]#Series# object.
+We use [classname]#DataSeries# and create individual [classname]##DataSeriesItem##s for each (shoe size, age) value pair.
+
+Continue the [methodname]#init()# method as follows:
 
 [source,java]
 ----
@@ -164,9 +204,11 @@ for(ShoeSizeInfo shoeSizeInfo : data.getGirlsData()) {
 conf.addSeries(girls);
 ----
 
-Now restart the server again ('ctrl-C', 'mvn jetty:run'), refresh your browser and see that we now have a nice
-line chart! But there’s still something missing. We have no units or labels for the X or Y axes. This needs to
-be fixed. Add the following:
+Now restart the server again (kbd:[Ctrl+C], `mvn jetty:run`), refresh your browser, and see that we now have a nice line chart!
+
+However, there is still something missing.
+We have no units or labels for the X or Y axes.
+This needs to be fixed. Add the following:
 
 [source,java]
 ----
@@ -174,13 +216,17 @@ conf.getxAxis().setTitle("Shoe size (EU)");
 conf.getyAxis().setTitle("Age (Years)");
 ----
 
-Restart the server and refresh your browser. Now the axes are labeled and we’re well on our way!
+Restart the server and refresh your browser.
+Now the axes are labeled and we are well on our way!
+
+For more details on data series, see <<charts-data.asciidoc#, "Chart Data">>.
 
 [[bind.another.data]]
 === Adding Another Data Set to the Same Chart
 
-Now let’s add the same data for boys to the same chart. This is as easy as adding a second series to the chart
-configuration. We’ll duplicate the code above and add the boy’s data series:
+Now, let us add the same data for boys to the same chart.
+This is as easy as adding a second series to the chart configuration.
+We duplicate the code above and add the boy’s data series:
 
 [source,java]
 ----
@@ -194,25 +240,30 @@ for(ShoeSizeInfo shoeSizeInfo : data.getBoysData()) {
 conf.addSeries(boys);
 ----
 
-Restart the server and refresh your browser. Now we have two data sets, shown with two different colors and shapes,
-and the identifiers for both are shown in the legend below the chart. Try clicking on one of the legend items – this
-toggles the visibility of that data series!
+Restart the server and refresh your browser.
+We now have two data sets, shown with two different colors and shapes.
+The identifiers for both are shown in the legend below the chart.
+Try clicking on any of the legend items – it toggles the visibility of the series!
 
-Finally change the title of the chart to something describing it, like “Shoe size per age for boys and girls”
+Finally, change the title of the chart to something that describes it, for example, "Shoe size per age for boys and girls".
+
+See also <<charts-basic-use.asciidoc#charts.basic-use.two-dimensional, "Displaying Multiple Series">>.
 
 [[configure.colors]]
 === Configuring the Colors
 
-Our chart looks OK, but it would be more intuitive to read if the data for girls were rendered using a color normally
-associated with girls, wouldn’t it? Let’s make the the girl data pink and the boy data light blue. The colors of the
-lines can be changed in two different ways:
+Our chart looks OK, but it would be more intuitive to read if the data for girls is rendered using a color normally associated with girls, would it not?
+Let us make the the girl data pink and the boy data light blue.
 
-1. By modifying the theme, which specifies the colors for different series. The first series will get the first color
-specified in the theme, the second will get the second color, and so on.
-2. By specifying plot options for a specific series and setting the color in the plot options.
+The colors of the lines can be changed in two ways:
 
-Here we’ll specify the color by configuring plot options for the series. Add the following to the end of the 'init'
-method:
+. By modifying the theme, which specifies the colors for different series.
+The first series will get the first color specified in the theme, the second will get the second color, and so on.
+
+. By specifying plot options for a specific series and setting the color in the plot options.
+
+In the following we specify the color by configuring plot options for the series.
+Add the following to the end of the [methodname]#init# method:
 
 [source,java]
 ----
@@ -225,21 +276,24 @@ boysOpts.setColor(SolidColor.BLUE);
 boys.setPlotOptions(boysOpts);
 ----
 
-Great! Restart the server and reload your browser to see the finished chart.
+Great!
+Restart the server and reload your browser to see the finished chart.
 
 [[combination.chart]]
 == Creating a Combination Chart
 
-Let’s do something more complex. The ChartData class also has historical weather data for Turku, Finland during most
-of the year 2013. We’ll plot the temperature as a line chart and add columns for the humidity to the same chart to
-create a combination chart.
+We can now go ahead doing something more complex.
+The [methodname]#ChartData# class also has historical weather data for Turku, Finland, during most of the year 2013.
+Let us plot the temperature as a line chart and add columns for humidity to the same chart to create a combination chart.
+
+For more details on combination charts, see <<charts-basic-use.asciidoc#charts.basic-use.mixed, "Mixed-Type Charts">>.
 
 [[combination.chart.preparations]]
 === Preparations
 
-To clean up our code a bit, let’s extract the creation of the shoe size chart to a method called
-'getShoeSizeChart(ChartsData)'. This way we can add the new weather chart without getting really messy code.
-Go ahead and extract the method, after which the 'init()' method should look something like this:
+To clean up our code a bit, let us extract the creation of the shoe size chart to a method called [methodname]#getShoeSizeChart(ChartsData)#.
+This way, we can add the new weather chart without getting really messy code.
+Go ahead and extract the method, after which the [methodname]#init()# method should look something as follows:
 
 [source,java]
 ----
@@ -253,14 +307,17 @@ protected void init(VaadinRequest request) {
 }
 ----
 
-Now create another new method, let’s call it 'getWeatherChart(ChartsData)' and call it in the same way as the
-'getShoeSizeChart' method in the 'init' method:
+Now create another new method, let us call it [methodname]#getWeatherChart(ChartsData)# and call it in the same way as the
+[methodname]#getShoeSizeChart()# method in the [methodname]#init()# method:
 
- layout.addComponent(getWeatherChart(data));
+[source,java]
+----
+layout.addComponent(getWeatherChart(data));
+----
 
-As the temperature data is supposed to be shown as a line chart, we can start in much the same way as the shoe size
-chart, with just a few differences. We’ll use a different kind of data series object, a ContainerDataSeries, and
-configure the X-axis to be a date/time axis. The result looks like this:
+As the temperature data is supposed to be shown as a line chart, we can start in much the same way as the shoe size chart, with just a few differences.
+This time, we use a different kind of data series object, a [classname]#ContainerDataSeries#, and configure the X-axis to be a date/time axis.
+The result looks as follows:
 
 [source,java]
 ----
@@ -289,23 +346,25 @@ private Chart getWeatherChart(ChartsData data) {
 }
 ----
 
-Let’s look a little closer at the new series type. The 'ContainerDataSeries' is bound to a normal 'Container' from
-Vaadin Framework. In this case we create a 'BeanItemContainer' that contains 'WeatherInfo' beans. We then create a
-'ContainerDataSeries' instance, set a name of the series and the IDs of the properties that hold the X and Y data.
-In this case, the property ID “date” will cause the value returned from a call to the 'WeatherInfo.getDate()' method
-to be used as the value of X for each data point. Similarly, the “'maxTemp'” property ID will cause the value returned
-by calling 'WeatherInfo.getMaxTemp()' to be used as the value of Y.
+Let us look a little closer at the new series type.
+The [classname]#ContainerDataSeries# is bound to a normal [interfacename]#Container# from Vaadin Framework.
+In this case, we create a [classname]#BeanItemContainer# that contains [classname]#WeatherInfo# beans.
+We then create a [classname]#ContainerDataSeries# instance, set the name of the series, and define the IDs of the properties that hold the X and Y data.
+In this case, the property ID [parameter]#date# will cause the value returned from a call to the [methodname]#getDate()# method in [classname]#WeatherInfo# to be used as the value of X for each data point.
+Similarly, the [parameter]#maxTemp# property ID will cause the value returned by calling [methodname]#getMaxTemp()# to be used as the value of Y.
 
-Configuring the X-axis should be fairly self-explanatory. It just sets the title and type of the axis.
+Configuring the X-axis should be fairly self-explanatory.
+It just sets the title and type of the axis.
 
-Restart the server and refresh your browser to see the new chart. Awesome! We’re well on our way.
+Restart the server and refresh your browser to see the new chart.
+Awesome! We are well on our way.
 
 [[add.columns]]
 === Adding Columns and a Second Y-axis
 
-Let’s begin by adding the humidity data to the chart. For this set of data, we want to show it using columns instead
-of lines, which can be done by configuring suitable plot options for the series. We’ll use the same 'Container' bound
-to a new 'ContainerDataSeries' to provide the data:
+Let us continue by adding the humidity data to the chart.
+For this set of data, we want to show it using columns instead of lines, which can be done by configuring suitable plot options for the series.
+We will use the same container bound to a new [classname]#ContainerDataSeries# to provide the data:
 
 [source,java]
 ----
@@ -319,14 +378,17 @@ humidity.setPlotOptions(new PlotOptionsColumn());
 conf.addSeries(humidity);
 ----
 
-You can restart and refresh to see the results. Now this doesn’t look too nice, as the columns completely overlap the
-temperature chart. Two things need to be done to make this chart better:
+You can restart and refresh to see the results.
+Now the chart does not look too nice, as the columns completely overlap the
+temperature chart.
 
-1. Change the order of the data series to make the temperature line render on top of the columns
-2. Add a second Y-axis for the humidity, as it is in percent, while the temperature is in celsius.
+Two things need to be done to make this chart better:
 
-The order of series is simple. Just switch the order of the 'conf.addSeries()' calls. Adding a second Y-axis that
-scales the humidity data in a meaningful way can be done like this:
+. Change the order of the data series to make the temperature line render on top of the columns.
+. Add a second Y-axis for the humidity, as it is in percent, while the temperature is in Celsius.
+
+Changing the order of the series is simple, just switch the order of the [methodname]#addSeries()# calls.
+Adding a second Y-axis that scales the humidity data in a meaningful way can be done as follows:
 
 [source,java]
 ----
@@ -338,9 +400,9 @@ conf.addyAxis(humidityYAxis);
 humidity.setyAxis(humidityYAxis);
 ----
 
-Here we create a new 'YAxis', configure the title, the minimum value and move it to the opposite side of the chart.
+Here we create a new [classname]#YAxis#, configure the title, set the minimum value, and move the axis to the opposite side of the chart.
 
-The final method should look something like this:
+The final method should look something as follows:
 
 [source,java]
 ----
@@ -386,9 +448,15 @@ private Chart getWeatherChart(ChartsData data) {
 }
 ----
 
-Restart, refresh and enjoy a better looking chart! It’s still kind of busy, but that’s because of the huge amount of
-data that’s packed into the chart. To make it less busy, we can filter the data in the container using plain Vaadin
-filtering API. Try something like this custom filter to show only the values for each Sunday:
+Restart, refresh, and enjoy a better looking chart!
+
+== Downsampling Data
+
+One issue remains.
+Drawing the chart is a bit slow, because of the huge amount of data packed into it.
+To make it more efficient, we need to downsample the data in some way.
+For very simple downsampling, we can use the Vaadin container filtering API.
+Try something like the following filter to show only the values for each Sunday:
 
 [source,java]
 ----
@@ -408,11 +476,12 @@ weatherContainer.addContainerFilter(new Filter() {
 });
 ----
 
-This will make the data more sparse by only taking one data point every seven days. Play around with the filter to
-see what you can accomplish!
+This will make the data more sparse by only taking one data point every seven days.
+Play around with the filter to see what you can accomplish!
 
 [[summary]]
 == Summary
 
-Congratulations! You now know the basics of how to get charts in your Vaadin application. For examples, please see
-the http://demo.vaadin.com/charts[on-line demo].
+Congratulations!
+You now know the basics of how to get charts in your Vaadin application.
+For further examples, please see the on-line demo at http://demo.vaadin.com/charts[demo.vaadin.com/charts].
