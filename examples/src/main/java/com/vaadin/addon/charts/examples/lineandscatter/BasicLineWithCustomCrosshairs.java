@@ -3,7 +3,10 @@ package com.vaadin.addon.charts.examples.lineandscatter;
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.Crosshair;
+import com.vaadin.addon.charts.model.DashStyle;
 import com.vaadin.addon.charts.model.ListSeries;
+import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
 
 /**
@@ -22,14 +25,23 @@ public class BasicLineWithCustomCrosshairs extends AbstractVaadinChartExample {
     @Override
     protected Component getChart() {
         Chart chart = new Chart();
-
+        chart.setId("chart");
         Configuration config = chart.getConfiguration();
         config.setTitle("Customized crosshairs");
 
-        // FIXME missing generated API
-        // config.getTooltip().setCrosshairs(
-        // new CrosshairStyle(10, SolidColor.BLACK, DashStyle.SOLID, 0),
-        // new CrosshairStyle(5, "#880000", DashStyle.DOT, 1));
+        Crosshair xCrossHair=new Crosshair();
+        xCrossHair.setColor(SolidColor.BLACK);
+        xCrossHair.setDashStyle(DashStyle.SOLID);
+        xCrossHair.setWidth(10);
+        xCrossHair.setZIndex(0);
+        config.getxAxis().setCrosshair(xCrossHair);
+
+        Crosshair yCrossHair=new Crosshair();
+        yCrossHair.setColor(new SolidColor("#880000"));
+        yCrossHair.setDashStyle(DashStyle.DOT);
+        yCrossHair.setWidth(5);
+        yCrossHair.setZIndex(1);
+        config.getyAxis().setCrosshair(yCrossHair);
 
         ListSeries ls = new ListSeries();
         ls.setName("Data");

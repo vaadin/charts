@@ -36,10 +36,6 @@ public class ExportingExample extends DualAxesLineAndColumn {
         // One can customize the filename
         exporting.setFilename("mychartfile.pdf");
 
-        // and choose whether to post raster images to exporting server
-        // FIXME missing generated API
-        // exporting.setEnableImages(true);
-
         // Exporting is by default done on highcharts public servers, but you
         // can also use your own server
         // exporting.setUrl("http://my.own.server.com");
@@ -49,7 +45,7 @@ public class ExportingExample extends DualAxesLineAndColumn {
 
         // Simpler boolean API can also be used to just toggle the service
         // on/off
-        // chart.getConfiguration().setExporting(true);
+        //chart.getConfiguration().setExporting(true);
 
         verticalLayout.addComponent(chart);
         return verticalLayout;
