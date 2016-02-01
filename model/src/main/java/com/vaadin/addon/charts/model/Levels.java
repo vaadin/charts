@@ -29,7 +29,7 @@ public class Levels extends AbstractConfigurationObject {
 	private DashStyle borderDashStyle;
 	private Number borderWidth;
 	private Color color;
-	private Object dataLabels;
+	private DataLabels dataLabels;
 	private TreeMapLayoutAlgorithm layoutAlgorithm;
 	private TreeMapLayoutStartingDirection layoutStartingDirection;
 	private Number level;
@@ -97,9 +97,9 @@ public class Levels extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setDataLabels(Object)
+	 * @see #setDataLabels(DataLabels)
 	 */
-	public Object getDataLabels() {
+	public DataLabels getDataLabels() {
 		return dataLabels;
 	}
 
@@ -111,7 +111,7 @@ public class Levels extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to: undefined
 	 */
-	public void setDataLabels(Object dataLabels) {
+	public void setDataLabels(DataLabels dataLabels) {
 		this.dataLabels = dataLabels;
 	}
 

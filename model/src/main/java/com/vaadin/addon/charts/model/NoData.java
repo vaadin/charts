@@ -27,26 +27,11 @@ import com.vaadin.addon.charts.model.style.Style;
 public class NoData extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
-	private Object attr;
 	private Position position;
 	private Style style;
 	private Boolean useHTML;
 
 	public NoData() {
-	}
-
-	/**
-	 * @see #setAttr(Object)
-	 */
-	public Object getAttr() {
-		return attr;
-	}
-
-	/**
-	 * An object of additional SVG attributes for the no-data label.
-	 */
-	public void setAttr(Object attr) {
-		this.attr = attr;
 	}
 
 	/**
