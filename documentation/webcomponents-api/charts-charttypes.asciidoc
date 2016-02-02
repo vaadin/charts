@@ -7,44 +7,48 @@ layout: page
 [[charts.charttypes]]
 = Chart Types
 
-Vaadin Charts comes with over a dozen different chart types. The type is specified when the chart element `v-<type>-chart`
-is added to a html page. The '<type>' should be replaced with the wanted type, for example `v-line-chart` would show
-a chart where data is presented by lines.
+Vaadin Charts comes with over a dozen different chart types.
+The type is specified when the chart element `v-<type>-chart` is added to the HTML page.
+The '<type>' should be replaced with the wanted type.
+For example, `v-line-chart` would show a chart where data is presented by lines.
 
-The supported chart types are listed here:
+The supported chart types are:
 
-[options="compact"]
-*   area
-*   arearange
-*   areaspline
-*   areasplinerange
-*   bar
-*   boxplot
-*   bubble
-*   column
-*   columnrange
-*   errorbar
-*   funnel
-*   gauge
-*   heatmap
-*   line
-*   pie
-*   polygon
-*   pyramid
-*   scatter
-*   solidgauge
-*   sparkline
-*   spline
-*   treemap
-*   waterfall
+|===
+|   <<charts.charttypes.area, `area`>> |   <<charts.charttypes.rangecharts, `arearange`>> |   <<charts.charttypes.area, `areaspline`>> |   <<charts.charttypes.rangecharts, `areasplinerange`>>
+|   <<charts.charttypes.columnbar, `bar`>>
+|   <<charts.charttypes.boxplot, `boxplot`>>
+|   <<charts.charttypes.bubble, `bubble`>>
+|   <<charts.charttypes.columnbar, `column`>>
+|   <<charts.charttypes.rangecharts, `columnrange`>>
+|   <<charts.charttypes.errorbar, `errorbar`>>
+|   <<charts.charttypes.funnel, `funnel`>>
+|   <<charts.charttypes.gauge, `gauge`>>
+|   <<charts.charttypes.heatmap, `heatmap`>>
+|   <<charts.charttypes.line, `line`>>
+|   <<charts.charttypes.pie, `pie`>>
+|   <<charts.charttypes.polygon, `polygon`>>
+|   <<charts.charttypes.funnel, `pyramid`>>
+|   <<charts.charttypes.scatter, `scatter`>>
+|   <<charts.charttypes.solidgauge, `solidgauge`>>
+|   `sparkline`
+|   <<charts.charttypes.line, `spline`>>
+|   <<charts.charttypes.treemap, `treemap`>>
+|   <<charts.charttypes.waterfall, `waterfall`>>
+|
+|===
+
+// TODO Polar is missing as it is not a chart type as such
 
 Each chart type has its specific plot options and supports its specific
-collection of chart features. They also have specific requirements for the data
-series. The type specific plot options can be specified under the `plot-options`
-element with a type specific `'type'` element, where the ''type'' should be replaced
-with the wanted type.
+collection of chart features.
+They also have specific requirements for the data series.
+The type-specific plot options can be specified under the `<plot-options>` element with a type specific `'type'` element, where the `type` should be replaced with the wanted type.
 
-Here is an example for a pie chart.
+In addition, the _polar_ option enables polar coordinate system for many of the chart types, enabling charts such as <<charts.charttypes.polar, "Polar, Wind Rose, and Spiderweb Charts">>.
+
+In the following, is an example of a pie chart:
+
 [source,html]
 ----
 <plot-options>
@@ -54,15 +58,13 @@ Here is an example for a pie chart.
 </plot-options>
 ----
 
-The basic chart types and their variants are covered in the following
-subsections.
+The basic chart types and their variants are covered in the following subsections.
 
 [[charts.charttypes.line]]
 == Line and Spline Charts
 
-Line charts connect the series of data points with lines. In the basic 'line'
-charts the lines are straight, while in 'spline' charts the lines are smooth
-polynomial interpolations between the data points.
+Line charts connect the series of data points with lines.
+In the basic `line` charts the lines are straight, while in `spline` charts, the lines are smooth polynomial interpolations between the data points.
 
 [source,html]
 ----
@@ -70,18 +72,13 @@ polynomial interpolations between the data points.
 <vaadin-spline-chart></vaadin-spline-chart>
 ----
 
-
 [[charts.charttypes.line.plotoptions]]
 === Plot Options
 
-The `color` property in the line plot options defines the line color,
-`line-width` the line width, and `dash-style` the dash
-pattern for the lines.
+The `color` property in the line plot options defines the line color, `line-width` the line width, and `dash-style` the dash pattern for the lines.
 
 See <<charts.charttypes.scatter>> for plot options regarding markers and other
 data point properties. The markers can also be configured for each data point.
-
-
 
 [[charts.charttypes.area]]
 == Area Charts
@@ -162,11 +159,9 @@ orientation of the axes was inverted.
 <vaadin-columnrange-chart></vaadin-columnrange-chart>
 ----
 
-Multiple data series, that is, two-dimensional data, are shown with thinner bars
-or columns grouped by their category, as described in
-<<dummy/../../../charts/webcomponents-api/charts-basic-use#charts.basic-use.two-dimensional,"Displaying
-Multiple Series">>. Enabling stacking with `stacking` element in plot
-options stacks the columns or bars of different series on top of each other.
+Multiple data series, that is, two-dimensional data, are shown with thinner bars or columns grouped by their category.
+See <<charts-basic-use#charts.basic-use.two-dimensional,"Displaying Multiple Series">>.
+Enabling stacking with a `stacking` element in the plot options stacks the columns or bars of different series on top of each other.
 
 You can also have column range charts that illustrate a range
 between a lower and an upper value, as described in
@@ -190,7 +185,7 @@ primary chart type, such as a scatter or column chart.
 
 [[figure.charts.charttypes.errorbar]]
 .Error Bars in a Scatter Chart
-image::img/charts-errorbar.png[]
+image::img/charts-errorbar.png[width="75%"]
 
 To display the error bars for data points, you need to have a separate data
 series for the low and high values. The type of the data series needs to be
@@ -261,7 +256,7 @@ Box plot chart is closely related to the error bar chart described in
 
 [[figure.charts.charttypes.boxplot]]
 .Box Plot Chart
-image::img/charts-boxplot.png[]
+image::img/charts-boxplot.png[width="60%"]
 
 The chart element for box plot charts is `vaadin-bloxplot-chart`. You
 normally have just one data series, so it is meaningful to disable the legend.
@@ -323,8 +318,7 @@ first quartile ('q1'), median ('median'), third quartile ('q3') and maximum ('hi
 </data-series>
 ----
 
-The data points can be also be defined as objects with the properties 'low', 'q1', 'medium',
-'q2' and 'high'.
+The data points can be also be defined as objects with the properties 'low', 'q1', 'medium', 'q2' and 'high'.
 
 [source,html]
 ----
@@ -352,7 +346,7 @@ freely given X and Y coordinates. Also Z coordinate can be given if
 
 [[figure.charts.charttypes.scatter]]
 .Scatter Chart
-image::img/charts-scatter.png[]
+image::img/charts-scatter.png[width="50%"]
 
 The chart element of a scatter chart is `vaadin-scatter-chart`.
 
@@ -478,7 +472,7 @@ symbol: "url(img/vaadin-logo.png)"
 
 [[figure.charts.charttypes.scatter.vaadin]]
 .Scatter with image markers
-image::img/charts-scatter-vaadin.png[]
+image::img/charts-scatter-vaadin.png[width="50%"]
 
 
 [[charts.charttypes.bubble]]
@@ -590,7 +584,7 @@ A ready pie chart is shown in <<figure.charts.charttypes.pie>>.
 
 [[figure.charts.charttypes.pie]]
 .Pie Chart
-image::img/charts-pie.png[]
+image::img/charts-pie.png[width="50%"]
 
 [[charts.charttypes.pie.plotoptions]]
 === Plot Options
@@ -694,9 +688,7 @@ The result is illustrated in <<figure.charts.charttypes.pie.donut>>.
 
 [[figure.charts.charttypes.pie.donut]]
 .Overlaid Pie and Donut Chart
-image::img/charts-donut.png[]
-
-
+image::img/charts-donut.png[width="60%"]
 
 [[charts.charttypes.gauge]]
 == Gauges
@@ -715,7 +707,7 @@ After the settings done in the subsequent sections, it will show as in
 
 [[figure.charts.charttypes.gauge]]
 .A Gauge
-image::img/charts-gauge.png[]
+image::img/charts-gauge.png[width="30%"]
 
 [[charts.charttypes.gauge.conf]]
 === Gauge Configuration
@@ -1141,7 +1133,7 @@ calculated automatically.
 
 [[figure.charts.charttypes.waterfall]]
 .Waterfall Charts
-image::img/charts-waterfall.png[]
+image::img/charts-waterfall.png[width="75%"]
 
 Waterfall charts are defined with an element `vaadin-waterfall-chart`.
 
@@ -1241,7 +1233,7 @@ value.
 
 [[figure.charts.charttypes.heatmap]]
 .Heat Maps
-image::img/charts-heatmap.png[]
+image::img/charts-heatmap.png[width="75%"]
 
 Heat maps are defined with a chart element `vaadin-heatmap-chart`.
 
