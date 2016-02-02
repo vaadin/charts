@@ -23,6 +23,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.vaadin.addon.charts.model.DataSeriesItem;
+import com.vaadin.addon.charts.model.OhlcItem;
 
 /**
  * Custom bean serializer for {@link DataSeriesItem}
@@ -46,6 +47,16 @@ public class DataSeriesItemBeanSerializer extends
             // write fields as per normal serialization rules
             serializer.serializeFields(bean, jgen, provider);
             jgen.writeEndObject();
+
+        } else if (bean instanceof OhlcItem) {
+            OhlcItem ohlcBean = (OhlcItem) bean;
+            ArrayNode jsonArray = JsonNodeFactory.instance.arrayNode();
+            jsonArray.addPOJO(ohlcBean.getX());
+            jsonArray.addPOJO(ohlcBean.getOpen());
+            jsonArray.addPOJO(ohlcBean.getHigh());
+            jsonArray.addPOJO(ohlcBean.getLow());
+            jsonArray.addPOJO(ohlcBean.getClose());
+            jgen.writeTree(jsonArray);
 
         } else {
             Number x = bean.getX();

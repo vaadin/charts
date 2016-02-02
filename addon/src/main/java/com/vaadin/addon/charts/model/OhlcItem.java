@@ -21,8 +21,8 @@ import java.util.Date;
 
 /**
  * A DataSeriesItem implementation suitable for <a
- * https://en.wikipedia.org/wiki/Open-high-low-close_chart">OHLC charts</a>. OHLC
- * charts visualize well financial data.
+ * https://en.wikipedia.org/wiki/Open-high-low-close_chart">OHLC charts</a>.
+ * OHLC charts visualize well financial data.
  * 
  * @see PlotOptionsOhlc
  * @see PlotOptionsCandlestick
@@ -38,7 +38,6 @@ public class OhlcItem extends DataSeriesItem {
      * Constructs an empty ohlc data item
      */
     public OhlcItem() {
-        makeCustomized();
     }
 
     /**
@@ -68,7 +67,8 @@ public class OhlcItem extends DataSeriesItem {
      * @param low
      * @param close
      */
-    public OhlcItem(Date date, Number open, Number high, Number low, Number close) {
+    public OhlcItem(Date date, Number open, Number high, Number low,
+            Number close) {
         this();
         setX(date);
         setOpen(open);

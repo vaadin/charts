@@ -9,7 +9,6 @@ import com.vaadin.addon.charts.model.DataGrouping;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.OhlcItem;
 import com.vaadin.addon.charts.model.PlotOptionsOhlc;
-import com.vaadin.addon.charts.model.PlotOptionsSeries;
 import com.vaadin.addon.charts.model.RangeSelector;
 import com.vaadin.addon.charts.model.TimeUnit;
 import com.vaadin.addon.charts.model.TimeUnitMultiples;
@@ -49,10 +48,6 @@ public class Ohlc extends AbstractVaadinChartExample {
             dataSeries.add(item);
         }
         configuration.setSeries(dataSeries);
-
-        PlotOptionsSeries plotOptionsSeries = new PlotOptionsSeries();
-        plotOptionsSeries.setTurboThreshold(0);
-        configuration.setPlotOptions(plotOptionsSeries);
 
         RangeSelector rangeSelector = new RangeSelector();
         rangeSelector.setSelected(1);

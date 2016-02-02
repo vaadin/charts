@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
+import com.vaadin.addon.charts.model.OhlcItem;
 import com.vaadin.addon.charts.model.serializers.DataSeriesItemBeanSerializer;
 
 /**
@@ -16,7 +17,7 @@ import com.vaadin.addon.charts.model.serializers.DataSeriesItemBeanSerializer;
 public class DataSeriesItemJSONSerializationTest {
 
     @Test
-    public void toString_cursorIsSet_ItemSerializedWithCursor() {
+    public void toJSON_cursorIsSet_ItemSerializedWithCursor() {
         DataSeriesItem item = new DataSeriesItem();
         item.setCursor("progress");
 
@@ -29,7 +30,7 @@ public class DataSeriesItemJSONSerializationTest {
     }
 
     @Test
-    public void toString_xIsSet_ItemSerializedWithXAndNulls() {
+    public void toJSON_xIsSet_ItemSerializedWithXAndNulls() {
         DataSeriesItem item = new DataSeriesItem();
         item.setX(2);
 
@@ -42,7 +43,7 @@ public class DataSeriesItemJSONSerializationTest {
     }
 
     @Test
-    public void toString_xAndyAreSet_ItemSerializedWithXYAndNull() {
+    public void toJSON_xAndyAreSet_ItemSerializedWithXYAndNull() {
         DataSeriesItem item = new DataSeriesItem();
         item.setX(2);
         item.setY(3);
@@ -56,7 +57,7 @@ public class DataSeriesItemJSONSerializationTest {
     }
 
     @Test
-    public void toString_xAndLowAndHighAreSet_ItemSerializedWithXAndLowAndHigh() {
+    public void toJSON_xAndLowAndHighAreSet_ItemSerializedWithXAndLowAndHigh() {
         DataSeriesItem item = new DataSeriesItem();
         item.setX(2);
         item.setLow(3);
@@ -71,7 +72,7 @@ public class DataSeriesItemJSONSerializationTest {
     }
 
     @Test
-    public void toString_yIsSet_ItemSerializedWithY() {
+    public void toJSON_yIsSet_ItemSerializedWithY() {
         DataSeriesItem item = new DataSeriesItem();
         item.setY(2);
 
@@ -84,7 +85,7 @@ public class DataSeriesItemJSONSerializationTest {
     }
 
     @Test
-    public void toString_lowAndHighSet_ItemSerializedAsArrayWithLowAndHigh() {
+    public void toJSON_lowAndHighSet_ItemSerializedAsArrayWithLowAndHigh() {
         DataSeriesItem item = new DataSeriesItem();
         item.setLow(2);
         item.setHigh(3);
@@ -94,6 +95,30 @@ public class DataSeriesItemJSONSerializationTest {
         series.add(item);
 
         String expected = "{\"data\":[[2,3]]}";
+        assertEquals(expected, toJSON(series));
+    }
+
+    @Test
+    public void toJSON_OhlcItem_ItemSerializedAsArray() {
+        OhlcItem item = new OhlcItem(1, 2, 3, 4, 5);
+
+        DataSeries series = new DataSeries();
+
+        series.add(item);
+
+        String expected = "{\"data\":[[1,2,3,4,5]]}";
+        assertEquals(expected, toJSON(series));
+    }
+
+    @Test
+    public void toJSON_OhlcItemCustomized_ItemSerializedAsArray() {
+        OhlcItem item = new OhlcItem(1, 2, 3, 4, 5);
+        item.setCursor("move");
+        DataSeries series = new DataSeries();
+
+        series.add(item);
+
+        String expected = "{\"data\":[{\"x\":1,\"low\":4,\"high\":3,\"cursor\":\"move\",\"open\":2,\"close\":5}]}";
         assertEquals(expected, toJSON(series));
     }
 }
