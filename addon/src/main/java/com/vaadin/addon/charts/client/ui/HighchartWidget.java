@@ -23,6 +23,7 @@ import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.user.client.ui.Widget;
 import com.vaadin.addon.charts.client.HighchartsScriptLoader;
+import com.vaadin.client.BrowserInfo;
 
 public class HighchartWidget extends Widget {
 
@@ -41,6 +42,16 @@ public class HighchartWidget extends Widget {
             old.destroy();
         }
         jsOverlay = config.renderTo(getElement(), timeline);
+        //Fix for problem with rendering in IE8
+        if (BrowserInfo.get().isIE8()) {
+            //Call update size
+            updateSize();
+            //Setting title will trigger title redraw with proper size
+            updateTitle();
+            //Need to redraw chart again, because some parts of chart are broken
+            //after setting titleg, calling chart.redraw does nothing
+            updateSize();
+        }
     }
 
     public void addPoint(String pointJson, int seriesIndex, boolean shift) {
@@ -48,7 +59,7 @@ public class HighchartWidget extends Widget {
     }
 
     public void updatePointValue(int seriesIndex, int pointIndex,
-            double newValue) {
+                                 double newValue) {
         HighchartSeries highchartSeries = jsOverlay.getSeries()
                 .get(seriesIndex);
         HighchartPoint highchartPoint = highchartSeries.getData().get(
@@ -83,26 +94,26 @@ public class HighchartWidget extends Widget {
     }
 
     public void updatexAxis(int axisIndex, double minimum, double maximum,
-            boolean redraw, boolean animate) {
+                            boolean redraw, boolean animate) {
         JsArray<HighchartAxis> axes = jsOverlay.getxAxes();
         axes.get(axisIndex).setExtremes(minimum, maximum, redraw, animate);
 
     }
 
     public void updateyAxis(int axisIndex, double minimum, double maximum,
-            boolean redraw, boolean animate) {
+                            boolean redraw, boolean animate) {
         JsArray<HighchartAxis> axes = jsOverlay.getyAxes();
         axes.get(axisIndex).setExtremes(minimum, maximum, redraw, animate);
     }
 
     public void updatezAxis(int axisIndex, double minimum, double maximum,
-            boolean redraw, boolean animate) {
+                            boolean redraw, boolean animate) {
         JsArray<HighchartAxis> axes = jsOverlay.getzAxes();
         axes.get(axisIndex).setExtremes(minimum, maximum, redraw, animate);
     }
 
     public void updateColorAxis(int axisIndex, double minimum, double maximum,
-            boolean redraw, boolean animate) {
+                                boolean redraw, boolean animate) {
         JsArray<HighchartAxis> axes = jsOverlay.getColorAxes();
         axes.get(axisIndex).setExtremes(minimum, maximum, redraw, animate);
     }
@@ -112,12 +123,31 @@ public class HighchartWidget extends Widget {
     }
 
     public void slicePoint(int seriesIndex, int pointIndex, boolean sliced,
-            boolean redraw, boolean animation) {
+                           boolean redraw, boolean animation) {
         HighchartSeries highchartSeries = jsOverlay.getSeries()
                 .get(seriesIndex);
         HighchartPoint highchartPoint = highchartSeries.getData().get(
                 pointIndex);
         highchartPoint.slice(sliced, redraw, animation);
+    }
+
+    /**
+     * This method is for workaround for IE8 bug, with wrong title width calculation.
+     * Setting the title causes to recalculate the width of a title properly.
+     */
+    private void updateTitle() {
+        if (BrowserInfo.get().isIE()) {
+            String title = jsOverlay.getTitle();
+            if (title == null) {
+                title = "";
+            }
+            String subTitle = jsOverlay.getSubTitle();
+            if (subTitle == null) {
+                subTitle = "";
+            }
+            jsOverlay.setTitle(title, subTitle);
+
+        }
     }
 
     public void updateSize() {

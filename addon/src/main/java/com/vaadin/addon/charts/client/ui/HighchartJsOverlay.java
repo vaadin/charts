@@ -94,6 +94,25 @@ public class HighchartJsOverlay extends JavaScriptObject {
         }
     }-*/;
 
+    public final native String getSubTitle()
+    /*-{
+        if(this.subtitle==null) {
+            return "";
+        }
+        return this.subtitle.textStr;
+    }-*/;
+    public final native String getTitle()
+    /*-{
+        if(this.title==null) {
+            return "";
+        }
+        return this.title.textStr;
+    }-*/;
+
+    public final native void setTitle(String title,String subtitle)
+    /*-{
+        this.setTitle(title,subtitle,true);
+    }-*/;
     public final native void destroy()
     /*-{
         this.destroy();

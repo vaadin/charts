@@ -1,11 +1,11 @@
 package com.vaadin.addon.charts.testbenchtests;
 
-import java.io.IOException;
-
+import com.vaadin.testbench.parallel.BrowserUtil;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+import java.io.IOException;
 
 public abstract class AbstractSimpleScreenShotTestBenchTest extends
         AbstractParallelTest {
@@ -21,11 +21,22 @@ public abstract class AbstractSimpleScreenShotTestBenchTest extends
         waitUntilChartRendered();
         testCustomStuff();
         getTestBenchCommandExecutor().waitForVaadin();
-
+        addDelayForIE8();
         captureAndCompare();
 
     }
 
+    private void addDelayForIE8() {
+        DesiredCapabilities capabilities = getDesiredCapabilities();
+
+        if(BrowserUtil.isIE8(capabilities)) {
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
     /**
      * This is executed before taking the screenshot
      */
