@@ -26,7 +26,7 @@ import java.util.Arrays;
  * href="#yAxis.maxColor">maxColor</a> and <a href="#yAxis.stops">stops</a>, to
  * control the color of the gauge itself.
  */
-public class PlotOptionsSolidGauge extends AbstractPlotOptions {
+public class PlotOptionsSolidgauge extends AbstractPlotOptions {
 
 	private static final long serialVersionUID = 1L;
 	private Boolean animation;
@@ -48,7 +48,7 @@ public class PlotOptionsSolidGauge extends AbstractPlotOptions {
 	private String zoneAxis;
 	private ArrayList<Zones> zones;
 
-	public PlotOptionsSolidGauge() {
+	public PlotOptionsSolidgauge() {
 	}
 
 	@Override

@@ -60,6 +60,7 @@ public class TListUi extends UI {
         listTestClasses(testClassess, "librarydata");
         listTestClasses(testClassess, "timeline");
         listTestClasses(testClassess, "threed");
+        listTestClasses(testClassess, "declarative");
 
         Table table = new Table("Test cases", testClassess);
         table.addGeneratedColumn("name", new Table.ColumnGenerator() {

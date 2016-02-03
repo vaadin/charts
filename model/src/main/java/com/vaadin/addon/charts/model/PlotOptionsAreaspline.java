@@ -22,21 +22,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import com.vaadin.addon.charts.util.Util;
-/**
- * The area range is a cartesian series type with higher and lower Y values
- * along an X axis. Requires <code>highcharts-more.js</code>.
- */
-public class PlotOptionsAreaRange extends AbstractPlotOptions {
+public class PlotOptionsAreaspline extends AbstractPlotOptions {
 
 	private static final long serialVersionUID = 1L;
 	private Boolean allowPointSelect;
 	private Boolean animation;
 	private Color color;
+	private Boolean connectEnds;
 	private Boolean connectNulls;
 	private Number cropThreshold;
 	private Cursor cursor;
 	private DashStyle dashStyle;
-	private DataLabelsRange dataLabels;
+	private DataLabels dataLabels;
 	private Boolean enableMouseTracking;
 	private Color fillColor;
 	private Number fillOpacity;
@@ -46,6 +43,7 @@ public class PlotOptionsAreaRange extends AbstractPlotOptions {
 	private Number lineWidth;
 	private String linecap;
 	private String linkedTo;
+	private Marker marker;
 	private Color negativeColor;
 	private Color negativeFillColor;
 	private Number pointInterval;
@@ -56,9 +54,12 @@ public class PlotOptionsAreaRange extends AbstractPlotOptions {
 	private Boolean shadow;
 	private Boolean showCheckbox;
 	private Boolean showInLegend;
+	private Boolean softThreshold;
+	private Stacking stacking;
 	private States states;
 	private StepType step;
 	private Boolean stickyTracking;
+	private Number threshold;
 	private SeriesTooltip tooltip;
 	private Boolean trackByArea;
 	private Number turboThreshold;
@@ -70,15 +71,13 @@ public class PlotOptionsAreaRange extends AbstractPlotOptions {
 	private Number gapSize;
 	private Number legendIndex;
 	private Number pointRange;
-	private Stacking stacking;
-	private Number threshold;
 
-	public PlotOptionsAreaRange() {
+	public PlotOptionsAreaspline() {
 	}
 
 	@Override
 	public ChartType getChartType() {
-		return ChartType.AREARANGE;
+		return ChartType.AREASPLINE;
 	}
 
 	/**
@@ -149,6 +148,23 @@ public class PlotOptionsAreaRange extends AbstractPlotOptions {
 	 */
 	public void setColor(Color color) {
 		this.color = color;
+	}
+
+	/**
+	 * @see #setConnectEnds(Boolean)
+	 */
+	public Boolean getConnectEnds() {
+		return connectEnds;
+	}
+
+	/**
+	 * Polar charts only. Whether to connect the ends of a line series plot
+	 * across the extremes.
+	 * <p>
+	 * Defaults to: true
+	 */
+	public void setConnectEnds(Boolean connectEnds) {
+		this.connectEnds = connectEnds;
 	}
 
 	/**
@@ -239,22 +255,16 @@ public class PlotOptionsAreaRange extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setDataLabels(DataLabelsRange)
+	 * @see #setDataLabels(DataLabels)
 	 */
-	public DataLabelsRange getDataLabels() {
+	public DataLabels getDataLabels() {
 		return dataLabels;
 	}
 
 	/**
-	 * Extended data labels for range series types. Range series data labels
-	 * have no <code>x</code> and <code>y</code> options. Instead, they have
-	 * <code>xLow</code>, <code>xHigh</code>, <code>yLow</code> and
-	 * <code>yHigh</code> options to allow the higher and lower data label sets
-	 * individually.
-	 * <p>
-	 * Defaults to:
+	 * 
 	 */
-	public void setDataLabels(DataLabelsRange dataLabels) {
+	public void setDataLabels(DataLabels dataLabels) {
 		this.dataLabels = dataLabels;
 	}
 
@@ -374,9 +384,9 @@ public class PlotOptionsAreaRange extends AbstractPlotOptions {
 	}
 
 	/**
-	 * Pixel width of the arearange graph line.
+	 * Pixel with of the graph line.
 	 * <p>
-	 * Defaults to: 1
+	 * Defaults to: 2
 	 */
 	public void setLineWidth(Number lineWidth) {
 		this.lineWidth = lineWidth;
@@ -415,6 +425,20 @@ public class PlotOptionsAreaRange extends AbstractPlotOptions {
 	 */
 	public void setLinkedTo(String linkedTo) {
 		this.linkedTo = linkedTo;
+	}
+
+	/**
+	 * @see #setMarker(Marker)
+	 */
+	public Marker getMarker() {
+		return marker;
+	}
+
+	/**
+	 * 
+	 */
+	public void setMarker(Marker marker) {
+		this.marker = marker;
 	}
 
 	/**
@@ -623,6 +647,48 @@ public class PlotOptionsAreaRange extends AbstractPlotOptions {
 	}
 
 	/**
+	 * @see #setSoftThreshold(Boolean)
+	 */
+	public Boolean getSoftThreshold() {
+		return softThreshold;
+	}
+
+	/**
+	 * <p>
+	 * When this is true, the series will not cause the Y axis to cross the zero
+	 * plane (or <a href="#plotOptions.series.threshold">threshold</a> option)
+	 * unless the data actually crosses the plane.
+	 * </p>
+	 * 
+	 * <p>
+	 * For example, if <code>softThreshold</code> is <code>false</code>, a
+	 * series of 0, 1, 2, 3 will make the Y axis show negative values according
+	 * to the <code>minPadding</code> option. If <code>softThreshold</code> is
+	 * <code>true</code>, the Y axis starts at 0.
+	 * </p>
+	 * <p>
+	 * Defaults to: false
+	 */
+	public void setSoftThreshold(Boolean softThreshold) {
+		this.softThreshold = softThreshold;
+	}
+
+	/**
+	 * @see #setStacking(Stacking)
+	 */
+	public Stacking getStacking() {
+		return stacking;
+	}
+
+	/**
+	 * Whether to stack the values of each series on top of each other. Possible
+	 * values are null to disable, "normal" to stack by value or "percent".
+	 */
+	public void setStacking(Stacking stacking) {
+		this.stacking = stacking;
+	}
+
+	/**
 	 * @see #setStates(States)
 	 */
 	public States getStates() {
@@ -679,6 +745,25 @@ public class PlotOptionsAreaRange extends AbstractPlotOptions {
 	}
 
 	/**
+	 * @see #setThreshold(Number)
+	 */
+	public Number getThreshold() {
+		return threshold;
+	}
+
+	/**
+	 * The Y axis value to serve as the base for the area, for distinguishing
+	 * between values above and below a threshold. If <code>null</code>, the
+	 * area behaves like a line series with fill between the graph and the Y
+	 * axis minimum.
+	 * <p>
+	 * Defaults to: 0
+	 */
+	public void setThreshold(Number threshold) {
+		this.threshold = threshold;
+	}
+
+	/**
 	 * @see #setTooltip(SeriesTooltip)
 	 */
 	public SeriesTooltip getTooltip() {
@@ -705,7 +790,7 @@ public class PlotOptionsAreaRange extends AbstractPlotOptions {
 	 * Whether the whole area or just the line should respond to mouseover
 	 * tooltips and other mouse or touch events.
 	 * <p>
-	 * Defaults to: true
+	 * Defaults to: false
 	 */
 	public void setTrackByArea(Boolean trackByArea) {
 		this.trackByArea = trackByArea;
@@ -880,38 +965,7 @@ public class PlotOptionsAreaRange extends AbstractPlotOptions {
 		this.pointRange = pointRange;
 	}
 
-	/**
-	 * @see #setStacking(Stacking)
-	 */
-	public Stacking getStacking() {
-		return stacking;
-	}
-
-	/**
-	 * Whether to stack the values of each series on top of each other. Possible
-	 * values are null to disable, "normal" to stack by value or "percent".
-	 * <p>
-	 * Defaults to: null
-	 */
-	public void setStacking(Stacking stacking) {
-		this.stacking = stacking;
-	}
-
 	public void setPointStart(Date date) {
 		this.pointStart = Util.toHighchartsTS(date);
-	}
-
-	/**
-	 * @see #setThreshold(Number)
-	 */
-	public Number getThreshold() {
-		return threshold;
-	}
-
-	/**
-	 * 
-	 */
-	public void setThreshold(Number threshold) {
-		this.threshold = threshold;
 	}
 }

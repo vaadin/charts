@@ -26,7 +26,7 @@ import com.vaadin.addon.charts.util.Util;
  * The area spline range is a cartesian series type with higher and lower Y
  * values along an X axis. Requires <code>highcharts-more.js</code>.
  */
-public class PlotOptionsAreaSplineRange extends AbstractPlotOptions {
+public class PlotOptionsAreasplinerange extends AbstractPlotOptions {
 
 	private static final long serialVersionUID = 1L;
 	private Boolean allowPointSelect;
@@ -72,7 +72,7 @@ public class PlotOptionsAreaSplineRange extends AbstractPlotOptions {
 	private Number pointRange;
 	private Stacking stacking;
 
-	public PlotOptionsAreaSplineRange() {
+	public PlotOptionsAreasplinerange() {
 	}
 
 	@Override

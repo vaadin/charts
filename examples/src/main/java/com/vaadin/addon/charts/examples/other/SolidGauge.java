@@ -10,7 +10,7 @@ import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.Pane;
-import com.vaadin.addon.charts.model.PlotOptionsSolidGauge;
+import com.vaadin.addon.charts.model.PlotOptionsSolidgauge;
 import com.vaadin.addon.charts.model.SeriesTooltip;
 import com.vaadin.addon.charts.model.Stop;
 import com.vaadin.addon.charts.model.YAxis;
@@ -69,7 +69,7 @@ public class SolidGauge extends AbstractVaadinChartExample {
         Stop stop3 = new Stop(0.9f, SolidColor.RED);
         yaxis.setStops(new Stop[] { stop1, stop2, stop3 });
 
-        PlotOptionsSolidGauge plotOptions = new PlotOptionsSolidGauge();
+        PlotOptionsSolidgauge plotOptions = new PlotOptionsSolidgauge();
         plotOptions.setTooltip(new SeriesTooltip());
         plotOptions.getTooltip().setValueSuffix(" km/h");
         DataLabels labels = new DataLabels();

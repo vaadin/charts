@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<body>
+<vaadin-vertical-layout size-full>
+    <vaadin-treemap-chart _id="mychart" timeline="false" :expand>
+        <title>Fruit consumption</title>
+        <plot-options>
+            <treemap layout-algorithm="stripes" alternate-starting-direction="true">
+                <levels level="1" layout-algorithm="sliceAndDice">
+                    <data-labels enabled="true" align="left" vertical-align="top">
+                        <style font-size="15px" font-weight="bold"></style>
+                    </data-labels>
+                </levels>
+            </treemap>
+        </plot-options>
+    </vaadin-treemap-chart>
+</vaadin-vertical-layout>
+</body>
+</html>

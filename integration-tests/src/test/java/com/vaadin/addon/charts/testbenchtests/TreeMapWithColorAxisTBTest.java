@@ -1,13 +1,13 @@
 package com.vaadin.addon.charts.testbenchtests;
 
-import com.vaadin.addon.charts.examples.other.TreeMapWithColorAxis;
+import com.vaadin.addon.charts.examples.other.TreemapWithColorAxis;
 
 public class TreeMapWithColorAxisTBTest extends
         AbstractSimpleScreenShotTestBenchTest {
 
     @Override
     protected String getTestViewName() {
-        return TreeMapWithColorAxis.class.getSimpleName();
+        return TreemapWithColorAxis.class.getSimpleName();
     }
 
     @Override

@@ -8,7 +8,7 @@ import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.HeatSeries;
 import com.vaadin.addon.charts.model.HorizontalAlign;
 import com.vaadin.addon.charts.model.LayoutDirection;
-import com.vaadin.addon.charts.model.PlotOptionsHeatMap;
+import com.vaadin.addon.charts.model.PlotOptionsHeatmap;
 import com.vaadin.addon.charts.model.SeriesTooltip;
 import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.style.SolidColor;
@@ -55,15 +55,15 @@ public class HeatMapExample extends AbstractVaadinChartExample {
 
         HeatSeries rs = new HeatSeries("Sales per employee", getRawData());
 
-        PlotOptionsHeatMap plotOptionsHeatMap = new PlotOptionsHeatMap();
-        plotOptionsHeatMap.setDataLabels(new DataLabels());
-        plotOptionsHeatMap.getDataLabels().setEnabled(true);
+        PlotOptionsHeatmap plotOptionsHeatmap = new PlotOptionsHeatmap();
+        plotOptionsHeatmap.setDataLabels(new DataLabels());
+        plotOptionsHeatmap.getDataLabels().setEnabled(true);
 
         SeriesTooltip tooltip = new SeriesTooltip();
         tooltip.setHeaderFormat("{series.name}<br/>");
         tooltip.setPointFormat("Amount: <b>{point.value}</b> ");
-        plotOptionsHeatMap.setTooltip(tooltip);
-        config.setPlotOptions(plotOptionsHeatMap);
+        plotOptionsHeatmap.setTooltip(tooltip);
+        config.setPlotOptions(plotOptionsHeatmap);
 
         config.setSeries(rs);
 

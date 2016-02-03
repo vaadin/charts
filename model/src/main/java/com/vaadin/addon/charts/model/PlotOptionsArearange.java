@@ -23,65 +23,62 @@ import java.util.Arrays;
 import java.util.Date;
 import com.vaadin.addon.charts.util.Util;
 /**
- * The column range is a cartesian series type with higher and lower Y values
- * along an X axis. Requires <code>highcharts-more.js</code>. To display
- * horizontal bars, set <a href="#chart.inverted">chart.inverted</a> to
- * <code>true</code>.
+ * The area range is a cartesian series type with higher and lower Y values
+ * along an X axis. Requires <code>highcharts-more.js</code>.
  */
-public class PlotOptionsColumnRange extends AbstractPlotOptions {
+public class PlotOptionsArearange extends AbstractPlotOptions {
 
 	private static final long serialVersionUID = 1L;
 	private Boolean allowPointSelect;
 	private Boolean animation;
-	private Color borderColor;
-	private Number borderRadius;
-	private Number borderWidth;
 	private Color color;
-	private Boolean colorByPoint;
-	private Color[] colors;
+	private Boolean connectNulls;
 	private Number cropThreshold;
 	private Cursor cursor;
+	private DashStyle dashStyle;
 	private DataLabelsRange dataLabels;
-	private Number depth;
-	private Color edgeColor;
-	private Number edgeWidth;
 	private Boolean enableMouseTracking;
+	private Color fillColor;
+	private Number fillOpacity;
 	private Boolean getExtremesFromAll;
-	private Number groupPadding;
-	private Number groupZPadding;
-	private Boolean grouping;
 	private ArrayList<String> keys;
+	private Color lineColor;
+	private Number lineWidth;
+	private String linecap;
 	private String linkedTo;
-	private Number maxPointWidth;
-	private Number minPointLength;
+	private Color negativeColor;
+	private Color negativeFillColor;
 	private Number pointInterval;
 	private IntervalUnit pointIntervalUnit;
-	private Number pointPadding;
 	private PointPlacement pointPlacement;
-	private Number pointRange;
 	private Number pointStart;
-	private Number pointWidth;
 	private Boolean selected;
 	private Boolean shadow;
 	private Boolean showCheckbox;
 	private Boolean showInLegend;
 	private States states;
+	private StepType step;
 	private Boolean stickyTracking;
 	private SeriesTooltip tooltip;
+	private Boolean trackByArea;
 	private Number turboThreshold;
 	private Boolean visible;
 	private String zoneAxis;
 	private ArrayList<Zones> zones;
 	private Compare compare;
 	private DataGrouping dataGrouping;
+	private Number gapSize;
 	private Number legendIndex;
+	private Number pointRange;
+	private Stacking stacking;
+	private Number threshold;
 
-	public PlotOptionsColumnRange() {
+	public PlotOptionsArearange() {
 	}
 
 	@Override
 	public ChartType getChartType() {
-		return ChartType.COLUMNRANGE;
+		return ChartType.AREARANGE;
 	}
 
 	/**
@@ -138,54 +135,6 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setBorderColor(Color)
-	 */
-	public Color getBorderColor() {
-		return borderColor;
-	}
-
-	/**
-	 * The color of the border surrounding each column or bar.
-	 * <p>
-	 * Defaults to: #FFFFFF
-	 */
-	public void setBorderColor(Color borderColor) {
-		this.borderColor = borderColor;
-	}
-
-	/**
-	 * @see #setBorderRadius(Number)
-	 */
-	public Number getBorderRadius() {
-		return borderRadius;
-	}
-
-	/**
-	 * The corner radius of the border surrounding each column or bar.
-	 * <p>
-	 * Defaults to: 0
-	 */
-	public void setBorderRadius(Number borderRadius) {
-		this.borderRadius = borderRadius;
-	}
-
-	/**
-	 * @see #setBorderWidth(Number)
-	 */
-	public Number getBorderWidth() {
-		return borderWidth;
-	}
-
-	/**
-	 * The width of the border surrounding each column or bar.
-	 * <p>
-	 * Defaults to: 1
-	 */
-	public void setBorderWidth(Number borderWidth) {
-		this.borderWidth = borderWidth;
-	}
-
-	/**
 	 * @see #setColor(Color)
 	 */
 	public Color getColor() {
@@ -203,39 +152,19 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setColorByPoint(Boolean)
+	 * @see #setConnectNulls(Boolean)
 	 */
-	public Boolean getColorByPoint() {
-		return colorByPoint;
+	public Boolean getConnectNulls() {
+		return connectNulls;
 	}
 
 	/**
-	 * When using automatic point colors pulled from the
-	 * <code>options.colors</code> collection, this option determines whether
-	 * the chart should receive one color per series or one color per point.
+	 * Whether to connect a graph line across null points.
 	 * <p>
 	 * Defaults to: false
 	 */
-	public void setColorByPoint(Boolean colorByPoint) {
-		this.colorByPoint = colorByPoint;
-	}
-
-	/**
-	 * @see #setColors(Color[])
-	 */
-	public Color[] getColors() {
-		return colors;
-	}
-
-	/**
-	 * A series specific or series type specific color set to apply instead of
-	 * the global <a href="#colors">colors</a> when <a
-	 * href="#plotOptions.column.colorByPoint">colorByPoint</a> is true.
-	 * <p>
-	 * Defaults to:
-	 */
-	public void setColors(Color[] colors) {
-		this.colors = colors;
+	public void setConnectNulls(Boolean connectNulls) {
+		this.connectNulls = connectNulls;
 	}
 
 	/**
@@ -255,7 +184,7 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	 * The advantage of cropping away invisible points is to increase
 	 * performance on large series. .
 	 * <p>
-	 * Defaults to: 50
+	 * Defaults to: 300
 	 */
 	public void setCropThreshold(Number cropThreshold) {
 		this.cropThreshold = cropThreshold;
@@ -275,6 +204,38 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	 */
 	public void setCursor(Cursor cursor) {
 		this.cursor = cursor;
+	}
+
+	/**
+	 * @see #setDashStyle(DashStyle)
+	 */
+	public DashStyle getDashStyle() {
+		return dashStyle;
+	}
+
+	/**
+	 * A name for the dash style to use for the graph. Applies only to series
+	 * type having a graph, like <code>line</code>, <code>spline</code>,
+	 * <code>area</code> and <code>scatter</code> in case it has a
+	 * <code>lineWidth</code>. The value for the <code>dashStyle</code> include:
+	 * <ul>
+	 * <li>Solid</li>
+	 * <li>ShortDash</li>
+	 * <li>ShortDot</li>
+	 * <li>ShortDashDot</li>
+	 * <li>ShortDashDotDot</li>
+	 * <li>Dot</li>
+	 * <li>Dash</li>
+	 * <li>LongDash</li>
+	 * <li>DashDot</li>
+	 * <li>LongDashDot</li>
+	 * <li>LongDashDotDot</li>
+	 * </ul>
+	 * <p>
+	 * Defaults to: Solid
+	 */
+	public void setDashStyle(DashStyle dashStyle) {
+		this.dashStyle = dashStyle;
 	}
 
 	/**
@@ -298,57 +259,6 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setDepth(Number)
-	 */
-	public Number getDepth() {
-		return depth;
-	}
-
-	/**
-	 * Depth of the columns in a 3D column chart. Requires
-	 * <code>highcharts-3d.js</code>.
-	 * <p>
-	 * Defaults to: 25
-	 */
-	public void setDepth(Number depth) {
-		this.depth = depth;
-	}
-
-	/**
-	 * @see #setEdgeColor(Color)
-	 */
-	public Color getEdgeColor() {
-		return edgeColor;
-	}
-
-	/**
-	 * 3D columns only. The color of the edges. Similar to
-	 * <code>borderColor</code>, except it defaults to the same color as the
-	 * column.
-	 * <p>
-	 * Defaults to:
-	 */
-	public void setEdgeColor(Color edgeColor) {
-		this.edgeColor = edgeColor;
-	}
-
-	/**
-	 * @see #setEdgeWidth(Number)
-	 */
-	public Number getEdgeWidth() {
-		return edgeWidth;
-	}
-
-	/**
-	 * 3D columns only. The width of the colored edges.
-	 * <p>
-	 * Defaults to: 1
-	 */
-	public void setEdgeWidth(Number edgeWidth) {
-		this.edgeWidth = edgeWidth;
-	}
-
-	/**
 	 * @see #setEnableMouseTracking(Boolean)
 	 */
 	public Boolean getEnableMouseTracking() {
@@ -367,6 +277,40 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	}
 
 	/**
+	 * @see #setFillColor(Color)
+	 */
+	public Color getFillColor() {
+		return fillColor;
+	}
+
+	/**
+	 * Fill color or gradient for the area. When <code>null</code>, the series'
+	 * <code>color</code> is used with the series' <code>fillOpacity</code>.
+	 */
+	public void setFillColor(Color fillColor) {
+		this.fillColor = fillColor;
+	}
+
+	/**
+	 * @see #setFillOpacity(Number)
+	 */
+	public Number getFillOpacity() {
+		return fillOpacity;
+	}
+
+	/**
+	 * Fill opacity for the area. Note that when you set an explicit
+	 * <code>fillColor</code>, the <code>fillOpacity</code> is not applied.
+	 * Instead, you should define the opacity in the <code>fillColor</code> with
+	 * an rgba color definition.
+	 * <p>
+	 * Defaults to: 0.75
+	 */
+	public void setFillOpacity(Number fillOpacity) {
+		this.fillOpacity = fillOpacity;
+	}
+
+	/**
 	 * @see #setGetExtremesFromAll(Boolean)
 	 */
 	public Boolean getGetExtremesFromAll() {
@@ -382,57 +326,6 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	 */
 	public void setGetExtremesFromAll(Boolean getExtremesFromAll) {
 		this.getExtremesFromAll = getExtremesFromAll;
-	}
-
-	/**
-	 * @see #setGroupPadding(Number)
-	 */
-	public Number getGroupPadding() {
-		return groupPadding;
-	}
-
-	/**
-	 * Padding between each value groups, in x axis units.
-	 * <p>
-	 * Defaults to: 0.2
-	 */
-	public void setGroupPadding(Number groupPadding) {
-		this.groupPadding = groupPadding;
-	}
-
-	/**
-	 * @see #setGroupZPadding(Number)
-	 */
-	public Number getGroupZPadding() {
-		return groupZPadding;
-	}
-
-	/**
-	 * The spacing between columns on the Z Axis in a 3D chart. Requires
-	 * <code>highcharts-3d.js</code>.
-	 * <p>
-	 * Defaults to: 1
-	 */
-	public void setGroupZPadding(Number groupZPadding) {
-		this.groupZPadding = groupZPadding;
-	}
-
-	/**
-	 * @see #setGrouping(Boolean)
-	 */
-	public Boolean getGrouping() {
-		return grouping;
-	}
-
-	/**
-	 * Whether to group non-stacked columns or to let them render independent of
-	 * each other. Non-grouped columns will be laid out individually and overlap
-	 * each other.
-	 * <p>
-	 * Defaults to: true
-	 */
-	public void setGrouping(Boolean grouping) {
-		this.grouping = grouping;
 	}
 
 	public String[] getKeys() {
@@ -457,6 +350,55 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	}
 
 	/**
+	 * @see #setLineColor(Color)
+	 */
+	public Color getLineColor() {
+		return lineColor;
+	}
+
+	/**
+	 * A separate color for the graph line. By default the line takes the
+	 * <code>color</code> of the series, but the lineColor setting allows
+	 * setting a separate color for the line without altering the
+	 * <code>fillColor</code>.
+	 */
+	public void setLineColor(Color lineColor) {
+		this.lineColor = lineColor;
+	}
+
+	/**
+	 * @see #setLineWidth(Number)
+	 */
+	public Number getLineWidth() {
+		return lineWidth;
+	}
+
+	/**
+	 * Pixel width of the arearange graph line.
+	 * <p>
+	 * Defaults to: 1
+	 */
+	public void setLineWidth(Number lineWidth) {
+		this.lineWidth = lineWidth;
+	}
+
+	/**
+	 * @see #setLinecap(String)
+	 */
+	public String getLinecap() {
+		return linecap;
+	}
+
+	/**
+	 * The line cap used for line ends and line joins on the graph.
+	 * <p>
+	 * Defaults to: round
+	 */
+	public void setLinecap(String linecap) {
+		this.linecap = linecap;
+	}
+
+	/**
 	 * @see #setLinkedTo(String)
 	 */
 	public String getLinkedTo() {
@@ -476,40 +418,36 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setMaxPointWidth(Number)
+	 * @see #setNegativeColor(Color)
 	 */
-	public Number getMaxPointWidth() {
-		return maxPointWidth;
+	public Color getNegativeColor() {
+		return negativeColor;
 	}
 
 	/**
-	 * The maximum allowed pixel width for a column, translated to the height of
-	 * a bar in a bar chart. This prevents the columns from becoming too wide
-	 * when there is a small number of points in the chart.
+	 * The color for the parts of the graph or points that are below the <a
+	 * href="#plotOptions.series.threshold">threshold</a>.
 	 * <p>
 	 * Defaults to: null
 	 */
-	public void setMaxPointWidth(Number maxPointWidth) {
-		this.maxPointWidth = maxPointWidth;
+	public void setNegativeColor(Color negativeColor) {
+		this.negativeColor = negativeColor;
 	}
 
 	/**
-	 * @see #setMinPointLength(Number)
+	 * @see #setNegativeFillColor(Color)
 	 */
-	public Number getMinPointLength() {
-		return minPointLength;
+	public Color getNegativeFillColor() {
+		return negativeFillColor;
 	}
 
 	/**
-	 * The minimal height for a column or width for a bar. By default, 0 values
-	 * are not shown. To visualize a 0 (or close to zero) point, set the minimal
-	 * point length to a pixel value like 3. In stacked column charts,
-	 * minPointLength might not be respected for tightly packed values.
+	 * A separate color for the negative part of the area.
 	 * <p>
-	 * Defaults to: 0
+	 * Defaults to:
 	 */
-	public void setMinPointLength(Number minPointLength) {
-		this.minPointLength = minPointLength;
+	public void setNegativeFillColor(Color negativeFillColor) {
+		this.negativeFillColor = negativeFillColor;
 	}
 
 	/**
@@ -555,22 +493,6 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setPointPadding(Number)
-	 */
-	public Number getPointPadding() {
-		return pointPadding;
-	}
-
-	/**
-	 * Padding between each column or bar, in x axis units.
-	 * <p>
-	 * Defaults to: 0.1
-	 */
-	public void setPointPadding(Number pointPadding) {
-		this.pointPadding = pointPadding;
-	}
-
-	/**
 	 * @see #setPointPlacement(PointPlacement)
 	 */
 	public PointPlacement getPointPlacement() {
@@ -610,23 +532,6 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setPointRange(Number)
-	 */
-	public Number getPointRange() {
-		return pointRange;
-	}
-
-	/**
-	 * The X axis range that each point is valid for. This determines the width
-	 * of the column. On a categorized axis, the range will be 1 by default (one
-	 * category unit). On linear and datetime axes, the range will be computed
-	 * as the distance between the two closest data points.
-	 */
-	public void setPointRange(Number pointRange) {
-		this.pointRange = pointRange;
-	}
-
-	/**
 	 * @see #setPointStart(Number)
 	 */
 	public Number getPointStart() {
@@ -642,22 +547,6 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	 */
 	public void setPointStart(Number pointStart) {
 		this.pointStart = pointStart;
-	}
-
-	/**
-	 * @see #setPointWidth(Number)
-	 */
-	public Number getPointWidth() {
-		return pointWidth;
-	}
-
-	/**
-	 * A pixel value specifying a fixed width for each column or bar. When
-	 * <code>null</code>, the width is calculated from the
-	 * <code>pointPadding</code> and <code>groupPadding</code>.
-	 */
-	public void setPointWidth(Number pointWidth) {
-		this.pointWidth = pointWidth;
 	}
 
 	/**
@@ -748,6 +637,24 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	}
 
 	/**
+	 * @see #setStep(StepType)
+	 */
+	public StepType getStep() {
+		return step;
+	}
+
+	/**
+	 * Whether to apply steps to the line. Possible values are <code>left</code>
+	 * , <code>center</code> and <code>right</code>. Prior to 2.3.5, only
+	 * <code>left</code> was supported.
+	 * <p>
+	 * Defaults to: false
+	 */
+	public void setStep(StepType step) {
+		this.step = step;
+	}
+
+	/**
 	 * @see #setStickyTracking(Boolean)
 	 */
 	public Boolean getStickyTracking() {
@@ -785,6 +692,23 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	 */
 	public void setTooltip(SeriesTooltip tooltip) {
 		this.tooltip = tooltip;
+	}
+
+	/**
+	 * @see #setTrackByArea(Boolean)
+	 */
+	public Boolean getTrackByArea() {
+		return trackByArea;
+	}
+
+	/**
+	 * Whether the whole area or just the line should respond to mouseover
+	 * tooltips and other mouse or touch events.
+	 * <p>
+	 * Defaults to: true
+	 */
+	public void setTrackByArea(Boolean trackByArea) {
+		this.trackByArea = trackByArea;
 	}
 
 	/**
@@ -896,6 +820,32 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	}
 
 	/**
+	 * @see #setGapSize(Number)
+	 */
+	public Number getGapSize() {
+		return gapSize;
+	}
+
+	/**
+	 * <p>
+	 * Defines when to display a gap in the graph. A gap size of 5 means that if
+	 * the distance between two points is greater than five times that of the
+	 * two closest points, the graph will be broken.
+	 * </p>
+	 * 
+	 * <p>
+	 * In practice, this option is most often used to visualize gaps in time
+	 * series. In a stock chart, intraday data is available for daytime hours,
+	 * while gaps will appear in nights and weekends.
+	 * </p>
+	 * <p>
+	 * Defaults to: 0
+	 */
+	public void setGapSize(Number gapSize) {
+		this.gapSize = gapSize;
+	}
+
+	/**
 	 * @see #setLegendIndex(Number)
 	 */
 	public Number getLegendIndex() {
@@ -911,7 +861,57 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 		this.legendIndex = legendIndex;
 	}
 
+	/**
+	 * @see #setPointRange(Number)
+	 */
+	public Number getPointRange() {
+		return pointRange;
+	}
+
+	/**
+	 * The width of each point on the x axis. For example in a column chart with
+	 * one value each day, the pointRange would be 1 day (= 24 * 3600 * 1000
+	 * milliseconds). This is normally computed automatically, but this option
+	 * can be used to override the automatic value.
+	 * <p>
+	 * Defaults to: 0
+	 */
+	public void setPointRange(Number pointRange) {
+		this.pointRange = pointRange;
+	}
+
+	/**
+	 * @see #setStacking(Stacking)
+	 */
+	public Stacking getStacking() {
+		return stacking;
+	}
+
+	/**
+	 * Whether to stack the values of each series on top of each other. Possible
+	 * values are null to disable, "normal" to stack by value or "percent".
+	 * <p>
+	 * Defaults to: null
+	 */
+	public void setStacking(Stacking stacking) {
+		this.stacking = stacking;
+	}
+
 	public void setPointStart(Date date) {
 		this.pointStart = Util.toHighchartsTS(date);
+	}
+
+	/**
+	 * @see #setThreshold(Number)
+	 */
+	public Number getThreshold() {
+		return threshold;
+	}
+
+	/**
+	 * 
+	 */
+	public void setThreshold(Number threshold) {
+		this.threshold = threshold;
 	}
 }

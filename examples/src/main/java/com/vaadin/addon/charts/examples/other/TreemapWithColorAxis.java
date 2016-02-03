@@ -7,14 +7,14 @@ import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.ColorAxis;
-import com.vaadin.addon.charts.model.PlotOptionsTreeMap;
+import com.vaadin.addon.charts.model.PlotOptionsTreemap;
 import com.vaadin.addon.charts.model.TreeMapLayoutAlgorithm;
 import com.vaadin.addon.charts.model.TreeSeries;
 import com.vaadin.addon.charts.model.TreeSeriesItem;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
 
-public class TreeMapWithColorAxis extends AbstractVaadinChartExample {
+public class TreemapWithColorAxis extends AbstractVaadinChartExample {
 
     @Override
     public String getDescription() {
@@ -30,7 +30,7 @@ public class TreeMapWithColorAxis extends AbstractVaadinChartExample {
         colorAxis.setMaxColor(new SolidColor("#7BB5EF"));
         chart.getConfiguration().addColorAxis(colorAxis);
 
-        PlotOptionsTreeMap plotOptions = new PlotOptionsTreeMap();
+        PlotOptionsTreemap plotOptions = new PlotOptionsTreemap();
         plotOptions.setLayoutAlgorithm(TreeMapLayoutAlgorithm.SQUARIFIED);
 
         TreeSeries series = createSeries();

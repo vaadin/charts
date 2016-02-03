@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+<vaadin-vertical-layout size-full>
+    <vaadin-line-chart _id="myChart" height="450px" timeline>
+        <title>AAPL Stock Price</title>
+        <range-selector selected="4">
+        </range-selector>
+        <y-axis>
+            <labels formatter="function() {return (this.value > 0 ? ' + ' : '') + this.value + '%';}"></labels>
+            <plot-lines value="0" width="2" color="silver">
+            </plot-lines>
+        </y-axis>
+        <plot-options>
+            <series compare="percent"></series>
+        </plot-options>
+        <tooltip point-format='<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b>
+            ({point.change}%)<br/>' value-decimals="2"></tooltip>
+    </vaadin-line-chart>
+</vaadin-vertical-layout>
+</body>
+</html>

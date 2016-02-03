@@ -24,6 +24,7 @@ import java.io.ObjectInputStream;
 import java.lang.reflect.Method;
 import java.util.Stack;
 
+import com.vaadin.addon.charts.declarative.ChartsDesign;
 import com.vaadin.addon.charts.events.AbstractSeriesEvent;
 import com.vaadin.addon.charts.events.AxisRescaledEvent;
 import com.vaadin.addon.charts.events.ConfigurationChangeListener;
@@ -48,7 +49,10 @@ import com.vaadin.addon.charts.shared.ChartState;
 import com.vaadin.addon.charts.shared.DrilldownEventDetails;
 import com.vaadin.addon.charts.shared.MouseEventDetails;
 import com.vaadin.ui.AbstractComponent;
+import com.vaadin.ui.declarative.DesignContext;
 import com.vaadin.util.ReflectTools;
+
+import org.jsoup.nodes.Element;
 
 /**
  * Chart is a Vaadin component that is used to visualize data.
@@ -859,5 +863,25 @@ public class Chart extends AbstractComponent {
 
     public boolean isTimeline() {
         return getState().timeline;
+    }
+
+    @Override
+    public void readDesign(Element design, DesignContext designContext) {
+        super.readDesign(design, designContext);
+
+        Configuration configuration = getConfiguration();
+        if(configuration == null) {
+            configuration = new Configuration();
+        }
+        ChartsDesign.readConfiguration(design.children(), configuration);
+
+        setConfiguration(configuration);
+    }
+
+
+
+    @Override
+    public void writeDesign(Element design, DesignContext designContext) {
+        super.writeDesign(design, designContext);
     }
 }

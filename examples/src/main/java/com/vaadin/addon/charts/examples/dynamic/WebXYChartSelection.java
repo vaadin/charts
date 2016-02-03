@@ -9,7 +9,7 @@ import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
-import com.vaadin.addon.charts.model.PlotOptionsAreaRange;
+import com.vaadin.addon.charts.model.PlotOptionsArearange;
 import com.vaadin.addon.charts.model.PlotOptionsScatter;
 import com.vaadin.addon.charts.model.RangeSeries;
 import com.vaadin.addon.charts.model.ZoomType;
@@ -70,7 +70,7 @@ public class WebXYChartSelection extends AbstractVaadinChartExample {
                 Number[][] data = new Number[][] { { xStart, yStart, yEnd },
                         { xEnd, yStart, yEnd } };
 
-                PlotOptionsAreaRange areaRangePlot = new PlotOptionsAreaRange();
+                PlotOptionsArearange areaRangePlot = new PlotOptionsArearange();
                 areaRangePlot.setFillOpacity(0.1f);
                 areaRangePlot.setLineWidth(0);
 

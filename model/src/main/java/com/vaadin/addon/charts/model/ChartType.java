@@ -44,7 +44,7 @@ public class ChartType implements ChartEnum {
      */
     public static final ChartType SPLINE = new ChartType("spline");
     /**
-     * @see PlotOptionsAreaSpline
+     * @see PlotOptionsAreaspline
      */
     public static final ChartType AREASPLINE = new ChartType("areaspline");
     /**
@@ -68,15 +68,15 @@ public class ChartType implements ChartEnum {
      */
     public static final ChartType GAUGE = new ChartType("gauge");
     /**
-     * @see PlotOptionsAreaRange
+     * @see PlotOptionsArearange
      */
     public static final ChartType AREARANGE = new ChartType("arearange");
     /**
-     * @see PlotOptionsColumnRange
+     * @see PlotOptionsColumnrange
      */
     public static final ChartType COLUMNRANGE = new ChartType("columnrange");
     /**
-     * @see PlotOptionsAreaSplineRange
+     * @see PlotOptionsAreasplinerange
      */
     public static final ChartType AREASPLINERANGE = new ChartType(
             "areasplinerange");
@@ -105,15 +105,15 @@ public class ChartType implements ChartEnum {
      */
     public static final ChartType PYRAMID = new ChartType("pyramid");
     /**
-     * @see PlotOptionsSolidGauge
+     * @see PlotOptionsSolidgauge
      */
     public static final ChartType SOLIDGAUGE = new ChartType("solidgauge");
     /**
-     * @see PlotOptionsHeatMap
+     * @see PlotOptionsHeatmap
      */
     public static final ChartType HEATMAP = new ChartType("heatmap");
     /**
-     * @see PlotOptionsTreeMap
+     * @see PlotOptionsTreemap
      */
     public static final ChartType TREEMAP = new ChartType("treemap");
     /**
@@ -135,6 +135,10 @@ public class ChartType implements ChartEnum {
      * @see PlotOptionsOhlc
      */
     public static final ChartType OHLC = new ChartType("ohlc");
+
+    public static ChartType getDefault() {
+        return ChartType.LINE;
+    }
 
     private final String type;
 

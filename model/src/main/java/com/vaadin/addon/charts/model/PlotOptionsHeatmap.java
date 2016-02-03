@@ -31,7 +31,7 @@ import java.util.Arrays;
  * controlled by settings on the <a href="#colorAxis">colorAxis</a>.
  * </p>
  */
-public class PlotOptionsHeatMap extends AbstractPlotOptions {
+public class PlotOptionsHeatmap extends AbstractPlotOptions {
 
 	private static final long serialVersionUID = 1L;
 	private Boolean allowPointSelect;
@@ -64,7 +64,7 @@ public class PlotOptionsHeatMap extends AbstractPlotOptions {
 	private String zoneAxis;
 	private ArrayList<Zones> zones;
 
-	public PlotOptionsHeatMap() {
+	public PlotOptionsHeatmap() {
 	}
 
 	@Override

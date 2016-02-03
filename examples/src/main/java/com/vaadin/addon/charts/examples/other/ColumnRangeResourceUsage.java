@@ -11,7 +11,7 @@ import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataLabelsRange;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
-import com.vaadin.addon.charts.model.PlotOptionsColumnRange;
+import com.vaadin.addon.charts.model.PlotOptionsColumnrange;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
@@ -47,7 +47,7 @@ public class ColumnRangeResourceUsage extends AbstractVaadinChartExample {
         tooltip.setFormatter("this.series.name +': '+ Highcharts.dateFormat('%H:%M', this.point.low) + ' - ' + Highcharts.dateFormat('%H:%M', this.point.high)");
         conf.setTooltip(tooltip);
 
-        PlotOptionsColumnRange columnRange = new PlotOptionsColumnRange();
+        PlotOptionsColumnrange columnRange = new PlotOptionsColumnrange();
         columnRange.setGrouping(false);
         DataLabelsRange dataLabels = new DataLabelsRange(true);
         dataLabels
@@ -64,11 +64,11 @@ public class ColumnRangeResourceUsage extends AbstractVaadinChartExample {
 
         DataSeries a = new DataSeries();
         a.setName("Team Alpha");
-        PlotOptionsColumnRange o = new PlotOptionsColumnRange();
+        PlotOptionsColumnrange o = new PlotOptionsColumnrange();
         o.setColor(new SolidColor(255, 60, 125, 0.8));
         a.setPlotOptions(o);
         DataSeries b = new DataSeries();
-        o = new PlotOptionsColumnRange();
+        o = new PlotOptionsColumnrange();
         o.setColor(new SolidColor(60, 125, 255, 0.8));
         b.setPlotOptions(o);
         b.setName("Team Beta");

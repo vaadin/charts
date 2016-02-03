@@ -5,8 +5,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.vaadin.addon.charts.model.PlotOptionsHeatMap;
-import com.vaadin.addon.charts.model.PlotOptionsTreeMap;
+import com.vaadin.addon.charts.model.PlotOptionsHeatmap;
+import com.vaadin.addon.charts.model.PlotOptionsTreemap;
 
 /**
  * Tests that PlotOptions configuration are serialized correctly as JSON
@@ -17,7 +17,7 @@ public class PlotOptionsJSONSerializationTest {
     @Test
     public void toString_heatMapTurboThresholdIsSet_plotOptionsSerializedWithTurboThreshold() {
 
-        PlotOptionsHeatMap plotOptions = new PlotOptionsHeatMap();
+        PlotOptionsHeatmap plotOptions = new PlotOptionsHeatmap();
         plotOptions.setTurboThreshold(0);
 
         String json = toJSON(plotOptions);
@@ -29,7 +29,7 @@ public class PlotOptionsJSONSerializationTest {
     @Test
     public void toString_treeMapTurboThresholdIsSet_plotOptionsSerializedWithTurboThreshold() {
 
-        PlotOptionsTreeMap plotOptions = new PlotOptionsTreeMap();
+        PlotOptionsTreemap plotOptions = new PlotOptionsTreemap();
         plotOptions.setTurboThreshold(0);
 
         String json = toJSON(plotOptions);

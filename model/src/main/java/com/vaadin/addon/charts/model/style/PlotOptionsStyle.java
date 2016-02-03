@@ -19,9 +19,9 @@ package com.vaadin.addon.charts.model.style;
 
 import com.vaadin.addon.charts.model.AbstractConfigurationObject;
 import com.vaadin.addon.charts.model.PlotOptionsArea;
-import com.vaadin.addon.charts.model.PlotOptionsAreaRange;
-import com.vaadin.addon.charts.model.PlotOptionsAreaSpline;
-import com.vaadin.addon.charts.model.PlotOptionsAreaSplineRange;
+import com.vaadin.addon.charts.model.PlotOptionsArearange;
+import com.vaadin.addon.charts.model.PlotOptionsAreaspline;
+import com.vaadin.addon.charts.model.PlotOptionsAreasplinerange;
 import com.vaadin.addon.charts.model.PlotOptionsBar;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
@@ -30,7 +30,7 @@ import com.vaadin.addon.charts.model.PlotOptionsPolygon;
 import com.vaadin.addon.charts.model.PlotOptionsPyramid;
 import com.vaadin.addon.charts.model.PlotOptionsSeries;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
-import com.vaadin.addon.charts.model.PlotOptionsTreeMap;
+import com.vaadin.addon.charts.model.PlotOptionsTreemap;
 import com.vaadin.addon.charts.model.PlotOptionsWaterfall;
 
 /**
@@ -40,9 +40,10 @@ import com.vaadin.addon.charts.model.PlotOptionsWaterfall;
 public class PlotOptionsStyle extends AbstractConfigurationObject {
     private PlotOptionsBar bar = new PlotOptionsBar();
     private PlotOptionsArea area = new PlotOptionsArea();
-    private PlotOptionsAreaRange arearange = new PlotOptionsAreaRange();
-    private PlotOptionsAreaSpline areaspline = new PlotOptionsAreaSpline();
-    private PlotOptionsAreaSplineRange areasplinerange = new PlotOptionsAreaSplineRange();
+    private PlotOptionsArearange arearange = new PlotOptionsArearange();
+    private PlotOptionsAreaspline areaspline = new PlotOptionsAreaspline();
+    private PlotOptionsAreasplinerange
+        areasplinerange = new PlotOptionsAreasplinerange();
     private PlotOptionsPie pie = new PlotOptionsPie();
     private PlotOptionsLine line = new PlotOptionsLine();
     private PlotOptionsColumn column = new PlotOptionsColumn();
@@ -50,7 +51,7 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
     private PlotOptionsSeries series = new PlotOptionsSeries();
     private PlotOptionsPyramid pyramid = new PlotOptionsPyramid();
     private PlotOptionsWaterfall waterfall = new PlotOptionsWaterfall();
-    private PlotOptionsTreeMap treemap = new PlotOptionsTreeMap();
+    private PlotOptionsTreemap treemap = new PlotOptionsTreemap();
     private PlotOptionsPolygon polygon = new PlotOptionsPolygon();
 
     /**
@@ -166,9 +167,9 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #setArearange(PlotOptionsAreaRange)
+     * @see #setArearange(PlotOptionsArearange)
      */
-    public PlotOptionsAreaRange getArearange() {
+    public PlotOptionsArearange getArearange() {
         return arearange;
     }
 
@@ -177,14 +178,14 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
      * 
      * @param arearange
      */
-    public void setArearange(PlotOptionsAreaRange arearange) {
+    public void setArearange(PlotOptionsArearange arearange) {
         this.arearange = arearange;
     }
 
     /**
-     * @see #setAreasplinerange(PlotOptionsAreaSplineRange)
+     * @see #setAreasplinerange(PlotOptionsAreasplinerange)
      */
-    public PlotOptionsAreaSplineRange getAreasplinerange() {
+    public PlotOptionsAreasplinerange getAreasplinerange() {
         return areasplinerange;
     }
 
@@ -193,14 +194,14 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
      * 
      * @param areasplinerange
      */
-    public void setAreasplinerange(PlotOptionsAreaSplineRange areasplinerange) {
+    public void setAreasplinerange(PlotOptionsAreasplinerange areasplinerange) {
         this.areasplinerange = areasplinerange;
     }
 
     /**
-     * @see #setAreaspline(PlotOptionsAreaSpline)
+     * @see #setAreaspline(PlotOptionsAreaspline)
      */
-    public PlotOptionsAreaSpline getAreaspline() {
+    public PlotOptionsAreaspline getAreaspline() {
         return areaspline;
     }
 
@@ -209,7 +210,7 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
      * 
      * @param areaspline
      */
-    public void setAreaspline(PlotOptionsAreaSpline areaspline) {
+    public void setAreaspline(PlotOptionsAreaspline areaspline) {
         this.areaspline = areaspline;
     }
 
@@ -247,10 +248,10 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #setTreemap(PlotOptionsTreeMap)
+     * @see #setTreemap(PlotOptionsTreemap)
      * @return
      */
-    public PlotOptionsTreeMap getTreeMap() {
+    public PlotOptionsTreemap getTreeMap() {
         return treemap;
     }
 
@@ -259,7 +260,7 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
      *
      * @param treemap
      */
-    public void setTreemap(PlotOptionsTreeMap treemap) {
+    public void setTreemap(PlotOptionsTreemap treemap) {
         this.treemap = treemap;
     }
 

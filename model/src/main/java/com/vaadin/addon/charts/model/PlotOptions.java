@@ -35,27 +35,27 @@ public class PlotOptions extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
 	private PlotOptionsArea area;
-	private PlotOptionsAreaRange arearange;
-	private PlotOptionsAreaSpline areaspline;
-	private PlotOptionsAreaSplineRange areasplinerange;
+	private PlotOptionsArearange arearange;
+	private PlotOptionsAreaspline areaspline;
+	private PlotOptionsAreasplinerange areasplinerange;
 	private PlotOptionsBar bar;
 	private PlotOptionsBoxplot boxplot;
 	private PlotOptionsBubble bubble;
 	private PlotOptionsColumn column;
-	private PlotOptionsColumnRange columnrange;
+	private PlotOptionsColumnrange columnrange;
 	private PlotOptionsErrorbar errorbar;
 	private PlotOptionsFunnel funnel;
 	private PlotOptionsGauge gauge;
-	private PlotOptionsHeatMap heatmap;
+	private PlotOptionsHeatmap heatmap;
 	private PlotOptionsLine line;
 	private PlotOptionsPie pie;
 	private PlotOptionsPolygon polygon;
 	private PlotOptionsPyramid pyramid;
 	private PlotOptionsScatter scatter;
 	private PlotOptionsSeries series;
-	private PlotOptionsSolidGauge solidgauge;
+	private PlotOptionsSolidgauge solidgauge;
 	private PlotOptionsSpline spline;
-	private PlotOptionsTreeMap treemap;
+	private PlotOptionsTreemap treemap;
 	private PlotOptionsWaterfall waterfall;
 	private PlotOptionsCandlestick candlestick;
 	private PlotOptionsFlags flags;
@@ -79,9 +79,9 @@ public class PlotOptions extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setArearange(PlotOptionsAreaRange)
+	 * @see #setArearange(PlotOptionsArearange)
 	 */
-	public PlotOptionsAreaRange getArearange() {
+	public PlotOptionsArearange getArearange() {
 		return arearange;
 	}
 
@@ -89,28 +89,28 @@ public class PlotOptions extends AbstractConfigurationObject {
 	 * The area range is a cartesian series type with higher and lower Y values
 	 * along an X axis. Requires <code>highcharts-more.js</code>.
 	 */
-	public void setArearange(PlotOptionsAreaRange arearange) {
+	public void setArearange(PlotOptionsArearange arearange) {
 		this.arearange = arearange;
 	}
 
 	/**
-	 * @see #setAreaspline(PlotOptionsAreaSpline)
+	 * @see #setAreaspline(PlotOptionsAreaspline)
 	 */
-	public PlotOptionsAreaSpline getAreaspline() {
+	public PlotOptionsAreaspline getAreaspline() {
 		return areaspline;
 	}
 
 	/**
 	 * 
 	 */
-	public void setAreaspline(PlotOptionsAreaSpline areaspline) {
+	public void setAreaspline(PlotOptionsAreaspline areaspline) {
 		this.areaspline = areaspline;
 	}
 
 	/**
-	 * @see #setAreasplinerange(PlotOptionsAreaSplineRange)
+	 * @see #setAreasplinerange(PlotOptionsAreasplinerange)
 	 */
-	public PlotOptionsAreaSplineRange getAreasplinerange() {
+	public PlotOptionsAreasplinerange getAreasplinerange() {
 		return areasplinerange;
 	}
 
@@ -120,7 +120,7 @@ public class PlotOptions extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to:
 	 */
-	public void setAreasplinerange(PlotOptionsAreaSplineRange areasplinerange) {
+	public void setAreasplinerange(PlotOptionsAreasplinerange areasplinerange) {
 		this.areasplinerange = areasplinerange;
 	}
 
@@ -189,9 +189,9 @@ public class PlotOptions extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setColumnrange(PlotOptionsColumnRange)
+	 * @see #setColumnrange(PlotOptionsColumnrange)
 	 */
-	public PlotOptionsColumnRange getColumnrange() {
+	public PlotOptionsColumnrange getColumnrange() {
 		return columnrange;
 	}
 
@@ -201,7 +201,7 @@ public class PlotOptions extends AbstractConfigurationObject {
 	 * display horizontal bars, set <a href="#chart.inverted">chart.inverted</a>
 	 * to <code>true</code>.
 	 */
-	public void setColumnrange(PlotOptionsColumnRange columnrange) {
+	public void setColumnrange(PlotOptionsColumnrange columnrange) {
 		this.columnrange = columnrange;
 	}
 
@@ -256,9 +256,9 @@ public class PlotOptions extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setHeatmap(PlotOptionsHeatMap)
+	 * @see #setHeatmap(PlotOptionsHeatmap)
 	 */
-	public PlotOptionsHeatMap getHeatmap() {
+	public PlotOptionsHeatmap getHeatmap() {
 		return heatmap;
 	}
 
@@ -273,7 +273,7 @@ public class PlotOptions extends AbstractConfigurationObject {
 	 * controlled by settings on the <a href="#colorAxis">colorAxis</a>.
 	 * </p>
 	 */
-	public void setHeatmap(PlotOptionsHeatMap heatmap) {
+	public void setHeatmap(PlotOptionsHeatmap heatmap) {
 		this.heatmap = heatmap;
 	}
 
@@ -371,9 +371,9 @@ public class PlotOptions extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setSolidgauge(PlotOptionsSolidGauge)
+	 * @see #setSolidgauge(PlotOptionsSolidgauge)
 	 */
-	public PlotOptionsSolidGauge getSolidgauge() {
+	public PlotOptionsSolidgauge getSolidgauge() {
 		return solidgauge;
 	}
 
@@ -385,7 +385,7 @@ public class PlotOptions extends AbstractConfigurationObject {
 	 * href="#yAxis.maxColor">maxColor</a> and <a href="#yAxis.stops">stops</a>,
 	 * to control the color of the gauge itself.
 	 */
-	public void setSolidgauge(PlotOptionsSolidGauge solidgauge) {
+	public void setSolidgauge(PlotOptionsSolidgauge solidgauge) {
 		this.solidgauge = solidgauge;
 	}
 
@@ -404,9 +404,9 @@ public class PlotOptions extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setTreemap(PlotOptionsTreeMap)
+	 * @see #setTreemap(PlotOptionsTreemap)
 	 */
-	public PlotOptionsTreeMap getTreemap() {
+	public PlotOptionsTreemap getTreemap() {
 		return treemap;
 	}
 
@@ -417,7 +417,7 @@ public class PlotOptions extends AbstractConfigurationObject {
 	 * href="http://api.highcharts.com/highmaps#colorAxis">colorAxis</a> is to
 	 * be used.
 	 */
-	public void setTreemap(PlotOptionsTreeMap treemap) {
+	public void setTreemap(PlotOptionsTreemap treemap) {
 		this.treemap = treemap;
 	}
 

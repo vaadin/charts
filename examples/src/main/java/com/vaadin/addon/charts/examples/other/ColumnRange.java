@@ -8,7 +8,7 @@ import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataLabelsRange;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
-import com.vaadin.addon.charts.model.PlotOptionsColumnRange;
+import com.vaadin.addon.charts.model.PlotOptionsColumnrange;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
@@ -44,7 +44,7 @@ public class ColumnRange extends AbstractVaadinChartExample {
         tooltip.setValueSuffix("°C");
         conf.setTooltip(tooltip);
 
-        PlotOptionsColumnRange columnRange = new PlotOptionsColumnRange();
+        PlotOptionsColumnrange columnRange = new PlotOptionsColumnrange();
         columnRange.setDataLabels(new DataLabelsRange(true));
         columnRange.getDataLabels().setFormat("{y}°C");
         columnRange.getDataLabels().setFormatter(

@@ -20,43 +20,51 @@ package com.vaadin.addon.charts.model;
 import com.vaadin.addon.charts.model.style.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
+import com.vaadin.addon.charts.util.Util;
 /**
- * The size of the point shape is determined by its value relative to its
- * siblings values. Requires the module <code>heatmap.js</code> as well, if
- * functionality such as the <a
- * href="http://api.highcharts.com/highmaps#colorAxis">colorAxis</a> is to be
- * used.
+ * The column range is a cartesian series type with higher and lower Y values
+ * along an X axis. Requires <code>highcharts-more.js</code>. To display
+ * horizontal bars, set <a href="#chart.inverted">chart.inverted</a> to
+ * <code>true</code>.
  */
-public class PlotOptionsTreeMap extends AbstractPlotOptions {
+public class PlotOptionsColumnrange extends AbstractPlotOptions {
 
 	private static final long serialVersionUID = 1L;
-	private Boolean allowDrillToNode;
 	private Boolean allowPointSelect;
-	private Boolean alternateStartingDirection;
 	private Boolean animation;
 	private Color borderColor;
+	private Number borderRadius;
 	private Number borderWidth;
 	private Color color;
 	private Boolean colorByPoint;
 	private Color[] colors;
 	private Number cropThreshold;
 	private Cursor cursor;
-	private DataLabels dataLabels;
+	private DataLabelsRange dataLabels;
+	private Number depth;
+	private Color edgeColor;
+	private Number edgeWidth;
 	private Boolean enableMouseTracking;
 	private Boolean getExtremesFromAll;
-	private Boolean interactByLeaf;
+	private Number groupPadding;
+	private Number groupZPadding;
+	private Boolean grouping;
 	private ArrayList<String> keys;
-	private TreeMapLayoutAlgorithm layoutAlgorithm;
-	private TreeMapLayoutStartingDirection layoutStartingDirection;
-	private Boolean levelIsConstant;
-	private ArrayList<Level> levels;
 	private String linkedTo;
 	private Number maxPointWidth;
+	private Number minPointLength;
+	private Number pointInterval;
+	private IntervalUnit pointIntervalUnit;
+	private Number pointPadding;
+	private PointPlacement pointPlacement;
+	private Number pointRange;
+	private Number pointStart;
+	private Number pointWidth;
 	private Boolean selected;
 	private Boolean shadow;
 	private Boolean showCheckbox;
 	private Boolean showInLegend;
-	private Number sortIndex;
 	private States states;
 	private Boolean stickyTracking;
 	private SeriesTooltip tooltip;
@@ -64,30 +72,16 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 	private Boolean visible;
 	private String zoneAxis;
 	private ArrayList<Zones> zones;
+	private Compare compare;
+	private DataGrouping dataGrouping;
+	private Number legendIndex;
 
-	public PlotOptionsTreeMap() {
+	public PlotOptionsColumnrange() {
 	}
 
 	@Override
 	public ChartType getChartType() {
-		return ChartType.TREEMAP;
-	}
-
-	/**
-	 * @see #setAllowDrillToNode(Boolean)
-	 */
-	public Boolean getAllowDrillToNode() {
-		return allowDrillToNode;
-	}
-
-	/**
-	 * When enabled the user can click on a point which is a parent and zoom in
-	 * on its children.
-	 * <p>
-	 * Defaults to: false
-	 */
-	public void setAllowDrillToNode(Boolean allowDrillToNode) {
-		this.allowDrillToNode = allowDrillToNode;
+		return ChartType.COLUMNRANGE;
 	}
 
 	/**
@@ -105,24 +99,6 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 	 */
 	public void setAllowPointSelect(Boolean allowPointSelect) {
 		this.allowPointSelect = allowPointSelect;
-	}
-
-	/**
-	 * @see #setAlternateStartingDirection(Boolean)
-	 */
-	public Boolean getAlternateStartingDirection() {
-		return alternateStartingDirection;
-	}
-
-	/**
-	 * Enabling this option will make the treemap alternate the drawing
-	 * direction between vertical and horizontal. The next levels starting
-	 * direction will always be the opposite of the previous.
-	 * <p>
-	 * Defaults to: false
-	 */
-	public void setAlternateStartingDirection(Boolean alternateStartingDirection) {
-		this.alternateStartingDirection = alternateStartingDirection;
 	}
 
 	/**
@@ -169,12 +145,28 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 	}
 
 	/**
-	 * The color of the border surrounding each tree map item.
+	 * The color of the border surrounding each column or bar.
 	 * <p>
-	 * Defaults to: #E0E0E0
+	 * Defaults to: #FFFFFF
 	 */
 	public void setBorderColor(Color borderColor) {
 		this.borderColor = borderColor;
+	}
+
+	/**
+	 * @see #setBorderRadius(Number)
+	 */
+	public Number getBorderRadius() {
+		return borderRadius;
+	}
+
+	/**
+	 * The corner radius of the border surrounding each column or bar.
+	 * <p>
+	 * Defaults to: 0
+	 */
+	public void setBorderRadius(Number borderRadius) {
+		this.borderRadius = borderRadius;
 	}
 
 	/**
@@ -201,12 +193,10 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 	}
 
 	/**
-	 * The main color of the series. In heat maps this color is rarely used, as
-	 * we mostly use the color to denote the value of each point. Unless options
-	 * are set in the <a href="#colorAxis">colorAxis</a>, the default value is
-	 * pulled from the <a href="#colors">options.colors</a> array.
-	 * <p>
-	 * Defaults to: null
+	 * The main color or the series. In line type series it applies to the line
+	 * and the point markers unless otherwise specified. In bar type series it
+	 * applies to the bars unless a color is specified per point. The default
+	 * value is pulled from the <code>options.colors</code> array.
 	 */
 	public void setColor(Color color) {
 		this.color = color;
@@ -263,9 +253,9 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 	 * when the series contains more points than the crop threshold, the series
 	 * data is cropped to only contain points that fall within the plot area.
 	 * The advantage of cropping away invisible points is to increase
-	 * performance on large series.
+	 * performance on large series. .
 	 * <p>
-	 * Defaults to: 300
+	 * Defaults to: 50
 	 */
 	public void setCropThreshold(Number cropThreshold) {
 		this.cropThreshold = cropThreshold;
@@ -288,18 +278,74 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setDataLabels(DataLabels)
+	 * @see #setDataLabels(DataLabelsRange)
 	 */
-	public DataLabels getDataLabels() {
+	public DataLabelsRange getDataLabels() {
 		return dataLabels;
 	}
 
 	/**
+	 * Extended data labels for range series types. Range series data labels
+	 * have no <code>x</code> and <code>y</code> options. Instead, they have
+	 * <code>xLow</code>, <code>xHigh</code>, <code>yLow</code> and
+	 * <code>yHigh</code> options to allow the higher and lower data label sets
+	 * individually.
 	 * <p>
 	 * Defaults to:
 	 */
-	public void setDataLabels(DataLabels dataLabels) {
+	public void setDataLabels(DataLabelsRange dataLabels) {
 		this.dataLabels = dataLabels;
+	}
+
+	/**
+	 * @see #setDepth(Number)
+	 */
+	public Number getDepth() {
+		return depth;
+	}
+
+	/**
+	 * Depth of the columns in a 3D column chart. Requires
+	 * <code>highcharts-3d.js</code>.
+	 * <p>
+	 * Defaults to: 25
+	 */
+	public void setDepth(Number depth) {
+		this.depth = depth;
+	}
+
+	/**
+	 * @see #setEdgeColor(Color)
+	 */
+	public Color getEdgeColor() {
+		return edgeColor;
+	}
+
+	/**
+	 * 3D columns only. The color of the edges. Similar to
+	 * <code>borderColor</code>, except it defaults to the same color as the
+	 * column.
+	 * <p>
+	 * Defaults to:
+	 */
+	public void setEdgeColor(Color edgeColor) {
+		this.edgeColor = edgeColor;
+	}
+
+	/**
+	 * @see #setEdgeWidth(Number)
+	 */
+	public Number getEdgeWidth() {
+		return edgeWidth;
+	}
+
+	/**
+	 * 3D columns only. The width of the colored edges.
+	 * <p>
+	 * Defaults to: 1
+	 */
+	public void setEdgeWidth(Number edgeWidth) {
+		this.edgeWidth = edgeWidth;
 	}
 
 	/**
@@ -339,20 +385,54 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setInteractByLeaf(Boolean)
+	 * @see #setGroupPadding(Number)
 	 */
-	public Boolean getInteractByLeaf() {
-		return interactByLeaf;
+	public Number getGroupPadding() {
+		return groupPadding;
 	}
 
 	/**
-	 * This option decides if the user can interact with the parent nodes or
-	 * just the leaf nodes. When this option is undefined, it will be true by
-	 * default. However when allowDrillToNode is true, then it will be false by
-	 * default.
+	 * Padding between each value groups, in x axis units.
+	 * <p>
+	 * Defaults to: 0.2
 	 */
-	public void setInteractByLeaf(Boolean interactByLeaf) {
-		this.interactByLeaf = interactByLeaf;
+	public void setGroupPadding(Number groupPadding) {
+		this.groupPadding = groupPadding;
+	}
+
+	/**
+	 * @see #setGroupZPadding(Number)
+	 */
+	public Number getGroupZPadding() {
+		return groupZPadding;
+	}
+
+	/**
+	 * The spacing between columns on the Z Axis in a 3D chart. Requires
+	 * <code>highcharts-3d.js</code>.
+	 * <p>
+	 * Defaults to: 1
+	 */
+	public void setGroupZPadding(Number groupZPadding) {
+		this.groupZPadding = groupZPadding;
+	}
+
+	/**
+	 * @see #setGrouping(Boolean)
+	 */
+	public Boolean getGrouping() {
+		return grouping;
+	}
+
+	/**
+	 * Whether to group non-stacked columns or to let them render independent of
+	 * each other. Non-grouped columns will be laid out individually and overlap
+	 * each other.
+	 * <p>
+	 * Defaults to: true
+	 */
+	public void setGrouping(Boolean grouping) {
+		this.grouping = grouping;
 	}
 
 	public String[] getKeys() {
@@ -374,81 +454,6 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 
 	public void removeKey(String key) {
 		this.keys.remove(key);
-	}
-
-	/**
-	 * @see #setLayoutAlgorithm(TreeMapLayoutAlgorithm)
-	 */
-	public TreeMapLayoutAlgorithm getLayoutAlgorithm() {
-		return layoutAlgorithm;
-	}
-
-	/**
-	 * This option decides which algorithm is used for setting position and
-	 * dimensions of the points. Can be one of <code>sliceAndDice</code>,
-	 * <code>stripes</code>, <code>squarified</code> or <code>strip</code>.
-	 * <p>
-	 * Defaults to: sliceAndDice
-	 */
-	public void setLayoutAlgorithm(TreeMapLayoutAlgorithm layoutAlgorithm) {
-		this.layoutAlgorithm = layoutAlgorithm;
-	}
-
-	/**
-	 * @see #setLayoutStartingDirection(TreeMapLayoutStartingDirection)
-	 */
-	public TreeMapLayoutStartingDirection getLayoutStartingDirection() {
-		return layoutStartingDirection;
-	}
-
-	/**
-	 * Defines which direction the layout algorithm will start drawing. Possible
-	 * values are "vertical" and "horizontal".
-	 * <p>
-	 * Defaults to: vertical
-	 */
-	public void setLayoutStartingDirection(
-			TreeMapLayoutStartingDirection layoutStartingDirection) {
-		this.layoutStartingDirection = layoutStartingDirection;
-	}
-
-	/**
-	 * @see #setLevelIsConstant(Boolean)
-	 */
-	public Boolean getLevelIsConstant() {
-		return levelIsConstant;
-	}
-
-	/**
-	 * Used together with the levels and allowDrillToNode options. When set to
-	 * false the first level visible when drilling is considered to be level
-	 * one. Otherwise the level will be the same as the tree structure.
-	 * <p>
-	 * Defaults to: true
-	 */
-	public void setLevelIsConstant(Boolean levelIsConstant) {
-		this.levelIsConstant = levelIsConstant;
-	}
-
-	public Level[] getLevels() {
-		Level[] arr = new Level[levels.size()];
-		levels.toArray(arr);
-		return arr;
-	}
-
-	public void setLevels(Level... levels) {
-		this.levels = new ArrayList<Level>(Arrays.asList(levels));
-	}
-
-	public void addLevel(Level level) {
-		if (this.levels == null) {
-			this.levels = new ArrayList<Level>();
-		}
-		this.levels.add(level);
-	}
-
-	public void removeLevel(Level level) {
-		this.levels.remove(level);
 	}
 
 	/**
@@ -486,6 +491,173 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 	 */
 	public void setMaxPointWidth(Number maxPointWidth) {
 		this.maxPointWidth = maxPointWidth;
+	}
+
+	/**
+	 * @see #setMinPointLength(Number)
+	 */
+	public Number getMinPointLength() {
+		return minPointLength;
+	}
+
+	/**
+	 * The minimal height for a column or width for a bar. By default, 0 values
+	 * are not shown. To visualize a 0 (or close to zero) point, set the minimal
+	 * point length to a pixel value like 3. In stacked column charts,
+	 * minPointLength might not be respected for tightly packed values.
+	 * <p>
+	 * Defaults to: 0
+	 */
+	public void setMinPointLength(Number minPointLength) {
+		this.minPointLength = minPointLength;
+	}
+
+	/**
+	 * @see #setPointInterval(Number)
+	 */
+	public Number getPointInterval() {
+		return pointInterval;
+	}
+
+	/**
+	 * <p>
+	 * If no x values are given for the points in a series, pointInterval
+	 * defines the interval of the x values. For example, if a series contains
+	 * one value every decade starting from year 0, set pointInterval to 10.
+	 * </p>
+	 * <p>
+	 * Since Highcharts 4.1, it can be combined with
+	 * <code>pointIntervalUnit</code> to draw irregular intervals.
+	 * </p>
+	 * <p>
+	 * Defaults to: 1
+	 */
+	public void setPointInterval(Number pointInterval) {
+		this.pointInterval = pointInterval;
+	}
+
+	/**
+	 * @see #setPointIntervalUnit(IntervalUnit)
+	 */
+	public IntervalUnit getPointIntervalUnit() {
+		return pointIntervalUnit;
+	}
+
+	/**
+	 * On datetime series, this allows for setting the <a
+	 * href="plotOptions.series.pointInterval">pointInterval</a> to the two
+	 * irregular time units, <code>month</code> and <code>year</code>. Combine
+	 * it with <code>pointInterval</code> to draw quarters, 6 months, 10 years
+	 * etc.
+	 */
+	public void setPointIntervalUnit(IntervalUnit pointIntervalUnit) {
+		this.pointIntervalUnit = pointIntervalUnit;
+	}
+
+	/**
+	 * @see #setPointPadding(Number)
+	 */
+	public Number getPointPadding() {
+		return pointPadding;
+	}
+
+	/**
+	 * Padding between each column or bar, in x axis units.
+	 * <p>
+	 * Defaults to: 0.1
+	 */
+	public void setPointPadding(Number pointPadding) {
+		this.pointPadding = pointPadding;
+	}
+
+	/**
+	 * @see #setPointPlacement(PointPlacement)
+	 */
+	public PointPlacement getPointPlacement() {
+		return pointPlacement;
+	}
+
+	/**
+	 * <p>
+	 * Possible values: <code>null</code>, <code>"on"</code>,
+	 * <code>"between"</code>.
+	 * </p>
+	 * <p>
+	 * In a column chart, when pointPlacement is <code>"on"</code>, the point
+	 * will not create any padding of the X axis. In a polar column chart this
+	 * means that the first column points directly north. If the pointPlacement
+	 * is <code>"between"</code>, the columns will be laid out between ticks.
+	 * This is useful for example for visualising an amount between two points
+	 * in time or in a certain sector of a polar chart.
+	 * </p>
+	 * <p>
+	 * Since Highcharts 3.0.2, the point placement can also be numeric, where 0
+	 * is on the axis value, -0.5 is between this value and the previous, and
+	 * 0.5 is between this value and the next. Unlike the textual options,
+	 * numeric point placement options won't affect axis padding.
+	 * </p>
+	 * <p>
+	 * Note that pointPlacement needs a <a
+	 * href="#plotOptions.series.pointRange">pointRange</a> to work. For column
+	 * series this is computed, but for line-type series it needs to be set.
+	 * </p>
+	 * <p>
+	 * Defaults to <code>null</code> in cartesian charts, <code>"between"</code>
+	 * in polar charts.
+	 */
+	public void setPointPlacement(PointPlacement pointPlacement) {
+		this.pointPlacement = pointPlacement;
+	}
+
+	/**
+	 * @see #setPointRange(Number)
+	 */
+	public Number getPointRange() {
+		return pointRange;
+	}
+
+	/**
+	 * The X axis range that each point is valid for. This determines the width
+	 * of the column. On a categorized axis, the range will be 1 by default (one
+	 * category unit). On linear and datetime axes, the range will be computed
+	 * as the distance between the two closest data points.
+	 */
+	public void setPointRange(Number pointRange) {
+		this.pointRange = pointRange;
+	}
+
+	/**
+	 * @see #setPointStart(Number)
+	 */
+	public Number getPointStart() {
+		return pointStart;
+	}
+
+	/**
+	 * If no x values are given for the points in a series, pointStart defines
+	 * on what value to start. For example, if a series contains one yearly
+	 * value starting from 1945, set pointStart to 1945.
+	 * <p>
+	 * Defaults to: 0
+	 */
+	public void setPointStart(Number pointStart) {
+		this.pointStart = pointStart;
+	}
+
+	/**
+	 * @see #setPointWidth(Number)
+	 */
+	public Number getPointWidth() {
+		return pointWidth;
+	}
+
+	/**
+	 * A pixel value specifying a fixed width for each column or bar. When
+	 * <code>null</code>, the width is calculated from the
+	 * <code>pointPadding</code> and <code>groupPadding</code>.
+	 */
+	public void setPointWidth(Number pointWidth) {
+		this.pointWidth = pointWidth;
 	}
 
 	/**
@@ -551,29 +723,14 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 	}
 
 	/**
-	 * Whether to display this series type or specific series item in the
-	 * legend.
+	 * Whether to display this particular series or series type in the legend.
+	 * The default value is <code>true</code> for standalone series,
+	 * <code>false</code> for linked series.
 	 * <p>
-	 * Defaults to: false
+	 * Defaults to: true
 	 */
 	public void setShowInLegend(Boolean showInLegend) {
 		this.showInLegend = showInLegend;
-	}
-
-	/**
-	 * @see #setSortIndex(Number)
-	 */
-	public Number getSortIndex() {
-		return sortIndex;
-	}
-
-	/**
-	 * The sort index of the point inside the treemap level.
-	 * <p>
-	 * Defaults to:
-	 */
-	public void setSortIndex(Number sortIndex) {
-		this.sortIndex = sortIndex;
 	}
 
 	/**
@@ -622,8 +779,9 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 	}
 
 	/**
-	 * <p>
-	 * Defaults to:
+	 * A configuration object for the tooltip rendering of each single series.
+	 * Properties are inherited from <a href="#tooltip">tooltip</a>, but only
+	 * the following properties can be defined on a series level.
 	 */
 	public void setTooltip(SeriesTooltip tooltip) {
 		this.tooltip = tooltip;
@@ -700,5 +858,60 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 
 	public void removeZone(Zones zone) {
 		this.zones.remove(zone);
+	}
+
+	/**
+	 * @see #setCompare(Compare)
+	 */
+	public Compare getCompare() {
+		return compare;
+	}
+
+	/**
+	 * Compare the values of the series against the first non-null, non-zero
+	 * value in the visible range. The y axis will show percentage or absolute
+	 * change depending on whether <code>compare</code> is set to
+	 * <code>"percent"</code> or <code>"value"</code>. When this is applied to
+	 * multiple series, it allows comparing the development of the series
+	 * against each other.
+	 * <p>
+	 * Defaults to: undefined
+	 */
+	public void setCompare(Compare compare) {
+		this.compare = compare;
+	}
+
+	/**
+	 * @see #setDataGrouping(DataGrouping)
+	 */
+	public DataGrouping getDataGrouping() {
+		return dataGrouping;
+	}
+
+	/**
+	 * 
+	 */
+	public void setDataGrouping(DataGrouping dataGrouping) {
+		this.dataGrouping = dataGrouping;
+	}
+
+	/**
+	 * @see #setLegendIndex(Number)
+	 */
+	public Number getLegendIndex() {
+		return legendIndex;
+	}
+
+	/**
+	 * The sequential index of the series within the legend.
+	 * <p>
+	 * Defaults to: 0
+	 */
+	public void setLegendIndex(Number legendIndex) {
+		this.legendIndex = legendIndex;
+	}
+
+	public void setPointStart(Date date) {
+		this.pointStart = Util.toHighchartsTS(date);
 	}
 }

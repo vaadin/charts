@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+<vaadin-vertical-layout size-full>
+    <vaadin-line-chart _id="mychart" timeline="false" height="450px" :expand>
+        <chart margin-right="130" margin-bottom="25"></chart>
+        <title>Monthly Average Temperature</title>
+        <subtitle>Source: WorldClimate.com</subtitle>
+        <legend layout="vertical" align="right" vertical-align="top" x="-10" y="100" border-width="0"></legend>
+
+        <y-axis min="-5">
+            <title align="middle">Temperature (°C)</title>
+        </y-axis>
+        <x-axis>
+            <categories>Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec</categories>
+        </x-axis>
+
+
+        <tooltip formatter="function() {return '' + this.series.name + ' ' + this.x + ': ' + this.y + '°C';}"></tooltip>
+
+        <plot-options>
+            <line>
+                <data-labels enabled="true"></data-labels>
+            </line>
+        </plot-options>
+
+    </vaadin-line-chart>
+</vaadin-vertical-layout>
+</body>
+</html>
