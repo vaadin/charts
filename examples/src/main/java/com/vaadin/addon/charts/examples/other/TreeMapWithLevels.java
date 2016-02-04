@@ -5,7 +5,7 @@ import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.HorizontalAlign;
-import com.vaadin.addon.charts.model.Levels;
+import com.vaadin.addon.charts.model.Level;
 import com.vaadin.addon.charts.model.PlotOptionsTreeMap;
 import com.vaadin.addon.charts.model.TreeMapLayoutAlgorithm;
 import com.vaadin.addon.charts.model.TreeSeries;
@@ -31,7 +31,7 @@ public class TreeMapWithLevels extends AbstractVaadinChartExample {
         plotOptions.setLayoutAlgorithm(TreeMapLayoutAlgorithm.STRIPES);
         plotOptions.setAlternateStartingDirection(true);
 
-        Levels level1 = new Levels();
+        Level level1 = new Level();
         level1.setLevel(1);
         level1.setLayoutAlgorithm(TreeMapLayoutAlgorithm.SLICEANDDICE);
 
@@ -46,7 +46,7 @@ public class TreeMapWithLevels extends AbstractVaadinChartExample {
 
         dataLabels.setStyle(style);
         level1.setDataLabels(dataLabels);
-        plotOptions.setLevels(new Levels[] { level1 });
+        plotOptions.setLevels(level1);
 
         TreeSeries series = createSeries();
         series.setPlotOptions(plotOptions);

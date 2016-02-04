@@ -22,7 +22,7 @@ import com.vaadin.addon.charts.model.style.Color;
  * Set options on specific levels. Takes precedence over series options, but not
  * point options.
  */
-public class Levels extends AbstractConfigurationObject {
+public class Level extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
 	private Color borderColor;
@@ -34,7 +34,7 @@ public class Levels extends AbstractConfigurationObject {
 	private TreeMapLayoutStartingDirection layoutStartingDirection;
 	private Number level;
 
-	public Levels() {
+	public Level() {
 	}
 
 	/**

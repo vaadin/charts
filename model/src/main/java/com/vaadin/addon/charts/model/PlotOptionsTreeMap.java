@@ -49,7 +49,7 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 	private TreeMapLayoutAlgorithm layoutAlgorithm;
 	private TreeMapLayoutStartingDirection layoutStartingDirection;
 	private Boolean levelIsConstant;
-	private Levels[] levels;
+	private ArrayList<Level> levels;
 	private String linkedTo;
 	private Number maxPointWidth;
 	private Boolean selected;
@@ -430,19 +430,25 @@ public class PlotOptionsTreeMap extends AbstractPlotOptions {
 		this.levelIsConstant = levelIsConstant;
 	}
 
-	/**
-	 * @see #setLevels(Levels[])
-	 */
-	public Levels[] getLevels() {
-		return levels;
+	public Level[] getLevels() {
+		Level[] arr = new Level[levels.size()];
+		levels.toArray(arr);
+		return arr;
 	}
 
-	/**
-	 * Set options on specific levels. Takes precedence over series options, but
-	 * not point options.
-	 */
-	public void setLevels(Levels[] levels) {
-		this.levels = levels;
+	public void setLevels(Level... levels) {
+		this.levels = new ArrayList<Level>(Arrays.asList(levels));
+	}
+
+	public void addLevel(Level level) {
+		if (this.levels == null) {
+			this.levels = new ArrayList<Level>();
+		}
+		this.levels.add(level);
+	}
+
+	public void removeLevel(Level level) {
+		this.levels.remove(level);
 	}
 
 	/**
