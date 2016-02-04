@@ -81,7 +81,7 @@ public class HighchartConfig extends JavaScriptObject {
                             var script = childobj;
                             var actualPropName = prop.replace(re_fn_prop, '');
                             script = script.replace(re, "$1\$wnd.$2");
-                            if(script.indexOf("function()") != 0) {
+                            if(script.indexOf("function") != 0) {
                                 if(script.indexOf("return") != 0) {
                                     script = "return " + script;
                                 }

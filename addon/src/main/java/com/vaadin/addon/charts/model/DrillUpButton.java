@@ -23,15 +23,15 @@ package com.vaadin.addon.charts.model;
  */
 public class DrillUpButton extends AbstractConfigurationObject {
 
-    private DrillUpButtonPosition position;
+    private ButtonPosition position;
     private DrillUpButtonRelativeTo relativeTo;
     private DrillUpButtonTheme theme;
 
     /**
-     * @see #setPosition(DrillUpButtonPosition)
+     * @see #setPosition(ButtonPosition)
      * @return position
      */
-    public DrillUpButtonPosition getPosition() {
+    public ButtonPosition getPosition() {
         return position;
     }
 
@@ -41,7 +41,7 @@ public class DrillUpButton extends AbstractConfigurationObject {
      * 
      * @param position
      */
-    public void setPosition(DrillUpButtonPosition position) {
+    public void setPosition(ButtonPosition position) {
         this.position = position;
     }
 

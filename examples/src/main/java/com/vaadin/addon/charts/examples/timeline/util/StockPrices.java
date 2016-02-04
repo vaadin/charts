@@ -88,6 +88,11 @@ public class StockPrices {
         return Collections.unmodifiableList(data);
     }
 
+    public static List<PriceData> fetchAaplPriceWithTime() {
+        List<PriceData> data = readValueData("aapl-price-withtime.json");
+        return Collections.unmodifiableList(data);
+    }
+
     public static List<PriceData> fetchGoogPrice() {
         List<PriceData> data = readValueData("goog-price.json");
         return Collections.unmodifiableList(data);

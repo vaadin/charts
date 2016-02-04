@@ -17,6 +17,7 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
+import com.vaadin.addon.charts.model.style.ButtonTheme;
 import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.Style;
 /**
@@ -30,7 +31,7 @@ public class RangeSelector extends AbstractConfigurationObject {
 	private static final long serialVersionUID = 1L;
 	private Boolean allButtonsEnabled;
 	private Number buttonSpacing;
-	private Object buttonTheme;
+	private ButtonTheme buttonTheme;
 	private Buttons buttons;
 	private Boolean enabled;
 	private Number height;
@@ -38,10 +39,10 @@ public class RangeSelector extends AbstractConfigurationObject {
 	private Number inputBoxHeight;
 	private Number inputBoxWidth;
 	private String inputDateFormat;
-	private Object inputDateParser;
+	private String _fn_inputDateParser;
 	private String inputEditDateFormat;
 	private Boolean inputEnabled;
-	private Object inputPosition;
+	private ButtonPosition inputPosition;
 	private Style inputStyle;
 	private Style labelStyle;
 	private Number selected;
@@ -85,9 +86,9 @@ public class RangeSelector extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setButtonTheme(Object)
+	 * @see #setButtonTheme(ButtonTheme)
 	 */
-	public Object getButtonTheme() {
+	public ButtonTheme getButtonTheme() {
 		return buttonTheme;
 	}
 
@@ -99,7 +100,7 @@ public class RangeSelector extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to:
 	 */
-	public void setButtonTheme(Object buttonTheme) {
+	public void setButtonTheme(ButtonTheme buttonTheme) {
 		this.buttonTheme = buttonTheme;
 	}
 
@@ -266,21 +267,12 @@ public class RangeSelector extends AbstractConfigurationObject {
 		this.inputDateFormat = inputDateFormat;
 	}
 
-	/**
-	 * @see #setInputDateParser(Object)
-	 */
-	public Object getInputDateParser() {
-		return inputDateParser;
+	public String getInputDateParser() {
+		return _fn_inputDateParser;
 	}
 
-	/**
-	 * A custom callback function to parse values entered in the input boxes and
-	 * return a valid JavaScript time as milliseconds since 1970.
-	 * <p>
-	 * Defaults to:
-	 */
-	public void setInputDateParser(Object inputDateParser) {
-		this.inputDateParser = inputDateParser;
+	public void setInputDateParser(String _fn_inputDateParser) {
+		this._fn_inputDateParser = _fn_inputDateParser;
 	}
 
 	/**
@@ -316,9 +308,9 @@ public class RangeSelector extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setInputPosition(Object)
+	 * @see #setInputPosition(ButtonPosition)
 	 */
-	public Object getInputPosition() {
+	public ButtonPosition getInputPosition() {
 		return inputPosition;
 	}
 
@@ -329,7 +321,7 @@ public class RangeSelector extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to: { align: "right" }
 	 */
-	public void setInputPosition(Object inputPosition) {
+	public void setInputPosition(ButtonPosition inputPosition) {
 		this.inputPosition = inputPosition;
 	}
 
