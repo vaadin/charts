@@ -41,7 +41,7 @@ public class Legend extends AbstractConfigurationObject {
 	private Style itemStyle;
 	private Number itemWidth;
 	private String labelFormat;
-	private Object labelFormatter;
+	private String _fn_labelFormatter;
 	private LayoutDirection layout;
 	private Number lineHeight;
 	private Number margin;
@@ -335,20 +335,12 @@ public class Legend extends AbstractConfigurationObject {
 		this.labelFormat = labelFormat;
 	}
 
-	/**
-	 * @see #setLabelFormatter(Object)
-	 */
-	public Object getLabelFormatter() {
-		return labelFormatter;
+	public String getLabelFormatter() {
+		return _fn_labelFormatter;
 	}
 
-	/**
-	 * Callback function to format each of the series' labels. The <em>this</em>
-	 * keyword refers to the series object, or the point object in case of pie
-	 * charts. By default the series or point name is printed.
-	 */
-	public void setLabelFormatter(Object labelFormatter) {
-		this.labelFormatter = labelFormatter;
+	public void setLabelFormatter(String _fn_labelFormatter) {
+		this._fn_labelFormatter = _fn_labelFormatter;
 	}
 
 	/**
