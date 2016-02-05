@@ -33,6 +33,7 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 	private Number cropThreshold;
 	private Cursor cursor;
 	private Boolean enableMouseTracking;
+	private Boolean getExtremesFromAll;
 	private ArrayList<String> keys;
 	private Number legendIndex;
 	private Color lineColor;
@@ -179,6 +180,24 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 	 */
 	public void setEnableMouseTracking(Boolean enableMouseTracking) {
 		this.enableMouseTracking = enableMouseTracking;
+	}
+
+	/**
+	 * @see #setGetExtremesFromAll(Boolean)
+	 */
+	public Boolean getGetExtremesFromAll() {
+		return getExtremesFromAll;
+	}
+
+	/**
+	 * Whether to use the Y extremes of the total chart width or only the zoomed
+	 * area when zooming in on parts of the X axis. By default, the Y axis
+	 * adjusts to the min and max of the visible data. Cartesian series only.
+	 * <p>
+	 * Defaults to: false
+	 */
+	public void setGetExtremesFromAll(Boolean getExtremesFromAll) {
+		this.getExtremesFromAll = getExtremesFromAll;
 	}
 
 	public String[] getKeys() {

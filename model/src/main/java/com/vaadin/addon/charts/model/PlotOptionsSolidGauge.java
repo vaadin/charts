@@ -35,6 +35,7 @@ public class PlotOptionsSolidGauge extends AbstractPlotOptions {
 	private Boolean enableMouseTracking;
 	private Boolean getExtremesFromAll;
 	private ArrayList<String> keys;
+	private String linecap;
 	private Number overshoot;
 	private Boolean selected;
 	private Boolean showCheckbox;
@@ -177,6 +178,23 @@ public class PlotOptionsSolidGauge extends AbstractPlotOptions {
 
 	public void removeKey(String key) {
 		this.keys.remove(key);
+	}
+
+	/**
+	 * @see #setLinecap(String)
+	 */
+	public String getLinecap() {
+		return linecap;
+	}
+
+	/**
+	 * Whether the strokes of the solid gauge should be <code>round</code> or
+	 * <code>square</code>.
+	 * <p>
+	 * Defaults to: square
+	 */
+	public void setLinecap(String linecap) {
+		this.linecap = linecap;
 	}
 
 	/**

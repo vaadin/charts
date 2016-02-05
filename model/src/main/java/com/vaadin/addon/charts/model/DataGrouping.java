@@ -92,7 +92,7 @@ public class DataGrouping extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * Enable or disable data grouping. Defaults to <code>true</code>.
+	 * Enable or disable data grouping.
 	 * <p>
 	 * Defaults to: true
 	 */
@@ -110,8 +110,7 @@ public class DataGrouping extends AbstractConfigurationObject {
 	/**
 	 * When data grouping is forced, it runs no matter how small the intervals
 	 * are. This can be handy for example when the sum should be calculated for
-	 * values appearing at random times within each hour. Defaults to
-	 * <code>false</code>.
+	 * values appearing at random times within each hour.
 	 * <p>
 	 * Defaults to: false
 	 */
@@ -135,8 +134,7 @@ public class DataGrouping extends AbstractConfigurationObject {
 	 * multiple series with different group pixel widths are drawn on the same x
 	 * axis, all series will take the greatest width. For example, line series
 	 * have 2px default group width, while column series have 10px. If combined,
-	 * both the line and the column will have 10px by default. Defaults to
-	 * <code>2</code>.
+	 * both the line and the column will have 10px by default.
 	 * <p>
 	 * Defaults to: 2
 	 */

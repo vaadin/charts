@@ -36,6 +36,7 @@ public class PlotOptionsCandlestick extends AbstractPlotOptions {
 	private Cursor cursor;
 	private DataGrouping dataGrouping;
 	private Boolean enableMouseTracking;
+	private Boolean getExtremesFromAll;
 	private Number groupPadding;
 	private Boolean grouping;
 	private ArrayList<String> keys;
@@ -238,6 +239,24 @@ public class PlotOptionsCandlestick extends AbstractPlotOptions {
 	 */
 	public void setEnableMouseTracking(Boolean enableMouseTracking) {
 		this.enableMouseTracking = enableMouseTracking;
+	}
+
+	/**
+	 * @see #setGetExtremesFromAll(Boolean)
+	 */
+	public Boolean getGetExtremesFromAll() {
+		return getExtremesFromAll;
+	}
+
+	/**
+	 * Whether to use the Y extremes of the total chart width or only the zoomed
+	 * area when zooming in on parts of the X axis. By default, the Y axis
+	 * adjusts to the min and max of the visible data. Cartesian series only.
+	 * <p>
+	 * Defaults to: false
+	 */
+	public void setGetExtremesFromAll(Boolean getExtremesFromAll) {
+		this.getExtremesFromAll = getExtremesFromAll;
 	}
 
 	/**

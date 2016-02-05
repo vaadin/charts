@@ -27,9 +27,8 @@ public class Navigator extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
 	private Boolean adaptToUpdatedData;
-	private Object baseSeries;
 	private Boolean enabled;
-	private Object handles;
+	private Handles handles;
 	private Number height;
 	private Number margin;
 	private Color maskFill;
@@ -61,23 +60,6 @@ public class Navigator extends AbstractConfigurationObject {
 		this.adaptToUpdatedData = adaptToUpdatedData;
 	}
 
-	/**
-	 * @see #setBaseSeries(Object)
-	 */
-	public Object getBaseSeries() {
-		return baseSeries;
-	}
-
-	/**
-	 * An integer identifying the index to use for the base series, or a string
-	 * representing the id of the series.
-	 * <p>
-	 * Defaults to: 0
-	 */
-	public void setBaseSeries(Object baseSeries) {
-		this.baseSeries = baseSeries;
-	}
-
 	public Navigator(Boolean enabled) {
 		this.enabled = enabled;
 	}
@@ -99,18 +81,16 @@ public class Navigator extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setHandles(Object)
+	 * @see #setHandles(Handles)
 	 */
-	public Object getHandles() {
+	public Handles getHandles() {
 		return handles;
 	}
 
 	/**
-	 * Options for the handles for dragging the zoomed area. Available options
-	 * are <code>backgroundColor</code> (defaults to <code>#ebe7e8</code>) and
-	 * <code>borderColor</code> (defaults to <code>#b2b1b6</code>).
+	 * Options for the handles for dragging the zoomed area.
 	 */
-	public void setHandles(Object handles) {
+	public void setHandles(Handles handles) {
 		this.handles = handles;
 	}
 
