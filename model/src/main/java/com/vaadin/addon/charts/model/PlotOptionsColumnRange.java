@@ -72,7 +72,7 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	private Boolean visible;
 	private String zoneAxis;
 	private ArrayList<Zones> zones;
-	private String compare;
+	private Compare compare;
 	private DataGrouping dataGrouping;
 	private Number legendIndex;
 
@@ -861,9 +861,9 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setCompare(String)
+	 * @see #setCompare(Compare)
 	 */
-	public String getCompare() {
+	public Compare getCompare() {
 		return compare;
 	}
 
@@ -877,7 +877,7 @@ public class PlotOptionsColumnRange extends AbstractPlotOptions {
 	 * <p>
 	 * Defaults to: undefined
 	 */
-	public void setCompare(String compare) {
+	public void setCompare(Compare compare) {
 		this.compare = compare;
 	}
 

@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts.examples.timeline;
 
+import static com.vaadin.addon.charts.model.Compare.PERCENT;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.timeline.util.StockPrices;
@@ -51,7 +53,7 @@ public class CompareMultipleSeries extends AbstractVaadinChartExample {
 
         DataSeries aaplSeries = new DataSeries();
         aaplSeries.setName("AAPL");
-        for(StockPrices.PriceData data : StockPrices.fetchAaplPrice()) {
+        for (StockPrices.PriceData data : StockPrices.fetchAaplPrice()) {
             DataSeriesItem item = new DataSeriesItem();
             item.setX(data.getDate());
             item.setY(data.getPrice());
@@ -59,7 +61,7 @@ public class CompareMultipleSeries extends AbstractVaadinChartExample {
         }
         DataSeries googSeries = new DataSeries();
         googSeries.setName("GOOG");
-        for(StockPrices.PriceData data : StockPrices.fetchGoogPrice()) {
+        for (StockPrices.PriceData data : StockPrices.fetchGoogPrice()) {
             DataSeriesItem item = new DataSeriesItem();
             item.setX(data.getDate());
             item.setY(data.getPrice());
@@ -67,7 +69,7 @@ public class CompareMultipleSeries extends AbstractVaadinChartExample {
         }
         DataSeries msftSeries = new DataSeries();
         msftSeries.setName("MSFT");
-        for(StockPrices.PriceData data : StockPrices.fetchMsftPrice()) {
+        for (StockPrices.PriceData data : StockPrices.fetchMsftPrice()) {
             DataSeriesItem item = new DataSeriesItem();
             item.setX(data.getDate());
             item.setY(data.getPrice());
@@ -76,7 +78,7 @@ public class CompareMultipleSeries extends AbstractVaadinChartExample {
         configuration.setSeries(aaplSeries, googSeries, msftSeries);
 
         PlotOptionsSeries plotOptionsSeries = new PlotOptionsSeries();
-        plotOptionsSeries.setCompare("percent");
+        plotOptionsSeries.setCompare(PERCENT);
         configuration.setPlotOptions(plotOptionsSeries);
 
         RangeSelector rangeSelector = new RangeSelector();

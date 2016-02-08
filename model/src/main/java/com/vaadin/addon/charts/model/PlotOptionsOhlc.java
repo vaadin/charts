@@ -33,7 +33,7 @@ public class PlotOptionsOhlc extends AbstractPlotOptions {
 	private Color color;
 	private Boolean colorByPoint;
 	private Color[] colors;
-	private String compare;
+	private Compare compare;
 	private Number cropThreshold;
 	private Cursor cursor;
 	private DataGrouping dataGrouping;
@@ -185,9 +185,9 @@ public class PlotOptionsOhlc extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setCompare(String)
+	 * @see #setCompare(Compare)
 	 */
-	public String getCompare() {
+	public Compare getCompare() {
 		return compare;
 	}
 
@@ -201,7 +201,7 @@ public class PlotOptionsOhlc extends AbstractPlotOptions {
 	 * <p>
 	 * Defaults to: undefined
 	 */
-	public void setCompare(String compare) {
+	public void setCompare(Compare compare) {
 		this.compare = compare;
 	}
 
