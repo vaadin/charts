@@ -1,6 +1,15 @@
 package com.vaadin.addon.charts.model.junittests;
 
+import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
+import static org.junit.Assert.assertEquals;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.Test;
+
 import com.vaadin.addon.charts.model.AbstractConfigurationObject;
+import com.vaadin.addon.charts.model.Attributes;
 import com.vaadin.addon.charts.model.AxisList;
 import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.ChartType;
@@ -14,13 +23,6 @@ import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
-import org.junit.Test;
-
-import java.util.Arrays;
-import java.util.List;
-
-import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
-import static org.junit.Assert.assertEquals;
 
 /**
  * Tests for the JSON serialization in {@link AbstractConfigurationObject}.
@@ -70,7 +72,7 @@ public class ConfigurationObjectJSONSerializationTest {
 
     @Test
     public void toString_AxisListWithOneItem_SerializedAsSingleAxis() {
-        AxisList axisList = new AxisList();
+        AxisList<XAxis> axisList = new AxisList<XAxis>();
         axisList.addAxis(new XAxis());
         ObjectContainer object = new ObjectContainer(axisList);
         String axisJson = "{\"axisIndex\":0}";
@@ -80,7 +82,7 @@ public class ConfigurationObjectJSONSerializationTest {
 
     @Test
     public void toString_AxisListWithTwoItems_SerializedAsAxisArray() {
-        AxisList axisList = new AxisList();
+        AxisList<XAxis> axisList = new AxisList<XAxis>();
         axisList.addAxis(new XAxis());
         axisList.addAxis(new XAxis());
         ObjectContainer object = new ObjectContainer(axisList);
@@ -141,22 +143,35 @@ public class ConfigurationObjectJSONSerializationTest {
 
         assertEquals("{\"text\":null}", toJSON(title));
     }
+
     @Test
     public void toJSON_AxisTitleWithNullValue_NullSerializedToText() {
         AxisTitle title = new AxisTitle();
 
         assertEquals("{\"text\":null}", toJSON(title));
     }
+
     @Test
     public void toJSON_LegendTitleWithNullValue_NullSerializedToText() {
         LegendTitle title = new LegendTitle();
         assertEquals("{\"text\":null}", toJSON(title));
     }
+
     @Test
     public void toJSON_drilldownWithConfiguration_drilldownSerializedToText() {
         Drilldown drilldown = new Drilldown();
         drilldown.setConfiguration(new Configuration());
         assertEquals("{\"series\":[]}", toJSON(drilldown));
+    }
+
+    @Test
+    public void toJSON_AtributesWithStrokeWidth_StrokeWidthSerializedWithDash() {
+        Attributes attributes = new Attributes();
+        attributes.setStroke(SolidColor.RED);
+        attributes.setStrokeWidth(10);
+
+        assertEquals("{\"stroke\":\"#FF0000\",\"stroke-width\":10}",
+                toJSON(attributes));
     }
 
     /*

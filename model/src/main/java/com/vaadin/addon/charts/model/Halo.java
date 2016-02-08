@@ -26,7 +26,7 @@ package com.vaadin.addon.charts.model;
 public class Halo extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
-	private Object attributes;
+	private Attributes attributes;
 	private Number opacity;
 	private Number size;
 
@@ -34,9 +34,9 @@ public class Halo extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setAttributes(Object)
+	 * @see #setAttributes(Attributes)
 	 */
-	public Object getAttributes() {
+	public Attributes getAttributes() {
 		return attributes;
 	}
 
@@ -47,7 +47,7 @@ public class Halo extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to:
 	 */
-	public void setAttributes(Object attributes) {
+	public void setAttributes(Attributes attributes) {
 		this.attributes = attributes;
 	}
 
