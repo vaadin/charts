@@ -693,17 +693,14 @@ image::img/charts-donut.png[width="60%"]
 [[charts.charttypes.gauge]]
 == Gauges
 
-A `vaadin-gauge-chart` is an one-dimensional chart with a circular Y-axis, where a rotating
-pointer points to a value on the axis. A gauge can, in fact, have multiple
-Y-axes to display multiple scales.
+A [vaadinelement]#vaadin-gauge-chart# is an one-dimensional chart with a circular Y-axis, where a rotating pointer points to a value on the axis.
+A gauge can, in fact, have multiple Y-axes to display multiple scales.
 
-A `vaadin-solidgauge-chart` is otherwise like a regular gauge, except that a solid color
-arc is used to indicate current value instead of a pointer. The color of the
-indicator arc can be configured to change according to color stops.
+A [vaadinelement]#vaadin-solidgauge-chart# is otherwise like a regular gauge, except that a solid color arc is used to indicate current value instead of a pointer.
+The color of the indicator arc can be configured to change according to color stops.
 
-Let us first consider `vaadin-gauge-chart` the following gauge.
-After the settings done in the subsequent sections, it will show as in
-<<figure.charts.charttypes.gauge>>.
+Let us first consider [vaadinelement]#vaadin-gauge-chart# the following gauge.
+After the settings done in the subsequent sections, it will show as in <<figure.charts.charttypes.gauge>>.
 
 [[figure.charts.charttypes.gauge]]
 .A Gauge
@@ -735,7 +732,8 @@ for it.
 [source,html]
 ----
 <y-axis min="0" max="200"
-        tick-pixel-interval="30" tick-width="2" tick-length="10" tick-color="#666">
+        tick-interval="10" tick-width="2" tick-length="10" tick-color="#666"
+        minor-tick-interval="1" minor-tick-width="1" minor-tick-length="5">
     <title>km/h</title>
     <labels step="2" rotation="auto"></labels>
     <plot-bands from="0" to="120" color="#55BF3B"></plot-bands>
@@ -797,7 +795,7 @@ While solid gauge is much like a regular gauge, the configuration differs
 [[charts.charttypes.solidgauge.conf]]
 === Configuration
 
-The solid gauge must be configured in the drawing `pane` element of the chart.
+The solid gauge must be configured in the [elementname]#pane# element of the chart.
 The gauge arc spans an angle, which is specified as -360 to 360
 degrees, with 0 degrees at the top of the arc. Typically, a semi-arc is used,
 where you use -90 and 90 for the angles, and move the center lower than you
@@ -821,11 +819,11 @@ color and inner and outer radius.
 [[charts.charttypes.solidgauge.axis]]
 === Axis Configuration
 
-A gauge only has an Y-axis. You must define the value range ( 'min' and
+A gauge only has an Y-axis. You must define the value range ('min' and
 'max').
 
 You can configure color stops for the indicator arc. The stops are defined with
-`stops` elements having the stop points from 0.0 to 1.0 and color values.
+[elementname]#stops# elements having the stop points from 0.0 to 1.0 and color values.
 
 [source,html]
 ----
@@ -837,8 +835,7 @@ You can configure color stops for the indicator arc. The stops are defined with
 </y-axis>
 ----
 
-Setting rotatation to 'auto' makes gauge
-labels rotate perpendicular to the center.
+Setting rotation to 'auto' makes gauge labels rotate perpendicular to the center.
 
 [source,html]
 ----
@@ -902,15 +899,12 @@ how to update the value from JavaScript.
 </script>
 ----
 
-
-
 [[charts.charttypes.rangecharts]]
 == Area and Column Range Charts
 
 Ranged charts display an area or column between a minimum and maximum value,
-instead of a singular data point. An
-area range is created with `vaadin-arearange-chart` element, and a column range
-with `vaadin-columnrange-chart`.
+instead of a singular data point.
+An area range is created with [vaadinelement]#vaadin-arearange-chart# element, and a column range with [vaadinelement]#vaadin-columnrange-chart#.
 
 Consider the following example:
 
@@ -983,9 +977,8 @@ Vaadin Charts allows many sorts of typical polar chart types, such as 'wind
 rose', a polar column graph, or 'spiderweb', a polar chart with categorical
 data and a more polygonal visual style.
 
-You need to define the sector of the polar projection with a `pane` element.
-The sector is defined as degrees from the north
-direction.
+You need to define the sector of the polar projection with a [elementname]#pane# element.
+The sector is defined as degrees from the north direction.
 
 [source,html]
 ----

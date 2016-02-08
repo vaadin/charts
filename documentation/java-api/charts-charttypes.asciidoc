@@ -150,7 +150,7 @@ primary chart type, such as a scatter or column chart.
 
 [[figure.charts.charttypes.errorbar]]
 .Error Bars in a Scatter Chart
-image::img/charts-errorbar.png[]
+image::img/charts-errorbar.png[width="60%"]
 
 To display the error bars for data points, you need to have a separate data
 series for the low and high values. The data series needs to use the
@@ -203,16 +203,11 @@ in the chart.
 Plot options for error bar charts have type [classname]#PlotOptionsErrorBar#. It
 has the following chart-specific plot option properties:
 
-[parameter]#whiskerColor#,[parameter]#whiskerWidth#, and[parameter]#whiskerLength#:: The color, width (vertical thickness), and length of the horizontal "whiskers"
-that indicate high and low values.
+[parameter]#whiskerColor#, [parameter]#whiskerWidth#, and [parameter]#whiskerLength#::
+ The color, width (vertical thickness), and length of the horizontal "whiskers" that indicate high and low values.
 
-[parameter]#stemColor#,[parameter]#stemWidth#, and[parameter]#stemDashStyle#:: The color, width (thickness), and line style of the vertical "stems" that
-connect the whiskers. In box plot charts, which also have stems, they extend
-from the quadrintile box.
-
-
-
-
+[parameter]#stemColor#, [parameter]#stemWidth#, and [parameter]#stemDashStyle#::
+ The color, width (thickness), and line style of the vertical "stems" that connect the whiskers. In box plot charts, which also have stems, they extend from the quadrintile box.
 
 [[charts.charttypes.boxplot]]
 == Box Plot Charts
@@ -227,7 +222,7 @@ Box plot chart is closely related to the error bar chart described in
 
 [[figure.charts.charttypes.boxplot]]
 .Box Plot Chart
-image::img/charts-boxplot.png[]
+image::img/charts-boxplot.png[width="60%"]
 
 The chart type for box plot charts is [literal]#++ChartType.BOXPLOT++#. You
 normally have just one data series, so it is meaningful to disable the legend.
@@ -252,8 +247,6 @@ extends the slightly more generic [classname]#PlotOptionsErrorBar#. They have
 the following plot option properties:
 
 [parameter]#medianColor#,[parameter]#medianWidth#:: Color and width (vertical thickness) of the horizontal median indicator line.
-
-
 
 For example:
 
@@ -307,7 +300,7 @@ for scatter charts.
 
 [[figure.charts.charttypes.scatter]]
 .Scatter Chart
-image::img/charts-scatter.png[]
+image::img/charts-scatter.png[width="60%"]
 
 The chart type of a scatter chart is [parameter]#ChartType.SCATTER#. Its options
 can be configured in a [classname]#PlotOptionsScatter# object, although it does
@@ -447,7 +440,7 @@ more bubbly.
 
 [[figure.charts.charttypes.bubble]]
 .Bubble Chart
-image::img/charts-bubble.png[]
+image::img/charts-bubble.png[width="60%"]
 
 The chart type of a bubble chart is [parameter]#ChartType.BUBBLE#. Its options
 can be configured in a [classname]#PlotOptionsBubble# object, which has a single
@@ -554,7 +547,7 @@ A ready pie chart is shown in <<figure.charts.charttypes.pie>>.
 
 [[figure.charts.charttypes.pie]]
 .Pie Chart
-image::img/charts-pie.png[]
+image::img/charts-pie.png[width="60%"]
 
 [[charts.charttypes.pie.plotoptions]]
 === Plot Options
@@ -646,7 +639,7 @@ The result is illustrated in <<figure.charts.charttypes.pie.donut>>.
 
 [[figure.charts.charttypes.pie.donut]]
 .Overlaid Pie and Donut Chart
-image::img/charts-donut.png[]
+image::img/charts-donut.png[width="60%"]
 
 
 
@@ -675,7 +668,7 @@ After the settings done in the subsequent sections, it will show as in
 
 [[figure.charts.charttypes.gauge]]
 .A Gauge
-image::img/charts-gauge.png[]
+image::img/charts-gauge.png[width="40%"]
 
 [[charts.charttypes.gauge.conf]]
 === Gauge Configuration
@@ -711,10 +704,16 @@ yaxis.setMax(100);
 // Other configuration
 yaxis.getLabels().setStep(1);
 yaxis.setTickInterval(10);
+yaxis.setTickLength(10);
+yaxis.setTickWidth(1);
+yaxis.setMinorTickInterval(1);
+yaxis.setMinorTickLength(5);
+yaxis.setMinorTickWidth(1);
 yaxis.setPlotBands(new PlotBand[]{
         new PlotBand(0,  60,  SolidColor.GREEN),
         new PlotBand(60, 80,  SolidColor.YELLOW),
         new PlotBand(80, 100, SolidColor.RED)});
+yaxis.setGridLineWidth(0); // Disable grid
 
 conf.addyAxis(yaxis);
 ----
@@ -779,7 +778,7 @@ After the settings done in the subsequent sections, it will show as in
 
 [[figure.charts.charttypes.solidgauge]]
 .A Solid Gauge
-image::img/charts-solidgauge.png[]
+image::img/charts-solidgauge.png[width="40%"]
 
 While solid gauge is much like a regular gauge, the configuration differs
 
@@ -831,7 +830,7 @@ __max__).
 ----
 YAxis yaxis = new YAxis();
 yaxis.setTitle("Pressure GPa");
-yaxis.getTitle().setY(-70); // Move 70 px upwards from center
+yaxis.getTitle().setY(-80); // Move 70 px upwards from center
 
 // The limits are mandatory
 yaxis.setMin(0);
@@ -840,6 +839,7 @@ yaxis.setMax(200);
 // Configure ticks and labels
 yaxis.setTickInterval(100);  // At 0, 100, and 200
 yaxis.getLabels().setY(-16); // Move 16 px upwards
+yaxis.setGridLineWidth(0); // Disable grid
 ----
 
 You can configure color stops for the indicator arc. The stops are defined with
@@ -952,7 +952,7 @@ The resulting chart, as well as the same chart with a column range, is shown in
 
 [[figure.charts.charttypes.rangecharts]]
 .Area and Column Range Chart
-image::img/charts-arearange.png[]
+image::img/charts-arearange.png[width="80%"]
 
 
 [[charts.charttypes.polar]]
@@ -1001,7 +1001,7 @@ The polar and spiderweb charts are illustrated in
 
 [[figure.charts.charttypes.polar]]
 .Wind Rose and Spiderweb Charts
-image::img/charts-polarspiderweb.png[]
+image::img/charts-polarspiderweb.png[width="80%"]
 
 [[charts.charttypes.polar.spiderweb]]
 === Spiderweb Charts
@@ -1065,7 +1065,7 @@ top and does not have a neck.
 
 [[figure.charts.charttypes.funnel]]
 .Funnel and Pyramid Charts
-image::img/charts-funnel.png[]
+image::img/charts-funnel.png[width="80%"]
 
 Funnels have chart type [parameter]#FUNNEL#, pyramids have [parameter]#PYRAMID#.
 
@@ -1151,7 +1151,7 @@ calculated automatically.
 
 [[figure.charts.charttypes.waterfall]]
 .Waterfall Charts
-image::img/charts-waterfall.png[]
+image::img/charts-waterfall.png[width="60%"]
 
 Waterfall charts have chart type [literal]#++WATERFALL++#.
 
@@ -1278,7 +1278,7 @@ value.
 
 [[figure.charts.charttypes.heatmap]]
 .Heat Maps
-image::img/charts-heatmap.png[]
+image::img/charts-heatmap.png[width="60%"]
 
 Heat maps have chart type [literal]#++HEATMAP++#.
 
@@ -1362,9 +1362,10 @@ A tree map is used to display hierarchical data. It consists of a group of
 rectangles that contains other rectangles, where the size of a rectangle
 indicates the item value.
 
+// This image is way too big and labels too small.
 [[figure.charts.charttypes.treemap]]
 .Tree Maps
-image::img/charts-treemap.png[]
+image::img/charts-treemap.png[width="100%"]
 
 Tree maps have chart type [literal]#++TREEMAP++#.
 
@@ -1487,7 +1488,7 @@ properties should be set.
 
 [[figure.charts.charttypes.polygon]]
 .Polygon combined with Scatter
-image::img/charts-polygon.png[]
+image::img/charts-polygon.png[width="100%"]
 
 Polygons have chart type [literal]#++POLYGON++#.
 
