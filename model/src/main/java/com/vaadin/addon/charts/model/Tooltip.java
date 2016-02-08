@@ -40,8 +40,7 @@ public class Tooltip extends AbstractConfigurationObject {
 	private String headerFormat;
 	private Number hideDelay;
 	private String pointFormat;
-	private Object pointFormatter;
-	private Object positioner;
+	private String _fn_pointFormatter;
 	private Boolean shadow;
 	private Shape shape;
 	private Boolean shared;
@@ -338,48 +337,12 @@ public class Tooltip extends AbstractConfigurationObject {
 		this.pointFormat = pointFormat;
 	}
 
-	/**
-	 * @see #setPointFormatter(Object)
-	 */
-	public Object getPointFormatter() {
-		return pointFormatter;
+	public String getPointFormatter() {
+		return _fn_pointFormatter;
 	}
 
-	/**
-	 * A callback function for formatting the HTML output for a single point in
-	 * the tooltip. Like the <code>pointFormat</code> string, but with more
-	 * flexibility.
-	 * <p>
-	 * Defaults to:
-	 */
-	public void setPointFormatter(Object pointFormatter) {
-		this.pointFormatter = pointFormatter;
-	}
-
-	/**
-	 * @see #setPositioner(Object)
-	 */
-	public Object getPositioner() {
-		return positioner;
-	}
-
-	/**
-	 * <p>
-	 * A callback function to place the tooltip in a default position. The
-	 * callback receives three parameters: <code>labelWidth</code>,
-	 * <code>labelHeight</code> and <code>point</code>, where point contains
-	 * values for <code>plotX</code> and <code>plotY</code> telling where the
-	 * reference point is in the plot area. Add <code>chart.plotLeft</code> and
-	 * <code>chart.plotTop</code> to get the full coordinates.
-	 * </p>
-	 * 
-	 * <p>
-	 * The return should be an object containing x and y values, for example
-	 * <code>{ x: 100, y: 100 }</code>.
-	 * </p>
-	 */
-	public void setPositioner(Object positioner) {
-		this.positioner = positioner;
+	public void setPointFormatter(String _fn_pointFormatter) {
+		this._fn_pointFormatter = _fn_pointFormatter;
 	}
 
 	/**

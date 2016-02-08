@@ -85,7 +85,6 @@ public class YAxis extends Axis {
 	private Number tickLength;
 	private Number tickPixelInterval;
 	private TickPosition tickPosition;
-	private Object tickPositioner;
 	private Number[] tickPositions;
 	private Number tickWidth;
 	private TickmarkPlacement tickmarkPlacement;
@@ -1041,25 +1040,6 @@ public class YAxis extends Axis {
 	 */
 	public void setTickPosition(TickPosition tickPosition) {
 		this.tickPosition = tickPosition;
-	}
-
-	/**
-	 * @see #setTickPositioner(Object)
-	 */
-	public Object getTickPositioner() {
-		return tickPositioner;
-	}
-
-	/**
-	 * A callback function returning array defining where the ticks are laid out
-	 * on the axis. This overrides the default behaviour of <a
-	 * href="#xAxis.tickPixelInterval">tickPixelInterval</a> and <a
-	 * href="#xAxis.tickInterval">tickInterval</a>. The automatic tick positions
-	 * are accessible through <code>this.tickPositions</code> and can be
-	 * modified by the callback.
-	 */
-	public void setTickPositioner(Object tickPositioner) {
-		this.tickPositioner = tickPositioner;
 	}
 
 	/**

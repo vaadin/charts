@@ -31,7 +31,7 @@ public class SeriesTooltip extends AbstractConfigurationObject {
 	private String headerFormat;
 	private Number hideDelay;
 	private String pointFormat;
-	private Object pointFormatter;
+	private String _fn_pointFormatter;
 	private Number valueDecimals;
 	private String valuePrefix;
 	private String valueSuffix;
@@ -213,22 +213,12 @@ public class SeriesTooltip extends AbstractConfigurationObject {
 		this.pointFormat = pointFormat;
 	}
 
-	/**
-	 * @see #setPointFormatter(Object)
-	 */
-	public Object getPointFormatter() {
-		return pointFormatter;
+	public String getPointFormatter() {
+		return _fn_pointFormatter;
 	}
 
-	/**
-	 * A callback function for formatting the HTML output for a single point in
-	 * the tooltip. Like the <code>pointFormat</code> string, but with more
-	 * flexibility.
-	 * <p>
-	 * Defaults to:
-	 */
-	public void setPointFormatter(Object pointFormatter) {
-		this.pointFormatter = pointFormatter;
+	public void setPointFormatter(String _fn_pointFormatter) {
+		this._fn_pointFormatter = _fn_pointFormatter;
 	}
 
 	/**
