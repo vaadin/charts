@@ -26,11 +26,9 @@ public class Exporting extends AbstractConfigurationObject {
 	private static final long serialVersionUID = 1L;
 	private Boolean allowHTML;
 	private Buttons buttons;
-	private Object chartOptions;
 	private Boolean enabled;
 	private Boolean fallbackToExportServer;
 	private String filename;
-	private Object formAttributes;
 	private Number scale;
 	private Number sourceHeight;
 	private Number sourceWidth;
@@ -87,24 +85,6 @@ public class Exporting extends AbstractConfigurationObject {
 		this.buttons = buttons;
 	}
 
-	/**
-	 * @see #setChartOptions(Object)
-	 */
-	public Object getChartOptions() {
-		return chartOptions;
-	}
-
-	/**
-	 * Additional chart options to be merged into an exported chart. For
-	 * example, a common use case is to add data labels to improve readaility of
-	 * the exported chart, or to add a printer-friendly color scheme.
-	 * <p>
-	 * Defaults to: null
-	 */
-	public void setChartOptions(Object chartOptions) {
-		this.chartOptions = chartOptions;
-	}
-
 	public Exporting(Boolean enabled) {
 		this.enabled = enabled;
 	}
@@ -157,25 +137,6 @@ public class Exporting extends AbstractConfigurationObject {
 	 */
 	public void setFilename(String filename) {
 		this.filename = filename;
-	}
-
-	/**
-	 * @see #setFormAttributes(Object)
-	 */
-	public Object getFormAttributes() {
-		return formAttributes;
-	}
-
-	/**
-	 * An object containing additional attributes for the POST form that sends
-	 * the SVG to the export server. For example, a <code>target</code> can be
-	 * set to make sure the generated image is received in another frame, or a
-	 * custom <code>enctype</code> or <code>encoding</code> can be set.
-	 * <p>
-	 * Defaults to:
-	 */
-	public void setFormAttributes(Object formAttributes) {
-		this.formAttributes = formAttributes;
 	}
 
 	/**

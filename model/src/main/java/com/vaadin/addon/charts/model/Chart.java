@@ -49,7 +49,7 @@ public class Chart extends AbstractConfigurationObject {
 	private String plotBackgroundImage;
 	private Color plotBorderColor;
 	private Number plotBorderWidth;
-	private Object plotShadow;
+	private Boolean plotShadow;
 	private Boolean polar;
 	private Boolean reflow;
 	private ResetZoomButton resetZoomButton;
@@ -489,9 +489,9 @@ public class Chart extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setPlotShadow(Object)
+	 * @see #setPlotShadow(Boolean)
 	 */
-	public Object getPlotShadow() {
+	public Boolean getPlotShadow() {
 		return plotShadow;
 	}
 
@@ -503,7 +503,7 @@ public class Chart extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to: false
 	 */
-	public void setPlotShadow(Object plotShadow) {
+	public void setPlotShadow(Boolean plotShadow) {
 		this.plotShadow = plotShadow;
 	}
 
