@@ -59,10 +59,9 @@ public class WindRose extends AbstractVaadinChartExample {
         yAxis.setEndOnTick(false);
         yAxis.setShowLastLabel(true);
         yAxis.setTitle(new AxisTitle("Frequency (%)"));
-        // FIXME remove initialization after CHARTS-154
-        yAxis.setLabels(new Labels());
-        yAxis.getLabels().setFormat("{value}%");
-        yAxis.getLabels().setFormatter("function() {return this.value + '%';}");
+        Labels labels = new Labels();
+        labels.setFormatter("function() {return this.value + '%';}");
+        yAxis.setLabels(labels);
         conf.addxAxis(axis);
         conf.addyAxis(yAxis);
 

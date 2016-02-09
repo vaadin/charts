@@ -52,7 +52,6 @@ public class BasicArea extends AbstractVaadinChartExample {
         XAxis xAxis = new XAxis();
         Labels labels = new Labels();
         // Display x axis value (year) as non formatted integer
-        // FIXME missing generated API
         labels.setFormatter("function() {" + "return this.value;" + "}");
         xAxis.setLabels(labels);
         conf.addxAxis(xAxis);

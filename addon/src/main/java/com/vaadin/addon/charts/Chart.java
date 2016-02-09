@@ -393,10 +393,8 @@ public class Chart extends AbstractComponent {
      */
     public Chart(ChartType type) {
         this();
-        // configuration.setChart(new ChartModel(configuration, type));
         com.vaadin.addon.charts.model.Chart chart = new com.vaadin.addon.charts.model.Chart();
         chart.setType(type);
-        // TODO chart-configuration reference?
         configuration.setChart(chart);
     }
 

@@ -91,8 +91,6 @@ public class TestClassesSerializable extends TestCase {
                     }
                 }
                 nonSerializableClasses.add(cls);
-                // TODO easier to read when testing
-                // System.err.println(cls);
             }
         }
 

@@ -5,6 +5,7 @@ import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.AxisType;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.Crosshair;
 import com.vaadin.addon.charts.model.RangeSeries;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.XAxis;
@@ -78,13 +79,12 @@ public class ResizeInsideVaadinComponent extends AbstractVaadinChartExample {
 
         XAxis axis = new XAxis();
         axis.setType(AxisType.DATETIME);
+        axis.setCrosshair(new Crosshair());
         conf.addxAxis(axis);
         conf.addyAxis(new YAxis());
 
         Tooltip tooltip = new Tooltip();
-        // FIXME missing generated API
-        // tooltip.setCrosshairs(true);
-        // tooltip.setShared(true);
+        tooltip.setShared(true);
         tooltip.setValueSuffix("°C");
         conf.setTooltip(tooltip);
 

@@ -84,10 +84,10 @@ public class AngularGauge extends AbstractVaadinChartExample {
         yAxis.setTickLength(10);
         yAxis.setTickColor(new SolidColor("#666"));
 
-        // FIXME remove initialization after CHARTS-154
-        yAxis.setLabels(new Labels());
-        yAxis.getLabels().setStep(2);
-        yAxis.getLabels().setRotationPerpendicular();
+        Labels labels = new Labels();
+        labels.setStep(2);
+        labels.setRotationPerpendicular();
+        yAxis.setLabels(labels);
 
         PlotBand plotband1 = new PlotBand();
         plotband1.setFrom(0);

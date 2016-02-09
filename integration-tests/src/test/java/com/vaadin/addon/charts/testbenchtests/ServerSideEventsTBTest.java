@@ -146,10 +146,7 @@ public class ServerSideEventsTBTest extends AbstractParallelTest {
         click(secondCheckBox);
 
         CheckboxClickEvent checkboxClickEvent = readCheckboxEventDetails();
-        // TODO: Enable the assertion when series model API is complete (CHARTS-156)
-        //       -  should isChecked() also be removed from event?
-        //  Assert.assertEquals(true, checkboxClickEvent.getSeries().getSelected());
-        Assert.assertEquals(true, checkboxClickEvent.isChecked());
+        Assert.assertTrue(checkboxClickEvent.isChecked());
     }
 
     @Test

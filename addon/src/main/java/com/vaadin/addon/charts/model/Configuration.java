@@ -83,7 +83,6 @@ public class Configuration extends AbstractConfigurationObject implements
      */
     public void setChart(Chart chart) {
         this.chart = chart;
-        // chart.setConfiguration(this);
     }
 
     /**
@@ -658,8 +657,8 @@ public class Configuration extends AbstractConfigurationObject implements
     /**
      * Set settings for range selector.
      * <p>
-     * This is only valid if the chart is configured
-     * to use timeline. See {@link com.vaadin.addon.charts.Chart#setTimeline(boolean)}
+     * This is only valid if the chart is configured to use timeline. See
+     * {@link com.vaadin.addon.charts.Chart#setTimeline(boolean)}
      *
      * @param rangeSelector
      * @see RangeSelector
@@ -672,7 +671,7 @@ public class Configuration extends AbstractConfigurationObject implements
      * @see #setRangeSelector
      */
     public RangeSelector getRangeSelector() {
-        if(rangeSelector == null) {
+        if (rangeSelector == null) {
             rangeSelector = new RangeSelector();
         }
         return rangeSelector;

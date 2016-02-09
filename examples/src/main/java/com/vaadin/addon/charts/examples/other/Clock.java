@@ -58,9 +58,9 @@ public class Clock extends AbstractVaadinChartExample {
         configuration.getPane().setBackground(background);
 
         YAxis yAxis = configuration.getyAxis();
-        // FIXME remove initialization after CHARTS-154
-        yAxis.setLabels(new Labels());
-        yAxis.getLabels().setDistance(-20);
+        Labels labels = new Labels();
+        labels.setDistance(-20);
+        yAxis.setLabels(labels);
 
         yAxis.setMin(0);
         yAxis.setMax(12);

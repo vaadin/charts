@@ -65,7 +65,7 @@ public class Attributes extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #setStrokeWidth(Color)
+     * @see #setStrokeWidth(Number)
      * @return
      */
     public Number getStrokeWidth() {

@@ -24,7 +24,7 @@ public class ButtonTheme extends AbstractConfigurationObject {
     private Color fill;
     private Color stroke;
     @JsonProperty("stroke-width")
-    private int strokeWidth;
+    private Number strokeWidth;
     private Style style;
 
     public Color getFill() {
@@ -43,11 +43,11 @@ public class ButtonTheme extends AbstractConfigurationObject {
         this.stroke = stroke;
     }
 
-    public int getStrokeWidth() {
+    public Number getStrokeWidth() {
         return strokeWidth;
     }
 
-    public void setStrokeWidth(int strokeWidth) {
+    public void setStrokeWidth(Number strokeWidth) {
         this.strokeWidth = strokeWidth;
     }
 

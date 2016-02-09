@@ -201,7 +201,6 @@ public class ContainerSeriesJSONSerializationTest {
 
         Configuration config = new Configuration();
         config.addSeries(containerSeries);
-        // FIXME add type to plotOptions
         assertEquals("{\"type\":\"line\",\"showInLegend\":true,\"data\":[]}",
                 toJSON(containerSeries));
     }

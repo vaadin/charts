@@ -1,5 +1,6 @@
 package com.vaadin.addon.charts.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.vaadin.addon.charts.model.style.Color;
 
 /*
@@ -27,8 +28,8 @@ public class DrillUpButtonTheme extends AbstractConfigurationObject {
     private Color fill;
     private Color stroke;
     private Number r;
-
-    // @FIXME missing att stroke-width;
+    @JsonProperty("stroke-width")
+    private Number strokeWidth;
 
     /**
      * @see #setFill(Color)
@@ -62,6 +63,23 @@ public class DrillUpButtonTheme extends AbstractConfigurationObject {
      */
     public void setStroke(Color stroke) {
         this.stroke = stroke;
+    }
+
+    /**
+     * @see #setStrokeWidth(Number)
+     * @return
+     */
+    public Number getStrokeWidth() {
+        return strokeWidth;
+    }
+
+    /**
+     * SVG stroke-width attribute
+     * 
+     * @param strokeWidth
+     */
+    public void setStrokeWidth(Number strokeWidth) {
+        this.strokeWidth = strokeWidth;
     }
 
     /**

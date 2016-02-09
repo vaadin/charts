@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts.examples.other;
 
+import static com.vaadin.addon.charts.model.Unit.PERCENTAGE;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.Configuration;
@@ -34,12 +36,10 @@ public class PyramidChartExample extends AbstractVaadinChartExample {
         conf.getLegend().setEnabled(false);
 
         PlotOptionsPyramid options = new PlotOptionsPyramid();
-
-        // FIXME missing generated API
-        // options.setWidthAsPercentage(70); // With default (90%), long labels
-        // in
-        // this example may be cut
-        // options.setWidth(400); // in pixels
+        // With default (90%), long labels in this example may be cut
+        options.setWidth(70, PERCENTAGE);
+        // in pixels
+        // options.setWidth(400);
 
         DataLabelsFunnel dataLabels = new DataLabelsFunnel();
         dataLabels.setFormat("<b>{point.name}</b> ({point.y:,.0f})");

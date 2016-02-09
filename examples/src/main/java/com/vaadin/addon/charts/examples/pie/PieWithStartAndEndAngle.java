@@ -32,9 +32,6 @@ public class PieWithStartAndEndAngle extends AbstractVaadinChartExample {
         plotOptions.setEndAngle(180);
         plotOptions.setCursor(Cursor.POINTER);
         DataLabels dataLabels = new DataLabels(true);
-        dataLabels.setFormat("<b>{point.name}</b>: {percentage} %");
-
-        // FIXME missing generated API
         dataLabels
                 .setFormatter("'<b>'+ this.point.name +'</b>: '+ this.percentage +' %'");
         plotOptions.setDataLabels(dataLabels);

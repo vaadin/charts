@@ -52,9 +52,6 @@ public class Basic3DScatter extends AbstractVaadinChartExample {
 
         XAxis x = scatterChart.getConfiguration().getxAxis();
         x.setGridLineWidth(1);
-        x.setMin(-3);
-        x.setMax(3);
-        // FIXME missing generated API
         x.setExtremes(-3, 3);
 
         if (getCurrentTheme().getxAxis().getGridLineColor() != null) {
@@ -63,8 +60,6 @@ public class Basic3DScatter extends AbstractVaadinChartExample {
 
         YAxis y = scatterChart.getConfiguration().getyAxis();
         y.setExtremes(-1, 1);
-        y.setMin(-1);
-        y.setMax(1);
 
         ZAxis z = scatterChart.getConfiguration().getzAxis();
         z.setMin(-1);

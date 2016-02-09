@@ -50,7 +50,6 @@ public class SplineUpdatingEachSecondWithTwoLines extends
         plotline.setColor(new SolidColor("#808080"));
         yAxis.setPlotLines(new PlotLine[] { plotline });
 
-        // FIXME missing generated API
         configuration.getTooltip().setEnabled(false);
         configuration.getLegend().setEnabled(false);
 

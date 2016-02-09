@@ -42,9 +42,9 @@ public class PolarChart extends AbstractVaadinChartExample {
         axis.setTickInterval(45);
         axis.setMin(0);
         axis.setMax(360);
-        // FIXME remove initialization after CHARTS-154
-        axis.setLabels(new Labels());
-        axis.getLabels().setFormatter("function() {return this.value + '°';}");
+        Labels labels = new Labels();
+        labels.setFormatter("function() {return this.value + '°';}");
+        axis.setLabels(labels);
         YAxis yaxs = new YAxis();
         yaxs.setMin(0);
         conf.addxAxis(axis);

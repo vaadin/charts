@@ -49,9 +49,9 @@ public class ErrorBarExample extends AbstractVaadinChartExample {
         style.setColor(colors[0]);
         title.setStyle(style);
         primaryAxis.setTitle(title);
-        // FIXME remove initialization after CHARTS-154
-        primaryAxis.setLabels(new Labels());
-        primaryAxis.getLabels().setFormatter("this.value + '°C'");
+        Labels labels = new Labels();
+        labels.setFormatter("this.value + '°C'");
+        primaryAxis.setLabels(labels);
 
         YAxis secondaryAxis = new YAxis();
         conf.addyAxis(secondaryAxis);
@@ -60,10 +60,10 @@ public class ErrorBarExample extends AbstractVaadinChartExample {
         style = new Style();
         style.setColor(colors[1]);
         title.setStyle(style);
-        // FIXME remove initialization after CHARTS-154
-        secondaryAxis.setLabels(new Labels());
-        secondaryAxis.getLabels().setFormatter("this.value + ' mm'");
-        secondaryAxis.getLabels().setStyle(style);
+        labels = new Labels();
+        labels.setFormatter("this.value + ' mm'");
+        labels.setStyle(style);
+        secondaryAxis.setLabels(labels);
         secondaryAxis.setOpposite(true);
 
         conf.getTooltip().setShared(true);

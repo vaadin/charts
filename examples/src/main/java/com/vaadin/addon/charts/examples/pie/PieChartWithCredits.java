@@ -46,7 +46,6 @@ public class PieChartWithCredits extends AbstractVaadinChartExample {
         PlotOptionsPie plotOptions = new PlotOptionsPie();
         plotOptions.setCursor(Cursor.POINTER);
         DataLabels dataLabels = new DataLabels(true);
-        // FIXME missing generated API
         dataLabels
                 .setFormatter("'<b>'+ this.point.name +'</b>: '+ this.percentage +' %'");
         plotOptions.setDataLabels(dataLabels);

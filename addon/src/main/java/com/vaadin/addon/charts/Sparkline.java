@@ -24,7 +24,6 @@ import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.Marker;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.Series;
-import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
@@ -63,13 +62,9 @@ public class Sparkline extends Chart {
 
     protected void configureAsSparkline() {
         getConfiguration().setTitle("");
-        // TODO add constructor Legend(boolean enabled)
-        Legend legend = new Legend();
-        legend.setEnabled(false);
-        getConfiguration().setLegend(legend);
+        getConfiguration().setLegend(new Legend(false));
         getConfiguration().getChart().setBackgroundColor(
                 new SolidColor(0, 0, 0, 0));
-        // TODO: margin should allow single value too
         getConfiguration().getChart().setMargin(new Integer[] { 0, 0, 0, 0 });
         Series series = getConfiguration().getSeries().get(0);
 

@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts.examples.other;
 
+import java.util.Random;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.ChartType;
@@ -14,8 +16,6 @@ import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
-
-import java.util.Random;
 
 public class GaugeWithDualAxes extends AbstractVaadinChartExample {
 
@@ -49,11 +49,11 @@ public class GaugeWithDualAxes extends AbstractVaadinChartExample {
         yAxis.setMinorTickColor(new SolidColor("#339"));
         yAxis.setOffset(-25);
         yAxis.setLineWidth(2);
-        // FIXME remove initialization after CHARTS-154
-        yAxis.setLabels(new Labels());
-        yAxis.getLabels().setDistance(-20);
-        yAxis.getLabels().setRotationPerpendicular();
-        yAxis.getLabels().setRotation("auto");
+        Labels labels = new Labels();
+        labels.setDistance(-20);
+        labels.setRotationPerpendicular();
+        labels.setRotation("auto");
+        yAxis.setLabels(labels);
 
         yAxis.setTickLength(5);
         yAxis.setMinorTickLength(5);
@@ -68,10 +68,10 @@ public class GaugeWithDualAxes extends AbstractVaadinChartExample {
         yAxis2.setMinorTickColor(new SolidColor("#933"));
         yAxis2.setOffset(-20);
         yAxis2.setLineWidth(2);
-        // FIXME remove initialization after CHARTS-154
-        yAxis2.setLabels(new Labels());
-        yAxis2.getLabels().setDistance(12);
-        yAxis2.getLabels().setRotationPerpendicular();
+        labels = new Labels();
+        labels.setDistance(12);
+        labels.setRotationPerpendicular();
+        yAxis2.setLabels(labels);
         yAxis2.setTickLength(5);
         yAxis2.setMinorTickLength(5);
         yAxis2.setEndOnTick(false);
