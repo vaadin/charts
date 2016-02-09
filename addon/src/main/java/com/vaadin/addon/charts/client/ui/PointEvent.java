@@ -19,22 +19,11 @@ package com.vaadin.addon.charts.client.ui;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
-
 public class PointEvent extends JavaScriptObject {
 
     protected PointEvent() {
 
     }
-
-    public native final double getX()
-    /*-{
-        return this.target.x;
-    }-*/;
-
-    public native final double getY()
-    /*-{
-        return this.target.y;
-    }-*/;
 
     public native final String getCategory()
     /*-{

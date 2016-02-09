@@ -1,5 +1,6 @@
 package com.vaadin.addon.charts;
 
+import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Series;
 import com.vaadin.addon.charts.shared.MouseEventDetails;
 import com.vaadin.addon.charts.shared.MouseEventDetails.MouseButton;
@@ -41,7 +42,7 @@ public class PointClickEvent extends AbstractPointEvent {
      */
     public PointClickEvent(Chart source, MouseEventDetails details,
             Series series, String category, int pointIndex) {
-        super(source,series,category,pointIndex);
+        super(source, series, category, pointIndex);
         this.details = details;
     }
 
@@ -53,6 +54,9 @@ public class PointClickEvent extends AbstractPointEvent {
      * implementation. If you have used Date object as value, you most likely
      * want to pass the value thru {@link Util#toServerDate(double)} method
      * before actually using the value.
+     * <p>
+     * This value might be zero in a chart without axes like
+     * {@link ChartType#PIE} or {@link ChartType#TREEMAP}
      * 
      * @return the X coordinate of the point that was clicked.
      */
@@ -61,6 +65,11 @@ public class PointClickEvent extends AbstractPointEvent {
     }
 
     /**
+     * Gets the Y coordinate of the point that was clicked.
+     * <p>
+     * This value might be zero in a chart without axes like
+     * {@link ChartType#PIE} or {@link ChartType#TREEMAP}
+     * 
      * @return the Y coordinate of the point that was clicked.
      */
     public double getY() {

@@ -23,12 +23,20 @@ public class PointClickEvent extends AbstractClickEvent {
 
     public native final double getX()
     /*-{
-         return this.point.x;
+        if(this.point.x){
+          return this.point.x;
+        } else{
+          return 0;
+        }
     }-*/;
 
     public native final double getY()
     /*-{
-        return this.point.y;
+        if(this.point.y){
+          return this.point.y;
+        } else{
+          return 0;
+        }
     }-*/;
 
     public native final String getCategory()
