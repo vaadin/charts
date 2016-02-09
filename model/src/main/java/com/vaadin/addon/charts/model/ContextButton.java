@@ -18,6 +18,7 @@ package com.vaadin.addon.charts.model;
  */
 
 import com.vaadin.addon.charts.model.style.Color;
+import com.vaadin.addon.charts.model.style.ButtonTheme;
 /**
  * Options for the export button.
  */
@@ -35,7 +36,7 @@ public class ContextButton extends AbstractConfigurationObject {
 	private Number symbolX;
 	private Number symbolY;
 	private String text;
-	private Object theme;
+	private ButtonTheme theme;
 	private VerticalAlign verticalAlign;
 	private Number width;
 	private Number x;
@@ -233,9 +234,9 @@ public class ContextButton extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setTheme(Object)
+	 * @see #setTheme(ButtonTheme)
 	 */
-	public Object getTheme() {
+	public ButtonTheme getTheme() {
 		return theme;
 	}
 
@@ -247,7 +248,7 @@ public class ContextButton extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to:
 	 */
-	public void setTheme(Object theme) {
+	public void setTheme(ButtonTheme theme) {
 		this.theme = theme;
 	}
 

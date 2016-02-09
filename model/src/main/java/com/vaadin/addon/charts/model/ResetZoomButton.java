@@ -16,6 +16,8 @@ package com.vaadin.addon.charts.model;
  * If not, see <https://vaadin.com/license/cval-3>.
  * #L%
  */
+
+import com.vaadin.addon.charts.model.style.ButtonTheme;
 /**
  * The button that appears after a selection zoom, allowing the user to reset
  * zoom.
@@ -25,7 +27,7 @@ public class ResetZoomButton extends AbstractConfigurationObject {
 	private static final long serialVersionUID = 1L;
 	private Position position;
 	private ResetZoomButtonRelativeTo relativeTo;
-	private Object theme;
+	private ButtonTheme theme;
 
 	public ResetZoomButton() {
 	}
@@ -64,9 +66,9 @@ public class ResetZoomButton extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setTheme(Object)
+	 * @see #setTheme(ButtonTheme)
 	 */
-	public Object getTheme() {
+	public ButtonTheme getTheme() {
 		return theme;
 	}
 
@@ -78,7 +80,7 @@ public class ResetZoomButton extends AbstractConfigurationObject {
 	 * text. Equivalent attributes for the hover state are given in
 	 * <code>theme.states.hover</code>.
 	 */
-	public void setTheme(Object theme) {
+	public void setTheme(ButtonTheme theme) {
 		this.theme = theme;
 	}
 }
