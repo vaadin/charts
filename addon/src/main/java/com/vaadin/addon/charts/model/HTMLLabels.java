@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts.model;
 
+import com.vaadin.addon.charts.model.style.Style;
+
 /*
  * #%L
  * Vaadin Charts
@@ -23,6 +25,7 @@ package com.vaadin.addon.charts.model;
 @SuppressWarnings("serial")
 public class HTMLLabels extends AbstractConfigurationObject {
     private HTMLLabelItem[] items;
+    private Style style;
 
     public HTMLLabels() {
     }
@@ -34,6 +37,17 @@ public class HTMLLabels extends AbstractConfigurationObject {
      */
     public HTMLLabels(HTMLLabelItem... items) {
         setItems(items);
+    }
+
+    /**
+     * Constructs a HTMLLabels instance with a style shared for all the labels
+     * and the given label items
+     * 
+     * @param items
+     */
+    public HTMLLabels(Style style, HTMLLabelItem... items) {
+        setItems(items);
+        setStyle(style);
     }
 
     /**
@@ -52,4 +66,19 @@ public class HTMLLabels extends AbstractConfigurationObject {
         this.items = items;
     }
 
+    /**
+     * @see #setStyle(Style)
+     */
+    public Style getStyle() {
+        return style;
+    }
+
+    /**
+     * Sets the CSS style shared for all the labels.
+     * 
+     * @param style
+     */
+    public void setStyle(Style style) {
+        this.style = style;
+    }
 }

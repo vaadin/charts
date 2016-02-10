@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts.examples.lineandscatter;
 
+import java.util.Random;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.SkipFromDemo;
@@ -16,8 +18,6 @@ import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
-
-import java.util.Random;
 
 @SkipFromDemo
 public class SplineUpdatingEachSecondWithCustomizedNewPoints extends
@@ -45,11 +45,7 @@ public class SplineUpdatingEachSecondWithCustomizedNewPoints extends
 
         YAxis yAxis = configuration.getyAxis();
         yAxis.setTitle(new AxisTitle("Value"));
-        PlotLine plotline = new PlotLine();
-        plotline.setValue(0);
-        plotline.setWidth(1);
-        plotline.setColor(new SolidColor("#808080"));
-        yAxis.setPlotLines(new PlotLine[] { plotline });
+        yAxis.setPlotLines(new PlotLine(0, 1, new SolidColor("#808080")));
 
         configuration.getTooltip().setEnabled(false);
         configuration.getLegend().setEnabled(false);

@@ -3,7 +3,6 @@ package com.vaadin.addon.charts.examples.container;
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.SkipFromDemo;
-import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.ContainerDataSeries;
@@ -34,12 +33,12 @@ public class ContainerSeriesWithHighAndLow extends AbstractVaadinChartExample {
         conf.setSubTitle("Observed in Vik i Sogn, Norway, 2009");
 
         XAxis xAxis = new XAxis();
-        xAxis.setCategories(new String[] { "Jan", "Feb", "Mar", "Apr", "May",
-                "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" });
+        xAxis.setCategories("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
+                "Aug", "Sep", "Oct", "Nov", "Dec");
         conf.addxAxis(xAxis);
 
         YAxis yAxis = new YAxis();
-        yAxis.setTitle(new AxisTitle("Temperature ( °C )"));
+        yAxis.setTitle("Temperature ( °C )");
         conf.addyAxis(yAxis);
 
         Tooltip tooltip = new Tooltip();

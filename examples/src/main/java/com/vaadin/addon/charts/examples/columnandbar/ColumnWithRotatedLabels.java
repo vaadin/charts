@@ -42,7 +42,7 @@ public class ColumnWithRotatedLabels extends AbstractVaadinChartExample {
                 "Cairo", "Kolkata", "Los Angeles", "Shanghai", "Moscow",
                 "Beijing", "Buenos Aires", "Guangzhou", "Shenzhen", "Istanbul");
         Labels labels = new Labels();
-        labels.setRotation(-45 + "");
+        labels.setRotation(-45);
         labels.setAlign(HorizontalAlign.RIGHT);
         Style style = new Style();
         style.setFontSize("13px");

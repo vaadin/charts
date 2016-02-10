@@ -50,8 +50,8 @@ public class WindRose extends AbstractVaadinChartExample {
         conf.getLegend().setLayout(LayoutDirection.VERTICAL);
 
         XAxis axis = new XAxis();
-        axis.setCategories(new String[] { "< 0.5 m/s", "0.5-2 m/s", "2-4 m/s",
-                "4-6 m/s", "6-8 m/s", "8-10 m/s", "> 10 m/s" });
+        axis.setCategories("< 0.5 m/s", "0.5-2 m/s", "2-4 m/s", "4-6 m/s",
+                "6-8 m/s", "8-10 m/s", "> 10 m/s");
         axis.setTickmarkPlacement(TickmarkPlacement.ON);
 
         YAxis yAxis = new YAxis();

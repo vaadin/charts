@@ -12,7 +12,6 @@ import com.vaadin.addon.charts.model.Marker;
 import com.vaadin.addon.charts.model.MarkerSymbolEnum;
 import com.vaadin.addon.charts.model.MarkerSymbolUrl;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
-import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
@@ -36,24 +35,19 @@ public class SplineWithSymbols extends AbstractVaadinChartExample {
         configuration.getTitle().setText("Monthly Average Temperature");
         configuration.getSubTitle().setText("Source: WorldClimate.com");
 
-        configuration.getxAxis().setCategories(
-                new String[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
-                        "Aug", "Sep", "Oct", "Nov", "Dec" });
+        configuration.getxAxis().setCategories("Jan", "Feb", "Mar", "Apr",
+                "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
 
         YAxis yAxis = configuration.getyAxis();
         yAxis.setTitle(new AxisTitle("Temperature"));
         Labels labels = new Labels();
-        labels.setFormat("{value}°");
         labels.setFormatter("this.value +'°'");
         yAxis.setLabels(labels);
 
 
         configuration.getTooltip().setShared(true);
 
-        XAxis xAxis = configuration.getxAxis();
-        Crosshair crosshair=new Crosshair();
-        crosshair.setWidth(3);
-        xAxis.setCrosshair(crosshair);
+        configuration.getxAxis().setCrosshair(new Crosshair());
 
         PlotOptionsSpline plotOptions = new PlotOptionsSpline();
         configuration.setPlotOptions(plotOptions);

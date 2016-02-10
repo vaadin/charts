@@ -52,10 +52,7 @@ public class AreaSpline extends AbstractVaadinChartExample {
         xAxis.setCategories(new String[] { "Monday", "Tuesday", "Wednesday",
                 "Thursday", "Friday", "Saturday", "Sunday" });
         // add blue background for the weekend
-        PlotBand plotBand = new PlotBand();
-        plotBand.setFrom(4.5);
-        plotBand.setTo(6.5);
-        plotBand.setColor(LIGHT_BLUE);
+        PlotBand plotBand = new PlotBand(4.5, 6.5, LIGHT_BLUE);
         plotBand.setZIndex(1);
         xAxis.setPlotBands(plotBand);
         conf.addxAxis(xAxis);

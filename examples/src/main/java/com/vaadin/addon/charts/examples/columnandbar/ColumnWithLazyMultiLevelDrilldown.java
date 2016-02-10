@@ -12,7 +12,6 @@ import com.vaadin.addon.charts.PointClickEvent;
 import com.vaadin.addon.charts.PointClickListener;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.SkipFromDemo;
-import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.AxisType;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
@@ -65,7 +64,7 @@ public class ColumnWithLazyMultiLevelDrilldown extends
         conf.addxAxis(x);
 
         YAxis y = new YAxis();
-        y.setTitle(new AxisTitle("Total"));
+        y.setTitle("Total");
         conf.addyAxis(y);
 
         PlotOptionsColumn column = new PlotOptionsColumn();

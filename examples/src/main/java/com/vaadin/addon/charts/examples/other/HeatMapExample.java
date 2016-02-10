@@ -34,13 +34,10 @@ public class HeatMapExample extends AbstractVaadinChartExample {
         config.getTitle().setText("Sales per employee per weekday");
 
         config.getxAxis()
-                .setCategories(
-                        new String[] { "Marta", "Mysia", "Misiek", "Maniek",
-                                "Miki", "Guillermo", "Jonatan", "Zdzisław",
-                                "Antoni", "Zygmunt" });
-        config.getyAxis().setCategories(
-                new String[] { "Monday", "Tuesday", "Wednesday", "Thursday",
-                        "Friday" });
+                .setCategories("Marta", "Mysia", "Misiek", "Maniek", "Miki",
+                        "Guillermo", "Jonatan", "Zdzisław", "Antoni", "Zygmunt");
+        config.getyAxis().setCategories("Monday", "Tuesday", "Wednesday",
+                "Thursday", "Friday");
 
         config.getColorAxis().setMin(0);
         config.getColorAxis().setMinColor(SolidColor.WHITE);

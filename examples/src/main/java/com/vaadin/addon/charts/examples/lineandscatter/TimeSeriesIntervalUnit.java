@@ -12,7 +12,6 @@ import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.IntervalUnit;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.PlotOptionsSeries;
-import com.vaadin.addon.charts.util.Util;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Component;
@@ -42,8 +41,7 @@ public class TimeSeriesIntervalUnit extends AbstractVaadinChartExample {
         final PlotOptionsSeries plotOptions = new PlotOptionsSeries();
         try {
             DateFormat df = new SimpleDateFormat("yyyyMMdd");
-            plotOptions
-                    .setPointStart(Util.toHighchartsTS(df.parse("20150101")));
+            plotOptions.setPointStart(df.parse("20150101"));
         } catch (ParseException e) {
             e.printStackTrace();
         }

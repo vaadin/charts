@@ -1,5 +1,11 @@
 package com.vaadin.addon.charts.examples.pie;
 
+import static com.vaadin.addon.charts.model.DrillUpButtonRelativeTo.SPACINGBOX;
+import static com.vaadin.addon.charts.model.style.FontWeight.BOLD;
+import static com.vaadin.addon.charts.model.style.SolidColor.ALICEBLUE;
+import static com.vaadin.addon.charts.model.style.SolidColor.ANTIQUEWHITE;
+import static com.vaadin.addon.charts.model.style.SolidColor.FIREBRICK;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.SkipFromDemo;
@@ -17,10 +23,6 @@ import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.Style;
 import com.vaadin.ui.Component;
-
-import static com.vaadin.addon.charts.model.DrillUpButtonRelativeTo.SPACINGBOX;
-import static com.vaadin.addon.charts.model.style.FontWeight.BOLD;
-import static com.vaadin.addon.charts.model.style.SolidColor.*;
 
 @SuppressWarnings("serial")
 @SkipFromDemo

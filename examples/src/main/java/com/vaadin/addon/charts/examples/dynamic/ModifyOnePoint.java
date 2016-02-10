@@ -42,7 +42,7 @@ public class ModifyOnePoint extends AbstractVaadinChartExample {
 
         final Configuration configuration = chart.getConfiguration();
         configuration.setTitle("One point is different");
-        // configuration.getTooltip().setEnabled(false);
+        configuration.getTooltip().setEnabled(false);
 
         configuration.getChart().setType(ChartType.SPLINE);
 

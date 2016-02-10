@@ -4,7 +4,6 @@ import java.util.Calendar;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.AxisType;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
@@ -35,11 +34,11 @@ public class ColumnRangeResourceUsage extends AbstractVaadinChartExample {
         conf.getChart().setInverted(true);
 
         XAxis xAxis = new XAxis();
-        xAxis.setCategories(new String[] { "Printer", "Coffee mahine" });
+        xAxis.setCategories("Printer", "Coffee mahine");
         conf.addxAxis(xAxis);
 
         YAxis yAxis = new YAxis();
-        yAxis.setTitle(new AxisTitle("Time"));
+        yAxis.setTitle("Time");
         yAxis.setType(AxisType.DATETIME);
         conf.addyAxis(yAxis);
 

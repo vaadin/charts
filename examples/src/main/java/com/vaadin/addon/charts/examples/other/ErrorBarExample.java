@@ -38,9 +38,8 @@ public class ErrorBarExample extends AbstractVaadinChartExample {
 
         conf.setTitle("Temperature vs Rainfall");
 
-        conf.getxAxis().setCategories(
-                new String[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
-                        "Aug", "Sep", "Oct", "Nov", "Dec" });
+        conf.getxAxis().setCategories("Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
 
         YAxis primaryAxis = conf.getyAxis();
 

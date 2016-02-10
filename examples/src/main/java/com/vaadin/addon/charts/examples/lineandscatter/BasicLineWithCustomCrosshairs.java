@@ -29,14 +29,14 @@ public class BasicLineWithCustomCrosshairs extends AbstractVaadinChartExample {
         Configuration config = chart.getConfiguration();
         config.setTitle("Customized crosshairs");
 
-        Crosshair xCrossHair=new Crosshair();
+        Crosshair xCrossHair = new Crosshair();
         xCrossHair.setColor(SolidColor.BLACK);
         xCrossHair.setDashStyle(DashStyle.SOLID);
         xCrossHair.setWidth(10);
         xCrossHair.setZIndex(0);
         config.getxAxis().setCrosshair(xCrossHair);
 
-        Crosshair yCrossHair=new Crosshair();
+        Crosshair yCrossHair = new Crosshair();
         yCrossHair.setColor(new SolidColor("#880000"));
         yCrossHair.setDashStyle(DashStyle.DOT);
         yCrossHair.setWidth(5);

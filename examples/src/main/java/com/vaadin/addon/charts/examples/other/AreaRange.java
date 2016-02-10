@@ -30,10 +30,10 @@ public class AreaRange extends AbstractVaadinChartExample {
         conf.setTitle("Temperature variation by day");
 
         conf.getxAxis().setType(DATETIME);
+        conf.getxAxis().setCrosshair(new Crosshair());
         conf.addyAxis(new YAxis());
 
         Tooltip tooltip = new Tooltip();
-        conf.getxAxis().setCrosshair(new Crosshair());
         tooltip.setShared(true);
         tooltip.setValueSuffix("°C");
         conf.setTooltip(tooltip);

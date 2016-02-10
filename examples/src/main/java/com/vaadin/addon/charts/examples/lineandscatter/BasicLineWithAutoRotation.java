@@ -36,10 +36,9 @@ public class BasicLineWithAutoRotation extends AbstractVaadinChartExample {
         configuration.getTitle().setText("Monthly Average Temperature");
         configuration.getSubTitle().setText("Source: WorldClimate.com");
 
-        configuration.getxAxis().setCategories(
-                new String[] { "January", "February", "March", "April", "May",
-                        "June", "July", "August", "September", "October",
-                        "November", "December" });
+        configuration.getxAxis().setCategories("January", "February", "March",
+                "April", "May", "June", "July", "August", "September",
+                "October", "November", "December");
 
         XAxis xAxis = configuration.getxAxis();
         Labels xLabels = new Labels();

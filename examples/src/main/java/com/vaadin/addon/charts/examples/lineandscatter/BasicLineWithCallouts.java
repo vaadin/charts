@@ -34,9 +34,8 @@ public class BasicLineWithCallouts extends AbstractVaadinChartExample {
                 .setText("CALLOUT: Monthly Average Temperature");
         configuration.getSubTitle().setText("Source: WorldClimate.com");
 
-        configuration.getxAxis().setCategories(
-                new String[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
-                        "Aug", "Sep", "Oct", "Nov", "Dec" });
+        configuration.getxAxis().setCategories("Jan", "Feb", "Mar", "Apr",
+                "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
 
         YAxis yAxis = configuration.getyAxis();
         yAxis.setTitle(new AxisTitle("Temperature (°C)"));

@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts.examples.combinations;
 
+import java.util.List;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.Configuration;
@@ -17,8 +19,6 @@ import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.charts.model.style.Style;
 import com.vaadin.ui.Component;
-
-import java.util.List;
 
 @SuppressWarnings("serial")
 public class ColumnLineAndPie extends AbstractVaadinChartExample {
@@ -78,8 +78,8 @@ public class ColumnLineAndPie extends AbstractVaadinChartExample {
         Style labelStyle = new Style();
         labelStyle.setTop("8px");
         labelStyle.setLeft("40px");
-        conf.setLabels(new HTMLLabels(new HTMLLabelItem(
-                "Total fruit consumption", labelStyle)));
+        conf.setLabels(new HTMLLabels(labelStyle, new HTMLLabelItem(
+                "Total fruit consumption")));
 
         DataSeries series = new DataSeries();
         PlotOptionsColumn plotOptions = new PlotOptionsColumn();
@@ -127,7 +127,7 @@ public class ColumnLineAndPie extends AbstractVaadinChartExample {
 
         PlotOptionsPie plotOptionsPie = new PlotOptionsPie();
         plotOptionsPie.setSize("100px");
-        plotOptionsPie.setCenter("100px","80px");
+        plotOptionsPie.setCenter("100px", "80px");
         plotOptionsPie.setShowInLegend(false);
         plotOptionsPie.setShowInLegend(false);
         series.setPlotOptions(plotOptionsPie);

@@ -1,8 +1,9 @@
 package com.vaadin.addon.charts.examples.other;
 
+import java.util.Random;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.Background;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
@@ -16,8 +17,6 @@ import com.vaadin.addon.charts.model.Stop;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
-
-import java.util.Random;
 
 public class SolidGauge extends AbstractVaadinChartExample {
 
@@ -37,7 +36,6 @@ public class SolidGauge extends AbstractVaadinChartExample {
         configuration.getTitle().setText("Speed");
 
         Pane pane = new Pane();
-
         pane.setCenter("50%", "85%");
         pane.setSize("140%");
         pane.setStartAngle(-90);
@@ -60,14 +58,14 @@ public class SolidGauge extends AbstractVaadinChartExample {
         yaxis.setTickWidth(0);
         yaxis.setMin(0);
         yaxis.setMax(200);
-        yaxis.setTitle(new AxisTitle(""));
+        yaxis.setTitle("");
         yaxis.getTitle().setY(-70);
         yaxis.setLabels(new Labels());
         yaxis.getLabels().setY(16);
         Stop stop1 = new Stop(0.1f, SolidColor.GREEN);
         Stop stop2 = new Stop(0.5f, SolidColor.YELLOW);
         Stop stop3 = new Stop(0.9f, SolidColor.RED);
-        yaxis.setStops(new Stop[] { stop1, stop2, stop3 });
+        yaxis.setStops(stop1, stop2, stop3);
 
         PlotOptionsSolidgauge plotOptions = new PlotOptionsSolidgauge();
         plotOptions.setTooltip(new SeriesTooltip());

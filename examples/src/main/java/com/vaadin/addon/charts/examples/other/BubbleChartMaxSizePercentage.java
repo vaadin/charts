@@ -1,5 +1,7 @@
 package com.vaadin.addon.charts.examples.other;
 
+import static com.vaadin.addon.charts.model.Unit.PERCENTAGE;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.SkipFromDemo;
@@ -45,7 +47,7 @@ public class BubbleChartMaxSizePercentage extends AbstractVaadinChartExample {
 
         PlotOptionsBubble opts = new PlotOptionsBubble();
         opts.setNegativeColor(getThemeColors()[3]);
-        opts.setMaxSize("50%");
+        opts.setMaxSize(50, PERCENTAGE);
         opts.setMinSize("3");
 
         conf.setPlotOptions(opts);

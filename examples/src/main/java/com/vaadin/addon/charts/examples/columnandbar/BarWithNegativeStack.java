@@ -45,7 +45,7 @@ public class BarWithNegativeStack extends AbstractVaadinChartExample {
         x2.setCategories(categories);
         x2.setOpposite(true);
         x2.setReversed(false);
-        x2.setLinkedTo(0);
+        x2.setLinkedTo(x1);
 
         YAxis y = new YAxis();
         y.setMin(-4000000);

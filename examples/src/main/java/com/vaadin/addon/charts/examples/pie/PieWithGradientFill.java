@@ -33,13 +33,10 @@ public class PieWithGradientFill extends AbstractVaadinChartExample {
         conf.setTitle("Browser market shares at a specific website, 2010");
 
         PlotOptionsPie plotOptions = new PlotOptionsPie();
-
         plotOptions.setCursor(Cursor.POINTER);
         DataLabels dataLabels = new DataLabels();
         dataLabels.setEnabled(true);
         dataLabels.setColor(SolidColor.BLACK);
-        dataLabels.setFormat("<b>{point.name}</b>: {percentage} %");
-
         dataLabels.setConnectorColor(SolidColor.BLACK);
         dataLabels
                 .setFormatter("'<b>'+ this.point.name +'</b>: '+ this.percentage +' %'");

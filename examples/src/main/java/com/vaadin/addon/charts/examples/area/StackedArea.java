@@ -45,8 +45,8 @@ public class StackedArea extends AbstractVaadinChartExample {
 
         XAxis xAxis = new XAxis();
         xAxis.setTickmarkPlacement(TickmarkPlacement.ON);
-        xAxis.setCategories(new String[] { "1750", "1800", "1850", "1900",
-                "1950", "1999", "2050" });
+        xAxis.setCategories("1750", "1800", "1850", "1900", "1950", "1999",
+                "2050");
         conf.addxAxis(xAxis);
 
         YAxis yAxis = new YAxis();

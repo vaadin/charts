@@ -43,8 +43,8 @@ public class AreaWithMissingPoints extends AbstractVaadinChartExample {
         conf.setSubTitle(subTitle);
 
         XAxis xAxis = new XAxis();
-        xAxis.setCategories(new String[] { "Apples", "Pears", "Oranges",
-                "Bananas", "Grapes", "Plums", "Strawberries", "Raspberries" });
+        xAxis.setCategories("Apples", "Pears", "Oranges", "Bananas", "Grapes",
+                "Plums", "Strawberries", "Raspberries");
         conf.addxAxis(xAxis);
 
         Legend legend = new Legend();

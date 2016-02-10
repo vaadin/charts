@@ -32,8 +32,7 @@ public class ColumnWithNegativeValues extends AbstractVaadinChartExample {
         conf.setPlotOptions(column);
 
         XAxis xAxis = new XAxis();
-        xAxis.setCategories(new String[] { "Apples", "Oranges", "Pears",
-                "Grapes", "Bananas" });
+        xAxis.setCategories("Apples", "Oranges", "Pears", "Grapes", "Bananas");
         conf.addxAxis(xAxis);
 
         Tooltip tooltip = new Tooltip();

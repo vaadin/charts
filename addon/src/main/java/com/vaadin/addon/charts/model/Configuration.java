@@ -52,7 +52,6 @@ public class Configuration extends AbstractConfigurationObject implements
     private Legend legend;
     private Credits credits;
     private Map<String, AbstractPlotOptions> plotOptions = new HashMap<String, AbstractPlotOptions>();
-    // might need to keep HTMLLabels
     private HTMLLabels labels;
 
     private List<Series> series = new ArrayList<Series>();

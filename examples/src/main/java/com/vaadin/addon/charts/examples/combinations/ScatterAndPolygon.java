@@ -4,7 +4,6 @@ import java.util.Random;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
@@ -44,10 +43,10 @@ public class ScatterAndPolygon extends AbstractVaadinChartExample {
         xAxis.setStartOnTick(true);
         xAxis.setEndOnTick(true);
         xAxis.setShowLastLabel(true);
-        xAxis.setTitle(new AxisTitle("Height (cm)"));
+        xAxis.setTitle("Height (cm)");
 
         YAxis yAxis = conf.getyAxis();
-        yAxis.setTitle(new AxisTitle("Weight (kg)"));
+        yAxis.setTitle("Weight (kg)");
 
         PlotOptionsScatter plotOptionsScatter = new PlotOptionsScatter();
         DataSeries scatter = new DataSeries();

@@ -29,8 +29,7 @@ public class AreaWithNegativeValues extends AbstractVaadinChartExample {
         conf.setTitle(new Title("Area chart with negative values"));
 
         XAxis xAxis = new XAxis();
-        xAxis.setCategories(new String[] { "Apples", "Oranges", "Pears",
-                "Grapes", "Bananas" });
+        xAxis.setCategories("Apples", "Oranges", "Pears", "Grapes", "Bananas");
         conf.addxAxis(xAxis);
 
         conf.setCredits(new Credits(false));

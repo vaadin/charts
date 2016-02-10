@@ -39,13 +39,12 @@ public class MultipleAxes extends AbstractVaadinChartExample {
         conf.setSubTitle("Source: WorldClimate.com");
 
         XAxis x = new XAxis();
-        x.setCategories(new String[] { "Jan", "Feb", "Mar", "Apr", "May",
-                "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" });
+        x.setCategories("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug",
+                "Sep", "Oct", "Nov", "Dec");
         conf.addxAxis(x);
 
         YAxis y1 = new YAxis();
         Labels labels = new Labels();
-        labels.setFormat("{value}°C");
         labels.setFormatter("return this.value +'°C'");
         Style style = new Style();
         style.setColor(colors[1]);
@@ -65,7 +64,6 @@ public class MultipleAxes extends AbstractVaadinChartExample {
         style.setColor(colors[0]);
         y2.setTitle(title);
         labels = new Labels();
-        labels.setFormat("{value} mm");
         labels.setFormatter("this.value +' mm'");
         style = new Style();
         style.setColor(colors[0]);
@@ -81,7 +79,6 @@ public class MultipleAxes extends AbstractVaadinChartExample {
         style.setColor(colors[2]);
         y3.setTitle(title);
         labels = new Labels();
-        labels.setFormat("{value} mb");
         labels.setFormatter("this.value +' mb'");
         style = new Style();
         style.setColor(colors[2]);

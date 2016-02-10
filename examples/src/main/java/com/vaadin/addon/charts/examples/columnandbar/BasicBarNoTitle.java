@@ -41,9 +41,8 @@ public class BasicBarNoTitle extends AbstractVaadinChartExample {
         conf.getTitle().setText(null);
 
         XAxis x = new XAxis();
-        x.setCategories(new String[] { "Africa", "America", "Asia", "Europe",
-                "Oceania" });
-        x.setTitle(new AxisTitle((String) null));
+        x.setCategories("Africa", "America", "Asia", "Europe", "Oceania");
+        x.setTitle((String) null);
         conf.addxAxis(x);
 
         YAxis y = new YAxis();

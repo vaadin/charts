@@ -103,16 +103,17 @@ public class ContainerWithLotsOfData extends AbstractVaadinChartExample {
 
         Marker marker = new Marker();
         marker.setEnabled(false);
-        Hover hoverState = new Hover(true);
-        hoverState.setRadius(5);
+        Hover hover = new Hover(true);
+        hover.setRadius(5);
         States markerStates = new States();
-        markerStates.setHover(hoverState);
+        markerStates.setHover(hover);
         marker.setStates(markerStates);
 
-        Hover hoverStateForArea = new Hover(true);
-        hoverState.setLineWidth(1);
+        hover = new Hover(true);
+        hover.setLineWidth(1);
+
         States states = new States();
-        states.setHover(hoverStateForArea);
+        states.setHover(hover);
         plotOptions.setStates(states);
         plotOptions.setMarker(marker);
         plotOptions.setShadow(false);

@@ -2,7 +2,6 @@ package com.vaadin.addon.charts.examples.columnandbar;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.Legend;
@@ -32,13 +31,12 @@ public class StackedBar extends AbstractVaadinChartExample {
         conf.setTitle("Stacked bar chart");
 
         XAxis x = new XAxis();
-        x.setCategories(new String[] { "Apples", "Oranges", "Pears", "Grapes",
-                "Bananas" });
+        x.setCategories("Apples", "Oranges", "Pears", "Grapes", "Bananas");
         conf.addxAxis(x);
 
         YAxis y = new YAxis();
         y.setMin(0);
-        y.setTitle(new AxisTitle("Total fruit consumption"));
+        y.setTitle("Total fruit consumption");
         conf.addyAxis(y);
 
         Legend legend = new Legend();

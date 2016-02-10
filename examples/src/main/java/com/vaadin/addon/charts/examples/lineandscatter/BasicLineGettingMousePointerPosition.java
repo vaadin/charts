@@ -6,7 +6,6 @@ import com.vaadin.addon.charts.ChartClickListener;
 import com.vaadin.addon.charts.PointClickEvent;
 import com.vaadin.addon.charts.PointClickListener;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.HorizontalAlign;
@@ -49,19 +48,19 @@ public class BasicLineGettingMousePointerPosition extends
         conf.setSubTitle("Source: WorldClimate.com");
 
         XAxis x = new XAxis();
-        x.setCategories(new String[] { "Jan", "Feb", "Mar", "Apr", "May",
-                "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" });
+        x.setCategories("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug",
+                "Sep", "Oct", "Nov", "Dec");
         conf.addxAxis(x);
 
         YAxis primary = new YAxis();
-        primary.setTitle(new AxisTitle("Temperature"));
+        primary.setTitle("Temperature");
         Style style = new Style();
         style.setColor(colors[0]);
         primary.getTitle().setStyle(style);
         conf.addyAxis(primary);
 
         YAxis snd = new YAxis();
-        snd.setTitle(new AxisTitle("Rainfall"));
+        snd.setTitle("Rainfall");
         snd.setOpposite(true);
         style = new Style();
         style.setColor(colors[1]);

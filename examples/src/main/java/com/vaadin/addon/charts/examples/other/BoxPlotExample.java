@@ -2,7 +2,6 @@ package com.vaadin.addon.charts.examples.other;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.BoxPlotItem;
 import com.vaadin.addon.charts.model.DashStyle;
 import com.vaadin.addon.charts.model.DataSeries;
@@ -43,12 +42,12 @@ public class BoxPlotExample extends AbstractVaadinChartExample {
         chart.getConfiguration().setLegend(legend);
 
         XAxis xaxis = chart.getConfiguration().getxAxis();
-        xaxis.setTitle(new AxisTitle("Experiment No."));
-        xaxis.setCategories(new String[] { "1", "2", "3", "4", "5" });
+        xaxis.setTitle("Experiment No.");
+        xaxis.setCategories("1", "2", "3", "4", "5");
 
         YAxis yAxis = chart.getConfiguration().getyAxis();
 
-        yAxis.setTitle(new AxisTitle("Observations"));
+        yAxis.setTitle("Observations");
         PlotLine plotLine = new PlotLine();
         plotLine.setColor(new SolidColor("red"));
         plotLine.setValue(932);
@@ -74,7 +73,7 @@ public class BoxPlotExample extends AbstractVaadinChartExample {
         label2.setStyle(style2);
         plotLine2.setLabel(label2);
 
-        yAxis.setPlotLines(new PlotLine[] { plotLine, plotLine2 });
+        yAxis.setPlotLines(plotLine, plotLine2);
 
         observations = new DataSeries();
         observations.setName("Observations");

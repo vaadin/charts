@@ -44,11 +44,7 @@ public class SplineUpdatingEachSecondWithTwoLines extends
 
         YAxis yAxis = configuration.getyAxis();
         yAxis.setTitle(new AxisTitle("Value"));
-        PlotLine plotline = new PlotLine();
-        plotline.setValue(0);
-        plotline.setWidth(1);
-        plotline.setColor(new SolidColor("#808080"));
-        yAxis.setPlotLines(new PlotLine[] { plotline });
+        yAxis.setPlotLines(new PlotLine(0, 1, new SolidColor("#808080")));
 
         configuration.getTooltip().setEnabled(false);
         configuration.getLegend().setEnabled(false);

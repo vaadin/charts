@@ -54,8 +54,6 @@ public class ColumnWithNativeLazyDrilldown extends AbstractVaadinChartExample {
         PlotOptionsColumn column = new PlotOptionsColumn();
         column.setCursor(Cursor.POINTER);
         column.setDataLabels(new DataLabels(true));
-        column.getDataLabels().setFormat("{y}%");
-
         column.getDataLabels().setFormatter("this.y +'%'");
 
         conf.setPlotOptions(column);

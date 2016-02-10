@@ -34,9 +34,8 @@ public class DynamicExtremes extends AbstractVaadinChartExample {
         configuration.getTitle().setText("Monthly Average Temperature");
         configuration.getSubTitle().setText("Source: WorldClimate.com");
 
-        configuration.getxAxis().setCategories(
-                new String[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
-                        "Aug", "Sep", "Oct", "Nov", "Dec" });
+        configuration.getxAxis().setCategories("Jan", "Feb", "Mar", "Apr",
+                "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
 
         YAxis yAxis = configuration.getyAxis();
         yAxis.setMin(-10d);

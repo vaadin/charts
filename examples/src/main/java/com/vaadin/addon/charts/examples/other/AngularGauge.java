@@ -89,22 +89,11 @@ public class AngularGauge extends AbstractVaadinChartExample {
         labels.setRotationPerpendicular();
         yAxis.setLabels(labels);
 
-        PlotBand plotband1 = new PlotBand();
-        plotband1.setFrom(0);
-        plotband1.setTo(120);
-        plotband1.setColor(new SolidColor("#55BF3B"));
-
-        PlotBand plotband2 = new PlotBand();
-        plotband2.setFrom(120);
-        plotband2.setTo(160);
-        plotband2.setColor(new SolidColor("#DDDF0D"));
-
-        PlotBand plotband3 = new PlotBand();
-        plotband3.setFrom(160);
-        plotband3.setTo(200);
-        plotband3.setColor(new SolidColor("#DF5353"));
-
-        yAxis.setPlotBands(plotband1, plotband2, plotband3);
+        PlotBand[] plotBands = new PlotBand[3];
+        plotBands[0] = new PlotBand(0, 120, new SolidColor("#55BF3B"));
+        plotBands[1] = new PlotBand(120, 160, new SolidColor("#DDDF0D"));
+        plotBands[2] = new PlotBand(160, 200, new SolidColor("#DF5353"));
+        yAxis.setPlotBands(plotBands);
 
         final ListSeries series = new ListSeries("Speed", 80);
         PlotOptionsGauge plotOptions = new PlotOptionsGauge();

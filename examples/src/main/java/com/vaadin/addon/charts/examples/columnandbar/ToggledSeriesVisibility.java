@@ -7,7 +7,6 @@ import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.LegendItemClickEvent;
 import com.vaadin.addon.charts.LegendItemClickListener;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.HorizontalAlign;
@@ -55,13 +54,13 @@ public class ToggledSeriesVisibility extends AbstractVaadinChartExample {
         conf.setSubTitle("Source: WorldClimate.com");
 
         XAxis x = new XAxis();
-        x.setCategories(new String[] { "Jan", "Feb", "Mar", "Apr", "May",
-                "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" });
+        x.setCategories("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug",
+                "Sep", "Oct", "Nov", "Dec");
         conf.addxAxis(x);
 
         YAxis y = new YAxis();
         y.setMin(0);
-        y.setTitle(new AxisTitle("Rainfall (mm)"));
+        y.setTitle("Rainfall (mm)");
         conf.addyAxis(y);
 
         Legend legend = new Legend();

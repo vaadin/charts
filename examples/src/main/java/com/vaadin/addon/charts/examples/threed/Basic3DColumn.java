@@ -31,7 +31,7 @@ public class Basic3DColumn extends AbstractVaadinChartExample {
         conf.setSubTitle("Source: WorldClimate.com");
 
         XAxis x = new XAxis();
-        x.setCategories(new String[] { "Jan", "Feb", "Mar", "Apr" });
+        x.setCategories("Jan", "Feb", "Mar", "Apr");
         conf.addxAxis(x);
 
         YAxis y = new YAxis();

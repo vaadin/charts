@@ -8,7 +8,6 @@ import com.vaadin.addon.charts.DrilldownCallback;
 import com.vaadin.addon.charts.DrilldownEvent;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.SkipFromDemo;
-import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.AxisType;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
@@ -53,13 +52,12 @@ public class ColumnWithNativeLazyDrilldownByIndex extends
         conf.addxAxis(x);
 
         YAxis y = new YAxis();
-        y.setTitle(new AxisTitle("Total percent market share"));
+        y.setTitle("Total percent market share");
         conf.addyAxis(y);
 
         PlotOptionsColumn column = new PlotOptionsColumn();
         column.setCursor(Cursor.POINTER);
         column.setDataLabels(new DataLabels(true));
-        column.getDataLabels().setFormat("{y}%");
         column.getDataLabels().setFormatter("this.y +'%'");
 
         conf.setPlotOptions(column);

@@ -9,7 +9,6 @@ import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.Cursor;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
-import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.PlotOptionsPie;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.ui.Component;
@@ -40,8 +39,6 @@ public class PieWithLegend extends AbstractVaadinChartExample {
         plotOptions.setAllowPointSelect(true);
         plotOptions.setCursor(Cursor.POINTER);
         plotOptions.setShowInLegend(true);
-        Labels dataLabels = new Labels();
-        dataLabels.setEnabled(true);
         conf.setPlotOptions(plotOptions);
 
         DataSeries series = new DataSeries();

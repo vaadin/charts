@@ -31,9 +31,8 @@ public class LinesWithComplexHtmlTooltip extends AbstractVaadinChartExample {
         configuration.setTitle("Complex tooltip");
         configuration.setTooltip(tooltip);
 
-        configuration.getxAxis().setCategories(
-                new String[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
-                        "Aug", "Sep", "Oct", "Nov", "Dec" });
+        configuration.getxAxis().setCategories("Jan", "Feb", "Mar", "Apr",
+                "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
 
         ListSeries ls = new ListSeries();
         ls.setName("Short");

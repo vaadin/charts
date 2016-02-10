@@ -45,7 +45,7 @@ public class ExportingExample extends DualAxesLineAndColumn {
 
         // Simpler boolean API can also be used to just toggle the service
         // on/off
-        //chart.getConfiguration().setExporting(true);
+        // chart.getConfiguration().setExporting(true);
 
         verticalLayout.addComponent(chart);
         return verticalLayout;

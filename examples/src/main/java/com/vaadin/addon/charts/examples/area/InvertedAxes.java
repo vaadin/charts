@@ -36,8 +36,8 @@ public class InvertedAxes extends AbstractVaadinChartExample {
         conf.setTitle(new Title("Average fruit consumption during one week"));
 
         XAxis xAxis = new XAxis();
-        xAxis.setCategories(new String[] { "Monday", "Tuesday", "Wednesday",
-                "Thursday", "Friday", "Saturday", "Sunday" });
+        xAxis.setCategories("Monday", "Tuesday", "Wednesday", "Thursday",
+                "Friday", "Saturday", "Sunday");
         conf.addxAxis(xAxis);
 
         YAxis yAxis = new YAxis();
