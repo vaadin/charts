@@ -1,18 +1,12 @@
 package com.vaadin.addon.charts.examples.declarative;
 
 import com.vaadin.addon.charts.Chart;
-import com.vaadin.addon.charts.declarative.ChartsComponentMapper;
+import com.vaadin.addon.charts.declarative.ChartComponentMapper;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.timeline.util.StockPrices;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
-import com.vaadin.addon.charts.model.FlagItem;
-import com.vaadin.addon.charts.model.PlotOptionsFlags;
-import com.vaadin.addon.charts.model.Series;
-import com.vaadin.addon.charts.model.TreeSeries;
-import com.vaadin.addon.charts.model.TreeSeriesItem;
-import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.annotations.DesignRoot;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.declarative.Design;
@@ -30,7 +24,7 @@ public class CompareMultipleSeries extends AbstractVaadinChartExample {
 
     @Override
     protected void setup() {
-        Design.setComponentMapper(new ChartsComponentMapper());
+        Design.setComponentMapper(new ChartComponentMapper());
         Design.read(this);
         addSeriesTo(myChart.getConfiguration());
     }

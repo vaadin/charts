@@ -9,7 +9,6 @@ import java.beans.PropertyDescriptor;
 import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -18,7 +17,6 @@ import java.util.logging.Logger;
 
 import com.vaadin.addon.charts.model.AbstractConfigurationObject;
 import com.vaadin.addon.charts.model.AbstractPlotOptions;
-import com.vaadin.addon.charts.model.AxisList;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.ui.declarative.ChartDesignFormatter;
 import com.vaadin.ui.declarative.DesignAttributeHandler;
@@ -28,14 +26,14 @@ import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class ChartsDesign implements Serializable {
+public class ChartDesignReader implements Serializable {
 
     static {
         // This is needed to add a converter from String to Number
         ChartDesignFormatter.init();
     }
 
-    private static Logger logger = Logger.getLogger(ChartsDesign.class.getName());
+    private static Logger logger = Logger.getLogger(ChartDesignReader.class.getName());
 
     private static Map<Class<?>, ConfigurationCacheEntry>
         cache = new ConcurrentHashMap<Class<?>, ConfigurationCacheEntry>();
@@ -68,7 +66,8 @@ public class ChartsDesign implements Serializable {
         }
     }
 
-    public static void readConfiguration(Elements elements, Configuration configuration) {
+    public static void readConfigurationFromElements(Elements elements,
+        Configuration configuration) {
         addToConfiguration(elements, configuration);
     }
 
@@ -329,4 +328,6 @@ public class ChartsDesign implements Serializable {
         }
         return nodeName.toLowerCase().replace("-", "");
     }
+
+
 }

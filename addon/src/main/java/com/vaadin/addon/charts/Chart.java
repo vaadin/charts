@@ -24,7 +24,8 @@ import java.io.ObjectInputStream;
 import java.lang.reflect.Method;
 import java.util.Stack;
 
-import com.vaadin.addon.charts.declarative.ChartsDesign;
+import com.vaadin.addon.charts.declarative.ChartDesignWriter;
+import com.vaadin.addon.charts.declarative.ChartDesignReader;
 import com.vaadin.addon.charts.events.AbstractSeriesEvent;
 import com.vaadin.addon.charts.events.AxisRescaledEvent;
 import com.vaadin.addon.charts.events.ConfigurationChangeListener;
@@ -873,7 +874,8 @@ public class Chart extends AbstractComponent {
         if(configuration == null) {
             configuration = new Configuration();
         }
-        ChartsDesign.readConfiguration(design.children(), configuration);
+        ChartDesignReader.readConfigurationFromElements(
+            design.children(), configuration);
 
         setConfiguration(configuration);
     }
@@ -883,5 +885,11 @@ public class Chart extends AbstractComponent {
     @Override
     public void writeDesign(Element design, DesignContext designContext) {
         super.writeDesign(design, designContext);
+
+        Configuration configuration = getConfiguration();
+        if(configuration != null) {
+            ChartDesignWriter.writeConfigurationToElement(
+                configuration, design);
+        }
     }
 }

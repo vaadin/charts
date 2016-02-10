@@ -11,7 +11,7 @@ import com.vaadin.ui.declarative.DesignContext;
 import com.vaadin.ui.declarative.DesignException;
 
 
-public class ChartsComponentMapper extends Design.DefaultComponentMapper {
+public class ChartComponentMapper extends Design.DefaultComponentMapper {
 
     @Override
     public Component tagToComponent(String tagName,

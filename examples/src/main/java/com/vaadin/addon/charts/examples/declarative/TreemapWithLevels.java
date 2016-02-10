@@ -1,7 +1,7 @@
 package com.vaadin.addon.charts.examples.declarative;
 
 import com.vaadin.addon.charts.Chart;
-import com.vaadin.addon.charts.declarative.ChartsComponentMapper;
+import com.vaadin.addon.charts.declarative.ChartComponentMapper;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.TreeSeries;
 import com.vaadin.addon.charts.model.TreeSeriesItem;
@@ -22,7 +22,7 @@ public class TreemapWithLevels extends AbstractVaadinChartExample {
 
     @Override
     protected void setup() {
-        Design.setComponentMapper(new ChartsComponentMapper());
+        Design.setComponentMapper(new ChartComponentMapper());
         Design.read(this);
         myChart.getConfiguration().addSeries(createSeries());
     }
