@@ -23,12 +23,24 @@ import com.vaadin.addon.charts.model.PlotOptionsArearange;
 import com.vaadin.addon.charts.model.PlotOptionsAreaspline;
 import com.vaadin.addon.charts.model.PlotOptionsAreasplinerange;
 import com.vaadin.addon.charts.model.PlotOptionsBar;
+import com.vaadin.addon.charts.model.PlotOptionsBoxplot;
+import com.vaadin.addon.charts.model.PlotOptionsBubble;
+import com.vaadin.addon.charts.model.PlotOptionsCandlestick;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
+import com.vaadin.addon.charts.model.PlotOptionsColumnrange;
+import com.vaadin.addon.charts.model.PlotOptionsErrorbar;
+import com.vaadin.addon.charts.model.PlotOptionsFlags;
+import com.vaadin.addon.charts.model.PlotOptionsFunnel;
+import com.vaadin.addon.charts.model.PlotOptionsGauge;
+import com.vaadin.addon.charts.model.PlotOptionsHeatmap;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
+import com.vaadin.addon.charts.model.PlotOptionsOhlc;
 import com.vaadin.addon.charts.model.PlotOptionsPie;
 import com.vaadin.addon.charts.model.PlotOptionsPolygon;
 import com.vaadin.addon.charts.model.PlotOptionsPyramid;
+import com.vaadin.addon.charts.model.PlotOptionsScatter;
 import com.vaadin.addon.charts.model.PlotOptionsSeries;
+import com.vaadin.addon.charts.model.PlotOptionsSolidgauge;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
 import com.vaadin.addon.charts.model.PlotOptionsTreemap;
 import com.vaadin.addon.charts.model.PlotOptionsWaterfall;
@@ -38,21 +50,35 @@ import com.vaadin.addon.charts.model.PlotOptionsWaterfall;
  */
 @SuppressWarnings("serial")
 public class PlotOptionsStyle extends AbstractConfigurationObject {
-    private PlotOptionsBar bar = new PlotOptionsBar();
+    //Plot options from highcharts
     private PlotOptionsArea area = new PlotOptionsArea();
     private PlotOptionsArearange arearange = new PlotOptionsArearange();
     private PlotOptionsAreaspline areaspline = new PlotOptionsAreaspline();
-    private PlotOptionsAreasplinerange
-        areasplinerange = new PlotOptionsAreasplinerange();
-    private PlotOptionsPie pie = new PlotOptionsPie();
-    private PlotOptionsLine line = new PlotOptionsLine();
+    private PlotOptionsAreasplinerange areasplinerange = new PlotOptionsAreasplinerange();
+    private PlotOptionsBar bar = new PlotOptionsBar();
+    private PlotOptionsBoxplot boxplot = new PlotOptionsBoxplot();
+    private PlotOptionsBubble bubble = new PlotOptionsBubble();
     private PlotOptionsColumn column = new PlotOptionsColumn();
-    private PlotOptionsSpline spline = new PlotOptionsSpline();
-    private PlotOptionsSeries series = new PlotOptionsSeries();
-    private PlotOptionsPyramid pyramid = new PlotOptionsPyramid();
-    private PlotOptionsWaterfall waterfall = new PlotOptionsWaterfall();
-    private PlotOptionsTreemap treemap = new PlotOptionsTreemap();
+    private PlotOptionsColumnrange columnrange = new PlotOptionsColumnrange();
+    private PlotOptionsErrorbar errorbar = new PlotOptionsErrorbar();
+    private PlotOptionsFunnel funnel = new PlotOptionsFunnel();
+    private PlotOptionsGauge gauge = new PlotOptionsGauge();
+    private PlotOptionsHeatmap  heatmap = new PlotOptionsHeatmap();
+    private PlotOptionsLine line = new PlotOptionsLine();
+    private PlotOptionsPie pie = new PlotOptionsPie();
     private PlotOptionsPolygon polygon = new PlotOptionsPolygon();
+    private PlotOptionsPyramid pyramid = new PlotOptionsPyramid();
+    private PlotOptionsScatter scatter = new PlotOptionsScatter();
+    private PlotOptionsSeries series = new PlotOptionsSeries();
+    private PlotOptionsSolidgauge solidgauge = new PlotOptionsSolidgauge();
+    private PlotOptionsSpline spline = new PlotOptionsSpline();
+    private PlotOptionsTreemap treemap = new PlotOptionsTreemap();
+    private PlotOptionsWaterfall waterfall = new PlotOptionsWaterfall();
+
+    //plot options from highStock
+    private PlotOptionsCandlestick candlestick = new PlotOptionsCandlestick();
+    private PlotOptionsFlags flags = new PlotOptionsFlags();
+    private PlotOptionsOhlc ohlc =new PlotOptionsOhlc();
 
     /**
      * @see #setBar(PlotOptionsBar)
@@ -62,8 +88,8 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
     }
 
     /**
-     * Sets the style options for {@link ChartType#BAR} charts
-     * 
+     * Sets the style options for {@link com.vaadin.addon.charts.model.ChartType#BAR} charts
+     *
      * @param bar
      */
     public void setBar(PlotOptionsBar bar) {
@@ -78,9 +104,9 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
     }
 
     /**
-     * Sets the style options for {@link ChartType#AREA} charts
-     * 
-     * @param bar
+     * Sets the style options for {@link com.vaadin.addon.charts.model.ChartType#AREA} charts
+     *
+     * @param area
      */
     public void setArea(PlotOptionsArea area) {
         this.area = area;
@@ -92,11 +118,10 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
     public PlotOptionsPie getPie() {
         return pie;
     }
-
     /**
-     * Sets the style options for {@link ChartType#PIE} charts
-     * 
-     * @param bar
+     * Sets the style options for {@link com.vaadin.addon.charts.model.ChartType#PIE} charts
+     *
+     * @param pie
      */
     public void setPie(PlotOptionsPie pie) {
         this.pie = pie;
@@ -108,11 +133,10 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
     public PlotOptionsLine getLine() {
         return line;
     }
-
     /**
-     * Sets the style options for {@link ChartType#LINE} charts
-     * 
-     * @param bar
+     * Sets the style options for {@link com.vaadin.addon.charts.model.ChartType#LINE} charts
+     *
+     * @param line
      */
     public void setLine(PlotOptionsLine line) {
         this.line = line;
@@ -124,11 +148,10 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
     public PlotOptionsColumn getColumn() {
         return column;
     }
-
     /**
-     * Sets the style options for {@link ChartType#COLUMN} charts
-     * 
-     * @param bar
+     * Sets the style options for {@link com.vaadin.addon.charts.model.ChartType#COLUMN} charts
+     *
+     * @param column
      */
     public void setColumn(PlotOptionsColumn column) {
         this.column = column;
@@ -140,11 +163,10 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
     public PlotOptionsSpline getSpline() {
         return spline;
     }
-
     /**
-     * Sets the style options for {@link ChartType#SPLINE} charts
-     * 
-     * @param bar
+     * Sets the style options for {@link com.vaadin.addon.charts.model.ChartType#SPLINE} charts
+     *
+     * @param spline
      */
     public void setSpline(PlotOptionsSpline spline) {
         this.spline = spline;
@@ -156,10 +178,9 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
     public PlotOptionsSeries getSeries() {
         return series;
     }
-
     /**
-     * Sets the style rules for all chart types
-     * 
+     * Sets the style options for all type of charts
+     *
      * @param series
      */
     public void setSeries(PlotOptionsSeries series) {
@@ -172,10 +193,9 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
     public PlotOptionsArearange getArearange() {
         return arearange;
     }
-
     /**
-     * Sets the style options for {@link ChartType#AREARANGE} charts
-     * 
+     * Sets the style options for {@link com.vaadin.addon.charts.model.ChartType#AREARANGE} charts
+     *
      * @param arearange
      */
     public void setArearange(PlotOptionsArearange arearange) {
@@ -188,10 +208,9 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
     public PlotOptionsAreasplinerange getAreasplinerange() {
         return areasplinerange;
     }
-
     /**
-     * Sets the style options for {@link ChartType#AREASPLINERANGE} charts
-     * 
+     * Sets the style options for {@link com.vaadin.addon.charts.model.ChartType#AREASPLINERANGE} charts
+     *
      * @param areasplinerange
      */
     public void setAreasplinerange(PlotOptionsAreasplinerange areasplinerange) {
@@ -204,10 +223,9 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
     public PlotOptionsAreaspline getAreaspline() {
         return areaspline;
     }
-
     /**
-     * Sets the style options for {@link ChartType#AREASPLINE} charts
-     * 
+     * Sets the style options for {@link com.vaadin.addon.charts.model.ChartType#AREASPLINE} charts
+     *
      * @param areaspline
      */
     public void setAreaspline(PlotOptionsAreaspline areaspline) {
@@ -220,10 +238,9 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
     public PlotOptionsPyramid getPyramid() {
         return pyramid;
     }
-
     /**
-     * Sets the style options for {@link ChartType#PYRAMID} charts
-     * 
+     * Sets the style options for {@link com.vaadin.addon.charts.model.ChartType#PYRAMID} charts
+     *
      * @param pyramid
      */
     public void setPyramid(PlotOptionsPyramid pyramid) {
@@ -232,31 +249,24 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
 
     /**
      * @see #setWaterfall(PlotOptionsWaterfall)
-     * @return waterfall
      */
     public PlotOptionsWaterfall getWaterfall() {
         return waterfall;
     }
-
     /**
-     * Sets the style options for {@link ChartType#WATERFALL} charts
-     * 
+     * Sets the style options for {@link com.vaadin.addon.charts.model.ChartType#WATERFALL} charts
+     *
      * @param waterfall
      */
     public void setWaterfall(PlotOptionsWaterfall waterfall) {
         this.waterfall = waterfall;
     }
 
-    /**
-     * @see #setTreemap(PlotOptionsTreemap)
-     * @return
-     */
     public PlotOptionsTreemap getTreeMap() {
         return treemap;
     }
-
     /**
-     * Sets the style options for {@link ChartType#TREEMAP} charts
+     * Sets the style options for {@link com.vaadin.addon.charts.model.ChartType#TREEMAP} charts
      *
      * @param treemap
      */
@@ -266,19 +276,181 @@ public class PlotOptionsStyle extends AbstractConfigurationObject {
 
     /**
      * @see #setPolygon(PlotOptionsPolygon)
-     * @return polygon
      */
     public PlotOptionsPolygon getPolygon() {
         return polygon;
     }
-
     /**
-     * Sets the style options for {@link ChartType#POLYGON} charts
-     * 
+     * Sets the style options for {@link com.vaadin.addon.charts.model.ChartType#POLYGON} charts
+     *
      * @param polygon
      */
     public void setPolygon(PlotOptionsPolygon polygon) {
         this.polygon = polygon;
     }
 
+    /**
+     * @see #setBoxplot(PlotOptionsBoxplot)
+     */
+    public PlotOptionsBoxplot getBoxplot() {
+        return boxplot;
+    }
+    /**
+     * Sets the style options for {@link com.vaadin.addon.charts.model.ChartType#BOXPLOT} charts
+     *
+     * @param boxplot
+     */
+    public void setBoxplot(PlotOptionsBoxplot boxplot) {
+        this.boxplot = boxplot;
+    }
+
+    /**
+     * @see #setBubble(PlotOptionsBubble)
+     */
+    public PlotOptionsBubble getBubble() {
+        return bubble;
+    }
+    /**
+     * Sets the style options for {@link com.vaadin.addon.charts.model.ChartType#BUBBLE} charts
+     *
+     * @param bubble
+     */
+    public void setBubble(PlotOptionsBubble bubble) {
+        this.bubble = bubble;
+    }
+
+    public PlotOptionsColumnrange getColumnrange() {
+        return columnrange;
+    }
+    /**
+     * Sets the style options for {@link com.vaadin.addon.charts.model.ChartType#COLUMNRANGE} charts
+     *
+     * @param columnrange
+     */
+    public void setColumnrange(PlotOptionsColumnrange columnrange) {
+        this.columnrange = columnrange;
+    }
+
+    public PlotOptionsErrorbar getErrorbar() {
+        return errorbar;
+    }
+    /**
+     * Sets the style options for {@link com.vaadin.addon.charts.model.ChartType#ERRORBAR} charts
+     *
+     * @param errorbar
+     */
+    public void setErrorbar(PlotOptionsErrorbar errorbar) {
+        this.errorbar = errorbar;
+    }
+    /**
+     * @see #setFunnel(PlotOptionsFunnel)
+     */
+    public PlotOptionsFunnel getFunnel() {
+        return funnel;
+    }
+    /**
+     * Sets the style options for {@link com.vaadin.addon.charts.model.ChartType#FUNNEL} charts
+     *
+     * @param funnel
+     */
+    public void setFunnel(PlotOptionsFunnel funnel) {
+        this.funnel = funnel;
+    }
+    /**
+     * @see #setGauge(PlotOptionsGauge)
+     */
+    public PlotOptionsGauge getGauge() {
+        return gauge;
+    }
+    /**
+     * Sets the style options for {@link com.vaadin.addon.charts.model.ChartType#GAUGE} charts
+     *
+     * @param gauge
+     */
+    public void setGauge(PlotOptionsGauge gauge) {
+        this.gauge = gauge;
+    }
+
+    public PlotOptionsHeatmap getHeatmap() {
+        return heatmap;
+    }
+    /**
+     * Sets the style options for {@link com.vaadin.addon.charts.model.ChartType#HEATMAP} charts
+     *
+     * @param heatmap
+     */
+    public void setHeatmap(PlotOptionsHeatmap heatmap) {
+        this.heatmap = heatmap;
+    }
+
+    public PlotOptionsScatter getScatter() {
+        return scatter;
+    }
+    /**
+     * Sets the style options for {@link com.vaadin.addon.charts.model.ChartType#SCATTER} charts
+     *
+     * @param scatter
+     */
+    public void setScatter(PlotOptionsScatter scatter) {
+        this.scatter = scatter;
+    }
+
+    public PlotOptionsSolidgauge getSolidgauge() {
+        return solidgauge;
+    }
+    /**
+     * Sets the style options for {@link com.vaadin.addon.charts.model.ChartType#SOLIDGAUGE} charts
+     *
+     * @param solidgauge
+     */
+    public void setSolidgauge(PlotOptionsSolidgauge solidgauge) {
+        this.solidgauge = solidgauge;
+    }
+    /**
+     * @see #setTreemap(PlotOptionsTreemap)
+     */
+    public PlotOptionsTreemap getTreemap() {
+        return treemap;
+    }
+
+    public PlotOptionsCandlestick getCandlestick() {
+        return candlestick;
+    }
+    /**
+     * Sets the style options for {@link com.vaadin.addon.charts.model.ChartType#CANDLESTICK} charts
+     *
+     * @param candlestick
+     */
+    public void setCandlestick(PlotOptionsCandlestick candlestick) {
+        this.candlestick = candlestick;
+    }
+    /**
+     * @see #setFlags(PlotOptionsFlags)
+     */
+    public PlotOptionsFlags getFlags() {
+        return flags;
+    }
+    /**
+     * Sets the style options for {@link com.vaadin.addon.charts.model.ChartType#FLAGS} charts
+     *
+     * @param flags
+     */
+    public void setFlags(PlotOptionsFlags flags) {
+        this.flags = flags;
+    }
+
+    /**
+     * @see #setOhlc(PlotOptionsOhlc)
+     */
+    public PlotOptionsOhlc getOhlc() {
+        return ohlc;
+    }
+    /**
+     * Sets the style options for {@link com.vaadin.addon.charts.model.ChartType#OHLC} charts
+     *
+     * @param ohlc
+     */
+    public void setOhlc(PlotOptionsOhlc ohlc) {
+        this.ohlc = ohlc;
+    }
 }
