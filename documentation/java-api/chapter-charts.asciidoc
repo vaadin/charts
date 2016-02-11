@@ -19,3 +19,4 @@ include::charts-data.asciidoc[leveloffset=+2]
 
 include::charts-advanced.asciidoc[leveloffset=+2]
 
+include::charts-timeline.asciidoc[leveloffset=+2]
