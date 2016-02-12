@@ -161,6 +161,9 @@ public class PlotBand extends AbstractConfigurationObject {
 	 * @see #setLabel(Label)
 	 */
 	public Label getLabel() {
+		if (label == null) {
+			label = new Label();
+		}
 		return label;
 	}
 

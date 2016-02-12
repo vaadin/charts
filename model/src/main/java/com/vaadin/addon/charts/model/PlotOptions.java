@@ -68,6 +68,9 @@ public class PlotOptions extends AbstractConfigurationObject {
 	 * @see #setArea(PlotOptionsArea)
 	 */
 	public PlotOptionsArea getArea() {
+		if (area == null) {
+			area = new PlotOptionsArea();
+		}
 		return area;
 	}
 
@@ -82,6 +85,9 @@ public class PlotOptions extends AbstractConfigurationObject {
 	 * @see #setArearange(PlotOptionsArearange)
 	 */
 	public PlotOptionsArearange getArearange() {
+		if (arearange == null) {
+			arearange = new PlotOptionsArearange();
+		}
 		return arearange;
 	}
 
@@ -97,6 +103,9 @@ public class PlotOptions extends AbstractConfigurationObject {
 	 * @see #setAreaspline(PlotOptionsAreaspline)
 	 */
 	public PlotOptionsAreaspline getAreaspline() {
+		if (areaspline == null) {
+			areaspline = new PlotOptionsAreaspline();
+		}
 		return areaspline;
 	}
 
@@ -111,6 +120,9 @@ public class PlotOptions extends AbstractConfigurationObject {
 	 * @see #setAreasplinerange(PlotOptionsAreasplinerange)
 	 */
 	public PlotOptionsAreasplinerange getAreasplinerange() {
+		if (areasplinerange == null) {
+			areasplinerange = new PlotOptionsAreasplinerange();
+		}
 		return areasplinerange;
 	}
 
@@ -128,6 +140,9 @@ public class PlotOptions extends AbstractConfigurationObject {
 	 * @see #setBar(PlotOptionsBar)
 	 */
 	public PlotOptionsBar getBar() {
+		if (bar == null) {
+			bar = new PlotOptionsBar();
+		}
 		return bar;
 	}
 
@@ -142,6 +157,9 @@ public class PlotOptions extends AbstractConfigurationObject {
 	 * @see #setBoxplot(PlotOptionsBoxplot)
 	 */
 	public PlotOptionsBoxplot getBoxplot() {
+		if (boxplot == null) {
+			boxplot = new PlotOptionsBoxplot();
+		}
 		return boxplot;
 	}
 
@@ -159,6 +177,9 @@ public class PlotOptions extends AbstractConfigurationObject {
 	 * @see #setBubble(PlotOptionsBubble)
 	 */
 	public PlotOptionsBubble getBubble() {
+		if (bubble == null) {
+			bubble = new PlotOptionsBubble();
+		}
 		return bubble;
 	}
 
@@ -178,6 +199,9 @@ public class PlotOptions extends AbstractConfigurationObject {
 	 * @see #setColumn(PlotOptionsColumn)
 	 */
 	public PlotOptionsColumn getColumn() {
+		if (column == null) {
+			column = new PlotOptionsColumn();
+		}
 		return column;
 	}
 
@@ -192,6 +216,9 @@ public class PlotOptions extends AbstractConfigurationObject {
 	 * @see #setColumnrange(PlotOptionsColumnrange)
 	 */
 	public PlotOptionsColumnrange getColumnrange() {
+		if (columnrange == null) {
+			columnrange = new PlotOptionsColumnrange();
+		}
 		return columnrange;
 	}
 
@@ -209,6 +236,9 @@ public class PlotOptions extends AbstractConfigurationObject {
 	 * @see #setErrorbar(PlotOptionsErrorbar)
 	 */
 	public PlotOptionsErrorbar getErrorbar() {
+		if (errorbar == null) {
+			errorbar = new PlotOptionsErrorbar();
+		}
 		return errorbar;
 	}
 
@@ -227,6 +257,9 @@ public class PlotOptions extends AbstractConfigurationObject {
 	 * @see #setFunnel(PlotOptionsFunnel)
 	 */
 	public PlotOptionsFunnel getFunnel() {
+		if (funnel == null) {
+			funnel = new PlotOptionsFunnel();
+		}
 		return funnel;
 	}
 
@@ -244,6 +277,9 @@ public class PlotOptions extends AbstractConfigurationObject {
 	 * @see #setGauge(PlotOptionsGauge)
 	 */
 	public PlotOptionsGauge getGauge() {
+		if (gauge == null) {
+			gauge = new PlotOptionsGauge();
+		}
 		return gauge;
 	}
 
@@ -259,6 +295,9 @@ public class PlotOptions extends AbstractConfigurationObject {
 	 * @see #setHeatmap(PlotOptionsHeatmap)
 	 */
 	public PlotOptionsHeatmap getHeatmap() {
+		if (heatmap == null) {
+			heatmap = new PlotOptionsHeatmap();
+		}
 		return heatmap;
 	}
 
@@ -281,6 +320,9 @@ public class PlotOptions extends AbstractConfigurationObject {
 	 * @see #setLine(PlotOptionsLine)
 	 */
 	public PlotOptionsLine getLine() {
+		if (line == null) {
+			line = new PlotOptionsLine();
+		}
 		return line;
 	}
 
@@ -295,6 +337,9 @@ public class PlotOptions extends AbstractConfigurationObject {
 	 * @see #setPie(PlotOptionsPie)
 	 */
 	public PlotOptionsPie getPie() {
+		if (pie == null) {
+			pie = new PlotOptionsPie();
+		}
 		return pie;
 	}
 
@@ -310,6 +355,9 @@ public class PlotOptions extends AbstractConfigurationObject {
 	 * @see #setPolygon(PlotOptionsPolygon)
 	 */
 	public PlotOptionsPolygon getPolygon() {
+		if (polygon == null) {
+			polygon = new PlotOptionsPolygon();
+		}
 		return polygon;
 	}
 
@@ -328,6 +376,9 @@ public class PlotOptions extends AbstractConfigurationObject {
 	 * @see #setPyramid(PlotOptionsPyramid)
 	 */
 	public PlotOptionsPyramid getPyramid() {
+		if (pyramid == null) {
+			pyramid = new PlotOptionsPyramid();
+		}
 		return pyramid;
 	}
 
@@ -344,6 +395,9 @@ public class PlotOptions extends AbstractConfigurationObject {
 	 * @see #setScatter(PlotOptionsScatter)
 	 */
 	public PlotOptionsScatter getScatter() {
+		if (scatter == null) {
+			scatter = new PlotOptionsScatter();
+		}
 		return scatter;
 	}
 
@@ -358,6 +412,9 @@ public class PlotOptions extends AbstractConfigurationObject {
 	 * @see #setSeries(PlotOptionsSeries)
 	 */
 	public PlotOptionsSeries getSeries() {
+		if (series == null) {
+			series = new PlotOptionsSeries();
+		}
 		return series;
 	}
 
@@ -374,6 +431,9 @@ public class PlotOptions extends AbstractConfigurationObject {
 	 * @see #setSolidgauge(PlotOptionsSolidgauge)
 	 */
 	public PlotOptionsSolidgauge getSolidgauge() {
+		if (solidgauge == null) {
+			solidgauge = new PlotOptionsSolidgauge();
+		}
 		return solidgauge;
 	}
 
@@ -393,6 +453,9 @@ public class PlotOptions extends AbstractConfigurationObject {
 	 * @see #setSpline(PlotOptionsSpline)
 	 */
 	public PlotOptionsSpline getSpline() {
+		if (spline == null) {
+			spline = new PlotOptionsSpline();
+		}
 		return spline;
 	}
 
@@ -407,6 +470,9 @@ public class PlotOptions extends AbstractConfigurationObject {
 	 * @see #setTreemap(PlotOptionsTreemap)
 	 */
 	public PlotOptionsTreemap getTreemap() {
+		if (treemap == null) {
+			treemap = new PlotOptionsTreemap();
+		}
 		return treemap;
 	}
 
@@ -425,6 +491,9 @@ public class PlotOptions extends AbstractConfigurationObject {
 	 * @see #setWaterfall(PlotOptionsWaterfall)
 	 */
 	public PlotOptionsWaterfall getWaterfall() {
+		if (waterfall == null) {
+			waterfall = new PlotOptionsWaterfall();
+		}
 		return waterfall;
 	}
 
@@ -441,6 +510,9 @@ public class PlotOptions extends AbstractConfigurationObject {
 	 * @see #setCandlestick(PlotOptionsCandlestick)
 	 */
 	public PlotOptionsCandlestick getCandlestick() {
+		if (candlestick == null) {
+			candlestick = new PlotOptionsCandlestick();
+		}
 		return candlestick;
 	}
 
@@ -455,6 +527,9 @@ public class PlotOptions extends AbstractConfigurationObject {
 	 * @see #setFlags(PlotOptionsFlags)
 	 */
 	public PlotOptionsFlags getFlags() {
+		if (flags == null) {
+			flags = new PlotOptionsFlags();
+		}
 		return flags;
 	}
 
@@ -469,6 +544,9 @@ public class PlotOptions extends AbstractConfigurationObject {
 	 * @see #setOhlc(PlotOptionsOhlc)
 	 */
 	public PlotOptionsOhlc getOhlc() {
+		if (ohlc == null) {
+			ohlc = new PlotOptionsOhlc();
+		}
 		return ohlc;
 	}
 

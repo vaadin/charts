@@ -184,6 +184,9 @@ public class XAxis extends Axis {
 	 * @see #setCrosshair(Crosshair)
 	 */
 	public Crosshair getCrosshair() {
+		if (crosshair == null) {
+			crosshair = new Crosshair();
+		}
 		return crosshair;
 	}
 
@@ -201,6 +204,9 @@ public class XAxis extends Axis {
 	 * @see #setDateTimeLabelFormats(DateTimeLabelFormats)
 	 */
 	public DateTimeLabelFormats getDateTimeLabelFormats() {
+		if (dateTimeLabelFormats == null) {
+			dateTimeLabelFormats = new DateTimeLabelFormats();
+		}
 		return dateTimeLabelFormats;
 	}
 
@@ -347,6 +353,9 @@ public class XAxis extends Axis {
 	 * @see #setLabels(Labels)
 	 */
 	public Labels getLabels() {
+		if (labels == null) {
+			labels = new Labels();
+		}
 		return labels;
 	}
 
@@ -1006,6 +1015,9 @@ public class XAxis extends Axis {
 	 * @see #setTitle(AxisTitle)
 	 */
 	public AxisTitle getTitle() {
+		if (title == null) {
+			title = new AxisTitle();
+		}
 		return title;
 	}
 

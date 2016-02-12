@@ -1,9 +1,5 @@
 package com.vaadin.addon.charts.examples.dynamic;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.ChartSelectionEvent;
 import com.vaadin.addon.charts.ChartSelectionListener;
@@ -27,6 +23,10 @@ import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.charts.util.Util;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.VerticalLayout;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class MasterDetailChart extends AbstractVaadinChartExample {
 
@@ -277,11 +277,10 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
         hover.setRadius(3);
         states.setHover(hover);
 
-        Marker marker = new Marker();
+        Marker marker = series.getMarker();
         marker.setEnabled(false);
         marker.setStates(states);
         marker.setRadius(2);
-        series.setMarker(marker);
         series.setAnimation(false);
 
         ListSeries seriesList = new ListSeries();

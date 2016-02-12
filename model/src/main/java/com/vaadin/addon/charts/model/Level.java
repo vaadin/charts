@@ -100,6 +100,9 @@ public class Level extends AbstractConfigurationObject {
 	 * @see #setDataLabels(DataLabels)
 	 */
 	public DataLabels getDataLabels() {
+		if (dataLabels == null) {
+			dataLabels = new DataLabels();
+		}
 		return dataLabels;
 	}
 

@@ -358,6 +358,9 @@ public class Chart extends AbstractConfigurationObject {
 	 * @see #setOptions3d(Options3d)
 	 */
 	public Options3d getOptions3d() {
+		if (options3d == null) {
+			options3d = new Options3d();
+		}
 		return options3d;
 	}
 
@@ -546,6 +549,9 @@ public class Chart extends AbstractConfigurationObject {
 	 * @see #setResetZoomButton(ResetZoomButton)
 	 */
 	public ResetZoomButton getResetZoomButton() {
+		if (resetZoomButton == null) {
+			resetZoomButton = new ResetZoomButton();
+		}
 		return resetZoomButton;
 	}
 
@@ -711,6 +717,9 @@ public class Chart extends AbstractConfigurationObject {
 	 * @see #setStyle(Style)
 	 */
 	public Style getStyle() {
+		if (style == null) {
+			style = new Style();
+		}
 		return style;
 	}
 

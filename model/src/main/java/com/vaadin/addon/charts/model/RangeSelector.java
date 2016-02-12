@@ -89,6 +89,9 @@ public class RangeSelector extends AbstractConfigurationObject {
 	 * @see #setButtonTheme(ButtonTheme)
 	 */
 	public ButtonTheme getButtonTheme() {
+		if (buttonTheme == null) {
+			buttonTheme = new ButtonTheme();
+		}
 		return buttonTheme;
 	}
 
@@ -108,6 +111,9 @@ public class RangeSelector extends AbstractConfigurationObject {
 	 * @see #setButtons(Buttons)
 	 */
 	public Buttons getButtons() {
+		if (buttons == null) {
+			buttons = new Buttons();
+		}
 		return buttons;
 	}
 
@@ -311,6 +317,9 @@ public class RangeSelector extends AbstractConfigurationObject {
 	 * @see #setInputPosition(ButtonPosition)
 	 */
 	public ButtonPosition getInputPosition() {
+		if (inputPosition == null) {
+			inputPosition = new ButtonPosition();
+		}
 		return inputPosition;
 	}
 
@@ -329,6 +338,9 @@ public class RangeSelector extends AbstractConfigurationObject {
 	 * @see #setInputStyle(Style)
 	 */
 	public Style getInputStyle() {
+		if (inputStyle == null) {
+			inputStyle = new Style();
+		}
 		return inputStyle;
 	}
 
@@ -345,6 +357,9 @@ public class RangeSelector extends AbstractConfigurationObject {
 	 * @see #setLabelStyle(Style)
 	 */
 	public Style getLabelStyle() {
+		if (labelStyle == null) {
+			labelStyle = new Style();
+		}
 		return labelStyle;
 	}
 

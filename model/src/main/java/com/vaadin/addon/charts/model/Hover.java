@@ -62,6 +62,9 @@ public class Hover extends AbstractConfigurationObject {
 	 * @see #setHalo(Halo)
 	 */
 	public Halo getHalo() {
+		if (halo == null) {
+			halo = new Halo();
+		}
 		return halo;
 	}
 
@@ -112,6 +115,9 @@ public class Hover extends AbstractConfigurationObject {
 	 * @see #setMarker(Marker)
 	 */
 	public Marker getMarker() {
+		if (marker == null) {
+			marker = new Marker();
+		}
 		return marker;
 	}
 

@@ -237,6 +237,9 @@ public class ContextButton extends AbstractConfigurationObject {
 	 * @see #setTheme(ButtonTheme)
 	 */
 	public ButtonTheme getTheme() {
+		if (theme == null) {
+			theme = new ButtonTheme();
+		}
 		return theme;
 	}
 

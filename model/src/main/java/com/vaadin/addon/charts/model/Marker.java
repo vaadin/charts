@@ -140,6 +140,9 @@ public class Marker extends AbstractConfigurationObject {
 	 * @see #setStates(States)
 	 */
 	public States getStates() {
+		if (states == null) {
+			states = new States();
+		}
 		return states;
 	}
 

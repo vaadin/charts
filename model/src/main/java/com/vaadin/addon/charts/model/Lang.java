@@ -196,6 +196,9 @@ public class Lang extends AbstractConfigurationObject {
 	 * @see #setLoading(Loading)
 	 */
 	public Loading getLoading() {
+		if (loading == null) {
+			loading = new Loading();
+		}
 		return loading;
 	}
 
@@ -232,6 +235,9 @@ public class Lang extends AbstractConfigurationObject {
 	 * @see #setNoData(NoData)
 	 */
 	public NoData getNoData() {
+		if (noData == null) {
+			noData = new NoData();
+		}
 		return noData;
 	}
 

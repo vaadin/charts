@@ -286,6 +286,9 @@ public class PlotOptionsWaterfall extends AbstractPlotOptions {
 	 * @see #setDataLabels(DataLabels)
 	 */
 	public DataLabels getDataLabels() {
+		if (dataLabels == null) {
+			dataLabels = new DataLabels();
+		}
 		return dataLabels;
 	}
 
@@ -779,6 +782,9 @@ public class PlotOptionsWaterfall extends AbstractPlotOptions {
 	 * @see #setStates(States)
 	 */
 	public States getStates() {
+		if (states == null) {
+			states = new States();
+		}
 		return states;
 	}
 
@@ -835,6 +841,9 @@ public class PlotOptionsWaterfall extends AbstractPlotOptions {
 	 * @see #setTooltip(SeriesTooltip)
 	 */
 	public SeriesTooltip getTooltip() {
+		if (tooltip == null) {
+			tooltip = new SeriesTooltip();
+		}
 		return tooltip;
 	}
 

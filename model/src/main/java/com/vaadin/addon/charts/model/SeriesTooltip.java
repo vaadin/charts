@@ -46,6 +46,9 @@ public class SeriesTooltip extends AbstractConfigurationObject {
 	 * @see #setDateTimeLabelFormats(DateTimeLabelFormats)
 	 */
 	public DateTimeLabelFormats getDateTimeLabelFormats() {
+		if (dateTimeLabelFormats == null) {
+			dateTimeLabelFormats = new DateTimeLabelFormats();
+		}
 		return dateTimeLabelFormats;
 	}
 

@@ -29,6 +29,9 @@ public class States extends AbstractConfigurationObject {
 	 * @see #setHover(Hover)
 	 */
 	public Hover getHover() {
+		if (hover == null) {
+			hover = new Hover();
+		}
 		return hover;
 	}
 
@@ -43,6 +46,9 @@ public class States extends AbstractConfigurationObject {
 	 * @see #setSelect(Select)
 	 */
 	public Select getSelect() {
+		if (select == null) {
+			select = new Select();
+		}
 		return select;
 	}
 

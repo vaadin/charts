@@ -5,7 +5,6 @@ import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.SkipFromDemo;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
-import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.data.Property.ValueChangeEvent;
@@ -41,10 +40,8 @@ public class BasicLineWithAutoRotation extends AbstractVaadinChartExample {
                 "October", "November", "December");
 
         XAxis xAxis = configuration.getxAxis();
-        Labels xLabels = new Labels();
-        xLabels.setAutoRotation(new Number[] { -10, -20, -30, -40, 50, -60,
+        xAxis.getLabels().setAutoRotation(new Number[] { -10, -20, -30, -40, 50, -60,
                 -70, -80, -90 });
-        xAxis.setLabels(xLabels);
         ListSeries ls = new ListSeries();
         ls.setName("Tokyo");
         ls.setData(7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3,

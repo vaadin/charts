@@ -38,6 +38,9 @@ public class NoData extends AbstractConfigurationObject {
 	 * @see #setPosition(Position)
 	 */
 	public Position getPosition() {
+		if (position == null) {
+			position = new Position();
+		}
 		return position;
 	}
 
@@ -55,6 +58,9 @@ public class NoData extends AbstractConfigurationObject {
 	 * @see #setStyle(Style)
 	 */
 	public Style getStyle() {
+		if (style == null) {
+			style = new Style();
+		}
 		return style;
 	}
 

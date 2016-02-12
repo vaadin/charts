@@ -37,6 +37,9 @@ public class Halo extends AbstractConfigurationObject {
 	 * @see #setAttributes(Attributes)
 	 */
 	public Attributes getAttributes() {
+		if (attributes == null) {
+			attributes = new Attributes();
+		}
 		return attributes;
 	}
 

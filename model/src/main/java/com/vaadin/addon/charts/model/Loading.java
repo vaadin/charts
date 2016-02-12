@@ -58,6 +58,9 @@ public class Loading extends AbstractConfigurationObject {
 	 * @see #setLabelStyle(Style)
 	 */
 	public Style getLabelStyle() {
+		if (labelStyle == null) {
+			labelStyle = new Style();
+		}
 		return labelStyle;
 	}
 
@@ -91,6 +94,9 @@ public class Loading extends AbstractConfigurationObject {
 	 * @see #setStyle(Style)
 	 */
 	public Style getStyle() {
+		if (style == null) {
+			style = new Style();
+		}
 		return style;
 	}
 

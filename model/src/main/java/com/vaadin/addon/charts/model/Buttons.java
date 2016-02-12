@@ -31,6 +31,9 @@ public class Buttons extends AbstractConfigurationObject {
 	 * @see #setContextButton(ContextButton)
 	 */
 	public ContextButton getContextButton() {
+		if (contextButton == null) {
+			contextButton = new ContextButton();
+		}
 		return contextButton;
 	}
 

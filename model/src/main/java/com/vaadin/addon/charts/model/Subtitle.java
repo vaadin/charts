@@ -74,6 +74,9 @@ public class Subtitle extends AbstractConfigurationObject {
 	 * @see #setStyle(Style)
 	 */
 	public Style getStyle() {
+		if (style == null) {
+			style = new Style();
+		}
 		return style;
 	}
 

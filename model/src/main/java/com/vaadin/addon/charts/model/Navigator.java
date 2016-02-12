@@ -84,6 +84,9 @@ public class Navigator extends AbstractConfigurationObject {
 	 * @see #setHandles(Handles)
 	 */
 	public Handles getHandles() {
+		if (handles == null) {
+			handles = new Handles();
+		}
 		return handles;
 	}
 
@@ -197,6 +200,9 @@ public class Navigator extends AbstractConfigurationObject {
 	 * @see #setSeries(PlotOptionsSeries)
 	 */
 	public PlotOptionsSeries getSeries() {
+		if (series == null) {
+			series = new PlotOptionsSeries();
+		}
 		return series;
 	}
 

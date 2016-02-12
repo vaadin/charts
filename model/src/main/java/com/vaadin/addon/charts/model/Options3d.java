@@ -107,6 +107,9 @@ public class Options3d extends AbstractConfigurationObject {
 	 * @see #setFrame(Frame)
 	 */
 	public Frame getFrame() {
+		if (frame == null) {
+			frame = new Frame();
+		}
 		return frame;
 	}
 

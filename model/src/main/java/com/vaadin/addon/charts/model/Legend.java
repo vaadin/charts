@@ -210,6 +210,9 @@ public class Legend extends AbstractConfigurationObject {
 	 * @see #setItemHiddenStyle(Style)
 	 */
 	public Style getItemHiddenStyle() {
+		if (itemHiddenStyle == null) {
+			itemHiddenStyle = new Style();
+		}
 		return itemHiddenStyle;
 	}
 
@@ -233,6 +236,9 @@ public class Legend extends AbstractConfigurationObject {
 	 * @see #setItemHoverStyle(Style)
 	 */
 	public Style getItemHoverStyle() {
+		if (itemHoverStyle == null) {
+			itemHoverStyle = new Style();
+		}
 		return itemHoverStyle;
 	}
 
@@ -287,6 +293,9 @@ public class Legend extends AbstractConfigurationObject {
 	 * @see #setItemStyle(Style)
 	 */
 	public Style getItemStyle() {
+		if (itemStyle == null) {
+			itemStyle = new Style();
+		}
 		return itemStyle;
 	}
 
@@ -414,6 +423,9 @@ public class Legend extends AbstractConfigurationObject {
 	 * @see #setNavigation(Navigation)
 	 */
 	public Navigation getNavigation() {
+		if (navigation == null) {
+			navigation = new Navigation();
+		}
 		return navigation;
 	}
 
@@ -564,6 +576,9 @@ public class Legend extends AbstractConfigurationObject {
 	 * @see #setTitle(LegendTitle)
 	 */
 	public LegendTitle getTitle() {
+		if (title == null) {
+			title = new LegendTitle();
+		}
 		return title;
 	}
 

@@ -36,6 +36,9 @@ public class ResetZoomButton extends AbstractConfigurationObject {
 	 * @see #setPosition(Position)
 	 */
 	public Position getPosition() {
+		if (position == null) {
+			position = new Position();
+		}
 		return position;
 	}
 
@@ -69,6 +72,9 @@ public class ResetZoomButton extends AbstractConfigurationObject {
 	 * @see #setTheme(ButtonTheme)
 	 */
 	public ButtonTheme getTheme() {
+		if (theme == null) {
+			theme = new ButtonTheme();
+		}
 		return theme;
 	}
 

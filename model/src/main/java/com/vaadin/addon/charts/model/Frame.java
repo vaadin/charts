@@ -34,6 +34,9 @@ public class Frame extends AbstractConfigurationObject {
 	 * @see #setBack(Back)
 	 */
 	public Back getBack() {
+		if (back == null) {
+			back = new Back();
+		}
 		return back;
 	}
 
@@ -50,6 +53,9 @@ public class Frame extends AbstractConfigurationObject {
 	 * @see #setBottom(Bottom)
 	 */
 	public Bottom getBottom() {
+		if (bottom == null) {
+			bottom = new Bottom();
+		}
 		return bottom;
 	}
 
@@ -66,6 +72,9 @@ public class Frame extends AbstractConfigurationObject {
 	 * @see #setSide(Side)
 	 */
 	public Side getSide() {
+		if (side == null) {
+			side = new Side();
+		}
 		return side;
 	}
 

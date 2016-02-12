@@ -5,7 +5,6 @@ import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
-import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.HorizontalAlign;
 import com.vaadin.addon.charts.model.LayoutDirection;
 import com.vaadin.addon.charts.model.Legend;
@@ -50,7 +49,7 @@ public class BasicLine extends AbstractVaadinChartExample {
                         "'<b>'+ this.series.name +'</b><br/>'+this.x +': '+ this.y +'°C'");
 
         PlotOptionsLine plotOptions = new PlotOptionsLine();
-        plotOptions.setDataLabels(new DataLabels(true));
+        plotOptions.getDataLabels().setEnabled(true);
         configuration.setPlotOptions(plotOptions);
 
         Legend legend = configuration.getLegend();

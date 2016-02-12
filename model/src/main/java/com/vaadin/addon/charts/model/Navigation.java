@@ -111,6 +111,9 @@ public class Navigation extends AbstractConfigurationObject {
 	 * @see #setStyle(Style)
 	 */
 	public Style getStyle() {
+		if (style == null) {
+			style = new Style();
+		}
 		return style;
 	}
 
@@ -125,6 +128,9 @@ public class Navigation extends AbstractConfigurationObject {
 	 * @see #setButtonOptions(ButtonOptions)
 	 */
 	public ButtonOptions getButtonOptions() {
+		if (buttonOptions == null) {
+			buttonOptions = new ButtonOptions();
+		}
 		return buttonOptions;
 	}
 
@@ -139,6 +145,9 @@ public class Navigation extends AbstractConfigurationObject {
 	 * @see #setMenuItemHoverStyle(Style)
 	 */
 	public Style getMenuItemHoverStyle() {
+		if (menuItemHoverStyle == null) {
+			menuItemHoverStyle = new Style();
+		}
 		return menuItemHoverStyle;
 	}
 
@@ -162,6 +171,9 @@ public class Navigation extends AbstractConfigurationObject {
 	 * @see #setMenuItemStyle(Style)
 	 */
 	public Style getMenuItemStyle() {
+		if (menuItemStyle == null) {
+			menuItemStyle = new Style();
+		}
 		return menuItemStyle;
 	}
 
@@ -186,6 +198,9 @@ public class Navigation extends AbstractConfigurationObject {
 	 * @see #setMenuStyle(Style)
 	 */
 	public Style getMenuStyle() {
+		if (menuStyle == null) {
+			menuStyle = new Style();
+		}
 		return menuStyle;
 	}
 

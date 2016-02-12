@@ -172,6 +172,9 @@ public class PlotOptionsFunnel extends AbstractPlotOptions {
 	 * @see #setDataLabels(DataLabelsFunnel)
 	 */
 	public DataLabelsFunnel getDataLabels() {
+		if (dataLabels == null) {
+			dataLabels = new DataLabelsFunnel();
+		}
 		return dataLabels;
 	}
 
@@ -507,6 +510,9 @@ public class PlotOptionsFunnel extends AbstractPlotOptions {
 	 * @see #setStates(States)
 	 */
 	public States getStates() {
+		if (states == null) {
+			states = new States();
+		}
 		return states;
 	}
 
@@ -543,6 +549,9 @@ public class PlotOptionsFunnel extends AbstractPlotOptions {
 	 * @see #setTooltip(SeriesTooltip)
 	 */
 	public SeriesTooltip getTooltip() {
+		if (tooltip == null) {
+			tooltip = new SeriesTooltip();
+		}
 		return tooltip;
 	}
 

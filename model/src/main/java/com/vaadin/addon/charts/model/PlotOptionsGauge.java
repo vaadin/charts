@@ -132,6 +132,9 @@ public class PlotOptionsGauge extends AbstractPlotOptions {
 	 * @see #setDataLabels(DataLabels)
 	 */
 	public DataLabels getDataLabels() {
+		if (dataLabels == null) {
+			dataLabels = new DataLabels();
+		}
 		return dataLabels;
 	}
 
@@ -147,6 +150,9 @@ public class PlotOptionsGauge extends AbstractPlotOptions {
 	 * @see #setDial(Dial)
 	 */
 	public Dial getDial() {
+		if (dial == null) {
+			dial = new Dial();
+		}
 		return dial;
 	}
 
@@ -274,6 +280,9 @@ public class PlotOptionsGauge extends AbstractPlotOptions {
 	 * @see #setPivot(Pivot)
 	 */
 	public Pivot getPivot() {
+		if (pivot == null) {
+			pivot = new Pivot();
+		}
 		return pivot;
 	}
 
@@ -341,6 +350,9 @@ public class PlotOptionsGauge extends AbstractPlotOptions {
 	 * @see #setStates(States)
 	 */
 	public States getStates() {
+		if (states == null) {
+			states = new States();
+		}
 		return states;
 	}
 
@@ -397,6 +409,9 @@ public class PlotOptionsGauge extends AbstractPlotOptions {
 	 * @see #setTooltip(SeriesTooltip)
 	 */
 	public SeriesTooltip getTooltip() {
+		if (tooltip == null) {
+			tooltip = new SeriesTooltip();
+		}
 		return tooltip;
 	}
 

@@ -72,6 +72,9 @@ public class Exporting extends AbstractConfigurationObject {
 	 * @see #setButtons(Buttons)
 	 */
 	public Buttons getButtons() {
+		if (buttons == null) {
+			buttons = new Buttons();
+		}
 		return buttons;
 	}
 

@@ -359,6 +359,9 @@ public class PlotOptionsSeries extends AbstractPlotOptions {
 	 * @see #setMarker(Marker)
 	 */
 	public Marker getMarker() {
+		if (marker == null) {
+			marker = new Marker();
+		}
 		return marker;
 	}
 
@@ -604,6 +607,9 @@ public class PlotOptionsSeries extends AbstractPlotOptions {
 	 * @see #setStates(States)
 	 */
 	public States getStates() {
+		if (states == null) {
+			states = new States();
+		}
 		return states;
 	}
 
@@ -660,6 +666,9 @@ public class PlotOptionsSeries extends AbstractPlotOptions {
 	 * @see #setTooltip(SeriesTooltip)
 	 */
 	public SeriesTooltip getTooltip() {
+		if (tooltip == null) {
+			tooltip = new SeriesTooltip();
+		}
 		return tooltip;
 	}
 
@@ -770,6 +779,9 @@ public class PlotOptionsSeries extends AbstractPlotOptions {
 	 * @see #setDataGrouping(DataGrouping)
 	 */
 	public DataGrouping getDataGrouping() {
+		if (dataGrouping == null) {
+			dataGrouping = new DataGrouping();
+		}
 		return dataGrouping;
 	}
 

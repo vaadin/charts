@@ -1,8 +1,5 @@
 package com.vaadin.addon.charts.examples.timeline;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.SkipFromDemo;
@@ -15,13 +12,13 @@ import com.vaadin.addon.charts.model.Marker;
 import com.vaadin.addon.charts.model.PlotOptionsArea;
 import com.vaadin.addon.charts.model.States;
 import com.vaadin.addon.charts.model.YAxis;
-import com.vaadin.addon.charts.model.ZoomType;
 import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
-import com.vaadin.server.Page;
-import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 @SkipFromDemo
 public class TimeSeriesWithTimeline extends AbstractVaadinChartExample {
@@ -217,7 +214,7 @@ public class TimeSeriesWithTimeline extends AbstractVaadinChartExample {
         plotOptions.setLineWidth(1);
         plotOptions.setShadow(false);
 
-        Marker marker = new Marker();
+        Marker marker = plotOptions.getMarker();
         marker.setEnabled(false);
         Hover hoverState = new Hover(true);
         hoverState.setRadius(5);
@@ -230,7 +227,6 @@ public class TimeSeriesWithTimeline extends AbstractVaadinChartExample {
         States statesForArea = new States();
         statesForArea.setHover(hoverStateForArea);
         plotOptions.setStates(statesForArea);
-        plotOptions.setMarker(marker);
         plotOptions.setShadow(false);
         configuration.setPlotOptions(plotOptions);
 

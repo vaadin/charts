@@ -223,6 +223,9 @@ public class PlotOptionsBubble extends AbstractPlotOptions {
 	 * @see #setDataLabels(DataLabels)
 	 */
 	public DataLabels getDataLabels() {
+		if (dataLabels == null) {
+			dataLabels = new DataLabels();
+		}
 		return dataLabels;
 	}
 
@@ -348,6 +351,9 @@ public class PlotOptionsBubble extends AbstractPlotOptions {
 	 * @see #setMarker(Marker)
 	 */
 	public Marker getMarker() {
+		if (marker == null) {
+			marker = new Marker();
+		}
 		return marker;
 	}
 
@@ -578,6 +584,9 @@ public class PlotOptionsBubble extends AbstractPlotOptions {
 	 * @see #setStates(States)
 	 */
 	public States getStates() {
+		if (states == null) {
+			states = new States();
+		}
 		return states;
 	}
 
@@ -632,6 +641,9 @@ public class PlotOptionsBubble extends AbstractPlotOptions {
 	 * @see #setTooltip(SeriesTooltip)
 	 */
 	public SeriesTooltip getTooltip() {
+		if (tooltip == null) {
+			tooltip = new SeriesTooltip();
+		}
 		return tooltip;
 	}
 
