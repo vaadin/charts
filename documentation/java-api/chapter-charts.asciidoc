@@ -20,3 +20,6 @@ include::charts-data.asciidoc[leveloffset=+2]
 include::charts-advanced.asciidoc[leveloffset=+2]
 
 include::charts-timeline.asciidoc[leveloffset=+2]
+
+// Not for print edition
+// include::charts-migration.asciidoc[leveloffset=+2]
