@@ -22,9 +22,6 @@ import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.charts.model.style.Style;
 
-/**
- * A theme based on the Skies theme on the HighCharts demo page
- */
 @SuppressWarnings("serial")
 public class SkiesTheme extends HighChartsDefaultTheme {
 

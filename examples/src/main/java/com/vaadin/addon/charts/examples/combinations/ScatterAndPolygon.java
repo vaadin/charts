@@ -33,7 +33,7 @@ public class ScatterAndPolygon extends AbstractVaadinChartExample {
         conf.getChart().setZoomType(ZoomType.XY);
         conf.disableCredits();
         conf.setTitle("Height vs Weight");
-        conf.setSubTitle("Polygon series in Highcharts.");
+        conf.setSubTitle("Polygon series in Vaadin Charts.");
 
         Tooltip tooltip = conf.getTooltip();
         tooltip.setHeaderFormat("<b>{series.name}</b><br>");

@@ -20,8 +20,7 @@ import java.io.Serializable;
  */
 
 /**
- * Identifier interface for different type of colors used in HighCharts model
- * and theme
+ * Interface used for different type of colors used in model and theme
  * 
  * @see GradientColor
  * @see SolidColor

@@ -44,7 +44,7 @@ public class JSAndJavaApi extends AbstractVaadinChartExample {
 
     @Override
     public String getDescription() {
-        return "Chart configured with both Highcharts JS notation and Java API. ";
+        return "Chart configured with both JSON notation and Java API. ";
     }
 
     @Override

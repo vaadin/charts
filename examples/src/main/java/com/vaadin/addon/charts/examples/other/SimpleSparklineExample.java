@@ -41,10 +41,6 @@ public class SimpleSparklineExample extends AbstractVaadinChartExample {
         return table;
     }
 
-    /*
-     * From
-     * http://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.json
-     */
     private List<StockData> getStockData() {
         return Arrays
                 .asList(new StockData("Apr", 21.20, 21.96, 22.07, 23.01, 24.02,
@@ -88,7 +84,7 @@ public class SimpleSparklineExample extends AbstractVaadinChartExample {
         private final Number[] values;
 
         public StockData(String name, Number... values) {
-            this.month = name;
+            month = name;
             this.values = values;
         }
 

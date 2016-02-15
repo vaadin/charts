@@ -70,7 +70,7 @@ public class HeatMapExample extends AbstractVaadinChartExample {
     }
 
     /**
-     * Raw data to the heatmap chart, as in highcharts.org demo.
+     * Raw data to the heatmap chart
      *
      * @return Array of arrays of numbers.
      */

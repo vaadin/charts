@@ -1,7 +1,7 @@
 
 <div style="border-left: 1px solid gray; padding: 0.5em">
 <p>As you might have noticed, Vaadin Charts supports print and save
-	buttons like the underlying Highcharts library. In a typical Vaadin app
+	buttons like the underlying charting library. In a typical Vaadin app
 	this approach is a bit naive. If the user wishes to print the document,
 	he/she can probably just use the browsers default print feature and
 	print the whole document instead of just the chart. And if the same
@@ -17,9 +17,7 @@
 	to render the chart in the SVG format. The generated SVG can then be
 	handled with tools like <a
 		href="http://xmlgraphics.apache.org/batik/">Batik SVG Toolkit</a> and
-	countless Java document handling libraries. The setup is closely
-	related to Highcharts' very own export server, which can also be used
-	with Vaadin Charts.
+	countless Java document handling libraries.
 </p>
 <p>As an example you can try to click the SVG and PDF buttons. In both of them
 	the chart on this page is first rendered into SVG format using the

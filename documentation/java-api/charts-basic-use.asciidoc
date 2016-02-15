@@ -442,9 +442,8 @@ ChartOptions.get().setTheme(new SkiesTheme());
 ----
 
 The [classname]#VaadinTheme# is the default chart theme in Vaadin Charts. Other
-available themes are [classname]#GrayTheme#, [classname]#GridTheme#, and
-[classname]#SkiesTheme#. The default theme in Highcharts can be set with the
-[classname]#HighChartsDefaultTheme#.
+available themes are [classname]#GrayTheme#, [classname]#GridTheme#,
+[classname]#SkiesTheme#, and [classname]#HighChartsDefaultTheme#.
 
 A theme is a Vaadin Charts configuration that is used as a template for the
 configuration when rendering the chart.

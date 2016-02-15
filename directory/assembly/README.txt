@@ -1,9 +1,6 @@
 Vaadin Charts ${project.version}
 ===========================
 
-Vaadin Charts is based on popular Highcharts ${highcharts.version} JavaScript
-library.
-
 Installation
 ============
 
@@ -86,12 +83,9 @@ Highstock JS (resource files: highstock.js, highcharts-more.js, highcharts-3d.js
 standalone-framework.js, no-data-to-display.js, drilldown.js, exporting.js,
 funnel.js, heatmap.js, solid-gauge.js and treemap.js)
 
-Using Vaadin Charts Add-on does not require a separate Highstock JS license
-purchase.
-
 Please note that:
 - A valid Highstock JS license does not entitle you to use Vaadin Charts Add-on under the terms of CVALv3.
-- The Vaadin Charts Add-on (CVALv3) license does not entitle you to use the
+- The Vaadin Charts Add-on (CVALv3) license does not entitle you to use the 
 Highstock JS product in other ways than through the Vaadin Charts Add-on API.
 
 Vaadin Charts also requires Jackson library licensed under liberal Apache 2 license.
@@ -101,9 +95,6 @@ Links
 
 Homepage:
 https://vaadin.com/add-ons/charts
-
-Highcharts JS Homepage:
-http://www.highcharts.com
 
 Code and usage examples:
 http://demo.vaadin.com/charts/

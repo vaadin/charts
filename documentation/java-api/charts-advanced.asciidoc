@@ -21,8 +21,8 @@ based on PhantomJS is almost as easy to use and allows much more powerful uses.
 [[charts.advanced.export.exporting]]
 === Using a Remote Export Service
 
-HighCharts has a simple built-in export functionality that does the export in a
-remote export server. HighCharts provides a default export service, but you can
+Vaadin Charts has a simple built-in export functionality that does the export in a
+remote export server. Vaadin Charts provides a default export service, but you can
 also configure your own.
 
 You can enable the built-in export function by setting

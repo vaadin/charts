@@ -189,7 +189,7 @@ the chart data series.
 </script>
 ----
 
-You can also change the chart data series using JavaScript API of HighCharts.
+You can also change the chart data series using JavaScript API of the underlying library.
 New [classname]#Point# items are added to a series with the
 [methodname]#addPoint()# method of a [classname]#Series# class. To remove an
 item from a series use [methodname]#remove()# of a [classname]#Point# class.

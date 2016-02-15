@@ -22,9 +22,6 @@ import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.charts.model.style.Style;
 import com.vaadin.addon.charts.model.style.TickIntervalStyle;
 
-/**
- * A theme based on the Grid theme on the HighCharts demo page
- */
 @SuppressWarnings("serial")
 public class GridTheme extends HighChartsDefaultTheme {
 

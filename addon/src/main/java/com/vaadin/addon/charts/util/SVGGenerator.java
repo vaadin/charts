@@ -27,12 +27,12 @@ import java.io.OutputStream;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 
+import org.apache.commons.io.IOUtils;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.ChartOptions;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.themes.ValoLightTheme;
-
-import org.apache.commons.io.IOUtils;
 
 /**
  * This class can be used to render a Chart displayed on the browser of the
@@ -44,9 +44,6 @@ import org.apache.commons.io.IOUtils;
  * href="http://phantomjs.org/">phantomjs.org</a>. After installation either
  * ensure that phantomjs binary is available on PATH or set "phantom.exec"
  * system property to point into it.
- * <p>
- * The solution is derived from SVGGenerator of 'exporting-server' of Highcharts
- * (not available anymore).
  */
 public class SVGGenerator {
 
@@ -58,8 +55,6 @@ public class SVGGenerator {
     /**
      * Charset for communication with PhantomJS should always be UTF-8 and not
      * default charset.
-     * 
-     * Highcharts use requires UTF-8 http://goo.gl/Lgukbg
      * 
      * PhantomJS default console output encoding is UTF-8 http://goo.gl/aklNQa
      */
@@ -94,7 +89,7 @@ public class SVGGenerator {
      * instance is to use {@link #getInstance()} method.
      */
     public SVGGenerator(Process process) {
-        this.phantomJSProcess = process;
+        phantomJSProcess = process;
     }
 
     protected static Process startPhantomJS() {
@@ -102,7 +97,7 @@ public class SVGGenerator {
             ArrayList<String> commands = new ArrayList<String>();
             commands.add(PHANTOM_EXEC);
             // comment out for debugging
-//            commands.add("--remote-debugger-port=9001");
+            // commands.add("--remote-debugger-port=9001");
 
             ensureTemporaryFiles();
 
@@ -153,8 +148,9 @@ public class SVGGenerator {
     /**
      *
      * @param theme
-     *           The theme that will be used to create the SVG graphics.
-     *           The default is the theme value in {@link ChartOptions#get()} object.
+     *            The theme that will be used to create the SVG graphics. The
+     *            default is the theme value in {@link ChartOptions#get()}
+     *            object.
      * @return
      */
     public SVGGenerator withTheme(String theme) {
@@ -165,8 +161,9 @@ public class SVGGenerator {
     /**
      *
      * @param lang
-     *          The lang options that will be used to create the SVG graphics.
-     *          The default is the lang value in {@link ChartOptions#get()} object.
+     *            The lang options that will be used to create the SVG graphics.
+     *            The default is the lang value in {@link ChartOptions#get()}
+     *            object.
      * @return
      */
     public SVGGenerator withLang(String lang) {
@@ -177,32 +174,32 @@ public class SVGGenerator {
     /**
      *
      * @param width
-     *          The target width in pixels for the the chart.
-     *          The default value is -1.
+     *            The target width in pixels for the the chart. The default
+     *            value is -1.
      * @return
      */
     public SVGGenerator withWidth(int width) {
-        this.targetWidth = width;
+        targetWidth = width;
         return this;
     }
 
     /**
      *
      * @param heigth
-     *          The target height in pixels for the chart.
-     *          The default value is -1.
+     *            The target height in pixels for the chart. The default value
+     *            is -1.
      * @return
      */
     public SVGGenerator withHeigth(int heigth) {
-        this.targetHeight = heigth;
+        targetHeight = heigth;
         return this;
     }
 
     /**
      *
      * @param timeline
-     *           The boolean if timeline should be visible in the chart.
-     *           The default value is false;
+     *            The boolean if timeline should be visible in the chart. The
+     *            default value is false;
      * @return
      */
     public SVGGenerator withTimeline(boolean timeline) {
@@ -214,7 +211,7 @@ public class SVGGenerator {
      * Generates an SVG file using given JSON configuration object.
      *
      * @param conf
-     *          the configuration that will be plotted as an SVG graphics
+     *            the configuration that will be plotted as an SVG graphics
      *
      * @return String containing SVG graphics
      * @see #generate(String)
@@ -227,8 +224,8 @@ public class SVGGenerator {
      * Generates an SVG file using given JSON configuration object.
      *
      * @param options
-     *          the json options string that will be plotted as an SVG
-     *          graphics
+     *            the json options string that will be plotted as an SVG
+     *            graphics
      *
      * @return String containing SVG graphics
      * @see SVGGenerator
@@ -278,10 +275,10 @@ public class SVGGenerator {
     }
 
     private void readDefaultInputValuesIfNeeded() {
-        if(theme == null) {
+        if (theme == null) {
             theme = getTheme();
         }
-        if(lang == null) {
+        if (lang == null) {
             lang = getLang();
         }
     }
@@ -297,8 +294,7 @@ public class SVGGenerator {
         } catch (IllegalStateException e) {
             // Thrown when no UI thread is found. This is most likely because we
             // are running an automated process. We will proceed to use a null
-            // chartOptions object, and use the default VaadinTheme in lieu of
-            // the default Highcharts theme.
+            // chartOptions object, and use the default VaadinTheme
         }
         if (chartOptions == null || chartOptions.getTheme() == null) {
             // generate the default Vaadin theme

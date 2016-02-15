@@ -120,16 +120,12 @@ The resulting chart is shown in <<figure.charts.overview.basicexample>>.
 .Basic Chart Example
 image::img/charts-basicexample.png[]
 
-Vaadin Charts is based on Highcharts JS, a charting library written in
-JavaScript.
-
 [[charts.overview.licensing]]
 == Licensing
 
 Vaadin Charts is a commercial product licensed under the CVAL License
 (Commercial Vaadin Add-On License). A license needs to be purchased for all use,
-including web deployments as well as intranet use. Using Vaadin Charts does not
-require purchasing a separate Highcharts JS license.
+including web deployments as well as intranet use.
 
 The commercial licenses can be purchased from the
 link:https://vaadin.com/directory[Vaadin Directory], where you can also find the

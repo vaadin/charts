@@ -35,9 +35,7 @@ import com.vaadin.ui.VerticalLayout;
 /**
  * Demo class to show how Vaadin Charts can be exported to image/PDF in the
  * server side. Demonstrates also how to render charts completely in the server.
- * Basically you can just get the json formatted chart options from the Chart
- * component and run Highcharts library in the server with these options. This
- * demo uses PhantomJs to run javascript in server.</br></br> This also
+ * This demo uses PhantomJs to run javascript in server.</br></br> This also
  * demonstrates how to embed chart SVG image to PDF. iText 2.1.7 <i>(notice that
  * this is old version, but it's open source licensed)</i> is used to generate
  * PDF. Batik is used to render SVG.
@@ -114,7 +112,8 @@ public class ChartExportDemo extends VerticalLayout {
 
         layout.addComponent(exportButton2);
         layout.addComponent(exportButton3);
-        Button jPanelButton = new Button("Show JPanel with chart (needs server running in localhost)");
+        Button jPanelButton = new Button(
+                "Show JPanel with chart (needs server running in localhost)");
         jPanelButton.addClickListener(new ClickListener() {
             @Override
             public void buttonClick(ClickEvent event) {

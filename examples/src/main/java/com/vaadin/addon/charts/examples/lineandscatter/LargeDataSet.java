@@ -14,12 +14,12 @@ import com.vaadin.ui.Component;
 
 public class LargeDataSet extends AbstractVaadinChartExample {
 
-    private int ROUNDS = 4; // one round produces bit more than thousand data
-                            // points
+    // one round produces bit more than thousand data
+    private int ROUNDS = 4;
 
     @Override
     public String getDescription() {
-        return "Highcharts rendering engine can survive large data sets. "
+        return "Vaadin Charts rendering engine can survive large data sets. "
                 + "Especially if items have just values and no custom options. In this test "
                 + (ROUNDS * TimeSeriesZoomable.USD_TO_EUR_EXCHANGE_RATES.length)
                 + "data points are rendered.";
@@ -56,7 +56,7 @@ public class LargeDataSet extends AbstractVaadinChartExample {
                  * item.setColor(myColorX), or item.setName(myName) for data
                  * items. Without them the framework is able to optimize the
                  * rendering and can survive from rather large datasets.
-                 *
+                 * 
                  * Also note, that if data set is very large, the library might
                  * ignore it if there are custom settings for data items. This
                  * threshold is called turboThreshHold in plot options. See
@@ -96,10 +96,10 @@ public class LargeDataSet extends AbstractVaadinChartExample {
         /*
          * If developers need to use large data sets and point specific
          * settings, they can override the default turbo threshold. Here we set
-         * it to 200000 (default 1000). Turbo threshold is Higcharts related
-         * configuration that works as a "sanity threshold" so that old browsers
-         * wont drop to their knees under load. Without this Highcharts might
-         * not render chart if data items has e.g. name set.
+         * it to 200000 (default 1000). Turbo threshold is configuration that
+         * works as a "sanity threshold" so that old browsers wont drop to their
+         * knees under load. Without this Vaadin Charts might not render chart
+         * if data items have e.g. name set.
          */
         plotOptionsLine.setTurboThreshold(200000);
 

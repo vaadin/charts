@@ -22,9 +22,6 @@ import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.charts.model.style.Style;
 
-/**
- * A theme based on the Gray theme on the HighCharts demo page
- */
 @SuppressWarnings("serial")
 public class GrayTheme extends HighChartsDefaultTheme {
 
@@ -103,10 +100,6 @@ public class GrayTheme extends HighChartsDefaultTheme {
         getPlotOptions().getColumn().setShadow(true);
         getPlotOptions().getArea().setShadow(true);
         getPlotOptions().getPie().setShadow(true);
-
-        // TODO: Add missing parts to theme
-        // URL: http://www.highcharts.com/demo/bar-negative-stack/gray
-
     }
 
 }

@@ -77,10 +77,6 @@ import com.vaadin.util.ReflectTools;
  * not immediately reflected to an already drawn component. To redraw the chart
  * you should call {@link #drawChart()} or {@link #drawChart(Configuration)}.
  * <p>
- * The implementation relies on the <a
- * href="http://www.highcharts.com/">HighCharts JS</a> library. Developers can
- * also use its raw JS API via the {@link #drawChart(String)} method.
- * <p>
  * See more examples in Book of Vaadin or the online demos.
  *
  * @see <a href="http://vaadin.com/book">Book of Vaadin</a>
@@ -427,12 +423,12 @@ public class Chart extends AbstractComponent {
 
     /**
      * Draws chart with the given configuration. The configuration is given in
-     * Highcharts configuration format (JavaScript) and it overrides settings
-     * done via the standard {@link Configuration} object.
+     * JSON configuration format and it overrides settings done via the standard
+     * {@link Configuration} object.
      * <p>
      * Although using strictly typed Java API (via {@link #getConfiguration()}
-     * is highly encouraged, using the low level Highcharts configuration may be
-     * handy in some occasions.
+     * is highly encouraged, using the low level JSON configuration may be handy
+     * in some occasions.
      * <p>
      * Note, that this configuration is evaluated as JavaScript and the config
      * may contain JavaScript functions. Thus developers should pay attention to
@@ -454,7 +450,7 @@ public class Chart extends AbstractComponent {
 
     /**
      * @see #drawChart(String)
-     * @return the Highcharts compatible JSON configuration of the chart.
+     * @return the JSON configuration of the chart.
      */
     public String getJsonConfig() {
         return jsonConfig;

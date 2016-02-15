@@ -30,7 +30,7 @@ public class PolarChart extends AbstractVaadinChartExample {
 
         Configuration conf = chart.getConfiguration();
         conf.getChart().setPolar(true);
-        conf.setTitle("Highcharts Polar Chart");
+        conf.setTitle("Polar Chart");
 
         Pane pane = new Pane(0, 360);
         conf.addPane(pane);

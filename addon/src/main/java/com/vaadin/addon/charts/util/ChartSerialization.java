@@ -82,7 +82,7 @@ public class ChartSerialization implements Serializable {
     /**
      * This method can be used to configure the {@link ObjectMapper} object used
      * to serialize configuration objects to client side. If users have made
-     * their extensions to Highcharts library and wish to build a typed Java API
+     * their extensions to underlying library and wish to build a typed Java API
      * for it, adding custom serializers might be needed.
      *
      * @param newObjectWriter
