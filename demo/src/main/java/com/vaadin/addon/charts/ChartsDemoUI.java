@@ -14,7 +14,6 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
-import com.vaadin.ui.Panel;
 import org.apache.commons.io.IOUtils;
 import org.reflections.Reflections;
 import org.vaadin.googleanalytics.tracking.GoogleAnalyticsTracker;
@@ -28,6 +27,7 @@ import com.vaadin.addon.charts.themes.SkiesTheme;
 import com.vaadin.addon.charts.themes.VaadinTheme;
 import com.vaadin.addon.charts.themes.ValoDarkTheme;
 import com.vaadin.addon.charts.themes.ValoLightTheme;
+import com.vaadin.annotations.DesignRoot;
 import com.vaadin.annotations.JavaScript;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
@@ -51,6 +51,7 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.HorizontalSplitPanel;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
+import com.vaadin.ui.Panel;
 import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.TabSheet.SelectedTabChangeEvent;
 import com.vaadin.ui.TabSheet.SelectedTabChangeListener;
@@ -151,12 +152,13 @@ public class ChartsDemoUI extends UI {
     private Tree tree;
     private ComboBox themeSelector;
     private GoogleAnalyticsTracker tracker;
+    private TabSheet tabSheet;
 
     @Override
     protected void init(VaadinRequest request) {
         initGATracker();
 
-        final TabSheet tabSheet = new TabSheet();
+        tabSheet = new TabSheet();
         tabSheet.addSelectedTabChangeListener(new SelectedTabChangeListener() {
             @Override
             public void selectedTabChange(SelectedTabChangeEvent event) {
@@ -263,40 +265,11 @@ public class ChartsDemoUI extends UI {
         tree.addValueChangeListener(new ValueChangeListener() {
             @Override
             public void valueChange(ValueChangeEvent event) {
-                Object value2 = event.getProperty().getValue();
-                if (value2 instanceof Class) {
-                    try {
-                        Class value = (Class) value2;
-                        AbstractVaadinChartExample newInstance = (AbstractVaadinChartExample) value
-                                .newInstance();
-                        tabSheet.removeAllComponents();
-                        tabSheet.addTab(newInstance, "Example");
-
-                        String r = "/" + value.getName().replace(".", "/")
-                                + ".java";
-                        r = value.getSimpleName() + ".java";
-                        InputStream resourceAsStream = newInstance.getClass()
-                                .getResourceAsStream(r);
-                        String code = IOUtils.toString(resourceAsStream);
-                        Panel p = new Panel();
-                        p.setWidth("100%");
-                        p.setStyleName(ValoTheme.PANEL_BORDERLESS);
-                        Label c = new Label("<pre class='prettyprint'>" + code
-                                + "</pre>");
-                        c.setContentMode(ContentMode.HTML);
-                        c.setSizeUndefined();
-                        p.setContent(c);
-                        tabSheet.addTab(p, "Source");
-
-                        Page.getCurrent().setUriFragment(value.getSimpleName(),
-                                false);
-
-                    } catch (Exception e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
+                Object value = event.getProperty().getValue();
+                if (value instanceof Class) {
+                    updateTabSheet((Class) value);
                 } else {
-                    tree.expandItemsRecursively(value2);
+                    tree.expandItemsRecursively(value);
                 }
             }
         });
@@ -326,6 +299,78 @@ public class ChartsDemoUI extends UI {
                 addComponent(themeSelector);
             }
         });
+    }
+
+    /**
+     * Updates main tabSheet
+     * 
+     * Adds one tab with one example instance, one with the java source and
+     * another one with html source in case of declarative example
+     * 
+     * @param chartExample
+     */
+    private void updateTabSheet(Class chartExample) {
+        try {
+            tabSheet.removeAllComponents();
+
+            AbstractVaadinChartExample newInstance = (AbstractVaadinChartExample) chartExample
+                    .newInstance();
+            tabSheet.addTab(newInstance, "Example");
+
+            addResourceTab(chartExample,
+                    chartExample.getSimpleName() + ".java", "Java Source");
+
+            if (chartExample.isAnnotationPresent(DesignRoot.class)) {
+                String designRoot = ((DesignRoot) chartExample
+                        .getAnnotation(DesignRoot.class)).value();
+                addResourceTab(chartExample, designRoot, "HTML Source");
+            }
+            Page.getCurrent().setUriFragment(chartExample.getSimpleName(),
+                    false);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Add a new tab to main tabsheet with the specified resource and name
+     * 
+     * @param clazz
+     * @param resourceName
+     * @param tabName
+     */
+    private void addResourceTab(Class clazz, String resourceName, String tabName) {
+        try {
+            InputStream resourceAsStream = clazz
+                    .getResourceAsStream(resourceName);
+            String code = IOUtils.toString(resourceAsStream);
+
+            Panel p = getSourcePanel(code);
+
+            tabSheet.addTab(p, tabName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Creates a Panel with the code input pretty printed in a Label
+     * 
+     * @param code
+     * @return
+     */
+    private Panel getSourcePanel(String code) {
+        Panel p = new Panel();
+        p.setWidth("100%");
+        p.setStyleName(ValoTheme.PANEL_BORDERLESS);
+        code = code.replace("&", "&amp;").replace("<", "&lt;")
+                .replace(">", "&gt;");
+        Label c = new Label("<pre class='prettyprint'>" + code + "</pre>");
+        c.setContentMode(ContentMode.HTML);
+        c.setSizeUndefined();
+        p.setContent(c);
+        return p;
     }
 
     HashSet<Object> expandedItemIds = new HashSet<Object>();
