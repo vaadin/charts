@@ -37,7 +37,6 @@ public class Labels extends AbstractConfigurationObject {
 	private Number x;
 	private Number y;
 	private Number zIndex;
-	private Items[] items;
 	private String rotation;
 
 	public Labels() {
@@ -321,20 +320,6 @@ public class Labels extends AbstractConfigurationObject {
 	 */
 	public void setZIndex(Number zIndex) {
 		this.zIndex = zIndex;
-	}
-
-	/**
-	 * @see #setItems(Items[])
-	 */
-	public Items[] getItems() {
-		return items;
-	}
-
-	/**
-	 * A HTML label that can be positioned anywhere in the chart area.
-	 */
-	public void setItems(Items[] items) {
-		this.items = items;
 	}
 
 	public String getRotation() {
