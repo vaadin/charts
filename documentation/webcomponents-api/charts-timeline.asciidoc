@@ -1,0 +1,96 @@
+---
+title: Timeline
+order: 8
+layout: page
+---
+
+[[charts.timeline]]
+= Timeline
+
+The timeline is a chart feature that allows selecting different time ranges for which to display the chart data,
+as well as navigating between such ranges. It is especially useful when working with large time series, see
+<<charts-basic-use#charts.basic-use.data, `Chart Data Series`>> for more details.
+Adding a timeline to your chart is very easy - just add the [propertyname]#timeline# attribute to your chart.
+
+[source, html]
+----
+<vaadin-line-chart timeline>
+</<vaadin-line-chart>
+----
+You can enable the timeline in a chart that displays one or more time series.
+Timeline is supported in the following chart types:
+
+|===
+|   <<charts-charttypes#charts.charttypes.area, `area`>> |   <<charts.charttypes.rangecharts, `arearange`>> |   <<charts.charttypes.area, `areaspline`>> |   <<charts.charttypes.rangecharts, `areasplinerange`>>
+|   <<charts-charttypes#charts.charttypes.columnbar, `bar`>>
+|   <<charts-charttypes#charts.charttypes.columnbar, `column`>>
+|   <<charts-charttypes#charts.charttypes.rangecharts, `columnrange`>>
+|   <<charts-charttypes#charts.charttypes.line, `line`>>
+|   <<charts-charttypes#charts.charttypes.ohlc, `ohlc`>>
+|   <<charts-charttypes#charts.charttypes.polygon, `polygon`>>
+|   <<charts-charttypes#charts.charttypes.scatter, `scatter`>>
+|   <<charts-charttypes#charts.charttypes.line, `spline`>>
+|
+|===
+
+You can change the time range by using the navigator at the bottom of the chart.
+To be able to use the navigator, the X values of the corresponding data series should be of the type [classname]#Date#.
+Also integer values can be used, in which case they are interpreted as milliseconds since the 01/01/1970 epoch.
+If you have multiple series, the first one is presented in the navigator.
+
+[[figure.charts.timeline.timeline-intro]]
+.Vaadin chart with a timeline.
+image::img/timeline_intro_screen.png[]
+
+Another way to change the time range is to use the range selector. The selector includes
+a set of predefined time ranges for easier navigation, for example, 1 months, 3 months, 6 month, etc. To specify a custom time range, you can
+use range selector text fields for setting start and end of the time interval.
+
+You can configure the range navigator and selector in the chart configuration.
+For example, you can change the style of the range selector buttons with the
+[elementname]#button-theme# tag and specify the index
+of the button to appear pre-selected with the `selected` attribute of the [elementname]#range-selector# element.
+
+[source, html]
+----
+<vaadin-line-chart timeline>
+    <title>AAPL Stock Price!</title>
+        <range-selector selected="4">
+             <button-theme fill="#0766d8">
+             </button-theme>
+        </range-selector>
+</<vaadin-line-chart>
+----
+You can customize the date format for the time range input fields by specifying formatter strings
+for displaying and editing the dates. After changing the format you need to specify a callback parser
+function to parse the edited values properly:
+
+[source, html]
+----
+<vaadin-line-chart timeline>
+<range-selector selected="4"
+    input-date-format="%Y-%m"
+    input-edit-date-format="%Y-%m"
+
+    input-date-parser= "function(value)
+    {value = value.split(/[\\-]/);
+    return Date.UTC(parseInt(value[0], 10),
+    parseInt(value[1], 10));
+    }">
+</<vaadin-line-chart>
+----
+Timeline charts allow comparing the charts series against each other.
+Setting the [propertyname]#compare# attribute to either `percent` or `value` will show the difference between
+charts data series in percentage or absolute values, respectively.
+[source, html]
+----
+<plot-options>
+    <series compare="percent"></series>
+</plot-options>
+----
+[[figure.charts.timeline.timeline-compare]]
+.Vaadin chart with a percentage comparison between series.
+image::img/timeline_charts_compare.png[]
+
+You can find more examples in the Timeline section of
+https://demo.vaadin.com/vaadin-charts[Vaadin Charts Demo].
