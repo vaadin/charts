@@ -24,8 +24,10 @@ import java.io.ObjectInputStream;
 import java.lang.reflect.Method;
 import java.util.Stack;
 
-import com.vaadin.addon.charts.declarative.ChartDesignWriter;
+import org.jsoup.nodes.Element;
+
 import com.vaadin.addon.charts.declarative.ChartDesignReader;
+import com.vaadin.addon.charts.declarative.ChartDesignWriter;
 import com.vaadin.addon.charts.events.AbstractSeriesEvent;
 import com.vaadin.addon.charts.events.AxisRescaledEvent;
 import com.vaadin.addon.charts.events.ConfigurationChangeListener;
@@ -36,6 +38,7 @@ import com.vaadin.addon.charts.events.ItemSlicedEvent;
 import com.vaadin.addon.charts.events.SeriesStateEvent;
 import com.vaadin.addon.charts.model.AbstractConfigurationObject;
 import com.vaadin.addon.charts.model.AbstractSeries;
+import com.vaadin.addon.charts.model.ChartModel;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
@@ -52,8 +55,6 @@ import com.vaadin.addon.charts.shared.MouseEventDetails;
 import com.vaadin.ui.AbstractComponent;
 import com.vaadin.ui.declarative.DesignContext;
 import com.vaadin.util.ReflectTools;
-
-import org.jsoup.nodes.Element;
 
 /**
  * Chart is a Vaadin component that is used to visualize data.
@@ -398,7 +399,7 @@ public class Chart extends AbstractComponent {
      */
     public Chart(ChartType type) {
         this();
-        com.vaadin.addon.charts.model.Chart chart = new com.vaadin.addon.charts.model.Chart();
+        ChartModel chart = new ChartModel();
         chart.setType(type);
         configuration.setChart(chart);
     }
@@ -871,25 +872,23 @@ public class Chart extends AbstractComponent {
         super.readDesign(design, designContext);
 
         Configuration configuration = getConfiguration();
-        if(configuration == null) {
+        if (configuration == null) {
             configuration = new Configuration();
         }
-        ChartDesignReader.readConfigurationFromElements(
-            design.children(), configuration);
+        ChartDesignReader.readConfigurationFromElements(design.children(),
+                configuration);
 
         setConfiguration(configuration);
     }
-
-
 
     @Override
     public void writeDesign(Element design, DesignContext designContext) {
         super.writeDesign(design, designContext);
 
         Configuration configuration = getConfiguration();
-        if(configuration != null) {
-            ChartDesignWriter.writeConfigurationToElement(
-                configuration, design);
+        if (configuration != null) {
+            ChartDesignWriter
+                    .writeConfigurationToElement(configuration, design);
         }
     }
 }

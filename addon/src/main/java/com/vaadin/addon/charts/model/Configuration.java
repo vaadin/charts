@@ -41,7 +41,7 @@ import com.vaadin.addon.charts.shared.ChartClientRpc;
 public class Configuration extends AbstractConfigurationObject implements
         ChartConfiguration {
 
-    private Chart chart;
+    private ChartModel chart;
     private Title title;
     private Subtitle subtitle;
     private AxisList<XAxis> xAxis;
@@ -67,9 +67,9 @@ public class Configuration extends AbstractConfigurationObject implements
     /**
      * @see #setChart(ChartModel)
      */
-    public Chart getChart() {
+    public ChartModel getChart() {
         if (chart == null) {
-            setChart(new Chart());
+            setChart(new ChartModel());
         }
         return chart;
     }
@@ -80,7 +80,7 @@ public class Configuration extends AbstractConfigurationObject implements
      * 
      * @param chart
      */
-    public void setChart(Chart chart) {
+    public void setChart(ChartModel chart) {
         this.chart = chart;
     }
 

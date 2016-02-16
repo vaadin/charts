@@ -10,7 +10,6 @@ import com.vaadin.addon.charts.model.Hover;
 import com.vaadin.addon.charts.model.Marker;
 import com.vaadin.addon.charts.model.PlotOptionsArea;
 import com.vaadin.addon.charts.model.Series;
-import com.vaadin.addon.charts.model.States;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
@@ -107,7 +106,6 @@ public class ContainerWithLotsOfData extends AbstractVaadinChartExample {
         hoverState.setRadius(5);
         hoverState.setLineWidth(1);
         marker.getStates().setHover(hoverState);
-
 
         plotOptions.getStates().setHover(new Hover(true));
         plotOptions.setShadow(false);

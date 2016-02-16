@@ -23,7 +23,7 @@ import com.vaadin.addon.charts.model.style.Style;
  * Options regarding the chart area and plot area as well as general chart
  * options.
  */
-public class Chart extends AbstractConfigurationObject {
+public class ChartModel extends AbstractConfigurationObject {
 
 	private static final long serialVersionUID = 1L;
 	private Boolean alignTicks;
@@ -66,7 +66,7 @@ public class Chart extends AbstractConfigurationObject {
 	private Number width;
 	private ZoomType zoomType;
 
-	public Chart() {
+	public ChartModel() {
 	}
 
 	/**
