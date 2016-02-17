@@ -16,7 +16,7 @@
 
 	<build>
 		<resources>
-			<!-- These are also needed for the sources required by the GWT compiler
+			<!-- These are also needed for the sources required by the GWT compiler 
 				to be included in the produced JARs -->
 			<resource>
 				<directory>src/main/java</directory>
@@ -51,7 +51,7 @@
 						<index>true</index>
 						<manifest>
 							<addClasspath>true</addClasspath>
-							<!-- Implementation-Title and Implementation-Version come from the
+							<!-- Implementation-Title and Implementation-Version come from the 
 								POM by default -->
 							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
 						</manifest>
@@ -64,7 +64,7 @@
 							<AdVaaName>vaadin-charts</AdVaaName>
 							<AdVaaPkg>com.vaadin.addon.charts.client</AdVaaPkg>
 
-							<!-- Implementation-Title and Implementation-Version come from the
+							<!-- Implementation-Title and Implementation-Version come from the 
 								POM by default -->
 							<Implementation-Title>Vaadin Charts</Implementation-Title>
 
@@ -97,7 +97,7 @@
 					<!-- <excludeDependencies>vaadin-client,vaadin-server</excludeDependencies> -->
 					<instructions>
 						<Export-Package>com.vaadin.addon.charts,com.vaadin.addon.charts.events,com.vaadin.addon.charts.model,com.vaadin.addon.charts.model.style,com.vaadin.addon.charts.themes,com.vaadin.addon.charts.util</Export-Package>
-						<!-- Ignore GWT dirt, not needed in osgi bundles, gwt compilation seldom
+						<!-- Ignore GWT dirt, not needed in osgi bundles, gwt compilation seldom 
 							happens in such -->
 						<Import-Package>!com.google.gwt.*,
 							!com.vaadin.client.*, *</Import-Package>
@@ -130,6 +130,12 @@
 						<goals>
 							<goal>jar</goal>
 						</goals>
+						<configuration>
+							<includeDependencySources>true</includeDependencySources>
+							<dependencySourceIncludes>
+								<dependencySourceInclude>com.vaadin.addon:vaadin-charts-model</dependencySourceInclude>
+							</dependencySourceIncludes>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
@@ -150,11 +156,11 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!-- This creates a zip file of jar and sources jar. When publishing in
-	the Directory this makes sources available to maven users automatically.
-	We could also use this to package required dependecies for those poor developer
-	souls that still dont know how to use a build system that supports transient
-	dependencies... -->
+			<!-- This creates a zip file of jar and sources jar. When publishing in 
+				the Directory this makes sources available to maven users automatically. 
+				We could also use this to package required dependecies for those poor developer 
+				souls that still dont know how to use a build system that supports transient 
+				dependencies... -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
