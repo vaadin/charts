@@ -35,6 +35,10 @@ public class LargeDataSet extends AbstractVaadinChartExample {
 
         chart.getConfiguration().setTitle("Large data set");
 
+        // Force zoom and enable scrollbar
+        chart.getConfiguration().getxAxis().setMin(5000);
+        chart.getConfiguration().getScrollbar().setEnabled(true);
+
         DataSeries series = new DataSeries();
         Number[] data = TimeSeriesZoomable.USD_TO_EUR_EXCHANGE_RATES;
         Random r = new Random(0);

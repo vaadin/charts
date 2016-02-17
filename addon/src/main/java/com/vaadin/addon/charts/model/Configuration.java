@@ -60,6 +60,7 @@ public class Configuration extends AbstractConfigurationObject implements
     private PaneList pane;
     private Exporting exporting = new Exporting(false);
     private RangeSelector rangeSelector;
+    private Scrollbar scrollbar;
 
     @JsonIgnore
     private final List<ConfigurationChangeListener> changeListeners = new ArrayList<ConfigurationChangeListener>();
@@ -674,6 +675,27 @@ public class Configuration extends AbstractConfigurationObject implements
             rangeSelector = new RangeSelector();
         }
         return rangeSelector;
+    }
+
+    /**
+     * @see #setScrollbar(Scrollbar)
+     */
+    public Scrollbar getScrollbar() {
+        if (scrollbar == null) {
+            scrollbar = new Scrollbar();
+        }
+        return scrollbar;
+    }
+
+    /**
+     * Set configuration for the scrollbar.
+     * 
+     * Allows panning over the X axis of the chart
+     * 
+     * @param scrollbar
+     */
+    public void setScrollbar(Scrollbar scrollbar) {
+        this.scrollbar = scrollbar;
     }
 
     /**
