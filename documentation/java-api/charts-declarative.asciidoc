@@ -1,0 +1,299 @@
+---
+title: Declarative
+order: 10
+layout: page
+---
+
+ifdef::web[]
+
+[[charts.declarative]]
+= Design Charts Declaratively
+
+[[charts.declarative.introduction]]
+== Introduction
+
+Vaadin UIs can be defined in a declarative way. It makes it possible to work on visual designs without any coding like described in chapter <<dummy/../../../framework/application/application-declarative#application.declarative,"Designing UIs Declaratively">>.
+Vaadin Charts also supports this format.
+In this tutorial, we go through how http://demo.vaadin.com/charts/#BasicLine[the Basic Line example] in Vaadin Charts demo can be implemented using declarative format.
+The end result is shown in the picture below.
+[[figure.charts.declarative.basicline]]
+.Basic line example
+image::img/charts-declarative-basic-line.png[width=80%]
+
+[[charts.declarative.java]]
+== Java Implementation
+
+Below is the Java implementation of the example.
+After creating the [classname]#Chart# object, you can configure it by using a [classname]#Configuration# object.
+The configuration object itself contains different kind of objects which can be used to configure one specific part of the chart, for example [classname]#Legend#.
+The code has been commented to clearly show what kind of configuration objects it uses.
+
+[source,java]
+----
+// Chart
+Chart chart = new Chart();
+chart.setHeight("450px");
+chart.setWidth("100%");
+
+// Chart configuration
+Configuration configuration = chart.getConfiguration();
+configuration.getChart().setType(ChartType.LINE);
+configuration.getChart().setMarginRight(130);
+configuration.getChart().setMarginBottom(25);
+
+// Title and tooltip configuration
+configuration.getTitle().setText("Monthly Average Temperature");
+configuration.getSubTitle().setText("Source: WorldClimate.com");
+configuration.getTooltip()
+        .setFormatter(
+                "'<b>'+ this.series.name +'</b><br/>'+this.x +': '+ this.y +'°C'");
+
+// Axis configuration
+configuration.getxAxis().setCategories("Jan", "Feb", "Mar", "Apr",
+        "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
+YAxis yAxis = configuration.getyAxis();
+yAxis.setMin(-5d);
+yAxis.setTitle(new AxisTitle("Temperature (°C)"));
+yAxis.getTitle().setAlign(VerticalAlign.MIDDLE);
+
+// Plot options
+PlotOptionsLine plotOptions = new PlotOptionsLine();
+plotOptions.setDataLabels(new DataLabels(true));
+configuration.setPlotOptions(plotOptions);
+
+// Legend configuration
+Legend legend = configuration.getLegend();
+legend.setLayout(LayoutDirection.VERTICAL);
+legend.setAlign(HorizontalAlign.RIGHT);
+legend.setVerticalAlign(VerticalAlign.TOP);
+legend.setX(-10d);
+legend.setY(100d);
+legend.setBorderWidth(0);
+
+// Create data
+ListSeries ls = new ListSeries();
+ls.setName("Tokyo");
+ls.setData(7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3,
+    13.9, 9.6);
+myChart.getConfiguration().addSeries(ls);
+// ...
+myChart.getConfiguration().addSeries(ls);
+----
+
+[[charts.declarative.separation]]
+== Separation to Configuration and Data series
+
+When the declarative format is used, the java code above is separated to an html and java. The html part describes the configuration of the chart and the java part uses the chart.
+The java code is needed, at least, to populate data to the chart.
+The attribute `_id` is used as <<dummy/../../../framework/application/application-declarative#application.declarative.identifiers,"component identifier">> to map design to a java object.
+
+The java example could then be divided as following:
+
+[source,html]
+----
+<!DOCTYPE html>
+<html>
+<body>
+<vaadin-vertical-layout size-full>
+    <vaadin-line-chart _id="mychart" timeline="false" height="450px" :expand>
+        <!-- configuration omitted -->
+    </vaadin-line-chart>
+</vaadin-vertical-layout>
+</body>
+</html>
+----
+
+[source,java]
+----
+// Set custom component mapper to read tags <vaadin-type-chart>
+Design.setComponentMapper(new ChartComponentMapper());
+// Read the html file
+Design.read(this);
+// Populate data
+ListSeries ls = new ListSeries();
+ls.setName("Tokyo");
+ls.setData(7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3,
+    13.9, 9.6);
+myChart.getConfiguration().addSeries(ls);
+...
+----
+
+By default, tags with a [literal]#++vaadin-++# prefix are assumed to be Vaadin core components like described in chapter <<dummy/../../../framework/application/application-declarative#application.declarative.elements,"Component Elements">>.
+However, the Vaadin Charts can be defined with format [elementname]#vaadin-<type>-chart# if the custom element mapper [classname]#ChartComponentMapper# is set.
+
+The first element in the html should be the same type as the <<dummy/../../../framework/application/application-declarative#application.declarative.composite.designroot,"design root">>.
+In our example, [elementname]#vaadin-vertical-layout# was used as the first element, that is why the design root needs to extend [classname]#VerticalLayout#.
+Also, the attribute `:expand` is a <<dummy/../../../framework/application/application-declarative#application.declarative.attributes.parent,"parent setting">> of the [elementname]#vaadin-vertical-layout# element.
+
+[[charts.declarative.syntax]]
+== Charts Declarative Syntax
+
+In Charts design format, each configuration object is defined in its own element and the properties of the object are defined as attributes of the element.
+The naming convention of attributes is the same as described in chapter <<dummy/../../../framework/application/application-declarative#application.declarative.attributes,"Component Attributes">>
+
+For example, [classname]#Legend# object could be defined in Java as follows:
+
+[source,java]
+----
+Legend legend = configuration.getLegend();
+legend.setLayout(LayoutDirection.VERTICAL);
+legend.setAlign(HorizontalAlign.RIGHT);
+legend.setVerticalAlign(VerticalAlign.TOP);
+legend.setX(-10d);
+legend.setY(100d);
+legend.setBorderWidth(0);
+----
+
+With declarative format, the same legend configuration looks like this:
+
+[source,html]
+----
+<legend layout="vertical" align="right" vertical-align="top" x="-10"
+        y="100" border-width="0"></legend>
+----
+
+If the property is a list, the values are defined in its own element.
+For example, x axis categories are defined as following:
+
+[source,html]
+----
+<x-axis>
+    <categories>Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec</categories>
+</x-axis>
+----
+
+Title elements `title` and `subtitle` have a shortcut to define the text attribute as a inner text of the element.
+[source,html]
+----
+<title>Monthly Average Temperature</title>
+<subtitle>Source: WorldClimate.com</subtitle>
+----
+
+If the property is a configuration object itself, it is defined as a child element.
+For example, the title of y axis is defined as following:
+[source,html]
+----
+<y-axis >
+    <title align="middle">Temperature (°C)</title>
+</y-axis>
+----
+
+Plot options are defined in a bit different way than the rest of the configuration objects.
+They are always inside a [elementname]#plot-options# element but that has a child element with the same tag name as the type of the specific plot options.
+The plot options properties are then defined in this type element.
+For example, [classname]#PlotOptionsLine# is configured like this:
+[source,html]
+----
+<plot-options>
+    <line>
+        <data-labels enabled="true"></data-labels>
+    </line>
+</plot-options>
+----
+
+[[charts.declarative.endresult]]
+== End result
+
+If all the configuration objects in <<charts.declarative.java,"java code example">> are defined in declarative format, the end result looks like this:
+
+[source,html]
+----
+<!DOCTYPE html>
+<html>
+<body>
+<vaadin-vertical-layout size-full>
+    <vaadin-line-chart _id="mychart" timeline="false" height="450px" :expand>
+        <chart margin-right="130" margin-bottom="25"></chart>
+        <title>Monthly Average Temperature</title>
+        <subtitle>Source: WorldClimate.com</subtitle>
+        <legend layout="vertical" align="right" vertical-align="top" x="-10"
+                y="100" border-width="0"></legend>
+        <y-axis min="-5">
+            <title align="middle">Temperature (°C)</title>
+        </y-axis>
+        <x-axis>
+            <categories>Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec</categories>
+        </x-axis>
+        <tooltip formatter=
+            "function() {return '' + this.series.name + ' ' + this.x + ': ' + this.y + '°C';}">
+        </tooltip>
+        <plot-options>
+            <line>
+                <data-labels enabled="true"></data-labels>
+            </line>
+        </plot-options>
+    </vaadin-line-chart>
+</vaadin-vertical-layout>
+</body>
+</html>
+----
+
+[[charts.declarative.howto]]
+== How to use it?
+
+The declarative Vaadin Charts can be used as any other declarative design with Vaadin.
+This is explained in more detail in chapter <<dummy/../../../framework/application/application-declarative#application.declarative.composite,"Using Designs in Code">>.
+
+To use the example above do the following steps:
+
+* Create a file called [filename]#basic_line.html# with the same content as in <<charts.declarative.endresult,"end result">>.
+* Add [classname]#@DesignRoot# annotation to a class which extends [classname]#VerticalLayout#.
+[source,java]
+----
+// Bind the root component
+@DesignRoot(value="basic_line.html")
+----
+* Add field `Chart myChart` to the same class.
+* Set custom component mapper.
+[source,java]
+----
+// Set custom component mapper to read tags <vaadin-type-chart>
+Design.setComponentMapper(new ChartComponentMapper());
+----
+* Read the design.
+[source,java]
+----
+// Read the html file specified in @DesignRoot annotation
+Design.read(this);
+----
+* Add code to populate data to `myChart`.
+[source,java]
+----
+// Populate data
+ListSeries ls = new ListSeries();
+ls.setName("Tokyo");
+ls.setData(7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3,
+    13.9, 9.6);
+myChart.getConfiguration().addSeries(ls);
+ls = new ListSeries();
+ls.setName("New York");
+ls.setData(-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1,
+    8.6, 2.5);
+myChart.getConfiguration().addSeries(ls);
+ls = new ListSeries();
+ls.setName("Berlin");
+ls.setData(-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9,
+    1.0);
+myChart.getConfiguration().addSeries(ls);
+ls = new ListSeries();
+ls.setName("London");
+ls.setData(3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6,
+    4.8);
+myChart.getConfiguration().addSeries(ls);
+----
+
+After these steps, you can deploy your application with the chart.
+You should see a similar chart as shown in <<figure.charts.declarative.basicline>>
+
+[[charts.declarative.write]]
+== Writing the Declarative format
+
+Vaadin Charts are also able to write their current content as declarative format.
+To see your chart as declarative design, you can do these steps.
+
+. <<dummy/../../../framework/advanced/advanced-debug#advanced.debug.open,"Open debug window">>.
+. Select tab _Generate a declarative design_ in _Component hierarchy_.
+. Select the Chart in your UI.
+. You can find the result from the server console.
+
+endif::web[]
