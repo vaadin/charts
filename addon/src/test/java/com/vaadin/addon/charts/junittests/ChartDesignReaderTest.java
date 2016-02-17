@@ -1,8 +1,16 @@
 package com.vaadin.addon.charts.junittests;
 
 import static org.hamcrest.Matchers.instanceOf;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+import org.junit.Test;
 
 import com.vaadin.addon.charts.declarative.ChartDesignReader;
 import com.vaadin.addon.charts.model.Configuration;
@@ -10,11 +18,6 @@ import com.vaadin.addon.charts.model.LayoutDirection;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.PlotOptionsTreemap;
 import com.vaadin.ui.declarative.DesignException;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
-import org.junit.Test;
 
 public class ChartDesignReaderTest {
 
@@ -24,11 +27,23 @@ public class ChartDesignReaderTest {
         Configuration configuration = new Configuration();
 
         ChartDesignReader
-            .readConfigurationFromElements(elements, configuration);
+                .readConfigurationFromElements(elements, configuration);
 
         assertEquals("my title", configuration.getTitle().getText());
     }
 
+    @Test
+    public void readConfiguration_tooltipWithColor_SolidColorIsInConfiguration() {
+        Elements elements = createElements("<tooltip background-color=\"#FF00FF\"></tooltip>");
+        Configuration configuration = new Configuration();
+
+        ChartDesignReader
+                .readConfigurationFromElements(elements, configuration);
+
+        assertNotNull(configuration.getTooltip().getBackgroundColor());
+        assertEquals("#FF00FF", configuration.getTooltip().getBackgroundColor()
+                .toString());
+    }
 
     @Test
     public void readConfiguration_enumValueDefinedInFragment_theSameValueIsInConfiguration() {
