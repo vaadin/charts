@@ -30,7 +30,7 @@ public class Crosshair extends AbstractConfigurationObject {
 	private Boolean snap;
 	private Number width;
 	private Number zIndex;
-	private Label label;
+	private CrosshairLabel label;
 
 	public Crosshair() {
 	}
@@ -123,11 +123,11 @@ public class Crosshair extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setLabel(Label)
+	 * @see #setLabel(CrosshairLabel)
 	 */
-	public Label getLabel() {
+	public CrosshairLabel getLabel() {
 		if (label == null) {
-			label = new Label();
+			label = new CrosshairLabel();
 		}
 		return label;
 	}
@@ -135,7 +135,7 @@ public class Crosshair extends AbstractConfigurationObject {
 	/**
 	 * A label on the axis next to the crosshair.
 	 */
-	public void setLabel(Label label) {
+	public void setLabel(CrosshairLabel label) {
 		this.label = label;
 	}
 }
