@@ -22,14 +22,14 @@ dependency or library JARs.
 [[charts.installing.maven]]
 == Maven Dependency
 
-The Maven dependency for Vaadin TestBench is as follows:
+The Maven dependency for Vaadin Charts is as follows:
 
 [subs="normal"]
 ----
 &lt;dependency&gt;
     &lt;groupId&gt;com.vaadin.addon&lt;/groupId&gt;
     &lt;artifactId&gt;vaadin-charts&lt;/artifactId&gt;
-    &lt;version&gt;[replaceable]##2.0.0##&lt;/version&gt;
+    &lt;version&gt;[replaceable]##3.0.0-alpha9##&lt;/version&gt;
 &lt;/dependency&gt;
 ----
 You also need to define the Vaadin add-ons repository if not already defined:
@@ -51,7 +51,7 @@ The Ivy dependency, to be defined in [filename]#ivy.xml#, would be as follows:
 [subs="normal"]
 ----
 &lt;dependency org="com.vaadin" name="vaadin-charts"
-            rev="**2.0**" /&gt;
+            rev="**3.0.0-alpha9**" /&gt;
 ----
 It is generally recommended to use a fixed version number, but you can also use
 [literal]#++latest.release++# to get the latest release.

@@ -401,6 +401,6 @@ Refresh the page and enjoy a better looking chart.
 
 Congratulations!
 You now know the basics of how to get Vaadin Charts in your web page.
-For further examples, please see the on-line demo at http://demo.vaadin.com/charts3[demo.vaadin.com/charts3].
+For further examples, please see the on-line demo at http://demo.vaadin.com/vaadin-charts[demo.vaadin.com/vaadin-charts].
 
-The API documentation can be explored at http://demo.vaadin.com/charts3-api[demo.vaadin.com/charts3-api].
+The API documentation can be explored at http://demo.vaadin.com/vaadin-charts-api/[demo.vaadin.com/vaadin-charts-api].
