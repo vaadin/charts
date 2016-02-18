@@ -66,8 +66,8 @@ public class ChartDesignWriter implements Serializable {
                 } else {
                     logger.log(
                         Level.INFO,
-                        "Field '" + field.getName() + "' in class " +
-                            configuration.getClass().getName() +
+                        "Field '" + field.getName() + "' with type '" + field.getType().getName() +
+                            "' in class " + configuration.getClass().getName() +
                             " was not added to declarative output");
                 }
             }
