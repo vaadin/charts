@@ -17,12 +17,18 @@ import com.vaadin.addon.charts.model.AbstractPlotOptions;
 import com.vaadin.addon.charts.model.Axis;
 import com.vaadin.addon.charts.model.AxisList;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.ui.declarative.ChartDesignFormatter;
 import com.vaadin.ui.declarative.DesignAttributeHandler;
 import com.vaadin.ui.declarative.DesignException;
 
 import org.jsoup.nodes.Element;
 
 public class ChartDesignWriter implements Serializable {
+
+    static {
+        // This is needed to add a converter from String to Number
+        ChartDesignFormatter.init();
+    }
 
     /**
      * These properties are ignored when reading values from configuration object
