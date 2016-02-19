@@ -26,7 +26,6 @@ import java.util.Arrays;
  */
 public class PlotOptionsGauge extends AbstractPlotOptions {
 
-	private static final long serialVersionUID = 1L;
 	private Boolean animation;
 	private Color color;
 	private Cursor cursor;

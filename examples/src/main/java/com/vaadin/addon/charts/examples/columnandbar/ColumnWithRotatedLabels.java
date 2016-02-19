@@ -32,7 +32,7 @@ public class ColumnWithRotatedLabels extends AbstractVaadinChartExample {
         Chart chart = new Chart(ChartType.COLUMN);
 
         Configuration conf = chart.getConfiguration();
-        conf.getChart().setMargin(new Integer[] { 50, 80, 100, 50 });
+        conf.getChart().setMargin(50, 80, 100, 50);
 
         conf.setTitle(new Title("World's largest cities per 2008"));
 

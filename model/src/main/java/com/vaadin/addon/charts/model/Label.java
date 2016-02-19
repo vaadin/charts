@@ -24,7 +24,6 @@ import com.vaadin.addon.charts.model.style.Color;
  */
 public class Label extends AbstractConfigurationObject {
 
-	private static final long serialVersionUID = 1L;
 	private HorizontalAlign align;
 	private Number rotation;
 	private Style style;

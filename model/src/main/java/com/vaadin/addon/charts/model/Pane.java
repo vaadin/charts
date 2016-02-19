@@ -25,7 +25,6 @@ import com.vaadin.addon.charts.util.SizeWithUnit;
  */
 public class Pane extends AbstractConfigurationObject {
 
-	private static final long serialVersionUID = 1L;
 	private Integer paneIndex;
 	private Background[] background;
 	private String[] center;

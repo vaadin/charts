@@ -18,7 +18,6 @@ package com.vaadin.addon.charts.model;
  */
 public class States extends AbstractConfigurationObject {
 
-	private static final long serialVersionUID = 1L;
 	private Hover hover;
 	private Select select;
 

@@ -25,7 +25,6 @@ import com.vaadin.addon.charts.model.style.Style;
  */
 public class Tooltip extends AbstractConfigurationObject {
 
-	private static final long serialVersionUID = 1L;
 	private Boolean animation;
 	private Color backgroundColor;
 	private Color borderColor;

@@ -33,7 +33,6 @@ import com.vaadin.addon.charts.util.SizeWithUnit;
  */
 public class YAxis extends Axis {
 
-	private static final long serialVersionUID = 1L;
 	private Boolean allowDecimals;
 	private Color alternateGridColor;
 	private Breaks[] breaks;

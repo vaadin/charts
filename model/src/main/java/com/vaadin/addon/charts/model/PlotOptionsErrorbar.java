@@ -30,7 +30,6 @@ import com.vaadin.addon.charts.util.Util;
  */
 public class PlotOptionsErrorbar extends AbstractPlotOptions {
 
-	private static final long serialVersionUID = 1L;
 	private Boolean allowPointSelect;
 	private Color color;
 	private Boolean colorByPoint;

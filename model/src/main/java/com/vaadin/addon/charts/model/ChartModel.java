@@ -25,7 +25,6 @@ import com.vaadin.addon.charts.model.style.Style;
  */
 public class ChartModel extends AbstractConfigurationObject {
 
-	private static final long serialVersionUID = 1L;
 	private Boolean alignTicks;
 	private Boolean animation;
 	private Color backgroundColor;
@@ -263,31 +262,12 @@ public class ChartModel extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setMargin(Number[])
+	 * @see #setMargin(Number)
+	 * @see #setMargin(Number, Number)
+	 * @see #setMargin(Number, Number, Number, Number)
 	 */
 	public Number[] getMargin() {
 		return margin;
-	}
-
-	/**
-	 * <p>
-	 * The margin between the outer edge of the chart and the plot area. The
-	 * numbers in the array designate top, right, bottom and left respectively.
-	 * Use the options <code>marginTop</code>, <code>marginRight</code>,
-	 * <code>marginBottom</code> and <code>marginLeft</code> for shorthand
-	 * setting of one option.
-	 * </p>
-	 * <p>
-	 * Since version 2.1, the margin is 0 by default. The actual space is
-	 * dynamically calculated from the offset of axis labels, axis title, title,
-	 * subtitle and legend in addition to the <code>spacingTop</code>,
-	 * <code>spacingRight</code>, <code>spacingBottom</code> and
-	 * <code>spacingLeft</code> options.
-	 * </p>
-	 * Defaults to <code>[null]</code>.
-	 */
-	public void setMargin(Number[] margin) {
-		this.margin = margin;
 	}
 
 	/**
@@ -789,5 +769,27 @@ public class ChartModel extends AbstractConfigurationObject {
 	 */
 	public void setZoomType(ZoomType zoomType) {
 		this.zoomType = zoomType;
+	}
+
+	/**
+	 * Sets all margins to the same value
+	 */
+	public void setMargin(Number margin) {
+		setMargin(margin, margin, margin, margin);
+	}
+
+	/**
+	 * Sets the vertical margin for top and bottom and the horizontal margin for
+	 * the right and left margin
+	 */
+	public void setMargin(Number vertical, Number horizontal) {
+		setMargin(vertical, horizontal, vertical, horizontal);
+	}
+
+	/**
+	 * Set all margins in one call
+	 */
+	public void setMargin(Number top, Number right, Number bottom, Number left) {
+		margin = new Number[]{top, right, bottom, left};
 	}
 }

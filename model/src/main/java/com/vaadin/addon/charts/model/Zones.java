@@ -24,7 +24,6 @@ import com.vaadin.addon.charts.model.style.Color;
  */
 public class Zones extends AbstractConfigurationObject {
 
-	private static final long serialVersionUID = 1L;
 	private Color color;
 	private DashStyle dashStyle;
 	private Color fillColor;

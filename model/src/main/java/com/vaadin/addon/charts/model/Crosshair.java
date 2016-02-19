@@ -25,7 +25,6 @@ import com.vaadin.addon.charts.model.style.Color;
  */
 public class Crosshair extends AbstractConfigurationObject {
 
-	private static final long serialVersionUID = 1L;
 	private Color color;
 	private DashStyle dashStyle;
 	private Boolean snap;

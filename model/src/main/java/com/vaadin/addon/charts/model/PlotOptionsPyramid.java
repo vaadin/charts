@@ -28,7 +28,6 @@ import java.util.Arrays;
  */
 public class PlotOptionsPyramid extends AbstractPlotOptions {
 
-	private static final long serialVersionUID = 1L;
 	private Boolean allowPointSelect;
 	private Color borderColor;
 	private Number borderWidth;

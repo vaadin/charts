@@ -20,7 +20,6 @@ package com.vaadin.addon.charts.model;
 import com.vaadin.addon.charts.model.style.Color;
 public class Marker extends AbstractConfigurationObject {
 
-	private static final long serialVersionUID = 1L;
 	private Boolean enabled;
 	private Color fillColor;
 	private Number height;

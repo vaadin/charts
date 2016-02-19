@@ -24,7 +24,6 @@ import com.vaadin.addon.charts.model.style.Style;
  */
 public class Credits extends AbstractConfigurationObject {
 
-	private static final long serialVersionUID = 1L;
 	private Boolean enabled;
 	private String href;
 	private Position position;

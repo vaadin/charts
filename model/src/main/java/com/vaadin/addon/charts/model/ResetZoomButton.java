@@ -24,7 +24,6 @@ import com.vaadin.addon.charts.model.style.ButtonTheme;
  */
 public class ResetZoomButton extends AbstractConfigurationObject {
 
-	private static final long serialVersionUID = 1L;
 	private Position position;
 	private ResetZoomButtonRelativeTo relativeTo;
 	private ButtonTheme theme;

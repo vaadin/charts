@@ -23,7 +23,6 @@ package com.vaadin.addon.charts.model;
  */
 public class SeriesTooltip extends AbstractConfigurationObject {
 
-	private static final long serialVersionUID = 1L;
 	private DateTimeLabelFormats dateTimeLabelFormats;
 	private Boolean followPointer;
 	private Boolean followTouchMove;

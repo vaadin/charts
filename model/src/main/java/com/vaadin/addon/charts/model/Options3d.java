@@ -24,7 +24,6 @@ package com.vaadin.addon.charts.model;
  */
 public class Options3d extends AbstractConfigurationObject {
 
-	private static final long serialVersionUID = 1L;
 	private Number alpha;
 	private Number beta;
 	private Number depth;

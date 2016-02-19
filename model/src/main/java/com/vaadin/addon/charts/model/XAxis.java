@@ -33,7 +33,6 @@ import java.util.Arrays;
  */
 public class XAxis extends Axis {
 
-	private static final long serialVersionUID = 1L;
 	private Boolean allowDecimals;
 	private Color alternateGridColor;
 	private Breaks[] breaks;

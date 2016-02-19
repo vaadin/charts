@@ -23,7 +23,6 @@ import com.vaadin.addon.charts.model.style.Style;
  */
 public class DataLabelsFunnel extends AbstractConfigurationObject {
 
-	private static final long serialVersionUID = 1L;
 	private Color backgroundColor;
 	private Color borderColor;
 	private Number borderRadius;

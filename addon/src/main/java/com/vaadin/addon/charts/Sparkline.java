@@ -65,7 +65,7 @@ public class Sparkline extends Chart {
         getConfiguration().setLegend(new Legend(false));
         getConfiguration().getChart().setBackgroundColor(
                 new SolidColor(0, 0, 0, 0));
-        getConfiguration().getChart().setMargin(new Integer[] { 0, 0, 0, 0 });
+        getConfiguration().getChart().setMargin(0);
         Series series = getConfiguration().getSeries().get(0);
 
         PlotOptionsLine options = new PlotOptionsLine();

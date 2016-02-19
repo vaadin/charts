@@ -20,7 +20,6 @@ package com.vaadin.addon.charts.model;
 import com.vaadin.addon.charts.model.style.Style;
 public class Labels extends AbstractConfigurationObject {
 
-	private static final long serialVersionUID = 1L;
 	private HorizontalAlign align;
 	private Number[] autoRotation;
 	private Number autoRotationLimit;

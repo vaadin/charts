@@ -23,7 +23,6 @@ package com.vaadin.addon.charts.model;
  */
 public class Exporting extends AbstractConfigurationObject {
 
-	private static final long serialVersionUID = 1L;
 	private Boolean allowHTML;
 	private Buttons buttons;
 	private Boolean enabled;

@@ -28,7 +28,6 @@ import java.util.Arrays;
  */
 public class PlotOptionsSolidgauge extends AbstractPlotOptions {
 
-	private static final long serialVersionUID = 1L;
 	private Boolean animation;
 	private Cursor cursor;
 	private DataLabels dataLabels;

@@ -23,7 +23,6 @@ import com.vaadin.addon.charts.model.style.Style;
  */
 public class AxisTitle extends AbstractConfigurationObject {
 
-	private static final long serialVersionUID = 1L;
 	private VerticalAlign align;
 	private Number margin;
 	private Number offset;

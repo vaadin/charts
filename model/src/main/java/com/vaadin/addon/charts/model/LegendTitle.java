@@ -23,7 +23,6 @@ import com.vaadin.addon.charts.model.style.Style;
  */
 public class LegendTitle extends AbstractConfigurationObject {
 
-	private static final long serialVersionUID = 1L;
 	private Style style;
 	private String text;
 

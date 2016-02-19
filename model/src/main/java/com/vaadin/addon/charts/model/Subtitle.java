@@ -23,7 +23,6 @@ import com.vaadin.addon.charts.model.style.Style;
  */
 public class Subtitle extends AbstractConfigurationObject {
 
-	private static final long serialVersionUID = 1L;
 	private HorizontalAlign align;
 	private Boolean floating;
 	private Style style;

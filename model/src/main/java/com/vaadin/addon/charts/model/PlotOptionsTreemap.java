@@ -29,7 +29,6 @@ import java.util.Arrays;
  */
 public class PlotOptionsTreemap extends AbstractPlotOptions {
 
-	private static final long serialVersionUID = 1L;
 	private Boolean allowDrillToNode;
 	private Boolean allowPointSelect;
 	private Boolean alternateStartingDirection;

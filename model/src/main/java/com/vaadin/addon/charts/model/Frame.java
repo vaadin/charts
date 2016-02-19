@@ -22,7 +22,6 @@ package com.vaadin.addon.charts.model;
  */
 public class Frame extends AbstractConfigurationObject {
 
-	private static final long serialVersionUID = 1L;
 	private Back back;
 	private Bottom bottom;
 	private Side side;

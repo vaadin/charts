@@ -33,7 +33,6 @@ import java.util.Arrays;
  */
 public class PlotOptionsHeatmap extends AbstractPlotOptions {
 
-	private static final long serialVersionUID = 1L;
 	private Boolean allowPointSelect;
 	private Boolean animation;
 	private Color borderColor;

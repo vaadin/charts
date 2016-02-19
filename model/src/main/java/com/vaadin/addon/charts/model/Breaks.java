@@ -23,7 +23,6 @@ package com.vaadin.addon.charts.model;
  */
 public class Breaks extends AbstractConfigurationObject {
 
-	private static final long serialVersionUID = 1L;
 	private Number breakSize;
 	private Number from;
 	private Number repeat;

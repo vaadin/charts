@@ -29,7 +29,6 @@ import com.vaadin.addon.charts.model.style.Style;
  */
 public class Loading extends AbstractConfigurationObject {
 
-	private static final long serialVersionUID = 1L;
 	private Number hideDuration;
 	private Style labelStyle;
 	private Number showDuration;

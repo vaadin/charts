@@ -32,7 +32,6 @@ package com.vaadin.addon.charts.model;
  */
 public class Lang extends AbstractConfigurationObject {
 
-	private static final long serialVersionUID = 1L;
 	private String contextButtonTitle;
 	private String decimalPoint;
 	private String downloadJPEG;

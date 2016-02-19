@@ -24,7 +24,6 @@ import com.vaadin.addon.charts.model.style.ButtonTheme;
  */
 public class ContextButton extends AbstractConfigurationObject {
 
-	private static final long serialVersionUID = 1L;
 	private HorizontalAlign align;
 	private Boolean enabled;
 	private Number height;

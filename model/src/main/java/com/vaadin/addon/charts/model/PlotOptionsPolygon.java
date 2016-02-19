@@ -30,7 +30,6 @@ import com.vaadin.addon.charts.util.Util;
  */
 public class PlotOptionsPolygon extends AbstractPlotOptions {
 
-	private static final long serialVersionUID = 1L;
 	private Boolean allowPointSelect;
 	private Boolean animation;
 	private Color color;

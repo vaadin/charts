@@ -33,7 +33,6 @@ package com.vaadin.addon.charts.model;
  */
 public class PlotOptions extends AbstractConfigurationObject {
 
-	private static final long serialVersionUID = 1L;
 	private PlotOptionsArea area;
 	private PlotOptionsArearange arearange;
 	private PlotOptionsAreaspline areaspline;

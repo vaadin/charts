@@ -23,7 +23,6 @@ import com.vaadin.addon.charts.model.style.Color;
  */
 public class Side extends AbstractConfigurationObject {
 
-	private static final long serialVersionUID = 1L;
 	private Color color;
 	private Number size;
 

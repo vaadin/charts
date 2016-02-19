@@ -25,7 +25,6 @@ import com.vaadin.addon.charts.model.style.Color;
  */
 public class Navigator extends AbstractConfigurationObject {
 
-	private static final long serialVersionUID = 1L;
 	private Boolean adaptToUpdatedData;
 	private Boolean enabled;
 	private Handles handles;

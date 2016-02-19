@@ -23,7 +23,6 @@ import com.vaadin.addon.charts.model.style.Color;
  */
 public class Hover extends AbstractConfigurationObject {
 
-	private static final long serialVersionUID = 1L;
 	private Boolean enabled;
 	private Halo halo;
 	private Number lineWidth;

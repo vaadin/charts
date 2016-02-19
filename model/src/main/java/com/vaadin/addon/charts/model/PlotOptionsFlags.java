@@ -26,7 +26,6 @@ import com.vaadin.addon.charts.model.style.Style;
  */
 public class PlotOptionsFlags extends AbstractPlotOptions {
 
-	private static final long serialVersionUID = 1L;
 	private Boolean allowPointSelect;
 	private Color color;
 	private Color[] colors;

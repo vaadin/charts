@@ -31,7 +31,6 @@ package com.vaadin.addon.charts.model;
  */
 public class Global extends AbstractConfigurationObject {
 
-	private static final long serialVersionUID = 1L;
 	private String VMLRadialGradientURL;
 	private String canvasToolsURL;
 	private Number timezoneOffset;

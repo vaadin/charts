@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 public class DataGrouping extends AbstractConfigurationObject {
 
-	private static final long serialVersionUID = 1L;
 	private DateTimeLabelFormats dateTimeLabelFormats;
 	private Boolean enabled;
 	private Boolean forced;

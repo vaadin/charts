@@ -25,7 +25,6 @@ package com.vaadin.addon.charts.model;
  */
 public class Halo extends AbstractConfigurationObject {
 
-	private static final long serialVersionUID = 1L;
 	private Attributes attributes;
 	private Number opacity;
 	private Number size;

@@ -24,7 +24,6 @@ import com.vaadin.addon.charts.util.SizeWithUnit;
  */
 public class PlotBand extends AbstractConfigurationObject {
 
-	private static final long serialVersionUID = 1L;
 	private Color borderColor;
 	private Number borderWidth;
 	private Color color;

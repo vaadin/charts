@@ -24,7 +24,6 @@ import com.vaadin.addon.charts.model.style.Color;
  */
 public class Select extends AbstractConfigurationObject {
 
-	private static final long serialVersionUID = 1L;
 	private Boolean enabled;
 	private Color fillColor;
 	private Color lineColor;
