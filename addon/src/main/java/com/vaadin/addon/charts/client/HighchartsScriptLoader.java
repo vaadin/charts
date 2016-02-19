@@ -48,6 +48,7 @@ public class HighchartsScriptLoader {
         // Inject highcharts only if not already injected
         if (!hasHighcharts()) {
             inject(HighchartResources.INSTANCE.highstock().getText());
+            inject(HighchartResources.INSTANCE.noData().getText());
             inject(HighchartResources.INSTANCE.highchartsMore().getText());
             inject(HighchartResources.INSTANCE.funnel().getText());
             inject(HighchartResources.INSTANCE.exporting().getText());

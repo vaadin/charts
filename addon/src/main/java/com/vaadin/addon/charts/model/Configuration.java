@@ -61,6 +61,7 @@ public class Configuration extends AbstractConfigurationObject implements
     private Exporting exporting = new Exporting(false);
     private RangeSelector rangeSelector;
     private Scrollbar scrollbar;
+    private NoData noData;
 
     @JsonIgnore
     private final List<ConfigurationChangeListener> changeListeners = new ArrayList<ConfigurationChangeListener>();
@@ -696,6 +697,27 @@ public class Configuration extends AbstractConfigurationObject implements
      */
     public void setScrollbar(Scrollbar scrollbar) {
         this.scrollbar = scrollbar;
+    }
+
+    /**
+     * @see #setNoData(NoData)
+     */
+    public NoData getNoData() {
+        if (noData == null) {
+            noData = new NoData();
+        }
+        return noData;
+    }
+
+    /**
+     * Options for displaying a message when no data is available.
+     * 
+     * The actual text to display is set in the {@link Lang#setNoData(String)}
+     * 
+     * @param noData
+     */
+    public void setNoData(NoData noData) {
+        this.noData = noData;
     }
 
     /**

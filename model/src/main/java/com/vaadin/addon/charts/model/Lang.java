@@ -42,7 +42,6 @@ public class Lang extends AbstractConfigurationObject {
 	private String invalidDate;
 	private Loading loading;
 	private String[] months;
-	private NoData noData;
 	private String[] numericSymbols;
 	private String printChart;
 	private String resetZoom;
@@ -53,6 +52,7 @@ public class Lang extends AbstractConfigurationObject {
 	private String rangeSelectorFrom;
 	private String rangeSelectorTo;
 	private String rangeSelectorZoom;
+	private String noData;
 
 	public Lang() {
 	}
@@ -231,26 +231,6 @@ public class Lang extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setNoData(NoData)
-	 */
-	public NoData getNoData() {
-		if (noData == null) {
-			noData = new NoData();
-		}
-		return noData;
-	}
-
-	/**
-	 * The text to display when the chart contains no data. Requires the no-data
-	 * module, see <a href="#noData">noData</a>.
-	 * <p>
-	 * Defaults to: No data to display
-	 */
-	public void setNoData(NoData noData) {
-		this.noData = noData;
-	}
-
-	/**
 	 * @see #setNumericSymbols(String[])
 	 */
 	public String[] getNumericSymbols() {
@@ -419,5 +399,19 @@ public class Lang extends AbstractConfigurationObject {
 	 */
 	public void setRangeSelectorZoom(String rangeSelectorZoom) {
 		this.rangeSelectorZoom = rangeSelectorZoom;
+	}
+
+	/**
+	 * @see #setNoData(String)
+	 */
+	public String getNoData() {
+		return noData;
+	}
+
+	/**
+	 * 
+	 */
+	public void setNoData(String noData) {
+		this.noData = noData;
 	}
 }

@@ -23,7 +23,6 @@ import com.vaadin.addon.charts.model.style.Color;
  */
 public class CrosshairLabel extends AbstractConfigurationObject {
 
-	private static final long serialVersionUID = 1L;
 	private HorizontalAlign align;
 	private Color backgroundColor;
 	private Color borderColor;
