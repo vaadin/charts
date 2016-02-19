@@ -32,7 +32,7 @@ public class FlagsPlacement extends AbstractVaadinChartExample {
 
         DataSeries dataSeries = new DataSeries();
         dataSeries.setId(DATA_SERIES_ID);
-        for(StockPrices.PriceData data : StockPrices.fetchAaplPrice()) {
+        for (StockPrices.PriceData data : StockPrices.fetchAaplPrice()) {
             DataSeriesItem item = new DataSeriesItem();
             item.setX(data.getDate());
             item.setY(data.getPrice());
@@ -44,14 +44,15 @@ public class FlagsPlacement extends AbstractVaadinChartExample {
         PlotOptionsFlags plotOptionsFlags = new PlotOptionsFlags();
         plotOptionsFlags.setOnSeries(DATA_SERIES_ID);
         flagsOnSeries.setPlotOptions(plotOptionsFlags);
-        for(int i = 30; i < dataSeries.size(); i += 30) {
-            flagsOnSeries.add(new FlagItem(dataSeries.get(i).getX(), "On series"));
+        for (int i = 30; i < dataSeries.size(); i += 30) {
+            flagsOnSeries.add(new FlagItem(dataSeries.get(i).getX(),
+                    "On series", "On series flag tooltip"));
         }
 
         DataSeries flagsOnAxis = new DataSeries();
         flagsOnAxis.setName("Flags on axis");
         flagsOnAxis.setPlotOptions(new PlotOptionsFlags());
-        for(int i = 15; i < dataSeries.size(); i+= 30) {
+        for (int i = 15; i < dataSeries.size(); i += 30) {
             flagsOnAxis.add(new FlagItem(dataSeries.get(i).getX(), "On axis"));
         }
         configuration.setSeries(dataSeries, flagsOnSeries, flagsOnAxis);

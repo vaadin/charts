@@ -20,11 +20,13 @@ package com.vaadin.addon.charts.model;
 import java.util.Date;
 
 /**
- * DataSeriesItem that can hold also Z value. Used in e.g. bubble charts.
+ * DataSeriesItem that can hold also title and text values. Used in flags
+ * charts.
  */
 public class FlagItem extends DataSeriesItem {
 
     private String title;
+    private String text;
 
     /**
      * Constructs an item with X and Title values
@@ -49,6 +51,30 @@ public class FlagItem extends DataSeriesItem {
     }
 
     /**
+     * Constructs an item with X, Title and Text values
+     *
+     * @param x
+     * @param title
+     */
+    public FlagItem(Number x, String title, String text) {
+        setX(x);
+        setTitle(title);
+        setText(text);
+    }
+
+    /**
+     * Constructs an item with X, Title and Text values
+     *
+     * @param date
+     * @param title
+     */
+    public FlagItem(Date date, String title, String text) {
+        setX(date);
+        setTitle(title);
+        setText(text);
+    }
+
+    /**
      * Sets the title of the flag
      * 
      * @param title
@@ -63,6 +89,20 @@ public class FlagItem extends DataSeriesItem {
      */
     public String getTitle() {
         return title;
+    }
+
+    /**
+     * @see #setText(String)
+     */
+    public String getText() {
+        return text;
+    }
+
+    /**
+     * Sets the text to be displayed when the flag is highlighted
+     */
+    public void setText(String text) {
+        this.text = text;
     }
 
 }

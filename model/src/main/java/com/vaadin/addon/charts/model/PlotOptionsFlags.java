@@ -43,7 +43,7 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 	private IntervalUnit pointIntervalUnit;
 	private Boolean selected;
 	private Boolean shadow;
-	private Shape shape;
+	private FlagShape shape;
 	private Boolean showCheckbox;
 	private Boolean showInLegend;
 	private Boolean softThreshold;
@@ -380,9 +380,9 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setShape(Shape)
+	 * @see #setShape(FlagShape)
 	 */
-	public Shape getShape() {
+	public FlagShape getShape() {
 		return shape;
 	}
 
@@ -393,7 +393,7 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 	 * <p>
 	 * Defaults to: flag
 	 */
-	public void setShape(Shape shape) {
+	public void setShape(FlagShape shape) {
 		this.shape = shape;
 	}
 

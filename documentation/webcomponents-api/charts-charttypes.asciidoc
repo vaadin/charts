@@ -22,6 +22,7 @@ The supported chart types are:
 |   <<charts.charttypes.columnbar, `column`>>
 |   <<charts.charttypes.rangecharts, `columnrange`>>
 |   <<charts.charttypes.errorbar, `errorbar`>>
+|   <<charts.charttypes.flags, `flags`>>
 |   <<charts.charttypes.funnel, `funnel`>>
 |   <<charts.charttypes.gauge, `gauge`>>
 |   <<charts.charttypes.heatmap, `heatmap`>>
@@ -297,7 +298,7 @@ For example:
 [[charts.charttypes.boxplot.datamodel]]
 === Data Model
 
-The data points in box plots have five different values of one sample: the mininum value ('low'),
+The data points in box plots have five different values of one sample: the minimum value ('low'),
 first quartile ('q1'), median ('median'), third quartile ('q3') and maximum ('high').
 
 [source,html]
@@ -1486,5 +1487,94 @@ ifdef::web[]
         </data>
   </data-series>
 </vaadin-polygon-chart>
+----
+endif::web[]
+
+[[charts.charttypes.flags]]
+== Flags
+
+_Flags_ is a special chart type for annotating a series or the X axis with callout labels. Flags indicate interesting points or events on the series or axis. The flags are defined as items in a data series separate from the annotated series or axis.
+
+[[figure.charts.charttypes.flags]]
+.Flags placed on an axis and a series
+image::img/charts-flags.png[]
+
+Flags are normally used in a chart that has one or more normal data series.
+
+[[charts.charttypes.flags.plotoptions]]
+=== Plot Options
+
+The flags are defined in a series that has its type set to `flags`. In addition to the common plot options properties, flag charts also have the following properties:
+
+[parameter]#shape#:: defines the shape of the marker. It can be one of `FLAG`, `CIRCLEPIN`, `SQUAREPIN`, or `CALLOUT`.
+[parameter]#stackDistance#:: defines the vertical offset between flags on the same value in the same series. Defaults to 12.
+[parameter]#onSeries#:: defines the ID of the series where the flags should be drawn on. If no ID is given, the flags are drawn on the X axis.
+[parameter]#onKey#:: in chart types that have multiple keys (Y values) for a data point, the property defines on which key the flag is placed. Line and column series have only one key, `y`. In range, OHLC, and candlestick series, the flag can be placed on the `open`, `high`, `low`, or `close` key. Defaults to `y`.
+
+[[charts.charttypes.flags.data]]
+=== Data
+
+The data points for flags series require [propertyname]#x# and [propertyname]#title# properties, but can also have [propertyname]#text# property indicating the tooltip text.
+
+ifdef::web[]
+[[charts.charttypes.flags.example]]
+=== Example
+
+In the following, we annotate a time series as well as the axis with flags:
+
+[source,html]
+----
+<vaadin-spline-chart id="flags-placement">
+    <title>USD to EUR exchange rate</title>
+
+    <x-axis type="datetime"></x-axis>
+    <plot-options>
+        <flags show-in-legend="false" shape="squarepin">
+        </flags>
+    </plot-options>
+
+    <data-series name="USD to EUR" id="dataseries">
+        <tooltip value-decimals="4">
+        </tooltip>
+        <data>
+            [1434499200000,0.8821],
+            [1434585600000,0.8802],
+            [1434672000000,0.8808],
+            [1434844800000,0.8794],
+            [1434931200000,0.8818],
+            [1435017600000,0.8952],
+            [1435104000000,0.8924],
+            [1435190400000,0.8925],
+            [1435276800000,0.8955]
+        </data>
+    </data-series>
+    <data-series type="flags" name="Flags on series" on-series="dataseries">
+        <data>
+            <point>
+                <x>1434585600000</x>
+                <title>First Series Flag</title>
+                <text>First Series Flag Tooltip Text</text>
+            </point>
+            <point>
+                <x>1435017600000</x>
+                <title>Second Series Flag</title>
+            </point>
+        </data>
+    </data-series>
+    <data-series type="flags" name="Flags on axis">
+        <data>
+            <point>
+                <x>1434844800000</x>
+                <title>First Axis Flag</title>
+                <text>First Axis Flag Tooltip Text</text>
+            </point>
+            <point>
+                <x>1435190400000</x>
+                <title>Second Axis Flag</title>
+            </point>
+        </data>
+    </data-series>
+
+</vaadin-spline-chart>
 ----
 endif::web[]
