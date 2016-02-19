@@ -7,9 +7,9 @@ layout: page
 [[charts.data]]
 = Chart Data
 
-Chart data is stored in data series model, which contains visual representation
-information about the data points in addition to their values. There are a
-number of different types of series - [classname]#DataSeries#,
+Chart data is stored in a data series model that contains information about the
+visual representation of the data points in addition to their values. There are
+a number of different types of series - [classname]#DataSeries#,
 [classname]#ListSeries#, [classname]#AreaListSeries#, and
 [classname]#RangeSeries#.
 

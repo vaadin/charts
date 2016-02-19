@@ -17,11 +17,11 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.vaadin.data.Container;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A series that wraps a Vaadin Container. It is mutable only via the wrapped
@@ -56,7 +56,8 @@ public class ContainerDataSeries extends AbstractSeries {
 
     public static final String HIGH_PROPERTY = "high";
     public static final String LOW_PROPERTY = "low";
-
+    public static final String OPEN_PROPERTY = "open";
+    public static final String CLOSE_PROPERTY = "close";
     @JsonIgnore
     private final Map<String, Object> attributeToPropertyIdMap;
 
@@ -125,6 +126,29 @@ public class ContainerDataSeries extends AbstractSeries {
     public void setHighPropertyId(Object propertyId) {
         attributeToPropertyIdMap.put(HIGH_PROPERTY, propertyId);
     }
+
+    /**
+     * Adds mapping that translates a property ID in the container into the
+     * chart's open attribute.
+     *
+     * @param propertyId
+     *            Id of a property.
+     */
+    public void setOpenPropertyId(Object propertyId) {
+        attributeToPropertyIdMap.put(OPEN_PROPERTY, propertyId);
+    }
+
+    /**
+     * Adds mapping that translates a property ID in the container into the
+     * chart's close attribute.
+     *
+     * @param propertyId
+     *            Id of a property.
+     */
+    public void setClosePropertyId(Object propertyId) {
+        attributeToPropertyIdMap.put(CLOSE_PROPERTY, propertyId);
+    }
+
 
     /**
      * Adds a mapping between a chart attribute (like x, y, name, id ...) and a

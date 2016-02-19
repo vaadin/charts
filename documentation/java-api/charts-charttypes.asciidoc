@@ -1645,3 +1645,119 @@ configuration.setSeries(dataSeries, flagsOnSeries, flagsOnAxis);
 
 ----
 endif::web[]
+
+[[charts.charttypes.ohlc]]
+== OHLC and Candlestick Charts
+
+An Open-High-Low-Close (OHLC) chart displays the change in price over a
+period of time. The OHLC charts have chart type [literal]#++OHLC++#. An OHLC
+chart consist of vertical lines, each having a horizontal
+tickmark both on the left and the right side. The top and bottom ends of the
+vertical line indicate the highest and lowest prices during the time period. The
+tickmark on the left side of the vertical line shows the opening price and
+the tickmark on the right side the closing price.
+
+[[figure.charts.charttypes.ohlc]]
+.OHLC Chart.
+image::img/charts-ohlc.png[]
+
+A candlestick chart is another way to visualize OHLC data. A candlestick has
+a body and two vertical lines,  called _wicks_. The body represents the
+opening and closing prices. If the body is filled, the top edge of the body
+shows the opening price and the bottom edge shows the closing price. If the
+body is unfilled, the top edge shows the closing price and the bottom edge
+the opening price. In other words, if the body is filled, the opening price
+is higher than the closing price, and if not, lower. The upper wick
+represents the highest price during the time period and the lower
+wick represents the lowest price. A candlestick chart
+has chart type [literal]#++CANDLESTICK++#.
+
+[[figure.charts.charttypes.candlestick]]
+.Candlestick Chart.
+image::img/charts-candlestick.png[]
+
+To attach data to an OHLC or a candlestick chart, you need to use a
+[classname]#DataSeries# or a [classname]#ContainerSeries#. See
+<<charts-data#charts-data.dataseries, "Chart Data">> for more details. A data
+series for an OHLC chart must contain [classname]#OhlcItem# objects. An
+[classname]#OhlcItem# contains a date and the open, highest, lowest,
+ and close price on that date.
+
+[source, java]
+----
+Chart chart = new Chart(ChartType.OHLC);
+chart.setTimeline(true);
+
+Configuration configuration = chart.getConfiguration();
+configuration.getTitle().setText("AAPL Stock Price");
+DataSeries dataSeries = new DataSeries();
+for (StockPrices.OhlcData data : StockPrices.fetchAaplOhlcPrice()) {
+    OhlcItem item = new OhlcItem();
+    item.setX(data.getDate());
+    item.setLow(data.getLow());
+    item.setHigh(data.getHigh());
+    item.setClose(data.getClose());
+    item.setOpen(data.getOpen());
+    dataSeries.add(item);
+}
+configuration.setSeries(dataSeries);
+chart.drawChart(configuration);
+
+----
+
+When using [classname]#ContainerSeries#, you need to specify the property IDs
+of the container properties containing OHLC values:
+[methodName]#setXPropertyId()#, [methodName]#setOpenPropertyId()#,
+[methodName]#setClosePropertyId()# [methodname]#setHighPropertyId()#, and
+[methodName]#setLowPropertyId()#.
+
+[source, java]
+----
+// Create a container filled with stock price data
+IndexedContainer container= initContainer();
+int i=0;
+for (StockPrices.OhlcData data : StockPrices.fetchAaplOhlcPrice()) {
+     Item ie = container.addItem(i);
+     ie.getItemProperty("x").setValue(data.getDate());
+     ie.getItemProperty("low").setValue(data.getLow());
+     ie.getItemProperty("high").setValue(data.getHigh());
+     ie.getItemProperty("open").setValue(data.getOpen());
+     ie.getItemProperty("close").setValue(data.getClose());
+     i++;
+}
+
+// Wrap the container in a data series
+ContainerDataSeries dataSeries = new ContainerDataSeries(container);
+configuration.setSeries(dataSeries);
+dataSeries.setHighPropertyId("high");
+dataSeries.setLowPropertyId("low");
+dataSeries.setXPropertyId("x");
+dataSeries.setOpenPropertyId("open");
+dataSeries.setClosePropertyId("open");
+
+PlotOptionsOhlc plotOptionsOhlc = new PlotOptionsOhlc();
+plotOptionsOhlc.setTurboThreshold(0);
+dataSeries.setPlotOptions(plotOptionsOhlc);
+----
+
+Typically the OHLC and candlestick charts contain a lot of data, so it is
+useful to use them with the timeline feature enabled. The timeline feature is
+ described in <<charts-timeline#charts.timeline,"Timeline">>.
+
+[[charts.charttypes.ohlc.plotoptions]]
+=== Plot Options
+You can use a [classname]#DataGrouping# object to configure data grouping
+properties. You set it in the plot options with [methodname]#setDataGrouping()#.
+If the data points in a series are so dense that the spacing between two or
+more points is less than value of the [propertyname]#groupPixelWidth#
+property in the [classname]#DataGrouping#, the points will be grouped into
+appropriate groups so that each group is more or less two pixels wide.
+The [propertyname]#approximation# property in [classname]#DataGrouping#
+specifies which data point value should represent the group. The
+possible values are: [literal]#average#, [literal]#open#,
+[literal]#high#, [literal]#low#, [literal]#close#, and
+[literal]#sum#.
+
+Using [methodName]#setUpColor()# and [methodName]#setUpLineColor()# allow
+setting the fill and border colors of the candlestick that indicate rise in
+the values. The default colors are white.

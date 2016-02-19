@@ -7,7 +7,7 @@ layout: page
 [[charts.data]]
 = Chart Data
 
-Chart data is stored in data series model, which contains visual representation
+Chart data is stored in a data series model, which contains visual representation
 information about the data points in addition to their values. Data can be attached
 to a chart either by using a tag or an attribute. Using data tag is useful
 in simple cases when data is ready beforehand.

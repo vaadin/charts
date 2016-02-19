@@ -36,6 +36,8 @@ The supported chart types are:
 |   <<charts.charttypes.line, `spline`>>
 |   <<charts.charttypes.treemap, `treemap`>>
 |   <<charts.charttypes.waterfall, `waterfall`>>
+|    <<charts.charttypes.ohlc, `ohlc`>>
+|    <<charts.charttypes.ohlc, `candlestick`>>
 |
 |===
 
@@ -298,7 +300,7 @@ For example:
 [[charts.charttypes.boxplot.datamodel]]
 === Data Model
 
-The data points in box plots have five different values of one sample: the minimum value ('low'),
+The data points in box plots have five different values of one sample: the mininum value ('low'),
 first quartile ('q1'), median ('median'), third quartile ('q3') and maximum ('high').
 
 [source,html]
@@ -1578,3 +1580,84 @@ In the following, we annotate a time series as well as the axis with flags:
 </vaadin-spline-chart>
 ----
 endif::web[]
+
+[[charts.charttypes.ohlc]]
+== OHLC and Candlestick Charts
+
+An Open-High-Low-Close (OHLC) chart displays the change in price over a
+period of time. An OHLC chart consist of vertical lines, each
+having a horizontal tickmark both on the left and the right side. The top and
+bottom ends of the vertical line indicate the highest and lowest prices during
+the time period. The tickmark on the left side of the vertical line shows the
+opening price and the tickmark on the right side the closing price. OHLC
+charts are defined with a [vaadinelement]#vaadin-ohlc-chart# element.
+
+[[figure.charts.charttypes.ohlc]]
+.OHLC Chart.
+image::img/charts-ohlc.png[]
+
+A candlestick chart is another way to visualize OHLC data. A candlestick has a body and two
+vertical lines, called _wicks_. The body represents the opening and closing
+prices. If the body is filled, the top edge of the body shows the opening
+price and the bottom edge shows the closing price. If the body is unfilled,
+the top edge shows the closing price and the bottom edge the opening price.
+In other words, if the body is filled, the opening price is higher than the
+closing price, and if not, lower. The upper wick represents the highest price
+during the time period and the lower wick represents the lowest price during.
+A candlestick chart is defined with a
+[vaadinelement]#vaadin-candlestick-chart# element.
+
+
+[[figure.charts.charttypes.candlestick]]
+.Candlestick Chart.
+image::img/charts-candlestick.png[]
+
+To attach data to a OHLC or a candlestick chart you need to  use a
+[elementname]#data-series#. See <<charts-data#charts-data.dataseries,"Chart Data">>
+ for more details. An OHLC data series contains an array of objects
+with a date and the open, highest, lowest, and close price on that date.
+
+[source,html]
+----
+<dom-module id="ohlc-example">
+    <template>
+        <iron-ajax auto id="dataFetcher"
+                url="ohlc_data"
+                handle-as="json"
+                last-response="{{seriesData}}"></iron-ajax>
+
+        <vaadin-ohlc-chart id="ohlc-series" timeline>
+            <title>AAPL Stock Price</title>
+            <data-series name="AAPL" data="[[seriesData]]">
+            </data-series>
+        </vaadin-ohlc-chart>
+    </template>
+    <script>
+        Polymer({
+            is: 'ohlc-example'
+        });
+    </script>
+</dom-module>
+<ohlc-example></ohlc-example>
+
+----
+
+Typically the OHLC and candlestick charts contain a lot of data, so it is
+useful to use them with the timeline feature enabled. The timeline feature is
+ described in <<charts-timeline#charts.timeline,"Timeline">>.
+
+[[charts.charttypes.ohlc.plotoptions]]
+=== Plot Options
+You can use a [elementname]#data-grouping# tag to configure data grouping
+properties. If the data points in a series are so dense that the spacing
+between two or more points is less than value of the
+[propertyname]#group-pixel-width#, the points will be grouped into
+appropriate groups so that each is more or less two pixels wide.
+The [propertyname]#approximation# attribute specifies which data point value
+should represent the group. The possible values are: [literal]#average#,
+[literal]#open#, [literal]#high#, [literal]#low#, [literal]#close#,
+and [literal]#sum#.
+
+Using [propertyname]#up-color# and [propertyname]#line-color# allow setting
+the fill and border colors of the candlestick that indicate rise in the
+values. The default colors are white.
