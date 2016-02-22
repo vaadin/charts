@@ -71,7 +71,7 @@ the key.
 
 [[figure.charts.installing.license]]
 .Obtaining License Key from Vaadin Directory
-image::img/directory-license-key.png[]
+image::img/directory-download-license-key.png[]
 
 To install the license key in a development workstation, you can copy and paste
 it verbatim to a [filename]#.vaadin.charts.developer.license# file in your home

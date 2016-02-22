@@ -57,4 +57,4 @@ If the license is valid, it will be saved to the local storage of the browser an
 
 [[figure.charts.installing.license]]
 .Obtaining License Key from Vaadin Directory
-image::img/directory-license-key.png[]
+image::img/directory-download-license-key.png[]
