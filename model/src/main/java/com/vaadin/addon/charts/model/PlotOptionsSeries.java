@@ -37,6 +37,7 @@ public class PlotOptionsSeries extends AbstractPlotOptions {
 	private Number cropThreshold;
 	private Cursor cursor;
 	private DashStyle dashStyle;
+	private DataLabels dataLabels;
 	private Boolean enableMouseTracking;
 	private Boolean getExtremesFromAll;
 	private ArrayList<String> keys;
@@ -244,6 +245,23 @@ public class PlotOptionsSeries extends AbstractPlotOptions {
 	 */
 	public void setDashStyle(DashStyle dashStyle) {
 		this.dashStyle = dashStyle;
+	}
+
+	/**
+	 * @see #setDataLabels(DataLabels)
+	 */
+	public DataLabels getDataLabels() {
+		if (dataLabels == null) {
+			dataLabels = new DataLabels();
+		}
+		return dataLabels;
+	}
+
+	/**
+	 * 
+	 */
+	public void setDataLabels(DataLabels dataLabels) {
+		this.dataLabels = dataLabels;
 	}
 
 	/**
