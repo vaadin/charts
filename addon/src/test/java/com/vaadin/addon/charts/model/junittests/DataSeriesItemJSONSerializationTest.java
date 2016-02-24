@@ -8,6 +8,8 @@ import org.junit.Test;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.OhlcItem;
+import com.vaadin.addon.charts.model.PlotOptionsPyramid;
+import com.vaadin.addon.charts.model.PlotOptionsSeries;
 import com.vaadin.addon.charts.model.serializers.DataSeriesItemBeanSerializer;
 
 /**
@@ -26,6 +28,24 @@ public class DataSeriesItemJSONSerializationTest {
         series.add(item);
 
         String expected = "{\"data\":[{\"cursor\":\"progress\"}]}";
+        assertEquals(expected, toJSON(series));
+    }
+
+    @Test
+    public void toJSON_PlotOptionsPyramidIsSet_SeriesSerializedWithType() {
+        DataSeries series = new DataSeries();
+        series.setPlotOptions(new PlotOptionsPyramid());
+
+        String expected = "{\"data\":[],\"type\":\"pyramid\"}";
+        assertEquals(expected, toJSON(series));
+    }
+
+    @Test
+    public void toJSON_PlotOptionsSeriesIsSet_SeriesSerializedWithoutType() {
+        DataSeries series = new DataSeries();
+        series.setPlotOptions(new PlotOptionsSeries());
+
+        String expected = "{\"data\":[]}";
         assertEquals(expected, toJSON(series));
     }
 

@@ -21,6 +21,7 @@ import java.io.IOException;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.vaadin.addon.charts.model.AbstractSeries;
+import com.vaadin.addon.charts.model.PlotOptionsSeries;
 
 /**
  * Custom bean serializer for {@link AbstractSeries} that adds the type field.
@@ -46,7 +47,8 @@ public class AbstractSeriesBeanSerializer extends
         // write other fields as per normal serialization rules
         serializer.serializeFields(bean, jgen, provider);
 
-        if (series.getPlotOptions() != null) {
+        if (series.getPlotOptions() != null
+                && !(bean.getPlotOptions() instanceof PlotOptionsSeries)) {
             jgen.writeObjectField("type", series.getPlotOptions()
                     .getChartType());
         }
