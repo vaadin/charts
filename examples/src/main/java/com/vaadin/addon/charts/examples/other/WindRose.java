@@ -3,7 +3,6 @@ package com.vaadin.addon.charts.examples.other;
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.AxisTitle;
-import com.vaadin.addon.charts.model.Background;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.HorizontalAlign;
@@ -41,7 +40,6 @@ public class WindRose extends AbstractVaadinChartExample {
         Pane pane = new Pane();
         pane.setSize("85%");
         conf.addPane(pane);
-        pane.setBackground(new Background[] {});
 
         conf.getLegend().setReversed(false);
         conf.getLegend().setAlign(HorizontalAlign.RIGHT);

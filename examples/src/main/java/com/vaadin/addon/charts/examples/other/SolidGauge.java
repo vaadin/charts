@@ -50,7 +50,7 @@ public class SolidGauge extends AbstractVaadinChartExample {
         bkg.setOuterRadius("100%");
         bkg.setShape("arc");
         bkg.setBorderWidth(0);
-        pane.setBackground(new Background[]{bkg});
+        pane.setBackground(bkg);
 
         YAxis yaxis = configuration.getyAxis();
         yaxis.setLineWidth(0);

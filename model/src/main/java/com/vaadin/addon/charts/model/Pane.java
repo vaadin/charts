@@ -17,6 +17,8 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import com.vaadin.addon.charts.util.SizeWithUnit;
 /**
  * Applies only to polar charts and angular gauges. This configuration object
@@ -26,7 +28,7 @@ import com.vaadin.addon.charts.util.SizeWithUnit;
 public class Pane extends AbstractConfigurationObject {
 
 	private Integer paneIndex;
-	private Background[] background;
+	private ArrayList<Background> background;
 	private String[] center;
 	private Number endAngle;
 	private String size;
@@ -49,22 +51,25 @@ public class Pane extends AbstractConfigurationObject {
 		this.paneIndex = paneIndex;
 	}
 
-	/**
-	 * @see #setBackground(Background[])
-	 */
 	public Background[] getBackground() {
-		return background;
+		Background[] arr = new Background[background.size()];
+		background.toArray(arr);
+		return arr;
 	}
 
-	/**
-	 * An object, or array of objects, for backgrounds. Sub options include
-	 * <code>backgroundColor</code> (can be solid or gradient),
-	 * <code>shape</code> ("solid" or "arc"), <code>innerWidth</code>,
-	 * <code>outerWidth</code>, <code>borderWidth</code>,
-	 * <code>borderColor</code>.
-	 */
-	public void setBackground(Background[] background) {
-		this.background = background;
+	public void setBackground(Background... background) {
+		this.background = new ArrayList<Background>(Arrays.asList(background));
+	}
+
+	public void addBackground(Background background) {
+		if (this.background == null) {
+			this.background = new ArrayList<Background>();
+		}
+		this.background.add(background);
+	}
+
+	public void removeBackground(Background background) {
+		this.background.remove(background);
 	}
 
 	/**

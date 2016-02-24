@@ -4,7 +4,6 @@ import static com.vaadin.addon.charts.model.Unit.PERCENTAGE;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.model.Background;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.HorizontalAlign;
@@ -39,7 +38,6 @@ public class Spiderweb extends AbstractVaadinChartExample {
         Pane pane = new Pane();
         pane.setSize(80, PERCENTAGE);
         conf.addPane(pane);
-        pane.setBackground(new Background[] {});
 
         XAxis axis = new XAxis();
         axis.setCategories("Sales", "Marketing", "Development",
