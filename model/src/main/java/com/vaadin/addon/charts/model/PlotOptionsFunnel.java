@@ -18,9 +18,9 @@ package com.vaadin.addon.charts.model;
  */
 
 import com.vaadin.addon.charts.model.style.Color;
-import com.vaadin.addon.charts.util.SizeWithUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
+import com.vaadin.addon.charts.util.SizeWithUnit;
 /**
  * Funnel charts are a type of chart often used to visualize stages in a sales
  * project, where the top are the initial stages with the most clients. It
@@ -32,7 +32,7 @@ public class PlotOptionsFunnel extends AbstractPlotOptions {
 	private Color borderColor;
 	private Number borderWidth;
 	private String[] center;
-	private Color[] colors;
+	private ArrayList<Color> colors;
 	private Cursor cursor;
 	private DataLabelsFunnel dataLabels;
 	private Number depth;
@@ -136,19 +136,25 @@ public class PlotOptionsFunnel extends AbstractPlotOptions {
 		this.center = center;
 	}
 
-	/**
-	 * @see #setColors(Color[])
-	 */
 	public Color[] getColors() {
-		return colors;
+		Color[] arr = new Color[colors.size()];
+		colors.toArray(arr);
+		return arr;
 	}
 
-	/**
-	 * A series specific or series type specific color set to use instead of the
-	 * global <a href="#colors">colors</a>.
-	 */
-	public void setColors(Color[] colors) {
-		this.colors = colors;
+	public void setColors(Color... colors) {
+		this.colors = new ArrayList<Color>(Arrays.asList(colors));
+	}
+
+	public void addColor(Color color) {
+		if (this.colors == null) {
+			this.colors = new ArrayList<Color>();
+		}
+		this.colors.add(color);
+	}
+
+	public void removeColor(Color color) {
+		this.colors.remove(color);
 	}
 
 	/**

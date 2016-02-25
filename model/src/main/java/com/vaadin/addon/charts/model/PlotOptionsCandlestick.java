@@ -30,7 +30,7 @@ public class PlotOptionsCandlestick extends AbstractPlotOptions {
 	private Boolean allowPointSelect;
 	private Boolean animation;
 	private Color color;
-	private Color[] colors;
+	private ArrayList<Color> colors;
 	private Number cropThreshold;
 	private Cursor cursor;
 	private DataGrouping dataGrouping;
@@ -148,22 +148,25 @@ public class PlotOptionsCandlestick extends AbstractPlotOptions {
 		this.color = color;
 	}
 
-	/**
-	 * @see #setColors(Color[])
-	 */
 	public Color[] getColors() {
-		return colors;
+		Color[] arr = new Color[colors.size()];
+		colors.toArray(arr);
+		return arr;
 	}
 
-	/**
-	 * A series specific or series type specific color set to apply instead of
-	 * the global <a href="#colors">colors</a> when <a
-	 * href="#plotOptions.column.colorByPoint">colorByPoint</a> is true.
-	 * <p>
-	 * Defaults to:
-	 */
-	public void setColors(Color[] colors) {
-		this.colors = colors;
+	public void setColors(Color... colors) {
+		this.colors = new ArrayList<Color>(Arrays.asList(colors));
+	}
+
+	public void addColor(Color color) {
+		if (this.colors == null) {
+			this.colors = new ArrayList<Color>();
+		}
+		this.colors.add(color);
+	}
+
+	public void removeColor(Color color) {
+		this.colors.remove(color);
 	}
 
 	/**
