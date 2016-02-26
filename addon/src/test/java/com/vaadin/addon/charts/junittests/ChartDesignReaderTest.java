@@ -13,6 +13,7 @@ import org.jsoup.select.Elements;
 import org.junit.Test;
 
 import com.vaadin.addon.charts.declarative.ChartDesignReader;
+import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.LayoutDirection;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
@@ -146,9 +147,9 @@ public class ChartDesignReaderTest {
         ChartDesignReader
             .readConfigurationFromElements(elements, configuration);
 
-        assertEquals(1, configuration.getAllPlotOptions().length);
+        assertEquals(1, configuration.getPlotOptions().size());
         assertThat(
-            configuration.getAllPlotOptions()[0],
+            configuration.getPlotOptions(ChartType.LINE),
             instanceOf(PlotOptionsLine.class));
     }
 
@@ -172,7 +173,7 @@ public class ChartDesignReaderTest {
             .readConfigurationFromElements(elements, configuration);
 
         PlotOptionsLine lineOptions =
-            (PlotOptionsLine) configuration.getAllPlotOptions()[0];
+            (PlotOptionsLine) configuration.getPlotOptions(ChartType.LINE);
         assertEquals(true, lineOptions.getDataLabels().getEnabled());
     }
 
@@ -185,7 +186,7 @@ public class ChartDesignReaderTest {
             .readConfigurationFromElements(elements, configuration);
 
         PlotOptionsTreemap lineOptions =
-            (PlotOptionsTreemap) configuration.getAllPlotOptions()[0];
+            (PlotOptionsTreemap) configuration.getPlotOptions(ChartType.TREEMAP);
         assertEquals(1, lineOptions.getLevels().length);
         assertEquals(1L, lineOptions.getLevels()[0].getLevel());
     }

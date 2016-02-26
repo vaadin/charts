@@ -2,7 +2,10 @@ package com.vaadin.addon.charts.model.junittests;
 
 import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+
+import java.util.Collection;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -15,6 +18,7 @@ import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.ContainerDataSeries;
 import com.vaadin.addon.charts.model.ListSeries;
+import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.data.Container;
@@ -89,12 +93,29 @@ public class ConfigurationTest {
     }
 
     @Test
-    public void getAllPlotOptions_getAfterChartCreation_EmptyArrayReturned() {
+    public void getPlotOptions_getAfterChartCreation_EmptyCollectionReturned() {
         Chart chart = new Chart();
-        AbstractPlotOptions[] result = chart.getConfiguration()
-                .getAllPlotOptions();
+        Collection<AbstractPlotOptions> result =
+            chart.getConfiguration().getPlotOptions();
+        assertEquals(0, result.size());
+    }
 
-        assertEquals(0, result.length);
+    @Test
+    public void getPlotOptionsForType_noPlotOptionFound_ReturnNull() {
+        Chart chart = new Chart();
+        AbstractPlotOptions result =
+            chart.getConfiguration().getPlotOptions(ChartType.LINE);
+        assertNull(result);
+    }
+
+    @Test
+    public void getPlotOptionsForType_PlotOptionsLineIsCreated_ReturnTheLinePlotOptions() {
+        Chart chart = new Chart();
+        PlotOptionsLine expected = new PlotOptionsLine();
+        chart.getConfiguration().setPlotOptions(expected);
+        AbstractPlotOptions result =
+            chart.getConfiguration().getPlotOptions(ChartType.LINE);
+        assertEquals(expected, result);
     }
 
     @Test

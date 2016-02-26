@@ -100,6 +100,23 @@ options.setWidth("70%");
 The crosshair definitions have been moved to the axis object for a better separation from the tooltip.
 The [methodname]#setCrosshairs(CrosshairStyle)# method in [classname]#Tooltip# class is now [methodname]#setCrosshair#(Crosshair) method in [classname]#XAxis# and [classname]#YAxis# classes.
 
+[[charts.migration.methodnamedif.plotoptions]]
+=== Plot options
+
+The API to configure plot options in [classname]#Configuration# class has changed.
+
+Renamed methods:
+
+* [methodname]#setPlotOptions(AbstractPlotOptions plotOptions)# -> [methodname]#addPlotOptions(AbstractPlotOptions plotOptions)#
+* [methodname]#getAllPlotOptions()# -> [methodname]#getPlotOptions()#
+
+New methods:
+
+* [methodname]#setPlotOptions(AbstractPlotOptions... plotOptions)#
+* [methodname]#getPlotOptions(ChartType type)#
+
+The previous [methodname]#setPlotOptions# method added new plot options to existing ones but the new method will reset the plot options.
+
 [[charts.migration.methodnamedif.other]]
 === Other
 * [classname]#XAxis# [methodname]#setShowLastTickLabel()# is now [classname]#XAxis# [methodname]#setShowLastLabel()#

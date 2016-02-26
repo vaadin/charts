@@ -19,6 +19,7 @@ package com.vaadin.addon.charts.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -535,9 +536,22 @@ public class Configuration extends AbstractConfigurationObject implements
      * 
      * @see #setPlotOptions(AbstractPlotOptions)
      */
-    public AbstractPlotOptions[] getAllPlotOptions() {
-        return plotOptions.values().toArray(
-                new AbstractPlotOptions[plotOptions.size()]);
+    public Collection<AbstractPlotOptions> getPlotOptions() {
+        return plotOptions.values();
+    }
+
+    /**
+     * Returns the plot options for a specific chart type used by this configuration.
+     * <p>
+     *    Returns null if no plot options was found for the type
+     * </p>
+     *
+     * @see #setPlotOptions(AbstractPlotOptions)
+     *
+     * @param type
+     */
+    public AbstractPlotOptions getPlotOptions(ChartType type) {
+        return plotOptions.get(type.toString());
     }
 
     /**
@@ -555,8 +569,11 @@ public class Configuration extends AbstractConfigurationObject implements
      * 
      * @param plotOptions
      */
-    public void setPlotOptions(AbstractPlotOptions plotOptions) {
-        addPlotOptions(plotOptions);
+    public void setPlotOptions(AbstractPlotOptions... plotOptions) {
+        this.plotOptions.clear();
+        for (AbstractPlotOptions po : plotOptions) {
+            addPlotOptions(po);
+        }
     }
 
     /**
@@ -566,7 +583,7 @@ public class Configuration extends AbstractConfigurationObject implements
      * 
      * @param plotOptions
      */
-    private void addPlotOptions(AbstractPlotOptions plotOptions) {
+    public void addPlotOptions(AbstractPlotOptions plotOptions) {
         if (plotOptions instanceof PlotOptionsSeries) {
             this.plotOptions.put("series", plotOptions);
         } else {

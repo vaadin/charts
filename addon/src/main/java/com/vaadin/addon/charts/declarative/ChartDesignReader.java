@@ -258,6 +258,9 @@ public class ChartDesignReader implements Serializable {
     }
 
     private static String singularForm(String name) {
+        if("plotOptions".equals(name)) {
+            return "plotOptions";
+        }
         if(name.endsWith("Axis")) {
             return name;
         }
@@ -312,6 +315,9 @@ public class ChartDesignReader implements Serializable {
     }
 
     private static Class<?> resolvePropertyType(PropertyDescriptor descriptor) {
+        if("plotOptions".equals(descriptor.getName())) {
+            return AbstractPlotOptions.class;
+        }
         if(descriptor instanceof IndexedPropertyDescriptor) {
             return ((IndexedPropertyDescriptor) descriptor).getIndexedPropertyType();
         }
@@ -319,6 +325,7 @@ public class ChartDesignReader implements Serializable {
         if(propertyType.isArray()) {
             return propertyType.getComponentType();
         }
+
         return propertyType;
     }
 
