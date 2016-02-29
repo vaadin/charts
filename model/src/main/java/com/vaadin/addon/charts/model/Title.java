@@ -72,16 +72,32 @@ public class Title extends AbstractConfigurationObject {
 		this.floating = floating;
 	}
 
+	/**
+	 * @see #setMargin(Number...)
+	 */
 	public Number[] getMargin() {
 		Number[] arr = new Number[margin.size()];
 		margin.toArray(arr);
 		return arr;
 	}
 
+	/**
+	 * The margin between the title and the plot area, or if a subtitle is
+	 * present, the margin between the subtitle and the plot area.
+	 * <p>
+	 * Defaults to: 15
+	 */
 	public void setMargin(Number... margin) {
 		this.margin = new ArrayList<Number>(Arrays.asList(margin));
 	}
 
+	/**
+	 * Adds margin to the margin array
+	 * 
+	 * @param margin
+	 *            to add
+	 * @see #setMargin(Number...)
+	 */
 	public void addMargin(Number margin) {
 		if (this.margin == null) {
 			this.margin = new ArrayList<Number>();
@@ -89,6 +105,13 @@ public class Title extends AbstractConfigurationObject {
 		this.margin.add(margin);
 	}
 
+	/**
+	 * Removes first occurrence of margin in margin array
+	 * 
+	 * @param margin
+	 *            to remove
+	 * @see #setMargin(Number...)
+	 */
 	public void removeMargin(Number margin) {
 		this.margin.remove(margin);
 	}

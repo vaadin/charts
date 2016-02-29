@@ -98,8 +98,6 @@ public class Label extends AbstractConfigurationObject {
 
 	/**
 	 * The text itself. A subset of HTML is supported.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setText(String text) {
 		this.text = text;

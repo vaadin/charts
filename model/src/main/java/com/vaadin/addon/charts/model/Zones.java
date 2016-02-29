@@ -69,8 +69,6 @@ public class Zones extends AbstractConfigurationObject {
 
 	/**
 	 * Defines the fill color for the series (in area type series)
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setFillColor(Color fillColor) {
 		this.fillColor = fillColor;

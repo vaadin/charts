@@ -41,8 +41,6 @@ public class Frame extends AbstractConfigurationObject {
 
 	/**
 	 * Defines the back panel of the frame around 3D charts.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setBack(Back back) {
 		this.back = back;
@@ -60,8 +58,6 @@ public class Frame extends AbstractConfigurationObject {
 
 	/**
 	 * The bottom of the frame around a 3D chart.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setBottom(Bottom bottom) {
 		this.bottom = bottom;
@@ -79,8 +75,6 @@ public class Frame extends AbstractConfigurationObject {
 
 	/**
 	 * The side for the frame around a 3D chart.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setSide(Side side) {
 		this.side = side;

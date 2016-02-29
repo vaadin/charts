@@ -99,8 +99,6 @@ public class RangeSelector extends AbstractConfigurationObject {
 	 * attributes like <code>fill</code>, <code>stroke</code>,
 	 * <code>stroke-width</code>, as well as <code>style</code>, a collection of
 	 * CSS properties for the text.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setButtonTheme(ButtonTheme buttonTheme) {
 		this.buttonTheme = buttonTheme;
@@ -345,8 +343,6 @@ public class RangeSelector extends AbstractConfigurationObject {
 
 	/**
 	 * CSS for the HTML inputs in the range selector.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setInputStyle(Style inputStyle) {
 		this.inputStyle = inputStyle;
@@ -364,8 +360,6 @@ public class RangeSelector extends AbstractConfigurationObject {
 
 	/**
 	 * CSS styles for the labels - the Zoom, From and To texts.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setLabelStyle(Style labelStyle) {
 		this.labelStyle = labelStyle;

@@ -184,8 +184,6 @@ public class Lang extends AbstractConfigurationObject {
 	/**
 	 * What to show in a date field for invalid dates. Defaults to an empty
 	 * string.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setInvalidDate(String invalidDate) {
 		this.invalidDate = invalidDate;
@@ -408,9 +406,6 @@ public class Lang extends AbstractConfigurationObject {
 		return noData;
 	}
 
-	/**
-	 * 
-	 */
 	public void setNoData(String noData) {
 		this.noData = noData;
 	}

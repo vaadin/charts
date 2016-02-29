@@ -120,9 +120,6 @@ public class Hover extends AbstractConfigurationObject {
 		return marker;
 	}
 
-	/**
-	 * 
-	 */
 	public void setMarker(Marker marker) {
 		this.marker = marker;
 	}
@@ -136,8 +133,6 @@ public class Hover extends AbstractConfigurationObject {
 
 	/**
 	 * The fill color of the marker in hover state.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setFillColor(Color fillColor) {
 		this.fillColor = fillColor;

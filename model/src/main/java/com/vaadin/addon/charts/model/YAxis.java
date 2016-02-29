@@ -150,16 +150,46 @@ public class YAxis extends Axis {
 		this.breaks = breaks;
 	}
 
+	/**
+	 * @see #setCategories(String...)
+	 */
 	public String[] getCategories() {
 		String[] arr = new String[categories.size()];
 		categories.toArray(arr);
 		return arr;
 	}
 
+	/**
+	 * <p>
+	 * If categories are present for the xAxis, names are used instead of
+	 * numbers for that axis. Since Highcharts 3.0, categories can also be
+	 * extracted by giving each point a <a href="#series.data">name</a> and
+	 * setting axis <a href="#xAxis.type">type</a> to <code>category</code>.
+	 * However, if you have multiple series, best practice remains defining the
+	 * <code>categories</code> array.
+	 * </p>
+	 * 
+	 * <p>
+	 * Example:
+	 * 
+	 * <pre>
+	 * categories: ['Apples', 'Bananas', 'Oranges']
+	 * </pre>
+	 * 
+	 * Defaults to <code>null</code>
+	 * </p>
+	 */
 	public void setCategories(String... categories) {
 		this.categories = new ArrayList<String>(Arrays.asList(categories));
 	}
 
+	/**
+	 * Adds category to the categories array
+	 * 
+	 * @param category
+	 *            to add
+	 * @see #setCategories(String...)
+	 */
 	public void addCategory(String category) {
 		if (this.categories == null) {
 			this.categories = new ArrayList<String>();
@@ -167,6 +197,13 @@ public class YAxis extends Axis {
 		this.categories.add(category);
 	}
 
+	/**
+	 * Removes first occurrence of category in categories array
+	 * 
+	 * @param category
+	 *            to remove
+	 * @see #setCategories(String...)
+	 */
 	public void removeCategory(String category) {
 		this.categories.remove(category);
 	}
@@ -180,8 +217,6 @@ public class YAxis extends Axis {
 
 	/**
 	 * The highest allowed value for automatically computed axis extremes.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setCeiling(Number ceiling) {
 		this.ceiling = ceiling;
@@ -384,9 +419,6 @@ public class YAxis extends Axis {
 		return labels;
 	}
 
-	/**
-	 * 
-	 */
 	public void setLabels(Labels labels) {
 		this.labels = labels;
 	}
@@ -752,16 +784,29 @@ public class YAxis extends Axis {
 		this.opposite = opposite;
 	}
 
+	/**
+	 * @see #setPlotBands(PlotBand...)
+	 */
 	public PlotBand[] getPlotBands() {
 		PlotBand[] arr = new PlotBand[plotBands.size()];
 		plotBands.toArray(arr);
 		return arr;
 	}
 
+	/**
+	 * An array of objects defining plot bands on the Y axis.
+	 */
 	public void setPlotBands(PlotBand... plotBands) {
 		this.plotBands = new ArrayList<PlotBand>(Arrays.asList(plotBands));
 	}
 
+	/**
+	 * Adds plotBand to the plotBands array
+	 * 
+	 * @param plotBand
+	 *            to add
+	 * @see #setPlotBands(PlotBand...)
+	 */
 	public void addPlotBand(PlotBand plotBand) {
 		if (this.plotBands == null) {
 			this.plotBands = new ArrayList<PlotBand>();
@@ -769,20 +814,40 @@ public class YAxis extends Axis {
 		this.plotBands.add(plotBand);
 	}
 
+	/**
+	 * Removes first occurrence of plotBand in plotBands array
+	 * 
+	 * @param plotBand
+	 *            to remove
+	 * @see #setPlotBands(PlotBand...)
+	 */
 	public void removePlotBand(PlotBand plotBand) {
 		this.plotBands.remove(plotBand);
 	}
 
+	/**
+	 * @see #setPlotLines(PlotLine...)
+	 */
 	public PlotLine[] getPlotLines() {
 		PlotLine[] arr = new PlotLine[plotLines.size()];
 		plotLines.toArray(arr);
 		return arr;
 	}
 
+	/**
+	 * An array of objects representing plot lines on the X axis
+	 */
 	public void setPlotLines(PlotLine... plotLines) {
 		this.plotLines = new ArrayList<PlotLine>(Arrays.asList(plotLines));
 	}
 
+	/**
+	 * Adds plotLine to the plotLines array
+	 * 
+	 * @param plotLine
+	 *            to add
+	 * @see #setPlotLines(PlotLine...)
+	 */
 	public void addPlotLine(PlotLine plotLine) {
 		if (this.plotLines == null) {
 			this.plotLines = new ArrayList<PlotLine>();
@@ -790,6 +855,13 @@ public class YAxis extends Axis {
 		this.plotLines.add(plotLine);
 	}
 
+	/**
+	 * Removes first occurrence of plotLine in plotLines array
+	 * 
+	 * @param plotLine
+	 *            to remove
+	 * @see #setPlotLines(PlotLine...)
+	 */
 	public void removePlotLine(PlotLine plotLine) {
 		this.plotLines.remove(plotLine);
 	}
@@ -1115,9 +1187,6 @@ public class YAxis extends Axis {
 		return title;
 	}
 
-	/**
-	 * 
-	 */
 	public void setTitle(AxisTitle title) {
 		this.title = title;
 	}
@@ -1144,16 +1213,60 @@ public class YAxis extends Axis {
 		this.type = type;
 	}
 
+	/**
+	 * @see #setUnits(TimeUnitMultiples...)
+	 */
 	public TimeUnitMultiples[] getUnits() {
 		TimeUnitMultiples[] arr = new TimeUnitMultiples[units.size()];
 		units.toArray(arr);
 		return arr;
 	}
 
+	/**
+	 * Datetime axis only. An array determining what time intervals the ticks
+	 * are allowed to fall on. Each array item is an array where the first value
+	 * is the time unit and the second value another array of allowed multiples.
+	 * Defaults to:
+	 * 
+	 * <pre>
+	 * units: [[
+	 * 		'millisecond', // unit name
+	 * 		[1, 2, 5, 10, 20, 25, 50, 100, 200, 500] // allowed multiples
+	 * 	], [
+	 * 		'second',
+	 * 		[1, 2, 5, 10, 15, 30]
+	 * 	], [
+	 * 		'minute',
+	 * 		[1, 2, 5, 10, 15, 30]
+	 * 	], [
+	 * 		'hour',
+	 * 		[1, 2, 3, 4, 6, 8, 12]
+	 * 	], [
+	 * 		'day',
+	 * 		[1]
+	 * 	], [
+	 * 		'week',
+	 * 		[1]
+	 * 	], [
+	 * 		'month',
+	 * 		[1, 3, 6]
+	 * 	], [
+	 * 		'year',
+	 * 		null
+	 * 	]]
+	 * </pre>
+	 */
 	public void setUnits(TimeUnitMultiples... units) {
 		this.units = new ArrayList<TimeUnitMultiples>(Arrays.asList(units));
 	}
 
+	/**
+	 * Adds unit to the units array
+	 * 
+	 * @param unit
+	 *            to add
+	 * @see #setUnits(TimeUnitMultiples...)
+	 */
 	public void addUnit(TimeUnitMultiples unit) {
 		if (this.units == null) {
 			this.units = new ArrayList<TimeUnitMultiples>();
@@ -1161,6 +1274,13 @@ public class YAxis extends Axis {
 		this.units.add(unit);
 	}
 
+	/**
+	 * Removes first occurrence of unit in units array
+	 * 
+	 * @param unit
+	 *            to remove
+	 * @see #setUnits(TimeUnitMultiples...)
+	 */
 	public void removeUnit(TimeUnitMultiples unit) {
 		this.units.remove(unit);
 	}
@@ -1326,6 +1446,9 @@ public class YAxis extends Axis {
 		linkedTo = axis.getAxisIndex();
 	}
 
+	/**
+	 * @see #setStops(Stop...)
+	 */
 	public Stop[] getStops() {
 		Stop[] arr = new Stop[stops.size()];
 		stops.toArray(arr);
@@ -1336,6 +1459,13 @@ public class YAxis extends Axis {
 		this.stops = new ArrayList<Stop>(Arrays.asList(stops));
 	}
 
+	/**
+	 * Adds stop to the stops array
+	 * 
+	 * @param stop
+	 *            to add
+	 * @see #setStops(Stop...)
+	 */
 	public void addStop(Stop stop) {
 		if (this.stops == null) {
 			this.stops = new ArrayList<Stop>();
@@ -1343,6 +1473,13 @@ public class YAxis extends Axis {
 		this.stops.add(stop);
 	}
 
+	/**
+	 * Removes first occurrence of stop in stops array
+	 * 
+	 * @param stop
+	 *            to remove
+	 * @see #setStops(Stop...)
+	 */
 	public void removeStop(Stop stop) {
 		this.stops.remove(stop);
 	}

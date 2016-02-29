@@ -169,8 +169,6 @@ public class Exporting extends AbstractConfigurationObject {
 
 	/**
 	 * Analogous to <a href="#exporting.sourceWidth">sourceWidth</a>
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setSourceHeight(Number sourceHeight) {
 		this.sourceHeight = sourceHeight;
@@ -187,8 +185,6 @@ public class Exporting extends AbstractConfigurationObject {
 	 * The width of the original chart when exported, unless an explicit <a
 	 * href="#chart.width">chart.width</a> is set. The width exported raster
 	 * image is then multiplied by <a href="#exporting.scale">scale</a>.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setSourceWidth(Number sourceWidth) {
 		this.sourceWidth = sourceWidth;

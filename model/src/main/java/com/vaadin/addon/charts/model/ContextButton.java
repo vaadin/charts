@@ -247,8 +247,6 @@ public class ContextButton extends AbstractConfigurationObject {
 	 * properties like <code>stroke-width</code>, <code>stroke</code> and
 	 * <code>fill</code>. Tri-state button styles are supported by the
 	 * <code>states.hover</code> and <code>states.select</code> objects.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setTheme(ButtonTheme theme) {
 		this.theme = theme;

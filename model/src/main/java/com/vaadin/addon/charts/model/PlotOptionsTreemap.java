@@ -229,16 +229,31 @@ public class PlotOptionsTreemap extends AbstractPlotOptions {
 		this.colorByPoint = colorByPoint;
 	}
 
+	/**
+	 * @see #setColors(Color...)
+	 */
 	public Color[] getColors() {
 		Color[] arr = new Color[colors.size()];
 		colors.toArray(arr);
 		return arr;
 	}
 
+	/**
+	 * A series specific or series type specific color set to apply instead of
+	 * the global <a href="#colors">colors</a> when <a
+	 * href="#plotOptions.column.colorByPoint">colorByPoint</a> is true.
+	 */
 	public void setColors(Color... colors) {
 		this.colors = new ArrayList<Color>(Arrays.asList(colors));
 	}
 
+	/**
+	 * Adds color to the colors array
+	 * 
+	 * @param color
+	 *            to add
+	 * @see #setColors(Color...)
+	 */
 	public void addColor(Color color) {
 		if (this.colors == null) {
 			this.colors = new ArrayList<Color>();
@@ -246,6 +261,13 @@ public class PlotOptionsTreemap extends AbstractPlotOptions {
 		this.colors.add(color);
 	}
 
+	/**
+	 * Removes first occurrence of color in colors array
+	 * 
+	 * @param color
+	 *            to remove
+	 * @see #setColors(Color...)
+	 */
 	public void removeColor(Color color) {
 		this.colors.remove(color);
 	}
@@ -299,10 +321,6 @@ public class PlotOptionsTreemap extends AbstractPlotOptions {
 		return dataLabels;
 	}
 
-	/**
-	 * <p>
-	 * Defaults to:
-	 */
 	public void setDataLabels(DataLabels dataLabels) {
 		this.dataLabels = dataLabels;
 	}
@@ -360,16 +378,31 @@ public class PlotOptionsTreemap extends AbstractPlotOptions {
 		this.interactByLeaf = interactByLeaf;
 	}
 
+	/**
+	 * @see #setKeys(String...)
+	 */
 	public String[] getKeys() {
 		String[] arr = new String[keys.size()];
 		keys.toArray(arr);
 		return arr;
 	}
 
+	/**
+	 * An array specifying which option maps to which key in the data point
+	 * array. This makes it convenient to work with unstructured data arrays
+	 * from different sources.
+	 */
 	public void setKeys(String... keys) {
 		this.keys = new ArrayList<String>(Arrays.asList(keys));
 	}
 
+	/**
+	 * Adds key to the keys array
+	 * 
+	 * @param key
+	 *            to add
+	 * @see #setKeys(String...)
+	 */
 	public void addKey(String key) {
 		if (this.keys == null) {
 			this.keys = new ArrayList<String>();
@@ -377,6 +410,13 @@ public class PlotOptionsTreemap extends AbstractPlotOptions {
 		this.keys.add(key);
 	}
 
+	/**
+	 * Removes first occurrence of key in keys array
+	 * 
+	 * @param key
+	 *            to remove
+	 * @see #setKeys(String...)
+	 */
 	public void removeKey(String key) {
 		this.keys.remove(key);
 	}
@@ -435,16 +475,30 @@ public class PlotOptionsTreemap extends AbstractPlotOptions {
 		this.levelIsConstant = levelIsConstant;
 	}
 
+	/**
+	 * @see #setLevels(Level...)
+	 */
 	public Level[] getLevels() {
 		Level[] arr = new Level[levels.size()];
 		levels.toArray(arr);
 		return arr;
 	}
 
+	/**
+	 * Set options on specific levels. Takes precedence over series options, but
+	 * not point options.
+	 */
 	public void setLevels(Level... levels) {
 		this.levels = new ArrayList<Level>(Arrays.asList(levels));
 	}
 
+	/**
+	 * Adds level to the levels array
+	 * 
+	 * @param level
+	 *            to add
+	 * @see #setLevels(Level...)
+	 */
 	public void addLevel(Level level) {
 		if (this.levels == null) {
 			this.levels = new ArrayList<Level>();
@@ -452,6 +506,13 @@ public class PlotOptionsTreemap extends AbstractPlotOptions {
 		this.levels.add(level);
 	}
 
+	/**
+	 * Removes first occurrence of level in levels array
+	 * 
+	 * @param level
+	 *            to remove
+	 * @see #setLevels(Level...)
+	 */
 	public void removeLevel(Level level) {
 		this.levels.remove(level);
 	}
@@ -468,8 +529,6 @@ public class PlotOptionsTreemap extends AbstractPlotOptions {
 	 * Additionally, the value can be ":previous" to link to the previous
 	 * series. When two series are linked, only the first one appears in the
 	 * legend. Toggling the visibility of this also toggles the linked series.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setLinkedTo(String linkedTo) {
 		this.linkedTo = linkedTo;
@@ -574,8 +633,6 @@ public class PlotOptionsTreemap extends AbstractPlotOptions {
 
 	/**
 	 * The sort index of the point inside the treemap level.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setSortIndex(Number sortIndex) {
 		this.sortIndex = sortIndex;
@@ -632,10 +689,6 @@ public class PlotOptionsTreemap extends AbstractPlotOptions {
 		return tooltip;
 	}
 
-	/**
-	 * <p>
-	 * Defaults to:
-	 */
 	public void setTooltip(SeriesTooltip tooltip) {
 		this.tooltip = tooltip;
 	}
@@ -692,16 +745,31 @@ public class PlotOptionsTreemap extends AbstractPlotOptions {
 		this.zoneAxis = zoneAxis;
 	}
 
+	/**
+	 * @see #setZones(Zones...)
+	 */
 	public Zones[] getZones() {
 		Zones[] arr = new Zones[zones.size()];
 		zones.toArray(arr);
 		return arr;
 	}
 
+	/**
+	 * An array defining zones within a series. Zones can be applied to the X
+	 * axis, Y axis or Z axis for bubbles, according to the
+	 * <code>zoneAxis</code> option.
+	 */
 	public void setZones(Zones... zones) {
 		this.zones = new ArrayList<Zones>(Arrays.asList(zones));
 	}
 
+	/**
+	 * Adds zone to the zones array
+	 * 
+	 * @param zone
+	 *            to add
+	 * @see #setZones(Zones...)
+	 */
 	public void addZone(Zones zone) {
 		if (this.zones == null) {
 			this.zones = new ArrayList<Zones>();
@@ -709,6 +777,13 @@ public class PlotOptionsTreemap extends AbstractPlotOptions {
 		this.zones.add(zone);
 	}
 
+	/**
+	 * Removes first occurrence of zone in zones array
+	 * 
+	 * @param zone
+	 *            to remove
+	 * @see #setZones(Zones...)
+	 */
 	public void removeZone(Zones zone) {
 		this.zones.remove(zone);
 	}

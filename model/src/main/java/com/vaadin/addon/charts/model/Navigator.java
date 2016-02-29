@@ -302,8 +302,6 @@ public class Navigator extends AbstractConfigurationObject {
 	 * 		tickWidth: 0
 	 * 	}
 	 * </pre>
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setYAxis(YAxis[] yAxis) {
 		this.yAxis = yAxis;

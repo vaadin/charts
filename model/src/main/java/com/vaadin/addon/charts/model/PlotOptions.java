@@ -73,9 +73,6 @@ public class PlotOptions extends AbstractConfigurationObject {
 		return area;
 	}
 
-	/**
-	 * 
-	 */
 	public void setArea(PlotOptionsArea area) {
 		this.area = area;
 	}
@@ -108,9 +105,6 @@ public class PlotOptions extends AbstractConfigurationObject {
 		return areaspline;
 	}
 
-	/**
-	 * 
-	 */
 	public void setAreaspline(PlotOptionsAreaspline areaspline) {
 		this.areaspline = areaspline;
 	}
@@ -128,8 +122,6 @@ public class PlotOptions extends AbstractConfigurationObject {
 	/**
 	 * The area spline range is a cartesian series type with higher and lower Y
 	 * values along an X axis. Requires <code>highcharts-more.js</code>.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setAreasplinerange(PlotOptionsAreasplinerange areasplinerange) {
 		this.areasplinerange = areasplinerange;
@@ -145,9 +137,6 @@ public class PlotOptions extends AbstractConfigurationObject {
 		return bar;
 	}
 
-	/**
-	 * 
-	 */
 	public void setBar(PlotOptionsBar bar) {
 		this.bar = bar;
 	}
@@ -187,8 +176,6 @@ public class PlotOptions extends AbstractConfigurationObject {
 	 * renders an X, Y and Z value. Each points is drawn as a bubble where the
 	 * position along the X and Y axes mark the X and Y values, and the size of
 	 * the bubble relates to the Z value.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setBubble(PlotOptionsBubble bubble) {
 		this.bubble = bubble;
@@ -204,9 +191,6 @@ public class PlotOptions extends AbstractConfigurationObject {
 		return column;
 	}
 
-	/**
-	 * 
-	 */
 	public void setColumn(PlotOptionsColumn column) {
 		this.column = column;
 	}
@@ -245,8 +229,6 @@ public class PlotOptions extends AbstractConfigurationObject {
 	 * Error bars are a graphical representation of the variability of data and
 	 * are used on graphs to indicate the error, or uncertainty in a reported
 	 * measurement.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setErrorbar(PlotOptionsErrorbar errorbar) {
 		this.errorbar = errorbar;
@@ -325,9 +307,6 @@ public class PlotOptions extends AbstractConfigurationObject {
 		return line;
 	}
 
-	/**
-	 * 
-	 */
 	public void setLine(PlotOptionsLine line) {
 		this.line = line;
 	}
@@ -400,9 +379,6 @@ public class PlotOptions extends AbstractConfigurationObject {
 		return scatter;
 	}
 
-	/**
-	 * 
-	 */
 	public void setScatter(PlotOptionsScatter scatter) {
 		this.scatter = scatter;
 	}
@@ -458,9 +434,6 @@ public class PlotOptions extends AbstractConfigurationObject {
 		return spline;
 	}
 
-	/**
-	 * 
-	 */
 	public void setSpline(PlotOptionsSpline spline) {
 		this.spline = spline;
 	}
@@ -498,8 +471,6 @@ public class PlotOptions extends AbstractConfigurationObject {
 
 	/**
 	 * Options for the waterfall series type.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setWaterfall(PlotOptionsWaterfall waterfall) {
 		this.waterfall = waterfall;
@@ -515,9 +486,6 @@ public class PlotOptions extends AbstractConfigurationObject {
 		return candlestick;
 	}
 
-	/**
-	 * 
-	 */
 	public void setCandlestick(PlotOptionsCandlestick candlestick) {
 		this.candlestick = candlestick;
 	}
@@ -532,9 +500,6 @@ public class PlotOptions extends AbstractConfigurationObject {
 		return flags;
 	}
 
-	/**
-	 * 
-	 */
 	public void setFlags(PlotOptionsFlags flags) {
 		this.flags = flags;
 	}
@@ -549,9 +514,6 @@ public class PlotOptions extends AbstractConfigurationObject {
 		return ohlc;
 	}
 
-	/**
-	 * 
-	 */
 	public void setOhlc(PlotOptionsOhlc ohlc) {
 		this.ohlc = ohlc;
 	}

@@ -34,9 +34,6 @@ public class States extends AbstractConfigurationObject {
 		return hover;
 	}
 
-	/**
-	 * 
-	 */
 	public void setHover(Hover hover) {
 		this.hover = hover;
 	}

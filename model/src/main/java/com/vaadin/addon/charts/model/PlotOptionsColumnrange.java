@@ -219,16 +219,31 @@ public class PlotOptionsColumnrange extends AbstractPlotOptions {
 		this.colorByPoint = colorByPoint;
 	}
 
+	/**
+	 * @see #setColors(Color...)
+	 */
 	public Color[] getColors() {
 		Color[] arr = new Color[colors.size()];
 		colors.toArray(arr);
 		return arr;
 	}
 
+	/**
+	 * A series specific or series type specific color set to apply instead of
+	 * the global <a href="#colors">colors</a> when <a
+	 * href="#plotOptions.column.colorByPoint">colorByPoint</a> is true.
+	 */
 	public void setColors(Color... colors) {
 		this.colors = new ArrayList<Color>(Arrays.asList(colors));
 	}
 
+	/**
+	 * Adds color to the colors array
+	 * 
+	 * @param color
+	 *            to add
+	 * @see #setColors(Color...)
+	 */
 	public void addColor(Color color) {
 		if (this.colors == null) {
 			this.colors = new ArrayList<Color>();
@@ -236,6 +251,13 @@ public class PlotOptionsColumnrange extends AbstractPlotOptions {
 		this.colors.add(color);
 	}
 
+	/**
+	 * Removes first occurrence of color in colors array
+	 * 
+	 * @param color
+	 *            to remove
+	 * @see #setColors(Color...)
+	 */
 	public void removeColor(Color color) {
 		this.colors.remove(color);
 	}
@@ -295,8 +317,6 @@ public class PlotOptionsColumnrange extends AbstractPlotOptions {
 	 * <code>xLow</code>, <code>xHigh</code>, <code>yLow</code> and
 	 * <code>yHigh</code> options to allow the higher and lower data label sets
 	 * individually.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setDataLabels(DataLabelsRange dataLabels) {
 		this.dataLabels = dataLabels;
@@ -330,8 +350,6 @@ public class PlotOptionsColumnrange extends AbstractPlotOptions {
 	 * 3D columns only. The color of the edges. Similar to
 	 * <code>borderColor</code>, except it defaults to the same color as the
 	 * column.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setEdgeColor(Color edgeColor) {
 		this.edgeColor = edgeColor;
@@ -440,16 +458,31 @@ public class PlotOptionsColumnrange extends AbstractPlotOptions {
 		this.grouping = grouping;
 	}
 
+	/**
+	 * @see #setKeys(String...)
+	 */
 	public String[] getKeys() {
 		String[] arr = new String[keys.size()];
 		keys.toArray(arr);
 		return arr;
 	}
 
+	/**
+	 * An array specifying which option maps to which key in the data point
+	 * array. This makes it convenient to work with unstructured data arrays
+	 * from different sources.
+	 */
 	public void setKeys(String... keys) {
 		this.keys = new ArrayList<String>(Arrays.asList(keys));
 	}
 
+	/**
+	 * Adds key to the keys array
+	 * 
+	 * @param key
+	 *            to add
+	 * @see #setKeys(String...)
+	 */
 	public void addKey(String key) {
 		if (this.keys == null) {
 			this.keys = new ArrayList<String>();
@@ -457,6 +490,13 @@ public class PlotOptionsColumnrange extends AbstractPlotOptions {
 		this.keys.add(key);
 	}
 
+	/**
+	 * Removes first occurrence of key in keys array
+	 * 
+	 * @param key
+	 *            to remove
+	 * @see #setKeys(String...)
+	 */
 	public void removeKey(String key) {
 		this.keys.remove(key);
 	}
@@ -473,8 +513,6 @@ public class PlotOptionsColumnrange extends AbstractPlotOptions {
 	 * Additionally, the value can be ":previous" to link to the previous
 	 * series. When two series are linked, only the first one appears in the
 	 * legend. Toggling the visibility of this also toggles the linked series.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setLinkedTo(String linkedTo) {
 		this.linkedTo = linkedTo;
@@ -850,16 +888,31 @@ public class PlotOptionsColumnrange extends AbstractPlotOptions {
 		this.zoneAxis = zoneAxis;
 	}
 
+	/**
+	 * @see #setZones(Zones...)
+	 */
 	public Zones[] getZones() {
 		Zones[] arr = new Zones[zones.size()];
 		zones.toArray(arr);
 		return arr;
 	}
 
+	/**
+	 * An array defining zones within a series. Zones can be applied to the X
+	 * axis, Y axis or Z axis for bubbles, according to the
+	 * <code>zoneAxis</code> option.
+	 */
 	public void setZones(Zones... zones) {
 		this.zones = new ArrayList<Zones>(Arrays.asList(zones));
 	}
 
+	/**
+	 * Adds zone to the zones array
+	 * 
+	 * @param zone
+	 *            to add
+	 * @see #setZones(Zones...)
+	 */
 	public void addZone(Zones zone) {
 		if (this.zones == null) {
 			this.zones = new ArrayList<Zones>();
@@ -867,6 +920,13 @@ public class PlotOptionsColumnrange extends AbstractPlotOptions {
 		this.zones.add(zone);
 	}
 
+	/**
+	 * Removes first occurrence of zone in zones array
+	 * 
+	 * @param zone
+	 *            to remove
+	 * @see #setZones(Zones...)
+	 */
 	public void removeZone(Zones zone) {
 		this.zones.remove(zone);
 	}
@@ -902,9 +962,6 @@ public class PlotOptionsColumnrange extends AbstractPlotOptions {
 		return dataGrouping;
 	}
 
-	/**
-	 * 
-	 */
 	public void setDataGrouping(DataGrouping dataGrouping) {
 		this.dataGrouping = dataGrouping;
 	}

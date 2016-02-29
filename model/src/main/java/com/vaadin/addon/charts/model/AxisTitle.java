@@ -171,8 +171,6 @@ public class AxisTitle extends AbstractConfigurationObject {
 
 	/**
 	 * Vertical pixel offset of the title position.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setY(Number y) {
 		this.y = y;

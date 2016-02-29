@@ -364,8 +364,6 @@ public class ChartModel extends AbstractConfigurationObject {
 
 	/**
 	 * Allows setting a key to switch between zooming and panning.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setPanKey(String panKey) {
 		this.panKey = panKey;

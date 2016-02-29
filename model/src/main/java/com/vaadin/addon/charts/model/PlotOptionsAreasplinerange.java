@@ -252,8 +252,6 @@ public class PlotOptionsAreasplinerange extends AbstractPlotOptions {
 	 * <code>xLow</code>, <code>xHigh</code>, <code>yLow</code> and
 	 * <code>yHigh</code> options to allow the higher and lower data label sets
 	 * individually.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setDataLabels(DataLabelsRange dataLabels) {
 		this.dataLabels = dataLabels;
@@ -329,16 +327,31 @@ public class PlotOptionsAreasplinerange extends AbstractPlotOptions {
 		this.getExtremesFromAll = getExtremesFromAll;
 	}
 
+	/**
+	 * @see #setKeys(String...)
+	 */
 	public String[] getKeys() {
 		String[] arr = new String[keys.size()];
 		keys.toArray(arr);
 		return arr;
 	}
 
+	/**
+	 * An array specifying which option maps to which key in the data point
+	 * array. This makes it convenient to work with unstructured data arrays
+	 * from different sources.
+	 */
 	public void setKeys(String... keys) {
 		this.keys = new ArrayList<String>(Arrays.asList(keys));
 	}
 
+	/**
+	 * Adds key to the keys array
+	 * 
+	 * @param key
+	 *            to add
+	 * @see #setKeys(String...)
+	 */
 	public void addKey(String key) {
 		if (this.keys == null) {
 			this.keys = new ArrayList<String>();
@@ -346,6 +359,13 @@ public class PlotOptionsAreasplinerange extends AbstractPlotOptions {
 		this.keys.add(key);
 	}
 
+	/**
+	 * Removes first occurrence of key in keys array
+	 * 
+	 * @param key
+	 *            to remove
+	 * @see #setKeys(String...)
+	 */
 	public void removeKey(String key) {
 		this.keys.remove(key);
 	}
@@ -411,8 +431,6 @@ public class PlotOptionsAreasplinerange extends AbstractPlotOptions {
 	 * Additionally, the value can be ":previous" to link to the previous
 	 * series. When two series are linked, only the first one appears in the
 	 * legend. Toggling the visibility of this also toggles the linked series.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setLinkedTo(String linkedTo) {
 		this.linkedTo = linkedTo;
@@ -444,8 +462,6 @@ public class PlotOptionsAreasplinerange extends AbstractPlotOptions {
 
 	/**
 	 * A separate color for the negative part of the area.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setNegativeFillColor(Color negativeFillColor) {
 		this.negativeFillColor = negativeFillColor;
@@ -770,16 +786,31 @@ public class PlotOptionsAreasplinerange extends AbstractPlotOptions {
 		this.zoneAxis = zoneAxis;
 	}
 
+	/**
+	 * @see #setZones(Zones...)
+	 */
 	public Zones[] getZones() {
 		Zones[] arr = new Zones[zones.size()];
 		zones.toArray(arr);
 		return arr;
 	}
 
+	/**
+	 * An array defining zones within a series. Zones can be applied to the X
+	 * axis, Y axis or Z axis for bubbles, according to the
+	 * <code>zoneAxis</code> option.
+	 */
 	public void setZones(Zones... zones) {
 		this.zones = new ArrayList<Zones>(Arrays.asList(zones));
 	}
 
+	/**
+	 * Adds zone to the zones array
+	 * 
+	 * @param zone
+	 *            to add
+	 * @see #setZones(Zones...)
+	 */
 	public void addZone(Zones zone) {
 		if (this.zones == null) {
 			this.zones = new ArrayList<Zones>();
@@ -787,6 +818,13 @@ public class PlotOptionsAreasplinerange extends AbstractPlotOptions {
 		this.zones.add(zone);
 	}
 
+	/**
+	 * Removes first occurrence of zone in zones array
+	 * 
+	 * @param zone
+	 *            to remove
+	 * @see #setZones(Zones...)
+	 */
 	public void removeZone(Zones zone) {
 		this.zones.remove(zone);
 	}
@@ -822,9 +860,6 @@ public class PlotOptionsAreasplinerange extends AbstractPlotOptions {
 		return dataGrouping;
 	}
 
-	/**
-	 * 
-	 */
 	public void setDataGrouping(DataGrouping dataGrouping) {
 		this.dataGrouping = dataGrouping;
 	}

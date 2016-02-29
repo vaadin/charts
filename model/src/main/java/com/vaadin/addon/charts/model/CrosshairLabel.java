@@ -48,8 +48,6 @@ public class CrosshairLabel extends AbstractConfigurationObject {
 	 * Alignment of the label compared to the axis. Defaults to
 	 * <code>left</code> for right-side axes, <code>right</code> for left-side
 	 * axes and <code>center</code> for horizontal axes.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setAlign(HorizontalAlign align) {
 		this.align = align;
@@ -65,8 +63,6 @@ public class CrosshairLabel extends AbstractConfigurationObject {
 	/**
 	 * The background color for the label. Defaults to the related series color,
 	 * or <code>gray</code> if that is not available.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setBackgroundColor(Color backgroundColor) {
 		this.backgroundColor = backgroundColor;
@@ -81,8 +77,6 @@ public class CrosshairLabel extends AbstractConfigurationObject {
 
 	/**
 	 * The border color for the crosshair label
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setBorderColor(Color borderColor) {
 		this.borderColor = borderColor;
@@ -130,8 +124,6 @@ public class CrosshairLabel extends AbstractConfigurationObject {
 	/**
 	 * A format string for the crosshair label. Defaults to <code>{value}</code>
 	 * for numeric axes and <code>{value:%b %d, %Y}</code> for datetime axes.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setFormat(String format) {
 		this.format = format;
@@ -188,9 +180,6 @@ public class CrosshairLabel extends AbstractConfigurationObject {
 		return enabled;
 	}
 
-	/**
-	 * 
-	 */
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 	}

@@ -145,9 +145,6 @@ public class Marker extends AbstractConfigurationObject {
 		return states;
 	}
 
-	/**
-	 * 
-	 */
 	public void setStates(States states) {
 		this.states = states;
 	}
@@ -176,9 +173,6 @@ public class Marker extends AbstractConfigurationObject {
 		return symbol;
 	}
 
-	/**
-	 * 
-	 */
 	public void setSymbol(MarkerSymbol symbol) {
 		this.symbol = symbol;
 	}

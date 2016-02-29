@@ -218,8 +218,6 @@ public class Scrollbar extends AbstractConfigurationObject {
 	 * The height of the scrollbar. The height also applies to the width of the
 	 * scroll arrows so that they are always squares. Defaults to 20 for touch
 	 * devices and 14 for mouse devices.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setHeight(Number height) {
 		this.height = height;
@@ -236,8 +234,6 @@ public class Scrollbar extends AbstractConfigurationObject {
 	 * Whether to redraw the main chart as the scrollbar or the navigator zoomed
 	 * window is moved. Defaults to <code>true</code> for modern browsers and
 	 * <code>false</code> for legacy IE browsers as well as mobile devices.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setLiveRedraw(Boolean liveRedraw) {
 		this.liveRedraw = liveRedraw;

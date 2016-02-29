@@ -173,8 +173,6 @@ public class Tooltip extends AbstractConfigurationObject {
 	 * </pre>
 	 * 
 	 * </p>
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setDateTimeLabelFormats(
 			DateTimeLabelFormats dateTimeLabelFormats) {
@@ -291,8 +289,6 @@ public class Tooltip extends AbstractConfigurationObject {
 	 * Defaults to
 	 * <code>&lt;span style="font-size: 10px"&gt;{point.key}&lt;/span&gt;&lt;br/&gt;</code>
 	 * </p>
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setHeaderFormat(String headerFormat) {
 		this.headerFormat = headerFormat;
@@ -535,8 +531,6 @@ public class Tooltip extends AbstractConfigurationObject {
 	 * the <code>series.compare</code> option is set. This is overridable in
 	 * each series' tooltip options object. The default is to preserve all
 	 * decimals.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setChangeDecimals(Number changeDecimals) {
 		this.changeDecimals = changeDecimals;

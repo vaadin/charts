@@ -46,8 +46,6 @@ public class Halo extends AbstractConfigurationObject {
 	 * A collection of SVG attributes to override the appearance of the halo,
 	 * for example <code>fill</code>, <code>stroke</code> and
 	 * <code>stroke-width</code>.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setAttributes(Attributes attributes) {
 		this.attributes = attributes;

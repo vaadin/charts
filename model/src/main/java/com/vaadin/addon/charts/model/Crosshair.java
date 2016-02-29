@@ -46,8 +46,6 @@ public class Crosshair extends AbstractConfigurationObject {
 	 * The color of the crosshair. Defaults to <code>#C0C0C0</code> for numeric
 	 * and datetime axes, and <code>rgba(155,200,255,0.2)</code> for category
 	 * axes, where the crosshair by default highlights the whole category.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setColor(Color color) {
 		this.color = color;
@@ -98,8 +96,6 @@ public class Crosshair extends AbstractConfigurationObject {
 	/**
 	 * The pixel width of the crosshair. Defaults to 1 for numeric or datetime
 	 * axes, and for one category width for category axes.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setWidth(Number width) {
 		this.width = width;

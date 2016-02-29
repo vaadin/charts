@@ -583,8 +583,6 @@ public class Legend extends AbstractConfigurationObject {
 
 	/**
 	 * A title to be added on top of the legend.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setTitle(LegendTitle title) {
 		this.title = title;

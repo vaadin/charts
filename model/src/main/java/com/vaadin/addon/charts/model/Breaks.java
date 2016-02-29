@@ -59,8 +59,6 @@ public class Breaks extends AbstractConfigurationObject {
 
 	/**
 	 * The point where the break starts.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setFrom(Number from) {
 		this.from = from;
@@ -92,8 +90,6 @@ public class Breaks extends AbstractConfigurationObject {
 
 	/**
 	 * The point where the break ends.
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setTo(Number to) {
 		this.to = to;

@@ -74,8 +74,6 @@ public class DataGrouping extends AbstractConfigurationObject {
 	 * and third item of the week array are used, and applied to the start and
 	 * end date of the time span.
 	 * </p>
-	 * <p>
-	 * Defaults to:
 	 */
 	public void setDateTimeLabelFormats(
 			DateTimeLabelFormats dateTimeLabelFormats) {
@@ -165,16 +163,60 @@ public class DataGrouping extends AbstractConfigurationObject {
 		this.smoothed = smoothed;
 	}
 
+	/**
+	 * @see #setUnits(TimeUnitMultiples...)
+	 */
 	public TimeUnitMultiples[] getUnits() {
 		TimeUnitMultiples[] arr = new TimeUnitMultiples[units.size()];
 		units.toArray(arr);
 		return arr;
 	}
 
+	/**
+	 * An array determining what time intervals the data is allowed to be
+	 * grouped to. Each array item is an array where the first value is the time
+	 * unit and the second value another array of allowed multiples. Defaults
+	 * to:
+	 * 
+	 * <pre>
+	 * units: [[
+	 * 		'millisecond', // unit name
+	 * 		[1, 2, 5, 10, 20, 25, 50, 100, 200, 500] // allowed multiples
+	 * 	], [
+	 * 		'second',
+	 * 		[1, 2, 5, 10, 15, 30]
+	 * 	], [
+	 * 		'minute',
+	 * 		[1, 2, 5, 10, 15, 30]
+	 * 	], [
+	 * 		'hour',
+	 * 		[1, 2, 3, 4, 6, 8, 12]
+	 * 	], [
+	 * 		'day',
+	 * 		[1]
+	 * 	], [
+	 * 		'week',
+	 * 		[1]
+	 * 	], [
+	 * 		'month',
+	 * 		[1, 3, 6]
+	 * 	], [
+	 * 		'year',
+	 * 		null
+	 * 	]]
+	 * </pre>
+	 */
 	public void setUnits(TimeUnitMultiples... units) {
 		this.units = new ArrayList<TimeUnitMultiples>(Arrays.asList(units));
 	}
 
+	/**
+	 * Adds unit to the units array
+	 * 
+	 * @param unit
+	 *            to add
+	 * @see #setUnits(TimeUnitMultiples...)
+	 */
 	public void addUnit(TimeUnitMultiples unit) {
 		if (this.units == null) {
 			this.units = new ArrayList<TimeUnitMultiples>();
@@ -182,6 +224,13 @@ public class DataGrouping extends AbstractConfigurationObject {
 		this.units.add(unit);
 	}
 
+	/**
+	 * Removes first occurrence of unit in units array
+	 * 
+	 * @param unit
+	 *            to remove
+	 * @see #setUnits(TimeUnitMultiples...)
+	 */
 	public void removeUnit(TimeUnitMultiples unit) {
 		this.units.remove(unit);
 	}

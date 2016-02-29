@@ -44,23 +44,37 @@ public class Pane extends AbstractConfigurationObject {
 		return paneIndex;
 	}
 
-	/**
-	 * 
-	 */
 	void setPaneIndex(Integer paneIndex) {
 		this.paneIndex = paneIndex;
 	}
 
+	/**
+	 * @see #setBackground(Background...)
+	 */
 	public Background[] getBackground() {
 		Background[] arr = new Background[background.size()];
 		background.toArray(arr);
 		return arr;
 	}
 
+	/**
+	 * An object, or array of objects, for backgrounds. Sub options include
+	 * <code>backgroundColor</code> (can be solid or gradient),
+	 * <code>shape</code> ("solid" or "arc"), <code>innerWidth</code>,
+	 * <code>outerWidth</code>, <code>borderWidth</code>,
+	 * <code>borderColor</code>.
+	 */
 	public void setBackground(Background... background) {
 		this.background = new ArrayList<Background>(Arrays.asList(background));
 	}
 
+	/**
+	 * Adds background to the background array
+	 * 
+	 * @param background
+	 *            to add
+	 * @see #setBackground(Background...)
+	 */
 	public void addBackground(Background background) {
 		if (this.background == null) {
 			this.background = new ArrayList<Background>();
@@ -68,6 +82,13 @@ public class Pane extends AbstractConfigurationObject {
 		this.background.add(background);
 	}
 
+	/**
+	 * Removes first occurrence of background in background array
+	 * 
+	 * @param background
+	 *            to remove
+	 * @see #setBackground(Background...)
+	 */
 	public void removeBackground(Background background) {
 		this.background.remove(background);
 	}
