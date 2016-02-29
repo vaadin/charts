@@ -1,6 +1,8 @@
 package com.vaadin.addon.charts.testbenchtests;
 
 import org.openqa.selenium.Platform;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -26,8 +28,19 @@ public class ChartsBrowserFactory extends DefaultBrowserFactory {
             return create(browser, "40", Platform.VISTA);
         case FIREFOX:
         default:
-            return create(browser, "24", Platform.XP);
+            return createFirefox(browser);
         }
+    }
+
+    private DesiredCapabilities createFirefox(Browser browser) {
+        DesiredCapabilities desiredCapabilities =
+            create(browser, "24", Platform.XP);
+        // Configuring an empty Firefox profile fixes tests
+        // where a data point is clicked.
+        //    - pointClick, select and unselect in ServerSideEvents tests
+        FirefoxProfile firefoxProfile = new FirefoxProfile();
+        desiredCapabilities.setCapability(FirefoxDriver.PROFILE, firefoxProfile);
+        return desiredCapabilities;
     }
 
     private DesiredCapabilities createIE(Browser browser, String version) {
