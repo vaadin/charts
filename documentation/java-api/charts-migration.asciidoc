@@ -18,8 +18,29 @@ The objective of this document is to make the transition from Vaadin Charts 2.x 
 One of the big features of Vaadin Charts 3 for Java is dropping the old [classname]#Timeline# component and introducing the new timeline mode that can be used in regular charts with time-typed X axis.
 You can find out more about this feature in <<charts-timeline#charts.timeline,"Timeline section">>.
 
+[[charts.migration.abstractclass]]
+== Changes in Abstract Classes
+
+[[charts.migration.abstractclass.axis]]
+=== Axis
+[classname]#Axis# has three properties, [propertyname]#min#,
+[propertyname]#max#, and [propertyname]#axisIndex#, common for all axes.
+All other properties were moved to concrete implementations. Use concrete
+implementations ([classname]#XAxis#, [classname]#YAxis#, [classname]#ZAxis#)
+instead of [classname]#Axis#.
+
+[[charts.migration.abstractclass.plotoptions]]
+=== PlotOptions
+Some properties in [classname]#AbstractPlotOptions# in Vaadin Charts 2.x were not
+supported by all the subclasses. For example, setting [propertyname]#animation# in
+[classname]#PlotOptionsPyramid# had no effect. In Vaadin Charts 3, properties
+from [classname]#AbstractPlotOptions# were moved to concrete implementations,
+that support the properties. In Vaadin Charts 3, instead of using
+[classname]#AbstractPlotOptions#, use a specific implementation, such as [classname]#PlotOptionsArea#,
+[classname]#PlotOptionsBar#, etc.
+
 [[charts.migration.classnamedif]]
-== Changes in class names
+== Changes in Class Names
 
 [[charts.migration.classnamedif.plotoptions]]
 === PlotOptions
@@ -48,9 +69,19 @@ Given that not all [classname]#Labels# properties were useful in all the places 
 
 * [classname]#DataLabelsFunnel# used in [classname]#PlotOptionsFunnel# and [classname]#PlotOptionsPyramid#
 * [classname]#DataLabelsRange# used in [classname]#PlotOptionsArearange#, [classname]#PlotOptionsAreasplinerange# and [classname]#PlotOptionsColumnrange#
-* [classname]#DataLabels# used in the rest of Plot Options implementations
+* [classname]#DataLabels# used in the rest of plot options implementations
 * [classname]#Labels# used in [classname]#XAxis# and [classname]#YAxis#
 * [classname]#Label# used in [classname]#Crosshair#, [classname]#PlotBand# and [classname]#Plotline#
+
+[[charts.migration.classnamedif.tooltips]]
+=== Tooltips
+[classname]#Tooltip# was split into two classes: [classname]#Tooltip#
+and [classname]#SeriesTooltip#. [classname]#Tooltip# contains all the properties to configure tooltips in a chart.
+These properties are used in every series in the chart. [classname]#SeriesTooltip# is a subset of tooltip properties
+which can only be defined on the series level. For example, [propertyname]#useHTML# can only be defined on the chart level.
+[classname]#Tooltip# should be used in the chart configuration object.
+[classname]#SeriesTooltip# should be used in plot options implementations:
+[classname]#PlotOptionsArea#, [classname]#PlotOptionsBar#, etc.
 
 [[charts.migration.classnamedif.other]]
 === Other
@@ -63,13 +94,47 @@ Given that not all [classname]#Labels# properties were useful in all the places 
 * [classname]#FramePanel# -> [classname]#Back#, [classname]#Bottom#, and [classname]#Side#
 
 [[charts.migration.methodnamedif]]
-== Changes in method names
+== Changes in Method Names
 
 [[charts.migration.methodnamedif.align]]
-=== Align properties
+=== Align Properties
 
 The [propertyname]#align# property accepts values defined in the [classname]#HorizontalAlign# enum in all cases with the exception of [classname]#AxisTitle#.
 In the [classname]#AxisTitle# class, the [propertyname]#align# property accepts values defined in the [classname]#VerticalAlign# enum.
+
+[[charts.migration.classnamedif.color]]
+=== Color Properties
+Setters of color properties now accept a [classname]#SolidColor# or
+[classname]#GradientColor# parameter. A setter that accepts a
+[classname]#String# parameter was removed. Instead of it use a
+[classname]#SolidColor# constructor.
+[source, java]
+----
+plotOptions.setFillColor(new SolidColor("#ff0000"));
+----
+
+[[charts.migration.methodnamedif.crosshair]]
+=== Crosshair
+The crosshair definitions have been moved to the axis object for a better separation from the tooltip.
+The [methodname]#setCrosshairs(CrosshairStyle)# method in [classname]#Tooltip# class is now
+[methodname]#setCrosshair(Crosshair)# method in [classname]#XAxis# and [classname]#YAxis# classes.
+
+[[charts.migration.methodnamedif.plotoptions]]
+=== Plot Options
+
+The API to configure plot options in [classname]#Configuration# class has changed.
+
+Renamed methods:
+
+* [methodname]#setPlotOptions()# -> [methodname]#addPlotOptions()#
+* [methodname]#getAllPlotOptions()# -> [methodname]#getPlotOptions()#
+
+New methods:
+
+* [methodname]#setPlotOptions(AbstractPlotOptions ...)#
+* [methodname]#getPlotOptions(ChartType)#
+
+The previous [methodname]#setPlotOptions()# method added new plot options to existing ones but the new method will reset the plot options.
 
 [[charts.migration.methodnamedif.size]]
 === Size related properties
@@ -78,7 +143,7 @@ In order to follow Vaadin Framework standards, properties related to size ([prop
 One of the setters has a single [classname]#String# parameter.
 The other setter has a float and a [classname]#Unit# enum parameter.
 
-As shown in the following example a percentage width can be defined using both setters
+As shown in the following example, a percentage width can be defined using both setters
 
 [source, java]
 ----
@@ -94,35 +159,13 @@ options.setWidth(70, Unit.PERCENTAGE);
 options.setWidth("70%");
 ----
 
-
-[[charts.migration.methodnamedif.crosshair]]
-=== Crosshair
-The crosshair definitions have been moved to the axis object for a better separation from the tooltip.
-The [methodname]#setCrosshairs(CrosshairStyle)# method in [classname]#Tooltip# class is now [methodname]#setCrosshair#(Crosshair) method in [classname]#XAxis# and [classname]#YAxis# classes.
-
-[[charts.migration.methodnamedif.plotoptions]]
-=== Plot options
-
-The API to configure plot options in [classname]#Configuration# class has changed.
-
-Renamed methods:
-
-* [methodname]#setPlotOptions(AbstractPlotOptions plotOptions)# -> [methodname]#addPlotOptions(AbstractPlotOptions plotOptions)#
-* [methodname]#getAllPlotOptions()# -> [methodname]#getPlotOptions()#
-
-New methods:
-
-* [methodname]#setPlotOptions(AbstractPlotOptions... plotOptions)#
-* [methodname]#getPlotOptions(ChartType type)#
-
-The previous [methodname]#setPlotOptions# method added new plot options to existing ones but the new method will reset the plot options.
-
 [[charts.migration.methodnamedif.other]]
 === Other
-* [classname]#XAxis# [methodname]#setShowLastTickLabel()# is now [classname]#XAxis# [methodname]#setShowLastLabel()#
-* [classname]#YAxis# [methodname]#setMinorTickInterval()# is now [classname]#YAxis# [methodname]#setMinTickInterval()#
-* [classname]#PlotOptionsLine# [methodname]#setStepType()# is now [classname]#PlotOptionsLine# [methodname]#setStep()#
-* [classname]#Pane# [methodname]#setCenterXY()# is now [classname]#Pane# [methodname]#setCenter()#
+* In [classname]#Pane#, [methodname]#setCenterXY()# is now [methodname]#setCenter()#.
+* In [classname]#PlotOptionsLine#, [methodname]#setStepType()# is now [methodname]#setStep()#.
+* In [classname]#XAxis#, [methodname]#setShowLastTickLabel()# is now [methodname]#setShowLastLabel()#.
+* In [classname]#YAxis#, [methodname]#setMinorTickInterval()# is now [methodname]#setMinTickInterval()#.
+
 
 [[charts.migration.example]]
 == Example
