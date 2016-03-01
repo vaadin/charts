@@ -1,7 +1,5 @@
 package com.vaadin.addon.charts.examples.combinations;
 
-import java.util.List;
-
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.Configuration;
@@ -13,9 +11,7 @@ import com.vaadin.addon.charts.model.Marker;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
 import com.vaadin.addon.charts.model.PlotOptionsPie;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
-import com.vaadin.addon.charts.model.Series;
 import com.vaadin.addon.charts.model.XAxis;
-import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.charts.model.style.Style;
 import com.vaadin.ui.Component;
@@ -28,40 +24,9 @@ public class ColumnLineAndPie extends AbstractVaadinChartExample {
         return "Column line and pie";
     }
 
-    private void updateColorsFromTheme(Configuration configuration) {
-        if (configuration == null) {
-            return;
-        }
-
-        Color janeColor = getThemeColors()[0];
-        Color johnColor = getThemeColors()[1];
-        Color joeColor = getThemeColors()[2];
-
-        // Colors for columns
-        List<Series> series = configuration.getSeries();
-        ((PlotOptionsColumn) ((DataSeries) series.get(0)).getPlotOptions())
-                .setColor(janeColor);
-        ((PlotOptionsColumn) ((DataSeries) series.get(1)).getPlotOptions())
-                .setColor(johnColor);
-        ((PlotOptionsColumn) ((DataSeries) series.get(2)).getPlotOptions())
-                .setColor(joeColor);
-
-        // Colors for the pie
-        DataSeries pieSeries = ((DataSeries) series.get(4));
-        pieSeries.get("Jane").setColor(janeColor);
-        pieSeries.get("John").setColor(johnColor);
-        pieSeries.get("Joe").setColor(joeColor);
-    }
-
     @Override
     protected Component getChart() {
-        Chart chart = new Chart() {
-            @Override
-            public void drawChart(Configuration conf) {
-                ColumnLineAndPie.this.updateColorsFromTheme(conf);
-                super.drawChart(conf);
-            }
-        };
+        Chart chart = new Chart();
 
         Configuration conf = chart.getConfiguration();
 
