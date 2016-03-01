@@ -142,11 +142,15 @@ public class ChartDesignWriter implements Serializable {
     }
 
     private static void writePlotOptions(Element parent,
-        Map<String, AbstractPlotOptions> value) {
-        Map<String, AbstractPlotOptions> plotOptions = value;
+        Map<String, AbstractPlotOptions> plotOptions) {
+        if(plotOptions.isEmpty()) {
+            return;
+        }
+
+        Element plotOptionsElement = parent.appendElement("plot-options");
+
         for (Map.Entry<String, AbstractPlotOptions> entry : plotOptions
             .entrySet()) {
-            Element plotOptionsElement = parent.appendElement("plot-options");
             createElementForConfigurationObject(entry.getValue(), plotOptionsElement, entry.getKey());
         }
     }

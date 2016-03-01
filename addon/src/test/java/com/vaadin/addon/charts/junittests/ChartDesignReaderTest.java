@@ -1,11 +1,7 @@
 package com.vaadin.addon.charts.junittests;
 
 import static org.hamcrest.Matchers.instanceOf;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -13,10 +9,12 @@ import org.jsoup.select.Elements;
 import org.junit.Test;
 
 import com.vaadin.addon.charts.declarative.ChartDesignReader;
+import com.vaadin.addon.charts.model.AbstractPlotOptions;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.LayoutDirection;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
+import com.vaadin.addon.charts.model.PlotOptionsSpline;
 import com.vaadin.addon.charts.model.PlotOptionsTreemap;
 import com.vaadin.ui.declarative.DesignException;
 
@@ -153,15 +151,37 @@ public class ChartDesignReaderTest {
             instanceOf(PlotOptionsLine.class));
     }
 
-    @Test(expected = DesignException.class)
-    public void readConfiguration_plotOptionsWithoutType_designExceptionIsThrown() {
-        Elements elements = createElements("<plot-options></plot-options>");
+    @Test
+    public void readConfiguration_multiplePlotOptions_plotOptionsLineIsAddedToConfiguration() {
+        Elements elements = createElements("<plot-options><line></line><spline></spline></plot-options>");
         Configuration configuration = new Configuration();
 
         ChartDesignReader
             .readConfigurationFromElements(elements, configuration);
 
-        fail();
+        assertEquals(2, configuration.getPlotOptions().size());
+        assertThat(configuration.getPlotOptions(ChartType.LINE),
+            instanceOf(PlotOptionsLine.class));
+        assertThat(configuration.getPlotOptions(ChartType.SPLINE),
+            instanceOf(PlotOptionsSpline.class));
+    }
+
+    @Test
+    public void readConfiguration_multiplePlotOptions_attributesAreReadToCorrectPlotOptions() {
+        Elements elements = createElements("<plot-options>"+
+                                           "<line animation=\"true\"></line>"+
+                                           "<spline animation=\"false\"></spline>"+
+                                           "</plot-options>");
+        Configuration configuration = new Configuration();
+
+        ChartDesignReader.readConfigurationFromElements(elements, configuration);
+
+        PlotOptionsLine line =
+            (PlotOptionsLine) configuration.getPlotOptions(ChartType.LINE);
+        PlotOptionsSpline spline =
+            (PlotOptionsSpline) configuration.getPlotOptions(ChartType.SPLINE);
+        assertFalse(spline.getAnimation());
+        assertTrue(line.getAnimation());
     }
 
     @Test

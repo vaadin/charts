@@ -74,7 +74,11 @@ public class ChartDesignReader implements Serializable {
     private static void addToConfiguration(Elements children,
         AbstractConfigurationObject configuration) {
         for(Element child : children) {
-            addToConfiguration(child, configuration);
+            if("plotoptions".equals(toPropertyName(child.nodeName()))) {
+                addToConfiguration(child.children(), configuration);
+            } else {
+                addToConfiguration(child, configuration);
+            }
         }
     }
 
@@ -83,23 +87,19 @@ public class ChartDesignReader implements Serializable {
         AbstractConfigurationObject parent) {
         resolvePropertySettersFor(parent.getClass());
 
-        String nodeName = element.nodeName();
-        Object value = createValueObjectForElement(element, parent, nodeName);
-        if(isPlotOptions(nodeName)) {
-            element = readPlotOptionsType(element);
-        }
+        Object value = createValueObjectForElement(element, parent);
         readAttributeValues(element, value);
-        readTextContentNodes(element, nodeName, value);
-        setValueToParent(parent, nodeName, value);
+        readTextContentNodes(element, value);
+        setValueToParent(parent, element, value);
 
         if(element.children().size() > 0 && value instanceof AbstractConfigurationObject) {
-            addToConfiguration(element.children(), (AbstractConfigurationObject) value);
+            addToConfiguration(
+                element.children(), (AbstractConfigurationObject) value);
         }
     }
 
-    private static void readTextContentNodes(Element element, String nodeName,
-        Object value) {
-        if(textContentNodes.contains(nodeName) && hasOnlyText(element)) {
+    private static void readTextContentNodes(Element element, Object value) {
+        if(textContentNodes.contains(element.nodeName()) && hasOnlyText(element)) {
             DesignAttributeHandler.assignValue(value, "text", element.text());
         }
     }
@@ -113,20 +113,23 @@ public class ChartDesignReader implements Serializable {
     }
 
     private static Object createValueObjectForElement(Element element,
-        AbstractConfigurationObject parent, String nodeName) {
-
+        AbstractConfigurationObject parent) {
+        String nodeName = element.nodeName();
         if(arrayNodes.contains(nodeName)) {
             return  readArrayValue(element.text());
-        } else if(isPlotOptions(nodeName)) {
-            Element type = readPlotOptionsType(element);
-            return  createPlotOptionsFor(type.nodeName());
+        } else if(isPlotOptions(element)) {
+            return  createPlotOptionsFor(nodeName);
         } else {
             return  createConfigurationFor(nodeName, parent);
         }
     }
 
-    private static boolean isPlotOptions(String nodeName) {
-        return "plotoptions".equals(toPropertyName(nodeName));
+    private static boolean isPlotOptions(Element element) {
+        if(element.parent() == null) {
+            return false;
+        }
+        String parentNodeName = element.parent().nodeName();
+        return "plotoptions".equals(toPropertyName(parentNodeName));
     }
 
     private static AbstractPlotOptions createPlotOptionsFor(String type) {
@@ -157,14 +160,6 @@ public class ChartDesignReader implements Serializable {
         return builder.toString();
     }
 
-    private static Element readPlotOptionsType(Element element) {
-        if(element.children().size() != 1) {
-            throw new DesignException("plot-options should have one type element");
-        }
-
-        return element.children().get(0);
-    }
-
     private static String[] readArrayValue(String text) {
         if(text == null) {
             return null;
@@ -182,12 +177,12 @@ public class ChartDesignReader implements Serializable {
 
 
     private static void setValueToParent(AbstractConfigurationObject parent,
-        String nodeName, Object value) {
-
-        Method setter = cache.get(parent.getClass()).getSetter(toPropertyName(nodeName));
+        Element element, Object value) {
+        String propertyName = resolvePropertyName(element);
+        Method setter = cache.get(parent.getClass()).getSetter(propertyName);
         if(setter == null) {
             throw new DesignException(
-                "Could not find setter for "+nodeName+ " in class "+parent.getClass());
+                "Could not find setter for "+propertyName+ " in class "+parent.getClass());
         }
 
         try {
@@ -196,6 +191,13 @@ public class ChartDesignReader implements Serializable {
             throw new DesignException(
                 "Could not set value type "+value.getClass()+ " to class "+parent.getClass(),e);
         }
+    }
+
+    private static String resolvePropertyName(Element element) {
+        if(isPlotOptions(element)) {
+            return "plotoptions";
+        }
+        return toPropertyName(element.nodeName());
     }
 
     private static void resolvePropertySettersFor(

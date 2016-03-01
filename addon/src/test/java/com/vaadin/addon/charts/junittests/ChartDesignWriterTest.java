@@ -1,6 +1,6 @@
 package com.vaadin.addon.charts.junittests;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import com.vaadin.addon.charts.declarative.ChartDesignWriter;
 import com.vaadin.addon.charts.model.AxisTitle;
@@ -10,10 +10,12 @@ import com.vaadin.addon.charts.model.LayoutDirection;
 import com.vaadin.addon.charts.model.Legend;
 import com.vaadin.addon.charts.model.PlotLine;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
+import com.vaadin.addon.charts.model.PlotOptionsSpline;
 import com.vaadin.addon.charts.model.Title;
 
 import org.jsoup.nodes.Element;
 import org.jsoup.parser.Tag;
+import org.jsoup.select.Elements;
 import org.junit.Test;
 
 public class ChartDesignWriterTest {
@@ -83,6 +85,49 @@ public class ChartDesignWriterTest {
 
         assertEquals("<plot-options><line><data-labels enabled=\"true\"></data-labels></line></plot-options>",
             removeWhitespacesBetweenTags(parent.child(0).toString()));
+    }
+
+    @Test
+    public void writeConfiguration_multiplePlotOptions_allPlotOptionsAreChildrenOfPlotOptionsTag() {
+        Configuration configuration = new Configuration();
+        PlotOptionsLine plotOptionsLine = new PlotOptionsLine();
+        plotOptionsLine.setAnimation(false);
+        PlotOptionsSpline plotOptionsSpline = new PlotOptionsSpline();
+        plotOptionsSpline.setVisible(false);
+        configuration.setPlotOptions(plotOptionsLine, plotOptionsSpline);
+        Element parent = new Element(Tag.valueOf("test"), "");
+
+        ChartDesignWriter.writeConfigurationToElement(configuration, parent);
+
+
+        // Expected (the order of plot options is unknown):
+        // "<plot-options>
+        //    <line animation=\"false\">
+        //    </line>
+        //    <spline visible=\"false\">
+        //    </spline>
+        // </plot-options>"
+        assertEquals("plot-options",parent.child(0).tagName());
+        Elements plotOptions = parent.child(0).children();
+        assertEquals(2, plotOptions.size());
+        assertPlotOptions("line","animation", "false", plotOptions);
+        assertPlotOptions("spline","visible", "false", plotOptions);
+    }
+
+    private void assertPlotOptions(String type, String attribute, String attributeValue, Elements plotOptions) {
+        Element typeElement = find(type, plotOptions);
+        assertNotNull(typeElement);
+        assertTrue(typeElement.hasAttr(attribute));
+        assertEquals(attributeValue, typeElement.attr(attribute));
+    }
+
+    private Element find(String tagname, Elements elements) {
+        for (Element element : elements) {
+            if(tagname.equals(element.tagName())) {
+                return element;
+            }
+        }
+        return null;
     }
 
     @Test
