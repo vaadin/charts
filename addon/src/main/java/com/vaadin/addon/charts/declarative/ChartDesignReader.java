@@ -22,8 +22,11 @@ import com.vaadin.ui.declarative.ChartDesignFormatter;
 import com.vaadin.ui.declarative.DesignAttributeHandler;
 import com.vaadin.ui.declarative.DesignException;
 
+import org.jsoup.Jsoup;
 import org.jsoup.nodes.Attribute;
+import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
 
 public class ChartDesignReader implements Serializable {
@@ -88,13 +91,21 @@ public class ChartDesignReader implements Serializable {
         resolvePropertySettersFor(parent.getClass());
 
         Object value = createValueObjectForElement(element, parent);
-        readAttributeValues(element, value);
         readTextContentNodes(element, value);
+        readAttributeValues(element, value);
         setValueToParent(parent, element, value);
 
         if(element.children().size() > 0 && value instanceof AbstractConfigurationObject) {
             addToConfiguration(
                 element.children(), (AbstractConfigurationObject) value);
+        }
+        if("title".equals(element.tagName())) {
+            // <title> is reserved tag in HTML and JSoup doesn't read its
+            // children correctly but the whole content is read as text
+            String text = element.text();
+            Document doc = Jsoup.parseBodyFragment(text);
+            addToConfiguration(
+                doc.body().children(), (AbstractConfigurationObject) value);
         }
     }
 

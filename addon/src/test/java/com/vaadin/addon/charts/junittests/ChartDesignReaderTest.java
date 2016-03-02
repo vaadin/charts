@@ -16,6 +16,7 @@ import com.vaadin.addon.charts.model.LayoutDirection;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
 import com.vaadin.addon.charts.model.PlotOptionsTreemap;
+import com.vaadin.addon.charts.model.Title;
 import com.vaadin.ui.declarative.DesignException;
 
 public class ChartDesignReaderTest {
@@ -80,6 +81,17 @@ public class ChartDesignReaderTest {
     @Test
     public void readConfiguration_chartTitleHasTextOnlyContent_theContentIsSetAsTitleText() {
         Elements elements = createElements("<title>my title</title>");
+        Configuration configuration = new Configuration();
+
+        ChartDesignReader
+            .readConfigurationFromElements(elements, configuration);
+
+        assertEquals("my title", configuration.getTitle().getText());
+    }
+
+    @Test
+    public void readConfiguration_chartTitleHasTextInAttibuteAndContent_theAttributeIsSetAsTitleText() {
+        Elements elements = createElements("<title text=\"my title\">this text should be ignored</title>");
         Configuration configuration = new Configuration();
 
         ChartDesignReader
@@ -209,6 +221,30 @@ public class ChartDesignReaderTest {
             (PlotOptionsTreemap) configuration.getPlotOptions(ChartType.TREEMAP);
         assertEquals(1, lineOptions.getLevels().length);
         assertEquals(1L, lineOptions.getLevels()[0].getLevel());
+    }
+
+    @Test
+    public void readConfiguration_titleWithStyleAsInnerElement_theTitleAndStyleAreInConfiguration() {
+        Elements elements = createElements("<title text=\"foobar\"><style top=\"12\"></style></title>");
+        Configuration configuration = new Configuration();
+
+        ChartDesignReader
+            .readConfigurationFromElements(elements, configuration);
+
+        assertEquals("12", configuration.getTitle().getStyle().getTop());
+        assertEquals("foobar", configuration.getTitle().getText());
+    }
+
+    @Test
+    public void readConfiguration_subtitleWithStyleAsInnerElement_theTitleAndStyleAreInConfiguration() {
+        Elements elements = createElements("<subtitle text=\"foobar\"><style top=\"12\"></style></subtitle>");
+        Configuration configuration = new Configuration();
+
+        ChartDesignReader
+            .readConfigurationFromElements(elements, configuration);
+
+        assertEquals("12", configuration.getSubTitle().getStyle().getTop());
+        assertEquals("foobar", configuration.getSubTitle().getText());
     }
 
     private Elements createElements(String configHtml) {

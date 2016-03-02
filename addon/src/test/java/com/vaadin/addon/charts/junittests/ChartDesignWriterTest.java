@@ -194,7 +194,7 @@ public class ChartDesignWriterTest {
     }
 
     @Test
-    public void writeConfiguration_plotLines_thePlotLinesAreTheElement() {
+     public void writeConfiguration_plotLines_thePlotLinesAreTheElement() {
         Configuration configuration = new Configuration();
         PlotLine plotLine = new PlotLine();
         plotLine.setValue(0);
@@ -206,6 +206,19 @@ public class ChartDesignWriterTest {
 
         assertEquals(
             "<y-axis><plot-lines value=\"0\" width=\"2\"></plot-lines></y-axis>",
+            removeWhitespacesBetweenTags(parent.child(0).toString()));
+    }
+
+    @Test
+    public void writeConfiguration_titleWithStyle_theStyleIsInnerElementOfTitle() {
+        Configuration configuration = new Configuration();
+        configuration.getTitle().getStyle().setTop("12");
+        Element parent = new Element(Tag.valueOf("test"), "");
+
+        ChartDesignWriter.writeConfigurationToElement(configuration, parent);
+
+        assertEquals(
+            "<title><style top=\"12\"></style></title>",
             removeWhitespacesBetweenTags(parent.child(0).toString()));
     }
 
