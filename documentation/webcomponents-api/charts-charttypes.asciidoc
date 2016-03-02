@@ -126,14 +126,14 @@ the 'percent' handles them as proportions.
 [source,html]
 ----
 <plot-options>
-  <area-chart>
+  <chart-area>
     <stacking>normal</stacking>
-  </area-chart>
+  </chart-area>
 </plot-options>
 ----
 
 Note! The plot options for area chart are exceptionally specified in an element called
-`area-chart`. By convention, the `area` should be used but that is reserved
+`chart-area`. By convention, the `area` should be used but that is reserved
 tag name in
 http://www.w3.org/html/wg/drafts/html/master/single-page.html#the-area-element[html specification].
 
@@ -200,13 +200,13 @@ series for the low and high values. The type of the data series needs to be
   <legend>
     <enabled>false</enabled>
   </legend>
-  <title>Average and Extreme Tempetures in Turku</title>
+  <chart-title>Average and Extreme Tempetures in Turku</chart-title>
   <x-axis>
-    <title>Month</title>
+    <chart-title>Month</chart-title>
     <categories>Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec</categories>
   </x-axis>
   <y-axis>
-    <title>Temperature °C</title>
+    <chart-title>Temperature °C</chart-title>
   </y-axis>
   <plot-options>
     <errorbar>
@@ -270,7 +270,7 @@ normally have just one data series, so it is meaningful to disable the legend.
   <legend>
     <enabled>false</enabled>
   </legend>
-  <title>Orienteering Split Times</title>
+  <chart-title>Orienteering Split Times</chart-title>
   ...
 </vaadin-boxplot-chart>
 ----
@@ -361,18 +361,18 @@ of a scatter chart where 300 random points in the unit circle is shown.
 <template id="scatterExample" is="dom-bind">
   <div style="width:450px;height:400px">
   <vaadin-scatter-chart>
-    <title>Random Sphere</title>
+    <chart-title>Random Sphere</chart-title>
     <legend>
       <enabled>false</enabled>
     </legend>
     <y-axis>
-      <title>Y</title>
+      <chart-title>Y</chart-title>
       <min>-1</min>
       <max>1</max>
     </y-axis>
     <x-axis>
       <grid-line-width>1</grid-line-width>
-      <title>X</title>
+      <chart-title>X</chart-title>
       <min>-1</min>
       <max>1</max>
     </x-axis>
@@ -516,7 +516,7 @@ ifdef::web[]
   <legend>
     <enabled>false</enabled>
   </legend>
-  <title>Champagne Consumption by Country</title>
+  <chart-title>Champagne Consumption by Country</chart-title>
   <tooltip formatter= "function () { return this.point.name + ': ' +
                                       Math.round(100*(this.point.z * this.point.z))/100.0 +
                                       ' M bottles'; }">
@@ -527,13 +527,13 @@ ifdef::web[]
     </plot-background-image>
   </chart>
   <x-axis>
-    <title></title>
+    <chart-title></chart-title>
     <min>-180</min>
     <max>180</max>
     <labels enabled="false"></labels>
   </x-axis>
   <y-axis>
-    <title></title>
+    <chart-title></chart-title>
     <min>-90</min>
     <max>90</max>
     <labels enabled="false"></labels>
@@ -718,7 +718,7 @@ The angles can be given as -360 to 360 degrees, with 0 at the top of the circle.
 [source,html]
 ----
 <vaadin-gauge-chart>
-  <title>Speedometer</title>
+  <chart-title>Speedometer</chart-title>
   <pane start-angle="-150" end-angle="150">
   </pane>
   ...
@@ -737,7 +737,7 @@ for it.
 <y-axis min="0" max="200"
         tick-interval="10" tick-width="2" tick-length="10" tick-color="#666"
         minor-tick-interval="1" minor-tick-width="1" minor-tick-length="5">
-    <title>km/h</title>
+    <chart-title>km/h</chart-title>
     <labels step="2" rotation="auto"></labels>
     <plot-bands from="0" to="120" color="#55BF3B"></plot-bands>
     <plot-bands from="120" to="160" color="#DDDF0D"></plot-bands>
@@ -778,7 +778,7 @@ Let us consider the following solid gauge:
 [source,html]
 ----
 <vaadin-solidgauge-chart id=solidgauge>
-    <title>Speed</title>
+    <chart-title>Speed</chart-title>
     <legend enabled="false"></legend>
     <tooltip enabled="false"></tooltip>
     ...
@@ -914,15 +914,15 @@ Consider the following example:
 [source,html]
 ----
 <vaadin-arearange-chart>
-    <title>Extreme Temperature Range in Finland</title>
+    <chart-title>Extreme Temperature Range in Finland</chart-title>
     <subtitle>http://ilmatieteenlaitos.fi/lampotilaennatyksia</subtitle>
     <legend enabled="false"></legend>
     <y-axis>
-        <title>Temperature °C</title>
+        <chart-title>Temperature °C</chart-title>
         <labels step=2></labels>
     </y-axis>
     <x-axis>
-      <title>Month</title>
+      <chart-title>Month</chart-title>
       <categories>
         "Jan", "Feb", "Mar", "Apr", "May", "Jun",
         "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
@@ -1011,7 +1011,7 @@ ifdef::web[]
 [source,html]
 ----
 <vaadin-line-chart >
-    <title>Extreme Temperature Range in Finland</title>
+    <chart-title>Extreme Temperature Range in Finland</chart-title>
     <subtitle>http://ilmatieteenlaitos.fi/lampotilaennatyksia</subtitle>
     <legend enabled="false"></legend>
     <credit enabled="false"></credit>
@@ -1070,7 +1070,7 @@ Here is an example.
 [source,html]
 ----
 <vaadin-funnel-chart>
-  <title>Monster Funnel</title>
+  <chart-title>Monster Funnel</chart-title>
   <chart spacing-right=120>
   </chart>
   <plot-options>
@@ -1140,12 +1140,12 @@ ifdef::web[]
 [source, html]
 ----
 <vaadin-waterfall-chart>
-  <title>Changes in Reindeer Population in 2011</title>
+  <chart-title>Changes in Reindeer Population in 2011</chart-title>
   <legend enabled="false"></legend>
   <chart align-ticks=true></chart>
   <x-axis type="category"></x-axis>
   <y-axis>
-    <title>Population (thousands)</title>
+    <chart-title>Population (thousands)</chart-title>
     <max>330000</max>
   </y-axis>
   ...
@@ -1239,7 +1239,7 @@ ifdef::web[]
 [source,html]
 ----
 <vaadin-heatmap-chart>
-  <title>Heat Data</title>
+  <chart-title>Heat Data</chart-title>
   <chart align-ticks=true></chart>
   <plot-options>
     <heatmap>
@@ -1256,12 +1256,12 @@ ifdef::web[]
     <max-color>#FF0000</max-color>
   </color-axis>
   <x-axis>
-    <title>Month</title>
+    <chart-title>Month</chart-title>
     <categories>"Jan", "Feb", "Mar", "Apr", "May", "Jun",
                 "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"</categories>
   </x-axis>
   <y-axis>
-    <title text=""></title>
+    <chart-title text=""></chart-title>
     <categories>"High °C", "Low °C"</categories>
   </y-axis>
   <data-series name="heat">
@@ -1297,7 +1297,7 @@ ifdef::web[]
 [source,html]
 ----
 <vaadin-treemap-chart id="treemap-with-levels">
-  <title>Fruit consumption</title>
+  <chart-title>Fruit consumption</chart-title>
   <plot-options>
       <treemap layout-algorithm="stripes" alternate-starting-direction="true">
           <levels level="1" layout-algorithm="sliceAndDice">
@@ -1465,14 +1465,14 @@ ifdef::web[]
 [source,html]
 ----
 <vaadin-polygon-chart id="scatter-and-polygon">
-  <title>Height vs Weight</title>
+  <chart-title>Height vs Weight</chart-title>
   <subtitle>Polygon series</subtitle>
   <x-axis grid-line-width="1" start-on-tick="true"
           end-on-tick="true" show-last-label="true">
-      <title>Height (cm)</title>
+      <chart-title>Height (cm)</chart-title>
   </x-axis>
   <y-axis >
-      <title>Weight (kg)</title>
+      <chart-title>Weight (kg)</chart-title>
   </y-axis>
   <tooltip header-format="<b>{series.name}</b><br>"
            point-format="{point.x} cm; {point.y} kg">
@@ -1527,7 +1527,7 @@ In the following, we annotate a time series as well as the axis with flags:
 [source,html]
 ----
 <vaadin-spline-chart id="flags-placement">
-    <title>USD to EUR exchange rate</title>
+    <chart-title>USD to EUR exchange rate</chart-title>
 
     <x-axis type="datetime"></x-axis>
     <plot-options>
@@ -1554,12 +1554,12 @@ In the following, we annotate a time series as well as the axis with flags:
         <data>
             <point>
                 <x>1434585600000</x>
-                <title>First Series Flag</title>
+                <chart-title>First Series Flag</chart-title>
                 <text>First Series Flag Tooltip Text</text>
             </point>
             <point>
                 <x>1435017600000</x>
-                <title>Second Series Flag</title>
+                <chart-title>Second Series Flag</chart-title>
             </point>
         </data>
     </data-series>
@@ -1567,12 +1567,12 @@ In the following, we annotate a time series as well as the axis with flags:
         <data>
             <point>
                 <x>1434844800000</x>
-                <title>First Axis Flag</title>
+                <chart-title>First Axis Flag</chart-title>
                 <text>First Axis Flag Tooltip Text</text>
             </point>
             <point>
                 <x>1435190400000</x>
-                <title>Second Axis Flag</title>
+                <chart-title>Second Axis Flag</chart-title>
             </point>
         </data>
     </data-series>
@@ -1627,7 +1627,7 @@ with a date and the open, highest, lowest, and close price on that date.
                 last-response="{{seriesData}}"></iron-ajax>
 
         <vaadin-ohlc-chart id="ohlc-series" timeline>
-            <title>AAPL Stock Price</title>
+            <chart-title>AAPL Stock Price</chart-title>
             <data-series name="AAPL" data="[[seriesData]]">
             </data-series>
         </vaadin-ohlc-chart>

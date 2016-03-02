@@ -41,7 +41,7 @@ summarized in the following:
 
 * `subtitle`: the charts subtitle
 
-* `title`: the charts main title
+* `chart-title`: the charts main title
 
 * `tooltip`: options for the tooltip
 
@@ -116,7 +116,7 @@ Axis elements are added under the chart element.
 <vaadin-pie-chart>
   ...
   <x-axis>
-    <title>Title</title>
+    <chart-title>Title</chart-title>
   </x-axis>
   ...
 </vaadin-pie-chart>

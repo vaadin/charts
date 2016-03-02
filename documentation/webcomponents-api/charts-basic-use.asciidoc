@@ -57,13 +57,18 @@ different chart types in mixed-type charts.
 After adding a chart web component to your html page, you need to configure it further. At the least, you need
 to specify the data series to be displayed in the configuration.
 
-The chart-spesific properties can be changed by adding <property-name> tags into the chart. Here we add
-title and subtitle to the chart.
+The chart-specific properties can be changed by adding <property-name> tags into the chart. Here we add
+title and subtitle to the chart. By convention, [elementname]#title# should be used, but it is a reserved
+tag name in HTML and does not allow child elements. In Vaadin Charts, a `chart-` prefix is added to fix this
+kind of issues. So, instead of using reserved tags, [elementname]#area#,
+[elementname]#frame#, [elementname]#style#, and [elementname]#title#,
+use the following elements: [elementname]#chart-area#, [elementname]#chart-frame#, [elementname]#chart-style#,
+and [elementname]#chart-title#.
 
 [source, html]
 ----
 <vaadin-bar-chart>
-  <title>Planets</title>
+  <chart-title>Planets</chart-title>
   <subtitle>The bigger they are the harder they pull</subtitle>
   ...
 </vaadin-bar-chart>
@@ -135,7 +140,7 @@ values in your data series.
 [source,html]
 ----
 <x-axis>
-  <title>Planet</title>
+  <chart-title>Planet</chart-title>
   <categories>Mercury, Venus, Earth, Mars,
               Jupiter, Saturn, Uranus, Neptune</categories>
 </x-axis>
@@ -147,7 +152,7 @@ where '{value}' will be replaced by the actual y-label value.
 [source,html]
 ----
 <y-axis>
-  <title>Diameter</title>
+  <chart-title>Diameter</chart-title>
   <labels format = "{value} Mm">
     <step>2</step>
   </labels>
@@ -160,7 +165,7 @@ JavaScript function to format the label.
 [source,html]
 ----
 <y-axis>
-  <title>Diameter</title>
+  <chart-title>Diameter</chart-title>
   <labels formatter = "function () { return this.value / 1000 + 'Mm';}">
     <step>2</step>
   </labels>
@@ -293,14 +298,14 @@ The 3D options are as follows:
 
 `depth`:: Depth of the third (Z) axis in pixel units. Default is 100.
 
-`frame3d`:: Defines the 3D frame, which consists of a back, bottom, and side panels that
+`chart-frame`:: Defines the 3D frame, which consists of a back, bottom, and side panels that
 display the chart grid.
 
 [source,html]
 ----
-<frame3d>
+<chart-frame>
   <back size="1" color="#F5F5DC"></back>
-</frame3d>
+</chart-frame>
 ----
 
 `view-distance`:: View distance for creating perspective distortion. Default is 100.

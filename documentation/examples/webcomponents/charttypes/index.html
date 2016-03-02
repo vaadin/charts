@@ -7,14 +7,14 @@
 <body>
 
     <vaadin-polygon-chart id="scatter-and-polygon">
-      <title>Height vs Weight</title>
+      <chart-title>Height vs Weight</chart-title>
       <subtitle>Polygon series</subtitle>
       <exporting enabled="false"></exporting>
       <x-axis grid-line-width="1" start-on-tick="true" end-on-tick="true" show-last-label="true">
-          <title>Height (cm)</title>
+          <chart-title>Height (cm)</chart-title>
       </x-axis>
       <y-axis >
-          <title>Weight (kg)</title>
+          <chart-title>Weight (kg)</chart-title>
       </y-axis>
       <tooltip header-format="<b>{series.name}</b><br>" point-format="{point.x} cm; {point.y} kg">
       </tooltip>
@@ -79,12 +79,12 @@
     </vaadin-polygon-chart>
 
     <vaadin-treemap-chart id="treemap-with-levels">
-    <title>Fruit consumption</title>
+    <chart-title>Fruit consumption</chart-title>
     <plot-options>
         <treemap layout-algorithm="stripes" alternate-starting-direction="true">
             <levels level="1" layout-algorithm="sliceAndDice">
                 <data-labels enabled="true" align="left" vertical-align="top">
-                    <style font-size="15px" font-weight="bold"></style>
+                    <chart-style font-size="15px" font-weight="bold"></chart-style>
                 </data-labels>
             </levels>
         </treemap>
@@ -165,7 +165,7 @@
 
   <div style="width:600px;height:300px">
     <vaadin-heatmap-chart>
-      <title>Heat Data</title>
+      <chart-title>Heat Data</chart-title>
       <chart align-ticks=true></chart>
       <plot-options>
         <heatmap>
@@ -182,12 +182,12 @@
         <max-color>#FF0000</max-color>
       </color-axis>
       <x-axis>
-        <title>Month</title>
+        <chart-title>Month</chart-title>
         <categories>"Jan", "Feb", "Mar", "Apr", "May", "Jun",
                     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"</categories>
       </x-axis>
       <y-axis>
-        <title text=""></title>
+        <chart-title text=""></chart-title>
         <categories>"High °C", "Low °C"</categories>
       </y-axis>
       <data-series name="heat">
@@ -224,7 +224,7 @@
 
   <div style="width:600px;height:350px">
     <vaadin-waterfall-chart>
-      <title>Changes in Reindeer Population in 2011</title>
+      <chart-title>Changes in Reindeer Population in 2011</chart-title>
       <legend enabled="false"></legend>
       <chart align-ticks=true></chart>
       <plot-options>
@@ -242,7 +242,7 @@
       </plot-options>
       <x-axis type="category"></x-axis>
       <y-axis>
-        <title>Population (thousands)</title>
+        <chart-title>Population (thousands)</chart-title>
         <max>330000</max>
       </y-axis>
       <data-series name="reindeer">
@@ -259,7 +259,7 @@
 
   <div style="width:500px;height:350px">
     <vaadin-pyramid-chart>
-      <title>Monster Food Pyramid</title>
+      <chart-title>Monster Food Pyramid</chart-title>
       <plot-options>
        <series>
            <data-labels format="<b>{point.name}</b> ({point.y:.0f})" color="black">
@@ -283,7 +283,7 @@
 
   <div style="width:500px;height:350px">
     <vaadin-funnel-chart>
-      <title>Monster Funnel</title>
+      <chart-title>Monster Funnel</chart-title>
       <chart spacing-right=120>
       </chart>
       <plot-options>
@@ -312,7 +312,7 @@
 
   <div style="width:400px;height:400px">
     <vaadin-line-chart >
-        <title>Extreme Temperature Range in Finland</title>
+        <chart-title>Extreme Temperature Range in Finland</chart-title>
         <subtitle>http://ilmatieteenlaitos.fi/lampotilaennatyksia</subtitle>
         <legend enabled="false"></legend>
         <credit enabled="false"></credit>
@@ -346,7 +346,7 @@
 
   <div style="width:400px;height:400px">
     <vaadin-column-chart >
-        <title>Extreme Temperature Range in Finland</title>
+        <chart-title>Extreme Temperature Range in Finland</chart-title>
         <subtitle>http://ilmatieteenlaitos.fi/lampotilaennatyksia</subtitle>
         <legend enabled="false"></legend>
         <chart>
@@ -368,18 +368,18 @@
 
   <div style="width:400px;height:400px">
     <vaadin-columnrange-chart>
-        <title>Extreme Temperature Range in Finland</title>
+        <chart-title>Extreme Temperature Range in Finland</chart-title>
         <subtitle>http://ilmatieteenlaitos.fi/lampotilaennatyksia</subtitle>
         <legend enabled="false"></legend>
 
         <y-axis>
-            <title>Temperature °C</title>
+            <chart-title>Temperature °C</chart-title>
             <labels step=2></labels>
         </y-axis>
         <x-axis>
           <max-padding>0</max-padding>
           <min-padding>0</min-padding>
-          <title>Month</title>
+          <chart-title>Month</chart-title>
           <categories>"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"</categories>
         </x-axis>
         <data-series name="Speed">
@@ -405,15 +405,15 @@
 
   <div style="width:400px;height:400px">
     <vaadin-arearange-chart>
-        <title>Extreme Temperature Range in Finland</title>
+        <chart-title>Extreme Temperature Range in Finland</chart-title>
         <subtitle>http://ilmatieteenlaitos.fi/lampotilaennatyksia</subtitle>
         <legend enabled="false"></legend>
         <y-axis>
-            <title>Temperature °C</title>
+            <chart-title>Temperature °C</chart-title>
             <labels step=2></labels>
         </y-axis>
         <x-axis>
-          <title>Month</title>
+          <chart-title>Month</chart-title>
           <categories>"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"</categories>
         </x-axis>
         <data-series name="Speed">
@@ -437,7 +437,7 @@
   </div>
 
   <vaadin-solidgauge-chart id=solidgauge>
-      <title>Speed</title>
+      <chart-title>Speed</chart-title>
       <legend enabled="false">
       </legend>
       <pane start-angle="-90" end-angle="90" size="125%" center='["50%", "70%"]'>
@@ -463,13 +463,13 @@
   <button onclick="updateSolidGauge()">Update</button>
 
   <vaadin-gauge-chart>
-    <title>Speedometer</title>
+    <chart-title>Speedometer</chart-title>
     <pane start-angle="-150" end-angle="150">
 
     </pane>
     <y-axis min="0" max="200"
             tick-pixel-interval="30" tick-width="2" tick-length="10" tick-color="#666">
-        <title>km/h</title>
+        <chart-title>km/h</chart-title>
         <labels step="2" rotation="auto"></labels>
         <plot-bands from="0" to="120" color="#55BF3B"></plot-bands>
         <plot-bands from="120" to="160" color="#DDDF0D"></plot-bands>
@@ -484,7 +484,7 @@
 
   <div style="width:100%;height:600px">
     <vaadin-pie-chart>
-      <title>Browser market shares at spesific website, 2011</title>
+      <chart-title>Browser market shares at spesific website, 2011</chart-title>
       <subtitle>The bigger they are the harder they pull</subtitle>
       <legend>
         <enabled>false</enabled>
@@ -696,7 +696,7 @@
 
   <div style="width:400px;height:400px">
     <vaadin-pie-chart>
-      <title>Planets</title>
+      <chart-title>Planets</chart-title>
       <subtitle>The bigger they are the harder they pull</subtitle>
       <legend>
         <enabled>false</enabled>
@@ -729,7 +729,7 @@
       <legend>
         <enabled>false</enabled>
       </legend>
-      <title>Champagne Consumption by Country</title>
+      <chart-title>Champagne Consumption by Country</chart-title>
       <tooltip formatter= "function () { return this.point.name + ': ' +
                                                 Math.round(100*(this.point.z * this.point.z))/100.0 +
                                                 ' M bottles'; }">
@@ -740,13 +740,13 @@
         </plot-background-image>
       </chart>
       <x-axis>
-        <title></title>
+        <chart-title></chart-title>
         <min>-180</min>
         <max>180</max>
         <labels enabled="false"></labels>
       </x-axis>
       <y-axis>
-        <title></title>
+        <chart-title></chart-title>
         <min>-90</min>
         <max>90</max>
         <labels enabled="false"></labels>
@@ -789,18 +789,18 @@
   <template id="vaadinExample" is="dom-bind">
     <div style="width:500px;height:500px">
     <vaadin-scatter-chart>
-      <title>Random Sphere</title>
+      <chart-title>Random Sphere</chart-title>
       <legend>
         <enabled>false</enabled>
       </legend>
       <y-axis>
-        <title>Y</title>
+        <chart-title>Y</chart-title>
         <min>-1</min>
         <max>1</max>
       </y-axis>
       <x-axis>
         <grid-line-width>1</grid-line-width>
-        <title>X</title>
+        <chart-title>X</chart-title>
         <min>-1</min>
         <max>1</max>
       </x-axis>
@@ -813,18 +813,18 @@
   <template id="scatterExample" is="dom-bind">
     <div style="width:500px;height:500px">
     <vaadin-scatter-chart>
-      <title>Random Sphere</title>
+      <chart-title>Random Sphere</chart-title>
       <legend>
         <enabled>false</enabled>
       </legend>
       <y-axis>
-        <title>Y</title>
+        <chart-title>Y</chart-title>
         <min>-1</min>
         <max>1</max>
       </y-axis>
       <x-axis>
         <grid-line-width>1</grid-line-width>
-        <title>X</title>
+        <chart-title>X</chart-title>
         <min>-1</min>
         <max>1</max>
       </x-axis>
@@ -840,13 +840,13 @@
       <legend>
         <enabled>false</enabled>
       </legend>
-      <title>Orienteering Split Times</title>
+      <chart-title>Orienteering Split Times</chart-title>
       <x-axis>
-        <title>Check Point</title>
+        <chart-title>Check Point</chart-title>
         <categories>S-1, 1-2, 2-3, 3-4, 4-5, 5-6, 6-7, 7-8</categories>
       </x-axis>
       <y-axis>
-        <title>Time (s)</title>
+        <chart-title>Time (s)</chart-title>
       </y-axis>
       <plot-options>
         <boxplot>
@@ -890,13 +890,13 @@
       <legend>
         <enabled>false</enabled>
       </legend>
-      <title>Average and Extreme Tempetures in Turku</title>
+      <chart-title>Average and Extreme Tempetures in Turku</chart-title>
       <x-axis>
-        <title>Month</title>
+        <chart-title>Month</chart-title>
         <categories>Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec</categories>
       </x-axis>
       <y-axis>
-        <title>Temperature °C</title>
+        <chart-title>Temperature °C</chart-title>
       </y-axis>
       <plot-options>
         <errorbar>
@@ -923,7 +923,7 @@
   </div>
 
   <vaadin-area-chart >
-    <title>Stacking area</title>
+    <chart-title>Stacking area</chart-title>
     <subtitle>Reindeer Kills by Predators by Counties</subtitle>
     <plot-options>
       <area-chart>
@@ -934,7 +934,7 @@
       <categories>Muddusjärvi, Ivalo, Oraniemi, Salla, Alakitka</categories>
     </x-axis>
     <y-axis>
-      <title>Kills</title>
+      <chart-title>Kills</chart-title>
     </y-axis>
     <data-series name="Bear">
       <data>8, 30, 37, 13, 3</data>

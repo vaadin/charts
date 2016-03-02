@@ -105,12 +105,12 @@ If you do not have a Vaadin Charts license, you will see a pop-up with a link wh
 Enter the license key to the pop-up.
 After that, you should see an empty chart with title [guilabel]#Chart title#.
 
-Next, modify the `<vaadin-line-chart>` element to have a `<title>` child element with the content [literal]#Hello Charts!#.
+Next, modify the `<vaadin-line-chart>` element to have a `<chart-title>` child element with the content [literal]#Hello Charts!#.
 
 [source,html]
 ----
 <vaadin-line-chart>
-  <title>Hello Charts!</title>
+  <chart-title>Hello Charts!</chart-title>
 </vaadin-line-chart>
 ----
 
@@ -145,10 +145,10 @@ You can do it by adding the following inside the `<vaadin-line-chart>` element:
 [source,html]
 ----
 <x-axis>
-  <title>Shoe size (EU)</title>
+  <chart-title>Shoe size (EU)</chart-title>
 </x-axis>
 <y-axis>
-  <title>Age (years)</title>
+  <chart-title>Age (years)</chart-title>
 </y-axis>
 ----
 
@@ -235,12 +235,12 @@ You can make it as follows:
 <dom-module id="weather-chart">
   <template>
     <vaadin-line-chart>
-      <title>Turku, Finland 2013</title>
+      <chart-title>Turku, Finland 2013</chart-title>
       <x-axis name="Temperature" type="datetime">
-        <title>Date</title>
+        <chart-title>Date</chart-title>
       </x-axis>
       <y-axis>
-        <title>Temperature (°C)</title>
+        <chart-title>Temperature (°C)</chart-title>
       </y-axis>
       <data-series name="Temperature">
       </data-series>
@@ -361,7 +361,7 @@ Then, bind the `<y-axis>` to the humidity `<data-series>` using the `id` attribu
 [source,html]
 ----
 <y-axis id="humidity">
-  <title>Humidity (%)</title>
+  <chart-title>Humidity (%)</chart-title>
   <min>0</min>
   <opposite>true</opposite>
 </y-axis>
@@ -375,15 +375,15 @@ The final chart element should look as follows:
 [source,html]
 ----
 <vaadin-line-chart>
-  <title>Turku, Finland 2013</title>
+  <chart-title>Turku, Finland 2013</chart-title>
   <x-axis name="Temperature" type="datetime">
-    <title>Date</title>
+    <chart-title>Date</chart-title>
   </x-axis>
   <y-axis>
-    <title>Temperature (°C)</title>
+    <chart-title>Temperature (°C)</chart-title>
   </y-axis>
   <y-axis id="humidity">
-    <title>Humidity (%)</title>
+    <chart-title>Humidity (%)</chart-title>
     <min>0</min>
     <opposite>true</opposite>
   </y-axis>

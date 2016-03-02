@@ -7,7 +7,7 @@
 <body>
   <div style="width:400px;height:300px">
     <vaadin-line-chart >
-      <title>Planets</title>
+      <chart-title>Planets</chart-title>
       <subtitle>The bigger they are the harder they pull</subtitle>
       <legend>
         <enabled>false</enabled>
@@ -18,12 +18,12 @@
         </line>
       </plot-options>
       <x-axis>
-        <title>Planet</title>
+        <chart-title>Planet</chart-title>
         <categories>Mercury, Venus, Earth, Mars,
                     Jupiter, Saturn, Uranus, Neptune</categories>
       </x-axis>
       <y-axis>
-        <title>Diameter</title>
+        <chart-title>Diameter</chart-title>
         <labels formatter = "function () { return this.value / 1000 + 'Mm';}">
           <step>2</step>
         </labels>

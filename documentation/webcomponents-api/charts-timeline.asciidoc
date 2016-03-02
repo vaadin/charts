@@ -48,10 +48,11 @@ of the button to appear pre-selected with the `selected` attribute of the [eleme
 [source, html]
 ----
 <vaadin-line-chart timeline>
-    <title>AAPL Stock Price!</title>
+    <chart-title>AAPL Stock Price!</chart-title>
         <range-selector selected="4">
-             <button-theme fill="#0766d8" stroke="#00ff00" stroke-width="3">
-             </button-theme>
+            <button-theme fill="#7DADB2" stroke="#121212" stroke-width="1">
+                <chart-style color="#2282e2"></chart-style>
+            </button-theme>
         </range-selector>
 </<vaadin-line-chart>
 ----

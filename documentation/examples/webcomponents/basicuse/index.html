@@ -7,19 +7,19 @@
 <body>
 
   <vaadin-line-chart >
-    <title>X labels</title>
+    <chart-title>X labels</chart-title>
     <subtitle>Reindeer Kills by Predators by Counties</subtitle>
     <x-axis>
       <categories>Muddusjärvi, Ivalo, Oraniemi, Salla, Alakitka</categories>
       <labels>
         <align>center</align>
-        <style color="green"></style>
+        <chart-style color="green"></chart-style>
         <rotation>-45</rotation>
         <step>2</step>
       </labels>
     </x-axis>
     <y-axis>
-      <title>Kills</title>
+      <chart-title>Kills</chart-title>
     </y-axis>
     <data-series name="Bear">
       <data>8, 30, 37, 13, 3</data>
@@ -39,7 +39,7 @@
   <template id="fade" is="dom-bind">
     <div style="width:450px;height:400px">
       <vaadin-scatter-chart id="fadeChart">
-        <title>Distance fade</title>
+        <chart-title>Distance fade</chart-title>
         <legend>
           <enabled>false</enabled>
         </legend>
@@ -49,25 +49,25 @@
                      beta=30
                      depth=300
                      view-distance=100>
-            <frame3d>
+            <chart-frame>
               <back size="1" color="#F5F5DC"></back>
-            </frame3d>
+            </chart-frame>
           </options3d>
         </chart>
         <y-axis>
-          <title>Y</title>
+          <chart-title>Y</chart-title>
           <min>-1</min>
           <max>1</max>
         </y-axis>
         <x-axis>
           <grid-line-width>1</grid-line-width>
-          <title>X</title>
+          <chart-title>X</chart-title>
           <min>-1</min>
           <max>1</max>
         </x-axis>
         <z-axis>
           <grid-line-width>1</grid-line-width>
-          <title>Z</title>
+          <chart-title>Z</chart-title>
           <show-first-label>false</show-first-label>
           <step>1</step>
         </z-axis>
@@ -80,7 +80,7 @@
 
   <div style="width:450px;height:400px">
   <vaadin-scatter-chart>
-    <title>Scatter - In 3D!</title>
+    <chart-title>Scatter - In 3D!</chart-title>
     <legend>
       <enabled>false</enabled>
     </legend>
@@ -90,25 +90,25 @@
                  beta=30
                  depth=300
                  view-distance="100">
-        <frame3d>
+        <chart-frame>
           <back size="1" color="#F5F5DC"></back>
-        </frame3d>
+        </chart-frame>
       </options3d>
     </chart>
     <y-axis>
-      <title>Y</title>
+      <chart-title>Y</chart-title>
       <min>-1</min>
       <max>1</max>
     </y-axis>
     <x-axis>
       <grid-line-width>1</grid-line-width>
-      <title>X</title>
+      <chart-title>X</chart-title>
       <min>-1</min>
       <max>1</max>
     </x-axis>
     <z-axis>
       <grid-line-width>1</grid-line-width>
-      <title>Z</title>
+      <chart-title>Z</chart-title>
       <show-first-label>false</show-first-label>
       <step>1</step>
     </z-axis>
@@ -132,7 +132,7 @@
   Calf production and mortality in the Finnish
   reindeer herding area. 2002. -->
   <vaadin-pie-chart>
-    <title>Planets - In 3D!</title>
+    <chart-title>Planets - In 3D!</chart-title>
     <subtitle>The bigger they are the harder they pull</subtitle>
     <legend>
       <enabled>false</enabled>
@@ -157,7 +157,7 @@
       </pie>
     </plot-options>
     <x-axis>
-      <title>Planet</title>
+      <chart-title>Planet</chart-title>
       <categories>Mercury, Venus, Earth, Mars,
                   Jupiter, Saturn, Uranus, Neptune</categories>
     </x-axis>
@@ -171,13 +171,13 @@
 
 
   <vaadin-pie-chart>
-    <title>Combination</title>
+    <chart-title>Combination</chart-title>
     <subtitle>Reindeer Kills by Predators by Counties</subtitle>
     <x-axis>
       <categories>Muddusjärvi, Ivalo, Oraniemi, Salla, Alakitka</categories>
     </x-axis>
     <y-axis>
-      <title>Kills</title>
+      <chart-title>Kills</chart-title>
     </y-axis>
     <data-series name="Bear">
       <type>column</type>
@@ -192,13 +192,13 @@
   </vaadin-pie-chart>
 
   <vaadin-line-chart >
-    <title>Line</title>
+    <chart-title>Line</chart-title>
     <subtitle>Reindeer Kills by Predators by Counties</subtitle>
     <x-axis>
       <categories>Muddusjärvi, Ivalo, Oraniemi, Salla, Alakitka</categories>
     </x-axis>
     <y-axis>
-      <title>Kills</title>
+      <chart-title>Kills</chart-title>
     </y-axis>
     <data-series name="Bear">
       <data>8, 30, 37, 13, 3</data>
@@ -215,13 +215,13 @@
   </vaadin-line-chart>
 
   <vaadin-column-chart >
-    <title>Column</title>
+    <chart-title>Column</chart-title>
     <subtitle>Reindeer Kills by Predators by Counties</subtitle>
     <x-axis>
       <categories>Muddusjärvi, Ivalo, Oraniemi, Salla, Alakitka</categories>
     </x-axis>
     <y-axis>
-      <title>Kills</title>
+      <chart-title>Kills</chart-title>
     </y-axis>
     <data-series name="Bear">
       <data>8, 30, 37, 13, 3</data>
@@ -238,7 +238,7 @@
   </vaadin-column-chart>
 
   <vaadin-column-chart >
-    <title>Stacked column</title>
+    <chart-title>Stacked column</chart-title>
     <subtitle>Reindeer Kills by Predators by Counties</subtitle>
     <plot-options>
       <column>
@@ -249,7 +249,7 @@
       <categories>Muddusjärvi, Ivalo, Oraniemi, Salla, Alakitka</categories>
     </x-axis>
     <y-axis>
-      <title>Kills</title>
+      <chart-title>Kills</chart-title>
     </y-axis>
     <data-series name="Bear">
       <data>8, 30, 37, 13, 3</data>
@@ -266,13 +266,13 @@
   </vaadin-column-chart>
 
   <vaadin-bar-chart >
-    <title>Bar</title>
+    <chart-title>Bar</chart-title>
     <subtitle>Reindeer Kills by Predators by Counties</subtitle>
     <x-axis>
       <categories>Muddusjärvi, Ivalo, Oraniemi, Salla, Alakitka</categories>
     </x-axis>
     <y-axis>
-      <title>Kills</title>
+      <chart-title>Kills</chart-title>
     </y-axis>
     <data-series name="Bear">
       <data>8, 30, 37, 13, 3</data>
