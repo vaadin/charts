@@ -1,14 +1,20 @@
 package com.vaadin.addon.charts.testbenchtests;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import com.vaadin.addon.charts.examples.columnandbar.ColumnWithNativeDrilldown;
 import com.vaadin.testbench.By;
+import com.vaadin.testbench.annotations.BrowserConfiguration;
+import com.vaadin.testbench.annotations.RunLocally;
+import com.vaadin.testbench.parallel.Browser;
 
 public class ColumnWithNativeDrilldownTBTest extends AbstractParallelTest {
 
@@ -24,11 +30,10 @@ public class ColumnWithNativeDrilldownTBTest extends AbstractParallelTest {
         waitForVaadin();
         captureAndCompare("before");
 
-        WebElement findElement = driver.findElement(By.id("chart"));
-        Action moveAndClick = new Actions(driver)
-                .moveToElement(findElement, 120, 255).click()
-                .moveToElement(findElement, 0, 0).build();
-        moveAndClick.perform();
+
+        WebElement element =
+            driver.findElement(By.cssSelector(".highcharts-drilldown-point"));
+        element.click();
 
         waitForDynamicChanges();
         captureAndCompare("after");

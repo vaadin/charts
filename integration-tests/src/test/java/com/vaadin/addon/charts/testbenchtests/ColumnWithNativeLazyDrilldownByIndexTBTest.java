@@ -25,11 +25,9 @@ public class ColumnWithNativeLazyDrilldownByIndexTBTest extends
         waitForVaadin();
         captureAndCompare("before");
 
-        WebElement findElement = driver.findElement(By.id("chart"));
-        Action moveAndClick = new Actions(driver)
-                .moveToElement(findElement, 120, 255).click()
-                .moveToElement(findElement, 0, 0).build();
-        moveAndClick.perform();
+        WebElement element =
+            driver.findElement(By.cssSelector(".highcharts-drilldown-point"));
+        element.click();
 
         waitForDynamicChanges();
         captureAndCompare("after");

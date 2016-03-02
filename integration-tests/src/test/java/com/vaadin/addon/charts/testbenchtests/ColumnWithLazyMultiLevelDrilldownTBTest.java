@@ -28,22 +28,26 @@ public class ColumnWithLazyMultiLevelDrilldownTBTest extends
         waitForVaadin();
 
         WebElement findElement = driver.findElement(By.id("chart"));
-        Action moveAndClick = new Actions(driver)
-                .moveToElement(findElement, 230, 250).click()
-                .moveToElement(findElement, 0, 0).build();
-        moveAndClick.perform();
+        clickFirstDrilldownPoint();
         assertLogText("DrilldownEvent: Latin America and Carribean");
 
-        moveAndClick = new Actions(driver).moveToElement(findElement, 120, 255)
-                .click().moveToElement(findElement, 0, 0).build();
-        moveAndClick.perform();
+        clickFirstDrilldownPoint();
         assertLogText("DrilldownEvent: Costa Rica");
 
-        moveAndClick = new Actions(driver).moveToElement(findElement, 630, 100)
-                .click().moveToElement(findElement, 0, 0).build();
-        moveAndClick.perform();
+        clickDrilldownUp();
         assertLogText("ChartDrillupEvent");
+    }
 
+    private void clickFirstDrilldownPoint() {
+        WebElement element =
+            driver.findElement(By.cssSelector(".highcharts-drilldown-point"));
+        element.click();
+    }
+
+    private void clickDrilldownUp() {
+        WebElement element =
+            driver.findElement(By.cssSelector(".highcharts-button"));
+        element.click();
     }
 
     private void assertLogText(String text) {

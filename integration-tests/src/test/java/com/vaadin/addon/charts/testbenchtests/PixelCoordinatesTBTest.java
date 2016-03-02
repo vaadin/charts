@@ -27,6 +27,7 @@ public class PixelCoordinatesTBTest extends
 
     @Override
     protected void testCustomStuff() {
+        skipBrowser("Move and click action does not seem to work with Firefox", Browser.FIREFOX);
         WebElement findElement = driver.findElement(By.id("chart"));
         Action click;
         // Point click, needs to hover on point before click
@@ -47,14 +48,6 @@ public class PixelCoordinatesTBTest extends
 
         click.perform();
         waitForVaadin();
-    }
-
-    @Override
-    @BrowserConfiguration
-    public List<DesiredCapabilities> getBrowsersToTest() {
-        List<DesiredCapabilities> allBrowsers = super.getBrowsersToTest();
-        allBrowsers.remove(Browser.FIREFOX.getDesiredCapabilities());
-        return allBrowsers;
     }
 
 }

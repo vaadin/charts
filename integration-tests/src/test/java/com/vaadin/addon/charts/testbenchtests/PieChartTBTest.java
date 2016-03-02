@@ -26,10 +26,10 @@ public class PieChartTBTest extends AbstractSimpleScreenShotTestBenchTest {
         // Ensure animation has finished before clicking
         waitForVaadin();
 
-        WebElement chart = driver.findElement(By
-                .xpath("//div[contains(@class, 'vaadin-chart')]"));
-        Action click = new Actions(driver).moveToElement(chart, 400 + 20, 200)
-                .click().build();
+        WebElement firstSeriesPoint = driver.findElement(By
+                .cssSelector(".highcharts-series > path"));
+        Action click = new Actions(driver).moveToElement(firstSeriesPoint)
+            .click().build();
 
         click.perform();
 

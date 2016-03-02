@@ -28,6 +28,7 @@ public class ClickToAddPointTBTest extends
 
     @Override
     protected void testCustomStuff() {
+        skipBrowser("Move and click action does not seem to work with Firefox and IE8", Browser.FIREFOX, Browser.IE8);
         WebElement findElement = driver.findElement(By.id("chart"));
         Action click = new Actions(driver).moveToElement(findElement, 200, 200)
                 .click().build();
@@ -47,15 +48,6 @@ public class ClickToAddPointTBTest extends
 
     private String eventLogText() {
         return driver.findElement(By.id("lastAction")).getText();
-    }
-
-    @Override
-    public List<DesiredCapabilities> getBrowsersToTest() {
-        List<DesiredCapabilities> result = super.getBrowsersToTest();
-        // FIXME: click didn't work in IE8
-        result.remove(Browser.IE8.getDesiredCapabilities());
-        result.remove(Browser.FIREFOX.getDesiredCapabilities());
-        return result;
     }
 
 }
