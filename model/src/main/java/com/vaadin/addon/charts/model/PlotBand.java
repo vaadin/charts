@@ -18,7 +18,8 @@ package com.vaadin.addon.charts.model;
  */
 
 import com.vaadin.addon.charts.model.style.Color;
-import com.vaadin.addon.charts.util.SizeWithUnit;
+import com.vaadin.server.SizeWithUnit;
+import com.vaadin.server.Sizeable.Unit;
 import java.util.Date;
 import com.vaadin.addon.charts.util.Util;
 /**
@@ -117,6 +118,9 @@ public class PlotBand extends AbstractConfigurationObject {
 		this.id = id;
 	}
 
+	/**
+	 * @see #setInnerRadius(String)
+	 */
 	public float getInnerRadius() {
 		String tmp = innerRadius;
 		if (innerRadius == null) {
@@ -128,6 +132,33 @@ public class PlotBand extends AbstractConfigurationObject {
 		return Float.valueOf(tmp).floatValue();
 	}
 
+	/**
+	 * Sets the innerRadius using String presentation. String presentation is
+	 * similar to what is used in Cascading Style Sheets. Size can be pixels or
+	 * percentage, otherwise IllegalArgumentException is thrown. The empty
+	 * string ("") or null will unset the height and set the units to pixels.
+	 * 
+	 * @param innerRadius
+	 *            CSS style string representation
+	 */
+	public void setInnerRadius(String innerRadius) {
+		SizeWithUnit sizeWithUnit = SizeWithUnit.parseStringSize(innerRadius);
+		if (sizeWithUnit != null) {
+			Unit unit = sizeWithUnit.getUnit();
+			if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
+				throw new IllegalArgumentException(
+						unit.toString()
+								+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
+			}
+			setInnerRadius(sizeWithUnit.getSize(), sizeWithUnit.getUnit());
+		} else {
+			setInnerRadius(-1, Unit.PIXELS);
+		}
+	}
+
+	/**
+	 * @see #setInnerRadius(float,Unit)
+	 */
 	public Unit getInnerRadiusUnit() {
 		if (this.innerRadius == null) {
 			return Unit.PIXELS;
@@ -138,16 +169,21 @@ public class PlotBand extends AbstractConfigurationObject {
 		return Unit.PIXELS;
 	}
 
-	public void setInnerRadius(String innerRadius) {
-		SizeWithUnit tmp = SizeWithUnit.parseStringSize(innerRadius);
-		if (tmp != null) {
-			setInnerRadius(tmp.getSize(), tmp.getUnit());
-		} else {
-			setInnerRadius(-1, Unit.PIXELS);
-		}
-	}
-
+	/**
+	 * Sets the innerRadius using Vaadin Unit. Only Unit.PIXELS and
+	 * Unit.PERCENTAGE are supported. In all other cases,
+	 * IllegalArgumentException is thrown.
+	 * 
+	 * @param innerRadius
+	 * @param unit
+	 *            the unit used for the innerRadius
+	 */
 	public void setInnerRadius(float innerRadius, Unit unit) {
+		if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
+			throw new IllegalArgumentException(
+					unit.toString()
+							+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
+		}
 		String value = Float.toString(innerRadius);
 		if (unit.equals(Unit.PERCENTAGE)) {
 			value += "%";
@@ -175,6 +211,9 @@ public class PlotBand extends AbstractConfigurationObject {
 		this.label = label;
 	}
 
+	/**
+	 * @see #setOuterRadius(String)
+	 */
 	public float getOuterRadius() {
 		String tmp = outerRadius;
 		if (outerRadius == null) {
@@ -186,6 +225,33 @@ public class PlotBand extends AbstractConfigurationObject {
 		return Float.valueOf(tmp).floatValue();
 	}
 
+	/**
+	 * Sets the outerRadius using String presentation. String presentation is
+	 * similar to what is used in Cascading Style Sheets. Size can be pixels or
+	 * percentage, otherwise IllegalArgumentException is thrown. The empty
+	 * string ("") or null will unset the height and set the units to pixels.
+	 * 
+	 * @param outerRadius
+	 *            CSS style string representation
+	 */
+	public void setOuterRadius(String outerRadius) {
+		SizeWithUnit sizeWithUnit = SizeWithUnit.parseStringSize(outerRadius);
+		if (sizeWithUnit != null) {
+			Unit unit = sizeWithUnit.getUnit();
+			if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
+				throw new IllegalArgumentException(
+						unit.toString()
+								+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
+			}
+			setOuterRadius(sizeWithUnit.getSize(), sizeWithUnit.getUnit());
+		} else {
+			setOuterRadius(-1, Unit.PIXELS);
+		}
+	}
+
+	/**
+	 * @see #setOuterRadius(float,Unit)
+	 */
 	public Unit getOuterRadiusUnit() {
 		if (this.outerRadius == null) {
 			return Unit.PIXELS;
@@ -196,16 +262,21 @@ public class PlotBand extends AbstractConfigurationObject {
 		return Unit.PIXELS;
 	}
 
-	public void setOuterRadius(String outerRadius) {
-		SizeWithUnit tmp = SizeWithUnit.parseStringSize(outerRadius);
-		if (tmp != null) {
-			setOuterRadius(tmp.getSize(), tmp.getUnit());
-		} else {
-			setOuterRadius(-1, Unit.PIXELS);
-		}
-	}
-
+	/**
+	 * Sets the outerRadius using Vaadin Unit. Only Unit.PIXELS and
+	 * Unit.PERCENTAGE are supported. In all other cases,
+	 * IllegalArgumentException is thrown.
+	 * 
+	 * @param outerRadius
+	 * @param unit
+	 *            the unit used for the outerRadius
+	 */
 	public void setOuterRadius(float outerRadius, Unit unit) {
+		if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
+			throw new IllegalArgumentException(
+					unit.toString()
+							+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
+		}
 		String value = Float.toString(outerRadius);
 		if (unit.equals(Unit.PERCENTAGE)) {
 			value += "%";
@@ -216,6 +287,9 @@ public class PlotBand extends AbstractConfigurationObject {
 		this.outerRadius = value;
 	}
 
+	/**
+	 * @see #setThickness(String)
+	 */
 	public float getThickness() {
 		String tmp = thickness;
 		if (thickness == null) {
@@ -227,6 +301,33 @@ public class PlotBand extends AbstractConfigurationObject {
 		return Float.valueOf(tmp).floatValue();
 	}
 
+	/**
+	 * Sets the thickness using String presentation. String presentation is
+	 * similar to what is used in Cascading Style Sheets. Size can be pixels or
+	 * percentage, otherwise IllegalArgumentException is thrown. The empty
+	 * string ("") or null will unset the height and set the units to pixels.
+	 * 
+	 * @param thickness
+	 *            CSS style string representation
+	 */
+	public void setThickness(String thickness) {
+		SizeWithUnit sizeWithUnit = SizeWithUnit.parseStringSize(thickness);
+		if (sizeWithUnit != null) {
+			Unit unit = sizeWithUnit.getUnit();
+			if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
+				throw new IllegalArgumentException(
+						unit.toString()
+								+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
+			}
+			setThickness(sizeWithUnit.getSize(), sizeWithUnit.getUnit());
+		} else {
+			setThickness(-1, Unit.PIXELS);
+		}
+	}
+
+	/**
+	 * @see #setThickness(float,Unit)
+	 */
 	public Unit getThicknessUnit() {
 		if (this.thickness == null) {
 			return Unit.PIXELS;
@@ -237,16 +338,21 @@ public class PlotBand extends AbstractConfigurationObject {
 		return Unit.PIXELS;
 	}
 
-	public void setThickness(String thickness) {
-		SizeWithUnit tmp = SizeWithUnit.parseStringSize(thickness);
-		if (tmp != null) {
-			setThickness(tmp.getSize(), tmp.getUnit());
-		} else {
-			setThickness(-1, Unit.PIXELS);
-		}
-	}
-
+	/**
+	 * Sets the thickness using Vaadin Unit. Only Unit.PIXELS and
+	 * Unit.PERCENTAGE are supported. In all other cases,
+	 * IllegalArgumentException is thrown.
+	 * 
+	 * @param thickness
+	 * @param unit
+	 *            the unit used for the thickness
+	 */
 	public void setThickness(float thickness, Unit unit) {
+		if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
+			throw new IllegalArgumentException(
+					unit.toString()
+							+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
+		}
 		String value = Float.toString(thickness);
 		if (unit.equals(Unit.PERCENTAGE)) {
 			value += "%";

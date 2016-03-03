@@ -1,8 +1,7 @@
 package com.vaadin.addon.charts.testbenchtests;
 
-import org.openqa.selenium.By;
-
 import com.vaadin.addon.charts.examples.other.BoxPlotExample;
+import org.openqa.selenium.By;
 
 public class BoxPlotExampleTBTest extends AbstractSimpleScreenShotTestBenchTest {
 

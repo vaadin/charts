@@ -20,7 +20,8 @@ package com.vaadin.addon.charts.model;
 import com.vaadin.addon.charts.model.style.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
-import com.vaadin.addon.charts.util.SizeWithUnit;
+import com.vaadin.server.SizeWithUnit;
+import com.vaadin.server.Sizeable.Unit;
 /**
  * A pyramid chart consists of a single pyramid with item heights corresponding
  * to each point value. Technically it is the same as a reversed funnel chart
@@ -258,6 +259,9 @@ public class PlotOptionsPyramid extends AbstractPlotOptions {
 		this.getExtremesFromAll = getExtremesFromAll;
 	}
 
+	/**
+	 * @see #setHeight(String)
+	 */
 	public float getHeight() {
 		String tmp = height;
 		if (height == null) {
@@ -269,6 +273,33 @@ public class PlotOptionsPyramid extends AbstractPlotOptions {
 		return Float.valueOf(tmp).floatValue();
 	}
 
+	/**
+	 * Sets the height using String presentation. String presentation is similar
+	 * to what is used in Cascading Style Sheets. Size can be pixels or
+	 * percentage, otherwise IllegalArgumentException is thrown. The empty
+	 * string ("") or null will unset the height and set the units to pixels.
+	 * 
+	 * @param height
+	 *            CSS style string representation
+	 */
+	public void setHeight(String height) {
+		SizeWithUnit sizeWithUnit = SizeWithUnit.parseStringSize(height);
+		if (sizeWithUnit != null) {
+			Unit unit = sizeWithUnit.getUnit();
+			if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
+				throw new IllegalArgumentException(
+						unit.toString()
+								+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
+			}
+			setHeight(sizeWithUnit.getSize(), sizeWithUnit.getUnit());
+		} else {
+			setHeight(-1, Unit.PIXELS);
+		}
+	}
+
+	/**
+	 * @see #setHeight(float,Unit)
+	 */
 	public Unit getHeightUnit() {
 		if (this.height == null) {
 			return Unit.PIXELS;
@@ -279,16 +310,20 @@ public class PlotOptionsPyramid extends AbstractPlotOptions {
 		return Unit.PIXELS;
 	}
 
-	public void setHeight(String height) {
-		SizeWithUnit tmp = SizeWithUnit.parseStringSize(height);
-		if (tmp != null) {
-			setHeight(tmp.getSize(), tmp.getUnit());
-		} else {
-			setHeight(-1, Unit.PIXELS);
-		}
-	}
-
+	/**
+	 * Sets the height using Vaadin Unit. Only Unit.PIXELS and Unit.PERCENTAGE
+	 * are supported. In all other cases, IllegalArgumentException is thrown.
+	 * 
+	 * @param height
+	 * @param unit
+	 *            the unit used for the height
+	 */
 	public void setHeight(float height, Unit unit) {
+		if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
+			throw new IllegalArgumentException(
+					unit.toString()
+							+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
+		}
 		String value = Float.toString(height);
 		if (unit.equals(Unit.PERCENTAGE)) {
 			value += "%";
@@ -539,6 +574,9 @@ public class PlotOptionsPyramid extends AbstractPlotOptions {
 		this.visible = visible;
 	}
 
+	/**
+	 * @see #setWidth(String)
+	 */
 	public float getWidth() {
 		String tmp = width;
 		if (width == null) {
@@ -550,6 +588,33 @@ public class PlotOptionsPyramid extends AbstractPlotOptions {
 		return Float.valueOf(tmp).floatValue();
 	}
 
+	/**
+	 * Sets the width using String presentation. String presentation is similar
+	 * to what is used in Cascading Style Sheets. Size can be pixels or
+	 * percentage, otherwise IllegalArgumentException is thrown. The empty
+	 * string ("") or null will unset the height and set the units to pixels.
+	 * 
+	 * @param width
+	 *            CSS style string representation
+	 */
+	public void setWidth(String width) {
+		SizeWithUnit sizeWithUnit = SizeWithUnit.parseStringSize(width);
+		if (sizeWithUnit != null) {
+			Unit unit = sizeWithUnit.getUnit();
+			if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
+				throw new IllegalArgumentException(
+						unit.toString()
+								+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
+			}
+			setWidth(sizeWithUnit.getSize(), sizeWithUnit.getUnit());
+		} else {
+			setWidth(-1, Unit.PIXELS);
+		}
+	}
+
+	/**
+	 * @see #setWidth(float,Unit)
+	 */
 	public Unit getWidthUnit() {
 		if (this.width == null) {
 			return Unit.PIXELS;
@@ -560,16 +625,20 @@ public class PlotOptionsPyramid extends AbstractPlotOptions {
 		return Unit.PIXELS;
 	}
 
-	public void setWidth(String width) {
-		SizeWithUnit tmp = SizeWithUnit.parseStringSize(width);
-		if (tmp != null) {
-			setWidth(tmp.getSize(), tmp.getUnit());
-		} else {
-			setWidth(-1, Unit.PIXELS);
-		}
-	}
-
+	/**
+	 * Sets the width using Vaadin Unit. Only Unit.PIXELS and Unit.PERCENTAGE
+	 * are supported. In all other cases, IllegalArgumentException is thrown.
+	 * 
+	 * @param width
+	 * @param unit
+	 *            the unit used for the width
+	 */
 	public void setWidth(float width, Unit unit) {
+		if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
+			throw new IllegalArgumentException(
+					unit.toString()
+							+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
+		}
 		String value = Float.toString(width);
 		if (unit.equals(Unit.PERCENTAGE)) {
 			value += "%";

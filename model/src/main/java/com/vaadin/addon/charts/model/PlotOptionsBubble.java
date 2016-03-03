@@ -22,7 +22,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import com.vaadin.addon.charts.util.Util;
-import com.vaadin.addon.charts.util.SizeWithUnit;
+import com.vaadin.server.SizeWithUnit;
+import com.vaadin.server.Sizeable.Unit;
 /**
  * A bubble series is a three dimensional series type where each point renders
  * an X, Y and Z value. Each points is drawn as a bubble where the position
@@ -805,6 +806,9 @@ public class PlotOptionsBubble extends AbstractPlotOptions {
 		this.pointStart = Util.toHighchartsTS(date);
 	}
 
+	/**
+	 * @see #setMinSize(String)
+	 */
 	public float getMinSize() {
 		String tmp = minSize;
 		if (minSize == null) {
@@ -816,6 +820,33 @@ public class PlotOptionsBubble extends AbstractPlotOptions {
 		return Float.valueOf(tmp).floatValue();
 	}
 
+	/**
+	 * Sets the minSize using String presentation. String presentation is
+	 * similar to what is used in Cascading Style Sheets. Size can be pixels or
+	 * percentage, otherwise IllegalArgumentException is thrown. The empty
+	 * string ("") or null will unset the height and set the units to pixels.
+	 * 
+	 * @param minSize
+	 *            CSS style string representation
+	 */
+	public void setMinSize(String minSize) {
+		SizeWithUnit sizeWithUnit = SizeWithUnit.parseStringSize(minSize);
+		if (sizeWithUnit != null) {
+			Unit unit = sizeWithUnit.getUnit();
+			if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
+				throw new IllegalArgumentException(
+						unit.toString()
+								+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
+			}
+			setMinSize(sizeWithUnit.getSize(), sizeWithUnit.getUnit());
+		} else {
+			setMinSize(-1, Unit.PIXELS);
+		}
+	}
+
+	/**
+	 * @see #setMinSize(float,Unit)
+	 */
 	public Unit getMinSizeUnit() {
 		if (this.minSize == null) {
 			return Unit.PIXELS;
@@ -826,16 +857,20 @@ public class PlotOptionsBubble extends AbstractPlotOptions {
 		return Unit.PIXELS;
 	}
 
-	public void setMinSize(String minSize) {
-		SizeWithUnit tmp = SizeWithUnit.parseStringSize(minSize);
-		if (tmp != null) {
-			setMinSize(tmp.getSize(), tmp.getUnit());
-		} else {
-			setMinSize(-1, Unit.PIXELS);
-		}
-	}
-
+	/**
+	 * Sets the minSize using Vaadin Unit. Only Unit.PIXELS and Unit.PERCENTAGE
+	 * are supported. In all other cases, IllegalArgumentException is thrown.
+	 * 
+	 * @param minSize
+	 * @param unit
+	 *            the unit used for the minSize
+	 */
 	public void setMinSize(float minSize, Unit unit) {
+		if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
+			throw new IllegalArgumentException(
+					unit.toString()
+							+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
+		}
 		String value = Float.toString(minSize);
 		if (unit.equals(Unit.PERCENTAGE)) {
 			value += "%";
@@ -846,6 +881,9 @@ public class PlotOptionsBubble extends AbstractPlotOptions {
 		this.minSize = value;
 	}
 
+	/**
+	 * @see #setMaxSize(String)
+	 */
 	public float getMaxSize() {
 		String tmp = maxSize;
 		if (maxSize == null) {
@@ -857,6 +895,33 @@ public class PlotOptionsBubble extends AbstractPlotOptions {
 		return Float.valueOf(tmp).floatValue();
 	}
 
+	/**
+	 * Sets the maxSize using String presentation. String presentation is
+	 * similar to what is used in Cascading Style Sheets. Size can be pixels or
+	 * percentage, otherwise IllegalArgumentException is thrown. The empty
+	 * string ("") or null will unset the height and set the units to pixels.
+	 * 
+	 * @param maxSize
+	 *            CSS style string representation
+	 */
+	public void setMaxSize(String maxSize) {
+		SizeWithUnit sizeWithUnit = SizeWithUnit.parseStringSize(maxSize);
+		if (sizeWithUnit != null) {
+			Unit unit = sizeWithUnit.getUnit();
+			if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
+				throw new IllegalArgumentException(
+						unit.toString()
+								+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
+			}
+			setMaxSize(sizeWithUnit.getSize(), sizeWithUnit.getUnit());
+		} else {
+			setMaxSize(-1, Unit.PIXELS);
+		}
+	}
+
+	/**
+	 * @see #setMaxSize(float,Unit)
+	 */
 	public Unit getMaxSizeUnit() {
 		if (this.maxSize == null) {
 			return Unit.PIXELS;
@@ -867,16 +932,20 @@ public class PlotOptionsBubble extends AbstractPlotOptions {
 		return Unit.PIXELS;
 	}
 
-	public void setMaxSize(String maxSize) {
-		SizeWithUnit tmp = SizeWithUnit.parseStringSize(maxSize);
-		if (tmp != null) {
-			setMaxSize(tmp.getSize(), tmp.getUnit());
-		} else {
-			setMaxSize(-1, Unit.PIXELS);
-		}
-	}
-
+	/**
+	 * Sets the maxSize using Vaadin Unit. Only Unit.PIXELS and Unit.PERCENTAGE
+	 * are supported. In all other cases, IllegalArgumentException is thrown.
+	 * 
+	 * @param maxSize
+	 * @param unit
+	 *            the unit used for the maxSize
+	 */
 	public void setMaxSize(float maxSize, Unit unit) {
+		if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
+			throw new IllegalArgumentException(
+					unit.toString()
+							+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
+		}
 		String value = Float.toString(maxSize);
 		if (unit.equals(Unit.PERCENTAGE)) {
 			value += "%";

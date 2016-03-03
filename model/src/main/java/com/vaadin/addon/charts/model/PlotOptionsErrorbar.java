@@ -20,7 +20,8 @@ package com.vaadin.addon.charts.model;
 import com.vaadin.addon.charts.model.style.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
-import com.vaadin.addon.charts.util.SizeWithUnit;
+import com.vaadin.server.SizeWithUnit;
+import com.vaadin.server.Sizeable.Unit;
 import java.util.Date;
 import com.vaadin.addon.charts.util.Util;
 /**
@@ -736,6 +737,9 @@ public class PlotOptionsErrorbar extends AbstractPlotOptions {
 		this.whiskerColor = whiskerColor;
 	}
 
+	/**
+	 * @see #setWhiskerLength(String)
+	 */
 	public float getWhiskerLength() {
 		String tmp = whiskerLength;
 		if (whiskerLength == null) {
@@ -747,6 +751,33 @@ public class PlotOptionsErrorbar extends AbstractPlotOptions {
 		return Float.valueOf(tmp).floatValue();
 	}
 
+	/**
+	 * Sets the whiskerLength using String presentation. String presentation is
+	 * similar to what is used in Cascading Style Sheets. Size can be pixels or
+	 * percentage, otherwise IllegalArgumentException is thrown. The empty
+	 * string ("") or null will unset the height and set the units to pixels.
+	 * 
+	 * @param whiskerLength
+	 *            CSS style string representation
+	 */
+	public void setWhiskerLength(String whiskerLength) {
+		SizeWithUnit sizeWithUnit = SizeWithUnit.parseStringSize(whiskerLength);
+		if (sizeWithUnit != null) {
+			Unit unit = sizeWithUnit.getUnit();
+			if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
+				throw new IllegalArgumentException(
+						unit.toString()
+								+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
+			}
+			setWhiskerLength(sizeWithUnit.getSize(), sizeWithUnit.getUnit());
+		} else {
+			setWhiskerLength(-1, Unit.PIXELS);
+		}
+	}
+
+	/**
+	 * @see #setWhiskerLength(float,Unit)
+	 */
 	public Unit getWhiskerLengthUnit() {
 		if (this.whiskerLength == null) {
 			return Unit.PIXELS;
@@ -757,16 +788,21 @@ public class PlotOptionsErrorbar extends AbstractPlotOptions {
 		return Unit.PIXELS;
 	}
 
-	public void setWhiskerLength(String whiskerLength) {
-		SizeWithUnit tmp = SizeWithUnit.parseStringSize(whiskerLength);
-		if (tmp != null) {
-			setWhiskerLength(tmp.getSize(), tmp.getUnit());
-		} else {
-			setWhiskerLength(-1, Unit.PIXELS);
-		}
-	}
-
+	/**
+	 * Sets the whiskerLength using Vaadin Unit. Only Unit.PIXELS and
+	 * Unit.PERCENTAGE are supported. In all other cases,
+	 * IllegalArgumentException is thrown.
+	 * 
+	 * @param whiskerLength
+	 * @param unit
+	 *            the unit used for the whiskerLength
+	 */
 	public void setWhiskerLength(float whiskerLength, Unit unit) {
+		if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
+			throw new IllegalArgumentException(
+					unit.toString()
+							+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
+		}
 		String value = Float.toString(whiskerLength);
 		if (unit.equals(Unit.PERCENTAGE)) {
 			value += "%";

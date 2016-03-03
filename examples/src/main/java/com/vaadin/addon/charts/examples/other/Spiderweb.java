@@ -1,7 +1,5 @@
 package com.vaadin.addon.charts.examples.other;
 
-import static com.vaadin.addon.charts.model.Unit.PERCENTAGE;
-
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.ChartType;
@@ -36,7 +34,7 @@ public class Spiderweb extends AbstractVaadinChartExample {
         conf.getTitle().setX(-80);
 
         Pane pane = new Pane();
-        pane.setSize(80, PERCENTAGE);
+        pane.setSize(80, Unit.PERCENTAGE);
         conf.addPane(pane);
 
         XAxis axis = new XAxis();

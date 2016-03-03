@@ -20,7 +20,8 @@ package com.vaadin.addon.charts.model;
 import com.vaadin.addon.charts.model.style.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
-import com.vaadin.addon.charts.util.SizeWithUnit;
+import com.vaadin.server.SizeWithUnit;
+import com.vaadin.server.Sizeable.Unit;
 /**
  * <p>
  * The Y axis or value axis. In case of multiple axes, the yAxis node is an
@@ -1302,6 +1303,9 @@ public class YAxis extends Axis {
 		this.visible = visible;
 	}
 
+	/**
+	 * @see #setHeight(String)
+	 */
 	public float getHeight() {
 		String tmp = height;
 		if (height == null) {
@@ -1313,6 +1317,33 @@ public class YAxis extends Axis {
 		return Float.valueOf(tmp).floatValue();
 	}
 
+	/**
+	 * Sets the height using String presentation. String presentation is similar
+	 * to what is used in Cascading Style Sheets. Size can be pixels or
+	 * percentage, otherwise IllegalArgumentException is thrown. The empty
+	 * string ("") or null will unset the height and set the units to pixels.
+	 * 
+	 * @param height
+	 *            CSS style string representation
+	 */
+	public void setHeight(String height) {
+		SizeWithUnit sizeWithUnit = SizeWithUnit.parseStringSize(height);
+		if (sizeWithUnit != null) {
+			Unit unit = sizeWithUnit.getUnit();
+			if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
+				throw new IllegalArgumentException(
+						unit.toString()
+								+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
+			}
+			setHeight(sizeWithUnit.getSize(), sizeWithUnit.getUnit());
+		} else {
+			setHeight(-1, Unit.PIXELS);
+		}
+	}
+
+	/**
+	 * @see #setHeight(float,Unit)
+	 */
 	public Unit getHeightUnit() {
 		if (this.height == null) {
 			return Unit.PIXELS;
@@ -1323,16 +1354,20 @@ public class YAxis extends Axis {
 		return Unit.PIXELS;
 	}
 
-	public void setHeight(String height) {
-		SizeWithUnit tmp = SizeWithUnit.parseStringSize(height);
-		if (tmp != null) {
-			setHeight(tmp.getSize(), tmp.getUnit());
-		} else {
-			setHeight(-1, Unit.PIXELS);
-		}
-	}
-
+	/**
+	 * Sets the height using Vaadin Unit. Only Unit.PIXELS and Unit.PERCENTAGE
+	 * are supported. In all other cases, IllegalArgumentException is thrown.
+	 * 
+	 * @param height
+	 * @param unit
+	 *            the unit used for the height
+	 */
 	public void setHeight(float height, Unit unit) {
+		if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
+			throw new IllegalArgumentException(
+					unit.toString()
+							+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
+		}
 		String value = Float.toString(height);
 		if (unit.equals(Unit.PERCENTAGE)) {
 			value += "%";
@@ -1379,6 +1414,9 @@ public class YAxis extends Axis {
 		this.range = range;
 	}
 
+	/**
+	 * @see #setTop(String)
+	 */
 	public float getTop() {
 		String tmp = top;
 		if (top == null) {
@@ -1390,6 +1428,33 @@ public class YAxis extends Axis {
 		return Float.valueOf(tmp).floatValue();
 	}
 
+	/**
+	 * Sets the top using String presentation. String presentation is similar to
+	 * what is used in Cascading Style Sheets. Size can be pixels or percentage,
+	 * otherwise IllegalArgumentException is thrown. The empty string ("") or
+	 * null will unset the height and set the units to pixels.
+	 * 
+	 * @param top
+	 *            CSS style string representation
+	 */
+	public void setTop(String top) {
+		SizeWithUnit sizeWithUnit = SizeWithUnit.parseStringSize(top);
+		if (sizeWithUnit != null) {
+			Unit unit = sizeWithUnit.getUnit();
+			if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
+				throw new IllegalArgumentException(
+						unit.toString()
+								+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
+			}
+			setTop(sizeWithUnit.getSize(), sizeWithUnit.getUnit());
+		} else {
+			setTop(-1, Unit.PIXELS);
+		}
+	}
+
+	/**
+	 * @see #setTop(float,Unit)
+	 */
 	public Unit getTopUnit() {
 		if (this.top == null) {
 			return Unit.PIXELS;
@@ -1400,16 +1465,20 @@ public class YAxis extends Axis {
 		return Unit.PIXELS;
 	}
 
-	public void setTop(String top) {
-		SizeWithUnit tmp = SizeWithUnit.parseStringSize(top);
-		if (tmp != null) {
-			setTop(tmp.getSize(), tmp.getUnit());
-		} else {
-			setTop(-1, Unit.PIXELS);
-		}
-	}
-
+	/**
+	 * Sets the top using Vaadin Unit. Only Unit.PIXELS and Unit.PERCENTAGE are
+	 * supported. In all other cases, IllegalArgumentException is thrown.
+	 * 
+	 * @param top
+	 * @param unit
+	 *            the unit used for the top
+	 */
 	public void setTop(float top, Unit unit) {
+		if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
+			throw new IllegalArgumentException(
+					unit.toString()
+							+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
+		}
 		String value = Float.toString(top);
 		if (unit.equals(Unit.PERCENTAGE)) {
 			value += "%";

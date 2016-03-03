@@ -1,7 +1,5 @@
 package com.vaadin.addon.charts.examples.other;
 
-import static com.vaadin.addon.charts.model.Unit.PERCENTAGE;
-
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.Configuration;
@@ -37,7 +35,7 @@ public class PyramidChartExample extends AbstractVaadinChartExample {
 
         PlotOptionsPyramid options = new PlotOptionsPyramid();
         // With default (90%), long labels in this example may be cut
-        options.setWidth(70, PERCENTAGE);
+        options.setWidth(70, Unit.PERCENTAGE);
         // in pixels
         // options.setWidth(400);
 

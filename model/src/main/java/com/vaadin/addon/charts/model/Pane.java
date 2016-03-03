@@ -19,7 +19,8 @@ package com.vaadin.addon.charts.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import com.vaadin.addon.charts.util.SizeWithUnit;
+import com.vaadin.server.SizeWithUnit;
+import com.vaadin.server.Sizeable.Unit;
 /**
  * Applies only to polar charts and angular gauges. This configuration object
  * holds general options for the combined X and Y axes set. Each xAxis or yAxis
@@ -120,6 +121,9 @@ public class Pane extends AbstractConfigurationObject {
 		this.endAngle = endAngle;
 	}
 
+	/**
+	 * @see #setSize(String)
+	 */
 	public float getSize() {
 		String tmp = size;
 		if (size == null) {
@@ -131,6 +135,33 @@ public class Pane extends AbstractConfigurationObject {
 		return Float.valueOf(tmp).floatValue();
 	}
 
+	/**
+	 * Sets the size using String presentation. String presentation is similar
+	 * to what is used in Cascading Style Sheets. Size can be pixels or
+	 * percentage, otherwise IllegalArgumentException is thrown. The empty
+	 * string ("") or null will unset the height and set the units to pixels.
+	 * 
+	 * @param size
+	 *            CSS style string representation
+	 */
+	public void setSize(String size) {
+		SizeWithUnit sizeWithUnit = SizeWithUnit.parseStringSize(size);
+		if (sizeWithUnit != null) {
+			Unit unit = sizeWithUnit.getUnit();
+			if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
+				throw new IllegalArgumentException(
+						unit.toString()
+								+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
+			}
+			setSize(sizeWithUnit.getSize(), sizeWithUnit.getUnit());
+		} else {
+			setSize(-1, Unit.PIXELS);
+		}
+	}
+
+	/**
+	 * @see #setSize(float,Unit)
+	 */
 	public Unit getSizeUnit() {
 		if (this.size == null) {
 			return Unit.PIXELS;
@@ -141,16 +172,20 @@ public class Pane extends AbstractConfigurationObject {
 		return Unit.PIXELS;
 	}
 
-	public void setSize(String size) {
-		SizeWithUnit tmp = SizeWithUnit.parseStringSize(size);
-		if (tmp != null) {
-			setSize(tmp.getSize(), tmp.getUnit());
-		} else {
-			setSize(-1, Unit.PIXELS);
-		}
-	}
-
+	/**
+	 * Sets the size using Vaadin Unit. Only Unit.PIXELS and Unit.PERCENTAGE are
+	 * supported. In all other cases, IllegalArgumentException is thrown.
+	 * 
+	 * @param size
+	 * @param unit
+	 *            the unit used for the size
+	 */
 	public void setSize(float size, Unit unit) {
+		if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
+			throw new IllegalArgumentException(
+					unit.toString()
+							+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
+		}
 		String value = Float.toString(size);
 		if (unit.equals(Unit.PERCENTAGE)) {
 			value += "%";

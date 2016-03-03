@@ -20,7 +20,8 @@ package com.vaadin.addon.charts.model;
 import com.vaadin.addon.charts.model.style.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
-import com.vaadin.addon.charts.util.SizeWithUnit;
+import com.vaadin.server.SizeWithUnit;
+import com.vaadin.server.Sizeable.Unit;
 /**
  * Funnel charts are a type of chart often used to visualize stages in a sales
  * project, where the top are the initial stages with the most clients. It
@@ -260,6 +261,9 @@ public class PlotOptionsFunnel extends AbstractPlotOptions {
 		this.getExtremesFromAll = getExtremesFromAll;
 	}
 
+	/**
+	 * @see #setHeight(String)
+	 */
 	public float getHeight() {
 		String tmp = height;
 		if (height == null) {
@@ -271,6 +275,33 @@ public class PlotOptionsFunnel extends AbstractPlotOptions {
 		return Float.valueOf(tmp).floatValue();
 	}
 
+	/**
+	 * Sets the height using String presentation. String presentation is similar
+	 * to what is used in Cascading Style Sheets. Size can be pixels or
+	 * percentage, otherwise IllegalArgumentException is thrown. The empty
+	 * string ("") or null will unset the height and set the units to pixels.
+	 * 
+	 * @param height
+	 *            CSS style string representation
+	 */
+	public void setHeight(String height) {
+		SizeWithUnit sizeWithUnit = SizeWithUnit.parseStringSize(height);
+		if (sizeWithUnit != null) {
+			Unit unit = sizeWithUnit.getUnit();
+			if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
+				throw new IllegalArgumentException(
+						unit.toString()
+								+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
+			}
+			setHeight(sizeWithUnit.getSize(), sizeWithUnit.getUnit());
+		} else {
+			setHeight(-1, Unit.PIXELS);
+		}
+	}
+
+	/**
+	 * @see #setHeight(float,Unit)
+	 */
 	public Unit getHeightUnit() {
 		if (this.height == null) {
 			return Unit.PIXELS;
@@ -281,16 +312,20 @@ public class PlotOptionsFunnel extends AbstractPlotOptions {
 		return Unit.PIXELS;
 	}
 
-	public void setHeight(String height) {
-		SizeWithUnit tmp = SizeWithUnit.parseStringSize(height);
-		if (tmp != null) {
-			setHeight(tmp.getSize(), tmp.getUnit());
-		} else {
-			setHeight(-1, Unit.PIXELS);
-		}
-	}
-
+	/**
+	 * Sets the height using Vaadin Unit. Only Unit.PIXELS and Unit.PERCENTAGE
+	 * are supported. In all other cases, IllegalArgumentException is thrown.
+	 * 
+	 * @param height
+	 * @param unit
+	 *            the unit used for the height
+	 */
 	public void setHeight(float height, Unit unit) {
+		if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
+			throw new IllegalArgumentException(
+					unit.toString()
+							+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
+		}
 		String value = Float.toString(height);
 		if (unit.equals(Unit.PERCENTAGE)) {
 			value += "%";
@@ -379,6 +414,9 @@ public class PlotOptionsFunnel extends AbstractPlotOptions {
 		this.minSize = minSize;
 	}
 
+	/**
+	 * @see #setNeckHeight(String)
+	 */
 	public float getNeckHeight() {
 		String tmp = neckHeight;
 		if (neckHeight == null) {
@@ -390,6 +428,33 @@ public class PlotOptionsFunnel extends AbstractPlotOptions {
 		return Float.valueOf(tmp).floatValue();
 	}
 
+	/**
+	 * Sets the neckHeight using String presentation. String presentation is
+	 * similar to what is used in Cascading Style Sheets. Size can be pixels or
+	 * percentage, otherwise IllegalArgumentException is thrown. The empty
+	 * string ("") or null will unset the height and set the units to pixels.
+	 * 
+	 * @param neckHeight
+	 *            CSS style string representation
+	 */
+	public void setNeckHeight(String neckHeight) {
+		SizeWithUnit sizeWithUnit = SizeWithUnit.parseStringSize(neckHeight);
+		if (sizeWithUnit != null) {
+			Unit unit = sizeWithUnit.getUnit();
+			if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
+				throw new IllegalArgumentException(
+						unit.toString()
+								+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
+			}
+			setNeckHeight(sizeWithUnit.getSize(), sizeWithUnit.getUnit());
+		} else {
+			setNeckHeight(-1, Unit.PIXELS);
+		}
+	}
+
+	/**
+	 * @see #setNeckHeight(float,Unit)
+	 */
 	public Unit getNeckHeightUnit() {
 		if (this.neckHeight == null) {
 			return Unit.PIXELS;
@@ -400,16 +465,21 @@ public class PlotOptionsFunnel extends AbstractPlotOptions {
 		return Unit.PIXELS;
 	}
 
-	public void setNeckHeight(String neckHeight) {
-		SizeWithUnit tmp = SizeWithUnit.parseStringSize(neckHeight);
-		if (tmp != null) {
-			setNeckHeight(tmp.getSize(), tmp.getUnit());
-		} else {
-			setNeckHeight(-1, Unit.PIXELS);
-		}
-	}
-
+	/**
+	 * Sets the neckHeight using Vaadin Unit. Only Unit.PIXELS and
+	 * Unit.PERCENTAGE are supported. In all other cases,
+	 * IllegalArgumentException is thrown.
+	 * 
+	 * @param neckHeight
+	 * @param unit
+	 *            the unit used for the neckHeight
+	 */
 	public void setNeckHeight(float neckHeight, Unit unit) {
+		if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
+			throw new IllegalArgumentException(
+					unit.toString()
+							+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
+		}
 		String value = Float.toString(neckHeight);
 		if (unit.equals(Unit.PERCENTAGE)) {
 			value += "%";
@@ -420,6 +490,9 @@ public class PlotOptionsFunnel extends AbstractPlotOptions {
 		this.neckHeight = value;
 	}
 
+	/**
+	 * @see #setNeckWidth(String)
+	 */
 	public float getNeckWidth() {
 		String tmp = neckWidth;
 		if (neckWidth == null) {
@@ -431,6 +504,33 @@ public class PlotOptionsFunnel extends AbstractPlotOptions {
 		return Float.valueOf(tmp).floatValue();
 	}
 
+	/**
+	 * Sets the neckWidth using String presentation. String presentation is
+	 * similar to what is used in Cascading Style Sheets. Size can be pixels or
+	 * percentage, otherwise IllegalArgumentException is thrown. The empty
+	 * string ("") or null will unset the height and set the units to pixels.
+	 * 
+	 * @param neckWidth
+	 *            CSS style string representation
+	 */
+	public void setNeckWidth(String neckWidth) {
+		SizeWithUnit sizeWithUnit = SizeWithUnit.parseStringSize(neckWidth);
+		if (sizeWithUnit != null) {
+			Unit unit = sizeWithUnit.getUnit();
+			if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
+				throw new IllegalArgumentException(
+						unit.toString()
+								+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
+			}
+			setNeckWidth(sizeWithUnit.getSize(), sizeWithUnit.getUnit());
+		} else {
+			setNeckWidth(-1, Unit.PIXELS);
+		}
+	}
+
+	/**
+	 * @see #setNeckWidth(float,Unit)
+	 */
 	public Unit getNeckWidthUnit() {
 		if (this.neckWidth == null) {
 			return Unit.PIXELS;
@@ -441,16 +541,21 @@ public class PlotOptionsFunnel extends AbstractPlotOptions {
 		return Unit.PIXELS;
 	}
 
-	public void setNeckWidth(String neckWidth) {
-		SizeWithUnit tmp = SizeWithUnit.parseStringSize(neckWidth);
-		if (tmp != null) {
-			setNeckWidth(tmp.getSize(), tmp.getUnit());
-		} else {
-			setNeckWidth(-1, Unit.PIXELS);
-		}
-	}
-
+	/**
+	 * Sets the neckWidth using Vaadin Unit. Only Unit.PIXELS and
+	 * Unit.PERCENTAGE are supported. In all other cases,
+	 * IllegalArgumentException is thrown.
+	 * 
+	 * @param neckWidth
+	 * @param unit
+	 *            the unit used for the neckWidth
+	 */
 	public void setNeckWidth(float neckWidth, Unit unit) {
+		if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
+			throw new IllegalArgumentException(
+					unit.toString()
+							+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
+		}
 		String value = Float.toString(neckWidth);
 		if (unit.equals(Unit.PERCENTAGE)) {
 			value += "%";
@@ -623,6 +728,9 @@ public class PlotOptionsFunnel extends AbstractPlotOptions {
 		this.visible = visible;
 	}
 
+	/**
+	 * @see #setWidth(String)
+	 */
 	public float getWidth() {
 		String tmp = width;
 		if (width == null) {
@@ -634,6 +742,33 @@ public class PlotOptionsFunnel extends AbstractPlotOptions {
 		return Float.valueOf(tmp).floatValue();
 	}
 
+	/**
+	 * Sets the width using String presentation. String presentation is similar
+	 * to what is used in Cascading Style Sheets. Size can be pixels or
+	 * percentage, otherwise IllegalArgumentException is thrown. The empty
+	 * string ("") or null will unset the height and set the units to pixels.
+	 * 
+	 * @param width
+	 *            CSS style string representation
+	 */
+	public void setWidth(String width) {
+		SizeWithUnit sizeWithUnit = SizeWithUnit.parseStringSize(width);
+		if (sizeWithUnit != null) {
+			Unit unit = sizeWithUnit.getUnit();
+			if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
+				throw new IllegalArgumentException(
+						unit.toString()
+								+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
+			}
+			setWidth(sizeWithUnit.getSize(), sizeWithUnit.getUnit());
+		} else {
+			setWidth(-1, Unit.PIXELS);
+		}
+	}
+
+	/**
+	 * @see #setWidth(float,Unit)
+	 */
 	public Unit getWidthUnit() {
 		if (this.width == null) {
 			return Unit.PIXELS;
@@ -644,16 +779,20 @@ public class PlotOptionsFunnel extends AbstractPlotOptions {
 		return Unit.PIXELS;
 	}
 
-	public void setWidth(String width) {
-		SizeWithUnit tmp = SizeWithUnit.parseStringSize(width);
-		if (tmp != null) {
-			setWidth(tmp.getSize(), tmp.getUnit());
-		} else {
-			setWidth(-1, Unit.PIXELS);
-		}
-	}
-
+	/**
+	 * Sets the width using Vaadin Unit. Only Unit.PIXELS and Unit.PERCENTAGE
+	 * are supported. In all other cases, IllegalArgumentException is thrown.
+	 * 
+	 * @param width
+	 * @param unit
+	 *            the unit used for the width
+	 */
 	public void setWidth(float width, Unit unit) {
+		if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
+			throw new IllegalArgumentException(
+					unit.toString()
+							+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
+		}
 		String value = Float.toString(width);
 		if (unit.equals(Unit.PERCENTAGE)) {
 			value += "%";
