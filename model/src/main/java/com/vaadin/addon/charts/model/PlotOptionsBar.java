@@ -996,6 +996,9 @@ public class PlotOptionsBar extends AbstractPlotOptions {
 		this.zones.remove(zone);
 	}
 
+	/**
+	 * @see #setPointStart(Number)
+	 */
 	public void setPointStart(Date date) {
 		this.pointStart = Util.toHighchartsTS(date);
 	}

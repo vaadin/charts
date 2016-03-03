@@ -16,6 +16,9 @@ package com.vaadin.addon.charts.model;
  * If not, see <https://vaadin.com/license/cval-3>.
  * #L%
  */
+
+import java.util.Date;
+import com.vaadin.addon.charts.util.Util;
 /**
  * An array defining breaks in the axis, the sections defined will be left out
  * and all the points shifted closer to each other. Requires that the
@@ -93,5 +96,19 @@ public class Breaks extends AbstractConfigurationObject {
 	 */
 	public void setTo(Number to) {
 		this.to = to;
+	}
+
+	/**
+	 * @see #setFrom(Number)
+	 */
+	public void setFrom(Date date) {
+		this.from = Util.toHighchartsTS(date);
+	}
+
+	/**
+	 * @see #setTo(Number)
+	 */
+	public void setTo(Date date) {
+		this.to = Util.toHighchartsTS(date);
 	}
 }

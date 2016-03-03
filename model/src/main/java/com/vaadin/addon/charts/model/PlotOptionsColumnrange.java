@@ -982,6 +982,9 @@ public class PlotOptionsColumnrange extends AbstractPlotOptions {
 		this.legendIndex = legendIndex;
 	}
 
+	/**
+	 * @see #setPointStart(Number)
+	 */
 	public void setPointStart(Date date) {
 		this.pointStart = Util.toHighchartsTS(date);
 	}

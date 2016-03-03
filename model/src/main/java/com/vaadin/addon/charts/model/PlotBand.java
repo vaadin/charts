@@ -19,6 +19,8 @@ package com.vaadin.addon.charts.model;
 
 import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.util.SizeWithUnit;
+import java.util.Date;
+import com.vaadin.addon.charts.util.Util;
 /**
  * An array of objects defining plot bands on the Y axis.
  */
@@ -284,6 +286,20 @@ public class PlotBand extends AbstractConfigurationObject {
 	 */
 	public void setZIndex(Number zIndex) {
 		this.zIndex = zIndex;
+	}
+
+	/**
+	 * @see #setFrom(Number)
+	 */
+	public void setFrom(Date date) {
+		this.from = Util.toHighchartsTS(date);
+	}
+
+	/**
+	 * @see #setTo(Number)
+	 */
+	public void setTo(Date date) {
+		this.to = Util.toHighchartsTS(date);
 	}
 
 	public PlotBand(Number from, Number to, Color color) {

@@ -922,6 +922,9 @@ public class PlotOptionsLine extends AbstractPlotOptions {
 		this.pointRange = pointRange;
 	}
 
+	/**
+	 * @see #setPointStart(Number)
+	 */
 	public void setPointStart(Date date) {
 		this.pointStart = Util.toHighchartsTS(date);
 	}

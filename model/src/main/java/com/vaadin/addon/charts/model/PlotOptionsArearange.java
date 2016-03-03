@@ -943,6 +943,9 @@ public class PlotOptionsArearange extends AbstractPlotOptions {
 		this.stacking = stacking;
 	}
 
+	/**
+	 * @see #setPointStart(Number)
+	 */
 	public void setPointStart(Date date) {
 		this.pointStart = Util.toHighchartsTS(date);
 	}
