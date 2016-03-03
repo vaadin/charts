@@ -15,7 +15,10 @@ The objective of this document is to make the transition from Vaadin Charts 2.x 
 
 [[charts.migration.timeline]]
 == Timeline
-One of the big features of Vaadin Charts 3 for Java is dropping the old [classname]#Timeline# component and introducing the new timeline mode that can be used in regular charts with time-typed X axis.
+One of the big features of Vaadin Charts 3 for Java is dropping the old [classname]#Timeline# component.
+The widgeset needs to be updated because the timeline was removed. To update the widgetset, run
+[literal]#mvn vaadin:update-widgetset# or delete a reference to the timeline widgetset in a
+project [filename]#gwt.xml# file. Vaadin Charts 3 introduced the new timeline mode that can be used in regular charts with time-typed X axis.
 You can find out more about this feature in <<charts-timeline#charts.timeline,"Timeline section">>.
 
 [[charts.migration.abstractclass]]
@@ -45,7 +48,8 @@ that support the properties. In Vaadin Charts 3, instead of using
 [[charts.migration.classnamedif.plotoptions]]
 === PlotOptions
 
-Apart from the new plot options for the new chart types ([classname]#PlotOptionsCandlestick#, [classname]#PlotOptionsFlags# and [classname]#PlotOptionsOhlc#), there has been the following changes in the names of the existing plot options:
+Apart from the new plot options for the new chart types ([classname]#PlotOptionsCandlestick#, [classname]#PlotOptionsFlags#,
+and [classname]#PlotOptionsOhlc#), there has been the following changes in the names of the existing plot options:
 
 * [classname]#PlotOptionsAreaRange# -> [classname]#PlotOptionsArearange#
 * [classname]#PlotOptionsAreaSpline# -> [classname]#PlotOptionsAreaspline#
@@ -76,8 +80,8 @@ Given that not all [classname]#Labels# properties were useful in all the places 
 [[charts.migration.classnamedif.tooltips]]
 === Tooltips
 [classname]#Tooltip# was split into two classes: [classname]#Tooltip#
-and [classname]#SeriesTooltip#. [classname]#Tooltip# contains all the properties to configure tooltips in a chart.
-These properties are used in every series in the chart. [classname]#SeriesTooltip# is a subset of tooltip properties
+and [classname]#SeriesTooltip#. The [classname]#Tooltip# class contains all the properties to configure tooltips in a chart.
+These properties are used in every series in the chart. The [classname]#SeriesTooltip# class is a subset of tooltip properties
 which can only be defined on the series level. For example, [propertyname]#useHTML# can only be defined on the chart level.
 [classname]#Tooltip# should be used in the chart configuration object.
 [classname]#SeriesTooltip# should be used in plot options implementations:
@@ -139,9 +143,12 @@ The previous [methodname]#setPlotOptions()# method added new plot options to exi
 [[charts.migration.methodnamedif.size]]
 === Size related properties
 
-In order to follow Vaadin Framework standards, properties related to size ([propertyname]#size#, [propertyname]#innerRadius#, [propertyname]#outerRadius#, [propertyname]#thickness#, [propertyname]#whiskerLength#, and so forth) now have two different setters.
+In order to follow Vaadin Framework standards, properties related to size ([propertyname]#size#,
+[propertyname]#innerRadius#, [propertyname]#outerRadius#, [propertyname]#thickness#,
+[propertyname]#whiskerLength#, and so forth) now have two different setters.
 One of the setters has a single [classname]#String# parameter.
-The other setter has a float and a [classname]#Unit# enum parameter.
+The other setter has a float and a [classname]#Unit# enum parameter. The [methodname]#setSizeAsPercentage()#
+method was removed.
 
 As shown in the following example, a percentage width can be defined using both setters
 
@@ -158,13 +165,22 @@ options.setWidth(70, Unit.PERCENTAGE);
 // Using String setter
 options.setWidth("70%");
 ----
+* In [classname]#Pane#, [methodName]#setCenterXY(String, String)# is now [methodname]#setCenter(String, String)#.
+The method [methodName]#setCenterXY(Number, Number)# was removed.
+* In [classname]#PlotOptionsFunnel#, [classname]#PlotOptionsPie#, and [classname]#PlotOptionsPyramid#,
+the method [methodname]#setCenter(Number, Number)# was removed. Use [methodname]#setCenter(Number, Number)# instead.
 
 [[charts.migration.methodnamedif.other]]
 === Other
-* In [classname]#Pane#, [methodname]#setCenterXY()# is now [methodname]#setCenter()#.
 * In [classname]#PlotOptionsLine#, [methodname]#setStepType()# is now [methodname]#setStep()#.
 * In [classname]#XAxis#, [methodname]#setShowLastTickLabel()# is now [methodname]#setShowLastLabel()#.
-* In [classname]#YAxis#, [methodname]#setMinorTickInterval()# is now [methodname]#setMinTickInterval()#.
+* In [classname]#YAxis#, [methodname]#setMinorTickInterval(Number)# was removed, use
+[methodname]#setMinorTickInterval(String)# instead. The [methodname]#setMinTickInterval()# method
+was added. Be aware of mixing up these two methods. The [propertyname]#minorTickInterval# property specifies
+the interval between minor ticks, while [propertyname]#minTickInterval# specifies the minimum tick interval allowed
+in axis values.
+* In [classname]#YAxis#, [classname]#Stop# is not an inner class anymore.
+
 
 
 [[charts.migration.example]]
