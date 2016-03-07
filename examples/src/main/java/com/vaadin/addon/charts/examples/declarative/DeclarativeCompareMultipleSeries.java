@@ -11,8 +11,9 @@ import com.vaadin.annotations.DesignRoot;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.declarative.Design;
 
-@DesignRoot(value="compare_multiple_series.html")
-public class CompareMultipleSeries extends AbstractVaadinChartExample {
+@DesignRoot(value = "compare_multiple_series.html")
+public class DeclarativeCompareMultipleSeries extends
+        AbstractVaadinChartExample {
 
     private static final String DATA_SERIES_ID = "seriesId";
     Chart myChart;
@@ -32,7 +33,7 @@ public class CompareMultipleSeries extends AbstractVaadinChartExample {
     private void addSeriesTo(Configuration configuration) {
         DataSeries aaplSeries = new DataSeries();
         aaplSeries.setName("AAPL");
-        for(StockPrices.PriceData data : StockPrices.fetchAaplPrice()) {
+        for (StockPrices.PriceData data : StockPrices.fetchAaplPrice()) {
             DataSeriesItem item = new DataSeriesItem();
             item.setX(data.getDate());
             item.setY(data.getPrice());
@@ -40,7 +41,7 @@ public class CompareMultipleSeries extends AbstractVaadinChartExample {
         }
         DataSeries googSeries = new DataSeries();
         googSeries.setName("GOOG");
-        for(StockPrices.PriceData data : StockPrices.fetchGoogPrice()) {
+        for (StockPrices.PriceData data : StockPrices.fetchGoogPrice()) {
             DataSeriesItem item = new DataSeriesItem();
             item.setX(data.getDate());
             item.setY(data.getPrice());
@@ -48,7 +49,7 @@ public class CompareMultipleSeries extends AbstractVaadinChartExample {
         }
         DataSeries msftSeries = new DataSeries();
         msftSeries.setName("MSFT");
-        for(StockPrices.PriceData data : StockPrices.fetchMsftPrice()) {
+        for (StockPrices.PriceData data : StockPrices.fetchMsftPrice()) {
             DataSeriesItem item = new DataSeriesItem();
             item.setX(data.getDate());
             item.setY(data.getPrice());

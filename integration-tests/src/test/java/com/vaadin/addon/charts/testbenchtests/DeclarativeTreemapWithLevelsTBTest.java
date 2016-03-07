@@ -1,12 +1,13 @@
 package com.vaadin.addon.charts.testbenchtests;
 
-import com.vaadin.addon.charts.examples.declarative.TreemapWithLevels;
+import com.vaadin.addon.charts.examples.declarative.DeclarativeTreemapWithLevels;
 
-public class DeclarativeTreemapWithLevelsTBTest extends AbstractSimpleScreenShotTestBenchTest {
+public class DeclarativeTreemapWithLevelsTBTest extends
+        AbstractSimpleScreenShotTestBenchTest {
 
+    @Override
     protected String getTestViewName() {
-        String simpleName = TreemapWithLevels.class.getSimpleName();
-        return simpleName;
+        return DeclarativeTreemapWithLevels.class.getSimpleName();
     }
 
     @Override

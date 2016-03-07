@@ -10,8 +10,8 @@ import com.vaadin.annotations.DesignRoot;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.declarative.Design;
 
-@DesignRoot(value="treemap_with_levels.html")
-public class TreemapWithLevels extends AbstractVaadinChartExample {
+@DesignRoot(value = "treemap_with_levels.html")
+public class DeclarativeTreemapWithLevels extends AbstractVaadinChartExample {
 
     Chart myChart;
 
@@ -56,7 +56,7 @@ public class TreemapWithLevels extends AbstractVaadinChartExample {
         susanne.setColor(new SolidColor("#9EDE00"));
 
         series.addAll(apples, bananas, oranges, anneA, rickA, peterA, anneB,
-            rickB, peterB, anneO, rickO, peterO, susanne);
+                rickB, peterB, anneO, rickO, peterO, susanne);
 
         return series;
     }

@@ -1,12 +1,13 @@
 package com.vaadin.addon.charts.testbenchtests;
 
-import com.vaadin.addon.charts.examples.declarative.CompareMultipleSeries;
+import com.vaadin.addon.charts.examples.declarative.DeclarativeCompareMultipleSeries;
 
-public class DeclarativeCompareMultipleSeriesTBTest extends AbstractSimpleScreenShotTestBenchTest {
+public class DeclarativeCompareMultipleSeriesTBTest extends
+        AbstractSimpleScreenShotTestBenchTest {
 
+    @Override
     protected String getTestViewName() {
-        String simpleName = CompareMultipleSeries.class.getSimpleName();
-        return simpleName;
+        return DeclarativeCompareMultipleSeries.class.getSimpleName();
     }
 
     @Override

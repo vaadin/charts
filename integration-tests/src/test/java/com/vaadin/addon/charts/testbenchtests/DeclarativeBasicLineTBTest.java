@@ -1,12 +1,13 @@
 package com.vaadin.addon.charts.testbenchtests;
 
-import com.vaadin.addon.charts.examples.declarative.BasicLine;
+import com.vaadin.addon.charts.examples.declarative.DeclarativeBasicLine;
 
-public class DeclarativeBasicLineTBTest extends AbstractSimpleScreenShotTestBenchTest {
+public class DeclarativeBasicLineTBTest extends
+        AbstractSimpleScreenShotTestBenchTest {
 
+    @Override
     protected String getTestViewName() {
-        String simpleName = BasicLine.class.getSimpleName();
-        return simpleName;
+        return DeclarativeBasicLine.class.getSimpleName();
     }
 
     @Override
