@@ -248,7 +248,7 @@ public class ChartsDemoUI extends UI {
                 String text = event.getText();
                 if (text != null && !text.isEmpty()) {
                     expandForFiltering();
-                    container.addContainerFilter("displayName", text, true,
+                    container.addContainerFilter("searchName", text, true,
                             false);
                 } else {
                     restoreExpandedStates();
@@ -423,18 +423,23 @@ public class ChartsDemoUI extends UI {
         HierarchicalContainer hierarchicalContainer = new HierarchicalContainer();
         hierarchicalContainer.addContainerProperty("displayName", String.class,
                 "");
+        hierarchicalContainer.addContainerProperty("searchName", String.class,
+                "");
 
         for (int i = 0; i < GROUP_CAPTIONS.length; i++) {
             String group = GROUP_ORDER[i];
+            String groupName = GROUP_CAPTIONS[i];
             Item groupItem = hierarchicalContainer.addItem(group);
-            groupItem.getItemProperty("displayName")
-                    .setValue(GROUP_CAPTIONS[i]);
+            groupItem.getItemProperty("displayName").setValue(groupName);
+            groupItem.getItemProperty("searchName").setValue(groupName);
             List<Class<? extends AbstractVaadinChartExample>> list = tests
                     .get(group);
             for (Class<? extends AbstractVaadinChartExample> class1 : list) {
                 Item testItem = hierarchicalContainer.addItem(class1);
-                testItem.getItemProperty("displayName").setValue(
-                        splitCamelCase(class1.getSimpleName()));
+                String itemName = splitCamelCase(class1.getSimpleName());
+                testItem.getItemProperty("displayName").setValue(itemName);
+                testItem.getItemProperty("searchName").setValue(
+                        groupName + " " + itemName);
                 hierarchicalContainer.setParent(class1, group);
                 hierarchicalContainer.setChildrenAllowed(class1, false);
             }
