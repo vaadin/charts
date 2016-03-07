@@ -4,11 +4,14 @@ import static org.junit.Assert.*;
 
 import com.vaadin.addon.charts.declarative.ChartDesignWriter;
 import com.vaadin.addon.charts.model.AxisTitle;
+import com.vaadin.addon.charts.model.Back;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.LayoutDirection;
 import com.vaadin.addon.charts.model.Legend;
+import com.vaadin.addon.charts.model.Options3d;
 import com.vaadin.addon.charts.model.PlotLine;
+import com.vaadin.addon.charts.model.PlotOptionsArea;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
 import com.vaadin.addon.charts.model.Title;
@@ -29,7 +32,7 @@ public class ChartDesignWriterTest {
         ChartDesignWriter.writeConfigurationToElement(configuration, parent);
 
         assertEquals(
-            "<title text=\"my title\"></title>", parent.child(0).toString());
+            "<chart-title text=\"my title\"></chart-title>", parent.child(0).toString());
     }
 
     @Test
@@ -84,6 +87,20 @@ public class ChartDesignWriterTest {
         ChartDesignWriter.writeConfigurationToElement(configuration, parent);
 
         assertEquals("<plot-options><line><data-labels enabled=\"true\"></data-labels></line></plot-options>",
+            removeWhitespacesBetweenTags(parent.child(0).toString()));
+    }
+
+    @Test
+    public void writeConfiguration_plotOptionsWithReservedWord_prefixIsWrittenToReservedTagName() {
+        Configuration configuration = new Configuration();
+        PlotOptionsArea plotOptionsArea = new PlotOptionsArea();
+        plotOptionsArea.setAnimation(false);
+        configuration.addPlotOptions(plotOptionsArea);
+        Element parent = new Element(Tag.valueOf("test"), "");
+
+        ChartDesignWriter.writeConfigurationToElement(configuration, parent);
+
+        assertEquals("<plot-options><chart-area animation=\"false\"></chart-area></plot-options>",
             removeWhitespacesBetweenTags(parent.child(0).toString()));
     }
 
@@ -189,7 +206,7 @@ public class ChartDesignWriterTest {
         ChartDesignWriter.writeConfigurationToElement(configuration, parent);
 
         assertEquals(
-            "<y-axis><title text=\"Temperature\"></title></y-axis>",
+            "<y-axis><chart-title text=\"Temperature\"></chart-title></y-axis>",
             removeWhitespacesBetweenTags(parent.child(0).toString()));
     }
 
@@ -218,7 +235,20 @@ public class ChartDesignWriterTest {
         ChartDesignWriter.writeConfigurationToElement(configuration, parent);
 
         assertEquals(
-            "<title><style top=\"12\"></style></title>",
+            "<chart-title><chart-style top=\"12\"></chart-style></chart-title>",
+            removeWhitespacesBetweenTags(parent.child(0).toString()));
+    }
+
+    @Test
+    public void writeConfiguration_frameFor3D_theFrameElementHasPrefix() {
+        Configuration configuration = new Configuration();
+        configuration.getChart().getOptions3d().getFrame().getBack().setSize(1);
+        Element parent = new Element(Tag.valueOf("test"), "");
+
+        ChartDesignWriter.writeConfigurationToElement(configuration, parent);
+
+        assertEquals(
+            "<chart><options3d><chart-frame><back size=\"1\"></back></chart-frame></options3d></chart>",
             removeWhitespacesBetweenTags(parent.child(0).toString()));
     }
 

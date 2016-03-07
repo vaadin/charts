@@ -19,7 +19,7 @@ public class ChartDesignTest {
     public void readAndWriteConfiguration_basicLineChart_theOutputHtmlIsTheSameAsInput() {
         String testHtml =
             "<chart margin-bottom=\"25\" margin-right=\"130\"></chart>\n" +
-            "<title text=\"Monthly Average Temperature\"></title>\n" +
+            "<chart-title text=\"Monthly Average Temperature\"></chart-title>\n" +
             "<subtitle text=\"Source: WorldClimate.com\"></subtitle>\n" +
             "<x-axis>\n" +
             " <categories>\n" +
@@ -27,7 +27,7 @@ public class ChartDesignTest {
             " </categories>\n" +
             "</x-axis>\n" +
             "<y-axis min=\"-5\">\n" +
-            " <title align=\"middle\" text=\"Temperature (°C)\"></title>\n" +
+            " <chart-title align=\"middle\" text=\"Temperature (°C)\"></chart-title>\n" +
             "</y-axis>\n" +
             "<tooltip formatter=\"function() {return '' + this.series.name + ' ' + this.x + ': ' + this.y + '°C';}\"></tooltip>\n" +
             "<legend align=\"right\" border-width=\"0\" layout=\"vertical\" vertical-align=\"top\" x=\"-10\" y=\"100\"></legend>\n" +
@@ -49,7 +49,7 @@ public class ChartDesignTest {
     @Test
     public void readAndWriteConfiguration_compareMultipleSeries_theOutputHtmlIsTheSameAsInput() {
         String testHtml =
-            "<title text=\"AAPL Stock Price\"></title>\n" +
+            "<chart-title text=\"AAPL Stock Price\"></chart-title>\n" +
             "<y-axis>\n" +
             " <labels formatter=\"function() {return (this.value > 0 ? ' + ' : '') + this.value + '%';}\"></labels>\n" +
             " <plot-lines value=\"0\" width=\"2\"></plot-lines>\n" +
@@ -73,12 +73,12 @@ public class ChartDesignTest {
     @Test
     public void readAndWriteConfiguration_treemapWithLevels_theOutputHtmlIsTheSameAsInput() {
         String testHtml =
-            "<title text=\"Fruit consumption\"></title>\n" +
+            "<chart-title text=\"Fruit consumption\"></chart-title>\n" +
             "<plot-options>\n" +
             " <treemap alternate-starting-direction=\"true\" layout-algorithm=\"stripes\">\n" +
             "  <levels layout-algorithm=\"sliceanddice\" level=\"1\">\n" +
             "   <data-labels align=\"left\" enabled=\"true\" vertical-align=\"top\">\n" +
-            "    <style font-weight=\"bold\" font-size=\"15px\"></style>\n" +
+            "    <chart-style font-weight=\"bold\" font-size=\"15px\"></chart-style>\n" +
             "   </data-labels>\n" +
             "  </levels>\n" +
             " </treemap>\n" +

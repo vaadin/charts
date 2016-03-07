@@ -22,11 +22,8 @@ import com.vaadin.ui.declarative.ChartDesignFormatter;
 import com.vaadin.ui.declarative.DesignAttributeHandler;
 import com.vaadin.ui.declarative.DesignException;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Attribute;
-import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
 
 public class ChartDesignReader implements Serializable {
@@ -43,11 +40,11 @@ public class ChartDesignReader implements Serializable {
 
     /**
      * Nodes whose text content should be set as text property value
-     *      For example, <title>My title</title> will be set as
+     *      For example, <chart-title>My title</chart-title> will be set as
      *      title.setText("My title")
      **/
     private static final List<String>
-        textContentNodes = Arrays.asList("subtitle", "title");
+        textContentNodes = Arrays.asList("subtitle", "chart-title");
 
     /**
      * Nodes that contain an array of values as a comma-separated list
@@ -98,14 +95,6 @@ public class ChartDesignReader implements Serializable {
         if(element.children().size() > 0 && value instanceof AbstractConfigurationObject) {
             addToConfiguration(
                 element.children(), (AbstractConfigurationObject) value);
-        }
-        if("title".equals(element.tagName())) {
-            // <title> is reserved tag in HTML and JSoup doesn't read its
-            // children correctly but the whole content is read as text
-            String text = element.text();
-            Document doc = Jsoup.parseBodyFragment(text);
-            addToConfiguration(
-                doc.body().children(), (AbstractConfigurationObject) value);
         }
     }
 
@@ -159,6 +148,7 @@ public class ChartDesignReader implements Serializable {
     }
 
     private static String toClassName(String nodeName) {
+        nodeName = removeChartsPrefix(nodeName);
         String[] words = nodeName.split("-");
         StringBuilder builder = new StringBuilder();
         for (String word : words) {
@@ -346,8 +336,15 @@ public class ChartDesignReader implements Serializable {
         if(nodeName == null) {
             return null;
         }
+        nodeName = removeChartsPrefix(nodeName);
         return nodeName.toLowerCase().replace("-", "");
     }
 
+    private static String removeChartsPrefix(String nodeName) {
+        if(nodeName.toLowerCase().startsWith(ChartDesignCommon.CHART_PREXIX)) {
+            nodeName = nodeName.substring(ChartDesignCommon.CHART_PREXIX.length());
+        }
+        return nodeName;
+    }
 
 }

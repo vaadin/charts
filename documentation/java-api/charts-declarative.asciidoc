@@ -148,6 +148,9 @@ public class BasicLine extends VerticalLayout {
 == Charts Declarative Syntax
 
 In the Charts design format, each configuration object is defined in its own element and the properties for the object are defined as the attributes of the element.
+The following elements are reserved in the HTML specification: [elementname]#title#, [elementname]#style#, [elementname]#area# and [elementname]#frame#.
+These elements should be prefixed by _chart-_ to make parsing behave correctly.
+For example, title configuration is specified inside [elementname]#chart-title# element.
 The naming convention of attributes is the same as described in <<dummy/../../../framework/application/application-declarative#application.declarative.attributes,"Component Attributes">>
 
 For example, [classname]#Legend# object could be defined in Java as follows:
@@ -181,10 +184,10 @@ For example, category labels for the X axis can be defined as follows:
 </x-axis>
 ----
 
-In title elements, namely [elementname]#title# and [elementname]#subtitle#, you can give the title text simply as the inner text of the element.
+In title elements, namely [elementname]#chart-title# and [elementname]#subtitle#, you can give the title text simply as the inner text of the element.
 [source,html]
 ----
-<title>Monthly Average Temperature</title>
+<chart-title>Monthly Average Temperature</chart-title>
 <subtitle>Source: WorldClimate.com</subtitle>
 ----
 
@@ -193,7 +196,7 @@ For example, the title of the Y axis is defined as follows:
 [source,html]
 ----
 <y-axis >
-    <title align="middle">Temperature (°C)</title>
+    <chart-title align="middle">Temperature (°C)</chart-title>
 </y-axis>
 ----
 
@@ -224,12 +227,12 @@ When all the configuration objects in the example in <<charts.declarative.java,"
 <vaadin-vertical-layout size-full>
     <vaadin-line-chart _id="mychart" timeline="false" height="450px" :expand>
         <chart margin-right="130" margin-bottom="25"></chart>
-        <title>Monthly Average Temperature</title>
+        <chart-title>Monthly Average Temperature</chart-title>
         <subtitle>Source: WorldClimate.com</subtitle>
         <legend layout="vertical" align="right" vertical-align="top" x="-10"
                 y="100" border-width="0"></legend>
         <y-axis min="-5">
-            <title align="middle">Temperature (°C)</title>
+            <chart-title align="middle">Temperature (°C)</chart-title>
         </y-axis>
         <x-axis>
             <categories>Jan, Feb, Mar, Apr, May, Jun,

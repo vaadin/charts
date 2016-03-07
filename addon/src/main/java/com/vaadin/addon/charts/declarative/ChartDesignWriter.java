@@ -293,8 +293,15 @@ public class ChartDesignWriter implements Serializable {
      * @return node name
      */
     private static String toNodeName(String camelcase) {
-        return camelcase
+        return renameReservedHtmlTags(camelcase)
             .replaceAll("(?<=[^A-Z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])", "-")
             .toLowerCase();
+    }
+
+    private static String renameReservedHtmlTags(String camelcase) {
+        if(!ChartDesignCommon.isReservedWord(camelcase)) {
+            return camelcase;
+        }
+        return ChartDesignCommon.CHART_PREXIX+camelcase;
     }
 }

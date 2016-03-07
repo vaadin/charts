@@ -13,6 +13,7 @@ import com.vaadin.addon.charts.model.AbstractPlotOptions;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.LayoutDirection;
+import com.vaadin.addon.charts.model.PlotOptionsArea;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
 import com.vaadin.addon.charts.model.PlotOptionsTreemap;
@@ -23,7 +24,7 @@ public class ChartDesignReaderTest {
 
     @Test
     public void readConfiguration_stringValueDefinedInFragment_theSameValueIsInConfiguration() {
-        Elements elements = createElements("<title text=\"my title\"></title>");
+        Elements elements = createElements("<chart-title text=\"my title\"></chart-title>");
         Configuration configuration = new Configuration();
 
         ChartDesignReader
@@ -80,7 +81,7 @@ public class ChartDesignReaderTest {
 
     @Test
     public void readConfiguration_chartTitleHasTextOnlyContent_theContentIsSetAsTitleText() {
-        Elements elements = createElements("<title>my title</title>");
+        Elements elements = createElements("<chart-title>my title</chart-title>");
         Configuration configuration = new Configuration();
 
         ChartDesignReader
@@ -91,7 +92,7 @@ public class ChartDesignReaderTest {
 
     @Test
     public void readConfiguration_chartTitleHasTextInAttibuteAndContent_theAttributeIsSetAsTitleText() {
-        Elements elements = createElements("<title text=\"my title\">this text should be ignored</title>");
+        Elements elements = createElements("<chart-title text=\"my title\">this text should be ignored</chart-title>");
         Configuration configuration = new Configuration();
 
         ChartDesignReader
@@ -113,7 +114,7 @@ public class ChartDesignReaderTest {
 
     @Test
     public void readConfiguration_axisTitleHasTextOnlyContent_theContentIsSetAsTitleText() {
-        Elements elements = createElements("<y-axis><title>my title</title></y-axis>");
+        Elements elements = createElements("<y-axis><chart-title>my title</chart-title></y-axis>");
         Configuration configuration = new Configuration();
 
         ChartDesignReader
@@ -137,8 +138,8 @@ public class ChartDesignReaderTest {
 
     @Test
     public void readConfiguration_multiValueNodes_allTheNodesAreInTheConfiguration() {
-        Elements elements = createElements("<y-axis><title>First</title></y-axis>"+
-                "<y-axis><title>Second</title></y-axis>");
+        Elements elements = createElements("<y-axis><chart-title>First</chart-title></y-axis>"+
+                "<y-axis><chart-title>Second</chart-title></y-axis>");
         Configuration configuration = new Configuration();
 
         ChartDesignReader
@@ -161,6 +162,20 @@ public class ChartDesignReaderTest {
         assertThat(
             configuration.getPlotOptions(ChartType.LINE),
             instanceOf(PlotOptionsLine.class));
+    }
+
+    @Test
+    public void readConfiguration_plotOptionsWithReservedTagName_plotOptionsIsAddedToConfiguration() {
+        Elements elements = createElements("<plot-options><chart-area></chart-area></plot-options>");
+        Configuration configuration = new Configuration();
+
+        ChartDesignReader
+            .readConfigurationFromElements(elements, configuration);
+
+        assertEquals(1, configuration.getPlotOptions().size());
+        assertThat(
+            configuration.getPlotOptions(ChartType.AREA),
+            instanceOf(PlotOptionsArea.class));
     }
 
     @Test
@@ -225,7 +240,7 @@ public class ChartDesignReaderTest {
 
     @Test
     public void readConfiguration_titleWithStyleAsInnerElement_theTitleAndStyleAreInConfiguration() {
-        Elements elements = createElements("<title text=\"foobar\"><style top=\"12\"></style></title>");
+        Elements elements = createElements("<chart-title text=\"foobar\"><chart-style top=\"12\"></chart-style></chart-title>");
         Configuration configuration = new Configuration();
 
         ChartDesignReader
@@ -237,7 +252,7 @@ public class ChartDesignReaderTest {
 
     @Test
     public void readConfiguration_subtitleWithStyleAsInnerElement_theTitleAndStyleAreInConfiguration() {
-        Elements elements = createElements("<subtitle text=\"foobar\"><style top=\"12\"></style></subtitle>");
+        Elements elements = createElements("<subtitle text=\"foobar\"><chart-style top=\"12\"></chart-style></subtitle>");
         Configuration configuration = new Configuration();
 
         ChartDesignReader
@@ -245,6 +260,17 @@ public class ChartDesignReaderTest {
 
         assertEquals("12", configuration.getSubTitle().getStyle().getTop());
         assertEquals("foobar", configuration.getSubTitle().getText());
+    }
+
+    @Test
+    public void readConfiguration_frameHasBackSizeDefined_theFrameBackSizeIsDefinedInConfiguration() {
+        Elements elements = createElements("<chart><options3d><chart-frame><back size=\"1\"></back></chart-frame></options3d></chart>");
+        Configuration configuration = new Configuration();
+
+        ChartDesignReader
+            .readConfigurationFromElements(elements, configuration);
+
+        assertEquals(1L, configuration.getChart().getOptions3d().getFrame().getBack().getSize());
     }
 
     private Elements createElements(String configHtml) {
