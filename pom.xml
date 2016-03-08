@@ -226,9 +226,5 @@
                 <enabled>true</enabled>
             </snapshots>
         </pluginRepository>
-        <pluginRepository>
-            <id>pdfsplit-plugin</id>
-            <url>https://raw.github.com/zch/maven/releases/</url>
-        </pluginRepository>
     </pluginRepositories>
 </project>

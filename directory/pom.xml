@@ -53,26 +53,6 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>com.github.zch</groupId>
-                <artifactId>pdfsplit-maven-plugin</artifactId>
-                <version>1.0.1</version>
-                <inherited>false</inherited>
-                <executions>
-                    <execution>
-                        <id>pdfsplit</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>split</goal>
-                        </goals>
-                        <configuration>
-                            <inputUrl>https://vaadin.com/download/book-of-vaadin/vaadin-7/pdf/book-of-vaadin.pdf</inputUrl>
-                            <chapter>Chapter 18. Vaadin Charts</chapter>
-                            <outFile>${project.build.directory}/vaadin-charts-manual-${project.version}.pdf</outFile>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
                 <version>0.0.23</version>
