@@ -45,7 +45,7 @@ public class Legend extends AbstractConfigurationObject {
 	private Number lineHeight;
 	private Number margin;
 	private Number maxHeight;
-	private Navigation navigation;
+	private LegendNavigation navigation;
 	private Number padding;
 	private Boolean reversed;
 	private Boolean rtl;
@@ -419,11 +419,11 @@ public class Legend extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setNavigation(Navigation)
+	 * @see #setNavigation(LegendNavigation)
 	 */
-	public Navigation getNavigation() {
+	public LegendNavigation getNavigation() {
 		if (navigation == null) {
-			navigation = new Navigation();
+			navigation = new LegendNavigation();
 		}
 		return navigation;
 	}
@@ -432,7 +432,7 @@ public class Legend extends AbstractConfigurationObject {
 	 * Options for the paging or navigation appearing when the legend is
 	 * overflown.
 	 */
-	public void setNavigation(Navigation navigation) {
+	public void setNavigation(LegendNavigation navigation) {
 		this.navigation = navigation;
 	}
 

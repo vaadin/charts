@@ -62,6 +62,8 @@ public class Configuration extends AbstractConfigurationObject implements
     private Exporting exporting = new Exporting(false);
     private RangeSelector rangeSelector;
     private Scrollbar scrollbar;
+    private Loading loading;
+    private Navigation navigation;
     private NoData noData;
 
     @JsonIgnore
@@ -541,9 +543,10 @@ public class Configuration extends AbstractConfigurationObject implements
     }
 
     /**
-     * Returns the plot options for a specific chart type used by this configuration.
+     * Returns the plot options for a specific chart type used by this
+     * configuration.
      * <p>
-     *    Returns null if no plot options was found for the type
+     * Returns null if no plot options was found for the type
      * </p>
      *
      * @see #setPlotOptions(AbstractPlotOptions)
@@ -727,7 +730,7 @@ public class Configuration extends AbstractConfigurationObject implements
     }
 
     /**
-     * Options for displaying a message when no data is available.
+     * Set options for displaying a message when no data is available.
      * 
      * The actual text to display is set in the {@link Lang#setNoData(String)}
      * 
@@ -735,6 +738,45 @@ public class Configuration extends AbstractConfigurationObject implements
      */
     public void setNoData(NoData noData) {
         this.noData = noData;
+    }
+
+    /**
+     * @see #setNavigation(Navigation)
+     */
+    public Navigation getNavigation() {
+        if (navigation == null) {
+            navigation = new Navigation();
+        }
+        return navigation;
+    }
+
+    /**
+     * Set options for buttons and menus appearing in the exporting module.
+     * 
+     * @param navigation
+     */
+    public void setNavigation(Navigation navigation) {
+        this.navigation = navigation;
+    }
+
+    /**
+     * @see #setLoading(Loading)
+     */
+    public Loading getLoading() {
+        if (loading == null) {
+            loading = new Loading();
+        }
+        return loading;
+    }
+
+    /**
+     * Set loading options control the appearance of the loading screen that
+     * covers the plot area on chart operations.
+     * 
+     * @param loading
+     */
+    public void setLoading(Loading loading) {
+        this.loading = loading;
     }
 
     /**

@@ -17,110 +17,19 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
-import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.Style;
 /**
- * Options for the paging or navigation appearing when the legend is overflown.
+ * A collection of options for buttons and menus appearing in the exporting
+ * module.
  */
 public class Navigation extends AbstractConfigurationObject {
 
-	private Color activeColor;
-	private Boolean animation;
-	private Number arrowSize;
-	private Color inactiveColor;
-	private Style style;
 	private ButtonOptions buttonOptions;
 	private Style menuItemHoverStyle;
 	private Style menuItemStyle;
 	private Style menuStyle;
 
 	public Navigation() {
-	}
-
-	/**
-	 * @see #setActiveColor(Color)
-	 */
-	public Color getActiveColor() {
-		return activeColor;
-	}
-
-	/**
-	 * The color for the active up or down arrow in the legend page navigation.
-	 * <p>
-	 * Defaults to: #3E576F
-	 */
-	public void setActiveColor(Color activeColor) {
-		this.activeColor = activeColor;
-	}
-
-	/**
-	 * @see #setAnimation(Boolean)
-	 */
-	public Boolean getAnimation() {
-		return animation;
-	}
-
-	/**
-	 * How to animate the pages when navigating up or down. A value of
-	 * <code>true</code> applies the default navigation given in the
-	 * chart.animation option. Additional options can be given as an object
-	 * containing values for easing and duration. .
-	 * <p>
-	 * Defaults to: true
-	 */
-	public void setAnimation(Boolean animation) {
-		this.animation = animation;
-	}
-
-	/**
-	 * @see #setArrowSize(Number)
-	 */
-	public Number getArrowSize() {
-		return arrowSize;
-	}
-
-	/**
-	 * The pixel size of the up and down arrows in the legend paging navigation.
-	 * .
-	 * <p>
-	 * Defaults to: 12
-	 */
-	public void setArrowSize(Number arrowSize) {
-		this.arrowSize = arrowSize;
-	}
-
-	/**
-	 * @see #setInactiveColor(Color)
-	 */
-	public Color getInactiveColor() {
-		return inactiveColor;
-	}
-
-	/**
-	 * The color of the inactive up or down arrow in the legend page navigation.
-	 * .
-	 * <p>
-	 * Defaults to: #CCC
-	 */
-	public void setInactiveColor(Color inactiveColor) {
-		this.inactiveColor = inactiveColor;
-	}
-
-	/**
-	 * @see #setStyle(Style)
-	 */
-	public Style getStyle() {
-		if (style == null) {
-			style = new Style();
-		}
-		return style;
-	}
-
-	/**
-	 * Text styles for the legend page navigation.
-	 */
-	public void setStyle(Style style) {
-		this.style = style;
 	}
 
 	/**
