@@ -18,20 +18,14 @@ Adding a timeline to your chart is very easy - just add the [propertyname]#timel
 </<vaadin-line-chart>
 ----
 You can enable the timeline in a chart that displays one or more time series.
-Timeline is supported in the following chart types:
-
-|===
-|   <<charts-charttypes#charts.charttypes.area, `area`>> |   <<charts.charttypes.rangecharts, `arearange`>> |   <<charts.charttypes.area, `areaspline`>> |   <<charts.charttypes.rangecharts, `areasplinerange`>>
-|   <<charts-charttypes#charts.charttypes.columnbar, `bar`>>
-|   <<charts-charttypes#charts.charttypes.columnbar, `column`>>
-|   <<charts-charttypes#charts.charttypes.rangecharts, `columnrange`>>
-|   <<charts-charttypes#charts.charttypes.line, `line`>>
-|   <<charts-charttypes#charts.charttypes.ohlc, `ohlc`>>
-|   <<charts-charttypes#charts.charttypes.polygon, `polygon`>>
-|   <<charts-charttypes#charts.charttypes.scatter, `scatter`>>
-|   <<charts-charttypes#charts.charttypes.line, `spline`>>
-|
-|===
+Most of the chart types support the timeline.
+There are few exceptions which are listed here:
+<<charts-charttypes#charts.charttypes.pie, `pie`>>,
+<<charts-charttypes#charts.charttypes.gauge, `gauge`>>,
+<<charts-charttypes#charts.charttypes.solidgauge, `solidgauge`>>,
+<<charts-charttypes#charts.charttypes.funnel, `pyramid`>>, and
+<<charts-charttypes#charts.charttypes.funnel, `funnel`>>.
+Enabling the timeline in these chart types will raise a runtime exception.
 
 You can change the time range by using the navigator at the bottom of the chart.
 To be able to use the navigator, the X values of the corresponding data series should be of the type [classname]#Date#.

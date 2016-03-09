@@ -22,9 +22,9 @@ import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Stack;
-
-import org.jsoup.nodes.Element;
 
 import com.vaadin.addon.charts.declarative.ChartDesignReader;
 import com.vaadin.addon.charts.declarative.ChartDesignWriter;
@@ -43,6 +43,7 @@ import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
+import com.vaadin.addon.charts.model.PlotOptionsSeries;
 import com.vaadin.addon.charts.model.Series;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
@@ -55,6 +56,8 @@ import com.vaadin.addon.charts.shared.MouseEventDetails;
 import com.vaadin.ui.AbstractComponent;
 import com.vaadin.ui.declarative.DesignContext;
 import com.vaadin.util.ReflectTools;
+
+import org.jsoup.nodes.Element;
 
 /**
  * Chart is a Vaadin component that is used to visualize data.
@@ -92,8 +95,8 @@ public class Chart extends AbstractComponent {
      * @since 2.0
      *
      */
-    private static class ProxyChangeForwarder implements
-            ConfigurationChangeListener {
+    private static class ProxyChangeForwarder
+        implements ConfigurationChangeListener {
 
         private final Chart chart;
 
@@ -107,70 +110,70 @@ public class Chart extends AbstractComponent {
                 if (event.getItem().getX() != null) {
                     // x,y type data
                     chart.getRpcProxy(ChartClientRpc.class).addPoint(
-                            toJSON(event.getItem()), getSeriesIndex(event),
-                            event.isShift());
+                        toJSON(event.getItem()), getSeriesIndex(event),
+                        event.isShift());
                 }
             }
         }
 
         private int getSeriesIndex(AbstractSeriesEvent event) {
             return chart.getConfiguration().getSeries()
-                    .indexOf(event.getSeries());
+                .indexOf(event.getSeries());
         }
 
         @Override
         public void dataRemoved(DataRemovedEvent event) {
             chart.getRpcProxy(ChartClientRpc.class).removePoint(
-                    event.getIndex(), getSeriesIndex(event));
+                event.getIndex(), getSeriesIndex(event));
         }
 
         @Override
         public void dataUpdated(DataUpdatedEvent event) {
             if (event.getValue() != null) {
                 chart.getRpcProxy(ChartClientRpc.class).updatePointValue(
-                        getSeriesIndex(event), event.getPointIndex(),
-                        event.getValue().doubleValue());
+                    getSeriesIndex(event), event.getPointIndex(),
+                    event.getValue().doubleValue());
             } else {
                 chart.getRpcProxy(ChartClientRpc.class).updatePoint(
-                        getSeriesIndex(event), event.getPointIndex(),
-                        toJSON(event.getItem()));
+                    getSeriesIndex(event), event.getPointIndex(),
+                    toJSON(event.getItem()));
             }
         }
 
         @Override
         public void seriesStateChanged(SeriesStateEvent event) {
             chart.getRpcProxy(ChartClientRpc.class).setSeriesEnabled(
-                    getSeriesIndex(event), event.isEnabled());
+                getSeriesIndex(event), event.isEnabled());
         }
 
         @Override
         public void animationChanged(boolean animation) {
             chart.getRpcProxy(ChartClientRpc.class).setAnimationEnabled(
-                    animation);
+                animation);
         }
 
         @Override
         public void axisRescaled(AxisRescaledEvent event) {
             chart.getRpcProxy(ChartClientRpc.class).rescaleAxis(
-                    event.getAxis(), event.getAxisIndex(),
-                    event.getMinimum().doubleValue(),
-                    event.getMaximum().doubleValue(),
-                    event.isRedrawingNeeded(), event.isAnimated());
+                event.getAxis(), event.getAxisIndex(),
+                event.getMinimum().doubleValue(),
+                event.getMaximum().doubleValue(), event.isRedrawingNeeded(),
+                event.isAnimated());
         }
 
         @Override
         public void itemSliced(ItemSlicedEvent event) {
             chart.getRpcProxy(ChartClientRpc.class).sliceItem(
-                    getSeriesIndex(event), event.getIndex(), event.isSliced(),
-                    event.isRedraw(), event.isAnimation());
+                getSeriesIndex(event), event.getIndex(), event.isSliced(),
+                event.isRedraw(), event.isAnimation());
         }
 
         @Override
         public void drilldownAdded(int seriesIndex, int pointIndex,
-                Series series) {
+            Series series) {
             chart.getRpcProxy(ChartClientRpc.class).addDrilldown(
-                    toJSON((AbstractConfigurationObject) series), seriesIndex,
-                    pointIndex);
+                toJSON((AbstractConfigurationObject) series), seriesIndex,
+                pointIndex);
 
         }
 
@@ -178,14 +181,14 @@ public class Chart extends AbstractComponent {
 
     private final class ChartServerRpcImplementation implements ChartServerRpc {
 
+        private Stack<Series> drilldownStack = new Stack<Series>();
+
         @Override
         public void onChartClick(MouseEventDetails details) {
             final ChartClickEvent chartClickEvent = new ChartClickEvent(
-                    Chart.this, details);
+                Chart.this, details);
             fireEvent(chartClickEvent);
         }
-
-        private Stack<Series> drilldownStack = new Stack<Series>();
 
         @Override
         public void onChartDrilldown(DrilldownEventDetails details) {
@@ -198,17 +201,16 @@ public class Chart extends AbstractComponent {
                 item = dataSeries.get(pointIndex);
             }
             final DrilldownEvent chartDrilldownEvent = new DrilldownEvent(
-                    Chart.this, series, item, pointIndex);
+                Chart.this, series, item, pointIndex);
 
             if (getDrilldownCallback() != null) {
-                Series drilldownSeries = getDrilldownCallback()
-                        .handleDrilldown(chartDrilldownEvent);
+                Series drilldownSeries =
+                    getDrilldownCallback().handleDrilldown(chartDrilldownEvent);
                 if (drilldownSeries != null) {
                     drilldownStack.push(drilldownSeries);
-                    getRpcProxy(ChartClientRpc.class)
-                            .addDrilldown(
-                                    toJSON((AbstractConfigurationObject) drilldownSeries),
-                                    seriesIndex, pointIndex);
+                    getRpcProxy(ChartClientRpc.class).addDrilldown(
+                        toJSON((AbstractConfigurationObject) drilldownSeries),
+                        seriesIndex, pointIndex);
                 }
             }
         }
@@ -224,90 +226,91 @@ public class Chart extends AbstractComponent {
 
         @Override
         public void onPointClick(MouseEventDetails details,
-                final int seriesIndex, final String category,
-                final int pointIndex) {
+            final int seriesIndex, final String category,
+            final int pointIndex) {
             Series series = resolveSeriesFor(seriesIndex);
             final PointClickEvent pointClickEvent = new PointClickEvent(
-                    Chart.this, details, series, category, pointIndex);
+                Chart.this, details, series, category, pointIndex);
             fireEvent(pointClickEvent);
         }
 
         @Override
         public void onSelection(final double selectionStart,
-                final double selectionEnd, final double valueStart,
-                final double valueEnd) {
+            final double selectionEnd, final double valueStart,
+            final double valueEnd) {
             final ChartSelectionEvent selectionEvent = new ChartSelectionEvent(
-                    Chart.this, selectionStart, selectionEnd, valueStart,
-                    valueEnd);
+                Chart.this, selectionStart, selectionEnd, valueStart, valueEnd);
             fireEvent(selectionEvent);
         }
 
         @Override
-        public void onLegendItemClick(final int seriesIndex, int seriesItemIndex) {
+        public void onLegendItemClick(final int seriesIndex,
+            int seriesItemIndex) {
             Series series = resolveSeriesFor(seriesIndex);
-            final LegendItemClickEvent legendItemClickEvent = new LegendItemClickEvent(
+            final LegendItemClickEvent legendItemClickEvent =
+                new LegendItemClickEvent(
                     Chart.this, series, seriesItemIndex);
             fireEvent(legendItemClickEvent);
         }
 
         @Override
         public void onCheckboxClick(boolean isChecked, final int seriesIndex,
-                int seriesItemIndex) {
+            int seriesItemIndex) {
             Series series = resolveSeriesFor(seriesIndex);
             CheckboxClickEvent checkboxClickEvent = new CheckboxClickEvent(
-                    Chart.this, isChecked, series, seriesItemIndex);
+                Chart.this, isChecked, series, seriesItemIndex);
             fireEvent(checkboxClickEvent);
         }
 
         @Override
         public void onSeriesHide(int seriesIndex, int seriesItemIndex) {
             Series series = resolveSeriesFor(seriesIndex);
-            SeriesHideEvent seriesHideEvent = new SeriesHideEvent(Chart.this,
-                    series, seriesItemIndex);
+            SeriesHideEvent seriesHideEvent =
+                new SeriesHideEvent(Chart.this, series, seriesItemIndex);
             fireEvent(seriesHideEvent);
         }
 
         @Override
         public void onSeriesShow(int seriesIndex, int seriesItemIndex) {
             Series series = resolveSeriesFor(seriesIndex);
-            SeriesShowEvent seriesShowEvent = new SeriesShowEvent(Chart.this,
-                    series, seriesItemIndex);
+            SeriesShowEvent seriesShowEvent =
+                new SeriesShowEvent(Chart.this, series, seriesItemIndex);
             fireEvent(seriesShowEvent);
         }
 
         @Override
         public void onXAxesExtremesChange(int axisIndex, double minimum,
-                double maximum) {
+            double maximum) {
             XAxis axis = getConfiguration().getxAxis(axisIndex);
             XAxesExtremesChangeEvent event = new XAxesExtremesChangeEvent(
-                    Chart.this, axis, minimum, maximum);
+                Chart.this, axis, minimum, maximum);
             fireEvent(event);
         }
 
         @Override
         public void onYAxesExtremesChange(int axisIndex, double minimum,
-                double maximum) {
+            double maximum) {
             YAxis axis = getConfiguration().getyAxis(axisIndex);
             YAxesExtremesChangeEvent event = new YAxesExtremesChangeEvent(
-                    Chart.this, axis, minimum, maximum);
+                Chart.this, axis, minimum, maximum);
             fireEvent(event);
         }
 
         @Override
         public void onPointSelect(int seriesIndex, String category,
-                int pointIndex) {
+            int pointIndex) {
             Series series = resolveSeriesFor(seriesIndex);
-            PointSelectEvent event = new PointSelectEvent(Chart.this, series,
-                    category, pointIndex);
+            PointSelectEvent event =
+                new PointSelectEvent(Chart.this, series, category, pointIndex);
             fireEvent(event);
         }
 
         @Override
         public void onPointUnselect(int seriesIndex, String category,
-                int pointIndex) {
+            int pointIndex) {
             Series series = resolveSeriesFor(seriesIndex);
-            PointUnselectEvent event = new PointUnselectEvent(Chart.this,
-                    series, category, pointIndex);
+            PointUnselectEvent event = new PointUnselectEvent(
+                Chart.this, series, category, pointIndex);
             fireEvent(event);
         }
 
@@ -324,39 +327,44 @@ public class Chart extends AbstractComponent {
     }
 
     private final static Method chartClickMethod = ReflectTools.findMethod(
-            ChartClickListener.class, "onClick", ChartClickEvent.class);
+        ChartClickListener.class, "onClick", ChartClickEvent.class);
     private final static Method chartDrillupMethod = ReflectTools.findMethod(
-            ChartDrillupListener.class, "onDrillup", ChartDrillupEvent.class);
+        ChartDrillupListener.class, "onDrillup", ChartDrillupEvent.class);
     private final static Method pointClickMethod = ReflectTools.findMethod(
-            PointClickListener.class, "onClick", PointClickEvent.class);
+        PointClickListener.class, "onClick", PointClickEvent.class);
     private final static Method chartSelectionMethod = ReflectTools.findMethod(
-            ChartSelectionListener.class, "onSelection",
-            ChartSelectionEvent.class);
-    private final static Method legendItemClickMethod = ReflectTools
-            .findMethod(LegendItemClickListener.class, "onClick",
-                    LegendItemClickEvent.class);
+        ChartSelectionListener.class, "onSelection", ChartSelectionEvent.class);
+    private final static Method legendItemClickMethod = ReflectTools.findMethod(
+        LegendItemClickListener.class, "onClick", LegendItemClickEvent.class);
     private final static Method checkboxClickMethod = ReflectTools.findMethod(
-            CheckboxClickListener.class, "onClick", CheckboxClickEvent.class);
+        CheckboxClickListener.class, "onClick", CheckboxClickEvent.class);
     private final static Method showSeriesMethod = ReflectTools.findMethod(
-            SeriesShowListener.class, "onShow", SeriesShowEvent.class);
+        SeriesShowListener.class, "onShow", SeriesShowEvent.class);
     private final static Method hideSeriesMethod = ReflectTools.findMethod(
-            SeriesHideListener.class, "onHide", SeriesHideEvent.class);
-    private final static Method xAxesExtremesChangeMethod = ReflectTools
-            .findMethod(XAxesExtremesChangeListener.class,
-                    "onXAxesExtremesChange", XAxesExtremesChangeEvent.class);
-    private final static Method yAxesExtremesChangeMethod = ReflectTools
-            .findMethod(YAxesExtremesChangeListener.class,
-                    "onYAxesExtremesChange", YAxesExtremesChangeEvent.class);
+        SeriesHideListener.class, "onHide", SeriesHideEvent.class);
+    private final static Method xAxesExtremesChangeMethod =
+        ReflectTools.findMethod(
+            XAxesExtremesChangeListener.class, "onXAxesExtremesChange",
+            XAxesExtremesChangeEvent.class);
+    private final static Method yAxesExtremesChangeMethod =
+        ReflectTools.findMethod(
+            YAxesExtremesChangeListener.class, "onYAxesExtremesChange",
+            YAxesExtremesChangeEvent.class);
     private final static Method pointSelectMethod = ReflectTools.findMethod(
-            PointSelectListener.class, "onSelect", PointSelectEvent.class);
-    private final static Method pointUnselectMethod = ReflectTools
-            .findMethod(PointUnselectListener.class, "onUnselect",
-                    PointUnselectEvent.class);
+        PointSelectListener.class, "onSelect", PointSelectEvent.class);
+    private final static Method pointUnselectMethod = ReflectTools.findMethod(
+        PointUnselectListener.class, "onUnselect", PointUnselectEvent.class);
+
+    private final static List<ChartType> TIMELINE_NOT_SUPPORTED = Arrays.asList(
+        ChartType.PIE, ChartType.GAUGE, ChartType.SOLIDGAUGE, ChartType.PYRAMID,
+        ChartType.FUNNEL);
+
     /**
      * Listens to events on the series attached to the chart and redraws as
      * necessary.
      */
-    private final ConfigurationChangeListener changeListener = new ProxyChangeForwarder(
+    private final ConfigurationChangeListener changeListener =
+        new ProxyChangeForwarder(
             this);
 
     private DrilldownCallback drilldownCallback;
@@ -404,8 +412,9 @@ public class Chart extends AbstractComponent {
     public void beforeClientResponse(boolean initial) {
         super.beforeClientResponse(initial);
         if (initial || stateDirty) {
-            getState().confState = configuration == null ? null
-                    : toJSON(configuration);
+            validateTimelineAndConfiguration();
+            getState().confState =
+                configuration == null ? null : toJSON(configuration);
             getState().jsonState = jsonConfig;
             stateDirty = false;
         }
@@ -414,6 +423,27 @@ public class Chart extends AbstractComponent {
             // drawn.
             configuration.addChangeListener(changeListener);
         }
+    }
+
+    private void validateTimelineAndConfiguration() {
+        if (getState().timeline) {
+            ChartType type = resolveChartType();
+            if (TIMELINE_NOT_SUPPORTED.contains(type)) {
+                throw new RuntimeException(
+                    "Timeline is not supported for chart type '" + type + "'");
+            }
+        }
+    }
+
+    private ChartType resolveChartType() {
+        if (configuration.getSeries().isEmpty() ||
+            configuration.getSeries().get(0).getPlotOptions() == null ||
+            configuration.getSeries().get(0)
+                .getPlotOptions() instanceof PlotOptionsSeries) {
+            return configuration.getChart().getType();
+
+        }
+        return configuration.getSeries().get(0).getPlotOptions().getChartType();
     }
 
     @Override
@@ -541,8 +571,9 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void addChartClickListener(ChartClickListener listener) {
-        this.addListener(ChartConnector.CHART_CLICK_EVENT_ID,
-                ChartClickEvent.class, listener, chartClickMethod);
+        this.addListener(
+            ChartConnector.CHART_CLICK_EVENT_ID, ChartClickEvent.class,
+            listener, chartClickMethod);
     }
 
     /**
@@ -552,8 +583,9 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void removeChartClickListener(ChartClickListener listener) {
-        this.removeListener(ChartConnector.CHART_CLICK_EVENT_ID,
-                ChartClickEvent.class, listener);
+        this.removeListener(
+            ChartConnector.CHART_CLICK_EVENT_ID, ChartClickEvent.class,
+            listener);
     }
 
     /**
@@ -563,8 +595,9 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void addChartDrillupListener(ChartDrillupListener listener) {
-        this.addListener(ChartConnector.CHART_DRILLUP_EVENT_ID,
-                ChartDrillupEvent.class, listener, chartDrillupMethod);
+        this.addListener(
+            ChartConnector.CHART_DRILLUP_EVENT_ID, ChartDrillupEvent.class,
+            listener, chartDrillupMethod);
     }
 
     /**
@@ -574,8 +607,9 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void removeChartDrillupListener(ChartDrillupListener listener) {
-        this.removeListener(ChartConnector.CHART_DRILLUP_EVENT_ID,
-                ChartDrillupEvent.class, listener);
+        this.removeListener(
+            ChartConnector.CHART_DRILLUP_EVENT_ID, ChartDrillupEvent.class,
+            listener);
     }
 
     /**
@@ -585,8 +619,9 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void addCheckBoxClickListener(CheckboxClickListener listener) {
-        this.addListener(ChartConnector.CHECKBOX_CLICK_EVENT_ID,
-                CheckboxClickEvent.class, listener, checkboxClickMethod);
+        this.addListener(
+            ChartConnector.CHECKBOX_CLICK_EVENT_ID, CheckboxClickEvent.class,
+            listener, checkboxClickMethod);
     }
 
     /**
@@ -596,8 +631,9 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void removeCheckBoxClickListener(CheckboxClickListener listener) {
-        this.removeListener(ChartConnector.CHECKBOX_CLICK_EVENT_ID,
-                CheckboxClickEvent.class, listener);
+        this.removeListener(
+            ChartConnector.CHECKBOX_CLICK_EVENT_ID, CheckboxClickEvent.class,
+            listener);
     }
 
     /**
@@ -628,8 +664,9 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void addPointClickListener(PointClickListener listener) {
-        this.addListener(ChartConnector.POINT_CLICK_EVENT_ID,
-                PointClickEvent.class, listener, pointClickMethod);
+        this.addListener(
+            ChartConnector.POINT_CLICK_EVENT_ID, PointClickEvent.class,
+            listener, pointClickMethod);
     }
 
     /**
@@ -639,8 +676,9 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void removePointClickListener(PointClickListener listener) {
-        this.removeListener(ChartConnector.POINT_CLICK_EVENT_ID,
-                PointClickEvent.class, listener);
+        this.removeListener(
+            ChartConnector.POINT_CLICK_EVENT_ID, PointClickEvent.class,
+            listener);
     }
 
     /**
@@ -655,8 +693,9 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void addChartSelectionListener(ChartSelectionListener listener) {
-        this.addListener(ChartConnector.CHART_SELECTION_EVENT_ID,
-                ChartSelectionEvent.class, listener, chartSelectionMethod);
+        this.addListener(
+            ChartConnector.CHART_SELECTION_EVENT_ID, ChartSelectionEvent.class,
+            listener, chartSelectionMethod);
     }
 
     /**
@@ -666,8 +705,9 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void removeChartSelectionListener(ChartSelectionListener listener) {
-        this.removeListener(ChartConnector.CHART_SELECTION_EVENT_ID,
-                ChartSelectionEvent.class, listener);
+        this.removeListener(
+            ChartConnector.CHART_SELECTION_EVENT_ID, ChartSelectionEvent.class,
+            listener);
     }
 
     /**
@@ -682,8 +722,9 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void addLegendItemClickListener(LegendItemClickListener listener) {
-        this.addListener(ChartConnector.LEGENDITEM_CLICK_EVENT_ID,
-                LegendItemClickEvent.class, listener, legendItemClickMethod);
+        this.addListener(
+            ChartConnector.LEGENDITEM_CLICK_EVENT_ID,
+            LegendItemClickEvent.class, listener, legendItemClickMethod);
         setSeriesVisibilityTogglingDisabled(true);
     }
 
@@ -693,9 +734,11 @@ public class Chart extends AbstractComponent {
      * @see #addLegendItemClickListener(LegendItemClickListener)
      * @param listener
      */
-    public void removeLegendItemClickListener(LegendItemClickListener listener) {
-        this.removeListener(ChartConnector.LEGENDITEM_CLICK_EVENT_ID,
-                LegendItemClickEvent.class, listener);
+    public void removeLegendItemClickListener(
+        LegendItemClickListener listener) {
+        this.removeListener(
+            ChartConnector.LEGENDITEM_CLICK_EVENT_ID,
+            LegendItemClickEvent.class, listener);
     }
 
     /**
@@ -705,8 +748,9 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void addSeriesHideListener(SeriesHideListener listener) {
-        this.addListener(ChartConnector.HIDE_SERIES_EVENT_ID,
-                SeriesHideEvent.class, listener, hideSeriesMethod);
+        this.addListener(
+            ChartConnector.HIDE_SERIES_EVENT_ID, SeriesHideEvent.class,
+            listener, hideSeriesMethod);
     }
 
     /**
@@ -716,8 +760,9 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void removeSeriesHideListener(SeriesHideListener listener) {
-        this.removeListener(ChartConnector.HIDE_SERIES_EVENT_ID,
-                SeriesHideEvent.class, listener);
+        this.removeListener(
+            ChartConnector.HIDE_SERIES_EVENT_ID, SeriesHideEvent.class,
+            listener);
     }
 
     /**
@@ -727,8 +772,9 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void addSeriesShowListener(SeriesShowListener listener) {
-        this.addListener(ChartConnector.SHOW_SERIES_EVENT_ID,
-                SeriesShowEvent.class, listener, showSeriesMethod);
+        this.addListener(
+            ChartConnector.SHOW_SERIES_EVENT_ID, SeriesShowEvent.class,
+            listener, showSeriesMethod);
     }
 
     /**
@@ -738,8 +784,9 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void removeSeriesShowListener(SeriesShowListener listener) {
-        this.removeListener(ChartConnector.SHOW_SERIES_EVENT_ID,
-                SeriesShowEvent.class, listener);
+        this.removeListener(
+            ChartConnector.SHOW_SERIES_EVENT_ID, SeriesShowEvent.class,
+            listener);
     }
 
     /**
@@ -749,10 +796,11 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void addXAxesExtremesChangeListener(
-            XAxesExtremesChangeListener listener) {
-        this.addListener(ChartConnector.X_AXES_EXTREMES_CHANGE_EVENT_ID,
-                XAxesExtremesChangeEvent.class, listener,
-                xAxesExtremesChangeMethod);
+        XAxesExtremesChangeListener listener) {
+        this.addListener(
+            ChartConnector.X_AXES_EXTREMES_CHANGE_EVENT_ID,
+            XAxesExtremesChangeEvent.class, listener,
+            xAxesExtremesChangeMethod);
     }
 
     /**
@@ -762,9 +810,10 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void removeXAxesExtremesChangeListener(
-            XAxesExtremesChangeListener listener) {
-        this.removeListener(ChartConnector.X_AXES_EXTREMES_CHANGE_EVENT_ID,
-                XAxesExtremesChangeEvent.class, listener);
+        XAxesExtremesChangeListener listener) {
+        this.removeListener(
+            ChartConnector.X_AXES_EXTREMES_CHANGE_EVENT_ID,
+            XAxesExtremesChangeEvent.class, listener);
     }
 
     /**
@@ -774,10 +823,11 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void addYAxesExtremesChangeListener(
-            YAxesExtremesChangeListener listener) {
-        this.addListener(ChartConnector.Y_AXES_EXTREMES_CHANGE_EVENT_ID,
-                YAxesExtremesChangeEvent.class, listener,
-                yAxesExtremesChangeMethod);
+        YAxesExtremesChangeListener listener) {
+        this.addListener(
+            ChartConnector.Y_AXES_EXTREMES_CHANGE_EVENT_ID,
+            YAxesExtremesChangeEvent.class, listener,
+            yAxesExtremesChangeMethod);
     }
 
     /**
@@ -787,9 +837,10 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void removeYAxesExtremesChangeListener(
-            YAxesExtremesChangeListener listener) {
-        this.removeListener(ChartConnector.Y_AXES_EXTREMES_CHANGE_EVENT_ID,
-                YAxesExtremesChangeEvent.class, listener);
+        YAxesExtremesChangeListener listener) {
+        this.removeListener(
+            ChartConnector.Y_AXES_EXTREMES_CHANGE_EVENT_ID,
+            YAxesExtremesChangeEvent.class, listener);
     }
 
     /**
@@ -799,8 +850,9 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void addPointSelectListener(PointSelectListener listener) {
-        this.addListener(ChartConnector.POINT_SELECT_EVENT_ID,
-                PointSelectEvent.class, listener, pointSelectMethod);
+        this.addListener(
+            ChartConnector.POINT_SELECT_EVENT_ID, PointSelectEvent.class,
+            listener, pointSelectMethod);
     }
 
     /**
@@ -810,8 +862,9 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void removePointSelectListener(PointSelectListener listener) {
-        this.removeListener(ChartConnector.POINT_SELECT_EVENT_ID,
-                PointSelectEvent.class, listener);
+        this.removeListener(
+            ChartConnector.POINT_SELECT_EVENT_ID, PointSelectEvent.class,
+            listener);
     }
 
     /**
@@ -821,8 +874,9 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void addPointUnselectListener(PointUnselectListener listener) {
-        this.addListener(ChartConnector.POINT_UNSELECT_EVENT_ID,
-                PointUnselectEvent.class, listener, pointUnselectMethod);
+        this.addListener(
+            ChartConnector.POINT_UNSELECT_EVENT_ID, PointUnselectEvent.class,
+            listener, pointUnselectMethod);
     }
 
     /**
@@ -832,12 +886,13 @@ public class Chart extends AbstractComponent {
      * @param listener
      */
     public void removePointUnselectListener(PointUnselectListener listener) {
-        this.removeListener(ChartConnector.POINT_UNSELECT_EVENT_ID,
-                PointUnselectEvent.class, listener);
+        this.removeListener(
+            ChartConnector.POINT_UNSELECT_EVENT_ID, PointUnselectEvent.class,
+            listener);
     }
 
-    private void readObject(ObjectInputStream in) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream in)
+        throws IOException, ClassNotFoundException {
         in.defaultReadObject();
         if (getUI() != null) {
             configuration.addChangeListener(changeListener);
@@ -855,12 +910,21 @@ public class Chart extends AbstractComponent {
         getState().seriesVisibilityTogglingDisabled = disabled;
     }
 
-    public void setTimeline(boolean timeline) {
-        getState().timeline = timeline;
-    }
-
+    /**
+     * @see #setTimeline(boolean)
+     */
     public boolean isTimeline() {
         return getState().timeline;
+    }
+
+    /**
+     * Toggles the timeline feature in the chart. When timeline is set as <code>true</code>
+     * both RangeSelector and Navigator are enabled.
+     *
+     * @param timeline
+     */
+    public void setTimeline(boolean timeline) {
+        getState().timeline = timeline;
     }
 
     @Override
@@ -871,8 +935,8 @@ public class Chart extends AbstractComponent {
         if (configuration == null) {
             configuration = new Configuration();
         }
-        ChartDesignReader.readConfigurationFromElements(design.children(),
-                configuration);
+        ChartDesignReader
+            .readConfigurationFromElements(design.children(), configuration);
 
         setConfiguration(configuration);
     }
@@ -884,7 +948,7 @@ public class Chart extends AbstractComponent {
         Configuration configuration = getConfiguration();
         if (configuration != null) {
             ChartDesignWriter
-                    .writeConfigurationToElement(configuration, design);
+                .writeConfigurationToElement(configuration, design);
         }
     }
 }

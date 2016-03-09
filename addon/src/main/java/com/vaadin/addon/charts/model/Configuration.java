@@ -65,6 +65,7 @@ public class Configuration extends AbstractConfigurationObject implements
     private Loading loading;
     private Navigation navigation;
     private NoData noData;
+    private Navigator navigator;
 
     @JsonIgnore
     private final List<ConfigurationChangeListener> changeListeners = new ArrayList<ConfigurationChangeListener>();
@@ -777,6 +778,25 @@ public class Configuration extends AbstractConfigurationObject implements
      */
     public void setLoading(Loading loading) {
         this.loading = loading;
+    }
+
+    /**
+     * @see #setNavigator(Navigator)
+     */
+    public Navigator getNavigator() {
+        if (navigator == null) {
+            navigator = new Navigator();
+        }
+        return navigator;
+    }
+
+    /**
+     * Set configuration for the navigator
+     *
+     * @param navigator
+     */
+    public void setNavigator(Navigator navigator) {
+        this.navigator = navigator;
     }
 
     /**

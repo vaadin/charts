@@ -13,20 +13,14 @@ as well as navigating between such ranges. It is especially useful when working 
 Adding a timeline to your chart is very easy - just set the 'timeline' property to 'true',
 that is, call [methodname]#setTimeline(true)#.
 You can enable the timeline in a chart that displays one or more time series.
-Timeline is supported in the following chart types:
-
-|===
-|   <<dummy/../../../charts/java-api/charts-charttypes#charts.charttypes.area, `area`>> |   <<charts.charttypes.rangecharts, `arearange`>> |   <<charts.charttypes.area, `areaspline`>> |   <<charts.charttypes.rangecharts, `areasplinerange`>>
-|   <<dummy/../../../charts/java-api/charts-charttypes#charts.charttypes.columnbar, `bar`>>
-|   <<dummy/../../../charts/java-api/charts-charttypes#charts.charttypes.columnbar, `column`>>
-|   <<dummy/../../../charts/java-api/charts-charttypes#charts.charttypes.rangecharts, `columnrange`>>
-|   <<dummy/../../../charts/java-api/charts-charttypes#charts.charttypes.line, `line`>>
-|   <<dummy/../../../charts/java-api/charts-charttypes#charts.charttypes.ohlc, `ohlc`>>
-|   <<dummy/../../../charts/java-api/charts-charttypes#charts.charttypes.polygon, `polygon`>>
-|   <<dummy/../../../charts/java-api/charts-charttypes#charts.charttypes.scatter, `scatter`>>
-|   <<dummy/../../../charts/java-api/charts-charttypes#charts.charttypes.line, `spline`>>
-|
-|===
+Most of the chart types support the timeline.
+There are few exceptions which are listed here:
+<<charts-charttypes#charts.charttypes.pie, `pie`>>,
+<<charts-charttypes#charts.charttypes.gauge, `gauge`>>,
+<<charts-charttypes#charts.charttypes.solidgauge, `solidgauge`>>,
+<<charts-charttypes#charts.charttypes.funnel, `pyramid`>>, and
+<<charts-charttypes#charts.charttypes.funnel, `funnel`>>.
+Enabling the timeline in these chart types will raise a runtime exception.
 
 You can change the time range using the navigator at the bottom of the chart.
 To be able to use the navigator, the X values of the corresponding data series should be of the type [classname]#Date#.
