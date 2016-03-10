@@ -1,7 +1,12 @@
 package com.vaadin.addon.charts.junittests;
 
 import static org.hamcrest.Matchers.instanceOf;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -9,16 +14,14 @@ import org.jsoup.select.Elements;
 import org.junit.Test;
 
 import com.vaadin.addon.charts.declarative.ChartDesignReader;
-import com.vaadin.addon.charts.model.AbstractPlotOptions;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.LayoutDirection;
 import com.vaadin.addon.charts.model.PlotOptionsArea;
+import com.vaadin.addon.charts.model.PlotOptionsFlags;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
 import com.vaadin.addon.charts.model.PlotOptionsTreemap;
-import com.vaadin.addon.charts.model.Title;
-import com.vaadin.ui.declarative.DesignException;
 
 public class ChartDesignReaderTest {
 
@@ -52,9 +55,10 @@ public class ChartDesignReaderTest {
         Configuration configuration = new Configuration();
 
         ChartDesignReader
-            .readConfigurationFromElements(elements, configuration);
+                .readConfigurationFromElements(elements, configuration);
 
-        assertEquals(LayoutDirection.VERTICAL, configuration.getLegend().getLayout());
+        assertEquals(LayoutDirection.VERTICAL, configuration.getLegend()
+                .getLayout());
     }
 
     @Test
@@ -63,7 +67,7 @@ public class ChartDesignReaderTest {
         Configuration configuration = new Configuration();
 
         ChartDesignReader
-            .readConfigurationFromElements(elements, configuration);
+                .readConfigurationFromElements(elements, configuration);
 
         assertEquals(100L, configuration.getLegend().getY());
     }
@@ -74,7 +78,7 @@ public class ChartDesignReaderTest {
         Configuration configuration = new Configuration();
 
         ChartDesignReader
-            .readConfigurationFromElements(elements, configuration);
+                .readConfigurationFromElements(elements, configuration);
 
         assertEquals(-5L, configuration.getyAxis().getMin());
     }
@@ -85,7 +89,7 @@ public class ChartDesignReaderTest {
         Configuration configuration = new Configuration();
 
         ChartDesignReader
-            .readConfigurationFromElements(elements, configuration);
+                .readConfigurationFromElements(elements, configuration);
 
         assertEquals("my title", configuration.getTitle().getText());
     }
@@ -96,7 +100,7 @@ public class ChartDesignReaderTest {
         Configuration configuration = new Configuration();
 
         ChartDesignReader
-            .readConfigurationFromElements(elements, configuration);
+                .readConfigurationFromElements(elements, configuration);
 
         assertEquals("my title", configuration.getTitle().getText());
     }
@@ -107,7 +111,7 @@ public class ChartDesignReaderTest {
         Configuration configuration = new Configuration();
 
         ChartDesignReader
-            .readConfigurationFromElements(elements, configuration);
+                .readConfigurationFromElements(elements, configuration);
 
         assertEquals("my title", configuration.getSubTitle().getText());
     }
@@ -118,7 +122,7 @@ public class ChartDesignReaderTest {
         Configuration configuration = new Configuration();
 
         ChartDesignReader
-            .readConfigurationFromElements(elements, configuration);
+                .readConfigurationFromElements(elements, configuration);
 
         assertEquals("my title", configuration.getyAxis().getTitle().getText());
     }
@@ -129,21 +133,20 @@ public class ChartDesignReaderTest {
         Configuration configuration = new Configuration();
 
         ChartDesignReader
-            .readConfigurationFromElements(elements, configuration);
+                .readConfigurationFromElements(elements, configuration);
 
-        assertArrayEquals(
-            new String[] { "Jan", "Feb", "Mar" },
-            configuration.getxAxis().getCategories());
+        assertArrayEquals(new String[] { "Jan", "Feb", "Mar" }, configuration
+                .getxAxis().getCategories());
     }
 
     @Test
     public void readConfiguration_multiValueNodes_allTheNodesAreInTheConfiguration() {
-        Elements elements = createElements("<y-axis><chart-title>First</chart-title></y-axis>"+
-                "<y-axis><chart-title>Second</chart-title></y-axis>");
+        Elements elements = createElements("<y-axis><chart-title>First</chart-title></y-axis>"
+                + "<y-axis><chart-title>Second</chart-title></y-axis>");
         Configuration configuration = new Configuration();
 
         ChartDesignReader
-            .readConfigurationFromElements(elements, configuration);
+                .readConfigurationFromElements(elements, configuration);
 
         assertEquals(2, configuration.getyAxes().getNumberOfAxes());
         assertEquals("First", configuration.getyAxis(0).getTitle().getText());
@@ -156,12 +159,28 @@ public class ChartDesignReaderTest {
         Configuration configuration = new Configuration();
 
         ChartDesignReader
-            .readConfigurationFromElements(elements, configuration);
+                .readConfigurationFromElements(elements, configuration);
 
         assertEquals(1, configuration.getPlotOptions().size());
-        assertThat(
-            configuration.getPlotOptions(ChartType.LINE),
-            instanceOf(PlotOptionsLine.class));
+        assertThat(configuration.getPlotOptions(ChartType.LINE),
+                instanceOf(PlotOptionsLine.class));
+    }
+
+    @Test
+    public void readConfiguration_plotOptionsWithOnSeriesProperty_onSeriesIsAddedToConfiguration() {
+        Elements elements = createElements("<plot-options><flags draw-on-series=\"dataseries\"></flags></plot-options>");
+        Configuration configuration = new Configuration();
+
+        ChartDesignReader
+                .readConfigurationFromElements(elements, configuration);
+
+        assertEquals(1, configuration.getPlotOptions().size());
+        assertThat(configuration.getPlotOptions(ChartType.FLAGS),
+                instanceOf(PlotOptionsFlags.class));
+        assertEquals("dataseries",
+                ((PlotOptionsFlags) configuration
+                        .getPlotOptions(ChartType.FLAGS)).getOnSeries());
+
     }
 
     @Test
@@ -170,12 +189,11 @@ public class ChartDesignReaderTest {
         Configuration configuration = new Configuration();
 
         ChartDesignReader
-            .readConfigurationFromElements(elements, configuration);
+                .readConfigurationFromElements(elements, configuration);
 
         assertEquals(1, configuration.getPlotOptions().size());
-        assertThat(
-            configuration.getPlotOptions(ChartType.AREA),
-            instanceOf(PlotOptionsArea.class));
+        assertThat(configuration.getPlotOptions(ChartType.AREA),
+                instanceOf(PlotOptionsArea.class));
     }
 
     @Test
@@ -184,29 +202,29 @@ public class ChartDesignReaderTest {
         Configuration configuration = new Configuration();
 
         ChartDesignReader
-            .readConfigurationFromElements(elements, configuration);
+                .readConfigurationFromElements(elements, configuration);
 
         assertEquals(2, configuration.getPlotOptions().size());
         assertThat(configuration.getPlotOptions(ChartType.LINE),
-            instanceOf(PlotOptionsLine.class));
+                instanceOf(PlotOptionsLine.class));
         assertThat(configuration.getPlotOptions(ChartType.SPLINE),
-            instanceOf(PlotOptionsSpline.class));
+                instanceOf(PlotOptionsSpline.class));
     }
 
     @Test
     public void readConfiguration_multiplePlotOptions_attributesAreReadToCorrectPlotOptions() {
-        Elements elements = createElements("<plot-options>"+
-                                           "<line animation=\"true\"></line>"+
-                                           "<spline animation=\"false\"></spline>"+
-                                           "</plot-options>");
+        Elements elements = createElements("<plot-options>"
+                + "<line animation=\"true\"></line>"
+                + "<spline animation=\"false\"></spline>" + "</plot-options>");
         Configuration configuration = new Configuration();
 
-        ChartDesignReader.readConfigurationFromElements(elements, configuration);
+        ChartDesignReader
+                .readConfigurationFromElements(elements, configuration);
 
-        PlotOptionsLine line =
-            (PlotOptionsLine) configuration.getPlotOptions(ChartType.LINE);
-        PlotOptionsSpline spline =
-            (PlotOptionsSpline) configuration.getPlotOptions(ChartType.SPLINE);
+        PlotOptionsLine line = (PlotOptionsLine) configuration
+                .getPlotOptions(ChartType.LINE);
+        PlotOptionsSpline spline = (PlotOptionsSpline) configuration
+                .getPlotOptions(ChartType.SPLINE);
         assertFalse(spline.getAnimation());
         assertTrue(line.getAnimation());
     }
@@ -217,10 +235,10 @@ public class ChartDesignReaderTest {
         Configuration configuration = new Configuration();
 
         ChartDesignReader
-            .readConfigurationFromElements(elements, configuration);
+                .readConfigurationFromElements(elements, configuration);
 
-        PlotOptionsLine lineOptions =
-            (PlotOptionsLine) configuration.getPlotOptions(ChartType.LINE);
+        PlotOptionsLine lineOptions = (PlotOptionsLine) configuration
+                .getPlotOptions(ChartType.LINE);
         assertEquals(true, lineOptions.getDataLabels().getEnabled());
     }
 
@@ -230,10 +248,10 @@ public class ChartDesignReaderTest {
         Configuration configuration = new Configuration();
 
         ChartDesignReader
-            .readConfigurationFromElements(elements, configuration);
+                .readConfigurationFromElements(elements, configuration);
 
-        PlotOptionsTreemap lineOptions =
-            (PlotOptionsTreemap) configuration.getPlotOptions(ChartType.TREEMAP);
+        PlotOptionsTreemap lineOptions = (PlotOptionsTreemap) configuration
+                .getPlotOptions(ChartType.TREEMAP);
         assertEquals(1, lineOptions.getLevels().length);
         assertEquals(1L, lineOptions.getLevels()[0].getLevel());
     }
@@ -244,7 +262,7 @@ public class ChartDesignReaderTest {
         Configuration configuration = new Configuration();
 
         ChartDesignReader
-            .readConfigurationFromElements(elements, configuration);
+                .readConfigurationFromElements(elements, configuration);
 
         assertEquals("12", configuration.getTitle().getStyle().getTop());
         assertEquals("foobar", configuration.getTitle().getText());
@@ -256,7 +274,7 @@ public class ChartDesignReaderTest {
         Configuration configuration = new Configuration();
 
         ChartDesignReader
-            .readConfigurationFromElements(elements, configuration);
+                .readConfigurationFromElements(elements, configuration);
 
         assertEquals("12", configuration.getSubTitle().getStyle().getTop());
         assertEquals("foobar", configuration.getSubTitle().getText());
@@ -268,9 +286,10 @@ public class ChartDesignReaderTest {
         Configuration configuration = new Configuration();
 
         ChartDesignReader
-            .readConfigurationFromElements(elements, configuration);
+                .readConfigurationFromElements(elements, configuration);
 
-        assertEquals(1L, configuration.getChart().getOptions3d().getFrame().getBack().getSize());
+        assertEquals(1L, configuration.getChart().getOptions3d().getFrame()
+                .getBack().getSize());
     }
 
     private Elements createElements(String configHtml) {

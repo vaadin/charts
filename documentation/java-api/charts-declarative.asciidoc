@@ -148,10 +148,12 @@ public class BasicLine extends VerticalLayout {
 == Charts Declarative Syntax
 
 In the Charts design format, each configuration object is defined in its own element and the properties for the object are defined as the attributes of the element.
-The following elements are reserved in the HTML specification: [elementname]#title#, [elementname]#style#, [elementname]#area# and [elementname]#frame#.
-These elements should be prefixed by _chart-_ to make parsing behave correctly.
-For example, title configuration is specified inside [elementname]#chart-title# element.
 The naming convention of attributes is the same as described in <<dummy/../../../framework/application/application-declarative#application.declarative.attributes,"Component Attributes">>
+
+The following elements are reserved in the HTML specification: [elementname]#title#, [elementname]#style#, [elementname]#area# and [elementname]#frame#.
+These elements should be prefixed by `chart-` to make parsing behave correctly.
+For example, title configuration is specified inside [elementname]#chart-title# element.
+Another exception is with the `on-key` and `on-series` properties. They require `draw-` prefix.
 
 For example, [classname]#Legend# object could be defined in Java as follows:
 

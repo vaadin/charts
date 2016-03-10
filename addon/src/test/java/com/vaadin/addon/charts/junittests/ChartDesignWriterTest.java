@@ -1,25 +1,26 @@
 package com.vaadin.addon.charts.junittests;
 
-import static org.junit.Assert.*;
-
-import com.vaadin.addon.charts.declarative.ChartDesignWriter;
-import com.vaadin.addon.charts.model.AxisTitle;
-import com.vaadin.addon.charts.model.Back;
-import com.vaadin.addon.charts.model.Configuration;
-import com.vaadin.addon.charts.model.DataLabels;
-import com.vaadin.addon.charts.model.LayoutDirection;
-import com.vaadin.addon.charts.model.Legend;
-import com.vaadin.addon.charts.model.Options3d;
-import com.vaadin.addon.charts.model.PlotLine;
-import com.vaadin.addon.charts.model.PlotOptionsArea;
-import com.vaadin.addon.charts.model.PlotOptionsLine;
-import com.vaadin.addon.charts.model.PlotOptionsSpline;
-import com.vaadin.addon.charts.model.Title;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.jsoup.nodes.Element;
 import org.jsoup.parser.Tag;
 import org.jsoup.select.Elements;
 import org.junit.Test;
+
+import com.vaadin.addon.charts.declarative.ChartDesignWriter;
+import com.vaadin.addon.charts.model.AxisTitle;
+import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.DataLabels;
+import com.vaadin.addon.charts.model.LayoutDirection;
+import com.vaadin.addon.charts.model.Legend;
+import com.vaadin.addon.charts.model.PlotLine;
+import com.vaadin.addon.charts.model.PlotOptionsArea;
+import com.vaadin.addon.charts.model.PlotOptionsFlags;
+import com.vaadin.addon.charts.model.PlotOptionsLine;
+import com.vaadin.addon.charts.model.PlotOptionsSpline;
+import com.vaadin.addon.charts.model.Title;
 
 public class ChartDesignWriterTest {
 
@@ -31,8 +32,8 @@ public class ChartDesignWriterTest {
 
         ChartDesignWriter.writeConfigurationToElement(configuration, parent);
 
-        assertEquals(
-            "<chart-title text=\"my title\"></chart-title>", parent.child(0).toString());
+        assertEquals("<chart-title text=\"my title\"></chart-title>", parent
+                .child(0).toString());
     }
 
     @Test
@@ -45,8 +46,8 @@ public class ChartDesignWriterTest {
 
         ChartDesignWriter.writeConfigurationToElement(configuration, parent);
 
-        assertEquals(
-            "<legend layout=\"vertical\"></legend>", parent.child(0).toString());
+        assertEquals("<legend layout=\"vertical\"></legend>", parent.child(0)
+                .toString());
     }
 
     @Test
@@ -59,8 +60,7 @@ public class ChartDesignWriterTest {
 
         ChartDesignWriter.writeConfigurationToElement(configuration, parent);
 
-        assertEquals(
-            "<legend y=\"100\"></legend>", parent.child(0).toString());
+        assertEquals("<legend y=\"100\"></legend>", parent.child(0).toString());
     }
 
     @Test
@@ -71,8 +71,7 @@ public class ChartDesignWriterTest {
 
         ChartDesignWriter.writeConfigurationToElement(configuration, parent);
 
-        assertEquals(
-            "<y-axis min=\"-5\"></y-axis>", parent.child(0).toString());
+        assertEquals("<y-axis min=\"-5\"></y-axis>", parent.child(0).toString());
     }
 
     @Test
@@ -86,8 +85,9 @@ public class ChartDesignWriterTest {
 
         ChartDesignWriter.writeConfigurationToElement(configuration, parent);
 
-        assertEquals("<plot-options><line><data-labels enabled=\"true\"></data-labels></line></plot-options>",
-            removeWhitespacesBetweenTags(parent.child(0).toString()));
+        assertEquals(
+                "<plot-options><line><data-labels enabled=\"true\"></data-labels></line></plot-options>",
+                removeWhitespacesBetweenTags(parent.child(0).toString()));
     }
 
     @Test
@@ -100,8 +100,25 @@ public class ChartDesignWriterTest {
 
         ChartDesignWriter.writeConfigurationToElement(configuration, parent);
 
-        assertEquals("<plot-options><chart-area animation=\"false\"></chart-area></plot-options>",
-            removeWhitespacesBetweenTags(parent.child(0).toString()));
+        assertEquals(
+                "<plot-options><chart-area animation=\"false\"></chart-area></plot-options>",
+                removeWhitespacesBetweenTags(parent.child(0).toString()));
+    }
+
+    @Test
+    public void writeConfiguration_plotOptionsWithReservedPropertyWord_prefixIsWrittenToReservedProperty() {
+        Configuration configuration = new Configuration();
+        PlotOptionsFlags plotOptionsFlags = new PlotOptionsFlags();
+        // plotOptionsFlags.setAllowPointSelect(true);
+        plotOptionsFlags.setOnSeries("dataseries");
+        configuration.addPlotOptions(plotOptionsFlags);
+        Element parent = new Element(Tag.valueOf("test"), "");
+
+        ChartDesignWriter.writeConfigurationToElement(configuration, parent);
+
+        assertEquals(
+                "<plot-options><flags draw-on-series=\"dataseries\"></flags></plot-options>",
+                removeWhitespacesBetweenTags(parent.child(0).toString()));
     }
 
     @Test
@@ -116,22 +133,22 @@ public class ChartDesignWriterTest {
 
         ChartDesignWriter.writeConfigurationToElement(configuration, parent);
 
-
         // Expected (the order of plot options is unknown):
         // "<plot-options>
-        //    <line animation=\"false\">
-        //    </line>
-        //    <spline visible=\"false\">
-        //    </spline>
+        // <line animation=\"false\">
+        // </line>
+        // <spline visible=\"false\">
+        // </spline>
         // </plot-options>"
-        assertEquals("plot-options",parent.child(0).tagName());
+        assertEquals("plot-options", parent.child(0).tagName());
         Elements plotOptions = parent.child(0).children();
         assertEquals(2, plotOptions.size());
-        assertPlotOptions("line","animation", "false", plotOptions);
-        assertPlotOptions("spline","visible", "false", plotOptions);
+        assertPlotOptions("line", "animation", "false", plotOptions);
+        assertPlotOptions("spline", "visible", "false", plotOptions);
     }
 
-    private void assertPlotOptions(String type, String attribute, String attributeValue, Elements plotOptions) {
+    private void assertPlotOptions(String type, String attribute,
+            String attributeValue, Elements plotOptions) {
         Element typeElement = find(type, plotOptions);
         assertNotNull(typeElement);
         assertTrue(typeElement.hasAttr(attribute));
@@ -140,7 +157,7 @@ public class ChartDesignWriterTest {
 
     private Element find(String tagname, Elements elements) {
         for (Element element : elements) {
-            if(tagname.equals(element.tagName())) {
+            if (tagname.equals(element.tagName())) {
                 return element;
             }
         }
@@ -165,35 +182,36 @@ public class ChartDesignWriterTest {
 
         ChartDesignWriter.writeConfigurationToElement(configuration, parent);
 
-        assertEquals(
-            "<chart margin-left=\"100\"></chart>", parent.child(0).toString());
+        assertEquals("<chart margin-left=\"100\"></chart>", parent.child(0)
+                .toString());
     }
-
 
     @Test
     public void writeConfiguration_arrayNode_theValuesInArrayAreSeparatedWithComma() {
         Configuration configuration = new Configuration();
-        configuration.getxAxis().setCategories("Jan","Feb","Mar");
+        configuration.getxAxis().setCategories("Jan", "Feb", "Mar");
         Element parent = new Element(Tag.valueOf("test"), "");
 
         ChartDesignWriter.writeConfigurationToElement(configuration, parent);
 
-        assertEquals(
-            "<x-axis><categories>Jan, Feb, Mar</categories></x-axis>",
-            removeWhitespacesBetweenTags(parent.child(0).toString()));
+        assertEquals("<x-axis><categories>Jan, Feb, Mar</categories></x-axis>",
+                removeWhitespacesBetweenTags(parent.child(0).toString()));
     }
 
     @Test
     public void writeConfiguration_formulaNode_theFormulaIsAddedToElementAsAttribute() {
         Configuration configuration = new Configuration();
-        configuration.getTooltip().setFormatter("function() {return '' + this.series.name + ' ' + this.x + ': ' + this.y + '°C';}");
+        configuration
+                .getTooltip()
+                .setFormatter(
+                        "function() {return '' + this.series.name + ' ' + this.x + ': ' + this.y + '°C';}");
         Element parent = new Element(Tag.valueOf("test"), "");
 
         ChartDesignWriter.writeConfigurationToElement(configuration, parent);
 
         assertEquals(
-            "<tooltip formatter=\"function() {return '' + this.series.name + ' ' + this.x + ': ' + this.y + '°C';}\"></tooltip>",
-            removeWhitespacesBetweenTags(parent.child(0).toString()));
+                "<tooltip formatter=\"function() {return '' + this.series.name + ' ' + this.x + ': ' + this.y + '°C';}\"></tooltip>",
+                removeWhitespacesBetweenTags(parent.child(0).toString()));
     }
 
     @Test
@@ -206,12 +224,12 @@ public class ChartDesignWriterTest {
         ChartDesignWriter.writeConfigurationToElement(configuration, parent);
 
         assertEquals(
-            "<y-axis><chart-title text=\"Temperature\"></chart-title></y-axis>",
-            removeWhitespacesBetweenTags(parent.child(0).toString()));
+                "<y-axis><chart-title text=\"Temperature\"></chart-title></y-axis>",
+                removeWhitespacesBetweenTags(parent.child(0).toString()));
     }
 
     @Test
-     public void writeConfiguration_plotLines_thePlotLinesAreTheElement() {
+    public void writeConfiguration_plotLines_thePlotLinesAreTheElement() {
         Configuration configuration = new Configuration();
         PlotLine plotLine = new PlotLine();
         plotLine.setValue(0);
@@ -222,8 +240,8 @@ public class ChartDesignWriterTest {
         ChartDesignWriter.writeConfigurationToElement(configuration, parent);
 
         assertEquals(
-            "<y-axis><plot-lines value=\"0\" width=\"2\"></plot-lines></y-axis>",
-            removeWhitespacesBetweenTags(parent.child(0).toString()));
+                "<y-axis><plot-lines value=\"0\" width=\"2\"></plot-lines></y-axis>",
+                removeWhitespacesBetweenTags(parent.child(0).toString()));
     }
 
     @Test
@@ -235,8 +253,8 @@ public class ChartDesignWriterTest {
         ChartDesignWriter.writeConfigurationToElement(configuration, parent);
 
         assertEquals(
-            "<chart-title><chart-style top=\"12\"></chart-style></chart-title>",
-            removeWhitespacesBetweenTags(parent.child(0).toString()));
+                "<chart-title><chart-style top=\"12\"></chart-style></chart-title>",
+                removeWhitespacesBetweenTags(parent.child(0).toString()));
     }
 
     @Test
@@ -248,12 +266,12 @@ public class ChartDesignWriterTest {
         ChartDesignWriter.writeConfigurationToElement(configuration, parent);
 
         assertEquals(
-            "<chart><options3d><chart-frame><back size=\"1\"></back></chart-frame></options3d></chart>",
-            removeWhitespacesBetweenTags(parent.child(0).toString()));
+                "<chart><options3d><chart-frame><back size=\"1\"></back></chart-frame></options3d></chart>",
+                removeWhitespacesBetweenTags(parent.child(0).toString()));
     }
 
     private String removeWhitespacesBetweenTags(String html) {
-        return html.replaceAll(">\\s+",">").replaceAll("\\s+<", "<");
+        return html.replaceAll(">\\s+", ">").replaceAll("\\s+<", "<");
     }
 
 }

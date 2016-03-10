@@ -1509,9 +1509,9 @@ Flags are normally used in a chart that has one or more normal data series.
 The flags are defined in a series that has its type set to `flags`. In addition to the common plot options properties, flag charts also have the following properties:
 
 [parameter]#shape#:: defines the shape of the marker. It can be one of `FLAG`, `CIRCLEPIN`, `SQUAREPIN`, or `CALLOUT`.
-[parameter]#stackDistance#:: defines the vertical offset between flags on the same value in the same series. Defaults to 12.
-[parameter]#onSeries#:: defines the ID of the series where the flags should be drawn on. If no ID is given, the flags are drawn on the X axis.
-[parameter]#onKey#:: in chart types that have multiple keys (Y values) for a data point, the property defines on which key the flag is placed. Line and column series have only one key, `y`. In range, OHLC, and candlestick series, the flag can be placed on the `open`, `high`, `low`, or `close` key. Defaults to `y`.
+[parameter]#stack-distance#:: defines the vertical offset between flags on the same value in the same series. Defaults to 12.
+[parameter]#draw-on-series#:: defines the ID of the series where the flags should be drawn on. If no ID is given, the flags are drawn on the X axis.
+[parameter]#draw-on-key#:: in chart types that have multiple keys (Y values) for a data point, the property defines on which key the flag is placed. Line and column series have only one key, `y`. In range, OHLC, and candlestick series, the flag can be placed on the `open`, `high`, `low`, or `close` key. Defaults to `y`.
 
 [[charts.charttypes.flags.data]]
 === Data
