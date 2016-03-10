@@ -3,6 +3,7 @@ package com.vaadin.addon.charts.declarative;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -19,6 +20,7 @@ import com.vaadin.addon.charts.model.AbstractPlotOptions;
 import com.vaadin.addon.charts.model.Axis;
 import com.vaadin.addon.charts.model.AxisList;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.ui.declarative.ChartDesignFormatter;
 import com.vaadin.ui.declarative.DesignAttributeHandler;
 import com.vaadin.ui.declarative.DesignException;
@@ -65,6 +67,8 @@ public class ChartDesignWriter implements Serializable {
                 } else if (isCollection(field)) {
                     writeCollection(configuration, parent, field,
                             (Collection) value);
+                } else if(isGradientColor(value.getClass())) {
+                    writeGradientColor((GradientColor) value, parent, field);
                 } else if (isAttribute(field.getType())) {
                     writeAttribute(configuration, parent, field);
                 } else {
@@ -77,6 +81,10 @@ public class ChartDesignWriter implements Serializable {
             }
         }
 
+    }
+
+    private static boolean isGradientColor(Class<?> value) {
+        return GradientColor.class.isAssignableFrom(value);
     }
 
     private static boolean isAttribute(Class<?> type) {
@@ -97,6 +105,33 @@ public class ChartDesignWriter implements Serializable {
 
     private static boolean isPlotOptions(Field field) {
         return "plotoptions".equals(field.getName().toLowerCase());
+    }
+
+    private static void writeGradientColor(GradientColor color, Element parent, Field field) {
+        Element colorProperty = parent.appendElement(
+            toNodeName(field.getName()));
+        if (color.getLinearGradient() != null) {
+            Element element = colorProperty.appendElement("linear-gradient");
+            element.attr("x1", formatNumber(color.getLinearGradient().getX1()));
+            element.attr("y1", formatNumber(color.getLinearGradient().getY1()));
+            element.attr("x2", formatNumber(color.getLinearGradient().getX2()));
+            element.attr("y2", formatNumber(color.getLinearGradient().getY2()));
+        } else if (color.getRadialGradient() != null) {
+            Element element = colorProperty.appendElement("radial-gradient");
+            element.attr("cx", formatNumber(color.getRadialGradient().getCx()));
+            element.attr("cy", formatNumber(color.getRadialGradient().getCy()));
+            element.attr("r", formatNumber(color.getRadialGradient().getR()));
+        }
+
+        for (GradientColor.Stop stop : color.getStops()) {
+            Element stops = colorProperty.appendElement("stops");
+            stops.attr("position", formatNumber(stop.getPosition()));
+            stops.attr("color", stop.getColor().toString());
+        }
+    }
+
+    private static String formatNumber(Number value) {
+        return NumberFormat.getInstance().format(value);
     }
 
     private static void writeAttribute(

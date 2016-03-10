@@ -32,6 +32,7 @@ import com.vaadin.addon.charts.model.serializers.ChartEnumSerializer;
 import com.vaadin.addon.charts.model.serializers.ChartOptionsBeanSerializerModifier;
 import com.vaadin.addon.charts.model.serializers.DateSerializer;
 import com.vaadin.addon.charts.model.serializers.DefaultBeanSerializerModifier;
+import com.vaadin.addon.charts.model.serializers.GradientColorStopsSerializer;
 import com.vaadin.addon.charts.model.serializers.PaneListSerializer;
 import com.vaadin.addon.charts.model.serializers.SolidColorSerializer;
 import com.vaadin.addon.charts.model.serializers.StopSerializer;
@@ -70,6 +71,7 @@ public class ChartSerialization implements Serializable {
                 .registerModule(StopSerializer.getModule())
                 .registerModule(TimeUnitMultiplesSerializer.getModule())
                 .registerModule(SolidColorSerializer.getModule())
+                .registerModule(GradientColorStopsSerializer.getModule())
                 .registerModule(AxisListSerializer.getModule())
                 .registerModule(PaneListSerializer.getModule())
                 .registerModule(DateSerializer.getModule());

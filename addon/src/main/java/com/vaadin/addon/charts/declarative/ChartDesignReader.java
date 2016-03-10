@@ -22,6 +22,7 @@ import org.jsoup.select.Elements;
 import com.vaadin.addon.charts.model.AbstractConfigurationObject;
 import com.vaadin.addon.charts.model.AbstractPlotOptions;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.ui.declarative.ChartDesignFormatter;
 import com.vaadin.ui.declarative.DesignAttributeHandler;
 import com.vaadin.ui.declarative.DesignException;
@@ -50,8 +51,8 @@ public class ChartDesignReader implements Serializable {
      * Nodes that contain an array of values as a comma-separated list For
      * example, <categories>Jan,Feb,March</categories>
      **/
-    private static final List<String> arrayNodes = Arrays.asList("categories",
-            "stops", "margin", "center", "units");
+    private static final List<String>
+        arrayNodes = Arrays.asList("categories", "stops", "margin", "center", "units", "colors");
 
     private static class ConfigurationCacheEntry implements Serializable {
 
@@ -116,13 +117,19 @@ public class ChartDesignReader implements Serializable {
     private static Object createValueObjectForElement(Element element,
             AbstractConfigurationObject parent) {
         String nodeName = element.nodeName();
-        if (arrayNodes.contains(nodeName)) {
-            return readArrayValue(element.text());
-        } else if (isPlotOptions(element)) {
-            return createPlotOptionsFor(nodeName);
+        if(arrayNodes.contains(nodeName)) {
+            return  readArrayValue(element.text());
+        } else if(isPlotOptions(element)) {
+            return  createPlotOptionsFor(nodeName);
+        } else if(isColor(element)) {
+            return ColorFactory.createGradient(element);
         } else {
             return createConfigurationFor(nodeName, parent);
         }
+    }
+
+    private static boolean isColor(Element element) {
+        return element.nodeName().contains("color");
     }
 
     private static boolean isPlotOptions(Element element) {
@@ -215,8 +222,9 @@ public class ChartDesignReader implements Serializable {
 
         ConfigurationCacheEntry entry = new ConfigurationCacheEntry();
         for (PropertyDescriptor descriptor : beanInfo.getPropertyDescriptors()) {
-            if (!(isChartModelType(descriptor) || isArrayNodeProperty(descriptor))) {
-                continue;
+            if(!(isChartModelType(descriptor) || isArrayNodeProperty(descriptor)
+                  || isColorProperty(descriptor))) {
+                    continue;
             }
             Method setter = resolveWriteMethod(descriptor, beanInfo);
             if (setter != null) {
@@ -322,6 +330,10 @@ public class ChartDesignReader implements Serializable {
 
     private static boolean isArrayNodeProperty(PropertyDescriptor descriptor) {
         return arrayNodes.contains(descriptor.getName());
+    }
+
+    private static boolean isColorProperty(PropertyDescriptor descriptor) {
+        return Color.class.isAssignableFrom(resolvePropertyType(descriptor));
     }
 
     private static Class<?> resolvePropertyType(PropertyDescriptor descriptor) {

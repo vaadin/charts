@@ -21,6 +21,8 @@ import com.vaadin.addon.charts.model.PlotOptionsFlags;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
 import com.vaadin.addon.charts.model.Title;
+import com.vaadin.addon.charts.model.style.GradientColor;
+import com.vaadin.addon.charts.model.style.SolidColor;
 
 public class ChartDesignWriterTest {
 
@@ -268,6 +270,59 @@ public class ChartDesignWriterTest {
         assertEquals(
                 "<chart><options3d><chart-frame><back size=\"1\"></back></chart-frame></options3d></chart>",
                 removeWhitespacesBetweenTags(parent.child(0).toString()));
+    }
+
+    @Test
+    public void writeConfiguration_chartHasSolidColor_theSolidColorIsWrittenAsAttribute() {
+        Configuration configuration = new Configuration();
+        configuration.getChart().setBackgroundColor(new SolidColor("black"));
+        Element parent = new Element(Tag.valueOf("test"), "");
+
+        ChartDesignWriter.writeConfigurationToElement(configuration, parent);
+
+        assertEquals(
+            "<chart background-color=\"black\"></chart>",
+            removeWhitespacesBetweenTags(parent.child(0).toString()));
+    }
+
+    @Test
+    public void writeConfiguration_chartHasLinearGradientBackgroundColor_theLinearGradientIsWrittenAsElement() {
+        Configuration configuration = new Configuration();
+        GradientColor gradientColor = GradientColor.createLinear(0, 0, 1, 1);
+        gradientColor.addColorStop(0, new SolidColor("white"));
+        gradientColor.addColorStop(1, new SolidColor("black"));
+        configuration.getChart().setBackgroundColor(gradientColor);
+        Element parent = new Element(Tag.valueOf("test"), "");
+
+        ChartDesignWriter.writeConfigurationToElement(configuration, parent);
+
+        assertEquals(
+            "<chart><background-color><linear-gradient x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"></linear-gradient>"+
+                "<stops position=\"0\" color=\"white\"></stops>"+
+                "<stops position=\"1\" color=\"black\"></stops>"+
+            "</background-color></chart>",
+            removeWhitespacesBetweenTags(parent.child(0).toString()));
+
+    }
+
+    @Test
+    public void writeConfiguration_chartHasRadialGradientBackgroundColor_theRadialGradientIsWrittenAsElement() {
+        Configuration configuration = new Configuration();
+        GradientColor gradientColor = GradientColor.createRadial(0.5, 0.3, 0.7);
+        gradientColor.addColorStop(0, new SolidColor("black"));
+        gradientColor.addColorStop(1, new SolidColor("white"));
+        configuration.getChart().setBackgroundColor(gradientColor);
+        Element parent = new Element(Tag.valueOf("test"), "");
+
+        ChartDesignWriter.writeConfigurationToElement(configuration, parent);
+
+        assertEquals(
+            "<chart><background-color><radial-gradient cx=\"0.5\" cy=\"0.3\" r=\"0.7\"></radial-gradient>"+
+                "<stops position=\"0\" color=\"black\"></stops>"+
+                "<stops position=\"1\" color=\"white\"></stops>"+
+            "</background-color></chart>",
+            removeWhitespacesBetweenTags(parent.child(0).toString()));
+
     }
 
     private String removeWhitespacesBetweenTags(String html) {

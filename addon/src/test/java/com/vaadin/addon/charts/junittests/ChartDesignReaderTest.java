@@ -22,6 +22,7 @@ import com.vaadin.addon.charts.model.PlotOptionsFlags;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
 import com.vaadin.addon.charts.model.PlotOptionsTreemap;
+import com.vaadin.addon.charts.model.style.GradientColor;
 
 public class ChartDesignReaderTest {
 
@@ -290,6 +291,34 @@ public class ChartDesignReaderTest {
 
         assertEquals(1L, configuration.getChart().getOptions3d().getFrame()
                 .getBack().getSize());
+    }
+
+    @Test
+    public void readConfiguration_chartHasLinearGradientBackgroundColor_theLinearGradientIsDefinedInConfiguration() {
+        Elements elements = createElements("<chart><background-color><linear-gradient x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"></linear-gradient>"+
+                                                                    "<stops position=\"0\" color=\"white\"></stops>"+
+                                                                    "<stops position=\"1\" color=\"black\"></stops></background-color></chart>");
+        Configuration configuration = new Configuration();
+
+        ChartDesignReader
+            .readConfigurationFromElements(elements, configuration);
+
+        assertThat(configuration.getChart().getBackgroundColor(),
+            instanceOf(GradientColor.class));
+        GradientColor backgroundColor =
+            (GradientColor) configuration.getChart().getBackgroundColor();
+        assertNotNull(backgroundColor.getLinearGradient());
+    }
+
+    @Test
+    public void readConfiguration_chartHasSolidBackgroundColor_theSolidColorIsDefinedInConfiguration() {
+        Elements elements = createElements("<chart background-color=\"white\"></chart>");
+        Configuration configuration = new Configuration();
+
+        ChartDesignReader
+            .readConfigurationFromElements(elements, configuration);
+
+        assertEquals("white", configuration.getChart().getBackgroundColor().toString());
     }
 
     private Elements createElements(String configHtml) {

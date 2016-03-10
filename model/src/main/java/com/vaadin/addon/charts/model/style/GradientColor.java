@@ -80,7 +80,27 @@ public class GradientColor implements Color {
         }
     }
 
-    private List<List<Object>> stops;
+    public static class Stop implements Serializable {
+
+        private double position;
+        private SolidColor color;
+
+        public Stop(double position, SolidColor color) {
+            this.position = position;
+            this.color = color;
+        }
+
+        public double getPosition() {
+            return position;
+        }
+
+        public SolidColor getColor() {
+            return color;
+        }
+
+    }
+
+    private List<Stop> stops;
 
     private RadialGradient radialGradient;
 
@@ -105,10 +125,9 @@ public class GradientColor implements Color {
     }
 
     /**
-     * Currently for internal use only, make stops typed if opening API is
-     * required.
+     * @return The stops of the gradient color
      */
-    List<List<Object>> getStops() {
+    public List<Stop> getStops() {
         return stops;
     }
 
@@ -122,12 +141,9 @@ public class GradientColor implements Color {
      */
     public void addColorStop(double d, SolidColor color) {
         if (stops == null) {
-            stops = new ArrayList<List<Object>>();
+            stops = new ArrayList<Stop>();
         }
-        ArrayList<Object> colorStop = new ArrayList<Object>(2);
-        colorStop.add(d);
-        colorStop.add(color);
-        stops.add(colorStop);
+        stops.add(new Stop(d, color));
     }
 
     /**
