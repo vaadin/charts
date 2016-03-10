@@ -270,6 +270,32 @@ enabled by default and is automatically populated with the names of the data
 series as defined in the series objects, and the corresponding color symbol of
 the series.
 
+[parameter]#alignment#:: Specifies the horizontal alignment of the legend box within the chart area.
+Possible values are `right`, `center`, and `left`. Defaults to `center`.
+[parameter]#enabled#:: Enables or disables the legend. Possible values are `true` and `false`. Defaults to `true`.
+[parameter]#layout#:: Specifies the layout direction of the legend items. Possible values are `vertical` and
+`horizontal`. Defaults to `horizontal`.
+[parameter]#title#:: Specifies the title of the legend.
+[parameter]#vertical-align#:: Specifies the vertical alignment of the legend box within the chart area. Possible values
+are `bottom`, `low`, `middle`, `high`, and `top`. Defaults to `bottom`.
+
+[source,html]
+----
+<vaadin-line-chart id="basic-line">
+  <legend layout="vertical" align="left" vertical-align="top">
+    <chart-title>
+        City
+    </chart-title>
+  </legend>
+</vaadin-line-chart>
+----
+
+The result can be seen in <<figure.charts.configuration.legend>>.
+
+[[figure.charts.configuration.legend]]
+.Legend example
+image::img/charts-configuration-legend.png[]
+
 [[charts.configuration.format]]
 == Formatting Labels
 

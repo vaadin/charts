@@ -233,8 +233,9 @@ Style xlabelsstyle = new Style();
 xlabelsstyle.setColor(SolidColor.GREEN);
 xlabels.setStyle(xlabelsstyle);
 ----
-[parameter]#useHTML#:: Allows using HTML in custom label formats. Otherwise, HTML is quoted. Defaults to [literal]#++false++#.
-[parameter]#x#,[parameter]#y#:: Offsets for the label's position, relative to the tick position. X offset defaults to 0, but Y to [literal]#++null++#, which enables automatic positioning based on font size.
+[parameter]#useHTML#:: Allows using HTML in custom label formats. Otherwise, HTML is quoted. Defaults to [literal]#false#.
+[parameter]#x#,[parameter]#y#:: Offsets for the label's position, relative to the tick position.
+X offset defaults to 0, but Y to [literal]#++null++#, which enables automatic positioning based on font size.
 
 
 Gauge, pie, and polar charts allow additional properties.
@@ -263,6 +264,28 @@ enabled by default and is automatically populated with the names of the data
 series as defined in the series objects, and the corresponding color symbol of
 the series.
 
+[parameter]#alignment#:: Specifies the horizontal alignment of the legend box within the chart area.
+Defaults to [constant]#HorizontalAlign.CENTER#.
+[parameter]#enabled#:: Enables or disables the legend. Defaults to [literal]#true#.
+[parameter]#layout#:: Specifies the layout direction of the legend items. Defaults to [constant]#LayoutDirection.HORIZONTAL#.
+[parameter]#title#:: Specifies the title of the legend.
+[parameter]#verticalAlign#:: Specifies the vertical alignment of the legend box within the chart area.
+Defaults to [constant]#VerticalAlign.BOTTOM#.
+
+[source,java]
+----
+Legend legend = configuration.getLegend();
+legend.getTitle().setText("City");
+legend.setLayout(LayoutDirection.VERTICAL);
+legend.setAlign(HorizontalAlign.LEFT);
+legend.setVerticalAlign(VerticalAlign.TOP);
+----
+
+The result can be seen in <<figure.charts.configuration.legend>>.
+
+[[figure.charts.configuration.legend]]
+.Legend example
+image::img/charts-configuration-legend.png[]
 
 [[charts.configuration.format]]
 == Formatting Labels
