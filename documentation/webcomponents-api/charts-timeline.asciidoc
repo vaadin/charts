@@ -15,7 +15,7 @@ Adding a timeline to your chart is very easy - just add the [propertyname]#timel
 [source, html]
 ----
 <vaadin-line-chart timeline>
-</<vaadin-line-chart>
+</vaadin-line-chart>
 ----
 You can enable the timeline in a chart that displays one or more time series.
 Most of the chart types support the timeline.
@@ -27,9 +27,8 @@ There are few exceptions which are listed here:
 <<charts-charttypes#charts.charttypes.funnel, `funnel`>>.
 Enabling the timeline in these chart types will raise a runtime exception.
 
-You can change the time range by using the navigator at the bottom of the chart.
-To be able to use the navigator, the X values of the corresponding data series should be of the type [classname]#Date#.
-Also integer values can be used, in which case they are interpreted as milliseconds since the 01/01/1970 epoch.
+The user can change the time range by using the navigator at the bottom of the chart.
+To use the navigator, the X values of the corresponding data series should be given in milliseconds since January 1st 1970 at 00:00:00 GMT.
 If you have multiple series, the first one is presented in the navigator.
 
 [[figure.charts.timeline.timeline-intro]]
@@ -49,12 +48,12 @@ of the button to appear pre-selected with the `selected` attribute of the [eleme
 ----
 <vaadin-line-chart timeline>
     <chart-title>AAPL Stock Price!</chart-title>
-        <range-selector selected="4">
-            <button-theme fill="#7DADB2" stroke="#121212" stroke-width="1">
-                <chart-style color="#2282e2"></chart-style>
-            </button-theme>
-        </range-selector>
-</<vaadin-line-chart>
+    <range-selector selected="4">
+        <button-theme fill="#7DADB2" stroke="#121212" stroke-width="1">
+            <chart-style color="#2282e2"></chart-style>
+        </button-theme>
+    </range-selector>
+</vaadin-line-chart>
 ----
 You can customize the date format for the time range input fields by specifying formatter strings
 for displaying and editing the dates. After changing the format you need to specify a callback parser
@@ -72,7 +71,7 @@ function to parse the edited values properly:
     return Date.UTC(parseInt(value[0], 10),
     parseInt(value[1], 10));
     }">
-</<vaadin-line-chart>
+</vaadin-line-chart>
 ----
 Timeline charts allow comparing the charts series against each other.
 Setting the [propertyname]#compare# attribute to either `percent` or `value` will show the difference between

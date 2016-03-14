@@ -151,7 +151,7 @@ Axes can be one of the following types, which you can set with
 
 [parameter]#LINEAR# (default):: For numeric values in linear scale.
 [parameter]#LOGARITHMIC#:: For numerical values, as in the linear axis, but the axis will be scaled in the logarithmic scale. The minimum for the axis __must__ be a positive non-zero value ( [methodname]#log(0)# is not defined, as it has limit at negative infinity when the parameter approaches zero).
-[parameter]#DATETIME#:: Enables date/time mode in the axis. The date/time values are expected to be given either as a [classname]#Date# object or in milliseconds since the Java (or Unix) date epoch on January 1st 1970 at 00:00:00 GMT. You can get the millisecond representation of Java [classname]#Date# with [methodname]#getTime()#.
+[parameter]#DATETIME#:: Enables date/time mode in the axis. The date/time values are expected to be given in milliseconds since January 1st 1970 at 00:00:00 GMT. You can get the millisecond representation of a JavaScript [classname]#Date# object with the [methodname]#UTC()# method.
 [parameter]#CATEGORY#:: Enables using categorical data for the axis, as described in more detail later. With this axis type, the category labels are determined from the labels of the data points in the data series, without need to set them explicitly with [methodname]##setCategories()##.
 
 
