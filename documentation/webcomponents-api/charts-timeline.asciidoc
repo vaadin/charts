@@ -40,7 +40,20 @@ a set of predefined time ranges for easier navigation, for example, 1 months, 3 
 use range selector text fields for setting start and end of the time interval.
 
 You can configure the range navigator and selector in the chart configuration.
-For example, you can change the style of the range selector buttons with the
+You can use [elementname]#navigator# and [elementname]#series# to change the appearance of the navigator.
+To show or hide the navigator, use `enabled` attribute.
+
+[source, html]
+----
+<vaadin-line-chart>
+    <navigator enabled="true" margin="75">
+        <series color="#A52A2A" line-width="3">
+        </series>
+    </navigator>
+</vaadin-line-chart>
+----
+
+You can change the style of the range selector buttons with the
 [elementname]#button-theme# tag and specify the index
 of the button to appear pre-selected with the `selected` attribute of the [elementname]#range-selector# element.
 

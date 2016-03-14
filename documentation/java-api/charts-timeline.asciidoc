@@ -36,7 +36,19 @@ a set of predefined time ranges for easier navigation, for example, 1 month, 3 m
 use range selector text fields for setting start and end of the time interval.
 
 You can configure the range navigator and selector in the chart configuration.
-For example, you can change the style of the range selector buttons with the
+To show or hide the navigator, call [methodname]#setEnabled()#. You can use [classname]#Navigator# and
+[classname]#PlotOptionsSeries# to change the appearance of the navigator.
+[source, java]
+----
+Navigator navigator = configuration.getNavigator();
+navigator.setEnabled(true);
+navigator.setMargin(75);
+PlotOptionsSeries plotOptions=new PlotOptionsSeries();
+plotOptions.setColor(SolidColor.BROWN);
+navigator.setSeries(plotOptions);
+----
+
+You can change the style of the range selector buttons with the
 [methodname]#setButtonTheme(theme)# method and specify the index
 of the button to appear pre-selected with the [methodname]#setSelected(index)# method.
 
