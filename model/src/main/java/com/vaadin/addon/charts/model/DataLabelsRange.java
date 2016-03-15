@@ -26,7 +26,7 @@ import com.vaadin.addon.charts.model.style.Style;
  * <code>yHigh</code> options to allow the higher and lower data label sets
  * individually.
  */
-public class DataLabelsRange extends AbstractConfigurationObject {
+public class DataLabelsRange extends AbstractDataLabels {
 
 	private HorizontalAlign align;
 	private Boolean allowOverlap;

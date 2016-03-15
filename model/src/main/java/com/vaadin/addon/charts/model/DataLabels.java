@@ -21,7 +21,7 @@ import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.Style;
 /**
  */
-public class DataLabels extends AbstractConfigurationObject {
+public class DataLabels extends AbstractDataLabels {
 
 	private HorizontalAlign align;
 	private Boolean allowOverlap;

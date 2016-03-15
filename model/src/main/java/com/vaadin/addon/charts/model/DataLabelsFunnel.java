@@ -21,7 +21,7 @@ import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.Style;
 /**
  */
-public class DataLabelsFunnel extends AbstractConfigurationObject {
+public class DataLabelsFunnel extends AbstractDataLabels {
 
 	private Color backgroundColor;
 	private Color borderColor;
