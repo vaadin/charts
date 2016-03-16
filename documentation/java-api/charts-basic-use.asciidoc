@@ -216,7 +216,7 @@ For example, to get a line chart, you need to use [classname]#PlotOptionsLine#.
 // A data series as column graph
 DataSeries series1 = new DataSeries();
 PlotOptionsColumn options1 = new PlotOptionsColumn();
-options1.setFillColor(SolidColor.BLUE);
+options1.setColor(SolidColor.BLUE);
 series1.setPlotOptions(options1);
 series1.setData(4900,  12100,  12800,
     6800,  143000, 125000, 51100, 49500);
@@ -225,7 +225,7 @@ conf.addSeries(series1);
 // A data series as line graph
 ListSeries series2 = new ListSeries("Diameter");
 PlotOptionsLine options2 = new PlotOptionsLine();
-options2.setLineColor(SolidColor.RED);
+options2.setColor(SolidColor.RED);
 series2.setPlotOptions(options2);
 series2.setData(4900,  12100,  12800,
     6800,  143000, 125000, 51100, 49500);
@@ -293,7 +293,10 @@ display the chart grid.
 +
 ----
 Frame frame = new Frame();
-frame.setBack(new FramePanel(SolidColor.BEIGE, 1));
+Back back=new Back();
+back.setColor(SolidColor.BEIGE);
+back.setSize(1);
+frame.setBack(back);
 options3d.setFrame(frame);
 ----
 [parameter]#viewDistance#:: View distance for creating perspective distortion. Default is 100.
