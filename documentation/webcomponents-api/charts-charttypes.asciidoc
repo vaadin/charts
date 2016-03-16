@@ -1163,7 +1163,9 @@ ifdef::web[]
 
 Waterfall charts have the following chart type specific properties:
 
-`up-color`:: Overwrites the color for the positive values. For negative values, the `color` is used.
+`up-color`:: Color for the positive values.
+`color`:: Default color for all the points. If `up-color` is
+defined, `color` is used only for the negative values.
 
 
 In the following, we define the colors, as well as the style and placement of

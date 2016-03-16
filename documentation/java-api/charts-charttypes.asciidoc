@@ -207,12 +207,12 @@ errors.add(new DataSeriesItem(2,  -8,  1));
 ...
 
 // Configure the stem and whiskers in error bars
-PlotOptionsErrorBar barOptions = new PlotOptionsErrorBar();
+PlotOptionsErrorbar barOptions = new PlotOptionsErrorbar();
 barOptions.setStemColor(SolidColor.GREY);
 barOptions.setStemWidth(2);
 barOptions.setStemDashStyle(DashStyle.DASH);
 barOptions.setWhiskerColor(SolidColor.BROWN);
-barOptions.setWhiskerLength(80); // 80% of category width
+barOptions.setWhiskerLength(80, Sizeable.Unit.PERCENTAGE); // 80% of category width
 barOptions.setWhiskerWidth(2); // Pixels
 errors.setPlotOptions(barOptions);
 
@@ -280,7 +280,7 @@ For example:
 [source, java]
 ----
 // Set median line color and thickness
-PlotOptionsBoxPlot plotOptions = new PlotOptionsBoxPlot();
+PlotOptionsBoxplot plotOptions = new PlotOptionsBoxplot();
 plotOptions.setMedianColor(SolidColor.BLUE);
 plotOptions.setMedianWidth(3);
 conf.setPlotOptions(plotOptions);
@@ -585,7 +585,7 @@ The chart-specific options of a pie chart are configured with a
 [source, java]
 ----
 PlotOptionsPie options = new PlotOptionsPie();
-options.setInnerSize(0); // Non-0 results in a donut
+options.setInnerSize("0");
 options.setSize("75%");  // Default
 options.setCenter("50%", "50%"); // Default
 conf.setPlotOptions(options);
@@ -649,15 +649,15 @@ done in the example below:
 // The inner pie
 DataSeries innerSeries = new DataSeries();
 innerSeries.setName("Browsers");
-PlotOptionsPie innerOptions = new PlotOptionsPie();
+PlotOptionsPie innerPieOptions = new PlotOptionsPie();
 innerPieOptions.setSize("60%");
 innerSeries.setPlotOptions(innerPieOptions);
 ...
 
 DataSeries outerSeries = new DataSeries();
 outerSeries.setName("Versions");
-PlotOptionsPie outerOptions = new PlotOptionsPie();
-outerOptions.setInnerSize("60%");
+PlotOptionsPie outerSeriesOptions = new PlotOptionsPie();
+outerSeriesOptions.setInnerSize("60%");
 outerSeries.setPlotOptions(outerSeriesOptions);
 ...
 ----
@@ -733,7 +733,7 @@ yaxis.getLabels().setStep(1);
 yaxis.setTickInterval(10);
 yaxis.setTickLength(10);
 yaxis.setTickWidth(1);
-yaxis.setMinorTickInterval(1);
+yaxis.setMinorTickInterval("1");
 yaxis.setMinorTickLength(5);
 yaxis.setMinorTickWidth(1);
 yaxis.setPlotBands(new PlotBand[]{
@@ -826,7 +826,7 @@ conf.setTitle("Solid Gauge");
 
 Pane pane = conf.getPane();
 pane.setSize("125%");           // For positioning tick labels
-pane.setCenterXY("50%", "70%"); // Move center lower
+pane.setCenter("50%", "70%"); // Move center lower
 pane.setStartAngle(-90);        // Make semi-circle
 pane.setEndAngle(90);           // Make semi-circle
 ----
@@ -999,7 +999,7 @@ data and a more polygonal visual style.
 [source, java]
 ----
 // Create a chart of some type
-Chart char = new Chart(ChartType.LINE);
+Chart chart = new Chart(ChartType.LINE);
 
 // Enable the polar projection
 Configuration conf = chart.getConfiguration();
@@ -1098,12 +1098,9 @@ Funnels have chart type [parameter]#FUNNEL#, pyramids have [parameter]#PYRAMID#.
 
 The labels of the funnel blocks are by default placed on the right side of the
 blocks, together with a connector. You can configure their style in the plot
-options
-
-ifdef::web[, as is done in the following example].
-
+options.
 ifdef::web[]
-
+See the following example.
 [source, java]
 ----
 Chart chart = new Chart(ChartType.FUNNEL);
@@ -1120,11 +1117,11 @@ conf.getChart().setSpacingRight(120);
 
 // Configure the funnel neck shape
 PlotOptionsFunnel options = new PlotOptionsFunnel();
-options.setNeckHeightPercentage(20);
-options.setNeckWidthPercentage(20);
+options.setNeckHeight(20, Sizeable.Unit.PERCENTAGE);
+options.setNeckWidth(20, Sizeable.Unit.PERCENTAGE);
 
 // Style the data labels
-Labels dataLabels = new Labels();
+DataLabelsFunnel dataLabels = new DataLabelsFunnel();
 dataLabels.setFormat("<b>{point.name}</b> ({point.y:,.0f})");
 dataLabels.setSoftConnector(false);
 dataLabels.setColor(SolidColor.BLACK);
@@ -1222,8 +1219,9 @@ Waterfall charts have plot options type [classname]#PlotOptionsWaterfall#, which
 extends the more general options defined in [classname]#PlotOptionsColumn#. It
 has the following chart type specific properties:
 
-[parameter]#upColor#:: Color for the positive values. For negative values, the [literal]#++negativeColor++# defined in [classname]#PlotOptionsColumn# is used.
-
+[parameter]#upColor#:: Color for the positive values.
+[parameter]#color#:: Default color for all the points. If [propertyname]#upColor# is
+defined, [propertyname]#color# is used only for the negative values.
 
 In the following, we define the colors, as well as the style and placement of
 the labels for the columns:
@@ -1239,7 +1237,7 @@ final Color negativeColor = SolidColor.RED;
 // Configure the colors
 PlotOptionsWaterfall options = new PlotOptionsWaterfall();
 options.setUpColor(positiveColor);
-options.setNegativeColor(negativeColor);
+options.setColor(negativeColor);
 
 // Configure the labels
 Labels labels = new Labels(true);
@@ -1330,7 +1328,7 @@ conf.getColorAxis().setMaxColor(SolidColor.RED);
 PlotOptionsHeatMap plotOptions = new PlotOptionsHeatMap();
 plotOptions.setBorderColor(SolidColor.WHITE);
 plotOptions.setBorderWidth(2);
-plotOptions.setDataLabels(new Labels(true));
+plotOptions.setDataLabels(new DataLabels(true));
 conf.setPlotOptions(plotOptions);
 
 // Create some data
@@ -1407,12 +1405,11 @@ PlotOptionsTreeMap plotOptions = new PlotOptionsTreeMap();
 plotOptions.setLayoutAlgorithm(TreeMapLayoutAlgorithm.STRIPES);
 plotOptions.setAlternateStartingDirection(true);
 
-List<TreeMapLevel> levels = new ArrayList<TreeMapLevel>();
-TreeMapLevel level1 = new TreeMapLevel();
-level1.setLevel(1);
-level1.setLayoutAlgorithm(TreeMapLayoutAlgorithm.SLICEANDDICE);
+Level level = new Level();
+level.setLevel(1);
+level.setLayoutAlgorithm(TreeMapLayoutAlgorithm.SLICEANDDICE);
 
-Labels dataLabels = new Labels();
+DataLabels dataLabels = new DataLabels();
 dataLabels.setEnabled(true);
 dataLabels.setAlign(HorizontalAlign.LEFT);
 dataLabels.setVerticalAlign(VerticalAlign.TOP);
@@ -1422,9 +1419,8 @@ style.setFontSize("15px");
 style.setFontWeight(FontWeight.BOLD);
 
 dataLabels.setStyle(style);
-level1.setDataLabels(dataLabels);
-levels.add(level1);
-plotOptions.setLevels(levels);
+level.setDataLabels(dataLabels);
+plotOptions.setLevels(level);
 
 TreeSeries series = new TreeSeries();
 
