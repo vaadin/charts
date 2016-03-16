@@ -17,9 +17,7 @@ package com.vaadin.addon.charts.themes;
  * #L%
  */
 
-import com.vaadin.addon.charts.model.DataLabels;
-import com.vaadin.addon.charts.model.DataLabelsFunnel;
-import com.vaadin.addon.charts.model.DataLabelsRange;
+import com.vaadin.addon.charts.model.AbstractDataLabels;
 import com.vaadin.addon.charts.model.Hover;
 import com.vaadin.addon.charts.model.States;
 import com.vaadin.addon.charts.model.style.AxisStyle;
@@ -162,50 +160,27 @@ public class ValoLightTheme extends Theme {
         getPlotOptions().getPyramid().setBorderWidth(0);
         getPlotOptions().getWaterfall().setBorderWidth(0);
 
-        getPlotOptions().getPyramid().setDataLabels(
-                getDataLabelsFunnelDefaults());
-        getPlotOptions().getBar().setDataLabels(getDataLabelsDefaults());
-        getPlotOptions().getColumn().setDataLabels(getDataLabelsDefaults());
-        getPlotOptions().getLine().setDataLabels(getDataLabelsDefaults());
-        getPlotOptions().getPie().setDataLabels(getDataLabelsDefaults());
-        getPlotOptions().getArearange().setDataLabels(
-                getDataLabelsRangeDefaults());
-        getPlotOptions().getAreasplinerange().setDataLabels(
-                getDataLabelsRangeDefaults());
-        getPlotOptions().getSpline().setDataLabels(getDataLabelsDefaults());
-        getPlotOptions().getBar().setDataLabels(getDataLabelsDefaults());
-        getPlotOptions().getWaterfall().setDataLabels(getDataLabelsDefaults());
+        setDataLabelsDefaults(getPlotOptions().getArearange().getDataLabels());
+        setDataLabelsDefaults(getPlotOptions().getAreasplinerange()
+                .getDataLabels());
+        setDataLabelsDefaults(getPlotOptions().getBar().getDataLabels());
+        setDataLabelsDefaults(getPlotOptions().getColumn().getDataLabels());
+        setDataLabelsDefaults(getPlotOptions().getLine().getDataLabels());
+        setDataLabelsDefaults(getPlotOptions().getPie().getDataLabels());
+        setDataLabelsDefaults(getPlotOptions().getPyramid().getDataLabels());
+        setDataLabelsDefaults(getPlotOptions().getSpline().getDataLabels());
+        setDataLabelsDefaults(getPlotOptions().getWaterfall().getDataLabels());
 
         States states = new States();
         states.setHover(new Hover(false));
         getPlotOptions().getPie().setStates(states);
     }
 
-    protected DataLabels getDataLabelsDefaults() {
-        DataLabels labels = new DataLabels();
+    protected void setDataLabelsDefaults(AbstractDataLabels labels) {
         labels.setColor(TEXT_COLOR);
         labels.setStyle(new Style());
         labels.getStyle().setFontFamily(DEFAULT_FONT_FAMILIES);
         labels.getStyle().setFontSize("12px");
-        return labels;
-    }
-
-    protected DataLabelsRange getDataLabelsRangeDefaults() {
-        DataLabelsRange labels = new DataLabelsRange();
-        labels.setColor(TEXT_COLOR);
-        labels.setStyle(new Style());
-        labels.getStyle().setFontFamily(DEFAULT_FONT_FAMILIES);
-        labels.getStyle().setFontSize("12px");
-        return labels;
-    }
-
-    protected DataLabelsFunnel getDataLabelsFunnelDefaults() {
-        DataLabelsFunnel labels = new DataLabelsFunnel();
-        labels.setColor(TEXT_COLOR);
-        labels.setStyle(new Style());
-        labels.getStyle().setFontFamily(DEFAULT_FONT_FAMILIES);
-        labels.getStyle().setFontSize("12px");
-        return labels;
     }
 
     protected void setAxisDefaults(AxisStyle style) {

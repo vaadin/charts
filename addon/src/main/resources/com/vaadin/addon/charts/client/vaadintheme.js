@@ -97,19 +97,19 @@ Highcharts
 				}
 			},
 			"legend" : {
+				"backgroundColor" : "rgba(255,255,255,0.90)",
 				"borderColor" : "#DFDFDF",
 				"borderRadius" : 5,
-				"backgroundColor" : "rgba(255,255,255,0.90)",
-				"itemStyle" : {
-					"color" : "#808080",
-					"fontWeight" : "normal",
-					"fontSize" : "14px"
+				"itemHiddenStyle" : {
+					"color" : "#808080"
 				},
 				"itemHoverStyle" : {
 					"color" : "#808080"
 				},
-				"itemHiddenStyle" : {
-					"color" : "#808080"
+				"itemStyle" : {
+					"color" : "#808080",
+					"fontWeight" : "normal",
+					"fontSize" : "14px"
 				}
 			},
 			"tooltip" : {
@@ -122,120 +122,134 @@ Highcharts
 				}
 			},
 			"plotOptions" : {
-				"bar" : {
-					"pointPadding" : 0,
-					"borderWidth" : 0,
-					"shadow" : false,
-					"dataLabels" : {
-						"style" : {
-							"fontFamily" : "Open Sans, Helvetica Neue, Arial, sans-serif",
-							"fontSize" : "12px"
-						},
-						"color" : "#808080"
-					}
-				},
 				"area" : {
 					"shadow" : false
 				},
 				"arearange" : {
-					"shadow" : false,
 					"dataLabels" : {
+						"color" : "#808080",
 						"style" : {
 							"fontFamily" : "Open Sans, Helvetica Neue, Arial, sans-serif",
 							"fontSize" : "12px"
-						},
-						"color" : "#808080"
-					}
+						}
+					},
+					"shadow" : false
 				},
 				"areaspline" : {},
 				"areasplinerange" : {
-					"shadow" : false,
 					"dataLabels" : {
+						"color" : "#808080",
 						"style" : {
 							"fontFamily" : "Open Sans, Helvetica Neue, Arial, sans-serif",
 							"fontSize" : "12px"
-						},
-						"color" : "#808080"
-					}
+						}
+					},
+					"shadow" : false
+				},
+				"bar" : {
+					"borderWidth" : 0,
+					"dataLabels" : {
+						"color" : "#808080",
+						"style" : {
+							"fontFamily" : "Open Sans, Helvetica Neue, Arial, sans-serif",
+							"fontSize" : "12px"
+						}
+					},
+					"pointPadding" : 0,
+					"shadow" : false
+				},
+				"boxplot" : {},
+				"bubble" : {},
+				"column" : {
+					"borderWidth" : 0,
+					"dataLabels" : {
+						"color" : "#808080",
+						"style" : {
+							"fontFamily" : "Open Sans, Helvetica Neue, Arial, sans-serif",
+							"fontSize" : "12px"
+						}
+					},
+					"pointPadding" : 0,
+					"shadow" : false
+				},
+				"columnrange" : {},
+				"errorbar" : {},
+				"funnel" : {},
+				"gauge" : {},
+				"heatmap" : {},
+				"line" : {
+					"dataLabels" : {
+						"color" : "#808080",
+						"style" : {
+							"fontFamily" : "Open Sans, Helvetica Neue, Arial, sans-serif",
+							"fontSize" : "12px"
+						}
+					},
+					"shadow" : false
 				},
 				"pie" : {
 					"borderWidth" : 0,
-					"shadow" : false,
 					"dataLabels" : {
+						"color" : "#808080",
 						"style" : {
 							"fontFamily" : "Open Sans, Helvetica Neue, Arial, sans-serif",
 							"fontSize" : "12px"
-						},
-						"color" : "#808080"
+						}
 					},
+					"shadow" : false,
 					"states" : {
 						"hover" : {
 							"enabled" : false
 						}
 					}
 				},
-				"line" : {
-					"shadow" : false,
-					"dataLabels" : {
-						"style" : {
-							"fontFamily" : "Open Sans, Helvetica Neue, Arial, sans-serif",
-							"fontSize" : "12px"
-						},
-						"color" : "#808080"
-					}
-				},
-				"column" : {
-					"pointPadding" : 0,
-					"borderWidth" : 0,
-					"shadow" : false,
-					"dataLabels" : {
-						"style" : {
-							"fontFamily" : "Open Sans, Helvetica Neue, Arial, sans-serif",
-							"fontSize" : "12px"
-						},
-						"color" : "#808080"
-					}
-				},
-				"spline" : {
-					"shadow" : false,
-					"dataLabels" : {
-						"style" : {
-							"fontFamily" : "Open Sans, Helvetica Neue, Arial, sans-serif",
-							"fontSize" : "12px"
-						},
-						"color" : "#808080"
-					}
-				},
-				"series" : {},
+				"polygon" : {},
 				"pyramid" : {
 					"borderWidth" : 0,
 					"dataLabels" : {
+						"color" : "#808080",
 						"style" : {
 							"fontFamily" : "Open Sans, Helvetica Neue, Arial, sans-serif",
 							"fontSize" : "12px"
-						},
-						"color" : "#808080"
+						}
 					}
 				},
-				"waterfall" : {
-					"borderWidth" : 0,
-					"shadow" : false,
+				"scatter" : {},
+				"series" : {},
+				"solidgauge" : {},
+				"spline" : {
 					"dataLabels" : {
+						"color" : "#808080",
 						"style" : {
 							"fontFamily" : "Open Sans, Helvetica Neue, Arial, sans-serif",
 							"fontSize" : "12px"
-						},
-						"color" : "#808080"
-					}
-				}
+						}
+					},
+					"shadow" : false
+				},
+				"treemap" : {},
+				"waterfall" : {
+					"borderWidth" : 0,
+					"dataLabels" : {
+						"color" : "#808080",
+						"style" : {
+							"fontFamily" : "Open Sans, Helvetica Neue, Arial, sans-serif",
+							"fontSize" : "12px"
+						}
+					},
+					"shadow" : false
+				},
+				"candlestick" : {},
+				"flags" : {},
+				"ohlc" : {}
 			},
 			"credits" : {
-				"text" : "",
 				"href" : "",
 				"style" : {
 					"color" : "#808080",
 					"fontSize" : "14px"
-				}
+				},
+				"text" : ""
 			}
 		});
 
