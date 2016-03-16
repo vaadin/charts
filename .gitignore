@@ -1,5 +1,6 @@
 *.iml
 target/
+
 .idea
 .classpath
 .project
@@ -10,6 +11,8 @@ chart-plugin-demo/src/main/webapp/VAADIN/
 chart-export-demo/src/main/webapp/VAADIN/
 chart-export-demo/target/
 
+book-examples/target
+book-examples/src/main/webapp/VAADIN/
 documentation/examples/**/bower_components
 
 # Mac
