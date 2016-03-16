@@ -27,7 +27,7 @@ import com.vaadin.server.Sizeable.Unit;
  * to each point value. Technically it is the same as a reversed funnel chart
  * without a neck.
  */
-public class PlotOptionsPyramid extends AbstractPlotOptions {
+public class PlotOptionsPyramid extends PyramidOptions {
 
 	private Boolean allowPointSelect;
 	private Color borderColor;

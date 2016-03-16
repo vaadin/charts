@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import com.vaadin.addon.charts.util.Util;
-public class PlotOptionsScatter extends AbstractPlotOptions {
+public class PlotOptionsScatter extends PointOptions {
 
 	private Boolean allowPointSelect;
 	private Boolean animation;

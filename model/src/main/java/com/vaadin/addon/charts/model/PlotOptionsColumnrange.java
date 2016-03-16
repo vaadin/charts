@@ -28,7 +28,7 @@ import com.vaadin.addon.charts.util.Util;
  * horizontal bars, set <a href="#chart.inverted">chart.inverted</a> to
  * <code>true</code>.
  */
-public class PlotOptionsColumnrange extends AbstractPlotOptions {
+public class PlotOptionsColumnrange extends ColumnOptions {
 
 	private Boolean allowPointSelect;
 	private Boolean animation;

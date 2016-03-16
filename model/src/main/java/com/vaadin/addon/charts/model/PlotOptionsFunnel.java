@@ -27,7 +27,7 @@ import com.vaadin.server.Sizeable.Unit;
  * project, where the top are the initial stages with the most clients. It
  * requires that the <code>modules/funnel.js</code> file is loaded.
  */
-public class PlotOptionsFunnel extends AbstractPlotOptions {
+public class PlotOptionsFunnel extends PyramidOptions {
 
 	private Boolean allowPointSelect;
 	private Color borderColor;

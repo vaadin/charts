@@ -25,7 +25,7 @@ import com.vaadin.addon.charts.util.Util;
 /**
  * Options for the waterfall series type.
  */
-public class PlotOptionsWaterfall extends AbstractPlotOptions {
+public class PlotOptionsWaterfall extends ColumnOptions {
 
 	private Boolean allowPointSelect;
 	private Boolean animation;

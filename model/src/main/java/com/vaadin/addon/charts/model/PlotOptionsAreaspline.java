@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import com.vaadin.addon.charts.util.Util;
-public class PlotOptionsAreaspline extends AbstractPlotOptions {
+public class PlotOptionsAreaspline extends AreaOptions {
 
 	private Boolean allowPointSelect;
 	private Boolean animation;

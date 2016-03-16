@@ -24,7 +24,7 @@ import java.util.Arrays;
  * General plotting options for the gauge series type. Requires
  * <code>highcharts-more.js</code>
  */
-public class PlotOptionsGauge extends AbstractPlotOptions {
+public class PlotOptionsGauge extends GaugeOptions {
 
 	private Boolean animation;
 	private Color color;

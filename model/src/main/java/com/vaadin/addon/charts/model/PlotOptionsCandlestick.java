@@ -25,7 +25,7 @@ import com.vaadin.addon.charts.util.Util;
 /**
  * 
  */
-public class PlotOptionsCandlestick extends AbstractPlotOptions {
+public class PlotOptionsCandlestick extends OhlcOptions {
 
 	private Boolean allowPointSelect;
 	private Boolean animation;

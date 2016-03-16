@@ -26,7 +26,7 @@ import com.vaadin.addon.charts.util.Util;
  * The area range is a cartesian series type with higher and lower Y values
  * along an X axis. Requires <code>highcharts-more.js</code>.
  */
-public class PlotOptionsArearange extends AbstractPlotOptions {
+public class PlotOptionsArearange extends AreaOptions {
 
 	private Boolean allowPointSelect;
 	private Boolean animation;
