@@ -276,8 +276,6 @@ conf.getChart().setOptions3d(options3d);
 
 The 3D options are as follows:
 
-[parameter]##::
-
 [parameter]#alpha#:: The vertical tilt (pitch) in degrees.
 
 [parameter]#beta#:: The horizontal tilt (yaw) in degrees.
