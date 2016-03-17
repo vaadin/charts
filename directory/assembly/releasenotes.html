@@ -503,14 +503,44 @@
 
     <ul>
         <li>Added Web Components version of Vaadin Charts. See <a href="https://vaadin.com/docs/-/part/charts/webcomponents-api/charts-getting-started.html">Vaadin Docs</a></li>
-        <li>Added declarative support of Vaadin Charts. See <a href="https://vaadin.com/docs/-/part/charts/java-api/charts-declarative.html">Vaadin Docs</a></li>
+        <li>Added declarative support. See <a href="https://vaadin.com/docs/-/part/charts/java-api/charts-declarative.html">Vaadin Docs</a></li>
         <li>Added new timeline mode for regular Chart components and removed old Timeline component. See <a href="https://vaadin.com/docs/-/part/charts/java-api/charts-timeline.html">Vaadin Docs</a></li>
         <li>New financial chart types (OHLC and candlestick). See <a href="https://vaadin.com/docs/-/part/charts/java-api/charts-charttypes.html">Vaadin Docs</a></li>
         <li>API review and cleanup </li>
     </ul>
-    <!-- should be fixed in beta
-        <h2 id="changes_since_3x">Changelog for 3.0</h2>
 
+    <h2 id="changes_since_3x">Changelog for 3.0.0-rc1</h2>
+    <ul>
+    <li>Reserved words in HTML (title, style, area and frame) now have prefix ‘vaadin-’:
+    <ul>
+        <li>Both Declarative &amp; Web Components</li>
+    </ul>
+    </li>
+    <li>Gradient color:
+    <ul>
+        <li>Web components now supports properties in &lt;stops&gt;</li>
+        <li>Added declarative support</li>
+    </ul>
+    </li>
+    <li>Added date helpers to the Axis methods setMin() and setMax()</li>
+    <li>Added setLoading(), setNavigator(), and setNavigation() to Configuration</li>
+    <li>Changed from com.vaadin.addon.charts.model.Unit to com.vaadin.server.Unit</li>
+    <li>Added exception when setting timeline for not supported chart types</li>
+    <li>Added missing properties to ZAxis</li>
+    <li>Moved properties common for XAxis, YAxis, and ZAxis to parent Axis</li>
+    <li>Created AbstractDataLabels class that includes common properties for DataLabels, DataLabelsFunnel and DataLabelsRange</li>
+    <li>Created abstract plot options classes that include common properties for different plot options:
+    <ul>
+        <li>AreaOptions with common properties for: PlotOptionsArea, PlotOptionsArearange, PlotOptionsAreaspline, and PlotOptionsAreasplinerange</li>
+        <li>ColumnOptions with common properties for: PlotOptionsColumn, PlotOptionsColumnrange, PlotOptionsBar, and PlotOptionsWaterfall</li>
+        <li>GaugeOptions with common properties for: PlotOptionsGauge, and PlotOptionsSolidgauge</li>
+        <li>OhlcOptions with common properties for: PlotOptionsOhlc, and PlotOptionsCandlestick</li>
+        <li>PointOptions with common properties for: PlotOptionsScatter, PlotOptionsLine, and PlotOptionsSpline</li>
+        <li>PyramidOptions with common properties for: PlotOptionsPyramid, and PlotOptionsFunnel</li>
+    </ul>
+    </li>
+    </ul>
+    <!-- No trac ticket to include at the moment
         <table>
             <tbody>
                 <tr><td><a href="https://dev.vaadin.com/ticket/18552">#18552</a></td><td>NPE with deserialized chart</td></tr>
@@ -525,14 +555,14 @@
             <td>
                 <pre>/</pre>
             </td>
-            <td>Licensing information, README and the Vaadin Charts manual in PDF format.
+            <td>Licensing information, and README.
             </td>
         </tr>
         <tr>
             <td>
                 <pre>addon/</pre>
             </td>
-            <td>The add-on itself along with it's packaged sources and javadocs.
+            <td>The add-on itself along with its packaged sources and javadocs.
             </td>
         </tr>
         <tr>
@@ -546,7 +576,7 @@
             <td>
                 <pre>addon/lib</pre>
             </td>
-            <td>Third party libraries needed by Vaadin Charts.
+            <td>Third-party libraries needed by Vaadin Charts.
             </td>
         </tr>
         <tr>
@@ -575,7 +605,7 @@
     <p>Vaadin Charts 3 is mostly API compatible with Vaadin Charts 1.x and 2.x. It can thus be used as a drop-in replacement
         with minor changes for any 1.x or 2.x version. Vaadin Charts 1.x licenses are valid for Vaadin Charts 3.x if you haven't upgraded
         to 2.x before.</p>
-    <p>For details about migration check the <a href="https://vaadin.com/docs/-/part/charts/java-api/charts-migration.html">Charts 2 to Charts 3 Migration Guide</a></p>
+    <p>For details about migration, check the <a href="https://vaadin.com/docs/-/part/charts/java-api/charts-migration.html">Charts 2 to Charts 3 Migration Guide</a></p>
 
     <h2 id="supported_platforms_and_browsers">Supported Platforms and Browsers</h2>
 
