@@ -44,21 +44,8 @@ Exporting exporting = new Exporting(true);
 // Customize the file name of the download file
 exporting.setFilename("mychartfile.pdf");
 
-// Enable export of raster images
-exporting.setEnableImages(true);
-
 // Use the exporting configuration in the chart
 chart.getConfiguration().setExporting(exporting);
-----
-
-If you only want to enable download, you can disable the print button as
-follows:
-
-[source,java]
-----
-ExportButton printButton = new ExportButton();
-printButton.setEnabled(false);
-exporting.setPrintButton(printButton);
 ----
 
 The functionality uses a HighCharts export service by default. To use your own,
