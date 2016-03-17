@@ -176,9 +176,8 @@ XAxis xaxis = new XAxis();
 ...
 Labels xlabels = xaxis.getLabels();
 xlabels.setAlign(HorizontalAlign.CENTER); // Default
-xlabels.setBackgroundColor(SolidColor.PALEGREEN);
-xlabels.setBorderWidth(3);
-xlabels.setColor(SolidColor.GREEN);
+xlabels.getStyle().setColor(SolidColor.GREEN);
+xlabels.getStyle().setFontWeight(FontWeight.BOLD);
 xlabels.setRotation(-45);
 xlabels.setStep(2); // Every 2 major tick
 ----
@@ -336,7 +335,7 @@ For example, to format tick labels on a chart axis, you could have:
 ----
 YAxis yaxis = new YAxis();
 Labels ylabels = yaxis.getLabels();
- ylabels.setFormatter("function() {return this.value + ' km';}");
+ylabels.setFormatter("function() {return this.value + ' km';}");
 ----
 
 
