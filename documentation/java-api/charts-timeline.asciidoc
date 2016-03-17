@@ -84,7 +84,7 @@ charts data series in percentage or absolute values respectively.
 [source, java]
 ----
 PlotOptionsSeries plotOptions = new PlotOptionsSeries();
-plotOptions.setCompare(PERCENT);
+plotOptions.setCompare(Compare.PERCENT);
 configuration.setPlotOptions(plotOptions);
 ----
 [[figure.charts.timeline.timeline-compare]]
