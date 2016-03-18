@@ -1,8 +1,8 @@
 package book.examples.timeline;
 
 import com.vaadin.addon.charts.Chart;
-import com.vaadin.addon.charts.model.Compare;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.Navigator;
 import com.vaadin.addon.charts.model.PlotOptionsSeries;
 import com.vaadin.addon.charts.model.RangeSelector;
 import com.vaadin.addon.charts.model.style.ButtonTheme;
@@ -12,7 +12,18 @@ import com.vaadin.addon.charts.model.style.Style;
 
 public class Timeline {
 
-    public void chartsTimelineSnippet1() {
+    public void chartsTimelineIntroSnippet1() {
+        Chart chart = new Chart();
+        Configuration configuration = chart.getConfiguration();
+        Navigator navigator = configuration.getNavigator();
+        navigator.setEnabled(true);
+        navigator.setMargin(75);
+        PlotOptionsSeries plotOptions=new PlotOptionsSeries();
+        plotOptions.setColor(SolidColor.BROWN);
+        navigator.setSeries(plotOptions);
+    }
+
+    public void chartsTimelineIntroSnippet2() {
         RangeSelector rangeSelector = new RangeSelector();
         rangeSelector.setSelected(4);
         ButtonTheme theme = new ButtonTheme();
@@ -28,7 +39,7 @@ public class Timeline {
         configuration.setRangeSelector(rangeSelector);
     }
 
-    public void chartsTimelineSnippet2() {
+    public void chartsTimelineIntroSnippet3() {
         Chart chart = new Chart();
         Configuration configuration = chart.getConfiguration();
         RangeSelector rangeSelector = new RangeSelector();
@@ -45,13 +56,5 @@ public class Timeline {
                         "   parseInt(value[4], 10),\n" +
                         ");}");
         configuration.setRangeSelector(rangeSelector);
-    }
-
-    public void chartsTimelineSnippet3() {
-        Chart chart = new Chart();
-        Configuration configuration = chart.getConfiguration();
-        PlotOptionsSeries plotOptions = new PlotOptionsSeries();
-        plotOptions.setCompare(Compare.PERCENT);
-        configuration.setPlotOptions(plotOptions);
     }
 }

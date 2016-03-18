@@ -42,6 +42,42 @@ that support the properties. In Vaadin Charts 3, instead of using
 [classname]#AbstractPlotOptions#, use a specific implementation, such as [classname]#PlotOptionsArea#,
 [classname]#PlotOptionsBar#, etc.
 
+All the chart types in Vaadin Charts 3 are divided into several groups with
+common properties. These groups are presented as abstract classes, that allow to use polymorphism for setting common
+properties for specific implementations. For example, to set the same [propertyname]#lineWidth# for
+[classname]#PlotOptionsLine# and [classname]#PlotOptionsSpline# use [classname]#PointOptions#.
+[source, java]
+----
+private void setCommonProperties(PointOptions options) {
+    options.setLineWidth(5);
+    options.setColor(SolidColor.RED);
+    options.setAnimation(false);
+}
+...
+PlotOptionsSpline plotOptions=new PlotOptionsSpline();
+PlotOptionsLine plotOptions2=new PlotOptionsLine();
+setCommonProperties(plotOptions);
+setCommonProperties(plotOptions2);
+series.setPlotOptions(plotOptions);
+series2.setPlotOptions(plotOptions2);
+----
+This is the list of abstract classes with their specific implementations:
+
+* [classname]#AreaOptions# -> [classname]#PlotOptionsArea#, [classname]#PlotOptionsArearange#,
+[classname]#PlotOptionsAreaspline#, [classname]#PlotOptionsAreasplinerange#
+* [classname]#ColumnOptions# -> [classname]#PlotOptionsBar#, [classname]#PlotOptionsColumn#,
+[classname]#PlotOptionsColumnrange#
+* [classname]#GaugeOptions# -> [classname]#PlotOptionsGauge#, [classname]#PlotOptionsSolidgauge#
+* [classname]#PointOptions# -> [classname]#PlotOptionsLine#, [classname]#PlotOptionsSpline#,
+[classname]#PlotOptionsScatter#
+* [classname]#PyramidOptions# -> [classname]#PlotOptionsPyramid#, [classname]#PlotOptionsFunnel#
+* [classname]#OhlcOptions# -> [classname]#PlotOptionsOhlc#, [classname]#PlotOptionsCandlestick#
+
+In other words, to set common properties for [classname]#PlotOptionsBar# and [classname]#PlotOptionsColumn# you
+can use [classname]#ColumnOptions#, for [classname]#PlotOptionsArea# and [classname]#PlotOptionsArearange# you can use
+[classname]#AreaOptions#, and so on.
+
+
 [[charts.migration.classnamedif]]
 == Changes in Class Names
 
