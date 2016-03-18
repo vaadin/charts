@@ -1615,7 +1615,7 @@ A candlestick chart is defined with a
 image::img/charts-candlestick.png[]
 
 To attach data to a OHLC or a candlestick chart you need to  use a
-[elementname]#data-series#. See <<charts-data#charts-data.dataseries,"Chart Data">>
+[elementname]#data-series#. See <<charts-data#charts.data,"Chart Data">>
  for more details. An OHLC data series contains an array of objects
 with a date and the open, highest, lowest, and close price on that date.
 

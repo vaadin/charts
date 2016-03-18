@@ -1674,7 +1674,7 @@ image::img/charts-candlestick.png[]
 
 To attach data to an OHLC or a candlestick chart, you need to use a
 [classname]#DataSeries# or a [classname]#ContainerSeries#. See
-<<charts-data#charts-data.dataseries, "Chart Data">> for more details. A data
+<<charts-data#charts.data, "Chart Data">> for more details. A data
 series for an OHLC chart must contain [classname]#OhlcItem# objects. An
 [classname]#OhlcItem# contains a date and the open, highest, lowest,
  and close price on that date.
