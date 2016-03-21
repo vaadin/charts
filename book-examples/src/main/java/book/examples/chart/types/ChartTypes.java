@@ -1,6 +1,9 @@
 package book.examples.chart.types;
 
 
+import java.util.Collection;
+import java.util.Date;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.model.AxisType;
 import com.vaadin.addon.charts.model.Background;
@@ -31,13 +34,13 @@ import com.vaadin.addon.charts.model.PlotOptionsBubble;
 import com.vaadin.addon.charts.model.PlotOptionsErrorbar;
 import com.vaadin.addon.charts.model.PlotOptionsFlags;
 import com.vaadin.addon.charts.model.PlotOptionsFunnel;
-import com.vaadin.addon.charts.model.PlotOptionsHeatMap;
+import com.vaadin.addon.charts.model.PlotOptionsHeatmap;
 import com.vaadin.addon.charts.model.PlotOptionsOhlc;
 import com.vaadin.addon.charts.model.PlotOptionsPie;
 import com.vaadin.addon.charts.model.PlotOptionsPolygon;
 import com.vaadin.addon.charts.model.PlotOptionsScatter;
-import com.vaadin.addon.charts.model.PlotOptionsSolidGauge;
-import com.vaadin.addon.charts.model.PlotOptionsTreeMap;
+import com.vaadin.addon.charts.model.PlotOptionsSolidgauge;
+import com.vaadin.addon.charts.model.PlotOptionsTreemap;
 import com.vaadin.addon.charts.model.PlotOptionsWaterfall;
 import com.vaadin.addon.charts.model.RangeSeries;
 import com.vaadin.addon.charts.model.Stop;
@@ -61,9 +64,6 @@ import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
-
-import java.util.Collection;
-import java.util.Date;
 
 public class ChartTypes {
     public void chartTypesErrorbarSnippet1() {
@@ -371,7 +371,7 @@ public class ChartTypes {
         Button update = new Button("Update", new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent event) {
-                Integer newValue = new Integer((String)tf.getValue());
+                Integer newValue = new Integer(tf.getValue());
                 series.updatePoint(0, newValue);;
             }
         });
@@ -436,7 +436,7 @@ public class ChartTypes {
     public void chartTypesSolidGaugePlotoptionsSnippet1() {
         Chart chart = new Chart(ChartType.SOLIDGAUGE);
         Configuration conf = chart.getConfiguration();
-        PlotOptionsSolidGauge options = new PlotOptionsSolidGauge();
+        PlotOptionsSolidgauge options = new PlotOptionsSolidgauge();
 
 // Move the value display box at the center a bit higher
         DataLabels dataLabels = new DataLabels();
@@ -462,7 +462,7 @@ public class ChartTypes {
         Button update = new Button("Update", new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent event) {
-                Integer newValue = new Integer((String)tf.getValue());
+                Integer newValue = new Integer(tf.getValue());
                 series.updatePoint(0, newValue);
             }
         });
@@ -665,7 +665,7 @@ public class ChartTypes {
         conf.getColorAxis().setMaxColor(SolidColor.RED);
 
 // Set up border and data labels
-        PlotOptionsHeatMap plotOptions = new PlotOptionsHeatMap();
+        PlotOptionsHeatmap plotOptions = new PlotOptionsHeatmap();
         plotOptions.setBorderColor(SolidColor.WHITE);
         plotOptions.setBorderWidth(2);
         plotOptions.setDataLabels(new DataLabels(true));
@@ -697,7 +697,7 @@ public class ChartTypes {
     public void chartTypesTreemap() {
         Chart chart = new Chart();
 
-        PlotOptionsTreeMap plotOptions = new PlotOptionsTreeMap();
+        PlotOptionsTreemap plotOptions = new PlotOptionsTreemap();
         plotOptions.setLayoutAlgorithm(TreeMapLayoutAlgorithm.STRIPES);
         plotOptions.setAlternateStartingDirection(true);
 

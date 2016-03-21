@@ -897,7 +897,7 @@ Options">> for common options.
 
 [source, java]
 ----
-PlotOptionsSolidGauge options = new PlotOptionsSolidGauge();
+PlotOptionsSolidgauge options = new PlotOptionsSolidgauge();
 
 // Move the value display box at the center a bit higher
 Labels dataLabels = new Labels();
@@ -1325,7 +1325,7 @@ conf.getColorAxis().setMinColor(SolidColor.AQUA);
 conf.getColorAxis().setMaxColor(SolidColor.RED);
 
 // Set up border and data labels
-PlotOptionsHeatMap plotOptions = new PlotOptionsHeatMap();
+PlotOptionsHeatmap plotOptions = new PlotOptionsHeatmap();
 plotOptions.setBorderColor(SolidColor.WHITE);
 plotOptions.setBorderWidth(2);
 plotOptions.setDataLabels(new DataLabels(true));
@@ -1401,7 +1401,7 @@ ifdef::web[]
 ----
 Chart chart = new Chart();
 
-PlotOptionsTreeMap plotOptions = new PlotOptionsTreeMap();
+PlotOptionsTreemap plotOptions = new PlotOptionsTreemap();
 plotOptions.setLayoutAlgorithm(TreeMapLayoutAlgorithm.STRIPES);
 plotOptions.setAlternateStartingDirection(true);
 
