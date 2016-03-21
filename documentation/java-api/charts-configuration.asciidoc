@@ -40,40 +40,82 @@ summarized in the following:
 * [methodname]#yAxis#: [classname]#YAxis# (see <<charts.configuration.axes>>)
 
 
-For data configuration, see <<dummy/../../../charts/java-api/charts-data#charts.data,"Chart
-Data">>.
+For data configuration, see <<dummy/../../../charts/java-api/charts-data#charts.data,"Chart Data">>.
 
 [[charts.configuration.plotoptions]]
 == Plot Options
 
-The plot options can be set in the configuration of the entire chart or for each
-data series separately. Some of the plot options are chart type specific,
-defined in type-specific options classes, which all extend
-[classname]#AbstractPlotOptions#.
-
-You need to create the plot options object and set them either for the entire
-chart or for a data series with [methodname]#setPlotOptions()#.
+The plot options are used to configure the data series in the chart.
+For example, line color could be specified for each line series.
+Plot options can be set in the configuration of the entire chart or for each data series separately with [methodname]#setPlotOptions()#.
+When the plot options are set to the entire chart, it will be applied to all the series in the chart.
 
 For example, the following enables stacking in column charts:
 
 [source,java]
 ----
+Chart chart = new Chart();
+Configuration configuration = chart.getConfiguration();
 PlotOptionsColumn plotOptions = new PlotOptionsColumn();
 plotOptions.setStacking(Stacking.NORMAL);
-conf.setPlotOptions(plotOptions);
+configuration.setPlotOptions(plotOptions);
 ----
 
-See the API documentation of each chart type and its plot options class for more
-information about the chart-specific options, and the
-[classname]#AbstractPlotOptions# for the shared plot options.
+Chart can contain multiple plot options which can be added dynamically with [methodname]#addPlotOptions()#.
+
+The developer can specify also the plot options for the particular data series as follows:
+
+[source,java]
+----
+ListSeries series = new ListSeries(50, 60, 70, 80);
+PlotOptionsColumn plotOptions = new PlotOptionsColumn();
+plotOptions.setStacking(Stacking.NORMAL);
+series.setPlotOptions(plotOptions);
+----
+
+The plot options are defined in type-specific options classes or in a [classname]#PlotOptionsSeries# class which contains general options for all series types.
+Type specific classes are applied to all the series with the same type in the chart.
+If [classname]#PlotOptionsSeries# is used, it will be applied to all the series in the chart regardless of the type.
+
+Chart types are divided into several groups with common properties.
+These groups are presented as abstract classes, that allow to use polymorphism for setting common properties for specific implementations.
+The abstract classes and groups are the following:
+
+* [classname]#AreaOptions# -> [classname]#PlotOptionsArea#, [classname]#PlotOptionsArearange#,
+[classname]#PlotOptionsAreaspline#, [classname]#PlotOptionsAreasplinerange#
+* [classname]#ColumnOptions# -> [classname]#PlotOptionsBar#, [classname]#PlotOptionsColumn#,
+[classname]#PlotOptionsColumnrange#
+* [classname]#GaugeOptions# -> [classname]#PlotOptionsGauge#, [classname]#PlotOptionsSolidgauge#
+* [classname]#PointOptions# -> [classname]#PlotOptionsLine#, [classname]#PlotOptionsSpline#,
+[classname]#PlotOptionsScatter#
+* [classname]#PyramidOptions# -> [classname]#PlotOptionsPyramid#, [classname]#PlotOptionsFunnel#
+* [classname]#OhlcOptions# -> [classname]#PlotOptionsOhlc#, [classname]#PlotOptionsCandlestick#
+
+For example, to set the same [propertyname]#lineWidth# for [classname]#PlotOptionsLine# and [classname]#PlotOptionsSpline# use [classname]#PointOptions#.
+[source, java]
+----
+private void setCommonProperties(PointOptions options) {
+    options.setLineWidth(5);
+    options.setColor(SolidColor.RED);
+    options.setAnimation(false);
+}
+...
+PlotOptionsSpline lineOptions = new PlotOptionsSpline();
+PlotOptionsLine splineOptions = new PlotOptionsLine();
+setCommonProperties(lineOptions);
+setCommonProperties(splineOptions);
+configuration.setPlotOptions(lineOptions, splineOptions);
+----
+
+See the API documentation of each chart type and its plot options class for more information about the chart-specific options.
 
 [[charts.configuration.plotoptions.other]]
 === Other Options
 
 The following options are supported by some chart types.
 
-[parameter]#width# and [parameter]#widthPercentage#:: Defines the width of the chart either by pixels or as a percentual proportion of the drawing area.
-[parameter]#height# and [parameter]#heightPercentage#:: Defines the height of the chart either by pixels or as a percentual proportion of the drawing area.
+[parameter]#width#:: Defines the width of the chart either by pixels or as a percentual proportion of the drawing area.
+[parameter]#height#:: Defines the height of the chart either by pixels or as a percentual proportion of the drawing area.
 [parameter]#depth#:: Specifies the thickness of the chart in 3D mode.
 [parameter]#allowPointSelect#:: Specifies whether data points, in whatever way they are visualized in the particular chart type, can be selected by clicking on them. Defaults to __false__.
 [parameter]#borderColor#:: Defines the border color of the chart elements.

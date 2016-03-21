@@ -1,11 +1,17 @@
 package book.examples.chart.configuration;
 
+import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.HorizontalAlign;
 import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.LayoutDirection;
 import com.vaadin.addon.charts.model.Legend;
+import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
+import com.vaadin.addon.charts.model.PlotOptionsLine;
+import com.vaadin.addon.charts.model.PlotOptionsSpline;
+import com.vaadin.addon.charts.model.PointOptions;
+import com.vaadin.addon.charts.model.Series;
 import com.vaadin.addon.charts.model.Stacking;
 import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.XAxis;
@@ -17,9 +23,32 @@ import com.vaadin.addon.charts.model.style.Style;
 public class ChartConfiguration {
 
     public void plotOptionsSnippet1(Configuration conf) {
+        Chart chart = new Chart();
+        Configuration configuration = chart.getConfiguration();
         PlotOptionsColumn plotOptions = new PlotOptionsColumn();
         plotOptions.setStacking(Stacking.NORMAL);
-        conf.setPlotOptions(plotOptions);
+        configuration.setPlotOptions(plotOptions);
+    }
+
+    public void plotOptionsSnippet2(Configuration conf) {
+        ListSeries series = new ListSeries(50, 60, 70, 80);
+        PlotOptionsColumn plotOptions = new PlotOptionsColumn();
+        plotOptions.setStacking(Stacking.NORMAL);
+        series.setPlotOptions(plotOptions);
+    }
+
+    private void setCommonProperties(PointOptions options) {
+       options.setLineWidth(5);
+       options.setColor(SolidColor.RED);
+       options.setAnimation(false);
+    }
+
+    public void plotOptionsSnippet3(Configuration configuration) {
+       PlotOptionsSpline lineOptions = new PlotOptionsSpline();
+       PlotOptionsLine splineOptions = new PlotOptionsLine();
+       setCommonProperties(lineOptions);
+       setCommonProperties(splineOptions);
+       configuration.setPlotOptions(lineOptions, splineOptions);
     }
 
     public void axisSnippet1(Configuration conf) {
