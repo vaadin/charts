@@ -1,5 +1,6 @@
 package com.vaadin.addon.charts.testbenchtests;
 
+import com.vaadin.testbench.parallel.Browser;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -23,6 +24,7 @@ public class PieChartTBTest extends AbstractSimpleScreenShotTestBenchTest {
     @Override
     protected void testCustomStuff() {
         super.testCustomStuff();
+        skipBrowser("Can't find chart series with .cssSelector(\".highcharts-series > path\"))", Browser.IE8);
         // Ensure animation has finished before clicking
         waitForVaadin();
 

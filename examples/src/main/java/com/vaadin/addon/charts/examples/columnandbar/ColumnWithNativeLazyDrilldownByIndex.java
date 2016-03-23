@@ -1,8 +1,5 @@
 package com.vaadin.addon.charts.examples.columnandbar;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.DrilldownCallback;
 import com.vaadin.addon.charts.DrilldownEvent;
@@ -21,6 +18,9 @@ import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.ui.Component;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @SuppressWarnings("serial")
 @SkipFromDemo
@@ -63,8 +63,7 @@ public class ColumnWithNativeLazyDrilldownByIndex extends
         conf.setPlotOptions(column);
 
         Tooltip tooltip = new Tooltip();
-        tooltip.setHeaderFormat("<span style=\"font-size:11px\">{series.name}</span><br>");
-        tooltip.setPointFormat("<span style=\"color:{point.color}\">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>");
+        tooltip.setEnabled(false);
         conf.setTooltip(tooltip);
         topCategories = new String[] { "MSIE", "Firefox", "Chrome", "Safari",
                 "Opera" };

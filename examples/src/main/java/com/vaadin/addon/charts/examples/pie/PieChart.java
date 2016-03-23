@@ -24,6 +24,7 @@ public class PieChart extends AbstractVaadinChartExample {
 
     @Override
     protected Component getChart() {
+
         Component ret = createChart();
         ret.setWidth("100%");
         ret.setHeight("450px");
