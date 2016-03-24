@@ -4,7 +4,7 @@ package com.vaadin.addon.charts.model;
  * #%L
  * Vaadin Charts
  * %%
- * Copyright (C) 2012 - 2015 Vaadin Ltd
+ * Copyright (C) 2012 - 2016 Vaadin Ltd
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
@@ -17,13 +17,17 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
-public enum TimeUnit implements ChartEnum {
-    MILLISECOND("millisecond"), SECOND("second"), MINUTE("minute"), HOUR("hour"), DAY(
-            "day"), WEEK("week"), MONTH("month"), YEAR("year");
+/**
+ * Possible timespan values for range selector buttons
+ */
+public enum RangeSelectorTimespan implements ChartEnum {
+    MILLISECOND("millisecond"), SECOND("second"), MINUTE("minute"), DAY("day"), WEEK(
+            "week"), MONTH("month"), YEAR_TO_DATE("ytd"), YEAR("year"), ALL(
+            "all");
 
     private String name;
 
-    private TimeUnit(String name) {
+    private RangeSelectorTimespan(String name) {
         this.name = name;
     }
 

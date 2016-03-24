@@ -18,6 +18,8 @@ package com.vaadin.addon.charts.model;
  */
 
 import com.vaadin.addon.charts.model.style.ButtonTheme;
+import java.util.ArrayList;
+import java.util.Arrays;
 import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.Style;
 /**
@@ -31,7 +33,7 @@ public class RangeSelector extends AbstractConfigurationObject {
 	private Boolean allButtonsEnabled;
 	private Number buttonSpacing;
 	private ButtonTheme buttonTheme;
-	private Buttons buttons;
+	private ArrayList<RangeSelectorButton> buttons;
 	private Boolean enabled;
 	private Number height;
 	private Color inputBoxBorderColor;
@@ -105,13 +107,12 @@ public class RangeSelector extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setButtons(Buttons)
+	 * @see #setButtons(RangeSelectorButton...)
 	 */
-	public Buttons getButtons() {
-		if (buttons == null) {
-			buttons = new Buttons();
-		}
-		return buttons;
+	public RangeSelectorButton[] getButtons() {
+		RangeSelectorButton[] arr = new RangeSelectorButton[buttons.size()];
+		buttons.toArray(arr);
+		return arr;
 	}
 
 	/**
@@ -164,8 +165,34 @@ public class RangeSelector extends AbstractConfigurationObject {
 	 * 	}]
 	 * </pre>
 	 */
-	public void setButtons(Buttons buttons) {
-		this.buttons = buttons;
+	public void setButtons(RangeSelectorButton... buttons) {
+		this.buttons = new ArrayList<RangeSelectorButton>(
+				Arrays.asList(buttons));
+	}
+
+	/**
+	 * Adds button to the buttons array
+	 * 
+	 * @param button
+	 *            to add
+	 * @see #setButtons(RangeSelectorButton...)
+	 */
+	public void addButton(RangeSelectorButton button) {
+		if (this.buttons == null) {
+			this.buttons = new ArrayList<RangeSelectorButton>();
+		}
+		this.buttons.add(button);
+	}
+
+	/**
+	 * Removes first occurrence of button in buttons array
+	 * 
+	 * @param button
+	 *            to remove
+	 * @see #setButtons(RangeSelectorButton...)
+	 */
+	public void removeButton(RangeSelectorButton button) {
+		this.buttons.remove(button);
 	}
 
 	public RangeSelector(Boolean enabled) {
