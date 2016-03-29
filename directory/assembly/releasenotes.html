@@ -509,37 +509,11 @@
         <li>API review and cleanup </li>
     </ul>
 
-    <h2 id="changes_since_3x">Changelog for 3.0.0-rc1</h2>
+    <h2 id="changes_since_3x">Changelog for 3.0.0-rc2</h2>
     <ul>
-    <li>Reserved words in HTML (title, style, area and frame) now have prefix ‘chart-’:
-    <ul>
-        <li>Both Declarative &amp; Web Components</li>
+        <li>Created RangeSelectorButton class which is now used in RangeSelector</li>
     </ul>
-    </li>
-    <li>Gradient color:
-    <ul>
-        <li>Web components now supports properties in &lt;stops&gt;</li>
-        <li>Added declarative support</li>
-    </ul>
-    </li>
-    <li>Added date helpers to the Axis methods setMin() and setMax()</li>
-    <li>Added setLoading(), setNavigator(), and setNavigation() to Configuration</li>
-    <li>Changed from com.vaadin.addon.charts.model.Unit to com.vaadin.server.Unit</li>
-    <li>Added exception when setting timeline for not supported chart types</li>
-    <li>Added missing properties to ZAxis</li>
-    <li>Moved properties common for XAxis, YAxis, and ZAxis to parent Axis</li>
-    <li>Created AbstractDataLabels class that includes common properties for DataLabels, DataLabelsFunnel and DataLabelsRange</li>
-    <li>Created abstract plot options classes that include common properties for different plot options:
-    <ul>
-        <li>AreaOptions with common properties for: PlotOptionsArea, PlotOptionsArearange, PlotOptionsAreaspline, and PlotOptionsAreasplinerange</li>
-        <li>ColumnOptions with common properties for: PlotOptionsColumn, PlotOptionsColumnrange, PlotOptionsBar, and PlotOptionsWaterfall</li>
-        <li>GaugeOptions with common properties for: PlotOptionsGauge, and PlotOptionsSolidgauge</li>
-        <li>OhlcOptions with common properties for: PlotOptionsOhlc, and PlotOptionsCandlestick</li>
-        <li>PointOptions with common properties for: PlotOptionsScatter, PlotOptionsLine, and PlotOptionsSpline</li>
-        <li>PyramidOptions with common properties for: PlotOptionsPyramid, and PlotOptionsFunnel</li>
-    </ul>
-    </li>
-    </ul>
+
     <!-- No trac ticket to include at the moment
         <table>
             <tbody>
