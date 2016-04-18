@@ -1,40 +1,34 @@
 Basic instructions for developers when using Eclipse
 =====
-Instructions written for Luna, but should work similarly for Kepler. Earlier versions don't have Maven built-in, so you'll have to install that separately if you don't want to upgrade your Eclipse.
+Instructions written for Luna/Mars, but should work similarly for Kepler. Earlier versions don't have Maven built-in, so you'll have to install that separately if you don't want to upgrade your Eclipse.
 
 Clone repository
 -----
-command line: <code>git clone https://github.com/vaadin/charts.git</code>
+command line: <code>git clone --recursive https://github.com/vaadin/charts.git</code>
 
 EGit:
 
 1. Open Git repository perspective
     *-* *Window* > *Open Perspective* > *Other...* > *Git* (Windows)
     *-* *Eclipse* > *Open Perspective* > *Other...* > *Git* (Mac)
-1. click *Clone a Git Repository and add the clone to this view*
+1. Click *Clone a Git Repository and add the clone to this view*
+1. Check 'clone submodules' on the third view of the wizard.
 
 Import project
 -----
 *File* > *Import...* > *Maven* > *Existing Maven Projects*
 
-You'll need the main project if you want access to the demo or export the demo war. Vaadin 7 version of the add-on is vaadin-charts (addon/pom.xml), and Vaadin 6 version is vaadin-charts-vaadin6 (addon6/pom.xml). Bug fixes should be made to both versions if applicable.
-
-Add facets
------
-1. right-click project > *Properties* > *Project Facets* > *Convert to faceted form...*
-1. add *Vaadin Plug-in for Eclipse* and *Dynamic Web Module*
-
-
+You'll need the main project if you want to be able to export the demo war. Vaadin 7 version of the add-on is named by default *vaadin-charts* (addon/pom.xml), Vaadin 6 isn't supported in newer Charts versions. Regression tests are located in *vaadin-charts-integration-tests* (vaadin-charts-integration-tests/pom.xml). In most cases you shouldn't need modules *book-examples*, *vaadin-charts-demo*, and *vaadin-charts-directorypackage*, although if you want to run any Maven goals on the parent pom.xml without them you'll need to comment them out from the module listing first. Whether you'll import the parent module or not is a matter of preference, it's not necessary for most use cases.
 
 
 Maven
 =====
 
-sync the Eclipse project settings with the pom.xml:
+Sync the Eclipse project settings with the pom.xml:
 
 * right-click project > *Maven* > *Update Project*
 
-if there are problems in the pom.xml, right-click the problematic place > quick fix > experimental
+If there are problems in the pom.xml, right-click the problematic place > quick fix > experimental
 
 
 Running Maven goals
@@ -43,7 +37,7 @@ command line: <code>mvn <i>goal</i></code>
 
 Eclipse: right-click project > *Run As* > *Maven build...* > *goal*
 
-Note: running the tests might be a problem on Windows laptops at least.
+Note: running all the tests might take quite a while on Windows laptops at least.
 
 #skipping tests:
 
@@ -59,11 +53,8 @@ goal: <code>install</code>
 goal for Vaadin 7: <code>vaadin:compile</code><br>
 goal for Vaadin 6: <code>gwt:compile</code>
 
-#devmode:
-goal: <code>vaadin:run</code>
-
-Note: you must first create the launch file.
-https://vaadin.com/wiki/-/wiki/Main/Debugging+Vaadin+applications
+#run in jetty
+goal: <code>jetty:run</code>
 
 #superdevmode:
 goal: <code>vaadin:run-codeserver</code>
@@ -71,8 +62,19 @@ goal: <code>vaadin:run-codeserver</code>
 #clean:
 goal: <code>clean</code>
 
-#run tests:
+#run all tests:
 goal: <code>test</code>
+OR
+goal: <code>verify</code>
+
+#run single test
+1. run goal <code>jetty:run</code> for project *vaadin-charts-integration-tests*
+1. find a test class within package com/vaadin/addon/charts/testbenchtests
+3. right-click -> run as JUnit
+
+If you are within Vaadin network this will execute the test on a test hub. Running the tests through VPN access may require you to modify <code>AbstractParallelTest.findAutoHostname()</code> to return the IP address that was assigned for the VPN connection.
+
+Note: To run the test locally add a @RunLocally annotation to the test class. Default browser is Firefox, but it can be overridden e.g. by using @RunLocally(Browser.PHANTOMJS) annotation instead.
 
 #create demo war:
 goal: <code>package</code> (for main project, should appear to /demo/target - for subprojects creates jars)
@@ -92,8 +94,11 @@ The problem should also be fixed in the next version after 2.10 once it's releas
 
 Running test UIs
 =====
-1. right-click *TServer.java* > *Run As*/*Debug As* > *Java Application*
-2. go to http://localhost:9998/ for a list of all tests (click opens the selected test to another tab) or directly to http://localhost:9998/other/AreaRange or http://localhost:9998/area/AreaSpline etc.
+1. build widgetset, either by running goal <code>clean install</code> for the parent project or <code>clean vaadin:compile install</code> for project *vaadin-charts-integration-tests*
+1. run goal <code>jetty:run</code> for project *vaadin-charts-integration-tests*
+1. go to http://localhost:9998/ for a list of all tests (click opens the selected test to another tab) or directly to http://localhost:9998/other/AreaRange or http://localhost:9998/area/AreaSpline etc.
+1. if you want to use superdevmode, make sure your widgetset is up to date, run goal <code>vaadin:run-codeserver</code> for project *vaadin-charts-integration-tests* and then add ?superdevmode to the url
+1. you can restart regular server and superdevmode server independently of each other, but they both must be running at the same time for superdevmode to work
 
 
 Contributing
