@@ -284,11 +284,6 @@ public class ChartsDemoUI extends UI {
                     @Override
                     public void uriFragmentChanged(UriFragmentChangedEvent event) {
                         selectItem();
-
-                        if (tracker != null) {
-                            tracker.trackPageview("/charts-demo/"
-                                    + event.getUriFragment());
-                        }
                     }
                 });
 
@@ -299,6 +294,10 @@ public class ChartsDemoUI extends UI {
                 addComponent(themeSelector);
             }
         });
+
+        if (tracker != null) {
+            tracker.trackPageview("/charts");
+        }
     }
 
     /**
