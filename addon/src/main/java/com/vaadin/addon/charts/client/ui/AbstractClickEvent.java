@@ -52,4 +52,22 @@ public class AbstractClickEvent extends JavaScriptObject {
         return this.button;
     }-*/;
 
+    public native final int getChartX()
+    /*-{
+        if (this.chartX) {
+          return this.chartX;
+        } else {
+          return 0;
+        }
+    }-*/;
+
+    public native final int getChartY()
+    /*-{
+        if (this.chartY) {
+          return this.chartY;
+        } else {
+          return 0;
+        }
+    }-*/;
+
 }

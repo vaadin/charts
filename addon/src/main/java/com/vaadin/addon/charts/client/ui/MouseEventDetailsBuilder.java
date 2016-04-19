@@ -47,10 +47,8 @@ public class MouseEventDetailsBuilder {
         ValueAxisPair yPair = event.getYPairs().get(0);
         double x = xPair.getValue();
         double y = yPair.getValue();
-        int absoluteX = relativeToObject.getAbsoluteLeft()
-                + new Double(xPair.getAxis().toPixels(x, false)).intValue();
-        int absoluteY = relativeToObject.getAbsoluteTop()
-                + new Double(yPair.getAxis().toPixels(y, false)).intValue();
+        int absoluteX = relativeToObject.getAbsoluteLeft() + event.getChartX();
+        int absoluteY = relativeToObject.getAbsoluteTop() + event.getChartY();
 
         mouseEventDetails.setAbsoluteX(absoluteX);
         mouseEventDetails.setAbsoluteY(absoluteY);
@@ -78,12 +76,8 @@ public class MouseEventDetailsBuilder {
         MouseEventDetails mouseEventDetails = new MouseEventDetails();
         initCommonValues(mouseEventDetails, event);
 
-        int absoluteX = relativeToObject.getAbsoluteLeft()
-                + new Double(event.getXAxis().toPixels(event.getX(), false))
-                        .intValue();
-        int absoluteY = relativeToObject.getAbsoluteTop()
-                + new Double(event.getYAxis().toPixels(event.getY(), false))
-                        .intValue();
+        int absoluteX = relativeToObject.getAbsoluteLeft() + event.getChartX();
+        int absoluteY = relativeToObject.getAbsoluteTop() + event.getChartY();
         mouseEventDetails.setAbsoluteX(absoluteX);
         mouseEventDetails.setAbsoluteY(absoluteY);
         mouseEventDetails.setxValue(event.getX());

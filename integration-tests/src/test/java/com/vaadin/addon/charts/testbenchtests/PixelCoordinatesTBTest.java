@@ -1,15 +1,11 @@
 package com.vaadin.addon.charts.testbenchtests;
 
-import java.util.List;
-
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.remote.DesiredCapabilities;
 
-import com.vaadin.addon.charts.examples.lineandscatter.BasicLineGettingMousePointerPosition;
+import com.vaadin.addon.charts.examples.lineandscatter.PixelCoordinates;
 import com.vaadin.testbench.By;
-import com.vaadin.testbench.annotations.BrowserConfiguration;
 import com.vaadin.testbench.parallel.Browser;
 
 public class PixelCoordinatesTBTest extends
@@ -17,7 +13,7 @@ public class PixelCoordinatesTBTest extends
 
     @Override
     protected String getTestViewName() {
-        return BasicLineGettingMousePointerPosition.class.getSimpleName();
+        return PixelCoordinates.class.getSimpleName();
     }
 
     @Override

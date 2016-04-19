@@ -25,7 +25,11 @@ public class ValueAxisPair extends JavaScriptObject {
 
     public native final double getValue()
     /*-{
-        return this.value;
+        if (this.value) {
+          return this.value;
+        } else {
+          return 0;
+        }
     }-*/;
 
     public native final HighchartAxis getAxis()
