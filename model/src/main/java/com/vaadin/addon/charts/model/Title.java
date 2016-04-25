@@ -17,8 +17,6 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import com.vaadin.addon.charts.model.style.Style;
 /**
  * The chart's main title.
@@ -27,7 +25,7 @@ public class Title extends AbstractConfigurationObject {
 
 	private HorizontalAlign align;
 	private Boolean floating;
-	private ArrayList<Number> margin;
+	private Number margin;
 	private Style style;
 	private String text;
 	private Boolean useHTML;
@@ -73,12 +71,10 @@ public class Title extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setMargin(Number...)
+	 * @see #setMargin(Number)
 	 */
-	public Number[] getMargin() {
-		Number[] arr = new Number[margin.size()];
-		margin.toArray(arr);
-		return arr;
+	public Number getMargin() {
+		return margin;
 	}
 
 	/**
@@ -87,33 +83,8 @@ public class Title extends AbstractConfigurationObject {
 	 * <p>
 	 * Defaults to: 15
 	 */
-	public void setMargin(Number... margin) {
-		this.margin = new ArrayList<Number>(Arrays.asList(margin));
-	}
-
-	/**
-	 * Adds margin to the margin array
-	 * 
-	 * @param margin
-	 *            to add
-	 * @see #setMargin(Number...)
-	 */
-	public void addMargin(Number margin) {
-		if (this.margin == null) {
-			this.margin = new ArrayList<Number>();
-		}
-		this.margin.add(margin);
-	}
-
-	/**
-	 * Removes first occurrence of margin in margin array
-	 * 
-	 * @param margin
-	 *            to remove
-	 * @see #setMargin(Number...)
-	 */
-	public void removeMargin(Number margin) {
-		this.margin.remove(margin);
+	public void setMargin(Number margin) {
+		this.margin = margin;
 	}
 
 	/**
