@@ -181,6 +181,9 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	 * @see #setColors(Color...)
 	 */
 	public Color[] getColors() {
+		if (colors == null) {
+			return new Color[]{};
+		}
 		Color[] arr = new Color[colors.size()];
 		colors.toArray(arr);
 		return arr;
@@ -423,6 +426,9 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	 * @see #setKeys(String...)
 	 */
 	public String[] getKeys() {
+		if (keys == null) {
+			return new String[]{};
+		}
 		String[] arr = new String[keys.size()];
 		keys.toArray(arr);
 		return arr;
@@ -753,6 +759,9 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	 * @see #setZones(Zones...)
 	 */
 	public Zones[] getZones() {
+		if (zones == null) {
+			return new Zones[]{};
+		}
 		Zones[] arr = new Zones[zones.size()];
 		zones.toArray(arr);
 		return arr;

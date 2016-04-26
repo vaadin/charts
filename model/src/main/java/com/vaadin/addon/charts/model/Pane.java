@@ -53,6 +53,9 @@ public class Pane extends AbstractConfigurationObject {
 	 * @see #setBackground(Background...)
 	 */
 	public Background[] getBackground() {
+		if (background == null) {
+			return new Background[]{};
+		}
 		Background[] arr = new Background[background.size()];
 		background.toArray(arr);
 		return arr;

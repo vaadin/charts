@@ -110,6 +110,9 @@ public class RangeSelector extends AbstractConfigurationObject {
 	 * @see #setButtons(RangeSelectorButton...)
 	 */
 	public RangeSelectorButton[] getButtons() {
+		if (buttons == null) {
+			return new RangeSelectorButton[]{};
+		}
 		RangeSelectorButton[] arr = new RangeSelectorButton[buttons.size()];
 		buttons.toArray(arr);
 		return arr;

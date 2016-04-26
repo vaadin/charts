@@ -155,6 +155,9 @@ public class YAxis extends Axis {
 	 * @see #setCategories(String...)
 	 */
 	public String[] getCategories() {
+		if (categories == null) {
+			return new String[]{};
+		}
 		String[] arr = new String[categories.size()];
 		categories.toArray(arr);
 		return arr;
@@ -789,6 +792,9 @@ public class YAxis extends Axis {
 	 * @see #setPlotBands(PlotBand...)
 	 */
 	public PlotBand[] getPlotBands() {
+		if (plotBands == null) {
+			return new PlotBand[]{};
+		}
 		PlotBand[] arr = new PlotBand[plotBands.size()];
 		plotBands.toArray(arr);
 		return arr;
@@ -830,6 +836,9 @@ public class YAxis extends Axis {
 	 * @see #setPlotLines(PlotLine...)
 	 */
 	public PlotLine[] getPlotLines() {
+		if (plotLines == null) {
+			return new PlotLine[]{};
+		}
 		PlotLine[] arr = new PlotLine[plotLines.size()];
 		plotLines.toArray(arr);
 		return arr;
@@ -1218,6 +1227,9 @@ public class YAxis extends Axis {
 	 * @see #setUnits(TimeUnitMultiples...)
 	 */
 	public TimeUnitMultiples[] getUnits() {
+		if (units == null) {
+			return new TimeUnitMultiples[]{};
+		}
 		TimeUnitMultiples[] arr = new TimeUnitMultiples[units.size()];
 		units.toArray(arr);
 		return arr;
@@ -1519,6 +1531,9 @@ public class YAxis extends Axis {
 	 * @see #setStops(Stop...)
 	 */
 	public Stop[] getStops() {
+		if (stops == null) {
+			return new Stop[]{};
+		}
 		Stop[] arr = new Stop[stops.size()];
 		stops.toArray(arr);
 		return arr;

@@ -167,6 +167,9 @@ public class DataGrouping extends AbstractConfigurationObject {
 	 * @see #setUnits(TimeUnitMultiples...)
 	 */
 	public TimeUnitMultiples[] getUnits() {
+		if (units == null) {
+			return new TimeUnitMultiples[]{};
+		}
 		TimeUnitMultiples[] arr = new TimeUnitMultiples[units.size()];
 		units.toArray(arr);
 		return arr;
