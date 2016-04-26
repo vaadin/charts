@@ -250,11 +250,9 @@ public class Lang extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * <a href="http://en.wikipedia.org/wiki/Metric_prefix">Metric prefixes</a>
-	 * used to shorten high numbers in axis labels. Replacing any of the
-	 * positions with <code>null</code> causes the full number to be written.
-	 * Setting <code>numericSymbols</code> to <code>null</code> disables
-	 * shortening altogether.
+	 * Metric prefixes used to shorten high numbers in axis labels. Setting
+	 * numericSymbols to null sets default values. Setting numericSymbols to an
+	 * empty array disables shortening - shows initial numbers.
 	 * <p>
 	 * Defaults to: [ "k" , "M" , "G" , "T" , "P" , "E"]
 	 */

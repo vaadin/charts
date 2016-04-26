@@ -1,23 +1,5 @@
 package com.vaadin.addon.charts;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Set;
-
-import org.apache.commons.io.IOUtils;
-import org.reflections.Reflections;
-import org.vaadin.googleanalytics.tracking.GoogleAnalyticsTracker;
-
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.SkipFromDemo;
 import com.vaadin.addon.charts.themes.GrayTheme;
@@ -60,6 +42,23 @@ import com.vaadin.ui.Tree;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
+import org.apache.commons.io.IOUtils;
+import org.reflections.Reflections;
+import org.vaadin.googleanalytics.tracking.GoogleAnalyticsTracker;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
 
 /**
  * The Application's "main" class
@@ -174,9 +173,9 @@ public class ChartsDemoUI extends UI {
         Link javadoc = new Link("JavaDoc", new ExternalResource(
                 "http://demo.vaadin.com/javadoc/com.vaadin.addon/vaadin-charts/"
                         + getVersion() + "/"));
-        Link manula = new Link("Manual", new ExternalResource(
-                "https://vaadin.com/book/vaadin7/-/page/charts.html"));
-        HorizontalLayout links = new HorizontalLayout(homepage, javadoc, manula);
+        Link manual = new Link("Manual", new ExternalResource(
+                "https://vaadin.com/docs/-/part/charts/charts-overview.html"));
+        HorizontalLayout links = new HorizontalLayout(homepage, javadoc, manual);
         links.setSpacing(true);
         links.addStyleName("links");
 
