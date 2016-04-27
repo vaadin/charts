@@ -25,7 +25,7 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Window;
 
-public class PixelCoordinates extends
+public class BasicLineGettingMousePointerPosition extends
         AbstractVaadinChartExample {
 
     @Override

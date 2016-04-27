@@ -4,16 +4,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
-import com.vaadin.addon.charts.examples.lineandscatter.PixelCoordinates;
+import com.vaadin.addon.charts.examples.lineandscatter.BasicLineGettingMousePointerPosition;
 import com.vaadin.testbench.By;
 import com.vaadin.testbench.parallel.Browser;
 
-public class PixelCoordinatesTBTest extends
+public class BasicLineGettingMousePointerPositionTBTest extends
         AbstractSimpleScreenShotTestBenchTest {
 
     @Override
     protected String getTestViewName() {
-        return PixelCoordinates.class.getSimpleName();
+        return BasicLineGettingMousePointerPosition.class.getSimpleName();
     }
 
     @Override
