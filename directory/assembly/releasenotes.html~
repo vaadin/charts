@@ -504,7 +504,7 @@
     <ul>
         <li>Fix a problem with setting a margin for a chart title.</li>
         <li>Fix a problem with a chart click event and a point click event. See<a href="https://dev.vaadin.com/ticket/19745"></li>
-	<li>Fix a javadoc for a Lang.setNumericValues method.</li>
+	<li>Fix a javadoc for a Lang.setNumericValues method</li>
         <li>Fix getters for multivalued properties. Before if the property value was not set, the getter raised an exception.</li>
     </ul>
 
