@@ -34,7 +34,7 @@ In order to use a specific chart in your templates, you need to add an import fo
 
 [source, html]
 ----
-<link rel="import" href="bower_components/vaadin-bar-chart/vaadin-bar-chart.html">
+<link rel="import" href="bower_components/vaadin-charts/vaadin-area-chart.html">
 ----
 
 Also the SystemJS configuration needs some modifications, in order to load the modules correctly.
@@ -43,6 +43,9 @@ Add the following packages entries to your configuration.
 [source, javascript]
 ----
 System.config({
+  map: {
+    'vaadin-charts': 'bower_components/vaadin-charts/directives'
+  },
   packages: {
     'vaadin-charts': {
       defaultExtension: 'js',
@@ -86,7 +89,7 @@ To use Vaadin Charts in an Angular 2 component, you need to import the [classnam
 
 [source, html]
 ----
-import {VaadinCharts, DataSeries} from '../bower_components/vaadin-charts/directives';
+import {VaadinCharts, DataSeries} from '../bower_components/vaadin-charts/directives/vaadin-charts';
 ----
 
 Afterwards, you need to declare the usage of the directives:
@@ -117,24 +120,6 @@ import {VaadinCharts, DataSeries} from '../bower_components/vaadin-charts/direct
     </vaadin-area-chart>`,
   directives: [VaadinCharts, DataSeries]
 })
-----
-
-You can also add an alias for the full path to the directives in the SystemJS configuration:
-
-[source, javascript]
-----
-System.config({
-    map: {
-        'vaadin-charts': 'bower_components/vaadin-charts/directives'
-    }
-});
-----
-
-Afterwards, you can use the alias to import the directives:
-
-[source, html]
-----
-import {VaadinCharts, DataSeries } from 'vaadin-charts';
 ----
 
 [[charts.angular2.databinding]]
