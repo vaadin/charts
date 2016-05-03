@@ -16,10 +16,10 @@ https://angular.io/docs/ts/latest/quickstart.html[Angular 2 Quickstart] guide.
 [[charts.angular2.installation]]
 == Installation
 
-Although Angular 2 dependencies are typically installed via npm, Vaadin Charts requires installation with Bower:
+Although Angular 2 dependencies are typically installed via https://www.npmjs.com/[npm], Vaadin Charts requires installation with http://bower.io/[Bower]:
 
 ----
-bower install --save vaadin-charts
+bower install --save vaadin-charts#3.1.0-beta2
 ----
 
 After the Bower installation is completed, you need to add the Web Components polyfill to the [elementname]#head# section of your index.html file.
@@ -29,27 +29,37 @@ After the Bower installation is completed, you need to add the Web Components po
 <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
 ----
 
-The Web Components polyfill will enable usage of HTML imports in your application.
-In order to use a specific chart in your templates, you need to add an import for it in the index.html.
+The Web Components polyfill will enable the usage of HTML imports in your application.
+You need to add an import in your index.html, for each chart type that you want
+to use.
+Visit https://vaadin.com/docs/-/part/charts/webcomponents-api/charts-charttypes.html[Chart Types]
+for a complete list of available types.
 
 [source, html]
 ----
-<link rel="import" href="bower_components/vaadin-bar-chart/vaadin-bar-chart.html">
+<link rel="import" href="bower_components/vaadin-charts/vaadin-line-chart.html">
 ----
 
 Also the SystemJS configuration needs some modifications, in order to load the modules correctly.
-Add the following packages entries to your configuration.
+Add the following map and packages entries to your configuration.
 
 [source, javascript]
 ----
-System.config({
-  packages: {
-    'vaadin-charts': {
-      defaultExtension: 'js',
-      main: 'vaadin-charts.js'
-    }
-  }
-});
+
+var map = {
+  'vaadin-charts': 'bower_components/vaadin-charts/directives'
+};
+
+var packages = {
+  'vaadin-charts': { main: 'vaadin-charts.js', defaultExtension: 'js' }
+};
+
+var config = {
+    map: map,
+    packages: packages
+};
+
+System.config(config);
 ----
 
 Before bootstrapping your application, you need to wait for the WebComponentsReady event.
@@ -59,7 +69,7 @@ The following example demonstrates how to wrap your bootstrap code inside the ev
 [source, javascript]
 ----
 window.addEventListener('WebComponentsReady', function() {
-  System.import('app/main').then(null, console.error.bind(console));
+  System.import('app').catch(function(err){ console.error(err); });
 });
 ----
 
@@ -82,7 +92,7 @@ Now you are all set to use Vaadin Charts inside your Angular 2 application.
 == Usage
 
 To use Vaadin Charts in an Angular 2 component, you need to import the [classname]#VaadinCharts# and
-[classname]#DataSeries# directives:
+[classname]#DataSeries# directives in your component:
 
 [source, html]
 ----
@@ -107,34 +117,16 @@ import {VaadinCharts, DataSeries} from '../bower_components/vaadin-charts/direct
 @Component({
   selector: 'my-component',
   template: `
-    <vaadin-area-chart>
-      <title>Fibonacci</title>
+    <vaadin-line-chart>
+      <chart-title>Fibonacci</chart-title>
       <x-axis><title>Index</title></x-axis>
       <y-axis><title>Value</title></y-axis>
       <data-series>
         <data>1, 1, 2, 3, 5, 8, 13, 21, 34</data>
       </data-series>
-    </vaadin-area-chart>`,
+    </vaadin-line-chart>`,
   directives: [VaadinCharts, DataSeries]
 })
-----
-
-You can also add an alias for the full path to the directives in the SystemJS configuration:
-
-[source, javascript]
-----
-System.config({
-    map: {
-        'vaadin-charts': 'bower_components/vaadin-charts/directives'
-    }
-});
-----
-
-Afterwards, you can use the alias to import the directives:
-
-[source, html]
-----
-import {VaadinCharts, DataSeries } from 'vaadin-charts';
 ----
 
 [[charts.angular2.databinding]]
@@ -142,7 +134,7 @@ import {VaadinCharts, DataSeries } from 'vaadin-charts';
 
 To use data binding for Vaadin Charts, you need to set data as an attribute for
 [elementname]#data-series#, data binding is not supported when setting data as a tag.
- Vaadin Charts support both data binding and template syntax for data series:
+Vaadin Charts support both data binding and template syntax for data series:
 
 [source]
 ----
@@ -160,7 +152,7 @@ You can also use `ngFor` and `ngIf` directives with Vaadin Charts:
 [source]
 ----
 import {Component} from 'angular2/core';
-import {VaadinCharts, DataSeries} from 'vaadin-charts';
+import {VaadinCharts, DataSeries} from '../bower_components/vaadin-charts/directives';
 
 @Component({
     selector: 'my-component',
@@ -169,13 +161,14 @@ import {VaadinCharts, DataSeries} from 'vaadin-charts';
 
     <vaadin-line-chart id="chartid">
         <chart-title>
-            {{title}}
+            Your chart title
         </chart-title>
        <data-series>
         <data>
-          <point *ngFor="#point of points" >
+          <point *ngFor="let point of points">
             <x>{{point.x}}</x>
             <y>{{point.y}}</y>
+            <color *ngIf="points.length>3">#FF0000</color>
           </point>
         </data>
       </data-series>
@@ -184,7 +177,6 @@ import {VaadinCharts, DataSeries} from 'vaadin-charts';
 })
 
 export class AppComponent {
-    title="Your chart title";
     points = [{x:10,y:10},{x:20,y:20}];
     addPoint(){
         var value = Math.floor(Math.random()*100);
@@ -196,17 +188,18 @@ export class AppComponent {
 [[charts.angular2.events]]
 == Events
 
-To use the chart events, use Vaadin Charts elements API inside Angular template:
+To use Vaadin Charts events, use http://demo.vaadin.com/vaadin-charts-api/#events[Vaadin Charts elements API] inside template.
+You can use the Angular 2 events template syntax with Vaadin Charts:
 
 [source]
 ----
 import {Component} from 'angular2/core';
-import {VaadinCharts, DataSeries} from 'vaadin-charts';
+import {VaadinCharts, DataSeries} from '../bower_components/vaadin-charts/directives';
 
 @Component({
     selector: 'my-app',
     template: `
-    <vaadin-line-chart on-chart-click="onClickMe()">
+    <vaadin-line-chart (click)="onClickMe()">
     </vaadin-line-chart>`,
     directives: [VaadinCharts, DataSeries]
 })
