@@ -96,7 +96,7 @@ To use Vaadin Charts in an Angular 2 component, you need to import the [classnam
 
 [source, html]
 ----
-import {VaadinCharts, DataSeries} from '../bower_components/vaadin-charts/directives';
+import {VaadinCharts, DataSeries} from '../bower_components/vaadin-charts/directives/vaadin-charts';
 ----
 
 Afterwards, you need to declare the usage of the directives:
@@ -112,7 +112,7 @@ Finally, you can use Elements API to create a Vaadin chart:
 
 [source]
 ----
-import {VaadinCharts, DataSeries} from '../bower_components/vaadin-charts/directives';
+import {VaadinCharts, DataSeries} from '../bower_components/vaadin-charts/directives/vaadin-charts';
 
 @Component({
   selector: 'my-component',
@@ -152,7 +152,7 @@ You can also use `ngFor` and `ngIf` directives with Vaadin Charts:
 [source]
 ----
 import {Component} from 'angular2/core';
-import {VaadinCharts, DataSeries} from '../bower_components/vaadin-charts/directives';
+import {VaadinCharts, DataSeries} from '../bower_components/vaadin-charts/directives/vaadin-charts';
 
 @Component({
     selector: 'my-component',
@@ -194,7 +194,7 @@ You can use the Angular 2 events template syntax with Vaadin Charts:
 [source]
 ----
 import {Component} from 'angular2/core';
-import {VaadinCharts, DataSeries} from '../bower_components/vaadin-charts/directives';
+import {VaadinCharts, DataSeries} from '../bower_components/vaadin-charts/directives/vaadin-charts';
 
 @Component({
     selector: 'my-app',
