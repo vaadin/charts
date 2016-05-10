@@ -1,16 +1,15 @@
-package com.vaadin.addon.charts;
+package com.vaadin.addon.charts.junittests;
 
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import junit.framework.Assert;
-
 import org.apache.commons.lang3.RandomStringUtils;
-import org.junit.Ignore;
+import org.junit.Assert;
 import org.junit.Test;
 
+import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
@@ -24,6 +23,8 @@ import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.PlotOptionsBar;
 import com.vaadin.addon.charts.model.Series;
 import com.vaadin.addon.charts.model.Tooltip;
+import com.vaadin.addon.charts.model.TreeSeries;
+import com.vaadin.addon.charts.model.TreeSeriesItem;
 import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
@@ -33,7 +34,6 @@ import com.vaadin.addon.charts.util.SVGGenerator;
 public class SVGGeneratorTest {
 
     @Test
-//    @Ignore("Phantomjs not installed on our build server")
     public void test() {
 
         Configuration conf = createConf();
@@ -62,8 +62,9 @@ public class SVGGeneratorTest {
         long spentMillis = System.currentTimeMillis() - middle;
         System.out.println("Time spent for rendering one svg:" + spentMillis);
 
-        Assert.assertTrue("Generating SVG took more than 200ms : "
-                + spentMillis + "ms", spentMillis < 200);
+        Assert.assertTrue(
+                "Generating SVG took more than 200ms : " + spentMillis + "ms",
+                spentMillis < 200);
 
         SVGGenerator.getInstance().destroy();
 
@@ -128,7 +129,6 @@ public class SVGGeneratorTest {
     }
 
     @Test
-//    @Ignore("Phantomjs not installed on our build server")
     public void testWide() throws InterruptedException, URISyntaxException {
 
         Configuration conf = new Configuration();
@@ -150,15 +150,34 @@ public class SVGGeneratorTest {
         }
 
         SVGGenerator instance = SVGGenerator.getInstance();
-        String generatedSVG = instance.withHeigth(400)
-                                      .withWidth(1200)
-                                      .generate(conf);
+        String generatedSVG = instance.withHeigth(400).withWidth(1200)
+                .generate(conf);
 
         Assert.assertTrue(generatedSVG.contains("width=\"1200\""));
         Assert.assertTrue(generatedSVG.contains("height=\"400\""));
 
         SVGGenerator.getInstance().destroy();
 
+    }
+
+    @Test
+    public void generate_TreemapChart_withoutException() {
+        Chart chart = new Chart(ChartType.TREEMAP);
+        Configuration conf = chart.getConfiguration();
+        TreeSeries series = new TreeSeries();
+        conf.setSeries(series);
+
+        for (int i = 0; i < 10; ++i) {
+            double y = Math.random();
+            TreeSeriesItem item = new TreeSeriesItem("Attempt " + i,
+                    (int) Math.floor(y * 100));
+            int r = (int) (255 * y);
+            int g = 255 - (int) (255 * y);
+            item.setColor(new SolidColor(r, g, 100));
+            series.add(item);
+        }
+        String generatedSVG = SVGGenerator.getInstance().generate(conf);
+        Assert.assertTrue(generatedSVG != null);
     }
 
 }

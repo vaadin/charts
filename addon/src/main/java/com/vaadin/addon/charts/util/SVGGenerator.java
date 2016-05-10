@@ -369,7 +369,7 @@ public class SVGGenerator {
             String[] scripts = new String[] { "jquery.min.js", "highstock.js",
                     "highcharts-more.js", "funnel.js", "exporting.js",
                     "heatmap.js", "solid-gauge.js", "highcharts-3d.js",
-                    "vaadintheme.js" };
+                    "vaadintheme.js", "treemap.js" };
             for (String string : scripts) {
                 InputStream resourceAsStream = Chart.class
                         .getResourceAsStream("/com/vaadin/addon/charts/client/"
