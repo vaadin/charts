@@ -44,9 +44,34 @@ See <<charts-charttypes#charts.chattypes, "Chart Types">> for a complete list of
 
 To use Vaadin Charts in a React class, you need to import the Vaadin Charts component:
 
-[source, html]
+[source, javascript]
 ----
+// Must be imported before React
 require('./bower_components/vaadin-charts/react');
+var React = require('react');
+----
+
+Note that if you use Webpack with your React application, you need to add Vaadin Charts alias
+in your [filename]#webpack.config.js# file:
+
+[source, javascript]
+----
+resolve: {
+    // Add an alias for vaadin-charts react directory
+    alias:{
+      'vaadin-charts': path.resolve( __dirname, 'bower_components', 'vaadin-charts', 'react' )
+    }
+  }
+----
+
+After configuring your [filename]#webpack.config.js#, you can import the Vaadin Charts
+component with the alias:
+
+[source, javascript]
+----
+// Must be imported before React
+require('vaadin-charts');
+var React = require('react');
 ----
 
 Once you have done this, you can use the Charts API to create a Vaadin chart:
