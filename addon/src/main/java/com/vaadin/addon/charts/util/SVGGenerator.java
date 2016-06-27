@@ -185,13 +185,13 @@ public class SVGGenerator {
 
     /**
      *
-     * @param heigth
+     * @param height
      *            The target height in pixels for the chart. The default value
      *            is -1.
      * @return
      */
-    public SVGGenerator withHeigth(int heigth) {
-        targetHeight = heigth;
+    public SVGGenerator withHeight(int height) {
+        targetHeight = height;
         return this;
     }
 
@@ -232,7 +232,7 @@ public class SVGGenerator {
      * @see #withLang(String)
      * @see #withTheme(String)
      * @see #withTimeline(boolean)
-     * @see #withHeigth(int)
+     * @see #withHeight(int)
      * @see #withWidth(int)
      */
     public synchronized String generate(String options) {
