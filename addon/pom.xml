@@ -154,6 +154,30 @@
 							<outputDirectory>target/libs</outputDirectory>
 						</configuration>
 					</execution>
+					<execution>
+						<id>copy-model-sources</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<includeArtifactIds>vaadin-charts-model</includeArtifactIds>
+							<classifier>sources</classifier>
+							<outputDirectory>target/libs</outputDirectory>
+						</configuration>
+					</execution>
+					<execution>
+						<id>copy-model-javadoc</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<includeArtifactIds>vaadin-charts-model</includeArtifactIds>
+							<classifier>javadoc</classifier>
+							<outputDirectory>target/libs</outputDirectory>
+						</configuration>
+					</execution>
 				</executions>
 			</plugin>
 			<!-- This creates a zip file of jar and sources jar. When publishing in 
