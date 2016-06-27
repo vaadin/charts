@@ -151,7 +151,7 @@ public class SVGGeneratorExample extends AbstractVaadinChartExample {
 
                 String svg = SVGGenerator.getInstance()
                     .withWidth(width)
-                    .withHeigth(height)
+                    .withHeight(height)
                     .withTimeline(chart.isTimeline())
                     .generate(chart.getConfiguration());
 

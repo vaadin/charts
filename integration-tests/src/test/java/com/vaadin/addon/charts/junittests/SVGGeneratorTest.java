@@ -150,7 +150,7 @@ public class SVGGeneratorTest {
         }
 
         SVGGenerator instance = SVGGenerator.getInstance();
-        String generatedSVG = instance.withHeigth(400).withWidth(1200)
+        String generatedSVG = instance.withHeight(400).withWidth(1200)
                 .generate(conf);
 
         Assert.assertTrue(generatedSVG.contains("width=\"1200\""));
