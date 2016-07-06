@@ -102,6 +102,16 @@
                     </execution>
 
                     <execution>
+                        <id>gulp war</id>
+                        <goals>
+                            <goal>gulp</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>war</arguments>
+                        </configuration>
+                    </execution>
+
+                    <execution>
                         <id>gulp deploy</id>
                         <goals>
                             <goal>gulp</goal>
