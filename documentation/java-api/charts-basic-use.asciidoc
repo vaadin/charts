@@ -448,3 +448,38 @@ available themes are [classname]#GrayTheme#, [classname]#GridTheme#,
 
 A theme is a Vaadin Charts configuration that is used as a template for the
 configuration when rendering the chart.
+
+[[charts.basic-use.lang-option]]
+== Chart Language
+
+[classname]#Lang# class provides an opportunity for internationalizing charts.
+You can specify a custom decimal point, names of months, weekdays and their abbreviated forms.
+You can also specify the text to display when the chart contains no data.
+
+[source, java]
+----
+final Lang fi = new Lang();
+
+// Set language properties
+fi.setDecimalPoint(",");
+
+fi.setMonths(new String[] { "Tammikuu", "Helmikuu", "Maaliskuu",
+    "Huhtikuu", "Toukokuu", "Kesäkuu",
+    "Heinäkuu", "Elokuu", "Syyskuu",
+    "Lokakuu", "Marraskuu", "Joulukuu" });
+
+fi.setShortMonths(new String[] { "Tammi", "Helmi", "Maalis",
+    "Huhti", "Touko", "Kesä",
+    "Heinä", "Elo", "Syys",
+    "Loka", "Marras","Joulu" });
+
+fi.setWeekdays(new String[] { "Ma", "Ti", "Ke", "To", "Pe", "La", "Su" });
+fi.setNoData("Data puuttuu");
+----
+
+[classname]#Lang# option is global and can be set with [methodname]#setLang()# in the [classname]#ChartOptions#:
+
+[source, java]
+----
+ChartOptions.get().setLang(fi);
+----
