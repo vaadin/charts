@@ -17,6 +17,8 @@ package com.vaadin.addon.charts.model.style;
  * #L%
  */
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.vaadin.addon.charts.model.AbstractConfigurationObject;
 
@@ -26,6 +28,8 @@ public class ButtonTheme extends AbstractConfigurationObject {
     @JsonProperty("stroke-width")
     private Number strokeWidth;
     private Style style;
+    @JsonInclude(Include.NON_DEFAULT)
+    private Number width = 32;
 
     public Color getFill() {
         return fill;
@@ -57,5 +61,13 @@ public class ButtonTheme extends AbstractConfigurationObject {
 
     public void setStyle(Style style) {
         this.style = style;
+    }
+
+    public Number getWidth() {
+        return width;
+    }
+
+    public void setWidth(Number width) {
+        this.width = width;
     }
 }
