@@ -20,6 +20,7 @@ import org.junit.Test;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.events.ConfigurationChangeListener;
+import com.vaadin.addon.charts.model.Axis;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
@@ -101,40 +102,23 @@ public class SerializationTest {
 
     @Test
     public void serializeChart_configurationWithAxis_axisConfigLinkSerializedCorrectly()
-            throws IOException, ClassNotFoundException {
+            throws IOException, ClassNotFoundException, IllegalAccessException,
+            NoSuchFieldException {
         Chart input = new Chart();
         YAxis axis = new YAxis();
-        // axis.setConfiguration(input.getConfiguration());
+        axis.setConfiguration(input.getConfiguration());
         input.getConfiguration().addyAxis(axis);
 
         Chart output = serializeObject(input);
 
         YAxis outputAxis = output.getConfiguration().getyAxis();
-        // assertNotNull("Axis config was null after serialization",
-        // outputAxis.getConfiguration());
+        assertNotNull("Axis config was null after serialization",
+                getPrivateField("configuration", outputAxis, Axis.class));
         assertNotNull("Axis config was null after serialization",
                 output.getConfiguration());
-        // assertEquals(outputAxis.getConfiguration(),
-        // output.getConfiguration());
+        assertEquals(getPrivateField("configuration", outputAxis, Axis.class),
+                output.getConfiguration());
     }
-
-    // @Test
-    // public void
-    // serializeChartModel_chartModelWithConfiguration_chartModelConfigLinkSerializedCorrectly()
-    // throws IOException, ClassNotFoundException {
-    // com.vaadin.addon.charts.model.Chart model = new
-    // com.vaadin.addon.charts.model.Chart();
-    // Configuration input = new Configuration();
-    // input.setChart(model);
-    //
-    // Configuration output = serializeObject(input);
-    //
-    // com.vaadin.addon.charts.model.Chart outputModel = output.getChart();
-    // assertNotNull("Chart model config was null after serialization",
-    // outputModel.getConfiguration());
-    // assertNotNull("Chart model config was null after serialization", output);
-    // assertEquals(outputModel.getConfiguration(), output);
-    // }
 
     @Test
     public void serializeChart_configurationWithDrilldown_drilldownSeriesListSerializedCorrectly()
