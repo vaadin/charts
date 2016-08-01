@@ -28,6 +28,7 @@ public class Options3d extends AbstractConfigurationObject {
 	private Number beta;
 	private Number depth;
 	private Boolean enabled;
+	private Boolean fitToPlot;
 	private Frame frame;
 	private Number viewDistance;
 
@@ -100,6 +101,22 @@ public class Options3d extends AbstractConfigurationObject {
 	 */
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	/**
+	 * @see #setFitToPlot(Boolean)
+	 */
+	public Boolean getFitToPlot() {
+		return fitToPlot;
+	}
+
+	/**
+	 * Whether the 3d box should automatically adjust to the chart plot area.
+	 * <p>
+	 * Defaults to: true
+	 */
+	public void setFitToPlot(Boolean fitToPlot) {
+		this.fitToPlot = fitToPlot;
 	}
 
 	/**

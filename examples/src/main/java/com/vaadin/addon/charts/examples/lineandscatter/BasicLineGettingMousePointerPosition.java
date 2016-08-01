@@ -67,8 +67,7 @@ public class BasicLineGettingMousePointerPosition extends
         snd.getTitle().setStyle(style);
         conf.addyAxis(snd);
 
-        Tooltip tooltip = new Tooltip();
-        tooltip.setFormatter("this.x +': '+ this.y + (this.series.name == 'Rainfall' ? ' mm' : '°C')");
+        Tooltip tooltip = new Tooltip(false);
         conf.setTooltip(tooltip);
 
         Legend legend = new Legend();

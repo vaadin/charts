@@ -27,11 +27,11 @@ public class Hover extends AbstractConfigurationObject {
 	private Halo halo;
 	private Number lineWidth;
 	private Number lineWidthPlus;
-	private Marker marker;
 	private Color fillColor;
 	private Color lineColor;
 	private Number radius;
 	private Number radiusPlus;
+	private Marker marker;
 
 	public Hover() {
 	}
@@ -111,20 +111,6 @@ public class Hover extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setMarker(Marker)
-	 */
-	public Marker getMarker() {
-		if (marker == null) {
-			marker = new Marker();
-		}
-		return marker;
-	}
-
-	public void setMarker(Marker marker) {
-		this.marker = marker;
-	}
-
-	/**
 	 * @see #setFillColor(Color)
 	 */
 	public Color getFillColor() {
@@ -186,5 +172,19 @@ public class Hover extends AbstractConfigurationObject {
 	 */
 	public void setRadiusPlus(Number radiusPlus) {
 		this.radiusPlus = radiusPlus;
+	}
+
+	/**
+	 * @see #setMarker(Marker)
+	 */
+	public Marker getMarker() {
+		if (marker == null) {
+			marker = new Marker();
+		}
+		return marker;
+	}
+
+	public void setMarker(Marker marker) {
+		this.marker = marker;
 	}
 }

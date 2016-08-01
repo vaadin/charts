@@ -215,9 +215,11 @@ public class ChartModel extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * An explicit height for the chart. By default the height is calculated
-	 * from the offset height of the containing element, or 400 pixels if the
-	 * containing element's height is 0.
+	 * An explicit height for the chart. By default (when <code>null</code>) the
+	 * height is calculated from the offset height of the containing element, or
+	 * 400 pixels if the containing element's height is 0.
+	 * <p>
+	 * Defaults to: null
 	 */
 	public void setHeight(Number height) {
 		this.height = height;
@@ -251,9 +253,17 @@ public class ChartModel extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * <p>
 	 * Whether to invert the axes so that the x axis is vertical and y axis is
-	 * horizontal. When true, the x axis is reversed by default. If a bar series
-	 * is present in the chart, it will be inverted automatically.
+	 * horizontal. When true, the x axis is <a
+	 * href="#xAxis.reversed">reversed</a> by default. If a bar series is
+	 * present in the chart, it will be inverted automatically.
+	 * </p>
+	 * 
+	 * <p>
+	 * Inverting the chart doesn't have an effect if there are no cartesian
+	 * series in the chart, or if the chart is <a href="#chart.polar">polar</a>.
+	 * </p>
 	 * <p>
 	 * Defaults to: false
 	 */
@@ -747,8 +757,10 @@ public class ChartModel extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * An explicit width for the chart. By default the width is calculated from
-	 * the offset width of the containing element.
+	 * An explicit width for the chart. By default (when <code>null</code>) the
+	 * width is calculated from the offset width of the containing element.
+	 * <p>
+	 * Defaults to: null
 	 */
 	public void setWidth(Number width) {
 		this.width = width;

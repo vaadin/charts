@@ -48,6 +48,7 @@ public class Lang extends AbstractConfigurationObject {
 	private String resetZoom;
 	private String resetZoomTitle;
 	private String[] shortMonths;
+	private String[] shortWeekdays;
 	private String thousandsSep;
 	private String[] weekdays;
 	private String rangeSelectorFrom;
@@ -324,6 +325,21 @@ public class Lang extends AbstractConfigurationObject {
 	 */
 	public void setShortMonths(String[] shortMonths) {
 		this.shortMonths = shortMonths;
+	}
+
+	/**
+	 * @see #setShortWeekdays(String[])
+	 */
+	public String[] getShortWeekdays() {
+		return shortWeekdays;
+	}
+
+	/**
+	 * Short week days, starting Sunday. If not specified, Highcharts uses the
+	 * first three letters of the <code>lang.weekdays</code> option.
+	 */
+	public void setShortWeekdays(String[] shortWeekdays) {
+		this.shortWeekdays = shortWeekdays;
 	}
 
 	/**

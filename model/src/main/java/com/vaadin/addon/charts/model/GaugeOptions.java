@@ -160,16 +160,6 @@ public abstract class GaugeOptions extends AbstractPlotOptions {
     public abstract void setShowInLegend(Boolean showInLegend);
 
     /**
-     * @see #setStates(States)
-     */
-    public abstract States getStates();
-
-    /**
-     * A wrapper object for all the series options in specific states.
-     */
-    public abstract void setStates(States states);
-
-    /**
      * @see #setStickyTracking(Boolean)
      */
     public abstract Boolean getStickyTracking();

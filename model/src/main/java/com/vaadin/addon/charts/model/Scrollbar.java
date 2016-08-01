@@ -19,7 +19,8 @@ package com.vaadin.addon.charts.model;
 
 import com.vaadin.addon.charts.model.style.Color;
 /**
- * The scrollbar is a means of panning over the X axis of a chart.
+ * An optional scrollbar to display on the Y axis in response to limiting the
+ * minimum an maximum of the axis values.
  */
 public class Scrollbar extends AbstractConfigurationObject {
 
@@ -33,12 +34,16 @@ public class Scrollbar extends AbstractConfigurationObject {
 	private Number buttonBorderRadius;
 	private Number buttonBorderWidth;
 	private Boolean enabled;
-	private Number height;
 	private Boolean liveRedraw;
+	private Number margin;
 	private Number minWidth;
 	private Color rifleColor;
+	private Boolean showFull;
+	private Number size;
 	private Color trackBackgroundColor;
 	private Number trackBorderRadius;
+	private Number zIndex;
+	private Number height;
 
 	public Scrollbar() {
 	}
@@ -199,28 +204,12 @@ public class Scrollbar extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * Enable or disable the scrollbar.
+	 * Enable the scrollbar on the Y axis.
 	 * <p>
-	 * Defaults to: true
+	 * Defaults to: false
 	 */
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
-	}
-
-	/**
-	 * @see #setHeight(Number)
-	 */
-	public Number getHeight() {
-		return height;
-	}
-
-	/**
-	 * The height of the scrollbar. The height also applies to the width of the
-	 * scroll arrows so that they are always squares. Defaults to 20 for touch
-	 * devices and 14 for mouse devices.
-	 */
-	public void setHeight(Number height) {
-		this.height = height;
 	}
 
 	/**
@@ -237,6 +226,22 @@ public class Scrollbar extends AbstractConfigurationObject {
 	 */
 	public void setLiveRedraw(Boolean liveRedraw) {
 		this.liveRedraw = liveRedraw;
+	}
+
+	/**
+	 * @see #setMargin(Number)
+	 */
+	public Number getMargin() {
+		return margin;
+	}
+
+	/**
+	 * Pixel margin between the scrollbar and the axis elements.
+	 * <p>
+	 * Defaults to: 10
+	 */
+	public void setMargin(Number margin) {
+		this.margin = margin;
 	}
 
 	/**
@@ -272,6 +277,41 @@ public class Scrollbar extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * @see #setShowFull(Boolean)
+	 */
+	public Boolean getShowFull() {
+		return showFull;
+	}
+
+	/**
+	 * Whether to show the scrollbar when it is fully zoomed out at max range.
+	 * Setting it to <code>false</code> on the Y axis makes the scrollbar stay
+	 * hidden until the user zooms in, like common in browsers.
+	 * <p>
+	 * Defaults to: true
+	 */
+	public void setShowFull(Boolean showFull) {
+		this.showFull = showFull;
+	}
+
+	/**
+	 * @see #setSize(Number)
+	 */
+	public Number getSize() {
+		return size;
+	}
+
+	/**
+	 * The width of a vertical scrollbar or height of a horizontal scrollbar.
+	 * Defaults to 20 on touch devices.
+	 * <p>
+	 * Defaults to: 14
+	 */
+	public void setSize(Number size) {
+		this.size = size;
+	}
+
+	/**
 	 * @see #setTrackBackgroundColor(Color)
 	 */
 	public Color getTrackBackgroundColor() {
@@ -301,5 +341,37 @@ public class Scrollbar extends AbstractConfigurationObject {
 	 */
 	public void setTrackBorderRadius(Number trackBorderRadius) {
 		this.trackBorderRadius = trackBorderRadius;
+	}
+
+	/**
+	 * @see #setZIndex(Number)
+	 */
+	public Number getZIndex() {
+		return zIndex;
+	}
+
+	/**
+	 * Z index of the scrollbar elements.
+	 * <p>
+	 * Defaults to: 3
+	 */
+	public void setZIndex(Number zIndex) {
+		this.zIndex = zIndex;
+	}
+
+	/**
+	 * @see #setHeight(Number)
+	 */
+	public Number getHeight() {
+		return height;
+	}
+
+	/**
+	 * The height of the scrollbar. The height also applies to the width of the
+	 * scroll arrows so that they are always squares. Defaults to 20 for touch
+	 * devices and 14 for mouse devices.
+	 */
+	public void setHeight(Number height) {
+		this.height = height;
 	}
 }

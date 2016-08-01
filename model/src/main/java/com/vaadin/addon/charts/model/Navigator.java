@@ -50,8 +50,11 @@ public class Navigator extends AbstractConfigurationObject {
 
 	/**
 	 * Whether the navigator and scrollbar should adapt to updated data in the
-	 * base X axis. This should be false when loading data asynchronously, to
-	 * prevent circular loading.
+	 * base X axis. When loading data async, as in the demo below, this should
+	 * be <code>false</code>. Otherwise new data will trigger navigator redraw,
+	 * which will cause unwanted looping. In the demo below, the data in the
+	 * navigator is set only once. On navigating, only the main chart content is
+	 * updated.
 	 * <p>
 	 * Defaults to: true
 	 */

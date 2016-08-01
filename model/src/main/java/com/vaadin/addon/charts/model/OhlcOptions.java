@@ -298,10 +298,13 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
     public abstract IntervalUnit getPointIntervalUnit();
 
     /**
-     * On datetime series, this allows for setting the pointInterval to the two
-     * irregular time units, <code>month</code> and <code>year</code>. Combine
-     * it with <code>pointInterval</code> to draw quarters, 6 months, 10 years
-     * etc.
+     * On datetime series, this allows for setting the <a
+     * href="plotOptions.series.pointInterval">pointInterval</a> to irregular
+     * time units, <code>day</code>, <code>month</code> and <code>year</code>. A
+     * day is usually the same as 24 hours, but pointIntervalUnit also takes the
+     * DST crossover into consideration when dealing with local time. Combine
+     * this option with <code>pointInterval</code> to draw weeks, quarters, 6
+     * months, 10 years etc.
      */
     public abstract void setPointIntervalUnit(IntervalUnit pointIntervalUnit);
 

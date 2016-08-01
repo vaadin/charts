@@ -29,6 +29,7 @@ import java.util.Arrays;
 public class PlotOptionsSolidgauge extends GaugeOptions {
 
 	private Boolean animation;
+	private Number animationLimit;
 	private Cursor cursor;
 	private DataLabels dataLabels;
 	private Boolean enableMouseTracking;
@@ -39,7 +40,6 @@ public class PlotOptionsSolidgauge extends GaugeOptions {
 	private Boolean selected;
 	private Boolean showCheckbox;
 	private Boolean showInLegend;
-	private States states;
 	private Boolean stickyTracking;
 	private SeriesTooltip tooltip;
 	private Boolean visible;
@@ -89,6 +89,24 @@ public class PlotOptionsSolidgauge extends GaugeOptions {
 	 */
 	public void setAnimation(Boolean animation) {
 		this.animation = animation;
+	}
+
+	/**
+	 * @see #setAnimationLimit(Number)
+	 */
+	public Number getAnimationLimit() {
+		return animationLimit;
+	}
+
+	/**
+	 * For some series, there is a limit that shuts down initial animation by
+	 * default when the total number of points in the chart is too high. For
+	 * example, for a column chart and its derivatives, animation doesn't run if
+	 * there is more than 250 points totally. To disable this cap, set
+	 * <code>animationLimit</code> to <code>Infinity</code>.
+	 */
+	public void setAnimationLimit(Number animationLimit) {
+		this.animationLimit = animationLimit;
 	}
 
 	/**
@@ -218,7 +236,7 @@ public class PlotOptionsSolidgauge extends GaugeOptions {
 	 * Whether the strokes of the solid gauge should be <code>round</code> or
 	 * <code>square</code>.
 	 * <p>
-	 * Defaults to: square
+	 * Defaults to: round
 	 */
 	public void setLinecap(String linecap) {
 		this.linecap = linecap;
@@ -291,23 +309,6 @@ public class PlotOptionsSolidgauge extends GaugeOptions {
 	 */
 	public void setShowInLegend(Boolean showInLegend) {
 		this.showInLegend = showInLegend;
-	}
-
-	/**
-	 * @see #setStates(States)
-	 */
-	public States getStates() {
-		if (states == null) {
-			states = new States();
-		}
-		return states;
-	}
-
-	/**
-	 * A wrapper object for all the series options in specific states.
-	 */
-	public void setStates(States states) {
-		this.states = states;
 	}
 
 	/**

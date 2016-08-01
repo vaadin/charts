@@ -26,6 +26,7 @@ public class PlotOptionsArea extends AreaOptions {
 
 	private Boolean allowPointSelect;
 	private Boolean animation;
+	private Number animationLimit;
 	private Color color;
 	private Boolean connectEnds;
 	private Boolean connectNulls;
@@ -130,6 +131,24 @@ public class PlotOptionsArea extends AreaOptions {
 	 */
 	public void setAnimation(Boolean animation) {
 		this.animation = animation;
+	}
+
+	/**
+	 * @see #setAnimationLimit(Number)
+	 */
+	public Number getAnimationLimit() {
+		return animationLimit;
+	}
+
+	/**
+	 * For some series, there is a limit that shuts down initial animation by
+	 * default when the total number of points in the chart is too high. For
+	 * example, for a column chart and its derivatives, animation doesn't run if
+	 * there is more than 250 points totally. To disable this cap, set
+	 * <code>animationLimit</code> to <code>Infinity</code>.
+	 */
+	public void setAnimationLimit(Number animationLimit) {
+		this.animationLimit = animationLimit;
 	}
 
 	/**
@@ -527,10 +546,12 @@ public class PlotOptionsArea extends AreaOptions {
 
 	/**
 	 * On datetime series, this allows for setting the <a
-	 * href="plotOptions.series.pointInterval">pointInterval</a> to the two
-	 * irregular time units, <code>month</code> and <code>year</code>. Combine
-	 * it with <code>pointInterval</code> to draw quarters, 6 months, 10 years
-	 * etc.
+	 * href="plotOptions.series.pointInterval">pointInterval</a> to irregular
+	 * time units, <code>day</code>, <code>month</code> and <code>year</code>. A
+	 * day is usually the same as 24 hours, but pointIntervalUnit also takes the
+	 * DST crossover into consideration when dealing with local time. Combine
+	 * this option with <code>pointInterval</code> to draw weeks, quarters, 6
+	 * months, 10 years etc.
 	 */
 	public void setPointIntervalUnit(IntervalUnit pointIntervalUnit) {
 		this.pointIntervalUnit = pointIntervalUnit;
@@ -951,6 +972,20 @@ public class PlotOptionsArea extends AreaOptions {
 		return dataGrouping;
 	}
 
+	/**
+	 * <p>
+	 * Data grouping is the concept of sampling the data values into larger
+	 * blocks in order to ease readability and increase performance of the
+	 * JavaScript charts. Highstock by default applies data grouping when the
+	 * points become closer than a certain pixel value, determined by the
+	 * <code>groupPixelWidth</code> option.
+	 * </p>
+	 * 
+	 * <p>
+	 * If data grouping is applied, the grouping information of grouped points
+	 * can be read from the <a href="#Point.dataGroup">Point.dataGroup</a>.
+	 * </p>
+	 */
 	public void setDataGrouping(DataGrouping dataGrouping) {
 		this.dataGrouping = dataGrouping;
 	}

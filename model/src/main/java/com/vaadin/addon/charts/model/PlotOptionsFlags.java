@@ -27,6 +27,7 @@ import com.vaadin.addon.charts.model.style.Style;
 public class PlotOptionsFlags extends AbstractPlotOptions {
 
 	private Boolean allowPointSelect;
+	private Number animationLimit;
 	private Color color;
 	private ArrayList<Color> colors;
 	private Number cropThreshold;
@@ -39,6 +40,7 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 	private Number lineWidth;
 	private String linkedTo;
 	private Number maxPointWidth;
+	private String onKey;
 	private String onSeries;
 	private IntervalUnit pointIntervalUnit;
 	private Boolean selected;
@@ -82,6 +84,24 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 	 */
 	public void setAllowPointSelect(Boolean allowPointSelect) {
 		this.allowPointSelect = allowPointSelect;
+	}
+
+	/**
+	 * @see #setAnimationLimit(Number)
+	 */
+	public Number getAnimationLimit() {
+		return animationLimit;
+	}
+
+	/**
+	 * For some series, there is a limit that shuts down initial animation by
+	 * default when the total number of points in the chart is too high. For
+	 * example, for a column chart and its derivatives, animation doesn't run if
+	 * there is more than 250 points totally. To disable this cap, set
+	 * <code>animationLimit</code> to <code>Infinity</code>.
+	 */
+	public void setAnimationLimit(Number animationLimit) {
+		this.animationLimit = animationLimit;
 	}
 
 	/**
@@ -357,6 +377,26 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 	}
 
 	/**
+	 * @see #setOnKey(String)
+	 */
+	public String getOnKey() {
+		return onKey;
+	}
+
+	/**
+	 * In case the flag is placed on a series, on what point key to place it.
+	 * Line and columns have one key, <code>y</code>. In range or OHLC-type
+	 * series, however, the flag can optionally be placed on the
+	 * <code>open</code>, <code>high</code>, <code>low</code> or
+	 * <code>close</code> key.
+	 * <p>
+	 * Defaults to: y
+	 */
+	public void setOnKey(String onKey) {
+		this.onKey = onKey;
+	}
+
+	/**
 	 * @see #setOnSeries(String)
 	 */
 	public String getOnSeries() {
@@ -382,10 +422,12 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 
 	/**
 	 * On datetime series, this allows for setting the <a
-	 * href="plotOptions.series.pointInterval">pointInterval</a> to the two
-	 * irregular time units, <code>month</code> and <code>year</code>. Combine
-	 * it with <code>pointInterval</code> to draw quarters, 6 months, 10 years
-	 * etc.
+	 * href="plotOptions.series.pointInterval">pointInterval</a> to irregular
+	 * time units, <code>day</code>, <code>month</code> and <code>year</code>. A
+	 * day is usually the same as 24 hours, but pointIntervalUnit also takes the
+	 * DST crossover into consideration when dealing with local time. Combine
+	 * this option with <code>pointInterval</code> to draw weeks, quarters, 6
+	 * months, 10 years etc.
 	 */
 	public void setPointIntervalUnit(IntervalUnit pointIntervalUnit) {
 		this.pointIntervalUnit = pointIntervalUnit;

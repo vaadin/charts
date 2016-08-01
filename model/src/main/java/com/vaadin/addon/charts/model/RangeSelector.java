@@ -31,6 +31,7 @@ import com.vaadin.addon.charts.model.style.Style;
 public class RangeSelector extends AbstractConfigurationObject {
 
 	private Boolean allButtonsEnabled;
+	private ButtonPosition buttonPosition;
 	private Number buttonSpacing;
 	private ButtonTheme buttonTheme;
 	private ArrayList<RangeSelectorButton> buttons;
@@ -71,6 +72,24 @@ public class RangeSelector extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * @see #setButtonPosition(ButtonPosition)
+	 */
+	public ButtonPosition getButtonPosition() {
+		if (buttonPosition == null) {
+			buttonPosition = new ButtonPosition();
+		}
+		return buttonPosition;
+	}
+
+	/**
+	 * A fixed pixel position for the buttons. Supports two properties,
+	 * <code>x</code> and <code>y<code>.
+	 */
+	public void setButtonPosition(ButtonPosition buttonPosition) {
+		this.buttonPosition = buttonPosition;
+	}
+
+	/**
 	 * @see #setButtonSpacing(Number)
 	 */
 	public Number getButtonSpacing() {
@@ -97,10 +116,18 @@ public class RangeSelector extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * <p>
 	 * A collection of attributes for the buttons. The object takes SVG
 	 * attributes like <code>fill</code>, <code>stroke</code>,
 	 * <code>stroke-width</code>, as well as <code>style</code>, a collection of
 	 * CSS properties for the text.
+	 * </p>
+	 * 
+	 * <p>
+	 * The object can also be extended with states, so you can set
+	 * presentational options for <code>hover</code>, <code>select</code> or
+	 * <code>disabled</code> button states.
+	 * </p>
 	 */
 	public void setButtonTheme(ButtonTheme buttonTheme) {
 		this.buttonTheme = buttonTheme;

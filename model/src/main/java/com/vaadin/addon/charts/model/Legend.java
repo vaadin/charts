@@ -430,7 +430,10 @@ public class Legend extends AbstractConfigurationObject {
 
 	/**
 	 * Options for the paging or navigation appearing when the legend is
-	 * overflown.
+	 * overflown. Navigation works well on screen, but not in static exported
+	 * images. One way of working around that is to <a href=
+	 * "http://jsfiddle.net/gh/get/jquery/1.7.2/highslide-software/highcharts.com/tree/master/samples/highcharts/legend/navigation-enabled-false/"
+	 * >increase the chart height in export</a>.
 	 */
 	public void setNavigation(LegendNavigation navigation) {
 		this.navigation = navigation;

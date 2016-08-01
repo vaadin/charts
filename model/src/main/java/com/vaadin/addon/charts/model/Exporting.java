@@ -28,6 +28,7 @@ public class Exporting extends AbstractConfigurationObject {
 	private Boolean enabled;
 	private Boolean fallbackToExportServer;
 	private String filename;
+	private Number printMaxWidth;
 	private Number scale;
 	private Number sourceHeight;
 	private Number sourceWidth;
@@ -142,6 +143,26 @@ public class Exporting extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * @see #setPrintMaxWidth(Number)
+	 */
+	public Number getPrintMaxWidth() {
+		return printMaxWidth;
+	}
+
+	/**
+	 * When printing the chart from the menu item in the burger menu, if the
+	 * on-screen chart exceeds this width, it is resized. After printing or
+	 * cancelled, it is restored. The default width makes the chart fit into
+	 * typical paper format. Note that this does not affect the chart when
+	 * printing the web page as a whole.
+	 * <p>
+	 * Defaults to: 780
+	 */
+	public void setPrintMaxWidth(Number printMaxWidth) {
+		this.printMaxWidth = printMaxWidth;
+	}
+
+	/**
 	 * @see #setScale(Number)
 	 */
 	public Number getScale() {
@@ -218,7 +239,7 @@ public class Exporting extends AbstractConfigurationObject {
 
 	/**
 	 * The URL for the server module converting the SVG string to an image
-	 * format. By default this points to Highslide Software's free web service.
+	 * format. By default this points to Highchart's free web service.
 	 * <p>
 	 * Defaults to: http://export.highcharts.com
 	 */

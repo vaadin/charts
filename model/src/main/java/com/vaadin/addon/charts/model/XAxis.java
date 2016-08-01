@@ -102,8 +102,8 @@ public class XAxis extends Axis {
 
 	/**
 	 * Whether to allow decimals in this axis' ticks. When counting integers,
-	 * like persons or hits on a web page, decimals must be avoided in the axis
-	 * tick labels.
+	 * like persons or hits on a web page, decimals should be avoided in the
+	 * labels.
 	 * <p>
 	 * Defaults to: true
 	 */
@@ -250,8 +250,13 @@ public class XAxis extends Axis {
 	/**
 	 * For a datetime axis, the scale will automatically adjust to the
 	 * appropriate unit. This member gives the default string representations
-	 * used for each unit. For an overview of the replacement codes, see
-	 * dateFormat. Defaults to:
+	 * used for each unit. For intermediate values, different units may be used,
+	 * for example the <code>day</code> unit can be used on midnight and
+	 * <code>hour</code> unit be used for intermediate values on the same axis.
+	 * For an overview of the replacement codes, see <a
+	 * href="#Highcharts.dateFormat">dateFormat</a>.
+	 * 
+	 * Defaults to:
 	 * 
 	 * <pre>
 	 * {
@@ -707,7 +712,9 @@ public class XAxis extends Axis {
 	 * The distance in pixels from the plot area to the axis line. A positive
 	 * offset moves the axis with it's line, labels and ticks away from the plot
 	 * area. This is typically used when two or more axes are displayed on the
-	 * same side of the plot.
+	 * same side of the plot. With multiple axes the offset is dynamically
+	 * adjusted to avoid collision, this can be overridden by setting offset
+	 * explicitly.
 	 * <p>
 	 * Defaults to: 0
 	 */
@@ -992,9 +999,16 @@ public class XAxis extends Axis {
 	 * 0.2 puts a tick on 0.1, 0.2, 0.4, 0.6, 0.8, 1, 2, 4, 6, 8, 10, 20, 40
 	 * etc.
 	 * </p>
+	 * 
 	 * <p>
 	 * If the tickInterval is too dense for labels to be drawn, Highcharts may
 	 * remove ticks.
+	 * </p>
+	 * 
+	 * <p>
+	 * If the chart has multiple axes, the <a
+	 * href="#chart.alignTicks">alignTicks</a> option may interfere with the
+	 * <code>tickInterval</code> setting.
 	 * </p>
 	 */
 	public void setTickInterval(Number tickInterval) {
@@ -1128,12 +1142,12 @@ public class XAxis extends Axis {
 	}
 
 	/**
-	 * The type of axis. Can be one of <code>"linear"</code>,
-	 * <code>"logarithmic"</code>, <code>"datetime"</code> or
-	 * <code>"category"</code>. In a datetime axis, the numbers are given in
-	 * milliseconds, and tick marks are placed on appropriate values like full
-	 * hours or days. In a category axis, the <a href="#series.data">point
-	 * names</a> of the chart's series are used for categories, if not a <a
+	 * The type of axis. Can be one of <code>linear</code>,
+	 * <code>logarithmic</code>, <code>datetime</code> or <code>category</code>.
+	 * In a datetime axis, the numbers are given in milliseconds, and tick marks
+	 * are placed on appropriate values like full hours or days. In a category
+	 * axis, the <a href="#series<line>.data.name">point names</a> of the
+	 * chart's series are used for categories, if not a <a
 	 * href="#xAxis.categories">categories</a> array is defined.
 	 * <p>
 	 * Defaults to: linear

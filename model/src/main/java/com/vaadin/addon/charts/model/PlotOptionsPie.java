@@ -30,6 +30,7 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 
 	private Boolean allowPointSelect;
 	private Boolean animation;
+	private Number animationLimit;
 	private Color borderColor;
 	private Number borderWidth;
 	private String[] center;
@@ -117,6 +118,24 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	 */
 	public void setAnimation(Boolean animation) {
 		this.animation = animation;
+	}
+
+	/**
+	 * @see #setAnimationLimit(Number)
+	 */
+	public Number getAnimationLimit() {
+		return animationLimit;
+	}
+
+	/**
+	 * For some series, there is a limit that shuts down initial animation by
+	 * default when the total number of points in the chart is too high. For
+	 * example, for a column chart and its derivatives, animation doesn't run if
+	 * there is more than 250 points totally. To disable this cap, set
+	 * <code>animationLimit</code> to <code>Infinity</code>.
+	 */
+	public void setAnimationLimit(Number animationLimit) {
+		this.animationLimit = animationLimit;
 	}
 
 	/**

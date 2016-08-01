@@ -22,7 +22,7 @@ package com.vaadin.addon.charts.model;
  */
 public enum IntervalUnit implements ChartEnum {
 
-    MONTH("month"), YEAR("year");
+    DAY("day"), MONTH("month"), YEAR("year");
 
     private IntervalUnit(String unit) {
         this.unit = unit;
