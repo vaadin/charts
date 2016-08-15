@@ -34,7 +34,7 @@ public class ExportingExample extends DualAxesLineAndColumn {
         Exporting exporting = new Exporting(true);
 
         // One can customize the filename
-        exporting.setFilename("mychartfile.pdf");
+        exporting.setFilename("mychartfile");
 
         // Exporting is by default done on highcharts public servers, but you
         // can also use your own server

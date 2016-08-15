@@ -42,7 +42,7 @@ custom settings.
 Exporting exporting = new Exporting(true);
 
 // Customize the file name of the download file
-exporting.setFilename("mychartfile.pdf");
+exporting.setFilename("mychartfile");
 
 // Use the exporting configuration in the chart
 chart.getConfiguration().setExporting(exporting);
