@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import com.vaadin.server.SizeWithUnit;
 import com.vaadin.server.Sizeable.Unit;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.vaadin.addon.charts.model.serializers.SizeSerializer;
 /**
  * Applies only to polar charts and angular gauges. This configuration object
  * holds general options for the combined X and Y axes set. Each xAxis or yAxis
@@ -32,6 +34,7 @@ public class Pane extends AbstractConfigurationObject {
 	private ArrayList<Background> background;
 	private String[] center;
 	private Number endAngle;
+	@JsonSerialize(using = SizeSerializer.class)
 	private String size;
 	private Number startAngle;
 

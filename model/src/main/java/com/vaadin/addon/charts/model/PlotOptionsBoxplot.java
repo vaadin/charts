@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import com.vaadin.server.SizeWithUnit;
 import com.vaadin.server.Sizeable.Unit;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.vaadin.addon.charts.model.serializers.SizeSerializer;
 import java.util.Date;
 import com.vaadin.addon.charts.util.Util;
 /**
@@ -73,6 +75,7 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 	private Number turboThreshold;
 	private Boolean visible;
 	private Color whiskerColor;
+	@JsonSerialize(using = SizeSerializer.class)
 	private String whiskerLength;
 	private Number whiskerWidth;
 	private String zoneAxis;

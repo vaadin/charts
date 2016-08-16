@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import com.vaadin.server.SizeWithUnit;
 import com.vaadin.server.Sizeable.Unit;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.vaadin.addon.charts.model.serializers.SizeSerializer;
 /**
  * A pyramid chart consists of a single pyramid with item heights corresponding
  * to each point value. Technically it is the same as a reversed funnel chart
@@ -40,6 +42,7 @@ public class PlotOptionsPyramid extends PyramidOptions {
 	private Number depth;
 	private Boolean enableMouseTracking;
 	private Boolean getExtremesFromAll;
+	@JsonSerialize(using = SizeSerializer.class)
 	private String height;
 	private ArrayList<String> keys;
 	private String linkedTo;
@@ -53,6 +56,7 @@ public class PlotOptionsPyramid extends PyramidOptions {
 	private Boolean stickyTracking;
 	private SeriesTooltip tooltip;
 	private Boolean visible;
+	@JsonSerialize(using = SizeSerializer.class)
 	private String width;
 	private String zoneAxis;
 	private ArrayList<Zones> zones;

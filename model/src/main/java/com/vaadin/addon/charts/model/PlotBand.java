@@ -20,6 +20,8 @@ package com.vaadin.addon.charts.model;
 import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.server.SizeWithUnit;
 import com.vaadin.server.Sizeable.Unit;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.vaadin.addon.charts.model.serializers.SizeSerializer;
 import java.util.Date;
 import com.vaadin.addon.charts.util.Util;
 /**
@@ -32,9 +34,12 @@ public class PlotBand extends AbstractConfigurationObject {
 	private Color color;
 	private Number from;
 	private String id;
+	@JsonSerialize(using = SizeSerializer.class)
 	private String innerRadius;
 	private Label label;
+	@JsonSerialize(using = SizeSerializer.class)
 	private String outerRadius;
+	@JsonSerialize(using = SizeSerializer.class)
 	private String thickness;
 	private Number to;
 	private Number zIndex;

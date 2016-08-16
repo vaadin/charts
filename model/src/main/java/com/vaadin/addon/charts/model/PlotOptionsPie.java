@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import com.vaadin.server.SizeWithUnit;
 import com.vaadin.server.Sizeable.Unit;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.vaadin.addon.charts.model.serializers.SizeSerializer;
 /**
  * A pie chart is a circular chart divided into sectors, illustrating numerical
  * proportion.
@@ -42,6 +44,7 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	private Number endAngle;
 	private Boolean getExtremesFromAll;
 	private Boolean ignoreHiddenPoint;
+	@JsonSerialize(using = SizeSerializer.class)
 	private String innerSize;
 	private ArrayList<String> keys;
 	private String linkedTo;
@@ -49,6 +52,7 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	private Boolean selected;
 	private Boolean shadow;
 	private Boolean showInLegend;
+	@JsonSerialize(using = SizeSerializer.class)
 	private String size;
 	private Number slicedOffset;
 	private Number startAngle;

@@ -24,6 +24,8 @@ import java.util.Date;
 import com.vaadin.addon.charts.util.Util;
 import com.vaadin.server.SizeWithUnit;
 import com.vaadin.server.Sizeable.Unit;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.vaadin.addon.charts.model.serializers.SizeSerializer;
 /**
  * A bubble series is a three dimensional series type where each point renders
  * an X, Y and Z value. Each points is drawn as a bubble where the position
@@ -68,7 +70,9 @@ public class PlotOptionsBubble extends AbstractPlotOptions {
 	private Number zThreshold;
 	private String zoneAxis;
 	private ArrayList<Zones> zones;
+	@JsonSerialize(using = SizeSerializer.class)
 	private String minSize;
+	@JsonSerialize(using = SizeSerializer.class)
 	private String maxSize;
 
 	public PlotOptionsBubble() {

@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import com.vaadin.server.SizeWithUnit;
 import com.vaadin.server.Sizeable.Unit;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.vaadin.addon.charts.model.serializers.SizeSerializer;
 /**
  * <p>
  * The Y axis or value axis. In case of multiple axes, the yAxis node is an
@@ -92,10 +94,12 @@ public class YAxis extends Axis {
 	private AxisType type;
 	private ArrayList<TimeUnitMultiples> units;
 	private Boolean visible;
+	@JsonSerialize(using = SizeSerializer.class)
 	private String height;
 	private Boolean ordinal;
 	private Number range;
 	private Scrollbar scrollbar;
+	@JsonSerialize(using = SizeSerializer.class)
 	private String top;
 	private Number pane;
 	private ArrayList<Stop> stops;

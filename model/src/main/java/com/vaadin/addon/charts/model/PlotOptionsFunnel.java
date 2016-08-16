@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import com.vaadin.server.SizeWithUnit;
 import com.vaadin.server.Sizeable.Unit;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.vaadin.addon.charts.model.serializers.SizeSerializer;
 /**
  * Funnel charts are a type of chart often used to visualize stages in a sales
  * project, where the top are the initial stages with the most clients. It
@@ -40,11 +42,14 @@ public class PlotOptionsFunnel extends PyramidOptions {
 	private Number depth;
 	private Boolean enableMouseTracking;
 	private Boolean getExtremesFromAll;
+	@JsonSerialize(using = SizeSerializer.class)
 	private String height;
 	private ArrayList<String> keys;
 	private String linkedTo;
 	private Number minSize;
+	@JsonSerialize(using = SizeSerializer.class)
 	private String neckHeight;
+	@JsonSerialize(using = SizeSerializer.class)
 	private String neckWidth;
 	private Boolean reversed;
 	private Boolean selected;
@@ -55,6 +60,7 @@ public class PlotOptionsFunnel extends PyramidOptions {
 	private Boolean stickyTracking;
 	private SeriesTooltip tooltip;
 	private Boolean visible;
+	@JsonSerialize(using = SizeSerializer.class)
 	private String width;
 	private String zoneAxis;
 	private ArrayList<Zones> zones;
