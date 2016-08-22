@@ -39,7 +39,7 @@ For an example, the following is how you could load `vaadin-line-chart` in the `
 [source, html]
 ----
 <link rel="import"
-      href="https://cdn.vaadin.com/vaadin-charts/3.0.0/vaadin-line-chart.html">
+      href="https://cdn.vaadin.com/vaadin-charts/3.1.0/vaadin-line-chart.html">
 ----
 
 Again, notice to specify the correct version number for Charts.
