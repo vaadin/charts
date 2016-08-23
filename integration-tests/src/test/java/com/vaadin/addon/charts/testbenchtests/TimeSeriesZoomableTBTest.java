@@ -5,9 +5,9 @@ import com.vaadin.addon.charts.examples.lineandscatter.TimeSeriesZoomable;
 public class TimeSeriesZoomableTBTest extends
         AbstractSimpleScreenShotTestBenchTest {
 
+    @Override
     protected String getTestViewName() {
-        String simpleName = TimeSeriesZoomable.class.getSimpleName();
-        return simpleName;
+        return TimeSeriesZoomable.class.getSimpleName();
     }
 
     @Override

@@ -39,4 +39,9 @@ public class HighchartAxis extends JavaScriptObject {
     /*-{
         this.setExtremes(min, max, redraw, animation);
      }-*/;
+
+    public native final void resetZoom(boolean redraw, boolean animation)
+    /*-{
+        this.setExtremes(null, null, redraw, animation);
+     }-*/;
 }

@@ -26,6 +26,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
+import org.jsoup.nodes.Element;
+
 import com.vaadin.addon.charts.declarative.ChartDesignReader;
 import com.vaadin.addon.charts.declarative.ChartDesignWriter;
 import com.vaadin.addon.charts.events.AbstractSeriesEvent;
@@ -56,8 +58,6 @@ import com.vaadin.addon.charts.shared.MouseEventDetails;
 import com.vaadin.ui.AbstractComponent;
 import com.vaadin.ui.declarative.DesignContext;
 import com.vaadin.util.ReflectTools;
-
-import org.jsoup.nodes.Element;
 
 /**
  * Chart is a Vaadin component that is used to visualize data.
@@ -166,6 +166,11 @@ public class Chart extends AbstractComponent {
             chart.getRpcProxy(ChartClientRpc.class).sliceItem(
                 getSeriesIndex(event), event.getIndex(), event.isSliced(),
                 event.isRedraw(), event.isAnimation());
+        }
+
+        @Override
+        public void resetZoom(boolean redraw, boolean animate) {
+            chart.getRpcProxy(ChartClientRpc.class).resetZoom(redraw, animate);
         }
 
         @Override

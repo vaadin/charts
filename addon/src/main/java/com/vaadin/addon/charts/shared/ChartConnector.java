@@ -35,14 +35,14 @@ import com.vaadin.addon.charts.client.ui.HighchartConfig;
 import com.vaadin.addon.charts.client.ui.HighchartPoint;
 import com.vaadin.addon.charts.client.ui.HighchartSeries;
 import com.vaadin.addon.charts.client.ui.HighchartWidget;
-import com.vaadin.addon.charts.client.ui.PointEvent;
-import com.vaadin.addon.charts.client.ui.PointSelectHandler;
-import com.vaadin.addon.charts.client.ui.PointUnselectHandler;
-import com.vaadin.addon.charts.client.ui.SeriesEvent;
 import com.vaadin.addon.charts.client.ui.LegendItemClickHandler;
 import com.vaadin.addon.charts.client.ui.MouseEventDetailsBuilder;
 import com.vaadin.addon.charts.client.ui.PointClickEvent;
 import com.vaadin.addon.charts.client.ui.PointClickHandler;
+import com.vaadin.addon.charts.client.ui.PointEvent;
+import com.vaadin.addon.charts.client.ui.PointSelectHandler;
+import com.vaadin.addon.charts.client.ui.PointUnselectHandler;
+import com.vaadin.addon.charts.client.ui.SeriesEvent;
 import com.vaadin.addon.charts.client.ui.SeriesHideHandler;
 import com.vaadin.addon.charts.client.ui.SeriesShowHandler;
 import com.vaadin.addon.charts.client.ui.SetExtremesEvent;
@@ -200,6 +200,16 @@ public class ChartConnector extends AbstractComponentConnector implements Deferr
 
                         getWidget().slicePoint(seriesIndex, pointIndex, sliced,
                                 redraw, animation);
+                    }
+                });
+            }
+
+            @Override
+            public void resetZoom(final boolean redraw, final boolean animate) {
+                Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+                    @Override
+                    public void execute() {
+                        getWidget().resetZoom(redraw, animate);
                     }
                 });
             }

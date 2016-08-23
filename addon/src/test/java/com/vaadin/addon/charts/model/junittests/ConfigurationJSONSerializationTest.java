@@ -66,6 +66,11 @@ public class ConfigurationJSONSerializationTest {
             public void itemSliced(ItemSlicedEvent event) {
 
             }
+
+            @Override
+            public void resetZoom(boolean redraw, boolean animate) {
+
+            }
         });
         assertEquals(
                 "{\"plotOptions\":{},\"series\":[],\"exporting\":{\"enabled\":false}}",

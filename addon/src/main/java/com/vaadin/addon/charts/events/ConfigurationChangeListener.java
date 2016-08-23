@@ -94,4 +94,11 @@ public interface ConfigurationChangeListener extends Serializable {
      */
     void itemSliced(ItemSlicedEvent event);
 
+    /**
+     * Reset zoom level by setting axis extremes to null
+     * 
+     * @param redraw
+     * @param animate
+     */
+    void resetZoom(boolean redraw, boolean animate);
 }

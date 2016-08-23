@@ -100,6 +100,17 @@ public class HighchartWidget extends Widget {
 
     }
 
+    public void resetZoom(boolean redraw, boolean animate) {
+        JsArray<HighchartAxis> xAxes = jsOverlay.getxAxes();
+        for (int i = 0; i < xAxes.length(); i++) {
+            xAxes.get(i).resetZoom(redraw, animate);
+        }
+        JsArray<HighchartAxis> yAxes = jsOverlay.getyAxes();
+        for (int i = 0; i < yAxes.length(); i++) {
+            yAxes.get(i).resetZoom(redraw, animate);
+        }
+    }
+
     public void updateyAxis(int axisIndex, double minimum, double maximum,
                             boolean redraw, boolean animate) {
         JsArray<HighchartAxis> axes = jsOverlay.getyAxes();

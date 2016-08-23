@@ -975,6 +975,27 @@ public class Configuration extends AbstractConfigurationObject implements
     }
 
     /**
+     * Reset zoom level by setting axes extremes to null
+     */
+    public void resetZoom() {
+        this.resetZoom(true, true);
+    }
+
+    /**
+     * Reset zoom level by setting axes extremes to null
+     * 
+     * @param redraw
+     *            Whether or not to redraw.
+     * @param animate
+     *            Whether or not to animate.
+     */
+    public void resetZoom(boolean redraw, boolean animate) {
+        for (ConfigurationChangeListener listener : changeListeners) {
+            listener.resetZoom(redraw, animate);
+        }
+    }
+
+    /**
      * Fires point sliced event
      * 
      * @param series
