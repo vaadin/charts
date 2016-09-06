@@ -40,6 +40,7 @@ public class Tooltip extends AbstractConfigurationObject {
 	private Number hideDelay;
 	private String pointFormat;
 	private String _fn_pointFormatter;
+	private String _fn_positioner;
 	private Boolean shadow;
 	private Shape shape;
 	private Boolean shared;
@@ -341,6 +342,14 @@ public class Tooltip extends AbstractConfigurationObject {
 
 	public void setPointFormatter(String _fn_pointFormatter) {
 		this._fn_pointFormatter = _fn_pointFormatter;
+	}
+
+	public String getPositioner() {
+		return _fn_positioner;
+	}
+
+	public void setPositioner(String _fn_positioner) {
+		this._fn_positioner = _fn_positioner;
 	}
 
 	/**
