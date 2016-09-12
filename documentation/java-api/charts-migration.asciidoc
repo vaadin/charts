@@ -13,6 +13,10 @@ layout: page
 Most of Vaadin Charts 3 API is compatible with Vaadin Charts 2.x. It can thus be used as a drop-in replacement for any 2.x version with some minor fixes.
 The objective of this document is to make the transition from Vaadin Charts 2.x to Vaadin Charts 3.x easier.
 
+[[charts.migration.nonmaven]]
+== Note for non-Maven Users
+Vaadin Charts 3 was restructured and now has a new JAR: [filename]#vaadin-charts-model-VERSION.jar#, which includes the model classes. If dependencies are managed manually the [filename]#vaadin-charts-model-VERSION.jar# can be found in [filename]#addon/lib/# folder of the ZIP file downloaded from https://vaadin.com/directory#!addon/vaadin-charts[Vaadin Directory] and needs to be added to the project.
+
 [[charts.migration.timeline]]
 == Timeline
 One of the big features of Vaadin Charts 3 for Java is dropping the old [classname]#Timeline# component.
