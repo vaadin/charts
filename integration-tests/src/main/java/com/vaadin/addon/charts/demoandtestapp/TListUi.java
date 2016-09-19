@@ -15,18 +15,25 @@
  */
 package com.vaadin.addon.charts.demoandtestapp;
 
-import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
-import com.vaadin.data.Container;
-import com.vaadin.data.Item;
-import com.vaadin.data.util.IndexedContainer;
-import com.vaadin.event.FieldEvents.TextChangeEvent;
-import com.vaadin.event.FieldEvents.TextChangeListener;
-import com.vaadin.server.ExternalResource;
-import com.vaadin.server.VaadinRequest;
-import com.vaadin.ui.*;
+import java.util.Set;
+
 import org.reflections.Reflections;
 
-import java.util.Set;
+import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
+import com.vaadin.v7.data.Container;
+import com.vaadin.v7.data.Item;
+import com.vaadin.v7.data.util.IndexedContainer;
+import com.vaadin.v7.event.FieldEvents.TextChangeEvent;
+import com.vaadin.v7.event.FieldEvents.TextChangeListener;
+import com.vaadin.server.ExternalResource;
+import com.vaadin.server.VaadinRequest;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.Link;
+import com.vaadin.v7.ui.TextField;
+import com.vaadin.ui.UI;
+import com.vaadin.ui.VerticalLayout;
+import com.vaadin.v7.ui.Table;
+
 
 /**
  *

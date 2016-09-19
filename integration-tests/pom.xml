@@ -40,6 +40,27 @@
         </dependency>
 
         <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-client-compiled</artifactId>
+            <version>${vaadin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-client-compiler</artifactId>
+            <version>${vaadin.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-compatibility-server</artifactId>
+            <version>${vaadin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-compatibility-client</artifactId>
+            <version>${vaadin.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.reflections</groupId>
             <artifactId>reflections</artifactId>
             <version>0.9.10</version>
@@ -56,12 +77,12 @@
             <version>2.4</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-webapp</artifactId>
-            <version>8.1.13.v20130916</version>
-            <scope>provided</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.eclipse.jetty</groupId>-->
+            <!--<artifactId>jetty-webapp</artifactId>-->
+            <!--<version>8.1.13.v20130916</version>-->
+            <!--<scope>provided</scope>-->
+        <!--</dependency>-->
 
         <!-- Test dependencies -->
         <dependency>
@@ -210,15 +231,19 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.mortbay.jetty</groupId>
+                <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <configuration>
-                    <connectors>
-                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-                            <port>9998</port>
-                            <maxIdleTime>60000</maxIdleTime>
-                        </connector>
-                    </connectors>
+                    <httpConnector>
+                    <!--host>localhost</host-->
+                    <port>9998</port>
+                    </httpConnector>
+                    <!--<connectors>-->
+                    <!--<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">-->
+                    <!--<port>9998</port>-->
+                    <!--<maxIdleTime>60000</maxIdleTime>-->
+                    <!--</connector>-->
+                    <!--</connectors>-->
                     <scanIntervalSeconds>1</scanIntervalSeconds>
                     <useProvidedScope>true</useProvidedScope>
                     <useTestClasspath>true</useTestClasspath>
@@ -288,7 +313,7 @@
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>org.mortbay.jetty</groupId>
+                        <groupId>org.eclipse.jetty</groupId>
                         <artifactId>jetty-maven-plugin</artifactId>
                         <executions>
                             <!-- start and stop jetty (running our app) when running integration

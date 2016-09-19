@@ -14,9 +14,9 @@ import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.ContainerDataSeries;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.PlotOptionsSeries;
-import com.vaadin.data.Container;
-import com.vaadin.data.Item;
-import com.vaadin.data.util.IndexedContainer;
+import com.vaadin.v7.data.Container;
+import com.vaadin.v7.data.Item;
+import com.vaadin.v7.data.util.IndexedContainer;
 
 public class ContainerSeriesJSONSerializationTest {
 

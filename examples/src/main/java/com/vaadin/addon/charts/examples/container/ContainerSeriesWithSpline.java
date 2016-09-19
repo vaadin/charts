@@ -10,8 +10,8 @@ import com.vaadin.addon.charts.model.AxisType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.ContainerDataSeries;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
-import com.vaadin.data.Item;
-import com.vaadin.data.util.IndexedContainer;
+import com.vaadin.v7.data.Item;
+import com.vaadin.v7.data.util.IndexedContainer;
 import com.vaadin.ui.Component;
 
 @SkipFromDemo

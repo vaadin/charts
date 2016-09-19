@@ -6,10 +6,10 @@ import java.util.List;
 
 import com.vaadin.addon.charts.Sparkline;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
-import com.vaadin.data.Container;
-import com.vaadin.data.util.BeanItemContainer;
+import com.vaadin.v7.data.Container;
+import com.vaadin.v7.data.util.BeanItemContainer;
 import com.vaadin.ui.Component;
-import com.vaadin.ui.Table;
+import com.vaadin.v7.ui.Table;
 
 public class SparklineExampleWithLargeDataset extends
         AbstractVaadinChartExample {

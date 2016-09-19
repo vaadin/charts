@@ -38,7 +38,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     @JsonIgnore
     private ChartConfiguration configuration;
 
-    void setAxisIndex(int i) {
+    public void setAxisIndex(int i) {
         axisIndex = i;
     }
 
@@ -195,7 +195,7 @@ public abstract class Axis extends AbstractConfigurationObject {
      * 
      * @return The configuration.
      */
-    ChartConfiguration getConfiguration() {
+    public ChartConfiguration getConfiguration() {
         return configuration;
     }
 

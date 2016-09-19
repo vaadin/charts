@@ -30,6 +30,11 @@
             <artifactId>vaadin-server</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-compatibility-server</artifactId>
+            <version>${vaadin.version}</version>
+        </dependency>
         <!-- For PartialUpdateConflicts-->
         <dependency>
             <groupId>org.apache.commons</groupId>

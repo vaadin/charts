@@ -14,10 +14,9 @@ import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.charts.model.style.Style;
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.Property.ValueChangeListener;
-import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.Component;
+import com.vaadin.v7.data.Property;
+import com.vaadin.v7.ui.CheckBox;
 
 @SuppressWarnings("serial")
 public class BoxPlotExample extends AbstractVaadinChartExample {
@@ -106,9 +105,9 @@ public class BoxPlotExample extends AbstractVaadinChartExample {
         useCustomStyles.setImmediate(true);
         super.setup();
         addComponentAsFirst(useCustomStyles);
-        useCustomStyles.addListener(new ValueChangeListener() {
+        useCustomStyles.addValueChangeListener(new Property.ValueChangeListener() {
             @Override
-            public void valueChange(ValueChangeEvent event) {
+            public void valueChange(Property.ValueChangeEvent event) {
                 observations.setPlotOptions(getPlotBoxOptions());
                 chart.drawChart();
             }

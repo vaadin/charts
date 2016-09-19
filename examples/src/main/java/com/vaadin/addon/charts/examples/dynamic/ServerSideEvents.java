@@ -43,14 +43,14 @@ import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.ZoomType;
 import com.vaadin.addon.charts.model.style.SolidColor;
-import com.vaadin.data.Property;
+import com.vaadin.v7.data.Property;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.CheckBox;
+import com.vaadin.v7.ui.CheckBox;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
-import com.vaadin.ui.OptionGroup;
+import com.vaadin.v7.ui.OptionGroup;
 import com.vaadin.ui.VerticalLayout;
 
 @SkipFromDemo

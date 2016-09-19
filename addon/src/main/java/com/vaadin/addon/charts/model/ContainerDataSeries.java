@@ -17,11 +17,11 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.vaadin.data.Container;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.vaadin.v7.data.Container;
 
 /**
  * A series that wraps a Vaadin Container. It is mutable only via the wrapped

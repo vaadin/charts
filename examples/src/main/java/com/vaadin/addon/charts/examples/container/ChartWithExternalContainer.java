@@ -11,11 +11,11 @@ import com.vaadin.addon.charts.model.PlotOptionsColumn;
 import com.vaadin.addon.charts.model.PlotOptionsPie;
 import com.vaadin.addon.charts.model.Series;
 import com.vaadin.addon.charts.model.YAxis;
-import com.vaadin.data.Container;
-import com.vaadin.ui.AbstractSelect.ItemCaptionMode;
+import com.vaadin.v7.data.Container;
+import com.vaadin.v7.ui.AbstractSelect.ItemCaptionMode;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Table;
+import com.vaadin.v7.ui.Table;
 
 public class ChartWithExternalContainer extends AbstractVaadinChartExample {
 

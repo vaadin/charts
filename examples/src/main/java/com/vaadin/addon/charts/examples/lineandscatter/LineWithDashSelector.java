@@ -14,10 +14,10 @@ import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.YAxis;
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.Property.ValueChangeListener;
+import com.vaadin.v7.data.Property.ValueChangeEvent;
+import com.vaadin.v7.data.Property.ValueChangeListener;
 import com.vaadin.ui.Component;
-import com.vaadin.ui.NativeSelect;
+import com.vaadin.v7.ui.NativeSelect;
 
 public class LineWithDashSelector extends AbstractVaadinChartExample {
 

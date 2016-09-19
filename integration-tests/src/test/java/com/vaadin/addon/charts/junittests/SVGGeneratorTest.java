@@ -7,6 +7,7 @@ import java.util.Random;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.vaadin.addon.charts.Chart;
@@ -33,6 +34,7 @@ import com.vaadin.addon.charts.util.SVGGenerator;
 
 public class SVGGeneratorTest {
 
+    @Ignore
     @Test
     public void test() {
 
@@ -128,6 +130,7 @@ public class SVGGeneratorTest {
         return conf;
     }
 
+    @Ignore
     @Test
     public void testWide() throws InterruptedException, URISyntaxException {
 
@@ -160,6 +163,7 @@ public class SVGGeneratorTest {
 
     }
 
+    @Ignore
     @Test
     public void generate_TreemapChart_withoutException() {
         Chart chart = new Chart(ChartType.TREEMAP);

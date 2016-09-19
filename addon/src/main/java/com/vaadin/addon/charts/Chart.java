@@ -55,6 +55,8 @@ import com.vaadin.addon.charts.shared.ChartServerRpc;
 import com.vaadin.addon.charts.shared.ChartState;
 import com.vaadin.addon.charts.shared.DrilldownEventDetails;
 import com.vaadin.addon.charts.shared.MouseEventDetails;
+import com.vaadin.event.selection.SingleSelectionChange;
+import com.vaadin.shared.Registration;
 import com.vaadin.ui.AbstractComponent;
 import com.vaadin.ui.declarative.DesignContext;
 import com.vaadin.util.ReflectTools;
@@ -569,16 +571,25 @@ public class Chart extends AbstractComponent {
         drawChart(getConfiguration());
     }
 
+
+
+
+
+
     /**
      * Adds chart click listener, which will be notified of clicks on the chart
      * area
      *
      * @param listener
      */
-    public void addChartClickListener(ChartClickListener listener) {
+    public Registration addChartClickListener(ChartClickListener listener) {
+
         this.addListener(
             ChartConnector.CHART_CLICK_EVENT_ID, ChartClickEvent.class,
             listener, chartClickMethod);
+        return () -> removeListener(
+                ChartConnector.CHART_CLICK_EVENT_ID, ChartClickEvent.class,
+                listener);
     }
 
     /**

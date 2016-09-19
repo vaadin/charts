@@ -1,8 +1,8 @@
 package com.vaadin.addon.charts.examples;
 
-import com.vaadin.data.Container;
-import com.vaadin.data.Item;
-import com.vaadin.data.util.IndexedContainer;
+import com.vaadin.v7.data.Container;
+import com.vaadin.v7.data.Item;
+import com.vaadin.v7.data.util.IndexedContainer;
 
 @SuppressWarnings("unchecked")
 public final class ExampleUtil {

@@ -31,20 +31,11 @@ import com.vaadin.annotations.DesignRoot;
 import com.vaadin.annotations.JavaScript;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
-import com.vaadin.data.Item;
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.Property.ValueChangeListener;
-import com.vaadin.data.util.HierarchicalContainer;
-import com.vaadin.event.FieldEvents.TextChangeEvent;
-import com.vaadin.event.FieldEvents.TextChangeListener;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.Page;
-import com.vaadin.server.Page.UriFragmentChangedEvent;
-import com.vaadin.server.Page.UriFragmentChangedListener;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.shared.ui.label.ContentMode;
-import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.HorizontalSplitPanel;
@@ -52,13 +43,16 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.TabSheet;
-import com.vaadin.ui.TabSheet.SelectedTabChangeEvent;
-import com.vaadin.ui.TabSheet.SelectedTabChangeListener;
-import com.vaadin.ui.TextField;
-import com.vaadin.ui.Tree;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
+import com.vaadin.v7.data.Item;
+import com.vaadin.v7.data.Property;
+import com.vaadin.v7.data.util.HierarchicalContainer;
+import com.vaadin.v7.event.FieldEvents;
+import com.vaadin.v7.ui.ComboBox;
+import com.vaadin.v7.ui.TextField;
+import com.vaadin.v7.ui.Tree;
 
 /**
  * The Application's "main" class
@@ -158,9 +152,9 @@ public class ChartsDemoUI extends UI {
         initGATracker();
 
         tabSheet = new TabSheet();
-        tabSheet.addSelectedTabChangeListener(new SelectedTabChangeListener() {
+        tabSheet.addSelectedTabChangeListener(new TabSheet.SelectedTabChangeListener() {
             @Override
-            public void selectedTabChange(SelectedTabChangeEvent event) {
+            public void selectedTabChange(TabSheet.SelectedTabChangeEvent event) {
                 com.vaadin.ui.JavaScript
                         .eval("setTimeout(function(){prettyPrint();},300);");
             }
@@ -211,9 +205,9 @@ public class ChartsDemoUI extends UI {
         themeSelector.setItemCaption(SkiesTheme.class, "Skies");
         themeSelector.setImmediate(true);
         themeSelector.select(ValoLightTheme.class);
-        themeSelector.addValueChangeListener(new ValueChangeListener() {
+        themeSelector.addValueChangeListener(new Property.ValueChangeListener() {
             @Override
-            public void valueChange(ValueChangeEvent event) {
+            public void valueChange(Property.ValueChangeEvent event) {
                 @SuppressWarnings("unchecked")
                 Class<? extends Theme> value = (Class<? extends Theme>) event
                         .getProperty().getValue();
@@ -242,10 +236,10 @@ public class ChartsDemoUI extends UI {
         filterField.setIcon(FontAwesome.SEARCH);
         filterField.addStyleName("filter");
         filterField.setWidth("100%");
-        filterField.addTextChangeListener(new TextChangeListener() {
+        filterField.addTextChangeListener(new FieldEvents.TextChangeListener() {
 
             @Override
-            public void textChange(TextChangeEvent event) {
+            public void textChange(FieldEvents.TextChangeEvent event) {
                 container.removeAllContainerFilters();
                 String text = event.getText();
                 if (text != null && !text.isEmpty()) {
@@ -264,9 +258,9 @@ public class ChartsDemoUI extends UI {
         tree.setItemCaptionPropertyId("displayName");
         tree.setNullSelectionAllowed(false);
         tree.setWidth("100%");
-        tree.addValueChangeListener(new ValueChangeListener() {
+        tree.addValueChangeListener(new Property.ValueChangeListener() {
             @Override
-            public void valueChange(ValueChangeEvent event) {
+            public void valueChange(Property.ValueChangeEvent event) {
                 Object value = event.getProperty().getValue();
                 if (value instanceof Class) {
                     updateTabSheet((Class) value);
@@ -282,9 +276,9 @@ public class ChartsDemoUI extends UI {
         selectItem();
 
         Page.getCurrent().addUriFragmentChangedListener(
-                new UriFragmentChangedListener() {
+                new Page.UriFragmentChangedListener() {
                     @Override
-                    public void uriFragmentChanged(UriFragmentChangedEvent event) {
+                    public void uriFragmentChanged(Page.UriFragmentChangedEvent event) {
                         selectItem();
                     }
                 });

@@ -88,7 +88,7 @@ public class ChartDesignWriterTest {
         ChartDesignWriter.writeConfigurationToElement(configuration, parent);
 
         assertEquals(
-                "<plot-options><line><data-labels enabled=\"true\"></data-labels></line></plot-options>",
+                "<plot-options><line><data-labels enabled></data-labels></line></plot-options>",
                 removeWhitespacesBetweenTags(parent.child(0).toString()));
     }
 

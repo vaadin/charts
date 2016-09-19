@@ -9,8 +9,6 @@ import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Component;
@@ -75,13 +73,10 @@ public class BasicLineWithTickCount extends AbstractVaadinChartExample {
                     }
                 }));
 
-        slider.addValueChangeListener(new ValueChangeListener() {
-            @Override
-            public void valueChange(ValueChangeEvent event) {
+        slider.addValueChangeListener(event -> {
                 double newValue = slider.getValue();
                 yAxis.setTickAmount(newValue);
                 chart.drawChart();
-            }
         });
 
         return layout;

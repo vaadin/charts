@@ -11,8 +11,8 @@ import com.vaadin.addon.charts.model.PlotOptionsColumnrange;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
-import com.vaadin.data.Item;
-import com.vaadin.data.util.IndexedContainer;
+import com.vaadin.v7.data.Item;
+import com.vaadin.v7.data.util.IndexedContainer;
 import com.vaadin.ui.Component;
 
 @SkipFromDemo

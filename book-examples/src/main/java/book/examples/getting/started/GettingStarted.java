@@ -1,5 +1,8 @@
 package book.examples.getting.started;
 
+import java.util.Collection;
+import java.util.Date;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.model.AxisType;
 import com.vaadin.addon.charts.model.ChartType;
@@ -11,14 +14,11 @@ import com.vaadin.addon.charts.model.PlotOptionsColumn;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
-import com.vaadin.data.Container;
-import com.vaadin.data.Item;
-import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.VerticalLayout;
-
-import java.util.Collection;
-import java.util.Date;
+import com.vaadin.v7.data.Container;
+import com.vaadin.v7.data.Item;
+import com.vaadin.v7.data.util.BeanItemContainer;
 
 public class GettingStarted {
 

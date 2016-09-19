@@ -16,9 +16,9 @@ import com.vaadin.addon.charts.model.RangeSeries;
 import com.vaadin.addon.charts.model.Series;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
-import com.vaadin.data.util.BeanItemContainer;
+import com.vaadin.v7.data.util.BeanItemContainer;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Table;
+import com.vaadin.v7.ui.Table;
 
 public class ChartData {
     public void listSeriesSnippet1(Configuration conf) {

@@ -12,8 +12,6 @@ import com.vaadin.addon.charts.model.Marker;
 import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.charts.themes.ValoLightTheme;
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.ColorPicker;
@@ -90,12 +88,9 @@ public class ModifyOnePoint extends AbstractVaadinChartExample {
         sliderX.setResolution(1);
         sliderX.setValue(4d);
         sliderX.setCaption("X");
-        sliderX.addValueChangeListener(new ValueChangeListener() {
-            @Override
-            public void valueChange(ValueChangeEvent event) {
+        sliderX.addValueChangeListener(event -> {
                 dataSeriesItem.setX(sliderX.getValue());
                 series.update(dataSeriesItem);
-            }
         });
         sliderX.setWidth("200px");
         sliderX.setImmediate(true);
@@ -107,12 +102,9 @@ public class ModifyOnePoint extends AbstractVaadinChartExample {
         sliderY.setResolution(1);
         sliderY.setValue(4d);
         sliderY.setCaption("Y");
-        sliderY.addValueChangeListener(new ValueChangeListener() {
-            @Override
-            public void valueChange(ValueChangeEvent event) {
+        sliderY.addValueChangeListener(event -> {
                 dataSeriesItem.setY(sliderY.getValue());
                 updateItemInChart();
-            }
         });
         sliderY.setWidth("200px");
         sliderY.setImmediate(true);

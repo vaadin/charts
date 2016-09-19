@@ -13,8 +13,8 @@ import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.YAxis;
-import com.vaadin.data.Property;
-import com.vaadin.ui.CheckBox;
+import com.vaadin.v7.data.Property;
+import com.vaadin.v7.ui.CheckBox;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.VerticalLayout;
 
