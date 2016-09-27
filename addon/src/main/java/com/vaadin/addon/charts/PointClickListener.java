@@ -22,6 +22,7 @@ import java.io.Serializable;
 /**
  * Listener interface for click events on the data points of the chart
  */
+@FunctionalInterface
 public interface PointClickListener extends Serializable {
     /**
      * Called when a data point is clicked by the user.

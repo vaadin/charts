@@ -22,6 +22,7 @@ import java.io.Serializable;
 /**
  * Listener interface for X axes extremes changed events
  */
+@FunctionalInterface
 public interface XAxesExtremesChangeListener extends Serializable {
 
     /**

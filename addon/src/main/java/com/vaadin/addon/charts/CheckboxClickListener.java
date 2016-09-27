@@ -22,6 +22,7 @@ import java.io.Serializable;
 /**
  * Listener interface for checkbox click events
  */
+@FunctionalInterface
 public interface CheckboxClickListener extends Serializable {
 
     /**

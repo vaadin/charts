@@ -22,6 +22,7 @@ import java.io.Serializable;
 /**
  * Listener interface for drillup events on the chart
  */
+@FunctionalInterface
 public interface ChartDrillupListener extends Serializable {
 
     /**

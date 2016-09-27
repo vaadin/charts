@@ -22,6 +22,7 @@ import java.io.Serializable;
 /**
  * Listener interface for series show events
  */
+@FunctionalInterface
 public interface SeriesShowListener extends Serializable {
 
     /**

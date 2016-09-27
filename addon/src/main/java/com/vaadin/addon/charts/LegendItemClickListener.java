@@ -22,6 +22,7 @@ import java.io.Serializable;
 /**
  * Listener interface for legend item click events
  */
+@FunctionalInterface
 public interface LegendItemClickListener extends Serializable {
 
     /**

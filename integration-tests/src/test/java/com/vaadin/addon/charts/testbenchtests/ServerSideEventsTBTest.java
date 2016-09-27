@@ -1,11 +1,13 @@
 package com.vaadin.addon.charts.testbenchtests;
 
 import java.lang.reflect.Type;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -34,6 +36,7 @@ import com.vaadin.testbench.parallel.Browser;
 import com.vaadin.ui.Component;
 
 public class ServerSideEventsTBTest extends AbstractParallelTest {
+
 
     @Override
     protected void configBrowser() {
@@ -214,8 +217,8 @@ public class ServerSideEventsTBTest extends AbstractParallelTest {
         openTestUI();
         WebElement chart = driver.findElement(By.className("vaadin-chart"));
 
-        new Actions(driver).moveToElement(chart, 200, 100).click()
-                .clickAndHold().moveByOffset(0, 50).release().build().perform();
+        new Actions(driver).moveToElement(chart, 150, 120).click()
+                .clickAndHold().moveByOffset(80, 40).release().build().perform();
 
         // There are two y axis. One event for each should be fired.
         assertLastEventIsType(YAxesExtremesChangeEvent.class);
@@ -331,5 +334,14 @@ public class ServerSideEventsTBTest extends AbstractParallelTest {
                 JsonDeserializationContext jdc) throws JsonParseException {
             return new Gson().fromJson(series, DataSeries.class);
         }
+    }
+
+    @Override
+    public List<DesiredCapabilities> getBrowsersToTest() {
+        List<DesiredCapabilities> result = super.getBrowsersToTest();
+        result.remove(Browser.IE8.getDesiredCapabilities());
+        result.remove(Browser.IE9.getDesiredCapabilities());
+        result.remove(Browser.IE10.getDesiredCapabilities());
+        return result;
     }
 }

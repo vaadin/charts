@@ -22,6 +22,7 @@ import java.io.Serializable;
 /**
  * Listener interface for select events on the data points of the chart
  */
+@FunctionalInterface
 public interface PointSelectListener extends Serializable {
     /**
      * Called when a data point is selected

@@ -22,6 +22,7 @@ import java.io.Serializable;
 /**
  * Listener interface for unselect events on the data points of the chart
  */
+@FunctionalInterface
 public interface PointUnselectListener extends Serializable {
 
     /**

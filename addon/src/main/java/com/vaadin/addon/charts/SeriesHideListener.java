@@ -22,6 +22,7 @@ import java.io.Serializable;
 /**
  * Listener interface for series hide events
  */
+@FunctionalInterface
 public interface SeriesHideListener extends Serializable {
 
     /**

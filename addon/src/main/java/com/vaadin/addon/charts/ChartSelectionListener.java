@@ -22,6 +22,7 @@ import java.io.Serializable;
 /**
  * Listener interface for chart selection events
  */
+@FunctionalInterface
 public interface ChartSelectionListener extends Serializable {
 
     /**

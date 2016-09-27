@@ -22,6 +22,7 @@ import java.io.Serializable;
 /**
  * Listener interface for Y axes extremes changed events
  */
+@FunctionalInterface
 public interface YAxesExtremesChangeListener extends Serializable {
 
     /**
