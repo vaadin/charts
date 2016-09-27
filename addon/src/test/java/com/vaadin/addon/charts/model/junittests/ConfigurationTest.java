@@ -1,10 +1,8 @@
 package com.vaadin.addon.charts.model.junittests;
 
 import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-
+import static org.junit.Assert.*;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.junit.Assert;
@@ -14,16 +12,15 @@ import org.junit.Test;
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.model.AbstractPlotOptions;
 import com.vaadin.addon.charts.model.AxisTitle;
+import com.vaadin.addon.charts.model.ChartDataSeries;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
-import com.vaadin.addon.charts.model.ContainerDataSeries;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
-import com.vaadin.v7.data.Container;
-import com.vaadin.v7.data.Item;
-import com.vaadin.v7.data.util.IndexedContainer;
+import com.vaadin.server.data.DataSource;
+import com.vaadin.server.data.ListDataSource;
 
 public class ConfigurationTest {
 
@@ -133,47 +130,47 @@ public class ConfigurationTest {
         yAxis.setTitle(title);
         conf.addyAxis(yAxis);
 
-        Container container = createIndexedContainer();
+        ChartDataSeries<Pair> ds = new ChartDataSeries(createDataSource());
 
-        ContainerDataSeries containerDataSeries1 = new ContainerDataSeries(
-                container);
-        containerDataSeries1.setName("Test Series1");
-        containerDataSeries1.setYPropertyId("number1");
-        containerDataSeries1.setNamePropertyId("name");
+
+        ds.setName("Test Series1");
+        ds.setYValueProvider(Pair::getValue);
+        ds.setNameProvider(Pair::getName);
+
         // if a 'plotOptionsArea' is not set, the name of this series will not
         // be shown in legend
         // containerDataSeries1.setPlotOptions(new PlotOptionsArea());
 
-        conf.setSeries(containerDataSeries1);
+        conf.setSeries(ds);
 
         Assert.assertTrue(toJSON(conf).contains("Test Series1"));
     }
 
-    protected IndexedContainer createIndexedContainer() {
-        IndexedContainer indexedContainer = new IndexedContainer();
-        indexedContainer.addContainerProperty("name", String.class, null);
-        indexedContainer.addContainerProperty("number1", Integer.class, null);
+    private class Pair {
+        private String name;
+        private Integer value;
 
-        Item item1 = indexedContainer.addItem(1);
-        item1.getItemProperty("name").setValue("A");
-        item1.getItemProperty("number1").setValue(10);
+        public Pair(String name, Integer value) {
+            this.name = name;
+            this.value = value;
+        }
 
-        Item item2 = indexedContainer.addItem(2);
-        item2.getItemProperty("name").setValue("B");
-        item2.getItemProperty("number1").setValue(11);
+        public String getName() {
+            return name;
+        }
 
-        Item item3 = indexedContainer.addItem(3);
-        item3.getItemProperty("name").setValue("C");
-        item3.getItemProperty("number1").setValue(0);
+        public Integer getValue() {
+            return value;
+        }
+    }
+    private DataSource<Pair> createDataSource() {
+        Collection<Pair> col =new ArrayList<>();
+        col.add(new Pair("A",10));
+        col.add(new Pair("B",11));
+        col.add(new Pair("C",10));
+        col.add(new Pair("D",15));
+        col.add(new Pair("E",9));
 
-        Item item4 = indexedContainer.addItem(4);
-        item4.getItemProperty("name").setValue("D");
-        item4.getItemProperty("number1").setValue(15);
-
-        Item item5 = indexedContainer.addItem(5);
-        item5.getItemProperty("name").setValue("E");
-        item5.getItemProperty("number1").setValue(9);
-
-        return indexedContainer;
+        return new ListDataSource<>(col);
     }
 }
