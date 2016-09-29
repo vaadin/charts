@@ -45,7 +45,7 @@ import com.vaadin.addon.charts.model.ZoomType;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.v7.data.Property;
 import com.vaadin.ui.Button;
-import com.vaadin.v7.ui.CheckBox;
+import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
@@ -350,15 +350,12 @@ public class ServerSideEvents extends AbstractVaadinChartExample {
             final ListenerToggle listenerToggle) {
         final CheckBox checkBox = new CheckBox(caption);
         checkBox.setId(id);
-        checkBox.addValueChangeListener(new Property.ValueChangeListener() {
-            @Override
-            public void valueChange(Property.ValueChangeEvent event) {
+        checkBox.addValueChangeListener(e-> {
                 if (checkBox.getValue()) {
                     listenerToggle.add();
                 } else {
                     listenerToggle.remove();
                 }
-            }
         });
         checkBox.setValue(true);
         eventListeners.addComponent(checkBox);
@@ -373,12 +370,9 @@ public class ServerSideEvents extends AbstractVaadinChartExample {
     private Layout createControls() {
         visibilityToggling = new CheckBox("Disable series visibility toggling");
         visibilityToggling
-                .addValueChangeListener(new Property.ValueChangeListener() {
-                    @Override
-                    public void valueChange(Property.ValueChangeEvent event) {
+                .addValueChangeListener(e-> {
                         chart.setSeriesVisibilityTogglingDisabled(visibilityToggling
                                 .getValue());
-                    }
                 });
 
         final Button firstSeriesVisible = new Button("Hide first series");

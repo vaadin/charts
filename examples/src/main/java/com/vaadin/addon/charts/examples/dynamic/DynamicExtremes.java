@@ -13,8 +13,7 @@ import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.YAxis;
-import com.vaadin.v7.data.Property;
-import com.vaadin.v7.ui.CheckBox;
+import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.VerticalLayout;
 
@@ -85,20 +84,14 @@ public class DynamicExtremes extends AbstractVaadinChartExample {
 
         final CheckBox extremes = new CheckBox("Switch extremes");
         extremes.setImmediate(true);
-        extremes.addValueChangeListener(new Property.ValueChangeListener() {
-
-            private static final long serialVersionUID = 20141118;
-
-            @Override
-            public void valueChange(Property.ValueChangeEvent event) {
-                if ((Boolean) event.getProperty().getValue()) {
+        extremes.addValueChangeListener(e->{
+                if (e.getValue()) {
                     chart.getConfiguration().getyAxes().getAxis(0)
                             .setExtremes(10, 15);
                 } else {
                     chart.getConfiguration().getyAxes().getAxis(0)
                             .setExtremes(-10, 30);
                 }
-            }
         });
 
         VerticalLayout layout = new VerticalLayout(chart, extremes);
