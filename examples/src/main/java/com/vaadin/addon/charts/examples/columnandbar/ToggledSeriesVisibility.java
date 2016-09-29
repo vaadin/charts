@@ -1,6 +1,5 @@
 package com.vaadin.addon.charts.examples.columnandbar;
 
-import java.util.Collection;
 import java.util.List;
 
 import com.vaadin.addon.charts.Chart;
@@ -20,10 +19,8 @@ import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
-import com.vaadin.v7.data.Property.ValueChangeEvent;
-import com.vaadin.v7.data.Property.ValueChangeListener;
+import com.vaadin.ui.CheckBoxGroup;
 import com.vaadin.ui.Component;
-import com.vaadin.v7.ui.OptionGroup;
 
 @SuppressWarnings("serial")
 public class ToggledSeriesVisibility extends AbstractVaadinChartExample {
@@ -37,7 +34,7 @@ public class ToggledSeriesVisibility extends AbstractVaadinChartExample {
     private final ListSeries tokyo = new ListSeries("Tokyo", 49.9, 71.5, 106.4,
             129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4);
     private Chart chart;
-    private OptionGroup optionGroup;
+    private CheckBoxGroup<Series> checkBoxGroup;
 
     @Override
     public String getDescription() {
@@ -107,9 +104,9 @@ public class ToggledSeriesVisibility extends AbstractVaadinChartExample {
                  * in the chart as well.
                  */
                 if (series.isVisible()) {
-                    optionGroup.unselect(series);
+                    checkBoxGroup.deselect(series);
                 } else {
-                    optionGroup.select(series);
+                    checkBoxGroup.select(series);
                 }
             }
         });
@@ -121,27 +118,19 @@ public class ToggledSeriesVisibility extends AbstractVaadinChartExample {
     @Override
     protected void setup() {
         super.setup();
-        optionGroup = new OptionGroup();
-        optionGroup.setId("vaadin-optiongroup");
-        optionGroup.setImmediate(true);
-        optionGroup.setMultiSelect(true);
-
+        checkBoxGroup = new CheckBoxGroup();
+        checkBoxGroup.setId("vaadin-optiongroup");
+        checkBoxGroup.setImmediate(true);
         final List<Series> series = chart.getConfiguration().getSeries();
-        for (Series series2 : series) {
-            optionGroup.addItem(series2);
-            optionGroup.setItemCaption(series2, series2.getName());
+        checkBoxGroup.setItems(series);
+        checkBoxGroup.setItemCaptionProvider(Series::getName);
+        for (Series s : series) {
+            checkBoxGroup.getSelectionModel().select(s);
         }
-        optionGroup.setValue(optionGroup.getItemIds());
-        addComponentAsFirst(optionGroup);
-        optionGroup.addValueChangeListener(new ValueChangeListener() {
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                @SuppressWarnings("unchecked")
-                Collection<ListSeries> value = (Collection<ListSeries>) event
-                        .getProperty().getValue();
-                for (Series s : series) {
-                    ((ListSeries) s).setVisible(value.contains(s));
-                }
+        addComponentAsFirst(checkBoxGroup);
+        checkBoxGroup.addSelectionListener(e -> {
+            for (Series s : series) {
+                ((ListSeries) s).setVisible((checkBoxGroup.getSelectedItems()).contains(s));
             }
         });
     }

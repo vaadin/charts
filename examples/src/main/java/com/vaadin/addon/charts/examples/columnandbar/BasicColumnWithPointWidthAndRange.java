@@ -6,14 +6,10 @@ import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
-import com.vaadin.v7.data.Property.ValueChangeEvent;
-import com.vaadin.v7.data.Property.ValueChangeListener;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.v7.ui.NativeSelect;
+import com.vaadin.ui.NativeSelect;
 import com.vaadin.ui.Slider;
 
 @SuppressWarnings("serial")
@@ -41,7 +37,7 @@ public class BasicColumnWithPointWidthAndRange extends
         conf.setPlotOptions(plotOptions);
 
         DataSeries dataSeries = new DataSeries();
-        dataSeries.addData(new Number[][] { { 0, 1 }, { 2, 2 }, { 10, 3 } });
+        dataSeries.addData(new Number[][]{{0, 1}, {2, 2}, {10, 3}});
         conf.setSeries(dataSeries);
 
         chart.drawChart(conf);
@@ -59,40 +55,32 @@ public class BasicColumnWithPointWidthAndRange extends
         slider.setWidth("200px");
         slider.setValue(100d);
 
-        final NativeSelect option = new NativeSelect();
+        final NativeSelect<String> option = new NativeSelect();
         option.setCaption("Option");
-        option.setNullSelectionAllowed(true);
-        option.addItem("pointWidth");
-        option.addItem("pointRange");
-        option.setValue("pointWidth");
+        option.setItems("", "pointWidth", "pointRange");
+        option.setSelectedItem("pointWidth");
         option.setImmediate(true);
-        option.addValueChangeListener(new ValueChangeListener() {
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                slider.setEnabled(event.getProperty().getValue() != null);
-            }
+        option.addSelectionListener(sc -> {
+            slider.setEnabled(!sc.getSelectedItem().get().equals(""));
         });
 
         horizontalLayout.addComponent(option);
         horizontalLayout.addComponent(slider);
         Button button = new Button("Apply");
-        button.addClickListener(new ClickListener() {
-            @Override
-            public void buttonClick(ClickEvent event) {
-                if (slider.isEnabled()) {
-                    if (option.getValue().equals("pointWidth")) {
-                        plotOptions.setPointWidth(slider.getValue());
-                        plotOptions.setPointRange(null);
-                    } else {
-                        plotOptions.setPointRange(slider.getValue());
-                        plotOptions.setPointWidth(null);
-                    }
-                } else {
+        button.addClickListener(e -> {
+            if (slider.isEnabled()) {
+                if (option.getSelectedItem().get().equals("pointWidth")) {
+                    plotOptions.setPointWidth(slider.getValue());
                     plotOptions.setPointRange(null);
+                } else {
+                    plotOptions.setPointRange(slider.getValue());
                     plotOptions.setPointWidth(null);
                 }
-                chart.drawChart();
+            } else {
+                plotOptions.setPointRange(null);
+                plotOptions.setPointWidth(null);
             }
+            chart.drawChart();
         });
         horizontalLayout.addComponent(button);
 
