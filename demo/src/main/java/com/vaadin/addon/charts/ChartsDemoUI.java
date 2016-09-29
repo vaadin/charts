@@ -36,6 +36,7 @@ import com.vaadin.server.FontAwesome;
 import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.shared.ui.label.ContentMode;
+import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.HorizontalSplitPanel;
@@ -43,15 +44,13 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.TabSheet;
+import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
 import com.vaadin.v7.data.Item;
 import com.vaadin.v7.data.Property;
 import com.vaadin.v7.data.util.HierarchicalContainer;
-import com.vaadin.v7.event.FieldEvents;
-import com.vaadin.v7.ui.ComboBox;
-import com.vaadin.v7.ui.TextField;
 import com.vaadin.v7.ui.Tree;
 
 /**
@@ -64,6 +63,7 @@ import com.vaadin.v7.ui.Tree;
 public class ChartsDemoUI extends UI {
 
     static final Properties prop = new Properties();
+
     static {
         try {
             // load a properties file
@@ -80,12 +80,12 @@ public class ChartsDemoUI extends UI {
 
     private static Map<String, List<Class<? extends AbstractVaadinChartExample>>> tests;
 
-    private static final String[] GROUP_ORDER = { "columnandbar", "pie",
+    private static final String[] GROUP_ORDER = {"columnandbar", "pie",
             "area", "lineandscatter", "dynamic", "combinations", "other",
-            "container", "timeline", "threed", "declarative" };
-    private static final String[] GROUP_CAPTIONS = { "Column and Bar", "Pie",
+            "container", "timeline", "threed", "declarative"};
+    private static final String[] GROUP_CAPTIONS = {"Column and Bar", "Pie",
             "Area", "Line and Scatter", "Dynamic", "Combinations", "Other",
-            "Container", "Timeline", "3D", "Declarative" };
+            "Container", "Timeline", "3D", "Declarative"};
 
     static String splitCamelCase(String s) {
         String replaced = s.replaceAll(String.format("%s|%s|%s",
@@ -143,7 +143,7 @@ public class ChartsDemoUI extends UI {
     }
 
     private Tree tree;
-    private ComboBox themeSelector;
+    private ComboBox<com.vaadin.addon.charts.model.style.Theme> themeSelector;
     private GoogleAnalyticsTracker tracker;
     private TabSheet tabSheet;
 
@@ -187,38 +187,28 @@ public class ChartsDemoUI extends UI {
         themeSelector.addStyleName("theme-selector");
         themeSelector.addStyleName(ValoTheme.COMBOBOX_SMALL);
         themeSelector.setTextInputAllowed(false);
-        themeSelector.setNullSelectionAllowed(false);
-        themeSelector.addItem(ValoLightTheme.class);
-        themeSelector.setItemCaption(ValoLightTheme.class, "Valo Light");
-        themeSelector.addItem(ValoDarkTheme.class);
-        themeSelector.setItemCaption(ValoDarkTheme.class, "Valo Dark");
-        themeSelector.addItem(VaadinTheme.class);
-        themeSelector.setItemCaption(VaadinTheme.class, "Vaadin");
-        themeSelector.addItem(HighChartsDefaultTheme.class);
-        themeSelector
-                .setItemCaption(HighChartsDefaultTheme.class, "Highcharts");
-        themeSelector.addItem(GridTheme.class);
-        themeSelector.setItemCaption(GridTheme.class, "Grid");
-        themeSelector.addItem(GrayTheme.class);
-        themeSelector.setItemCaption(GrayTheme.class, "Gray");
-        themeSelector.addItem(SkiesTheme.class);
-        themeSelector.setItemCaption(SkiesTheme.class, "Skies");
         themeSelector.setImmediate(true);
-        themeSelector.select(ValoLightTheme.class);
-        themeSelector.addValueChangeListener(new Property.ValueChangeListener() {
-            @Override
-            public void valueChange(Property.ValueChangeEvent event) {
-                @SuppressWarnings("unchecked")
-                Class<? extends Theme> value = (Class<? extends Theme>) event
-                        .getProperty().getValue();
-                try {
-                    ChartOptions.get().setTheme(
-                            (com.vaadin.addon.charts.model.style.Theme) value
-                                    .newInstance());
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-            }
+
+        com.vaadin.addon.charts.model.style.Theme defaultTheme = new ValoLightTheme();
+        Map<com.vaadin.addon.charts.model.style.Theme, String> mapThemes = new HashMap<>();
+        com.vaadin.addon.charts.model.style.Theme[] themes = new com.vaadin.addon.charts.model.style.Theme[]{
+                defaultTheme, new ValoDarkTheme(), new VaadinTheme(), new HighChartsDefaultTheme(), new GridTheme(),
+                new GrayTheme(), new SkiesTheme()
+        };
+        mapThemes.put(themes[0], "Valo Light");
+        mapThemes.put(themes[1], "Valo Dark");
+        mapThemes.put(themes[2], "Vaadin");
+        mapThemes.put(themes[3], "HighCharts");
+        mapThemes.put(themes[4], "Grid");
+        mapThemes.put(themes[5], "Gray");
+        mapThemes.put(themes[6], "Skies");
+
+        themeSelector.setEmptySelectionAllowed(false);
+        themeSelector.setItems(themes);
+        themeSelector.select(defaultTheme);
+        themeSelector.setItemCaptionProvider(mapThemes::get);
+        themeSelector.addSelectionListener(e -> {
+            ChartOptions.get().setTheme(e.getValue());
         });
 
         final HierarchicalContainer container = getContainer();
@@ -232,23 +222,20 @@ public class ChartsDemoUI extends UI {
         logo.addStyleName("logo");
 
         TextField filterField = new TextField();
-        filterField.setInputPrompt("Filter examples");
+        filterField.setPlaceholder("Filter examples");
         filterField.setIcon(FontAwesome.SEARCH);
         filterField.addStyleName("filter");
         filterField.setWidth("100%");
-        filterField.addTextChangeListener(new FieldEvents.TextChangeListener() {
 
-            @Override
-            public void textChange(FieldEvents.TextChangeEvent event) {
-                container.removeAllContainerFilters();
-                String text = event.getText();
-                if (text != null && !text.isEmpty()) {
-                    expandForFiltering();
-                    container.addContainerFilter("searchName", text, true,
-                            false);
-                } else {
-                    restoreExpandedStates();
-                }
+        filterField.addValueChangeListener(e -> {
+            container.removeAllContainerFilters();
+            String text = e.getValue();
+            if (text != null && !text.isEmpty()) {
+                expandForFiltering();
+                container.addContainerFilter("searchName", text, true,
+                        false);
+            } else {
+                restoreExpandedStates();
             }
         });
 
@@ -298,10 +285,10 @@ public class ChartsDemoUI extends UI {
 
     /**
      * Updates main tabSheet
-     * 
+     * <p>
      * Adds one tab with one example instance, one with the java source and
      * another one with html source in case of declarative example
-     * 
+     *
      * @param chartExample
      */
     private void updateTabSheet(Class chartExample) {
@@ -330,7 +317,7 @@ public class ChartsDemoUI extends UI {
 
     /**
      * Add a new tab to main tabsheet with the specified resource and name
-     * 
+     *
      * @param clazz
      * @param resourceName
      * @param tabName
@@ -351,7 +338,7 @@ public class ChartsDemoUI extends UI {
 
     /**
      * Creates a Panel with the code input pretty printed in a Label
-     * 
+     *
      * @param code
      * @return
      */
