@@ -14,10 +14,8 @@ import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.YAxis;
-import com.vaadin.v7.data.Property.ValueChangeEvent;
-import com.vaadin.v7.data.Property.ValueChangeListener;
 import com.vaadin.ui.Component;
-import com.vaadin.v7.ui.NativeSelect;
+import com.vaadin.ui.NativeSelect;
 
 public class LineWithDashSelector extends AbstractVaadinChartExample {
 
@@ -97,20 +95,13 @@ public class LineWithDashSelector extends AbstractVaadinChartExample {
     @Override
     protected void setup() {
         super.setup();
-        NativeSelect nativeSelect = new NativeSelect();
-        for (DashStyle s : DashStyle.values()) {
-            nativeSelect.addItem(s);
-        }
-        nativeSelect.setValue(DashStyle.DOT);
+        NativeSelect<DashStyle> nativeSelect = new NativeSelect();
+        nativeSelect.setItems(DashStyle.values());
+        nativeSelect.select(DashStyle.DOT);
 
-        nativeSelect.addValueChangeListener(new ValueChangeListener() {
-
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                plotOptions.setDashStyle((DashStyle) event.getProperty()
-                        .getValue());
+        nativeSelect.addSelectionListener(e-> {
+                plotOptions.setDashStyle(e.getSelectedItem().get());
                 chart.drawChart();
-            }
         });
 
         nativeSelect.setImmediate(true);

@@ -11,19 +11,17 @@ import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
-import com.vaadin.v7.data.Property.ValueChangeEvent;
-import com.vaadin.v7.data.Property.ValueChangeListener;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
-import com.vaadin.v7.ui.TextField;
+import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
 public class LibraryData extends AbstractVaadinChartExample implements
-        ClickListener, ValueChangeListener {
+        ClickListener {
 
     private VerticalLayout content;
     private Helmet.Result result;
@@ -36,7 +34,16 @@ public class LibraryData extends AbstractVaadinChartExample implements
 
     @Override
     protected void setup() {
-        searchField.addValueChangeListener(this);
+        searchField.addValueChangeListener(e->{
+                    try {
+                        result = Helmet.search(searchField.getValue());
+                        updateChart();
+                        updateSearchNavi();
+                    } catch (IOException exc) {
+                        // TODO Auto-generated catch block
+                        exc.printStackTrace();
+                    }
+                });
         searchField.setValue("orwell");
         searchField.setImmediate(true);
 
@@ -112,18 +119,6 @@ public class LibraryData extends AbstractVaadinChartExample implements
         }
         updateChart();
         updateSearchNavi();
-    }
-
-    @Override
-    public void valueChange(ValueChangeEvent event) {
-        try {
-            result = Helmet.search(searchField.getValue());
-            updateChart();
-            updateSearchNavi();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
     }
 
     private void updateSearchNavi() {
