@@ -15,7 +15,6 @@ import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.server.data.DataSource;
 import com.vaadin.server.data.ListDataSource;
 import com.vaadin.ui.Component;
-import com.vaadin.v7.data.util.BeanItemContainer;
 
 @SkipFromDemo
 public class BeansFromContainer extends AbstractVaadinChartExample {
@@ -27,9 +26,6 @@ public class BeansFromContainer extends AbstractVaadinChartExample {
 
     @Override
     protected Component getChart() {
-        // Set up container & data
-        BeanItemContainer<ClaimsReportItem> container = new BeanItemContainer<ClaimsReportItem>(
-                ClaimsReportItem.class);
         DataSource<ClaimsReportItem> ds = new ListDataSource<>(getMockData());
 
 
