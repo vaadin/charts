@@ -86,7 +86,7 @@
 							<Implementation-Title>Vaadin Charts</Implementation-Title>
 
 							<!-- Comma-separated list of widgetsets in the package -->
-							<Vaadin-Widgetsets>com.vaadin.addon.charts.Widgetset</Vaadin-Widgetsets>
+							<Vaadin-Widgetsets>com.vaadin.v7.addon.charts.Widgetset</Vaadin-Widgetsets>
 						</manifestEntries>
 					</archive>
 					<excludes>

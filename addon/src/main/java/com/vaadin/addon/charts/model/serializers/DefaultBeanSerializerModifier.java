@@ -25,7 +25,6 @@ import com.fasterxml.jackson.databind.ser.std.BeanSerializerBase;
 import com.vaadin.addon.charts.model.AbstractSeries;
 import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.ChartDataSeries;
-import com.vaadin.addon.charts.model.ContainerDataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.LegendTitle;
 import com.vaadin.addon.charts.model.Title;
@@ -44,11 +43,7 @@ public class DefaultBeanSerializerModifier extends BeanSerializerModifier {
                     (BeanSerializerBase) serializer,
                     new ChartDataSeriesBeanSerializer());
         }
-        else if (ContainerDataSeries.class.isAssignableFrom(beanDesc.getBeanClass())) {
-            return new BeanSerializerDelegator<ContainerDataSeries>(
-                    (BeanSerializerBase) serializer,
-                    new ContainerDataSeriesBeanSerializer());
-        } else if (DataSeriesItem.class.isAssignableFrom(beanDesc
+         else if (DataSeriesItem.class.isAssignableFrom(beanDesc
                 .getBeanClass())) {
             return new BeanSerializerDelegator<DataSeriesItem>(
                     (BeanSerializerBase) serializer,

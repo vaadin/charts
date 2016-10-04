@@ -1,15 +1,15 @@
 package com.vaadin.addon.charts.examples.container;
 
-import com.vaadin.addon.charts.Chart;
+import com.vaadin.v7.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.ChartType;
-import com.vaadin.addon.charts.model.Configuration;
-import com.vaadin.addon.charts.model.ContainerDataSeries;
+import com.vaadin.v7.addon.charts.model.Configuration;
+import com.vaadin.v7.addon.charts.model.ContainerDataSeries;
 import com.vaadin.addon.charts.model.Hover;
 import com.vaadin.addon.charts.model.Marker;
 import com.vaadin.addon.charts.model.PlotOptionsArea;
-import com.vaadin.addon.charts.model.Series;
+import com.vaadin.v7.addon.charts.model.Series;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;

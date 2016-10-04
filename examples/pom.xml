@@ -22,6 +22,11 @@
             <artifactId>vaadin-charts</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.vaadin.addon</groupId>
+            <artifactId>vaadin-charts-compatibility</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
         <!-- Vaadin dependencies -->
 

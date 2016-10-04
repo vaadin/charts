@@ -24,7 +24,6 @@
 	<!-- WS Compiler: manually edited -->
 	<!-- USE THIS IF YOU DON'T WANT TO USE THE HOSTED OL API -->
 	<inherits name="com.vaadin.DefaultWidgetSet" />
-	<inherits name="com.vaadin.v7.Vaadin7WidgetSet" />
 	<inherits name="com.google.gwt.json.JSON" />
 
 </module>
