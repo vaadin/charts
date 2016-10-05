@@ -33,7 +33,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.organization>Vaadin Ltd</project.organization>
-        <vaadin.version>8.0.0.alpha2</vaadin.version>
+        <vaadin.version>8.0.0.alpha3</vaadin.version>
         <jetty.version>9.3.9.v20160517</jetty.version>
     </properties>
 

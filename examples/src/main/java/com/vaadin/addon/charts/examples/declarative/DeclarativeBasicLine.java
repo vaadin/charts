@@ -1,9 +1,9 @@
 package com.vaadin.addon.charts.examples.declarative;
 
-import com.vaadin.addon.charts.Chart;
-import com.vaadin.addon.charts.declarative.ChartComponentMapper;
+import com.vaadin.v7.addon.charts.Chart;
+import com.vaadin.v7.addon.charts.declarative.ChartComponentMapper;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.model.ListSeries;
+import com.vaadin.v7.addon.charts.model.ListSeries;
 import com.vaadin.annotations.DesignRoot;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.declarative.Design;
