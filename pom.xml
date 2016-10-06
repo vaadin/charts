@@ -4,7 +4,7 @@
 
     <groupId>com.vaadin.addon</groupId>
     <artifactId>vaadin-charts-parent</artifactId>
-    <version>3.0-SNAPSHOT</version>
+    <version>4.0-SNAPSHOT</version>
 
     <packaging>pom</packaging>
 
