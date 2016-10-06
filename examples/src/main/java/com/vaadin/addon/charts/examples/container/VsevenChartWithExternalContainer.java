@@ -1,18 +1,18 @@
 package com.vaadin.addon.charts.examples.container;
 
+import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.ExampleUtil;
+import com.vaadin.addon.charts.model.AbstractSeries;
 import com.vaadin.addon.charts.model.ChartType;
+import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
 import com.vaadin.addon.charts.model.PlotOptionsPie;
+import com.vaadin.addon.charts.model.Series;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.v7.addon.charts.Chart;
-import com.vaadin.v7.addon.charts.model.AbstractSeries;
-import com.vaadin.v7.addon.charts.model.Configuration;
 import com.vaadin.v7.addon.charts.model.ContainerDataSeries;
-import com.vaadin.v7.addon.charts.model.Series;
 import com.vaadin.v7.data.Container;
 import com.vaadin.v7.ui.AbstractSelect.ItemCaptionMode;
 import com.vaadin.v7.ui.Table;

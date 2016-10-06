@@ -21,6 +21,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.vaadin.addon.charts.model.AbstractSeries;
+import com.vaadin.addon.charts.util.ChartSerialization;
+import com.vaadin.v7.addon.charts.model.serializers.CompatibilityBeanSerializerModifier;
 import com.vaadin.v7.data.Container;
 
 /**
@@ -43,6 +46,12 @@ import com.vaadin.v7.data.Container;
  * </ul>
  */
 public class ContainerDataSeries extends AbstractSeries {
+
+    static {
+        ChartSerialization.setObjectMapperInstance(ChartSerialization
+                .createObjectMapper(new CompatibilityBeanSerializerModifier())
+                .writer());
+    }
 
     @JsonIgnore
     private final Container vaadinContainer;

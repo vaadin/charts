@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.ser.BeanSerializerModifier;
 import com.vaadin.addon.charts.ChartOptions;
 import com.vaadin.addon.charts.model.AbstractConfigurationObject;
 import com.vaadin.addon.charts.model.serializers.AxisListSerializer;
@@ -62,6 +63,12 @@ public class ChartSerialization implements Serializable {
      * Create the default {@link ObjectMapper} used for serialization.
      */
     public static ObjectMapper createObjectMapper() {
+        // serializer modifier used when basic serializer isn't enough
+        return createObjectMapper(new DefaultBeanSerializerModifier());
+    }
+
+    public static ObjectMapper createObjectMapper(
+            BeanSerializerModifier modifier) {
         ObjectMapper mapper = new ObjectMapper()
                 .setSerializationInclusion(JsonInclude.Include.NON_NULL)
                 .setVisibility(PropertyAccessor.ALL, Visibility.NONE)
@@ -78,7 +85,7 @@ public class ChartSerialization implements Serializable {
 
         // serializer modifier used when basic serializer isn't enough
         return mapper.setSerializerFactory(mapper.getSerializerFactory()
-                .withSerializerModifier(new DefaultBeanSerializerModifier()));
+                .withSerializerModifier(modifier));
     }
 
     /**
