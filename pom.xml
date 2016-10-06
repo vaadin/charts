@@ -21,7 +21,7 @@
         <module>integration-tests</module>
         <module>demo</module>
         <module>directory</module>
-        <module>book-examples</module>
+        <!--<module>book-examples</module>-->
     </modules>
 
     <organization>

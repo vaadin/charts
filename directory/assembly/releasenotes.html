@@ -499,43 +499,24 @@
     <p>Vaadin Charts is an add-on for Vaadin Framework. It provides advanced charting functionality for any
        mobile or desktop Vaadin application.</p>
 
-    <h2 id="overview_since_3x">Overview of changes in 3.2</h2>
+    <h2 id="overview_since_3x">Overview of changes in 4.0</h2>
 
     <ul>
-        <li>Added React support for Web Components version.</li>
-        <li>API enhancements and review, check Java API Review for 3.2 section.</li>
-        <li>Fixed serialization of size related properties.</li>
+        <li>Added Vaadin 8 and Java 8 support.</li>
     </ul>
     
         
-    <h3 id="api_review_3x">Java API Review for 3.2</h3>
+    <h3 id="api_review_3x">Java API Review for 4.0</h3>
 
     <ul>
-        <li>Added animationLimit property to plot options classes</li>
-        <li>Added widthAdjust property to Title class, to prevent titles from flowing over elements</li>
-        <li>Added buttonPosition property to RangeSelector class</li>
-        <li>Added fitToPlot property to Options3d class, to fit 3D charts into the available plotting area</li>
-        <li>Added shortWeekdays property to Lang class, to specify short weekdays other than the first three letters of the weekday</li>
-        <li>Added printMaxWidth property to Exporting class, to prevent printed charts cut off on the right side</li>
-        <li>Added new value, day, for to IntervalUnit</li>
-        <li>Added margin, showFull, zIndex, size property to Scrollbar class</li>
-        <li>Added scrollbar property to YAxis class</li>
-        <li>Added step property to PlotOptionsSeries class</li>
-        <li>Added onKey property to PlotOptionsFlags class</li>
-        <li>Removed property states from PlotOptionsSolidgauge and PlotOptionsGauge classes</li>
-        <li>Removed property step from PlotOptionsAreasplinerange and PlotOptionsAreaspline classes as spline interpolation is not compatible with step definitions</li>
-        <li>Added Configuration.resetZoom() method that behaves as the "Reset Zoom" button in the chart.</li>
+        <li>Added ChartDataSeries class, that replaces ContainerDataSeries.</li>
+
     </ul>
 
         <table>
             <tbody>
-                <tr><td><a href="https://dev.vaadin.com/ticket/19845">#19845</a></td><td>DataSeriesItem color is not updated dinamically</td></tr>
-                <tr><td><a href="https://dev.vaadin.com/ticket/13050">#13050</a></td><td>DataSeriesItem categories are not respected in Charts if series have varying set of points in random order</td></tr>
-                <tr><td><a href="https://dev.vaadin.com/ticket/20035">#20035</a></td><td>Gridlines for Chart with fixed Y-Axis height are not visible</td></tr>
-                <tr><td><a href="https://dev.vaadin.com/ticket/20036">#20036</a></td><td>Chart with fixed Y-Axis Top position doesn't show tooltip correctly</td></tr>
-                <tr><td><a href="https://dev.vaadin.com/ticket/20211">#20211</a></td><td>Add reset zoom api to Chart configuration</td></tr>
-                <tr><td><a href="https://dev.vaadin.com/ticket/20214">#20214</a></td><td>Add Tooltip positioner function api</td></tr>
-            </tbody>
+                <!--<tr><td><a href="https://dev.vaadin.com/ticket/19845">#19845</a></td><td>DataSeriesItem color is not updated dinamically</td></tr>-->
+                </tbody>
         </table>
 
     <h2 id="package_contents">Package Contents</h2>
