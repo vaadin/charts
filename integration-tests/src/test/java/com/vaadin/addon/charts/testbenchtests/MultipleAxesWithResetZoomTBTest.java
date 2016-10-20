@@ -18,7 +18,6 @@ public class MultipleAxesWithResetZoomTBTest extends AbstractParallelTest {
     @Test
     public void chartIsZoomed_zoomResetFromServer_zoomIsReset()
             throws IOException, AssertionError {
-        skipBrowser("Uses VML for rendering, selectors won't work", Browser.IE8);
         driver.get(getTestUrl());
 
         zoomChart();

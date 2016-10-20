@@ -20,11 +20,4 @@ public class SplineWithItemLabelsTBTest extends
         return "lineandscatter";
     }
 
-    @Override
-    public List<DesiredCapabilities> getBrowsersToTest() {
-        List<DesiredCapabilities> result = super.getBrowsersToTest();
-        result.remove(Browser.IE8.getDesiredCapabilities());
-        return result;
-    }
-
 }

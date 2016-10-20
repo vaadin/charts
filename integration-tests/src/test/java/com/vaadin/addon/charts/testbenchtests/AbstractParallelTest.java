@@ -130,9 +130,6 @@ public abstract class AbstractParallelTest extends ParallelTest {
     @BrowserConfiguration
     public List<DesiredCapabilities> getBrowsersToTest() {
         List<DesiredCapabilities> allBrowsers = new ArrayList<DesiredCapabilities>();
-        allBrowsers.add(Browser.IE8.getDesiredCapabilities());
-        allBrowsers.add(Browser.IE9.getDesiredCapabilities());
-        allBrowsers.add(Browser.IE10.getDesiredCapabilities());
         allBrowsers.add(Browser.IE11.getDesiredCapabilities());
         allBrowsers.add(Browser.FIREFOX.getDesiredCapabilities());
         allBrowsers.add(Browser.CHROME.getDesiredCapabilities());
@@ -245,12 +242,6 @@ public abstract class AbstractParallelTest extends ParallelTest {
         case CHROME: if(BrowserUtil.isChrome(capabilities)) { throw new BrowserSkipped(reason); }
             break;
         case SAFARI: if(BrowserUtil.isSafari(capabilities)) { throw new BrowserSkipped(reason); }
-            break;
-        case IE8: if(BrowserUtil.isIE(capabilities, 8)) { throw new BrowserSkipped(reason); }
-            break;
-        case IE9: if(BrowserUtil.isIE(capabilities, 9)) { throw new BrowserSkipped(reason); }
-            break;
-        case IE10: if(BrowserUtil.isIE(capabilities, 10)) { throw new BrowserSkipped(reason); }
             break;
         case IE11: if(BrowserUtil.isIE(capabilities, 11)) { throw new BrowserSkipped(reason); }
             break;

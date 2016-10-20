@@ -31,7 +31,6 @@ public class TreeMapPointClickTBTest extends AbstractParallelTest {
 
     @Test
     public void pointClick_occured_eventIsFired() {
-        skipBrowser("Uses VML for rendering, selectors won't work", Browser.IE8);
         openTestUI();
 
         WebElement treeMapDataPoint = findTreeMapDataPoint();

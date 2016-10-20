@@ -30,7 +30,6 @@ public abstract class AbstractPointClickCoordinatesTest
 
     @Test
     public void pointClick_occured_correctAbsoluteCoordinates() {
-        skipBrowser("Uses VML for rendering, selectors won't work",Browser.IE8);
         openTestUI();
 
         clickPoint();
@@ -40,7 +39,6 @@ public abstract class AbstractPointClickCoordinatesTest
 
     @Test
     public void chartClick_occured_correctAbsoluteCoordinates() {
-        skipBrowser("Uses VML for rendering, selectors won't work",Browser.IE8);
         openTestUI();
 
         clickChart();

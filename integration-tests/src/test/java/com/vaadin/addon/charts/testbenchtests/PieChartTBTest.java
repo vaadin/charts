@@ -24,7 +24,6 @@ public class PieChartTBTest extends AbstractSimpleScreenShotTestBenchTest {
     @Override
     protected void testCustomStuff() {
         super.testCustomStuff();
-        skipBrowser("Can't find chart series with .cssSelector(\".highcharts-series > path\"))", Browser.IE8);
         // Ensure animation has finished before clicking
         waitForVaadin();
 

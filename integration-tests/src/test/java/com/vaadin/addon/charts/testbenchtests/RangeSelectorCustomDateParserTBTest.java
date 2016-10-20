@@ -40,7 +40,7 @@ public class RangeSelectorCustomDateParserTBTest extends AbstractSimpleScreenSho
     protected void testCustomStuff() {
         skipBrowser(
                 "Changing range via Selenium doesn't trigger chart redraw for FF",
-                Browser.FIREFOX, Browser.IE8);
+                Browser.FIREFOX);
         super.testCustomStuff();
         waitForVaadin();
 
