@@ -69,7 +69,7 @@ public class DateAxisAndClickEvent extends AbstractVaadinChartExample {
                  * convert it to Date object at their local time zone.
                  */
                 Notification.show("Clicked @ "
-                        + Util.toServerDate(timeStampShiftedToUc));
+                        + Util.toServerInstant(timeStampShiftedToUc));
             }
         });
 
@@ -82,7 +82,7 @@ public class DateAxisAndClickEvent extends AbstractVaadinChartExample {
                  */;
                 double timeStampShiftedToUc = event.getX();
                 Notification.show("Clicked Point with Date value "
-                        + Util.toServerDate(timeStampShiftedToUc));
+                        + Util.toServerInstant(timeStampShiftedToUc));
             }
         });
 

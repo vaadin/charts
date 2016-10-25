@@ -17,6 +17,7 @@ package com.vaadin.addon.charts.util;
  * #L%
  */
 
+import java.time.Instant;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
@@ -24,27 +25,27 @@ import java.util.TimeZone;
 public class Util {
 
     /**
-     * Returns an epoch timestamp adjusted by timezone offset. All Date objects
-     * passed to Highcharts should be routed via this method as we want to
-     * maintain the Timezone used on the server (HC uses UTC time stamps
-     * internally)
-     * 
-     * @param date
-     * @return
+     * @deprecated as of 4.0. Use {@link #toHighchartsTS(Instant)}
      */
-    @SuppressWarnings("deprecation")
+    @Deprecated
     public static long toHighchartsTS(Date date) {
         return date.getTime() - date.getTimezoneOffset() * 60000;
     }
 
     /**
-     * Converts UTC based raw date value from the client side rendering library
-     * to a Date value in JVM's default time zone.
-     * 
-     * @param rawClientSideValue
-     *            the raw value from the client side
-     * @return a Date value in JVM's default time zone
+     * Gets the number of miliseconds from the Java epoch of 1970-01-01T00:00:00Z.
+     *
+     *  @param date
+     * @return
      */
+    public static long toHighchartsTS(Instant date) {
+        return date.getEpochSecond()*1000;
+    }
+
+     /**
+     * @deprecated as of 4.0. Use {@link #toServerInstant(double)}
+     */
+    @Deprecated
     public static Date toServerDate(double rawClientSideValue) {
         Calendar instance = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
         instance.setTimeInMillis((long) rawClientSideValue);
@@ -52,6 +53,24 @@ public class Util {
         instance.set(Calendar.MINUTE, instance.get(Calendar.MINUTE));
         instance.setTimeZone(TimeZone.getDefault());
         return instance.getTime();
+    }
+    
+    /**
+     * Converts UTC based raw date value from the client side rendering library
+     * to an Instant value.
+     *
+     * @param rawClientSideValue
+     *            the raw value from the client side
+     * @return an Instant value
+     */
+    public static Instant toServerInstant(double rawClientSideValue) {
+        Date date = new Date();
+        date.toInstant();
+        String doubleAsText = Double.toString(rawClientSideValue);
+        int milSecs = Integer.parseInt(doubleAsText.split(".")[0]);
+        int nanSecs = Integer.parseInt(doubleAsText.split(".")[1]);
+        Instant dateTime = Instant.ofEpochSecond(milSecs,nanSecs);
+        return dateTime;
     }
 
 }

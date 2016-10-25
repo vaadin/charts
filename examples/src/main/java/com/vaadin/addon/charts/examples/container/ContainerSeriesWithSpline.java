@@ -1,9 +1,10 @@
 package com.vaadin.addon.charts.examples.container;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collection;
-import java.util.Date;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
@@ -20,15 +21,15 @@ import com.vaadin.ui.Component;
 public class ContainerSeriesWithSpline extends AbstractVaadinChartExample {
 
     private class TestItem {
-        Date date;
+        Instant date;
         Integer value;
 
-        public TestItem(Date date, Integer value) {
+        public TestItem(Instant date, Integer value) {
             this.date = date;
             this.value = value;
         }
 
-        public Date getDate() {
+        public Instant getDate() {
             return date;
         }
 
@@ -38,7 +39,7 @@ public class ContainerSeriesWithSpline extends AbstractVaadinChartExample {
     }
     @Override
     public String getDescription() {
-        return "Simple Chart with ContainerSeries";
+        return "Simple Chart with ChartDataSeries";
     }
 
     @Override
@@ -46,15 +47,13 @@ public class ContainerSeriesWithSpline extends AbstractVaadinChartExample {
         // Create container with two points
         Collection<TestItem> col = new ArrayList<>();
         DataSource<TestItem> ds = new ListDataSource<>(col);
-        Calendar cal = Calendar.getInstance();
-        cal.set(2013, 2, 22, 12, 00);
-        cal.set(Calendar.MILLISECOND, 0);
-        cal.set(Calendar.SECOND, 0);
-        col.add(new TestItem(cal.getTime(),5));
-        cal.add(Calendar.DATE, 1);
-        col.add(new TestItem(cal.getTime(),10));
-        cal.add(Calendar.DATE, 1);
-        col.add(new TestItem(cal.getTime(),5));
+        LocalDateTime dateTime = LocalDateTime.of(2013, 3, 22, 12, 00);
+
+        col.add(new TestItem(dateTime.toInstant(ZoneOffset.UTC), 5));
+        dateTime = dateTime.plusDays(1);
+        col.add(new TestItem(dateTime.toInstant(ZoneOffset.UTC), 10));
+        dateTime = dateTime.plusDays(1);
+        col.add(new TestItem(dateTime.toInstant(ZoneOffset.UTC), 5));
 
         ChartDataSeries<TestItem> chartDataSeries = new ChartDataSeries(ds);
         chartDataSeries.setXValueProvider(TestItem::getDate);

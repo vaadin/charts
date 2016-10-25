@@ -17,7 +17,7 @@ public class ChartsBrowserFactory extends DefaultBrowserFactory {
         case IE11:
             return createIE(browser, "11");
         case PHANTOMJS:
-            return create(browser, "1", Platform.LINUX);
+            return create(browser, "2", Platform.LINUX);
         case CHROME:
             return create(browser, "40", Platform.VISTA);
         case FIREFOX:

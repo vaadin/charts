@@ -3,12 +3,11 @@ package com.vaadin.addon.charts.examples.lineandscatter;
 import static com.vaadin.addon.charts.model.Shape.CIRCLE;
 import static com.vaadin.addon.charts.model.VerticalAlign.MIDDLE;
 import static com.vaadin.addon.charts.model.style.FontWeight.BOLD;
-
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
@@ -31,7 +30,7 @@ import com.vaadin.ui.Component;
 public class SplineWithItemLabels extends AbstractVaadinChartExample {
 
     private final int ONE_HOUR = 60 * 60 * 1000;
-    private final DateFormat df = new SimpleDateFormat("yyyy,MM,dd");
+    private final DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy,MM,dd");
 
     @Override
     public String getDescription() {
@@ -59,7 +58,7 @@ public class SplineWithItemLabels extends AbstractVaadinChartExample {
         configuration.setPlotOptions(plotOptions);
         plotOptions.setMarker(new Marker(false));
         plotOptions.setPointInterval(ONE_HOUR);
-        plotOptions.setPointStart(toDate("2009,9,6"));
+        plotOptions.setPointStart(toDate("2009,09,06"));
         DataSeries ds = new DataSeries();
         ds.setName("Hestavollane");
         ds.setData(4.3, 5.1, 4.3, 5.2, 5.4, 4.7, 3.5, 4.1, 5.6, 7.4, 6.9, 7.1,
@@ -104,15 +103,16 @@ public class SplineWithItemLabels extends AbstractVaadinChartExample {
     /**
      * Helper method to convert Date string YYYY,MM,dd to Date
      *
-     * @param dateString
+     * @param stringFormat
      * @return
      */
-    private Date toDate(String dateString) {
-        df.setTimeZone(TimeZone.getTimeZone("EET"));
+    private Instant toDate(String stringFormat) {
+        LocalDate date;
         try {
-            return df.parse(dateString);
-        } catch (ParseException e) {
+         date = LocalDate.parse(stringFormat, df);
+        } catch (DateTimeParseException e) {
             throw new RuntimeException(e);
         }
+        return date.atStartOfDay().toInstant(ZoneOffset.UTC);
     }
 }

@@ -1,6 +1,7 @@
 package com.vaadin.addon.charts.examples.lineandscatter;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.ZoneOffset;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
@@ -85,7 +86,8 @@ public class SplineWithPlotBandRemoveFunctionality extends
         plotOptions.getMarker().setStates(states);
 
         plotOptions.setPointInterval(ONE_HOUR);
-        plotOptions.setPointStart(new Date(2009 - 1900, 9 - 1, 6).getTime());
+        LocalDate date =LocalDate.of(2009,9,6);
+        plotOptions.setPointStart(date.atStartOfDay().toInstant(ZoneOffset.UTC));
 
         ListSeries ls = new ListSeries();
         ls.setName("Hestavollane");

@@ -21,6 +21,7 @@ import com.vaadin.addon.charts.model.style.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.time.Instant;
 import com.vaadin.addon.charts.util.Util;
 /**
  * The column range is a cartesian series type with higher and lower Y values
@@ -1013,9 +1014,17 @@ public class PlotOptionsColumnrange extends ColumnOptions {
 	}
 
 	/**
-	 * @see #setPointStart(Number)
+	 * @deprecated as of 4.0. Use {@link #setPointStart(Instant)}
 	 */
+	@Deprecated
 	public void setPointStart(Date date) {
 		this.pointStart = Util.toHighchartsTS(date);
+	}
+
+	/**
+	 * @see #setPointStart(Number)
+	 */
+	public void setPointStart(Instant instant) {
+		this.pointStart = Util.toHighchartsTS(instant);
 	}
 }

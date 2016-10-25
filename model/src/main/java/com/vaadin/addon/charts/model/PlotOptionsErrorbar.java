@@ -25,6 +25,7 @@ import com.vaadin.server.Sizeable.Unit;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.vaadin.addon.charts.model.serializers.SizeSerializer;
 import java.util.Date;
+import java.time.Instant;
 import com.vaadin.addon.charts.util.Util;
 /**
  * Error bars are a graphical representation of the variability of data and are
@@ -924,9 +925,17 @@ public class PlotOptionsErrorbar extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setPointStart(Number)
+	 * @deprecated as of 4.0. Use {@link #setPointStart(Instant)}
 	 */
+	@Deprecated
 	public void setPointStart(Date date) {
 		this.pointStart = Util.toHighchartsTS(date);
+	}
+
+	/**
+	 * @see #setPointStart(Number)
+	 */
+	public void setPointStart(Instant instant) {
+		this.pointStart = Util.toHighchartsTS(instant);
 	}
 }

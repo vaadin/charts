@@ -2,6 +2,9 @@ package com.vaadin.addon.charts.model.junittests;
 
 import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
 import static org.junit.Assert.assertEquals;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -19,6 +22,24 @@ import com.vaadin.server.data.DataSource;
 import com.vaadin.server.data.ListDataSource;
 
 public class ChartDataSeriesJSONSerializationTest {
+
+    private class TestInstantItem {
+        private Instant date;
+        private Integer value;
+
+        public TestInstantItem(Instant date, Integer value) {
+            this.date = date;
+            this.value = value;
+        }
+
+        public Instant getDate() {
+            return date;
+        }
+
+        public Integer getValue() {
+            return value;
+        }
+    }
 
     private class TestDateItem {
         private Date date;
@@ -174,6 +195,22 @@ public class ChartDataSeriesJSONSerializationTest {
         chartDataSeries.setYValueProvider(TestDateItem::getValue);
 
         String expected = "{\"data\":[[" + utcTime.getTime() + ",80]]}";
+        assertEquals(expected, toJSON(chartDataSeries));
+    }
+
+    @Test
+    public void serialize_Instant_ToHigcharts() {
+        LocalDateTime dateTime = LocalDateTime.now();
+        Collection<TestInstantItem> col = new ArrayList<>();
+        Instant instant = dateTime.toInstant(ZoneOffset.UTC);
+        col.add(new TestInstantItem(instant, 80));
+        DataSource<TestInstantItem> dataSource = new ListDataSource<>(col);
+
+        ChartDataSeries<TestInstantItem> chartDataSeries = new ChartDataSeries(dataSource);
+        chartDataSeries.setXValueProvider(TestInstantItem::getDate);
+        chartDataSeries.setYValueProvider(TestInstantItem::getValue);
+
+        String expected = "{\"data\":[[" + instant.getEpochSecond()*1000 + ",80]]}";
         assertEquals(expected, toJSON(chartDataSeries));
     }
 

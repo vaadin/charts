@@ -1,5 +1,10 @@
 package com.vaadin.addon.charts.examples.dynamic;
 
+import java.time.LocalDate;
+import java.time.ZoneOffset;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.ChartSelectionEvent;
 import com.vaadin.addon.charts.ChartSelectionListener;
@@ -24,20 +29,14 @@ import com.vaadin.addon.charts.util.Util;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.VerticalLayout;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 public class MasterDetailChart extends AbstractVaadinChartExample {
 
+    private static final LocalDate DEMO_DATA_INITIAL_DETAIL_START = LocalDate.of(
+            2008 , 7, 1);
     @SuppressWarnings("deprecation")
-    private static final Date DEMO_DATA_INITIAL_DETAIL_START = new Date(
-            2008 - 1900, 7, 1);
-    @SuppressWarnings("deprecation")
-    private static final Date DEMO_DATASET_END = new Date(2009 - 1900, 0, 1);
-    @SuppressWarnings("deprecation")
-    private static final Date DEMO_DATASET_START = new Date(2006 - 1900, 0, 1);
-    private static final Number[] FULL_DEMO_DATA_SET = new Number[] { 0.8446,
+    private static final LocalDate DEMO_DATASET_END = LocalDate.of(2009, 1, 1);
+    private static final LocalDate DEMO_DATASET_START = LocalDate.of(2006, 1, 1);
+    private static final Number[] FULL_DEMO_DATA_SET = new Number[]{0.8446,
             0.8445, 0.8444, 0.8451, 0.8418, 0.8264, 0.8258, 0.8232, 0.8233,
             0.8258, 0.8283, 0.8278, 0.8256, 0.8292, 0.8239, 0.8239, 0.8245,
             0.8265, 0.8261, 0.8269, 0.8273, 0.8244, 0.8244, 0.8172, 0.8139,
@@ -174,7 +173,7 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
             0.7889, 0.7879, 0.7855, 0.7866, 0.7865, 0.7795, 0.7758, 0.7717,
             0.761, 0.7497, 0.7471, 0.7473, 0.7407, 0.7288, 0.7074, 0.6927,
             0.7083, 0.7191, 0.719, 0.7153, 0.7156, 0.7158, 0.714, 0.7119,
-            0.7129, 0.7129, 0.7049, 0.7095 };
+            0.7129, 0.7129, 0.7049, 0.7095};
 
     private static final long DAY_IN_MILLIS = 24 * 60 * 60 * 1000;
 
@@ -203,10 +202,10 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
                 PlotBand plotBand2 = new PlotBand();
                 plotBand1.setColor(new SolidColor(0, 0, 0, 0.2));
                 plotBand2.setColor(new SolidColor(0, 0, 0, 0.2));
-                plotBand1.setFrom(Util.toHighchartsTS(DEMO_DATASET_START));
+                plotBand1.setFrom(Util.toHighchartsTS(DEMO_DATASET_START.atStartOfDay().toInstant(ZoneOffset.UTC)));
                 plotBand1.setTo(start);
                 plotBand2.setFrom(end);
-                plotBand2.setTo(Util.toHighchartsTS(DEMO_DATASET_END));
+                plotBand2.setTo(Util.toHighchartsTS(DEMO_DATASET_END.atStartOfDay().toInstant(ZoneOffset.UTC)));
 
                 masterChart.getConfiguration().getxAxis()
                         .setPlotBands(plotBand1, plotBand2);
@@ -237,7 +236,7 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
     private List<Number> getPartialList(long start, long end) {
         List<Number> list = new ArrayList<Number>();
         for (int i = 0; i < FULL_DEMO_DATA_SET.length; i++) {
-            long dataTimeStamp = Util.toHighchartsTS(DEMO_DATASET_START) + i
+            long dataTimeStamp = Util.toHighchartsTS(DEMO_DATASET_START.atStartOfDay().toInstant(ZoneOffset.UTC)) + i
                     * DAY_IN_MILLIS;
             if (dataTimeStamp > start && dataTimeStamp < end) {
                 list.add(FULL_DEMO_DATA_SET[i]);
@@ -286,7 +285,7 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
         ListSeries seriesList = new ListSeries();
         PlotOptionsLine plotOptionsLine = new PlotOptionsLine();
         plotOptionsLine.setPointInterval(DAY_IN_MILLIS);
-        plotOptionsLine.setPointStart(Util.toHighchartsTS(DEMO_DATASET_START));
+        plotOptionsLine.setPointStart(Util.toHighchartsTS(DEMO_DATASET_START.atStartOfDay().toInstant(ZoneOffset.UTC)));
         seriesList.setPlotOptions(plotOptionsLine);
         seriesList.setName("USD to EUR");
         seriesList.setData(FULL_DEMO_DATA_SET);
@@ -322,8 +321,8 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
 
         PlotBand mask = new PlotBand();
         mask.setColor(new SolidColor(0, 0, 0, 0.2));
-        mask.setFrom(Util.toHighchartsTS(DEMO_DATASET_START));
-        mask.setTo(Util.toHighchartsTS(DEMO_DATASET_END));
+        mask.setFrom(Util.toHighchartsTS(DEMO_DATASET_START.atStartOfDay().toInstant(ZoneOffset.UTC)));
+        mask.setTo(Util.toHighchartsTS(DEMO_DATASET_END.atStartOfDay().toInstant(ZoneOffset.UTC)));
         configuration.getxAxis().setPlotBands(mask);
 
         YAxis yAxis = configuration.getyAxis();
@@ -359,7 +358,7 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
         masterPlotOptions.setPointInterval(24 * 3600 * 1000);
         masterPlotOptions.setMarker(new Marker(false));
         masterPlotOptions
-                .setPointStart(Util.toHighchartsTS(DEMO_DATASET_START));
+                .setPointStart(Util.toHighchartsTS(DEMO_DATASET_START.atStartOfDay().toInstant(ZoneOffset.UTC)));
         ls.setPlotOptions(masterPlotOptions);
         ls.setName("USD to EUR");
         ls.setData(FULL_DEMO_DATA_SET);

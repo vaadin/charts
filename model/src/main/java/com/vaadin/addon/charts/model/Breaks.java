@@ -18,6 +18,7 @@ package com.vaadin.addon.charts.model;
  */
 
 import java.util.Date;
+import java.time.Instant;
 import com.vaadin.addon.charts.util.Util;
 /**
  * An array defining breaks in the axis, the sections defined will be left out
@@ -99,16 +100,32 @@ public class Breaks extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setFrom(Number)
+	 * @deprecated as of 4.0. Use {@link #setPointStart(Instant)}
 	 */
+	@Deprecated
 	public void setFrom(Date date) {
 		this.from = Util.toHighchartsTS(date);
 	}
 
 	/**
-	 * @see #setTo(Number)
+	 * @see #setFrom(Number)
 	 */
+	public void setFrom(Instant instant) {
+		this.from = Util.toHighchartsTS(instant);
+	}
+
+	/**
+	 * @deprecated as of 4.0. Use {@link #setPointStart(Instant)}
+	 */
+	@Deprecated
 	public void setTo(Date date) {
 		this.to = Util.toHighchartsTS(date);
+	}
+
+	/**
+	 * @see #setTo(Number)
+	 */
+	public void setTo(Instant instant) {
+		this.to = Util.toHighchartsTS(instant);
 	}
 }
