@@ -1,13 +1,13 @@
 package com.vaadin.addon.charts.testbenchtests;
 
-import com.vaadin.testbench.By;
-import com.vaadin.testbench.elements.LabelElement;
-import com.vaadin.testbench.elements.VerticalLayoutElement;
-import com.vaadin.testbench.parallel.Browser;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+
+import com.vaadin.testbench.By;
+import com.vaadin.testbench.elements.LabelElement;
+import com.vaadin.testbench.elements.VerticalLayoutElement;
 
 public abstract class AbstractPointClickCoordinatesTest
         extends AbstractParallelTest {

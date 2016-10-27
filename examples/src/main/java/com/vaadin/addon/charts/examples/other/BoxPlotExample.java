@@ -101,7 +101,6 @@ public class BoxPlotExample extends AbstractVaadinChartExample {
     protected void setup() {
         useCustomStyles = new CheckBox("Use custom styling");
         useCustomStyles.setDebugId("styles");
-        useCustomStyles.setImmediate(true);
         super.setup();
         addComponentAsFirst(useCustomStyles);
         useCustomStyles.addValueChangeListener(e->{

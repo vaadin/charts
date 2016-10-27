@@ -1,12 +1,15 @@
 package com.vaadin.addon.charts.testbenchtests;
 
-import com.vaadin.addon.charts.examples.pointclickevent.PointClickCoordinatesScatterChart;
-import com.vaadin.testbench.By;
-import com.vaadin.testbench.parallel.Browser;
+import org.junit.Ignore;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 
+import com.vaadin.addon.charts.examples.pointclickevent.PointClickCoordinatesScatterChart;
+import com.vaadin.testbench.By;
+import com.vaadin.testbench.parallel.Browser;
+
+@Ignore("Absolute coordinates affected by Theme change")
 public class PointClickCoordinatesScatterChartTBTest
         extends AbstractPointClickCoordinatesTest {
 

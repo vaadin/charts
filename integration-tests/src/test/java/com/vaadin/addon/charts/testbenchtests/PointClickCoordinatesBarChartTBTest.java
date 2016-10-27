@@ -1,5 +1,6 @@
 package com.vaadin.addon.charts.testbenchtests;
 
+import org.junit.Ignore;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
@@ -7,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import com.vaadin.addon.charts.examples.pointclickevent.PointClickCoordinatesBarChart;
 import com.vaadin.testbench.By;
 
+@Ignore("Absolute coordinates affected by Theme change")
 public class PointClickCoordinatesBarChartTBTest
         extends AbstractPointClickCoordinatesTest {
 

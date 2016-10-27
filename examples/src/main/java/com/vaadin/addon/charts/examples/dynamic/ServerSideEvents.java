@@ -43,15 +43,15 @@ import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.ZoomType;
 import com.vaadin.addon.charts.model.style.SolidColor;
-import com.vaadin.v7.data.Property;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
-import com.vaadin.v7.ui.OptionGroup;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.v7.data.Property;
+import com.vaadin.v7.ui.OptionGroup;
 
 @SkipFromDemo
 public class ServerSideEvents extends AbstractVaadinChartExample {
@@ -350,12 +350,12 @@ public class ServerSideEvents extends AbstractVaadinChartExample {
             final ListenerToggle listenerToggle) {
         final CheckBox checkBox = new CheckBox(caption);
         checkBox.setId(id);
-        checkBox.addValueChangeListener(e-> {
-                if (checkBox.getValue()) {
-                    listenerToggle.add();
-                } else {
-                    listenerToggle.remove();
-                }
+        checkBox.addValueChangeListener(e -> {
+            if (checkBox.getValue()) {
+                listenerToggle.add();
+            } else {
+                listenerToggle.remove();
+            }
         });
         checkBox.setValue(true);
         eventListeners.addComponent(checkBox);
@@ -369,11 +369,10 @@ public class ServerSideEvents extends AbstractVaadinChartExample {
 
     private Layout createControls() {
         visibilityToggling = new CheckBox("Disable series visibility toggling");
-        visibilityToggling
-                .addValueChangeListener(e-> {
-                        chart.setSeriesVisibilityTogglingDisabled(visibilityToggling
-                                .getValue());
-                });
+        visibilityToggling.addValueChangeListener(e -> {
+            chart.setSeriesVisibilityTogglingDisabled(visibilityToggling
+                    .getValue());
+        });
 
         final Button firstSeriesVisible = new Button("Hide first series");
         firstSeriesVisible.setId("hideFirstSeries");

@@ -83,7 +83,6 @@ public class DynamicExtremes extends AbstractVaadinChartExample {
         chart.drawChart(configuration);
 
         final CheckBox extremes = new CheckBox("Switch extremes");
-        extremes.setImmediate(true);
         extremes.addValueChangeListener(e->{
                 if (e.getValue()) {
                     chart.getConfiguration().getyAxes().getAxis(0)

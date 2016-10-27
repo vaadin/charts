@@ -187,7 +187,6 @@ public class ChartsDemoUI extends UI {
         themeSelector.addStyleName("theme-selector");
         themeSelector.addStyleName(ValoTheme.COMBOBOX_SMALL);
         themeSelector.setTextInputAllowed(false);
-        themeSelector.setImmediate(true);
 
         com.vaadin.addon.charts.model.style.Theme defaultTheme = new ValoLightTheme();
         Map<com.vaadin.addon.charts.model.style.Theme, String> mapThemes = new HashMap<>();

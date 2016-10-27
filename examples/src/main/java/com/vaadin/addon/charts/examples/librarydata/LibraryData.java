@@ -45,7 +45,6 @@ public class LibraryData extends AbstractVaadinChartExample implements
                     }
                 });
         searchField.setValue("orwell");
-        searchField.setImmediate(true);
 
         HorizontalLayout searchNavi = new HorizontalLayout();
         searchNavi.addComponent(searchField);

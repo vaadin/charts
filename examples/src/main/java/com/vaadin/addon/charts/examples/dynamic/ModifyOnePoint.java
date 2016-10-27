@@ -18,8 +18,6 @@ import com.vaadin.ui.ColorPicker;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Slider;
-import com.vaadin.ui.components.colorpicker.ColorChangeEvent;
-import com.vaadin.ui.components.colorpicker.ColorChangeListener;
 
 @SuppressWarnings("serial")
 public class ModifyOnePoint extends AbstractVaadinChartExample {
@@ -93,7 +91,6 @@ public class ModifyOnePoint extends AbstractVaadinChartExample {
                 series.update(dataSeriesItem);
         });
         sliderX.setWidth("200px");
-        sliderX.setImmediate(true);
         formLayout.addComponent(sliderX);
 
         final Slider sliderY = new Slider();
@@ -107,22 +104,17 @@ public class ModifyOnePoint extends AbstractVaadinChartExample {
                 updateItemInChart();
         });
         sliderY.setWidth("200px");
-        sliderY.setImmediate(true);
         formLayout.addComponent(sliderY);
 
         final ColorPicker colorPicker = new ColorPicker();
-        colorPicker.setColor(new com.vaadin.shared.ui.colorpicker.Color(255, 0,
+        colorPicker.setValue(new com.vaadin.shared.ui.colorpicker.Color(255, 0,
                 0));
         colorPicker.setCaption("Marker color");
-        colorPicker.setImmediate(true);
-        colorPicker.addColorChangeListener(new ColorChangeListener() {
-            @Override
-            public void colorChanged(ColorChangeEvent event) {
-                dataSeriesItem.getMarker().setFillColor(
-                        new SolidColor(event.getColor().getCSS()));
-                updateItemInChart();
-            }
 
+        colorPicker.addValueChangeListener(event -> {
+                dataSeriesItem.getMarker().setFillColor(
+                    new SolidColor(event.getValue().getCSS()));
+                updateItemInChart();
         });
         formLayout.addComponent(colorPicker);
 
@@ -134,9 +126,8 @@ public class ModifyOnePoint extends AbstractVaadinChartExample {
                 sliderX.setValue(r.nextDouble() * 5 + 3);
                 sliderY.setValue(r.nextDouble() * 10);
                 colorPicker
-                        .setColor(new com.vaadin.shared.ui.colorpicker.Color(r
+                        .setValue(new com.vaadin.shared.ui.colorpicker.Color(r
                                 .nextInt(255), r.nextInt(255), r.nextInt(255)));
-                colorPicker.fireColorChanged();
             }
         });
         c.setId("random");

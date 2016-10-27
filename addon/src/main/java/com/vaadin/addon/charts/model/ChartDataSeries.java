@@ -140,7 +140,7 @@ public class ChartDataSeries<T> extends AbstractSeries {
      * @return
      */
     public List<Map<String, Object>> getValues() {
-        List<Map<String, Object>> list = vaadinDS.apply(new Query()).map((item) -> {
+        List<Map<String, Object>> list = vaadinDS.fetch(new Query()).map((item) -> {
             Map<String, Object> tmp = new HashMap<String, Object>();
             for (Map.Entry<String, Function<T, Object>> entry : chartAttriubteToCallback.entrySet()) {
                 String key = entry.getKey();

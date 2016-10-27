@@ -1,8 +1,11 @@
 package com.vaadin.addon.charts.testbenchtests;
 
-import com.vaadin.addon.charts.examples.other.BoxPlotExample;
+import org.junit.Ignore;
 import org.openqa.selenium.By;
 
+import com.vaadin.addon.charts.examples.other.BoxPlotExample;
+
+@Ignore("Absolute coordinates affected by Theme change")
 public class BoxPlotExampleTBTest extends AbstractSimpleScreenShotTestBenchTest {
 
     @Override

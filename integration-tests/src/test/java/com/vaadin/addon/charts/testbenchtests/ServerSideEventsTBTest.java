@@ -1,13 +1,12 @@
 package com.vaadin.addon.charts.testbenchtests;
 
 import java.lang.reflect.Type;
-import java.util.List;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.remote.DesiredCapabilities;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -35,6 +34,7 @@ import com.vaadin.testbench.elements.LabelElement;
 import com.vaadin.testbench.parallel.Browser;
 import com.vaadin.ui.Component;
 
+@Ignore("Absolute coordinates affected by Theme change")
 public class ServerSideEventsTBTest extends AbstractParallelTest {
 
 

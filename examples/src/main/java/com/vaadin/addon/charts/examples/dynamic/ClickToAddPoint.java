@@ -130,7 +130,6 @@ public class ClickToAddPoint extends AbstractVaadinChartExample {
     protected void setup() {
         super.setup();
         final CheckBox checkbox = new CheckBox("Animate additions");
-        checkbox.setImmediate(true);
         checkbox.setValue(true);
         checkbox.addValueChangeListener(event -> {
                 chart.getConfiguration().getChart()

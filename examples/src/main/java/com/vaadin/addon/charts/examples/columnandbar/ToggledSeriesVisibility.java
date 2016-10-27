@@ -120,7 +120,6 @@ public class ToggledSeriesVisibility extends AbstractVaadinChartExample {
         super.setup();
         checkBoxGroup = new CheckBoxGroup();
         checkBoxGroup.setId("vaadin-optiongroup");
-        checkBoxGroup.setImmediate(true);
         final List<Series> series = chart.getConfiguration().getSeries();
         checkBoxGroup.setItems(series);
         checkBoxGroup.setItemCaptionGenerator(Series::getName);
