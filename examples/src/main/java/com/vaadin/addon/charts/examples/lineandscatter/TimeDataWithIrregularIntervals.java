@@ -1,10 +1,10 @@
 package com.vaadin.addon.charts.examples.lineandscatter;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
@@ -62,7 +62,7 @@ public class TimeDataWithIrregularIntervals extends AbstractVaadinChartExample {
         Object[][] data1 = getData1();
         for (int i = 0; i < data1.length; i++) {
             Object[] ds = data1[i];
-            DataSeriesItem item = new DataSeriesItem((Date) ds[0],
+            DataSeriesItem item = new DataSeriesItem((Instant) ds[0],
                     (Double) ds[1]);
             ls.add(item);
         }
@@ -76,7 +76,7 @@ public class TimeDataWithIrregularIntervals extends AbstractVaadinChartExample {
         Object[][] data2 = getData2();
         for (int i = 0; i < data2.length; i++) {
             Object[] ds = data2[i];
-            DataSeriesItem item = new DataSeriesItem((Date) ds[0],
+            DataSeriesItem item = new DataSeriesItem((Instant) ds[0],
                     (Double) ds[1]);
             ls.add(item);
         }
@@ -89,7 +89,7 @@ public class TimeDataWithIrregularIntervals extends AbstractVaadinChartExample {
         Object[][] data3 = getData3();
         for (int i = 0; i < data3.length; i++) {
             Object[] ds = data3[i];
-            DataSeriesItem item = new DataSeriesItem((Date) ds[0],
+            DataSeriesItem item = new DataSeriesItem((Instant) ds[0],
                     (Double) ds[1]);
             ls.add(item);
         }
@@ -99,47 +99,47 @@ public class TimeDataWithIrregularIntervals extends AbstractVaadinChartExample {
     }
 
     private Object[][] getData3() {
-        return new Object[][] { { d("1970,9,9"), 0d },
-                { d("1970,9,14"), 0.15 }, { d("1970,10,28"), 0.35 },
-                { d("1970,11,12"), 0.46 }, { d("1971,0,1"), 0.59 },
-                { d("1971,0,24"), 0.58 }, { d("1971,1,1"), 0.62 },
-                { d("1971,1,7"), 0.65 }, { d("1971,1,23"), 0.77 },
-                { d("1971,2,8"), 0.77 }, { d("1971,2,14"), 0.79 },
-                { d("1971,2,24"), 0.86 }, { d("1971,3,4"), 0.8 },
-                { d("1971,3,18"), 0.94 }, { d("1971,3,24"), 0.9 },
-                { d("1971,4,16"), 0.39 }, { d("1971,4,21"), 0d } };
+        return new Object[][] { { d("1970,10,09"), 0d },
+                { d("1970,10,14"), 0.15 }, { d("1970,11,28"), 0.35 },
+                { d("1970,12,12"), 0.46 }, { d("1971,01,01"), 0.59 },
+                { d("1971,01,24"), 0.58 }, { d("1971,02,01"), 0.62 },
+                { d("1971,02,07"), 0.65 }, { d("1971,02,23"), 0.77 },
+                { d("1971,03,08"), 0.77 }, { d("1971,03,14"), 0.79 },
+                { d("1971,03,24"), 0.86 }, { d("1971,04,04"), 0.8 },
+                { d("1971,04,18"), 0.94 }, { d("1971,04,24"), 0.9 },
+                { d("1971,05,16"), 0.39 }, { d("1971,05,21"), 0d } };
     }
 
     private Object[][] getData2() {
-        return new Object[][] { { d("1970,9,18"), 0d },
-                { d("1970,9,26"), 0.2 }, { d("1970,11,1"), 0.47 },
-                { d("1970,11,11"), 0.55 }, { d("1970,11,25"), 1.38 },
-                { d("1971,0,8"), 1.38 }, { d("1971,0,15"), 1.38 },
-                { d("1971,1,1"), 1.38 }, { d("1971,1,8"), 1.48 },
-                { d("1971,1,21"), 1.5 }, { d("1971,2,12"), 1.89 },
-                { d("1971,2,25"), 2.0 }, { d("1971,3,4"), 1.94 },
-                { d("1971,3,9"), 1.91 }, { d("1971,3,13"), 1.75 },
-                { d("1971,3,19"), 1.6 }, { d("1971,4,25"), 0.6 },
-                { d("1971,4,31"), 0.35 }, { d("1971,5,7"), 0d } };
+        return new Object[][] { { d("1970,10,18"), 0d },
+                { d("1970,10,26"), 0.2 }, { d("1970,12,01"), 0.47 },
+                { d("1970,12,11"), 0.55 }, { d("1970,12,25"), 1.38 },
+                { d("1971,01,08"), 1.38 }, { d("1971,01,15"), 1.38 },
+                { d("1971,02,01"), 1.38 }, { d("1971,02,08"), 1.48 },
+                { d("1971,02,21"), 1.5 }, { d("1971,03,12"), 1.89 },
+                { d("1971,03,25"), 2.0 }, { d("1971,04,04"), 1.94 },
+                { d("1971,04,09"), 1.91 }, { d("1971,04,13"), 1.75 },
+                { d("1971,04,19"), 1.6 }, { d("1971,05,25"), 0.6 },
+                { d("1971,05,31"), 0.35 }, { d("1971,06,07"), 0d } };
     }
 
     private Object[][] getData1() {
-        return new Object[][] { { d("1970,9,27"), 0d },
-                { d("1970,10,10"), 0.6 }, { d("1970,10,18"), 0.7 },
-                { d("1970,11,2"), 0.8 }, { d("1970,11,9"), 0.6 },
-                { d("1970,11,16"), 0.6 }, { d("1970,11,28"), 0.67 },
-                { d("1971,0,1"), 0.81 }, { d("1971,0,8"), 0.78 },
-                { d("1971,0,12"), 0.98 }, { d("1971,0,27"), 1.84 },
-                { d("1971,1,10"), 1.80 }, { d("1971,1,18"), 1.80 },
-                { d("1971,1,24"), 1.92 }, { d("1971,2,4"), 2.49 },
-                { d("1971,2,11"), 2.79 }, { d("1971,2,15"), 2.73 },
-                { d("1971,2,25"), 2.61 }, { d("1971,3,2"), 2.76 },
-                { d("1971,3,6"), 2.82 }, { d("1971,3,13"), 2.8 },
-                { d("1971,4,3"), 2.1 }, { d("1971,4,26"), 1.1 },
-                { d("1971,5,9"), 0.25 }, { d("1971,5,12"), 0d } };
+        return new Object[][] { { d("1970,10,27"), 0d },
+                { d("1970,11,10"), 0.6 }, { d("1970,11,18"), 0.7 },
+                { d("1970,12,02"), 0.8 }, { d("1970,12,09"), 0.6 },
+                { d("1970,12,16"), 0.6 }, { d("1970,12,28"), 0.67 },
+                { d("1971,01,01"), 0.81 }, { d("1971,01,08"), 0.78 },
+                { d("1971,01,12"), 0.98 }, { d("1971,01,27"), 1.84 },
+                { d("1971,02,10"), 1.80 }, { d("1971,02,18"), 1.80 },
+                { d("1971,02,24"), 1.92 }, { d("1971,03,04"), 2.49 },
+                { d("1971,03,11"), 2.79 }, { d("1971,03,15"), 2.73 },
+                { d("1971,03,25"), 2.61 }, { d("1971,04,02"), 2.76 },
+                { d("1971,04,06"), 2.82 }, { d("1971,04,13"), 2.8 },
+                { d("1971,05,03"), 2.1 }, { d("1971,05,26"), 1.1 },
+                { d("1971,06,09"), 0.25 }, { d("1971,06,12"), 0d } };
     }
 
-    private final DateFormat df = new SimpleDateFormat("yyyy,MM,dd");
+    private final DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy,MM,dd");
 
     /**
      * Helper method to convert Date string YYYY,MM,dd to Date
@@ -147,12 +147,19 @@ public class TimeDataWithIrregularIntervals extends AbstractVaadinChartExample {
      * @param dateString
      * @return
      */
-    private Date d(String dateString) {
-        df.setTimeZone(TimeZone.getTimeZone("EET"));
+    /**
+     * Helper method to convert Date string YYYY,MM,dd to Date
+     *
+     * @param stringFormat
+     * @return
+     */
+    private Instant d(String stringFormat) {
+        LocalDate date;
         try {
-            return df.parse(dateString);
-        } catch (ParseException e) {
+            date = LocalDate.parse(stringFormat, df);
+        } catch (DateTimeParseException e) {
             throw new RuntimeException(e);
         }
+        return date.atStartOfDay().toInstant(ZoneOffset.UTC);
     }
 }

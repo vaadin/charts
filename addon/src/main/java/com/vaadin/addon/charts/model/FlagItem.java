@@ -17,6 +17,7 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
+import java.time.Instant;
 import java.util.Date;
 
 /**
@@ -42,14 +43,22 @@ public class FlagItem extends DataSeriesItem {
     /**
      * Constructs an item with X and Title values
      *
-     * @param date
+     * @param instant
      * @param title
      */
+    public FlagItem(Instant instant, String title) {
+        setX(instant);
+        setTitle(title);
+    }
+
+    /**
+     * @deprecated as of 4.0. Use {@link #FlagItem(Instant, String)}
+     */
+    @Deprecated
     public FlagItem(Date date, String title) {
         setX(date);
         setTitle(title);
     }
-
     /**
      * Constructs an item with X, Title and Text values
      *
@@ -65,15 +74,25 @@ public class FlagItem extends DataSeriesItem {
     /**
      * Constructs an item with X, Title and Text values
      *
-     * @param date
+     * @param instant
      * @param title
+     * @param text
      */
+    public FlagItem(Instant instant, String title, String text) {
+        setX(instant);
+        setTitle(title);
+        setText(text);
+    }
+
+    /**
+     * @deprecated as of 4.0. Use {@link #FlagItem(Instant, String, String)}
+     */
+    @Deprecated
     public FlagItem(Date date, String title, String text) {
         setX(date);
         setTitle(title);
         setText(text);
     }
-
     /**
      * Sets the title of the flag
      * 

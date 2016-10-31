@@ -17,6 +17,7 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
+import java.time.Instant;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -114,35 +115,53 @@ public class DataSeriesItem extends AbstractSeriesItem {
     }
 
     /**
-     * Constructs a DataSeriesItem with the given date as X value and Y value.
+     * Constructs a DataSeriesItem with the given instant as X value and Y value.
      *
-     * @param date
-     *            Date of the item, as its X-value.
+     * @param instant
+     *            Instant of the item, as its X-value.
      * @param y
      *            Y-value of the item.
      */
+    public DataSeriesItem(Instant instant, Number y) {
+        setX(instant);
+        setY(y);
+    }
+
+    /**
+     * @deprecated as of 4.0. Use {@link #DataSeriesItem(Instant, Number)}
+     */
+    @Deprecated
     public DataSeriesItem(Date date, Number y) {
         setX(date);
         setY(y);
     }
 
     /**
-     * Constructs a DataSeriesItem with the given date as X value with min and
+     * Constructs a DataSeriesItem with the given instant as X value with min and
      * max values for use in range visualizations.
      *
-     * @param date
-     *            Date of the item, as its X-value.
+     * @param instant
+     *            Instant of the item, as its X-value.
      * @param low
      *            Lower value for range visualization.
      * @param high
      *            Upper value for range visualization.
      */
+    public DataSeriesItem(Instant instant, Number low, Number high) {
+        setX(instant);
+        setLow(low);
+        setHigh(high);
+    }
+
+    /**
+     * @deprecated as of 4.0. Use {@link #DataSeriesItem(Instant, Number,Number)}
+     */
+    @Deprecated
     public DataSeriesItem(Date date, Number low, Number high) {
         setX(date);
         setLow(low);
         setHigh(high);
     }
-
     /**
      * Constructs a DataSeriesItem with the given X, min and max values for use
      * in range visualizations.

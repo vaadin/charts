@@ -46,7 +46,7 @@ public class Util {
      * @deprecated as of 4.0. Use {@link #toServerInstant(double)}
      */
     @Deprecated
-    public static Date toServerDate(double rawClientSideValue) {
+        public static Date toServerDate(double rawClientSideValue) {
         Calendar instance = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
         instance.setTimeInMillis((long) rawClientSideValue);
         // fix one field to force calendar re-adjust the value

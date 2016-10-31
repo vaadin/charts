@@ -17,7 +17,6 @@ package com.vaadin.addon.charts.model.serializers;
  * #L%
  */
 import java.io.IOException;
-import java.util.Date;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -26,12 +25,7 @@ import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.vaadin.addon.charts.model.style.GradientColor;
-import com.vaadin.addon.charts.util.Util;
 
-/**
- * Serializes all {@link Date} objects as UTC long.
- *
- */
 public class GradientColorStopsSerializer extends JsonSerializer<GradientColor.Stop> {
 
     public static Module getModule() {

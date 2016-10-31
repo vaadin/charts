@@ -16,6 +16,7 @@ package com.vaadin.addon.charts.model;
  * If not, see <https://vaadin.com/license/cval-3>.
  * #L%
  */
+import java.time.Instant;
 import java.util.Date;
 
 import com.vaadin.addon.charts.model.style.Color;
@@ -98,19 +99,22 @@ public class AbstractSeriesItem extends AbstractConfigurationObject {
     }
 
     /**
-     * Sets the given date as the x value.
-     * <p/>
-     * Note, that internally the Date value is stored as an "epoch timestamp",
-     * adjusted by timezone offset. So when calling {@link #getX()} you might
-     * get a bit odd result.
+     * Sets the given instant as the x value.
      *
-     * @param date
-     *            Date to set.
+     * @param instant
+     *            Instant to set.
      */
+    public void setX(Instant instant) {
+        setX(Util.toHighchartsTS(instant));
+    }
+
+    /**
+     * @deprecated as of 4.0. Use {@link #setX(Instant)}
+     */
+    @Deprecated
     public void setX(Date date) {
         setX(Util.toHighchartsTS(date));
     }
-
     /**
      * Checks whether or not the item is sliced. Makes sense only in pie charts.
      *
