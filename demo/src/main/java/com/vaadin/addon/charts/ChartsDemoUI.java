@@ -217,6 +217,7 @@ public class ChartsDemoUI extends UI {
         content.setMargin(false);
 
         Label logo = new Label("Vaadin Charts");
+        logo.setWidth("100%");
         logo.addStyleName("h3");
         logo.addStyleName("logo");
 
