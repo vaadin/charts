@@ -23,6 +23,7 @@ import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.ui.declarative.ChartDesignFormatter;
 import com.vaadin.ui.declarative.DesignAttributeHandler;
+import com.vaadin.ui.declarative.DesignContext;
 import com.vaadin.ui.declarative.DesignException;
 
 public class ChartDesignWriter implements Serializable {
@@ -45,7 +46,7 @@ public class ChartDesignWriter implements Serializable {
             .getName());
 
     public static void writeConfigurationToElement(
-            AbstractConfigurationObject configuration, Element parent) {
+            AbstractConfigurationObject configuration, Element parent, DesignContext context) {
         List<Field> declaredFields = resolveFields(configuration.getClass());
         for (Field field : declaredFields) {
             if (ignoredConfigurationObjectProperties.contains(field.getName()
@@ -57,20 +58,20 @@ public class ChartDesignWriter implements Serializable {
             if (value != null) {
                 if (isPlotOptions(field)) {
                     writePlotOptions(parent,
-                            (Map<String, AbstractPlotOptions>) value);
+                            (Map<String, AbstractPlotOptions>) value, context);
                 } else if (isAxisList(field)) {
-                    writeAxisList(parent, (AxisList) value);
+                    writeAxisList(parent, (AxisList) value, context);
                 } else if (isConfigurationObject(field.getType())) {
                     createElementForConfigurationObject(
                             (AbstractConfigurationObject) value, parent,
-                            field.getName());
+                            field.getName(),context);
                 } else if (isCollection(field)) {
                     writeCollection(configuration, parent, field,
-                            (Collection) value);
+                            (Collection) value, context);
                 } else if(isGradientColor(value.getClass())) {
                     writeGradientColor((GradientColor) value, parent, field);
                 } else if (isAttribute(field.getType())) {
-                    writeAttribute(configuration, parent, field);
+                    writeAttribute(configuration, parent, field,context);
                 } else {
                     logger.log(Level.INFO, "Field '" + field.getName()
                             + "' with type '" + field.getType().getName()
@@ -136,13 +137,13 @@ public class ChartDesignWriter implements Serializable {
 
     private static void writeAttribute(
             AbstractConfigurationObject configuration, Element parent,
-            Field field) {
+            Field field,DesignContext context) {
         AbstractConfigurationObject defaultConfiguration = resolveDefaultConfiguration(configuration
                 .getClass());
         String attributeName = toNodeName(field.getName().replace("_fn_", ""));
 
         DesignAttributeHandler.writeAttribute(configuration, attributeName,
-                parent.attributes(), defaultConfiguration);
+                parent.attributes(), defaultConfiguration,context);
         if (ChartDesignCommon.isReservedProperty(attributeName)
                 && parent.attributes().hasKey(attributeName)) {
             // Reserved properties should be removed from parent and re-added
@@ -157,13 +158,13 @@ public class ChartDesignWriter implements Serializable {
 
     private static void writeCollection(
             AbstractConfigurationObject configuration, Element parent,
-            Field field, Collection collection) {
+            Field field, Collection collection, DesignContext context) {
         if (!collection.isEmpty()) {
             if (containsConfigurationObjects(collection)) {
                 for (Object o : collection) {
                     String tagName = o.getClass().getSimpleName() + "s";
                     createElementForConfigurationObject(
-                            (AbstractConfigurationObject) o, parent, tagName);
+                            (AbstractConfigurationObject) o, parent, tagName, context);
                 }
             } else {
                 writeCollectionElement(configuration, parent, field, collection);
@@ -171,17 +172,17 @@ public class ChartDesignWriter implements Serializable {
         }
     }
 
-    private static void writeAxisList(Element parent, AxisList value) {
+    private static void writeAxisList(Element parent, AxisList value, DesignContext context) {
         AxisList axisList = value;
         for (int i = 0; i < axisList.getNumberOfAxes(); ++i) {
             Axis axis = axisList.getAxis(i);
             String tagName = axis.getClass().getSimpleName();
-            createElementForConfigurationObject(axis, parent, tagName);
+            createElementForConfigurationObject(axis, parent, tagName, context);
         }
     }
 
     private static void writePlotOptions(Element parent,
-            Map<String, AbstractPlotOptions> plotOptions) {
+            Map<String, AbstractPlotOptions> plotOptions, DesignContext context) {
         if (plotOptions.isEmpty()) {
             return;
         }
@@ -191,7 +192,7 @@ public class ChartDesignWriter implements Serializable {
         for (Map.Entry<String, AbstractPlotOptions> entry : plotOptions
                 .entrySet()) {
             createElementForConfigurationObject(entry.getValue(),
-                    plotOptionsElement, entry.getKey());
+                    plotOptionsElement, entry.getKey(), context);
         }
     }
 
@@ -259,9 +260,9 @@ public class ChartDesignWriter implements Serializable {
 
     private static void createElementForConfigurationObject(
             AbstractConfigurationObject newConfiguration, Element parent,
-            String tagName) {
+            String tagName, DesignContext context) {
         Element element = parent.appendElement(toNodeName(tagName));
-        writeConfigurationToElement(newConfiguration, element);
+        writeConfigurationToElement(newConfiguration, element,context);
         if (isEmpty(element)) {
             element.remove();
         }

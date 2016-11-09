@@ -12,6 +12,7 @@ import org.junit.Test;
 import com.vaadin.addon.charts.declarative.ChartDesignReader;
 import com.vaadin.addon.charts.declarative.ChartDesignWriter;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.ui.declarative.DesignContext;
 
 public class ChartDesignTest {
 
@@ -39,9 +40,9 @@ public class ChartDesignTest {
         Elements elements = createElements(testHtml);
         Configuration configuration = new Configuration();
         Element parent = new Element(Tag.valueOf("test"), "");
-
+        DesignContext designContext = new DesignContext();
         ChartDesignReader.readConfigurationFromElements(elements, configuration);
-        ChartDesignWriter.writeConfigurationToElement(configuration, parent);
+        ChartDesignWriter.writeConfigurationToElement(configuration, parent, designContext);
 
         assertEquals(testHtml, parent.html());
     }
@@ -63,9 +64,9 @@ public class ChartDesignTest {
         Elements elements = createElements(testHtml);
         Configuration configuration = new Configuration();
         Element parent = new Element(Tag.valueOf("test"), "");
-
+        DesignContext designContext = new DesignContext();
         ChartDesignReader.readConfigurationFromElements(elements, configuration);
-        ChartDesignWriter.writeConfigurationToElement(configuration, parent);
+        ChartDesignWriter.writeConfigurationToElement(configuration, parent, designContext);
 
         assertEquals(testHtml, parent.html());
     }
@@ -88,7 +89,8 @@ public class ChartDesignTest {
         Element parent = new Element(Tag.valueOf("test"), "");
 
         ChartDesignReader.readConfigurationFromElements(elements, configuration);
-        ChartDesignWriter.writeConfigurationToElement(configuration, parent);
+        DesignContext designContext = new DesignContext();
+        ChartDesignWriter.writeConfigurationToElement(configuration, parent, designContext);
 
         assertEquals(testHtml, parent.html());
     }

@@ -7,6 +7,7 @@ import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.data.Result;
 import com.vaadin.data.util.converter.AbstractStringToNumberConverter;
 import com.vaadin.data.util.converter.Converter;
+import com.vaadin.data.util.converter.ValueContext;
 
 public class ChartDesignFormatter {
 
@@ -32,24 +33,25 @@ public class ChartDesignFormatter {
             super(error);
         }
         @Override
-        public Result<Number> convertToModel(String value, Locale locale) {
-             return convertToNumber(value,  locale);
+        public Result<Number> convertToModel(String value, ValueContext context) {
+
+
+             return convertToNumber(value,  getLocaleFromContext(context));
         }
-
-
     }
-
+    private static Locale getLocaleFromContext(ValueContext context) {
+        return context.getLocale().isPresent()? context.getLocale().get():Locale.getDefault();
+    }
     private static class StringToColorConverter implements Converter<String, Color> {
 
-
         @Override
-        public Result<Color> convertToModel(String value, Locale locale) {
+        public Result<Color> convertToModel(String value, ValueContext context) {
             Color color = new SolidColor(value);
             return Result.ok(color);
         }
 
         @Override
-        public String convertToPresentation(Color value, Locale locale) {
+        public String convertToPresentation(Color value, ValueContext context) {
             if (value instanceof SolidColor) {
                 return value.toString();
             }

@@ -55,7 +55,6 @@ import com.vaadin.addon.charts.shared.ChartServerRpc;
 import com.vaadin.addon.charts.shared.ChartState;
 import com.vaadin.addon.charts.shared.DrilldownEventDetails;
 import com.vaadin.addon.charts.shared.MouseEventDetails;
-import com.vaadin.event.selection.SingleSelectionChange;
 import com.vaadin.shared.Registration;
 import com.vaadin.ui.AbstractComponent;
 import com.vaadin.ui.declarative.DesignContext;
@@ -1020,7 +1019,7 @@ public class Chart extends AbstractComponent {
         Configuration configuration = getConfiguration();
         if (configuration != null) {
             ChartDesignWriter
-                .writeConfigurationToElement(configuration, design);
+                .writeConfigurationToElement(configuration, design,designContext);
         }
     }
 }
