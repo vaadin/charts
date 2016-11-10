@@ -1,0 +1,24 @@
+---
+title: Charts 3 to Charts 4 Migration Guide
+order: 10
+layout: page
+---
+
+[[charts4.migration]]
+= Charts 3 to Charts 4 Migration Guide
+
+[[charts4.migration.introduction]]
+== Introduction
+
+Charts 4 is using Vaadin 8.
+Before migrating from Charts 3 to Charts 4, you need to migrate your application to Vaadin 8, see <<dummy/../../../charts/java-api/charts-configuration#charts.configuration,"instructions">>.
+
+[[charts4.migration.changes]]
+== Changes in Charts 4
+
+Most of Vaadin Charts 3 API is compatible with Vaadin Charts 4.x.
+There are two main changes:
+
+* Methods that use [classname]#Date# marked as deprecated, use [classname]#LocalDate# instead.
+* [classname]#ContainerDataSeries# is removed, use [classname]#ChartDataSeries# instead, see <<charts-data#charts.data.dataseries,"instructions">>.
+
