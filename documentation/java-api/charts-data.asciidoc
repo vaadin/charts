@@ -167,9 +167,9 @@ conf.addSeries(series);
 ----
 
 [[charts.data.dataseries]]
-== Chart Data series
+== Data Provider Series
 
-[classname]#ChartsDataSeries# is an adapter for using a Vaadin [interfacename]#DataSource# as a [classname]#DataSeries# in a chart. Using [methodname]#setNameProvider()#, [methodname]#setXValueProvider()#, and [methodname]#setYValueProvider()# you can define which parts of the bean in the [interfacename]#DataSource# are used in the chart.
+[classname]#DataProviderSeries# is an adapter for using a Vaadin [interfacename]#DataSource# as a [classname]#DataSeries# in a chart. Using [methodname]#setNameProvider()#, [methodname]#setXValueProvider()#, and [methodname]#setYValueProvider()# you can define which parts of the bean in the [interfacename]#DataSource# are used in the chart.
 
 If you do not specify any X value provider, the data is assumed to be categorical.
 
@@ -241,14 +241,14 @@ grid.addColumn("Quantity",
 grid.addColumn("Price",
   order -> Double.toString(order.getTotalPrice()));
 
-// Wrap the DataSource in a ChartDataSource
-ChartDataSeries<Order> chartDS = new ChartDataSeries<>(ds);
-chartDS.setName("Order item quantities");
-chartDS.setPlotOptions(new PlotOptionsPie());
+// Wrap the DataProvider in a DataProviderSeries
+DataProviderSeries<Order> series = new DataProviderSeries<>(ds);
+series.setName("Order item quantities");
+series.setPlotOptions(new PlotOptionsPie());
 
 // Set up the name and Y properties
-chartDS.setYValueProvider(Order::getTotalPrice);
-chartDS.setNameProvider(Order::getDescription);
+series.setY(Order::getTotalPrice);
+series.setPointName(Order::getDescription);
 
 // Display it in a chart
 Chart chart = new Chart();
