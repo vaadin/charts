@@ -12,7 +12,7 @@ import org.junit.Test;
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.model.AbstractPlotOptions;
 import com.vaadin.addon.charts.model.AxisTitle;
-import com.vaadin.addon.charts.model.ChartDataSeries;
+import com.vaadin.addon.charts.model.DataProviderSeries;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.ListSeries;
@@ -130,12 +130,12 @@ public class ConfigurationTest {
         yAxis.setTitle(title);
         conf.addyAxis(yAxis);
 
-        ChartDataSeries<Pair> ds = new ChartDataSeries(createDataSource());
+        DataProviderSeries<Pair> ds = new DataProviderSeries(createDataSource());
 
 
         ds.setName("Test Series1");
-        ds.setYValueProvider(Pair::getValue);
-        ds.setNameProvider(Pair::getName);
+        ds.setY(Pair::getValue);
+        ds.setPointName(Pair::getName);
 
         // if a 'plotOptionsArea' is not set, the name of this series will not
         // be shown in legend
