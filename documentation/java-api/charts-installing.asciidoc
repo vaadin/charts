@@ -50,7 +50,7 @@ The Ivy dependency, to be defined in [filename]#ivy.xml#, would be as follows:
 
 [subs="normal"]
 ----
-&lt;dependency org="com.vaadin" name="vaadin-charts"
+&lt;dependency org="com.vaadin.addon" name="vaadin-charts"
             rev="**3.2.0**" /&gt;
 ----
 It is generally recommended to use a fixed version number, but you can also use
