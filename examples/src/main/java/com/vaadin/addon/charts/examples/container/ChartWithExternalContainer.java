@@ -24,15 +24,15 @@ import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.ExampleUtil;
 import com.vaadin.addon.charts.model.AbstractSeries;
-import com.vaadin.addon.charts.model.ChartDataSeries;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.DataProviderSeries;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
 import com.vaadin.addon.charts.model.PlotOptionsPie;
 import com.vaadin.addon.charts.model.Series;
 import com.vaadin.addon.charts.model.YAxis;
-import com.vaadin.server.data.DataSource;
-import com.vaadin.server.data.ListDataSource;
+import com.vaadin.server.data.DataProvider;
+import com.vaadin.server.data.ListDataProvider;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.HorizontalLayout;
@@ -48,10 +48,10 @@ public class ChartWithExternalContainer extends AbstractVaadinChartExample {
     protected Component getChart() {
         HorizontalLayout lo = new HorizontalLayout();
         lo.setSpacing(true);
-        DataSource<Order> ds = getOrderDataSource();
+        DataProvider<Order> ds = getOrderDataProvider();
 
-        ChartDataSeries chartDataSeries1 = createChartDataSeries1(ds);
-        ChartDataSeries chartDataSeries2 = createChartDataSeries2(ds);
+        DataProviderSeries<Order> chartDataSeries1 = createChartDataSeries1(ds);
+        DataProviderSeries<Order> chartDataSeries2 = createChartDataSeries2(ds);
         Component table = createGrid(ds);
         table.setSizeFull();
         Chart chart1 = createChart1(chartDataSeries1);
@@ -70,29 +70,29 @@ public class ChartWithExternalContainer extends AbstractVaadinChartExample {
         return lo;
     }
 
-    private ChartDataSeries createChartDataSeries1(DataSource<Order> dataSource) {
-        ChartDataSeries<Order> chartDS = new ChartDataSeries(dataSource);
+    private DataProviderSeries<Order> createChartDataSeries1(DataProvider<Order> DataProvider) {
+        DataProviderSeries<Order> chartDS = new DataProviderSeries<>(DataProvider);
         chartDS.setName("Order item quantities");
         chartDS.setPlotOptions(new PlotOptionsPie());
-        chartDS.setYValueProvider(Order::getQuantity);
-        chartDS.setNameProvider(Order::getDescription);
+        chartDS.setY(Order::getQuantity);
+        chartDS.setPointName(Order::getDescription);
         return chartDS;
     }
 
-    private ChartDataSeries createChartDataSeries2(DataSource<Order> dataSource) {
-        ChartDataSeries<Order> chartDS = new ChartDataSeries(dataSource);
+    private DataProviderSeries<Order> createChartDataSeries2(DataProvider<Order> DataProvider) {
+        DataProviderSeries<Order> chartDS = new DataProviderSeries<>(DataProvider);
         chartDS.setName("Order item prices");
         chartDS.setPlotOptions(new PlotOptionsColumn());
 
-        chartDS.setYValueProvider(order -> order.getItemPrice().intValue());
-        chartDS.setNameProvider(Order::getDescription);
+        chartDS.setY(order -> order.getItemPrice().intValue());
+        chartDS.setPointName(Order::getDescription);
         return chartDS;
     }
 
-    private Component createGrid(DataSource<Order> dataSource) {
-        Grid<Order> grid = new Grid();
+    private Component createGrid(DataProvider<Order> DataProvider) {
+        Grid<Order> grid = new Grid<Order>();
         grid.setCaption("Data from Vaadin Container");
-        grid.setDataSource(dataSource);
+        grid.setDataProvider(DataProvider);
         grid.addColumn("description",Order::getDescription);
         grid.addColumn("quantity",order -> Integer.toString(order.getQuantity().intValue()));
         grid.addColumn(ExampleUtil.ORDER_ITEMPRICE_PROPERTY_ID.toString(),order -> Integer.toString(order.getItemPrice().intValue()));
@@ -155,7 +155,7 @@ public class ChartWithExternalContainer extends AbstractVaadinChartExample {
         }
     }
 
-    public DataSource getOrderDataSource() {
+    public DataProvider<Order> getOrderDataProvider() {
         Collection<Order> orders = new ArrayList<>();
         orders.add(new Order("Domain Name", 3, 7.99));
         orders.add(new Order("SSL Certificate", 1, 119.00));
@@ -164,7 +164,7 @@ public class ChartWithExternalContainer extends AbstractVaadinChartExample {
         orders.add(new Order("E-Commerce Setup", 1, 25.00));
         orders.add(new Order("Technical Support", 1, 50.00));
 
-        return new ListDataSource<>(orders);
+        return new ListDataProvider<>(orders);
     }
 
 }

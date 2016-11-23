@@ -2,6 +2,7 @@ package com.vaadin.addon.charts.model.junittests;
 
 import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
 import static org.junit.Assert.assertEquals;
+
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -14,12 +15,12 @@ import java.util.TimeZone;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.vaadin.addon.charts.model.ChartDataSeries;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.DataProviderSeries;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.PlotOptionsSeries;
-import com.vaadin.server.data.DataSource;
-import com.vaadin.server.data.ListDataSource;
+import com.vaadin.server.data.DataProvider;
+import com.vaadin.server.data.ListDataProvider;
 
 public class ChartDataSeriesJSONSerializationTest {
 
@@ -58,15 +59,18 @@ public class ChartDataSeriesJSONSerializationTest {
             return value;
         }
     }
+
     private class TestItem {
         private Integer x;
         private Integer y;
         private Integer z;
+
         public TestItem(Integer x, Integer y) {
             this.x = x;
             this.y = y;
-            this.z = null;
+            z = null;
         }
+
         public TestItem(Integer x, Integer y, Integer z) {
             this.x = x;
             this.y = y;
@@ -85,90 +89,90 @@ public class ChartDataSeriesJSONSerializationTest {
             return z;
         }
     }
-    private DataSource<TestItem> dataSource;
-    private ChartDataSeries<TestItem> chartDataSeries;
-    private Collection<TestItem> col=new ArrayList<TestItem>();
+
+    private DataProvider<TestItem> dataProvider;
+    private DataProviderSeries<TestItem> chartDataSeries;
+    private Collection<TestItem> col = new ArrayList<TestItem>();
+
     @Before
     public void setup() {
-        Collection<TestItem> col=new ArrayList<TestItem>();
-        dataSource = new ListDataSource<TestItem>(col);
+        Collection<TestItem> col = new ArrayList<TestItem>();
+        dataProvider = new ListDataProvider<TestItem>(col);
 
-        chartDataSeries = new ChartDataSeries(dataSource);
+        chartDataSeries = new DataProviderSeries<>(dataProvider);
 
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void serialize_ContainerWithXY_ValuesMappedAsArray() {
-        col.add(new TestItem(80,80));
-        col.add(new TestItem(20,20));
-        dataSource = new ListDataSource<TestItem>(col);
-        chartDataSeries = new ChartDataSeries(dataSource);
-        chartDataSeries.setXValueProvider(TestItem::getX);
-        chartDataSeries.setYValueProvider(TestItem::getY);
+        col.add(new TestItem(80, 80));
+        col.add(new TestItem(20, 20));
+        dataProvider = new ListDataProvider<TestItem>(col);
+        chartDataSeries = new DataProviderSeries<>(dataProvider);
+        chartDataSeries.setX(TestItem::getX);
+        chartDataSeries.setY(TestItem::getY);
         assertEquals("{\"data\":[[80,80],[20,20]]}", toJSON(chartDataSeries));
     }
 
     @Test(expected = RuntimeException.class)
     public void serialize_ContainerWithoutY_ExceptionIsThrown() {
-        dataSource = new ListDataSource<TestItem>(col);
+        dataProvider = new ListDataProvider<TestItem>(col);
 
-        chartDataSeries = new ChartDataSeries(dataSource);
+        chartDataSeries = new DataProviderSeries<>(dataProvider);
         chartDataSeries.setId("foo");
-        chartDataSeries.setXValueProvider(TestItem::getX);
+        chartDataSeries.setX(TestItem::getX);
 
         toJSON(chartDataSeries);
     }
+
     @Test(expected = RuntimeException.class)
     public void serialize_ContainerWithoutYAndLow_ExceptionIsThrown() {
-        col.add(new TestItem(80,80));
-        col.add(new TestItem(20,20));
-        dataSource = new ListDataSource<TestItem>(col);
-        chartDataSeries = new ChartDataSeries(dataSource);
-        chartDataSeries.setXValueProvider(TestItem::getX);
-        chartDataSeries.setHighDataProvider(TestItem::getY);
+        col.add(new TestItem(80, 80));
+        col.add(new TestItem(20, 20));
+        dataProvider = new ListDataProvider<TestItem>(col);
+        chartDataSeries = new DataProviderSeries<>(dataProvider);
+        chartDataSeries.setX(TestItem::getX);
+        chartDataSeries.setHigh(TestItem::getY);
 
         toJSON(chartDataSeries);
     }
-    @SuppressWarnings("unchecked")
+
     @Test
     public void serialize_ContainerWithXYZ_UnmappedPropertyNotSerialized() {
-        col.add(new TestItem(80,80,80));
-        col.add(new TestItem(20,20,20));
-        dataSource = new ListDataSource<TestItem>(col);
-        chartDataSeries = new ChartDataSeries(dataSource);
-        chartDataSeries.setXValueProvider(TestItem::getX);
-        chartDataSeries.setYValueProvider(TestItem::getY);
+        col.add(new TestItem(80, 80, 80));
+        col.add(new TestItem(20, 20, 20));
+        dataProvider = new ListDataProvider<TestItem>(col);
+        chartDataSeries = new DataProviderSeries<>(dataProvider);
+        chartDataSeries.setX(TestItem::getX);
+        chartDataSeries.setY(TestItem::getY);
 
         assertEquals("{\"data\":[[80,80],[20,20]]}", toJSON(chartDataSeries));
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void serialize_ZMappedToName_ValuesMappedAsObject() {
-        col.add(new TestItem(80,80,80));
-        col.add(new TestItem(20,20,20));
-        dataSource = new ListDataSource<TestItem>(col);
-        chartDataSeries = new ChartDataSeries(dataSource);
-        chartDataSeries.setXValueProvider(TestItem::getX);
-        chartDataSeries.setYValueProvider(TestItem::getY);
-        chartDataSeries.addDataProvider("name", TestItem::getZ);
+        col.add(new TestItem(80, 80, 80));
+        col.add(new TestItem(20, 20, 20));
+        dataProvider = new ListDataProvider<TestItem>(col);
+        chartDataSeries = new DataProviderSeries<>(dataProvider);
+        chartDataSeries.setX(TestItem::getX);
+        chartDataSeries.setY(TestItem::getY);
+        chartDataSeries.setPointName(TestItem::getZ);
         assertEquals(
                 "{\"data\":[{\"x\":80,\"y\":80,\"name\":80},{\"x\":20,\"y\":20,\"name\":20}]}",
                 toJSON(chartDataSeries));
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void serialize_ContainerItemWithMissingZ_MissingItemSerializedCorrectly() {
-        col.add(new TestItem(80,80,80));
-        col.add(new TestItem(20,20,20));
-        col.add(new TestItem(10,10,null));
-        dataSource = new ListDataSource<TestItem>(col);
-        chartDataSeries = new ChartDataSeries(dataSource);
-        chartDataSeries.setXValueProvider(TestItem::getX);
-        chartDataSeries.setYValueProvider(TestItem::getY);
-        chartDataSeries.addDataProvider("name", TestItem::getZ);
+        col.add(new TestItem(80, 80, 80));
+        col.add(new TestItem(20, 20, 20));
+        col.add(new TestItem(10, 10, null));
+        dataProvider = new ListDataProvider<TestItem>(col);
+        chartDataSeries = new DataProviderSeries<>(dataProvider);
+        chartDataSeries.setX(TestItem::getX);
+        chartDataSeries.setY(TestItem::getY);
+        chartDataSeries.setPointName(TestItem::getZ);
 
         assertEquals(
                 "{\"data\":[{\"x\":80,\"y\":80,\"name\":80},{\"x\":20,\"y\":20,\"name\":20},{\"x\":10,\"y\":10}]}",
@@ -189,10 +193,11 @@ public class ChartDataSeriesJSONSerializationTest {
         Date helsinkiTime = calendar.getTime();
         Collection<TestDateItem> col = new ArrayList<>();
         col.add(new TestDateItem(helsinkiTime, 80));
-        DataSource<TestDateItem> dataSource = new ListDataSource<>(col);
-        ChartDataSeries<TestDateItem> chartDataSeries = new ChartDataSeries(dataSource);
-        chartDataSeries.setXValueProvider(TestDateItem::getDate);
-        chartDataSeries.setYValueProvider(TestDateItem::getValue);
+        DataProvider<TestDateItem> DataProvider = new ListDataProvider<>(col);
+        DataProviderSeries<TestDateItem> chartDataSeries = new DataProviderSeries<>(
+                DataProvider);
+        chartDataSeries.setX(TestDateItem::getDate);
+        chartDataSeries.setY(TestDateItem::getValue);
 
         String expected = "{\"data\":[[" + utcTime.getTime() + ",80]]}";
         assertEquals(expected, toJSON(chartDataSeries));
@@ -204,24 +209,27 @@ public class ChartDataSeriesJSONSerializationTest {
         Collection<TestInstantItem> col = new ArrayList<>();
         Instant instant = dateTime.toInstant(ZoneOffset.UTC);
         col.add(new TestInstantItem(instant, 80));
-        DataSource<TestInstantItem> dataSource = new ListDataSource<>(col);
+        DataProvider<TestInstantItem> DataProvider = new ListDataProvider<>(
+                col);
 
-        ChartDataSeries<TestInstantItem> chartDataSeries = new ChartDataSeries(dataSource);
-        chartDataSeries.setXValueProvider(TestInstantItem::getDate);
-        chartDataSeries.setYValueProvider(TestInstantItem::getValue);
+        DataProviderSeries<TestInstantItem> chartDataSeries = new DataProviderSeries<>(
+                DataProvider);
+        chartDataSeries.setX(TestInstantItem::getDate);
+        chartDataSeries.setY(TestInstantItem::getValue);
 
-        String expected = "{\"data\":[[" + instant.getEpochSecond()*1000 + ",80]]}";
+        String expected = "{\"data\":[[" + instant.getEpochSecond() * 1000
+                + ",80]]}";
         assertEquals(expected, toJSON(chartDataSeries));
     }
 
     @Test
     public void serialize_ContainerWithLowAndHighValues_LowAndHighValuesSerialized() {
-        col.add(new TestItem(-5,5,null));
+        col.add(new TestItem(-5, 5, null));
 
-        dataSource = new ListDataSource<TestItem>(col);
-        chartDataSeries = new ChartDataSeries(dataSource);
-        chartDataSeries.setLowDataProvider(TestItem::getX);
-        chartDataSeries.setHighDataProvider(TestItem::getY);
+        dataProvider = new ListDataProvider<TestItem>(col);
+        chartDataSeries = new DataProviderSeries<>(dataProvider);
+        chartDataSeries.setLow(TestItem::getX);
+        chartDataSeries.setHigh(TestItem::getY);
 
         assertEquals("{\"data\":[{\"high\":5,\"low\":-5}]}",
                 toJSON(chartDataSeries));
@@ -231,10 +239,10 @@ public class ChartDataSeriesJSONSerializationTest {
     public void serialize_ContainerWithLinePlotOptions_PlotOptionsAndTypeSerialized() {
         PlotOptionsLine plotOptions = new PlotOptionsLine();
         plotOptions.setShowInLegend(true);
-        dataSource = new ListDataSource<TestItem>(col);
+        dataProvider = new ListDataProvider<TestItem>(col);
 
-        chartDataSeries = new ChartDataSeries(dataSource);
-        chartDataSeries.setYValueProvider(TestItem::getY);
+        chartDataSeries = new DataProviderSeries<>(dataProvider);
+        chartDataSeries.setY(TestItem::getY);
         chartDataSeries.setPlotOptions(plotOptions);
 
         Configuration config = new Configuration();
@@ -247,10 +255,10 @@ public class ChartDataSeriesJSONSerializationTest {
     public void serialize_ContainerWithSeriesPlotOptions_PlotTypeNotSerialized() {
         PlotOptionsSeries plotOptions = new PlotOptionsSeries();
         plotOptions.setShowInLegend(true);
-        dataSource = new ListDataSource<TestItem>(col);
+        dataProvider = new ListDataProvider<TestItem>(col);
 
-        chartDataSeries = new ChartDataSeries(dataSource);
-        chartDataSeries.setYValueProvider(TestItem::getY);
+        chartDataSeries = new DataProviderSeries<>(dataProvider);
+        chartDataSeries.setY(TestItem::getY);
         chartDataSeries.setPlotOptions(plotOptions);
 
         Configuration config = new Configuration();
@@ -264,10 +272,10 @@ public class ChartDataSeriesJSONSerializationTest {
     public void serialize_ContainerWithNameAndStack_NameAndStackSerialized() {
         PlotOptionsSeries plotOptions = new PlotOptionsSeries();
         plotOptions.setShowInLegend(true);
-        dataSource = new ListDataSource<TestItem>(col);
+        dataProvider = new ListDataProvider<TestItem>(col);
 
-        chartDataSeries = new ChartDataSeries(dataSource);
-        chartDataSeries.setYValueProvider(TestItem::getY);
+        chartDataSeries = new DataProviderSeries<>(dataProvider);
+        chartDataSeries.setY(TestItem::getY);
         chartDataSeries.setName("foo");
         chartDataSeries.setStack("bar");
         Configuration config = new Configuration();
@@ -279,11 +287,11 @@ public class ChartDataSeriesJSONSerializationTest {
 
     @Test
     public void serialize_SeriesHasId_IdSerialized() {
-        dataSource = new ListDataSource<TestItem>(col);
+        dataProvider = new ListDataProvider<TestItem>(col);
 
-        chartDataSeries = new ChartDataSeries(dataSource);
+        chartDataSeries = new DataProviderSeries<>(dataProvider);
         chartDataSeries.setId("foo");
-        chartDataSeries.setYValueProvider(TestItem::getY);
+        chartDataSeries.setY(TestItem::getY);
 
         assertEquals("{\"id\":\"foo\",\"data\":[]}", toJSON(chartDataSeries));
     }

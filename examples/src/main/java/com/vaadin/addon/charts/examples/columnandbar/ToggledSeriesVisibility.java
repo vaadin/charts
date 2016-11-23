@@ -25,10 +25,10 @@ import com.vaadin.ui.Component;
 @SuppressWarnings("serial")
 public class ToggledSeriesVisibility extends AbstractVaadinChartExample {
 
-    private final ListSeries berlin = new ListSeries("Berlin", 42.4, 33.2,
-            34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1);
-    private final ListSeries london = new ListSeries("London", 48.9, 38.8,
-            39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2);
+    private final ListSeries berlin = new ListSeries("Berlin", 42.4, 33.2, 34.5,
+            39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1);
+    private final ListSeries london = new ListSeries("London", 48.9, 38.8, 39.3,
+            41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2);
     private final ListSeries newYork = new ListSeries("New York", 83.6, 78.8,
             98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3);
     private final ListSeries tokyo = new ListSeries("Tokyo", 49.9, 71.5, 106.4,
@@ -118,18 +118,19 @@ public class ToggledSeriesVisibility extends AbstractVaadinChartExample {
     @Override
     protected void setup() {
         super.setup();
-        checkBoxGroup = new CheckBoxGroup();
+        checkBoxGroup = new CheckBoxGroup<>();
         checkBoxGroup.setId("vaadin-optiongroup");
         final List<Series> series = chart.getConfiguration().getSeries();
         checkBoxGroup.setItems(series);
         checkBoxGroup.setItemCaptionGenerator(Series::getName);
         for (Series s : series) {
-            checkBoxGroup.getSelectionModel().select(s);
+            checkBoxGroup.select(s);
         }
         addComponentAsFirst(checkBoxGroup);
         checkBoxGroup.addSelectionListener(e -> {
             for (Series s : series) {
-                ((ListSeries) s).setVisible((checkBoxGroup.getSelectedItems()).contains(s));
+                ((ListSeries) s).setVisible(
+                        (checkBoxGroup.getSelectedItems()).contains(s));
             }
         });
     }

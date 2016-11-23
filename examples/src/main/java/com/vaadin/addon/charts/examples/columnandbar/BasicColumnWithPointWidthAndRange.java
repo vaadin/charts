@@ -55,11 +55,11 @@ public class BasicColumnWithPointWidthAndRange extends
         slider.setWidth("200px");
         slider.setValue(100d);
 
-        final NativeSelect<String> option = new NativeSelect();
+        final NativeSelect<String> option = new NativeSelect<>();
         option.setCaption("Option");
         option.setItems("", "pointWidth", "pointRange");
         option.setSelectedItem("pointWidth");
-        option.addSelectionListener(sc -> {
+        option.addSelectionChangeListener(sc -> {
             slider.setEnabled(!sc.getSelectedItem().get().equals(""));
         });
 
