@@ -23,9 +23,9 @@ import java.util.Collection;
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.AxisTitle;
-import com.vaadin.addon.charts.model.ChartDataSeries;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.DataProviderSeries;
 import com.vaadin.addon.charts.model.Hover;
 import com.vaadin.addon.charts.model.Marker;
 import com.vaadin.addon.charts.model.PlotOptionsArea;
@@ -33,8 +33,8 @@ import com.vaadin.addon.charts.model.Series;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
-import com.vaadin.server.data.DataSource;
-import com.vaadin.server.data.ListDataSource;
+import com.vaadin.server.data.DataProvider;
+import com.vaadin.server.data.ListDataProvider;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.HorizontalLayout;
@@ -47,11 +47,11 @@ public class ContainerWithLotsOfData extends AbstractVaadinChartExample {
         return "Chart with Container containing much data VEIGHT";
     }
 
-    private DataSource<Data> data = new ListDataSource<>(getMockData());
+    private DataProvider<Data> data = new ListDataProvider<>(getMockData());
     @Override
     protected Component getChart() {
         HorizontalLayout lo = new HorizontalLayout();
-        ChartDataSeries ds = createChartDS();
+        DataProviderSeries<Data> ds = createChartDS();
         Component grid = createGrid();
         Component chart = createChart(ds);
 
@@ -66,17 +66,17 @@ public class ContainerWithLotsOfData extends AbstractVaadinChartExample {
         return lo;
     }
 
-    private ChartDataSeries<Data> createChartDS(){
-        ChartDataSeries<Data> ds = new ChartDataSeries(data);
-        ds.setYValueProvider(Data::getValue);
+    private DataProviderSeries<Data> createChartDS(){
+        DataProviderSeries<Data> ds = new DataProviderSeries<>(data);
+        ds.setY(Data::getValue);
         ds.setPlotOptions(new PlotOptionsArea());
         ds.setName("USD to EUR");
         return ds;
     }
 
     private Component createGrid() {
-        Grid<Data> g = new Grid();
-        g.setDataSource(data);
+        Grid<Data> g = new Grid<>();
+        g.setDataProvider(data);
         g.setCaption("Data from Vaadin Container");
         g.addColumn("index",data->Double.toString(data.getIndex()));
         g.addColumn("USD to EUR",data->Double.toString(data.getValue()));

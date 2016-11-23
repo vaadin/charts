@@ -22,17 +22,16 @@ import java.util.Collection;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.model.ChartDataSeries;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.DataProviderSeries;
 import com.vaadin.addon.charts.model.Series;
 import com.vaadin.addon.charts.model.style.Color;
-import com.vaadin.server.data.DataSource;
-import com.vaadin.server.data.ListDataSource;
+import com.vaadin.server.data.DataProvider;
+import com.vaadin.server.data.ListDataProvider;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.HorizontalLayout;
-
 
 public class SimpleChartWithContainerSeries extends AbstractVaadinChartExample {
 
@@ -41,13 +40,14 @@ public class SimpleChartWithContainerSeries extends AbstractVaadinChartExample {
         return "Simple Chart with ContainerSeries";
     }
 
-    private DataSource<Browser> browsers = new ListDataSource<>(getMockData());
+    private DataProvider<Browser> browsers = new ListDataProvider<>(
+            getMockData());
 
     @Override
     protected Component getChart() {
         HorizontalLayout lo = new HorizontalLayout();
         Component table = createGrid();
-        ChartDataSeries ds = createChartDS();
+        DataProviderSeries<Browser> ds = createChartDS();
         Component chart = createChart(ds);
 
         table.setSizeFull();
@@ -60,23 +60,23 @@ public class SimpleChartWithContainerSeries extends AbstractVaadinChartExample {
         return lo;
     }
 
-     private Component createGrid() {
+    private Component createGrid() {
 
-        Grid<Browser> grid = new Grid();
-        grid.setDataSource(browsers);
+        Grid<Browser> grid = new Grid<>();
+        grid.setDataProvider(browsers);
         grid.addColumn("name", Browser::getName);
-        grid.addColumn("y", browser ->Double.toString(browser.getShare().doubleValue()));
+        grid.addColumn("y",
+                browser -> Double.toString(browser.getShare().doubleValue()));
         grid.addColumn("color", browser -> browser.getColor().toString());
         grid.setCaption("Data from Vaadin Container");
         return grid;
     }
 
-    @SuppressWarnings("unchecked")
-    private ChartDataSeries createChartDS() {
-        ChartDataSeries<Browser> ds = new ChartDataSeries(browsers);
-        ds.setNameProvider(Browser::getName);
-        ds.setYValueProvider( Browser::getShare);
-        ds.addDataProvider("color", Browser::getColor);
+    private DataProviderSeries<Browser> createChartDS() {
+        DataProviderSeries<Browser> ds = new DataProviderSeries<>(browsers);
+        ds.setPointName(Browser::getName);
+        ds.setY(Browser::getShare);
+        ds.setProperty("color", Browser::getColor);
         ds.setName("Browser share");
 
         return ds;
@@ -96,28 +96,30 @@ public class SimpleChartWithContainerSeries extends AbstractVaadinChartExample {
         return chart;
     }
 
-    private Collection<Browser> getMockData(){
-        Collection<Browser> browsers= new ArrayList<>();
+    private Collection<Browser> getMockData() {
+        Collection<Browser> browsers = new ArrayList<>();
         String[] names = new String[] { "MSIE", "Firefox", "Chrome", "Safari",
                 "Opera" };
         Number[] values = new Number[] { 55.11, 21.63, 11.94, 7.15, 2.14 };
         Color[] colors = getThemeColors();
         for (int i = 0; i < names.length; i++) {
-            browsers.add(new Browser(names[i],values[i],colors[i]));
+            browsers.add(new Browser(names[i], values[i], colors[i]));
 
         }
-        return  browsers;
+        return browsers;
     }
 
-    private class Browser{
+    private class Browser {
         private String name;
         private Number share;
         private Color color;
-        public Browser(String name,Number share,Color color){
-            this.name=name;
-            this.share=share;
+
+        public Browser(String name, Number share, Color color) {
+            this.name = name;
+            this.share = share;
             this.color = color;
         }
+
         public String getName() {
             return name;
         }
