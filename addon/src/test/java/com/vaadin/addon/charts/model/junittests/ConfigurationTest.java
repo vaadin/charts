@@ -1,7 +1,10 @@
 package com.vaadin.addon.charts.model.junittests;
 
 import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -12,15 +15,15 @@ import org.junit.Test;
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.model.AbstractPlotOptions;
 import com.vaadin.addon.charts.model.AxisTitle;
-import com.vaadin.addon.charts.model.ChartDataSeries;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.DataProviderSeries;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
-import com.vaadin.server.data.DataSource;
-import com.vaadin.server.data.ListDataSource;
+import com.vaadin.server.data.DataProvider;
+import com.vaadin.server.data.ListDataProvider;
 
 public class ConfigurationTest {
 
@@ -130,12 +133,12 @@ public class ConfigurationTest {
         yAxis.setTitle(title);
         conf.addyAxis(yAxis);
 
-        ChartDataSeries<Pair> ds = new ChartDataSeries(createDataSource());
+        DataProviderSeries<Pair> ds = new DataProviderSeries(createDataProvider());
 
 
         ds.setName("Test Series1");
-        ds.setYValueProvider(Pair::getValue);
-        ds.setNameProvider(Pair::getName);
+        ds.setY(Pair::getValue);
+        ds.setPointName(Pair::getName);
 
         // if a 'plotOptionsArea' is not set, the name of this series will not
         // be shown in legend
@@ -163,7 +166,7 @@ public class ConfigurationTest {
             return value;
         }
     }
-    private DataSource<Pair> createDataSource() {
+    private DataProvider<Pair> createDataProvider() {
         Collection<Pair> col =new ArrayList<>();
         col.add(new Pair("A",10));
         col.add(new Pair("B",11));
@@ -171,6 +174,6 @@ public class ConfigurationTest {
         col.add(new Pair("D",15));
         col.add(new Pair("E",9));
 
-        return new ListDataSource<>(col);
+        return new ListDataProvider<>(col);
     }
 }

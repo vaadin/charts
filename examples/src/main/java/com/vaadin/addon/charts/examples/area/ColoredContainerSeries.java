@@ -6,16 +6,16 @@ import java.util.Collection;
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.SkipFromDemo;
-import com.vaadin.addon.charts.model.ChartDataSeries;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.DataProviderSeries;
 import com.vaadin.addon.charts.model.PlotOptionsArea;
 import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
-import com.vaadin.server.data.DataSource;
-import com.vaadin.server.data.ListDataSource;
+import com.vaadin.server.data.DataProvider;
+import com.vaadin.server.data.ListDataProvider;
 import com.vaadin.ui.Component;
 
 @SkipFromDemo
@@ -56,12 +56,12 @@ public class ColoredContainerSeries extends AbstractVaadinChartExample {
         col.add(new Test(10, "TEN"));
         col.add(new Test(11, "ELEVEN"));
         col.add(new Test(12, "TWELVE"));
-        DataSource<Test> ds = new ListDataSource<>(col);
-        ChartDataSeries<Test> chartDS= new ChartDataSeries(ds);
+        DataProvider<Test> ds = new ListDataProvider<>(col);
+        DataProviderSeries<Test> chartDS= new DataProviderSeries<>(ds);
 
         chartDS.setName("Test Series");
-        chartDS.setYValueProvider(Test::getNumber);
-        chartDS.setNameProvider(Test::getName);
+        chartDS.setY(Test::getNumber);
+        chartDS.setPointName(Test::getName);
 
         PlotOptionsArea plotOptions = new PlotOptionsArea();
         plotOptions.setFillColor(SolidColor.CORNFLOWERBLUE);

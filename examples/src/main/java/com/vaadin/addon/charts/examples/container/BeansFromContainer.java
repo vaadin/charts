@@ -8,12 +8,12 @@ import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.SkipFromDemo;
 import com.vaadin.addon.charts.model.AxisType;
-import com.vaadin.addon.charts.model.ChartDataSeries;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.DataProviderSeries;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
 import com.vaadin.addon.charts.model.YAxis;
-import com.vaadin.server.data.DataSource;
-import com.vaadin.server.data.ListDataSource;
+import com.vaadin.server.data.DataProvider;
+import com.vaadin.server.data.ListDataProvider;
 import com.vaadin.ui.Component;
 
 @SkipFromDemo
@@ -26,15 +26,15 @@ public class BeansFromContainer extends AbstractVaadinChartExample {
 
     @Override
     protected Component getChart() {
-        DataSource<ClaimsReportItem> ds = new ListDataSource<>(getMockData());
+        DataProvider<ClaimsReportItem> ds = new ListDataProvider<>(getMockData());
 
 
         // Create ChartDataSeries
-        ChartDataSeries<ClaimsReportItem> series = new ChartDataSeries(ds);
+        DataProviderSeries<ClaimsReportItem> series = new DataProviderSeries<>(ds);
         series.setName("Claims");
         series.setPlotOptions(new PlotOptionsColumn());
-        series.setYValueProvider(ClaimsReportItem::getAmount);
-        series.setNameProvider(ClaimsReportItem::getType);
+        series.setY(ClaimsReportItem::getAmount);
+        series.setPointName(ClaimsReportItem::getType);
 
         // Create chart & configuration
         Chart chart = new Chart();

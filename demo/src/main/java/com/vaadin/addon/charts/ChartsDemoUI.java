@@ -204,9 +204,9 @@ public class ChartsDemoUI extends UI {
 
         themeSelector.setEmptySelectionAllowed(false);
         themeSelector.setItems(themes);
-        themeSelector.select(defaultTheme);
+        themeSelector.setSelectedItem(defaultTheme);
         themeSelector.setItemCaptionGenerator(mapThemes::get);
-        themeSelector.addSelectionListener(e -> {
+        themeSelector.addSelectionChangeListener(e -> {
             ChartOptions.get().setTheme(e.getValue());
         });
 

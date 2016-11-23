@@ -10,11 +10,11 @@ import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.SkipFromDemo;
 import com.vaadin.addon.charts.model.AxisType;
-import com.vaadin.addon.charts.model.ChartDataSeries;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.DataProviderSeries;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
-import com.vaadin.server.data.DataSource;
-import com.vaadin.server.data.ListDataSource;
+import com.vaadin.server.data.DataProvider;
+import com.vaadin.server.data.ListDataProvider;
 import com.vaadin.ui.Component;
 
 @SkipFromDemo
@@ -46,7 +46,7 @@ public class ContainerSeriesWithSpline extends AbstractVaadinChartExample {
     protected Component getChart() {
         // Create container with two points
         Collection<TestItem> col = new ArrayList<>();
-        DataSource<TestItem> ds = new ListDataSource<>(col);
+        DataProvider<TestItem> ds = new ListDataProvider<>(col);
         LocalDateTime dateTime = LocalDateTime.of(2013, 3, 22, 12, 00);
 
         col.add(new TestItem(dateTime.toInstant(ZoneOffset.UTC), 5));
@@ -55,9 +55,9 @@ public class ContainerSeriesWithSpline extends AbstractVaadinChartExample {
         dateTime = dateTime.plusDays(1);
         col.add(new TestItem(dateTime.toInstant(ZoneOffset.UTC), 5));
 
-        ChartDataSeries<TestItem> chartDataSeries = new ChartDataSeries(ds);
-        chartDataSeries.setXValueProvider(TestItem::getDate);
-        chartDataSeries.setYValueProvider(TestItem::getValue);
+        DataProviderSeries<TestItem> chartDataSeries = new DataProviderSeries<>(ds);
+        chartDataSeries.setX(TestItem::getDate);
+        chartDataSeries.setY(TestItem::getValue);
 
 
         // Create chart and render
