@@ -10,7 +10,6 @@ import com.vaadin.addon.charts.model.Background;
 import com.vaadin.addon.charts.model.BoxPlotItem;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
-import com.vaadin.addon.charts.model.ContainerDataSeries;
 import com.vaadin.addon.charts.model.DashStyle;
 import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.DataLabelsFunnel;
@@ -57,13 +56,14 @@ import com.vaadin.addon.charts.model.style.FontWeight;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.charts.model.style.Style;
-import com.vaadin.v7.data.Item;
-import com.vaadin.v7.data.util.IndexedContainer;
 import com.vaadin.server.Sizeable;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.v7.addon.charts.model.ContainerDataSeries;
+import com.vaadin.v7.data.Item;
+import com.vaadin.v7.data.util.IndexedContainer;
 
 public class ChartTypes {
     public void chartTypesErrorbarSnippet1() {

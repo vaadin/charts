@@ -1,24 +1,28 @@
 package book.examples.chart.data;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.DrilldownCallback;
 import com.vaadin.addon.charts.DrilldownEvent;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
-import com.vaadin.addon.charts.model.ContainerDataSeries;
+import com.vaadin.addon.charts.model.DataProviderSeries;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
+import com.vaadin.addon.charts.model.PlotOptionsPie;
 import com.vaadin.addon.charts.model.RangeSeries;
 import com.vaadin.addon.charts.model.Series;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
-import com.vaadin.v7.data.util.BeanItemContainer;
+import com.vaadin.server.data.DataProvider;
+import com.vaadin.server.data.ListDataProvider;
+import com.vaadin.ui.Grid;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.v7.ui.Table;
 
 public class ChartData {
     public void listSeriesSnippet1(Configuration conf) {
@@ -27,24 +31,6 @@ public class ChartData {
         PlotOptionsLine plotOptions = new PlotOptionsLine();
         plotOptions.setPointStart(1959);
         series.setPlotOptions(plotOptions);
-        conf.addSeries(series);
-    }
-
-    public void listSeriesSnippet2(Configuration conf) {
-        // Original representation
-        int data[][] = reindeerData();
-
-        // Create a list series with X values starting from 1959
-        ListSeries series = new ListSeries("Reindeer Population");
-        PlotOptionsLine plotOptions = new PlotOptionsLine();
-        plotOptions.setPointStart(1959);
-        series.setPlotOptions(plotOptions);
-
-        // Add the data points
-        for (int row[] : data) {
-            series.addData(row[1]);
-        }
-
         conf.addSeries(series);
     }
 
@@ -92,48 +78,99 @@ public class ChartData {
                 new Double[] { -47.0, 10.8 } });
     }
 
-    public void containerDataSeriesSnippet1(Configuration conf,
-            HorizontalLayout layout) {
-        // The data
-        BeanItemContainer<Planet> container = new BeanItemContainer<Planet>(
-                Planet.class);
-        container.addBean(new Planet("Mercury", 4900));
-        container.addBean(new Planet("Venus", 12100));
-        container.addBean(new Planet("Earth", 12800));
-        // ...
+    // dataProviderSeriesSnippet1
+    public class Order {
+        private String description;
+        private int quantity;
+        private double unitPrice;
 
-        // Display it in a table
-        Table table = new Table("Planets", container);
-        table.setPageLength(container.size());
-        table.setVisibleColumns("name", "diameter");
-        layout.addComponent(table);
+        public Order(String description, int quantity, double unitPrice) {
+            this.description = description;
+            this.quantity = quantity;
+            this.unitPrice = unitPrice;
+        }
 
-        // Display it in a chart
-        Chart chart = new Chart(ChartType.COLUMN);
-        // ... Configure it ...
+        public String getDescription() {
+            return description;
+        }
 
-        // Wrap the container in a data series
-        ContainerDataSeries series = new ContainerDataSeries(container);
+        public int getQuantity() {
+            return quantity;
+        }
 
-        // Set up the name and Y properties
-        series.setNamePropertyId("name");
-        series.setYPropertyId("diameter");
+        public double getUnitPrice() {
+            return unitPrice;
+        }
 
-        conf.addSeries(series);
+        public double getTotalPrice() {
+            return unitPrice * quantity;
+        }
     }
 
-    public void containerDataSeriesSnippet2(Configuration conf,
-            BeanItemContainer<Planet> container) {
+    public void dataProviderSeriesSnippet2(Configuration conf,
+            HorizontalLayout layout) {
+        // The data
+        List<Order> orders = new ArrayList<>();
+        orders.add(new Order("Domain Name", 3, 7.99));
+        orders.add(new Order("SSL Certificate", 1, 119.00));
+        orders.add(new Order("Web Hosting", 1, 19.95));
+        orders.add(new Order("Email Box", 20, 0.15));
+        orders.add(new Order("E-Commerce Setup", 1, 25.00));
+        orders.add(new Order("Technical Support", 1, 50.00));
+
+        DataProvider<Order> dataProvider = new ListDataProvider<>(orders);
+    }
+
+    public void dataProviderSeriesSnippet3(Configuration conf,
+            DataProvider<Order> dataProvider) {
+        // Display the data in a grid
+        Grid<Order> grid = new Grid<>();
+        grid.setCaption("Data from Vaadin Container");
+        grid.setDataProvider(dataProvider);
+        grid.addColumn("Description", Order::getDescription);
+        grid.addColumn("Quantity",
+                order -> Integer.toString(order.getQuantity()));
+        grid.addColumn("Price",
+                order -> Double.toString(order.getTotalPrice()));
+
+        // Wrap the DataProvider in a DataProviderSeries
+        DataProviderSeries<Order> series = new DataProviderSeries<>(
+                dataProvider);
+        series.setName("Order item quantities");
+
+        // Set up the name and Y properties
+        series.setY(Order::getTotalPrice);
+        series.setPointName(Order::getDescription);
+
+        // Display it in a chart
+        Chart chart = new Chart();
+        Configuration configuration = chart.getConfiguration();
+        configuration.getChart().setType(ChartType.COLUMN);
+        configuration.getTitle().setText("Order item totals");
+        configuration.getLegend().setEnabled(false);
+
+        PlotOptionsPie plotOptions = new PlotOptionsPie();
+        configuration.setPlotOptions(plotOptions);
+
+        configuration.setSeries(series);
+        chart.drawChart(configuration);
+    }
+
+    public void dataProviderSeriesSnippet3(DataProviderSeries<Order> series,
+            Chart chart) {
         // Set the category labels on the axis correspondingly
         XAxis xaxis = new XAxis();
-        String names[] = new String[container.size()];
-        List<Planet> planets = container.getItemIds();
-        for (int i = 0; i < planets.size(); i++) {
-            names[i] = planets.get(i).getName();
+        String names[] = new String[((DataProviderSeries) series).getValues()
+                .size()];
+        List<Map<String, Order>> orders = ((DataProviderSeries) series)
+                .getValues();
+        for (int i = 0; i < orders.size(); i++) {
+            names[i] = String.valueOf(orders.get(i).get("name"));
         }
         xaxis.setCategories(names);
-        xaxis.setTitle("Planet");
-        conf.addxAxis(xaxis);
+
+        xaxis.setTitle("Products");
+        chart.getConfiguration().addxAxis(xaxis);
     }
 
     public void synchronousDrilldown() {
@@ -172,7 +209,6 @@ public class ChartData {
                 return drillDownSeries;
             }
         });
-
     }
 
     private int[][] reindeerData() {
@@ -180,16 +216,4 @@ public class ChartData {
         return null;
     }
 
-    private class Planet {
-
-        public Planet(String string, int i) {
-            // TODO Auto-generated constructor stub
-        }
-
-        public String getName() {
-            // TODO Auto-generated method stub
-            return null;
-        }
-
-    }
 }
