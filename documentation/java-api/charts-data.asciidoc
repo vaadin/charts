@@ -224,7 +224,7 @@ orders.add(new Order("Email Box", 20, 0.15));
 orders.add(new Order("E-Commerce Setup", 1, 25.00));
 orders.add(new Order("Technical Support", 1, 50.00));
 
-DataSource<Order> ds = new ListDataSource<>(orders);
+DataProvider<Order> dataProvider = new ListDataProvider<>(orders);
 ----
 
 We can now display the data both in a Vaadin [classname]#Grid<Order># as well as a [classname]#Chart# as follows:
@@ -234,17 +234,14 @@ We can now display the data both in a Vaadin [classname]#Grid<Order># as well as
 // Display the data in a grid
 Grid<Order> grid = new Grid<>();
 grid.setCaption("Data from Vaadin Container");
-grid.setDataSource(ds);
-grid.addColumn("Description",Order::getDescription);
-grid.addColumn("Quantity",
-  order -> Integer.toString(order.getQuantity()));
-grid.addColumn("Price",
-  order -> Double.toString(order.getTotalPrice()));
+grid.setDataProvider(dataProvider);
+grid.addColumn("Description", Order::getDescription);
+grid.addColumn("Quantity", order -> Integer.toString(order.getQuantity()));
+grid.addColumn("Price", order -> Double.toString(order.getTotalPrice()));
 
 // Wrap the DataProvider in a DataProviderSeries
-DataProviderSeries<Order> series = new DataProviderSeries<>(ds);
+DataProviderSeries<Order> series = new DataProviderSeries<>(dataProvider);
 series.setName("Order item quantities");
-series.setPlotOptions(new PlotOptionsPie());
 
 // Set up the name and Y properties
 series.setY(Order::getTotalPrice);
@@ -260,25 +257,18 @@ configuration.getLegend().setEnabled(false);
 PlotOptionsPie plotOptions = new PlotOptionsPie();
 configuration.setPlotOptions(plotOptions);
 
-configuration.setSeries(chartDS);
+configuration.setSeries(series);
 chart.drawChart(configuration);
 ----
 
-In this case, the X axis holds categories rather than numeric values, so we need to set up the category labels with an array of strings.
+In this case, the X axis holds categories rather than numeric values, so we need to set up the axis type to show the correct value.
 This can be done as:
 
 [source, java]
 ----
-// Set the category labels on the axis correspondingly
+// Set correct axis type to show the item name as category
 XAxis xaxis = new XAxis();
-String names[] =
-  new String[((ChartDataSeries)container).getValues().size()];
-List<Map<String, Order>> planets =
-  ((ChartDataSeries)container).getValues();
-for (int i=0; i<planets.size(); i++)
-    names[i] = String.valueOf(planets.get(i).get("name"));
-xaxis.setCategories(names);
-
+xaxis.setType(AxisType.CATEGORY);
 xaxis.setTitle("Products");
 chart.getConfiguration().addxAxis(xaxis);
 ----
