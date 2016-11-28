@@ -2,11 +2,11 @@ package book.examples.chart.data;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.DrilldownCallback;
 import com.vaadin.addon.charts.DrilldownEvent;
+import com.vaadin.addon.charts.model.AxisType;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataProviderSeries;
@@ -158,17 +158,9 @@ public class ChartData {
 
     public void dataProviderSeriesSnippet3(DataProviderSeries<Order> series,
             Chart chart) {
-        // Set the category labels on the axis correspondingly
+        // Set correct axis type to show the item name as category
         XAxis xaxis = new XAxis();
-        String names[] = new String[((DataProviderSeries) series).getValues()
-                .size()];
-        List<Map<String, Order>> orders = ((DataProviderSeries) series)
-                .getValues();
-        for (int i = 0; i < orders.size(); i++) {
-            names[i] = String.valueOf(orders.get(i).get("name"));
-        }
-        xaxis.setCategories(names);
-
+        xaxis.setType(AxisType.CATEGORY);
         xaxis.setTitle("Products");
         chart.getConfiguration().addxAxis(xaxis);
     }

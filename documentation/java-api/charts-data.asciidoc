@@ -261,20 +261,14 @@ configuration.setSeries(series);
 chart.drawChart(configuration);
 ----
 
-In this case, the X axis holds categories rather than numeric values, so we need to set up the category labels with an array of strings.
+In this case, the X axis holds categories rather than numeric values, so we need to set up the axis type to show the correct value.
 This can be done as:
 
 [source, java]
 ----
-// Set the category labels on the axis correspondingly
+// Set correct axis type to show the item name as category
 XAxis xaxis = new XAxis();
-String names[] = new String[((DataProviderSeries) series).getValues().size()];
-List<Map<String, Order>> orders = ((DataProviderSeries) series).getValues();
-for (int i = 0; i < orders.size(); i++) {
-    names[i] = String.valueOf(orders.get(i).get("name"));
-}
-xaxis.setCategories(names);
-
+xaxis.setType(AxisType.CATEGORY);
 xaxis.setTitle("Products");
 chart.getConfiguration().addxAxis(xaxis);
 ----
