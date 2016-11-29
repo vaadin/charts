@@ -1701,39 +1701,31 @@ chart.drawChart(configuration);
 
 ----
 
-When using [classname]#ContainerSeries#, you need to specify the property IDs
-of the container properties containing OHLC values:
-[methodName]#setXPropertyId()#, [methodName]#setOpenPropertyId()#,
-[methodName]#setClosePropertyId()# [methodname]#setHighPropertyId()#, and
-[methodName]#setLowPropertyId()#.
+When using [classname]#DataProviderSeries#, you need to specify the functions used for retrieving OHLC properties:
+[methodName]#setX()#, [methodName]#setOpen()#,
+[methodName]#setHigh()# [methodname]#setLow()#, and
+[methodName]#setClose()#.
 
 [source, java]
 ----
-// Create a container filled with stock price data
-IndexedContainer container= initContainer();
-int i=0;
-for (StockPrices.OhlcData data : StockPrices.fetchAaplOhlcPrice()) {
-     Item ie = container.addItem(i);
-     ie.getItemProperty("x").setValue(data.getDate());
-     ie.getItemProperty("low").setValue(data.getLow());
-     ie.getItemProperty("high").setValue(data.getHigh());
-     ie.getItemProperty("open").setValue(data.getOpen());
-     ie.getItemProperty("close").setValue(data.getClose());
-     i++;
-}
+Chart chart = new Chart(ChartType.OHLC);
+Configuration configuration = chart.getConfiguration();
 
+// Create a DataProvider filled with stock price data
+DataProvider<OhlcData> dataProvider = initDataProvider();
 // Wrap the container in a data series
-ContainerDataSeries dataSeries = new ContainerDataSeries(container);
-configuration.setSeries(dataSeries);
-dataSeries.setHighPropertyId("high");
-dataSeries.setLowPropertyId("low");
-dataSeries.setXPropertyId("x");
-dataSeries.setOpenPropertyId("open");
-dataSeries.setClosePropertyId("open");
+DataProviderSeries<OhlcData> dataSeries = new DataProviderSeries<>(dataProvider);
+dataSeries.setX(OhlcData::getDate);
+dataSeries.setLow(OhlcData::getLow);
+dataSeries.setHigh(OhlcData::getHigh);
+dataSeries.setClose(OhlcData::getClose);
+dataSeries.setOpen(OhlcData::getOpen);
 
 PlotOptionsOhlc plotOptionsOhlc = new PlotOptionsOhlc();
 plotOptionsOhlc.setTurboThreshold(0);
 dataSeries.setPlotOptions(plotOptionsOhlc);
+
+configuration.setSeries(dataSeries);
 ----
 
 Typically the OHLC and candlestick charts contain a lot of data, so it is

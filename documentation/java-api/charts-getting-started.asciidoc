@@ -316,42 +316,38 @@ layout.addComponent(getWeatherChart(data));
 ----
 
 As the temperature data is supposed to be shown as a line chart, we can start in much the same way as the shoe size chart, with just a few differences.
-This time, we use a different kind of data series object, a [classname]#ContainerDataSeries#, and configure the X-axis to be a date/time axis.
+This time, we use a different kind of data series object, a [classname]#DataProviderSeries#, and configure the X-axis to be a date/time axis.
 The result looks as follows:
 
 [source,java]
 ----
 private Chart getWeatherChart(ChartsData data) {
-   Chart chart = new Chart();
-   Configuration conf = chart.getConfiguration();
-   conf.setTitle("Turku, Finland 2013");
+  Chart chart = new Chart();
+  Configuration conf = chart.getConfiguration();
+  conf.setTitle("Turku, Finland 2013");
 
-   conf.getChart().setType(ChartType.LINE);
+  conf.getChart().setType(ChartType.LINE);
+  DataProvider<WeatherInfo> dataProvider = new ListDataProvider<>(data.getWeatherData());
+  DataProviderSeries<WeatherInfo> temp = new DataProviderSeries<>(dataProvider);
 
-   BeanItemContainer<WeatherInfo> weatherContainer =
-           new BeanItemContainer<WeatherInfo>(
-                   WeatherInfo.class, data.getWeatherData());
+  temp.setName("Temperature");
+  temp.setX(WeatherInfo::getDate);
+  temp.setY(WeatherInfo::getMaxTemp);
+  conf.addSeries(temp);
 
-   ContainerDataSeries temp =
-       new ContainerDataSeries(weatherContainer);
-   temp.setName("Temperature");
-   temp.setXPropertyId("date");
-   temp.setYPropertyId("maxTemp");
-
-   conf.addSeries(temp);
-   conf.getxAxis().setTitle("Date");
-   conf.getxAxis().setType(AxisType.DATETIME);
-   conf.getyAxis().setTitle("Temperature (°C)");
-   return chart;
+  conf.getxAxis().setTitle("Date");
+  conf.getxAxis().setType(AxisType.DATETIME);
+  conf.getyAxis().setTitle("Temperature (°C)");
+  return chart;
 }
 ----
 
 Let us look a little closer at the new series type.
-The [classname]#ContainerDataSeries# is bound to a normal [interfacename]#Container# from Vaadin Framework.
-In this case, we create a [classname]#BeanItemContainer# that contains [classname]#WeatherInfo# beans.
-We then create a [classname]#ContainerDataSeries# instance, set the name of the series, and define the IDs of the properties that hold the X and Y data.
-In this case, the property ID [parameter]#date# will cause the value returned from a call to the [methodname]#getDate()# method in [classname]#WeatherInfo# to be used as the value of X for each data point.
-Similarly, the [parameter]#maxTemp# property ID will cause the value returned by calling [methodname]#getMaxTemp()# to be used as the value of Y.
+The [classname]#DataProviderSeries# is bound to a normal [interfacename]#DataProvider# from Vaadin Framework.
+In this case, we create a [classname]#ListDataProvider# that contains [classname]#WeatherInfo# beans.
+We then create a [classname]#DataProviderSeries# instance, set the name of the series, and define the functions used for retrieving the X and Y data.
+In this case, the value returned from a call to the [methodname]#getDate()# method in [classname]#WeatherInfo# will be used as the value of X for each data point.
+Similarly, the value returned by calling [methodname]#getMaxTemp()# will be used as the value of Y.
 
 Configuring the X-axis should be fairly self-explanatory.
 It just sets the title and type of the axis.
@@ -364,16 +360,16 @@ Awesome! We are well on our way.
 
 Let us continue by adding the humidity data to the chart.
 For this set of data, we want to show it using columns instead of lines, which can be done by configuring suitable plot options for the series.
-We will use the same container bound to a new [classname]#ContainerDataSeries# to provide the data:
+We will use the same provider bound to a new [classname]#DataProviderSeries# to provide the data:
 
 [source,java]
 ----
-ContainerDataSeries humidity =
-    new ContainerDataSeries(weatherContainer);
-humidity.setName("Humidity");
-humidity.setXPropertyId("date");
-humidity.setYPropertyId("meanHumidity");
+DataProvider<WeatherInfo> dataProvider = new ListDataProvider<>(weatherInfo);
+DataProviderSeries<WeatherInfo> humidity = new DataProviderSeries<>(dataProvider);
 
+humidity.setName("Humidity");
+humidity.setX(WeatherInfo::getDate);
+humidity.setY(WeatherInfo::getMeanHumidity);
 humidity.setPlotOptions(new PlotOptionsColumn());
 conf.addSeries(humidity);
 ----
@@ -407,48 +403,48 @@ The final method should look something as follows:
 [source,java]
 ----
 private Chart getWeatherChart(ChartsData data) {
-   Chart chart = new Chart();
-   Configuration conf = chart.getConfiguration();
-   conf.setTitle("Turku, Finland 2013");
+  Chart chart = new Chart();
+  Configuration conf = chart.getConfiguration();
+  conf.setTitle("Turku, Finland 2013");
 
-   conf.getChart().setType(ChartType.LINE);
+  conf.getChart().setType(ChartType.LINE);
 
-   BeanItemContainer<WeatherInfo> weatherContainer =
-      new BeanItemContainer<WeatherInfo>(
-          WeatherInfo.class, data.getWeatherData());
+  DataProvider<WeatherInfo> dataProvider = new ListDataProvider<>(data.getWeatherData());
 
-   ContainerDataSeries temp =
-      new ContainerDataSeries(weatherContainer);
-          temp.setName("Temperature");
-          temp.setXPropertyId("date");
-          temp.setYPropertyId("maxTemp");
+  DataProviderSeries<WeatherInfo> temp = new DataProviderSeries<>(dataProvider);
 
-   conf.getxAxis().setTitle("Date");
-   conf.getxAxis().setType(AxisType.DATETIME);
-   conf.getyAxis().setTitle("Temperature (°C)");
+  temp.setName("Temperature");
+  temp.setX(WeatherInfo::getDate);
+  temp.setY(WeatherInfo::getMaxTemp);
 
-   ContainerDataSeries humidity =
-      new ContainerDataSeries(weatherContainer);
-   humidity.setName("Humidity");
-   humidity.setXPropertyId("date");
-   humidity.setYPropertyId("meanHumidity");
-   humidity.setPlotOptions(new PlotOptionsColumn());
+  conf.getxAxis().setTitle("Date");
+  conf.getxAxis().setType(AxisType.DATETIME);
+  conf.getyAxis().setTitle("Temperature (°C)");
 
-   conf.addSeries(humidity);
-   conf.addSeries(temp);
+  DataProviderSeries<WeatherInfo> humidity = new DataProviderSeries<>(dataProvider);
 
-   YAxis humidityYAxis = new YAxis();
-   humidityYAxis.setTitle("Humidity (%)");
-   humidityYAxis.setMin(0);
-   humidityYAxis.setOpposite(true);
-   conf.addyAxis(humidityYAxis);
-   humidity.setyAxis(humidityYAxis);
+  humidity.setName("Humidity");
+  humidity.setX(WeatherInfo::getDate);
+  humidity.setY(WeatherInfo::getMeanHumidity);
+  humidity.setPlotOptions(new PlotOptionsColumn());
 
-   return chart;
+  conf.addSeries(humidity);
+  conf.addSeries(temp);
+
+  YAxis humidityYAxis = new YAxis();
+  humidityYAxis.setTitle("Humidity (%)");
+  humidityYAxis.setMin(0);
+  humidityYAxis.setOpposite(true);
+  conf.addyAxis(humidityYAxis);
+  humidity.setyAxis(humidityYAxis);
+
+  return chart;
 }
 ----
 
 Restart, refresh, and enjoy a better looking chart!
+//////////////////////////////////////////
+Commented due to no filter in DataProvider yet
 
 == Downsampling Data
 
@@ -478,7 +474,7 @@ weatherContainer.addContainerFilter(new Filter() {
 
 This will make the data more sparse by only taking one data point every seven days.
 Play around with the filter to see what you can accomplish!
-
+//////////////////////////////////////////
 [[summary]]
 == Summary
 
