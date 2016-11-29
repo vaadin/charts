@@ -73,17 +73,6 @@
             <version>2.4</version>
         </dependency>
 
-        <!--<dependency>-->
-            <!--<groupId>org.eclipse.jetty</groupId>-->
-            <!--<artifactId>jetty-webapp</artifactId>-->
-            <!--<version>8.1.13.v20130916</version>-->
-            <!--<scope>provided</scope>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>org.eclipse.jetty</groupId>-->
-            <!--<artifactId>jetty-maven-plugin</artifactId>-->
-            <!--<version>${jetty.version}</version>-->
-        <!--</dependency>-->
         <dependency>
                     <groupId>org.vaadin.addons</groupId>
                     <artifactId>googleanalyticstracker</artifactId>
@@ -175,7 +164,6 @@
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>${jetty.version}</version>
             </plugin>
         </plugins>
     </build>
