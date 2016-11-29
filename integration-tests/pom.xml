@@ -235,15 +235,8 @@
                 <artifactId>jetty-maven-plugin</artifactId>
                 <configuration>
                     <httpConnector>
-                    <!--host>localhost</host-->
                     <port>9998</port>
                     </httpConnector>
-                    <!--<connectors>-->
-                    <!--<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">-->
-                    <!--<port>9998</port>-->
-                    <!--<maxIdleTime>60000</maxIdleTime>-->
-                    <!--</connector>-->
-                    <!--</connectors>-->
                     <scanIntervalSeconds>1</scanIntervalSeconds>
                     <useProvidedScope>true</useProvidedScope>
                     <useTestClasspath>true</useTestClasspath>
