@@ -53,7 +53,7 @@ public class DataProviderSeries<T> extends AbstractSeries {
     public static final String CLOSE_PROPERTY = "close";
 
     @JsonIgnore
-    private final Map<String, Function<T, Object>> chartAttriubteToCallback;
+    private final Map<String, Function<T, Object>> chartAttributeToCallback;
 
     /**
      * Creates a new series using data from the given data provider.
@@ -66,7 +66,7 @@ public class DataProviderSeries<T> extends AbstractSeries {
      */
     public DataProviderSeries(DataProvider<T> dataProvider) {
         this.dataProvider = dataProvider;
-        chartAttriubteToCallback = new HashMap<String, Function<T, Object>>();
+        chartAttributeToCallback = new HashMap<String, Function<T, Object>>();
     }
 
     /**
@@ -79,7 +79,7 @@ public class DataProviderSeries<T> extends AbstractSeries {
      *            the function which retrieves the value for the property
      */
     public void setProperty(String propertyName, Function<T, Object> callBack) {
-        chartAttriubteToCallback.put(propertyName, callBack);
+        chartAttributeToCallback.put(propertyName, callBack);
     }
 
     /**
@@ -192,7 +192,7 @@ public class DataProviderSeries<T> extends AbstractSeries {
         List<Map<String, Object>> list = dataProvider.fetch(new Query())
                 .map((item) -> {
                     Map<String, Object> tmp = new HashMap<String, Object>();
-                    for (Map.Entry<String, Function<T, Object>> entry : chartAttriubteToCallback
+                    for (Map.Entry<String, Function<T, Object>> entry : chartAttributeToCallback
                             .entrySet()) {
                         String key = entry.getKey();
                         Object value = entry.getValue().apply(item);
@@ -210,6 +210,6 @@ public class DataProviderSeries<T> extends AbstractSeries {
      * @return
      */
     public Set<String> getChartAttributes() {
-        return chartAttriubteToCallback.keySet();
+        return chartAttributeToCallback.keySet();
     }
 }
