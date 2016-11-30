@@ -58,8 +58,17 @@ public class DataProviderSeries<T> extends AbstractSeries {
     /**
      * Creates a new series using data from the given data provider.
      * <p>
-     * Use {@link #setY(Function)} to define a function for extracting the
-     * <code>y</code> values from the bean in the provider.
+     * Many chart types such as {@link ChartType#BAR}, {@link ChartType#LINE},
+     * {@link ChartType#AREA} etc use {@code y} values to define the data points
+     * to show in the chart. For these chart types you should use either
+     * {@link #DataProviderSeries(DataProvider, Function)} or
+     * {@link #setY(Function)} to define the function (lambda) which extracts
+     * the values from the bean in the provider.
+     * <p>
+     * Other chart types such as {@link ChartType#ERRORBAR} do not require
+     * {@code y} values but instead {@code high} and {@code low} values.
+     * Functions for extracting these are set using {@link #setHigh(Function)}
+     * and {@link #setLow(Function)} respectively.
      * 
      * @param dataProvider
      *            the data provider which contains the data
@@ -67,6 +76,21 @@ public class DataProviderSeries<T> extends AbstractSeries {
     public DataProviderSeries(DataProvider<T> dataProvider) {
         this.dataProvider = dataProvider;
         chartAttriubteToCallback = new HashMap<String, Function<T, Object>>();
+    }
+
+    /**
+     * Creates a new series using data from the given data provider and y
+     * values.
+     * 
+     * @param dataProvider
+     *            the data provider which contains the data
+     * @param callBack
+     *            the function which retrieves the y values
+     */
+    public DataProviderSeries(DataProvider<T> dataProvider,
+            Function<T, Object> callBack) {
+        this(dataProvider);
+        setY(callBack);
     }
 
     /**
