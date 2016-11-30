@@ -58,15 +58,31 @@ public class DataProviderSeries<T> extends AbstractSeries {
     /**
      * Creates a new series using data from the given data provider.
      * <p>
-     * Use {@link #setY(Function)} to define a function for extracting the
-     * <code>y</code> values from the bean in the provider.
-     * 
+     * Use {@link #setY(Function)} or
+     * {@link #DataProviderSeries(DataProvider, Function)} to define a function
+     * for extracting the <code>y</code> values from the bean in the provider.
+     *
      * @param dataProvider
      *            the data provider which contains the data
      */
     public DataProviderSeries(DataProvider<T> dataProvider) {
         this.dataProvider = dataProvider;
         chartAttriubteToCallback = new HashMap<String, Function<T, Object>>();
+    }
+
+    /**
+     * Creates a new series using data from the given data provider and y
+     * values.
+     *
+     * @param dataProvider
+     *            the data provider which contains the data
+     * @param yValues
+     *            a function providing the y values from the data
+     */
+    public DataProviderSeries(DataProvider<T> dataProvider,
+            Function<T, Object> yValues) {
+        this(dataProvider);
+        setY(yValues);
     }
 
     /**
