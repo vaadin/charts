@@ -1,7 +1,0 @@
-This is parent project that builds Vaadin Directory compatible zip that contains v7 compatible add-on.
-
-demo builds a web app that shows most of our integration tests in a simple demo app.
-
-chart-export-demo demonstrates how charts can be converted to SVG and via it used in e.g. PDF documents.
-
-chart-plugin-demo shows how the underlying library version can be changed and how plugins can be used with Vaadin Charts.
