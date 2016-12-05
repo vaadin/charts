@@ -1,7 +1,10 @@
 package book.examples.getting.started;
 
+import java.time.DayOfWeek;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 import com.vaadin.addon.charts.Chart;
@@ -109,13 +112,13 @@ public class GettingStarted {
         conf.setTitle("Turku, Finland 2013");
 
         conf.getChart().setType(ChartType.LINE);
-        DataProvider<WeatherInfo, ?> dataProvider = new ListDataProvider<>(
+        ListDataProvider<WeatherInfo> dataProvider = new ListDataProvider<>(
                 data.getWeatherData());
         DataProviderSeries<WeatherInfo> temp = new DataProviderSeries<>(
                 dataProvider);
 
         temp.setName("Temperature");
-        temp.setX(WeatherInfo::getDate);
+        temp.setX(WeatherInfo::getInstant);
         temp.setY(WeatherInfo::getMaxTemp);
         conf.addSeries(temp);
 
@@ -129,13 +132,13 @@ public class GettingStarted {
         Chart chart = new Chart();
         Configuration conf = chart.getConfiguration();
 
-        DataProvider<WeatherInfo, ?> dataProvider = new ListDataProvider<>(
+        ListDataProvider<WeatherInfo> dataProvider = new ListDataProvider<>(
                 weatherInfo);
         DataProviderSeries<WeatherInfo> humidity = new DataProviderSeries<>(
                 dataProvider);
 
         humidity.setName("Humidity");
-        humidity.setX(WeatherInfo::getDate);
+        humidity.setX(WeatherInfo::getInstant);
         humidity.setY(WeatherInfo::getMeanHumidity);
         humidity.setPlotOptions(new PlotOptionsColumn());
         conf.addSeries(humidity);
@@ -158,14 +161,14 @@ public class GettingStarted {
 
         conf.getChart().setType(ChartType.LINE);
 
-        DataProvider<WeatherInfo, ?> dataProvider = new ListDataProvider<>(
+        ListDataProvider<WeatherInfo> dataProvider = new ListDataProvider<>(
                 data.getWeatherData());
 
         DataProviderSeries<WeatherInfo> temp = new DataProviderSeries<>(
                 dataProvider);
 
         temp.setName("Temperature");
-        temp.setX(WeatherInfo::getDate);
+        temp.setX(WeatherInfo::getInstant);
         temp.setY(WeatherInfo::getMaxTemp);
 
         conf.getxAxis().setTitle("Date");
@@ -176,7 +179,7 @@ public class GettingStarted {
                 dataProvider);
 
         humidity.setName("Humidity");
-        humidity.setX(WeatherInfo::getDate);
+        humidity.setX(WeatherInfo::getInstant);
         humidity.setY(WeatherInfo::getMeanHumidity);
         humidity.setPlotOptions(new PlotOptionsColumn());
 
@@ -194,26 +197,13 @@ public class GettingStarted {
     }
 
     public void addColumnsSnippet4(ChartsData data,
-            DataProvider<WeatherInfo, ?> dataProvider) {
-        // no filter in DataProvider yet
-
-        // BeanItemContainer<WeatherInfo> weatherContainer =
-        // new BeanItemContainer<WeatherInfo>(
-        // WeatherInfo.class, data.getWeatherData());
-        // weatherContainer.addContainerFilter(new Container.Filter() {
-        // @Override
-        // public boolean passesFilter(Object o, Item item)
-        // throws UnsupportedOperationException {
-        // Date date = (Date)item.getItemProperty("date")
-        // .getValue();
-        // return date.getDay() == 0;
-        // }
-        //
-        // @Override
-        // public boolean appliesToProperty(Object o) {
-        // return "date".equals(o);
-        // }
-        // });
+            ListDataProvider<WeatherInfo> dataProvider) {
+        DataProvider<WeatherInfo, Void> filteredDataProvider = dataProvider
+                .setFilter(point -> {
+            LocalDateTime date = LocalDateTime.ofInstant(point.getInstant(),
+                    ZoneId.of("Europe/Helsinki"));
+                    return date.getDayOfWeek() == DayOfWeek.SUNDAY;
+        });
     }
 
     public class ChartsData {
@@ -241,7 +231,7 @@ public class GettingStarted {
     }
 
     public class WeatherInfo {
-        private Date date;
+        private Instant instant;
         private int meanHumidity;
         private int maxTemp;
 
@@ -257,12 +247,12 @@ public class GettingStarted {
             this.meanHumidity = meanHumidity;
         }
 
-        public Date getDate() {
-            return date;
+        public Instant getInstant() {
+            return instant;
         }
 
-        public void setDate(Date date) {
-            this.date = date;
+        public void setDate(Instant instant) {
+            this.instant = instant;
         }
     }
 }
