@@ -169,15 +169,13 @@ conf.addSeries(series);
 [[charts.data.dataseries]]
 == Data Provider Series
 
-[classname]#DataProviderSeries# is an adapter for using a Vaadin [interfacename]#DataSource# as a [classname]#DataSeries# in a chart. Using [methodname]#setNameProvider()#, [methodname]#setXValueProvider()#, and [methodname]#setYValueProvider()# you can define which parts of the bean in the [interfacename]#DataSource# are used in the chart.
-
-If you do not specify any X value provider, the data is assumed to be categorical.
+[classname]#DataProviderSeries# is an adapter for using a Vaadin [interfacename]#DataProvider# as a [classname]#DataSeries# in a chart. Using [methodname]#setPointName()#, [methodname]#setX()#, and [methodname]#setY()# you can define which parts of the bean in the [interfacename]#DataProvider# are used in the chart.
 
 [NOTE]
-[classname]#ChartDataSeries# is based on the data model in Vaadin Framework 8.
+[classname]#DataProviderSeries# is based on the data model in Vaadin Framework 8.
 It replaces [classname]#ContainerDataSeries#, which allowed binding to a [interfacename]#Container# data model in Vaadin Framework 7.
 
-Let us consider an example, where we have a [interfacename]#DataSource# that provides [classname]#Order# items.
+Let us consider an example, where we have a [interfacename]#DataProvider# which provides items of type [classname]#Order#.
 The [classname]#Order# class has `getDescription()`, `getUnitPrice()`, and `getQuantity()` to be used for the chart:
 
 [source, java]
@@ -211,7 +209,7 @@ public class Order {
 }
 ----
 
-Let us have some of such instances in a Java [interfacename]#List# and define it as a Vaadin [interfacename]#DataSource#.
+If we have a data provider containing a list of [classname]#Order# instances:
 
 [source, java]
 ----
@@ -227,57 +225,38 @@ orders.add(new Order("Technical Support", 1, 50.00));
 DataProvider<Order> dataProvider = new ListDataProvider<>(orders);
 ----
 
-We can now display the data both in a Vaadin [classname]#Grid<Order># as well as a [classname]#Chart# as follows:
+We can display the data in a [classname]#Chart# as follows:
 
 [source, java]
 ----
-// Display the data in a grid
-Grid<Order> grid = new Grid<>();
-grid.setCaption("Data from Vaadin Container");
-grid.setDataProvider(dataProvider);
-grid.addColumn("Description", Order::getDescription);
-grid.addColumn("Quantity", order -> Integer.toString(order.getQuantity()));
-grid.addColumn("Price", order -> Double.toString(order.getTotalPrice()));
-
-// Wrap the DataProvider in a DataProviderSeries
-DataProviderSeries<Order> series = new DataProviderSeries<>(dataProvider);
-series.setName("Order item quantities");
-
-// Set up the name and Y properties
-series.setY(Order::getTotalPrice);
-series.setPointName(Order::getDescription);
-
-// Display it in a chart
-Chart chart = new Chart();
+// Create a chart and use the data provider
+Chart chart = new Chart(ChartType.COLUMN);
 Configuration configuration = chart.getConfiguration();
-configuration.getChart().setType(ChartType.COLUMN);
-configuration.getTitle().setText("Order item totals");
-configuration.getLegend().setEnabled(false);
-
-PlotOptionsPie plotOptions = new PlotOptionsPie();
-configuration.setPlotOptions(plotOptions);
-
-configuration.setSeries(series);
-chart.drawChart(configuration);
+DataProviderSeries<Order> series = new DataProviderSeries<>(dataProvider, Order::getTotalPrice);
+configuration.addSeries(series);
 ----
 
-In this case, the X axis holds categories rather than numeric values, so we need to set up the axis type to show the correct value.
-This can be done as:
+[NOTE]
+The [classname]#DataProviderSeries# constructor takes the `y` value provider as an optional argument. It can also be set using [methodname]#setY#.
 
+To make the chart look nicer, we can add a name for the series and show the order description when hovering points:
 [source, java]
 ----
-// Set correct axis type to show the item name as category
-XAxis xaxis = new XAxis();
-xaxis.setType(AxisType.CATEGORY);
-xaxis.setTitle("Products");
-chart.getConfiguration().addxAxis(xaxis);
+series.setName("Order item quantities");
+series.setX(Order::getDescription);
 ----
 
-The result is shown in <<figure.charts.data.containerseries>>.
+To show the description also as x axis labels, we need to set the x axis type to category as the labels are strings:
+[source, java]
+----
+configuration.getxAxis().setType(AxisType.CATEGORY);
+----
+
+The result, with some added titles, is shown in <<figure.charts.data.containerseries>>.
 
 [[figure.charts.data.containerseries]]
-.Grid and Chart Bound to a [interfacename]#DataSource#
-image::img/charts-datasource.png[]
+.Chart Bound to a [interfacename]#DataProvider#
+image::img/charts-dataprovider.png[]
 
 [[charts.data.drilldown]]
 == Drill-Down
