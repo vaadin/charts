@@ -109,7 +109,7 @@ public class GettingStarted {
         conf.setTitle("Turku, Finland 2013");
 
         conf.getChart().setType(ChartType.LINE);
-        DataProvider<WeatherInfo> dataProvider = new ListDataProvider<>(
+        DataProvider<WeatherInfo, ?> dataProvider = new ListDataProvider<>(
                 data.getWeatherData());
         DataProviderSeries<WeatherInfo> temp = new DataProviderSeries<>(
                 dataProvider);
@@ -129,7 +129,7 @@ public class GettingStarted {
         Chart chart = new Chart();
         Configuration conf = chart.getConfiguration();
 
-        DataProvider<WeatherInfo> dataProvider = new ListDataProvider<>(
+        DataProvider<WeatherInfo, ?> dataProvider = new ListDataProvider<>(
                 weatherInfo);
         DataProviderSeries<WeatherInfo> humidity = new DataProviderSeries<>(
                 dataProvider);
@@ -158,7 +158,7 @@ public class GettingStarted {
 
         conf.getChart().setType(ChartType.LINE);
 
-        DataProvider<WeatherInfo> dataProvider = new ListDataProvider<>(
+        DataProvider<WeatherInfo, ?> dataProvider = new ListDataProvider<>(
                 data.getWeatherData());
 
         DataProviderSeries<WeatherInfo> temp = new DataProviderSeries<>(
@@ -194,7 +194,7 @@ public class GettingStarted {
     }
 
     public void addColumnsSnippet4(ChartsData data,
-            DataProvider<WeatherInfo> dataProvider) {
+            DataProvider<WeatherInfo, ?> dataProvider) {
         // no filter in DataProvider yet
 
         // BeanItemContainer<WeatherInfo> weatherContainer =

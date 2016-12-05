@@ -47,7 +47,7 @@ public class ContainerWithLotsOfData extends AbstractVaadinChartExample {
         return "Chart with Container containing much data VEIGHT";
     }
 
-    private DataProvider<Data> data = new ListDataProvider<>(getMockData());
+    private DataProvider<Data, ?> data = new ListDataProvider<>(getMockData());
     @Override
     protected Component getChart() {
         HorizontalLayout lo = new HorizontalLayout();
@@ -67,9 +67,8 @@ public class ContainerWithLotsOfData extends AbstractVaadinChartExample {
     }
 
     private DataProviderSeries<Data> createChartDS(){
-        DataProviderSeries<Data> ds = new DataProviderSeries<>(data);
-        ds.setY(Data::getValue);
-        ds.setPlotOptions(new PlotOptionsArea());
+        DataProviderSeries<Data> ds = new DataProviderSeries<>(data,
+                Data::getValue);
         ds.setName("USD to EUR");
         return ds;
     }
@@ -77,20 +76,17 @@ public class ContainerWithLotsOfData extends AbstractVaadinChartExample {
     private Component createGrid() {
         Grid<Data> g = new Grid<>();
         g.setDataProvider(data);
-        g.setCaption("Data from Vaadin Container");
-        g.addColumn("index",data->Double.toString(data.getIndex()));
-        g.addColumn("USD to EUR",data->Double.toString(data.getValue()));
+        g.setCaption("Data from Vaadin DataProvider");
+        g.addColumn("USD to EUR", data -> Double.toString(data.getValue()));
         return g;
     }
 
 
     public static Chart createChart(Series ds) {
-        final Chart chart = new Chart();
+        final Chart chart = new Chart(ChartType.AREA);
 
         final Configuration configuration = chart.getConfiguration();
-        configuration.getChart().setType(ChartType.AREA);
-        configuration.getTitle().setText("Data from Vaadin Container");
-
+        configuration.getTitle().setText("Data from Vaadin DataProvider");
         configuration.getLegend().setEnabled(false);
 
         YAxis yAxis = configuration.getyAxis();
@@ -130,23 +126,16 @@ public class ContainerWithLotsOfData extends AbstractVaadinChartExample {
     }
     private Collection<Data> getMockData(){
         Collection<Data> data=new ArrayList<>();
-
-        for(int i=0;i<20;i++) {
-            data.add(new Data(i,getContainerData()[i]));
+        for (Double value : getContainerData()) {
+            data.add(new Data(value));
         }
         return data;
     }
     private class Data {
-        private int index;
         private  double value;
 
-        private Data(int index, double value) {
-            this.index = index;
+        private Data(double value) {
             this.value = value;
-        }
-
-        public int getIndex() {
-            return index;
         }
 
         public double getValue() {

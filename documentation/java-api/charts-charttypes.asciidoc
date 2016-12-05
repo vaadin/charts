@@ -1712,7 +1712,7 @@ Chart chart = new Chart(ChartType.OHLC);
 Configuration configuration = chart.getConfiguration();
 
 // Create a DataProvider filled with stock price data
-DataProvider<OhlcData> dataProvider = initDataProvider();
+DataProvider<OhlcData, ?> dataProvider = initDataProvider();
 // Wrap the container in a data series
 DataProviderSeries<OhlcData> dataSeries = new DataProviderSeries<>(dataProvider);
 dataSeries.setX(OhlcData::getDate);

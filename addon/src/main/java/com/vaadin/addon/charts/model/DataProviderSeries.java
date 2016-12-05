@@ -41,7 +41,7 @@ import com.vaadin.server.data.Query;
 public class DataProviderSeries<T> extends AbstractSeries {
 
     @JsonIgnore
-    private final DataProvider<T> dataProvider;
+    private final DataProvider<T, ?> dataProvider;
 
     public static final String X_ATTRIBUTE = "x";
     public static final String Y_ATTRIBUTE = "y";
@@ -73,9 +73,9 @@ public class DataProviderSeries<T> extends AbstractSeries {
      * @param dataProvider
      *            the data provider which contains the data
      */
-    public DataProviderSeries(DataProvider<T> dataProvider) {
+    public DataProviderSeries(DataProvider<T, ?> dataProvider) {
         this.dataProvider = dataProvider;
-        chartAttributeToCallback = new HashMap<String, Function<T, Object>>();
+        chartAttributeToCallback = new HashMap<>();
     }
 
     /**
@@ -87,7 +87,7 @@ public class DataProviderSeries<T> extends AbstractSeries {
      * @param callBack
      *            the function which retrieves the y values
      */
-    public DataProviderSeries(DataProvider<T> dataProvider,
+    public DataProviderSeries(DataProvider<T, ?> dataProvider,
             Function<T, Object> callBack) {
         this(dataProvider);
         setY(callBack);
@@ -202,7 +202,7 @@ public class DataProviderSeries<T> extends AbstractSeries {
      *
      * @return the underlying data provider.
      */
-    public DataProvider<T> getDataProvider() {
+    public DataProvider<T, ?> getDataProvider() {
         return dataProvider;
     }
 
@@ -213,18 +213,18 @@ public class DataProviderSeries<T> extends AbstractSeries {
      * @return
      */
     public List<Map<String, Object>> getValues() {
-        List<Map<String, Object>> list = dataProvider.fetch(new Query())
-                .map((item) -> {
-                    Map<String, Object> tmp = new HashMap<String, Object>();
-                    for (Map.Entry<String, Function<T, Object>> entry : chartAttributeToCallback
-                            .entrySet()) {
-                        String key = entry.getKey();
-                        Object value = entry.getValue().apply(item);
-                        tmp.put(key, value);
-                    }
-                    return tmp;
-                }).collect(Collectors.toList());
+        List<Map<String, Object>> list = dataProvider
+                .fetch(new Query<>()).map((item) -> {
+            Map<String, Object> tmp = new HashMap<>();
+            for (Map.Entry<String, Function<T, Object>> entry : chartAttributeToCallback
+                    .entrySet()) {
+                String key = entry.getKey();
+                Object value = entry.getValue().apply(item);
+                tmp.put(key, value);
+            }
+            return tmp;
 
+        }).collect(Collectors.toList());
         return list;
     }
 

@@ -40,7 +40,7 @@ public class SimpleChartWithContainerSeries extends AbstractVaadinChartExample {
         return "Simple Chart with ContainerSeries";
     }
 
-    private DataProvider<Browser> browsers = new ListDataProvider<>(
+    private DataProvider<Browser, ?> browsers = new ListDataProvider<>(
             getMockData());
 
     @Override

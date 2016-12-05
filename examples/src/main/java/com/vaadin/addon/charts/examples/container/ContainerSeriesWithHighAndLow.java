@@ -21,7 +21,7 @@ import com.vaadin.ui.Component;
 @SkipFromDemo
 public class ContainerSeriesWithHighAndLow extends AbstractVaadinChartExample {
 
-    private DataProvider<Temperature> temps = new ListDataProvider<>(
+    private DataProvider<Temperature, ?> temps = new ListDataProvider<>(
             getMockData());
 
     @Override

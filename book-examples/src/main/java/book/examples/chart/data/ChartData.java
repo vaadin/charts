@@ -115,11 +115,11 @@ public class ChartData {
         orders.add(new Order("E-Commerce Setup", 1, 25.00));
         orders.add(new Order("Technical Support", 1, 50.00));
 
-        DataProvider<Order> dataProvider = new ListDataProvider<>(orders);
+        DataProvider<Order, ?> dataProvider = new ListDataProvider<>(orders);
     }
 
     public void dataProviderSeriesSnippet3(Configuration conf,
-            DataProvider<Order> dataProvider) {
+            DataProvider<Order, ?> dataProvider) {
         // Create a chart and use the data provider
         Chart chart = new Chart(ChartType.COLUMN);
         Configuration configuration = chart.getConfiguration();

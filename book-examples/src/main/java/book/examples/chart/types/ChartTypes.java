@@ -863,7 +863,7 @@ public class ChartTypes {
         Configuration configuration = chart.getConfiguration();
 
         // Create a DataProvider filled with stock price data
-        DataProvider<OhlcData> dataProvider = initDataProvider();
+        DataProvider<OhlcData, ?> dataProvider = initDataProvider();
         // Wrap the container in a data series
         DataProviderSeries<OhlcData> dataSeries = new DataProviderSeries<>(
                 dataProvider);
@@ -880,7 +880,7 @@ public class ChartTypes {
         configuration.setSeries(dataSeries);
     }
 
-    private DataProvider<OhlcData> initDataProvider() {
+    private DataProvider<OhlcData, ?> initDataProvider() {
         // TODO Auto-generated method stub
         return null;
     }

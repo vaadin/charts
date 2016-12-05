@@ -327,7 +327,7 @@ private Chart getWeatherChart(ChartsData data) {
   conf.setTitle("Turku, Finland 2013");
 
   conf.getChart().setType(ChartType.LINE);
-  DataProvider<WeatherInfo> dataProvider = new ListDataProvider<>(data.getWeatherData());
+  DataProvider<WeatherInfo,?> dataProvider = new ListDataProvider<>(data.getWeatherData());
   DataProviderSeries<WeatherInfo> temp = new DataProviderSeries<>(dataProvider);
 
   temp.setName("Temperature");
@@ -364,7 +364,7 @@ We will use the same provider bound to a new [classname]#DataProviderSeries# to 
 
 [source,java]
 ----
-DataProvider<WeatherInfo> dataProvider = new ListDataProvider<>(weatherInfo);
+DataProvider<WeatherInfo,?> dataProvider = new ListDataProvider<>(weatherInfo);
 DataProviderSeries<WeatherInfo> humidity = new DataProviderSeries<>(dataProvider);
 
 humidity.setName("Humidity");
@@ -409,7 +409,7 @@ private Chart getWeatherChart(ChartsData data) {
 
   conf.getChart().setType(ChartType.LINE);
 
-  DataProvider<WeatherInfo> dataProvider = new ListDataProvider<>(data.getWeatherData());
+  DataProvider<WeatherInfo,?> dataProvider = new ListDataProvider<>(data.getWeatherData());
 
   DataProviderSeries<WeatherInfo> temp = new DataProviderSeries<>(dataProvider);
 
