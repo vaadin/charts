@@ -64,10 +64,12 @@ public class SimpleChartWithContainerSeries extends AbstractVaadinChartExample {
 
         Grid<Browser> grid = new Grid<>();
         grid.setDataProvider(browsers);
-        grid.addColumn("name", Browser::getName);
-        grid.addColumn("y",
-                browser -> Double.toString(browser.getShare().doubleValue()));
-        grid.addColumn("color", browser -> browser.getColor().toString());
+        grid.addColumn(Browser::getName).setCaption("Name");
+        grid.addColumn(
+                browser -> Double.toString(browser.getShare().doubleValue()))
+                .setCaption("Y");
+        grid.addColumn(browser -> browser.getColor().toString())
+                .setCaption("Color");
         grid.setCaption("Data from Vaadin Container");
         return grid;
     }
