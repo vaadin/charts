@@ -53,20 +53,44 @@ public class DataProviderSeries<T> extends AbstractSeries {
     public static final String CLOSE_PROPERTY = "close";
 
     @JsonIgnore
-    private final Map<String, Function<T, Object>> chartAttriubteToCallback;
+    private final Map<String, Function<T, Object>> chartAttributeToCallback;
 
     /**
      * Creates a new series using data from the given data provider.
      * <p>
-     * Use {@link #setY(Function)} to define a function for extracting the
-     * <code>y</code> values from the bean in the provider.
+     * Many chart types such as {@link ChartType#BAR}, {@link ChartType#LINE},
+     * {@link ChartType#AREA} etc use {@code y} values to define the data points
+     * to show in the chart. For these chart types you should use either
+     * {@link #DataProviderSeries(DataProvider, Function)} or
+     * {@link #setY(Function)} to define the function (lambda) which extracts
+     * the values from the bean in the provider.
+     * <p>
+     * Other chart types such as {@link ChartType#ERRORBAR} do not require
+     * {@code y} values but instead {@code high} and {@code low} values.
+     * Functions for extracting these are set using {@link #setHigh(Function)}
+     * and {@link #setLow(Function)} respectively.
      * 
      * @param dataProvider
      *            the data provider which contains the data
      */
     public DataProviderSeries(DataProvider<T> dataProvider) {
         this.dataProvider = dataProvider;
-        chartAttriubteToCallback = new HashMap<String, Function<T, Object>>();
+        chartAttributeToCallback = new HashMap<String, Function<T, Object>>();
+    }
+
+    /**
+     * Creates a new series using data from the given data provider and y
+     * values.
+     * 
+     * @param dataProvider
+     *            the data provider which contains the data
+     * @param callBack
+     *            the function which retrieves the y values
+     */
+    public DataProviderSeries(DataProvider<T> dataProvider,
+            Function<T, Object> callBack) {
+        this(dataProvider);
+        setY(callBack);
     }
 
     /**
@@ -79,7 +103,7 @@ public class DataProviderSeries<T> extends AbstractSeries {
      *            the function which retrieves the value for the property
      */
     public void setProperty(String propertyName, Function<T, Object> callBack) {
-        chartAttriubteToCallback.put(propertyName, callBack);
+        chartAttributeToCallback.put(propertyName, callBack);
     }
 
     /**
@@ -192,7 +216,7 @@ public class DataProviderSeries<T> extends AbstractSeries {
         List<Map<String, Object>> list = dataProvider.fetch(new Query())
                 .map((item) -> {
                     Map<String, Object> tmp = new HashMap<String, Object>();
-                    for (Map.Entry<String, Function<T, Object>> entry : chartAttriubteToCallback
+                    for (Map.Entry<String, Function<T, Object>> entry : chartAttributeToCallback
                             .entrySet()) {
                         String key = entry.getKey();
                         Object value = entry.getValue().apply(item);
@@ -210,6 +234,6 @@ public class DataProviderSeries<T> extends AbstractSeries {
      * @return
      */
     public Set<String> getChartAttributes() {
-        return chartAttriubteToCallback.keySet();
+        return chartAttributeToCallback.keySet();
     }
 }

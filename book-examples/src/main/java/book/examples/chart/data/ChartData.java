@@ -14,14 +14,11 @@ import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
-import com.vaadin.addon.charts.model.PlotOptionsPie;
 import com.vaadin.addon.charts.model.RangeSeries;
 import com.vaadin.addon.charts.model.Series;
-import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.server.data.DataProvider;
 import com.vaadin.server.data.ListDataProvider;
-import com.vaadin.ui.Grid;
 import com.vaadin.ui.HorizontalLayout;
 
 public class ChartData {
@@ -123,46 +120,22 @@ public class ChartData {
 
     public void dataProviderSeriesSnippet3(Configuration conf,
             DataProvider<Order> dataProvider) {
-        // Display the data in a grid
-        Grid<Order> grid = new Grid<>();
-        grid.setCaption("Data from Vaadin Container");
-        grid.setDataProvider(dataProvider);
-        grid.addColumn("Description", Order::getDescription);
-        grid.addColumn("Quantity",
-                order -> Integer.toString(order.getQuantity()));
-        grid.addColumn("Price",
-                order -> Double.toString(order.getTotalPrice()));
-
-        // Wrap the DataProvider in a DataProviderSeries
-        DataProviderSeries<Order> series = new DataProviderSeries<>(
-                dataProvider);
-        series.setName("Order item quantities");
-
-        // Set up the name and Y properties
-        series.setY(Order::getTotalPrice);
-        series.setPointName(Order::getDescription);
-
-        // Display it in a chart
-        Chart chart = new Chart();
+        // Create a chart and use the data provider
+        Chart chart = new Chart(ChartType.COLUMN);
         Configuration configuration = chart.getConfiguration();
-        configuration.getChart().setType(ChartType.COLUMN);
-        configuration.getTitle().setText("Order item totals");
-        configuration.getLegend().setEnabled(false);
-
-        PlotOptionsPie plotOptions = new PlotOptionsPie();
-        configuration.setPlotOptions(plotOptions);
-
-        configuration.setSeries(series);
-        chart.drawChart(configuration);
+        DataProviderSeries<Order> series = new DataProviderSeries<>(
+                dataProvider, Order::getTotalPrice);
+        configuration.addSeries(series);
     }
 
-    public void dataProviderSeriesSnippet3(DataProviderSeries<Order> series,
-            Chart chart) {
+    public void dataProviderSeriesSnippet4(DataProviderSeries<Order> series) {
+        series.setName("Order item quantities");
+        series.setX(Order::getDescription);
+    }
+
+    public void dataProviderSeriesSnippet5(Configuration configuration) {
         // Set correct axis type to show the item name as category
-        XAxis xaxis = new XAxis();
-        xaxis.setType(AxisType.CATEGORY);
-        xaxis.setTitle("Products");
-        chart.getConfiguration().addxAxis(xaxis);
+        configuration.getxAxis().setType(AxisType.CATEGORY);
     }
 
     public void synchronousDrilldown() {
