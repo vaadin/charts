@@ -77,7 +77,8 @@ public class ContainerWithLotsOfData extends AbstractVaadinChartExample {
         Grid<Data> g = new Grid<>();
         g.setDataProvider(data);
         g.setCaption("Data from Vaadin DataProvider");
-        g.addColumn("USD to EUR", data -> Double.toString(data.getValue()));
+        g.addColumn(data -> Double.toString(data.getValue()))
+                .setCaption("USD to EUR");
         return g;
     }
 
