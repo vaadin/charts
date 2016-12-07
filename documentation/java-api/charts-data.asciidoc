@@ -222,7 +222,7 @@ orders.add(new Order("Email Box", 20, 0.15));
 orders.add(new Order("E-Commerce Setup", 1, 25.00));
 orders.add(new Order("Technical Support", 1, 50.00));
 
-DataProvider<Order> dataProvider = new ListDataProvider<>(orders);
+DataProvider<Order, ?> dataProvider = new ListDataProvider<>(orders);
 ----
 
 We can display the data in a [classname]#Chart# as follows:

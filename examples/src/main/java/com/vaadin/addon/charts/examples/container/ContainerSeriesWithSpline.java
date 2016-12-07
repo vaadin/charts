@@ -46,7 +46,7 @@ public class ContainerSeriesWithSpline extends AbstractVaadinChartExample {
     protected Component getChart() {
         // Create container with two points
         Collection<TestItem> col = new ArrayList<>();
-        DataProvider<TestItem> ds = new ListDataProvider<>(col);
+        DataProvider<TestItem, ?> ds = new ListDataProvider<>(col);
         LocalDateTime dateTime = LocalDateTime.of(2013, 3, 22, 12, 00);
 
         col.add(new TestItem(dateTime.toInstant(ZoneOffset.UTC), 5));

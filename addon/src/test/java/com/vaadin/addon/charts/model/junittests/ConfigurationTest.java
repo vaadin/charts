@@ -166,7 +166,8 @@ public class ConfigurationTest {
             return value;
         }
     }
-    private DataProvider<Pair> createDataProvider() {
+
+    private DataProvider<Pair, ?> createDataProvider() {
         Collection<Pair> col =new ArrayList<>();
         col.add(new Pair("A",10));
         col.add(new Pair("B",11));

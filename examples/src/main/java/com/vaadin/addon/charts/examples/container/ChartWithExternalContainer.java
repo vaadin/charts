@@ -22,7 +22,6 @@ import java.util.Collection;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
-import com.vaadin.addon.charts.examples.ExampleUtil;
 import com.vaadin.addon.charts.model.AbstractSeries;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
@@ -48,11 +47,11 @@ public class ChartWithExternalContainer extends AbstractVaadinChartExample {
     protected Component getChart() {
         HorizontalLayout lo = new HorizontalLayout();
         lo.setSpacing(true);
-        DataProvider<Order> ds = getOrderDataProvider();
+        DataProvider<Order, ?> dp = getOrderDataProvider();
 
-        DataProviderSeries<Order> chartDataSeries1 = createChartDataSeries1(ds);
-        DataProviderSeries<Order> chartDataSeries2 = createChartDataSeries2(ds);
-        Component table = createGrid(ds);
+        DataProviderSeries<Order> chartDataSeries1 = createChartDataSeries1(dp);
+        DataProviderSeries<Order> chartDataSeries2 = createChartDataSeries2(dp);
+        Component table = createGrid(dp);
         table.setSizeFull();
         Chart chart1 = createChart1(chartDataSeries1);
         chart1.setSizeFull();
@@ -70,8 +69,9 @@ public class ChartWithExternalContainer extends AbstractVaadinChartExample {
         return lo;
     }
 
-    private DataProviderSeries<Order> createChartDataSeries1(DataProvider<Order> DataProvider) {
-        DataProviderSeries<Order> chartDS = new DataProviderSeries<>(DataProvider);
+    private DataProviderSeries<Order> createChartDataSeries1(
+            DataProvider<Order, ?> dataProvider) {
+        DataProviderSeries<Order> chartDS = new DataProviderSeries<>(dataProvider);
         chartDS.setName("Order item quantities");
         chartDS.setPlotOptions(new PlotOptionsPie());
         chartDS.setY(Order::getQuantity);
@@ -79,8 +79,9 @@ public class ChartWithExternalContainer extends AbstractVaadinChartExample {
         return chartDS;
     }
 
-    private DataProviderSeries<Order> createChartDataSeries2(DataProvider<Order> DataProvider) {
-        DataProviderSeries<Order> chartDS = new DataProviderSeries<>(DataProvider);
+    private DataProviderSeries<Order> createChartDataSeries2(
+            DataProvider<Order, ?> dataProvider) {
+        DataProviderSeries<Order> chartDS = new DataProviderSeries<>(dataProvider);
         chartDS.setName("Order item prices");
         chartDS.setPlotOptions(new PlotOptionsColumn());
 
@@ -89,13 +90,17 @@ public class ChartWithExternalContainer extends AbstractVaadinChartExample {
         return chartDS;
     }
 
-    private Component createGrid(DataProvider<Order> DataProvider) {
-        Grid<Order> grid = new Grid<Order>();
+    private Component createGrid(DataProvider<Order, ?> dataProvider) {
+        Grid<Order> grid = new Grid<>();
         grid.setCaption("Data from Vaadin Container");
-        grid.setDataProvider(DataProvider);
-        grid.addColumn("description",Order::getDescription);
-        grid.addColumn("quantity",order -> Integer.toString(order.getQuantity().intValue()));
-        grid.addColumn(ExampleUtil.ORDER_ITEMPRICE_PROPERTY_ID.toString(),order -> Integer.toString(order.getItemPrice().intValue()));
+        grid.setDataProvider(dataProvider);
+        grid.addColumn(Order::getDescription).setCaption("Description");
+        grid.addColumn(
+                order -> Integer.toString(order.getQuantity().intValue()))
+                .setCaption("Quantity");
+        grid.addColumn(
+                order -> Integer.toString(order.getItemPrice().intValue()))
+                .setCaption("Item Price");
         return grid;
     }
 
@@ -155,7 +160,7 @@ public class ChartWithExternalContainer extends AbstractVaadinChartExample {
         }
     }
 
-    public DataProvider<Order> getOrderDataProvider() {
+    public ListDataProvider<Order> getOrderDataProvider() {
         Collection<Order> orders = new ArrayList<>();
         orders.add(new Order("Domain Name", 3, 7.99));
         orders.add(new Order("SSL Certificate", 1, 119.00));

@@ -36,9 +36,7 @@ To start off, we need to create a new project where we can add the charts.
 For more details on this topic, please refer to <<charts-installing.asciidoc#, "Installing Vaadin Charts">> and link:../../framework/addons/addons-overview.html[Vaadin Add-ons].
 
 Here we use Maven to set up a project, using the command-line.
-You can then be import the project into your IDE. You can use the IDE to generate a new maven project using the `vaadin-archetype-application` archetype, version 7.6.2, but in the following we do it on command-line.
-// TODO Why is a specific Vaadin version used here?
-// I left it as is, as I didn't know if there is some unknown purpose for that.
+You can then be import the project into your IDE. You can use the IDE to generate a new maven project using the `vaadin-archetype-application` archetype, but in the following we do it on command-line.
 
 Execute the following command to create the project:
 
@@ -46,9 +44,8 @@ Execute the following command to create the project:
 ----
 [prompt]#+++$+++# [command]#mvn# archetype:generate -DarchetypeGroupId=com.vaadin \
  -DarchetypeArtifactId=vaadin-archetype-application \
- -DarchetypeVersion=[replaceable]#7.6.2#
+ -DarchetypeVersion=[replaceable]#LATEST#
 ----
-// TODO Same version number question here.
 
 Archetype generation asks you a few parameters to set up the project.
 You need to give at least [parameter]#groupId# and [parameter]#artifactId#.
@@ -105,7 +102,7 @@ Add the following dependency declaration just before the end tag (`</dependencie
    <dependency>
       <groupId>com.vaadin.addon</groupId>
       <artifactId>vaadin-charts</artifactId>
-      <version>3.2.0</version>
+      <version>4.0.0</version>
    </dependency>
 </dependencies>
 ...
@@ -327,11 +324,11 @@ private Chart getWeatherChart(ChartsData data) {
   conf.setTitle("Turku, Finland 2013");
 
   conf.getChart().setType(ChartType.LINE);
-  DataProvider<WeatherInfo> dataProvider = new ListDataProvider<>(data.getWeatherData());
+  ListDataProvider<WeatherInfo> dataProvider = new ListDataProvider<>(data.getWeatherData());
   DataProviderSeries<WeatherInfo> temp = new DataProviderSeries<>(dataProvider);
 
   temp.setName("Temperature");
-  temp.setX(WeatherInfo::getDate);
+  temp.setX(WeatherInfo::getInstant);
   temp.setY(WeatherInfo::getMaxTemp);
   conf.addSeries(temp);
 
@@ -346,7 +343,7 @@ Let us look a little closer at the new series type.
 The [classname]#DataProviderSeries# is bound to a normal [interfacename]#DataProvider# from Vaadin Framework.
 In this case, we create a [classname]#ListDataProvider# that contains [classname]#WeatherInfo# beans.
 We then create a [classname]#DataProviderSeries# instance, set the name of the series, and define the functions used for retrieving the X and Y data.
-In this case, the value returned from a call to the [methodname]#getDate()# method in [classname]#WeatherInfo# will be used as the value of X for each data point.
+In this case, the value returned from a call to the [methodname]#getInstant()# method in [classname]#WeatherInfo# will be used as the value of X for each data point.
 Similarly, the value returned by calling [methodname]#getMaxTemp()# will be used as the value of Y.
 
 Configuring the X-axis should be fairly self-explanatory.
@@ -364,11 +361,11 @@ We will use the same provider bound to a new [classname]#DataProviderSeries# to 
 
 [source,java]
 ----
-DataProvider<WeatherInfo> dataProvider = new ListDataProvider<>(weatherInfo);
+ListDataProvider<WeatherInfo> dataProvider = new ListDataProvider<>(weatherInfo);
 DataProviderSeries<WeatherInfo> humidity = new DataProviderSeries<>(dataProvider);
 
 humidity.setName("Humidity");
-humidity.setX(WeatherInfo::getDate);
+humidity.setX(WeatherInfo::getInstant);
 humidity.setY(WeatherInfo::getMeanHumidity);
 humidity.setPlotOptions(new PlotOptionsColumn());
 conf.addSeries(humidity);
@@ -409,12 +406,12 @@ private Chart getWeatherChart(ChartsData data) {
 
   conf.getChart().setType(ChartType.LINE);
 
-  DataProvider<WeatherInfo> dataProvider = new ListDataProvider<>(data.getWeatherData());
+  ListDataProvider<WeatherInfo> dataProvider = new ListDataProvider<>(data.getWeatherData());
 
   DataProviderSeries<WeatherInfo> temp = new DataProviderSeries<>(dataProvider);
 
   temp.setName("Temperature");
-  temp.setX(WeatherInfo::getDate);
+  temp.setX(WeatherInfo::getInstant);
   temp.setY(WeatherInfo::getMaxTemp);
 
   conf.getxAxis().setTitle("Date");
@@ -424,7 +421,7 @@ private Chart getWeatherChart(ChartsData data) {
   DataProviderSeries<WeatherInfo> humidity = new DataProviderSeries<>(dataProvider);
 
   humidity.setName("Humidity");
-  humidity.setX(WeatherInfo::getDate);
+  humidity.setX(WeatherInfo::getInstant);
   humidity.setY(WeatherInfo::getMeanHumidity);
   humidity.setPlotOptions(new PlotOptionsColumn());
 
@@ -443,38 +440,26 @@ private Chart getWeatherChart(ChartsData data) {
 ----
 
 Restart, refresh, and enjoy a better looking chart!
-//////////////////////////////////////////
-Commented due to no filter in DataProvider yet
 
 == Downsampling Data
 
 One issue remains.
 Drawing the chart is a bit slow, because of the huge amount of data packed into it.
 To make it more efficient, we need to downsample the data in some way.
-For very simple downsampling, we can use the Vaadin container filtering API.
+For very simple downsampling, we can use the Vaadin DataProvider filtering API.
 Try something like the following filter to show only the values for each Sunday:
 
 [source,java]
 ----
-weatherContainer.addContainerFilter(new Filter() {
-   @Override
-   public boolean passesFilter(Object o, Item item)
-                    throws UnsupportedOperationException {
-       Date date = (Date)item.getItemProperty("date")
-                             .getValue();
-       return date.getDay() == 0;
-   }
-
-  @Override
-   public boolean appliesToProperty(Object o) {
-       return "date".equals(o);
-   }
+DataProvider<WeatherInfo, Void> filteredDataProvider = dataProvider.setFilter(point -> {
+  LocalDateTime date = LocalDateTime.ofInstant(point.getInstant(), ZoneId.of("Europe/Helsinki"));
+  return date.getDayOfWeek() == DayOfWeek.SUNDAY;
 });
 ----
 
 This will make the data more sparse by only taking one data point every seven days.
 Play around with the filter to see what you can accomplish!
-//////////////////////////////////////////
+
 [[summary]]
 == Summary
 

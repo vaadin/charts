@@ -90,14 +90,14 @@ public class ChartDataSeriesJSONSerializationTest {
         }
     }
 
-    private DataProvider<TestItem> dataProvider;
+    private DataProvider<TestItem, ?> dataProvider;
     private DataProviderSeries<TestItem> chartDataSeries;
-    private Collection<TestItem> col = new ArrayList<TestItem>();
+    private Collection<TestItem> col = new ArrayList<>();
 
     @Before
     public void setup() {
-        Collection<TestItem> col = new ArrayList<TestItem>();
-        dataProvider = new ListDataProvider<TestItem>(col);
+        Collection<TestItem> col = new ArrayList<>();
+        dataProvider = new ListDataProvider<>(col);
 
         chartDataSeries = new DataProviderSeries<>(dataProvider);
 
@@ -107,7 +107,7 @@ public class ChartDataSeriesJSONSerializationTest {
     public void serialize_ContainerWithXY_ValuesMappedAsArray() {
         col.add(new TestItem(80, 80));
         col.add(new TestItem(20, 20));
-        dataProvider = new ListDataProvider<TestItem>(col);
+        dataProvider = new ListDataProvider<>(col);
         chartDataSeries = new DataProviderSeries<>(dataProvider);
         chartDataSeries.setX(TestItem::getX);
         chartDataSeries.setY(TestItem::getY);
@@ -116,7 +116,7 @@ public class ChartDataSeriesJSONSerializationTest {
 
     @Test(expected = RuntimeException.class)
     public void serialize_ContainerWithoutY_ExceptionIsThrown() {
-        dataProvider = new ListDataProvider<TestItem>(col);
+        dataProvider = new ListDataProvider<>(col);
 
         chartDataSeries = new DataProviderSeries<>(dataProvider);
         chartDataSeries.setId("foo");
@@ -129,7 +129,7 @@ public class ChartDataSeriesJSONSerializationTest {
     public void serialize_ContainerWithoutYAndLow_ExceptionIsThrown() {
         col.add(new TestItem(80, 80));
         col.add(new TestItem(20, 20));
-        dataProvider = new ListDataProvider<TestItem>(col);
+        dataProvider = new ListDataProvider<>(col);
         chartDataSeries = new DataProviderSeries<>(dataProvider);
         chartDataSeries.setX(TestItem::getX);
         chartDataSeries.setHigh(TestItem::getY);
@@ -141,7 +141,7 @@ public class ChartDataSeriesJSONSerializationTest {
     public void serialize_ContainerWithXYZ_UnmappedPropertyNotSerialized() {
         col.add(new TestItem(80, 80, 80));
         col.add(new TestItem(20, 20, 20));
-        dataProvider = new ListDataProvider<TestItem>(col);
+        dataProvider = new ListDataProvider<>(col);
         chartDataSeries = new DataProviderSeries<>(dataProvider);
         chartDataSeries.setX(TestItem::getX);
         chartDataSeries.setY(TestItem::getY);
@@ -153,7 +153,7 @@ public class ChartDataSeriesJSONSerializationTest {
     public void serialize_ZMappedToName_ValuesMappedAsObject() {
         col.add(new TestItem(80, 80, 80));
         col.add(new TestItem(20, 20, 20));
-        dataProvider = new ListDataProvider<TestItem>(col);
+        dataProvider = new ListDataProvider<>(col);
         chartDataSeries = new DataProviderSeries<>(dataProvider);
         chartDataSeries.setX(TestItem::getX);
         chartDataSeries.setY(TestItem::getY);
@@ -168,7 +168,7 @@ public class ChartDataSeriesJSONSerializationTest {
         col.add(new TestItem(80, 80, 80));
         col.add(new TestItem(20, 20, 20));
         col.add(new TestItem(10, 10, null));
-        dataProvider = new ListDataProvider<TestItem>(col);
+        dataProvider = new ListDataProvider<>(col);
         chartDataSeries = new DataProviderSeries<>(dataProvider);
         chartDataSeries.setX(TestItem::getX);
         chartDataSeries.setY(TestItem::getY);
@@ -193,7 +193,8 @@ public class ChartDataSeriesJSONSerializationTest {
         Date helsinkiTime = calendar.getTime();
         Collection<TestDateItem> col = new ArrayList<>();
         col.add(new TestDateItem(helsinkiTime, 80));
-        DataProvider<TestDateItem> DataProvider = new ListDataProvider<>(col);
+        DataProvider<TestDateItem, ?> DataProvider = new ListDataProvider<>(
+                col);
         DataProviderSeries<TestDateItem> chartDataSeries = new DataProviderSeries<>(
                 DataProvider);
         chartDataSeries.setX(TestDateItem::getDate);
@@ -209,7 +210,7 @@ public class ChartDataSeriesJSONSerializationTest {
         Collection<TestInstantItem> col = new ArrayList<>();
         Instant instant = dateTime.toInstant(ZoneOffset.UTC);
         col.add(new TestInstantItem(instant, 80));
-        DataProvider<TestInstantItem> DataProvider = new ListDataProvider<>(
+        DataProvider<TestInstantItem, ?> DataProvider = new ListDataProvider<>(
                 col);
 
         DataProviderSeries<TestInstantItem> chartDataSeries = new DataProviderSeries<>(
@@ -226,7 +227,7 @@ public class ChartDataSeriesJSONSerializationTest {
     public void serialize_ContainerWithLowAndHighValues_LowAndHighValuesSerialized() {
         col.add(new TestItem(-5, 5, null));
 
-        dataProvider = new ListDataProvider<TestItem>(col);
+        dataProvider = new ListDataProvider<>(col);
         chartDataSeries = new DataProviderSeries<>(dataProvider);
         chartDataSeries.setLow(TestItem::getX);
         chartDataSeries.setHigh(TestItem::getY);
@@ -239,7 +240,7 @@ public class ChartDataSeriesJSONSerializationTest {
     public void serialize_ContainerWithLinePlotOptions_PlotOptionsAndTypeSerialized() {
         PlotOptionsLine plotOptions = new PlotOptionsLine();
         plotOptions.setShowInLegend(true);
-        dataProvider = new ListDataProvider<TestItem>(col);
+        dataProvider = new ListDataProvider<>(col);
 
         chartDataSeries = new DataProviderSeries<>(dataProvider);
         chartDataSeries.setY(TestItem::getY);
@@ -255,7 +256,7 @@ public class ChartDataSeriesJSONSerializationTest {
     public void serialize_ContainerWithSeriesPlotOptions_PlotTypeNotSerialized() {
         PlotOptionsSeries plotOptions = new PlotOptionsSeries();
         plotOptions.setShowInLegend(true);
-        dataProvider = new ListDataProvider<TestItem>(col);
+        dataProvider = new ListDataProvider<>(col);
 
         chartDataSeries = new DataProviderSeries<>(dataProvider);
         chartDataSeries.setY(TestItem::getY);
@@ -272,7 +273,7 @@ public class ChartDataSeriesJSONSerializationTest {
     public void serialize_ContainerWithNameAndStack_NameAndStackSerialized() {
         PlotOptionsSeries plotOptions = new PlotOptionsSeries();
         plotOptions.setShowInLegend(true);
-        dataProvider = new ListDataProvider<TestItem>(col);
+        dataProvider = new ListDataProvider<>(col);
 
         chartDataSeries = new DataProviderSeries<>(dataProvider);
         chartDataSeries.setY(TestItem::getY);
@@ -287,7 +288,7 @@ public class ChartDataSeriesJSONSerializationTest {
 
     @Test
     public void serialize_SeriesHasId_IdSerialized() {
-        dataProvider = new ListDataProvider<TestItem>(col);
+        dataProvider = new ListDataProvider<>(col);
 
         chartDataSeries = new DataProviderSeries<>(dataProvider);
         chartDataSeries.setId("foo");

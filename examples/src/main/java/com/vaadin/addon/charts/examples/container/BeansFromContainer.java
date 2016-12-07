@@ -26,7 +26,8 @@ public class BeansFromContainer extends AbstractVaadinChartExample {
 
     @Override
     protected Component getChart() {
-        DataProvider<ClaimsReportItem> ds = new ListDataProvider<>(getMockData());
+        DataProvider<ClaimsReportItem, ?> ds = new ListDataProvider<>(
+                getMockData());
 
 
         // Create ChartDataSeries

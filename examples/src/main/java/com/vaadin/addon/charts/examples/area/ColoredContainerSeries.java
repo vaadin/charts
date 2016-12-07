@@ -56,7 +56,7 @@ public class ColoredContainerSeries extends AbstractVaadinChartExample {
         col.add(new Test(10, "TEN"));
         col.add(new Test(11, "ELEVEN"));
         col.add(new Test(12, "TWELVE"));
-        DataProvider<Test> ds = new ListDataProvider<>(col);
+        DataProvider<Test, ?> ds = new ListDataProvider<>(col);
         DataProviderSeries<Test> chartDS= new DataProviderSeries<>(ds);
 
         chartDS.setName("Test Series");
