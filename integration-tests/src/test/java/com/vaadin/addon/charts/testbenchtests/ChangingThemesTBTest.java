@@ -19,26 +19,32 @@ public class ChangingThemesTBTest extends AbstractParallelTest {
 
         driver.findElement(By.id("vaadin-button")).click();
         waitForVaadin();
+        waitForDynamicChanges();
         captureAndCompare("2-vaadin");
 
         driver.findElement(By.id("grid-button")).click();
         waitForVaadin();
+        waitForDynamicChanges();
         captureAndCompare("3-grid");
 
         driver.findElement(By.id("skies-button")).click();
         waitForVaadin();
+        waitForDynamicChanges();
         captureAndCompare("4-skies");
 
         driver.findElement(By.id("gray-button")).click();
         waitForVaadin();
+        waitForDynamicChanges();
         captureAndCompare("5-gray");
 
         driver.findElement(By.id("vl-button")).click();
         waitForVaadin();
+        waitForDynamicChanges();
         captureAndCompare("6-valoLight");
 
         driver.findElement(By.id("vd-button")).click();
         waitForVaadin();
+        waitForDynamicChanges();
         captureAndCompare("7-valoDark");
 
     }
