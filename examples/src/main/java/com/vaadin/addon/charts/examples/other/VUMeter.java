@@ -18,10 +18,13 @@ import com.vaadin.addon.charts.model.TickPosition;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
+import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
 
 public class VUMeter extends AbstractVaadinChartExample {
-
+    final Chart chart = new Chart();
+    ListSeries series1;
+    ListSeries series2;
     @Override
     public String getDescription() {
         return "VU Meter";
@@ -29,7 +32,7 @@ public class VUMeter extends AbstractVaadinChartExample {
 
     @Override
     protected Component getChart() {
-        final Chart chart = new Chart();
+
         chart.setWidth("600px");
         chart.setHeight("200px");
 
@@ -103,35 +106,45 @@ public class VUMeter extends AbstractVaadinChartExample {
 
         configuration.setPlotOptions(gauge);
 
-        final ListSeries series1 = new ListSeries(-20);
-        final ListSeries series2 = new ListSeries(-20);
+        series1 = new ListSeries(-20);
+        series2 = new ListSeries(-20);
         series1.setyAxis(0);
         series2.setyAxis(1);
         configuration.setSeries(series1, series2);
 
-        runWhileAttached(chart, new Runnable() {
 
-            final Random r = new Random(0);
-
-            @Override
-            public void run() {
-                double left = series1.getData()[0].doubleValue();
-                double inc = (r.nextDouble() - 0.5) * 3;
-                double leftVal = left + inc;
-                double rightVal = leftVal + inc / 3;
-                if (leftVal < -20 || leftVal > 6) {
-                    leftVal = left - inc;
-                }
-                if (rightVal < -20 || rightVal > 6) {
-                    rightVal = leftVal;
-                }
-
-                series1.updatePoint(0, leftVal);
-                series2.updatePoint(0, rightVal);
-            }
-        }, 500, 12000);
 
         chart.drawChart(configuration);
         return chart;
+    }
+
+    @Override
+    protected void setup() {
+        super.setup();
+        Button btn = new Button("Start");
+        btn.addClickListener(e->{
+            runWhileAttached(chart, new Runnable() {
+
+                final Random r = new Random(0);
+
+                @Override
+                public void run() {
+                    double left = series1.getData()[0].doubleValue();
+                    double inc = (r.nextDouble() - 0.5) * 3;
+                    double leftVal = left + inc;
+                    double rightVal = leftVal + inc / 3;
+                    if (leftVal < -20 || leftVal > 6) {
+                        leftVal = left - inc;
+                    }
+                    if (rightVal < -20 || rightVal > 6) {
+                        rightVal = leftVal;
+                    }
+
+                    series1.updatePoint(0, leftVal);
+                    series2.updatePoint(0, rightVal);
+                }
+            }, 500, 0);
+        });
+        addComponentAsFirst(btn);
     }
 }

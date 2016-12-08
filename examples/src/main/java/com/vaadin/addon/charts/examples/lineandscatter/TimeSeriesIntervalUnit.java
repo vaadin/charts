@@ -13,7 +13,6 @@ import com.vaadin.addon.charts.model.IntervalUnit;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.PlotOptionsSeries;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.VerticalLayout;
 
@@ -57,14 +56,10 @@ public class TimeSeriesIntervalUnit extends AbstractVaadinChartExample {
         VerticalLayout layout = new VerticalLayout();
         layout.addComponent(chart);
         layout.addComponent(new Button("one day interval",
-                new Button.ClickListener() {
-
-                    @Override
-                    public void buttonClick(ClickEvent event) {
-                        plotOptions.setPointInterval(24 * 3600 * 1000);
-                        plotOptions.setPointIntervalUnit(null);
-                        chart.drawChart();
-                    }
+                e -> {
+                    plotOptions.setPointInterval(24 * 3600 * 1000);
+                    plotOptions.setPointIntervalUnit(null);
+                    chart.drawChart();
                 }));
         return layout;
 
