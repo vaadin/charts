@@ -46,7 +46,6 @@ Using plain Jar
 If you wan't to use the add-on jar directly, add it to your classpath. The add-on
 also depends on following Apache 2 licensed libraries:
  * Jackson
- * commons-io
 
 Unless you are already using them in your project add them also. They are also
 included in this zip package in the "lib" directory.

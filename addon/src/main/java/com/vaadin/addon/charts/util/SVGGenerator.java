@@ -27,8 +27,6 @@ import java.io.OutputStream;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 
-import org.apache.commons.io.IOUtils;
-
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.ChartOptions;
 import com.vaadin.addon.charts.model.Configuration;
@@ -374,12 +372,12 @@ public class SVGGenerator {
                 InputStream resourceAsStream = Chart.class
                         .getResourceAsStream("/com/vaadin/addon/charts/client/"
                                 + string);
-                IOUtils.copy(resourceAsStream, out);
+                copy(resourceAsStream, out);
                 resourceAsStream.close();
             }
             InputStream resourceAsStream = SVGGenerator.class
                     .getResourceAsStream("vaadin-charts-formatter.js");
-            IOUtils.copy(resourceAsStream, out);
+            copy(resourceAsStream, out);
             resourceAsStream.close();
 
             out.close();
@@ -391,7 +389,7 @@ public class SVGGenerator {
             out = new FileOutputStream(JS_CONVERTER);
             resourceAsStream = SVGGenerator.class
                     .getResourceAsStream("phantomconverter.js");
-            IOUtils.copy(resourceAsStream, out);
+            copy(resourceAsStream, out);
             resourceAsStream.close();
             out.close();
         } catch (IOException e) {
@@ -403,4 +401,13 @@ public class SVGGenerator {
         return JS_STUFF != null && JS_STUFF.exists() && JS_CONVERTER != null
                 && JS_CONVERTER.exists();
     }
+    
+    private static void copy(InputStream input, OutputStream output) throws IOException {
+        byte[] buffer = new byte[4096];
+        int n = 0;
+        while ((n = input.read(buffer)) != -1) {
+            output.write(buffer, 0, n);
+        }
+    }
+
 }
