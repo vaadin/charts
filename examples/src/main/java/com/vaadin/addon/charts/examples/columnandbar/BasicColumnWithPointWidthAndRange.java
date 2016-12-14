@@ -59,7 +59,7 @@ public class BasicColumnWithPointWidthAndRange extends
         option.setCaption("Option");
         option.setItems("", "pointWidth", "pointRange");
         option.setSelectedItem("pointWidth");
-        option.addSelectionChangeListener(sc -> {
+        option.addSelectionListener(sc -> {
             slider.setEnabled(!sc.getSelectedItem().get().equals(""));
         });
 
