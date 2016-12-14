@@ -99,7 +99,7 @@ public class LineWithDashSelector extends AbstractVaadinChartExample {
         nativeSelect.setItems(DashStyle.values());
         nativeSelect.setSelectedItem(DashStyle.DOT);
 
-        nativeSelect.addSelectionChangeListener(e-> {
+        nativeSelect.addSelectionListener(e-> {
                 plotOptions.setDashStyle(e.getSelectedItem().get());
                 chart.drawChart();
         });
