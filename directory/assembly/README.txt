@@ -21,7 +21,7 @@ Maven
 Dependency snippet for Maven users:
 
 <dependency>
-	<groupId>com.vaadin.addon</groupId>
+	<groupId>com.vaadin</groupId>
 	<artifactId>vaadin-charts</artifactId>
 	<version>${project.version}</version>
 </dependency>
@@ -38,7 +38,7 @@ Ivy
 
 IVY dependency snippet:
 
-<dependency org="com.vaadin.addon" name="vaadin-charts" rev="${project.version}" conf="default->default" />
+<dependency org="com.vaadin" name="vaadin-charts" rev="${project.version}" conf="default->default" />
 
 Using plain Jar
 ---------------
@@ -100,10 +100,10 @@ Code and usage examples:
 http://demo.vaadin.com/charts/
 
 Issue tracker:
-http://dev.vaadin.com/
+https://github.com/vaadin/charts/issues
 
 Documentation:
-https://vaadin.com/book/vaadin7/-/page/charts.html
+https://vaadin.com/docs/-/part/charts/charts-overview.html
 
 SCM (Git):
 https://github.com/vaadin/charts

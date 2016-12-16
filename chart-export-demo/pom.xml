@@ -72,7 +72,7 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.vaadin.addon</groupId>
+			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-charts</artifactId>
 			<version>${vaadin.charts.version}</version>
 		</dependency>
