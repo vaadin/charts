@@ -1,5 +1,10 @@
 package com.vaadin.addon.charts.model.serializers;
 
+import static com.vaadin.addon.charts.model.DataProviderSeries.CLOSE_PROPERTY;
+import static com.vaadin.addon.charts.model.DataProviderSeries.HIGH_PROPERTY;
+import static com.vaadin.addon.charts.model.DataProviderSeries.LOW_PROPERTY;
+import static com.vaadin.addon.charts.model.DataProviderSeries.OPEN_PROPERTY;
+
 /*
  * #%L
  * Vaadin Charts
@@ -18,7 +23,6 @@ package com.vaadin.addon.charts.model.serializers;
  */
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -41,7 +45,7 @@ public class DataProviderSeriesBeanSerializer
     public static final String yAttribute = DataProviderSeries.Y_ATTRIBUTE;
 
     private enum Mode {
-        ONLY_Y, XY, OBJECT
+        ONLY_Y, XY, XLH, XOHLC, OBJECT
     }
 
     @Override
@@ -70,35 +74,25 @@ public class DataProviderSeriesBeanSerializer
 
         jgen.writeEndObject();
     }
-
-    private ArrayNode createDataArray(DataProviderSeries chartDataProvider) {
+    private ArrayNode createDataArray(DataProviderSeries<?> chartDataProvider) {
         ArrayNode data = JsonNodeFactory.instance.arrayNode();
-        checkRequiredProperties(chartDataProvider);
-        Mode mode = null;
-
         Set<String> attributes = chartDataProvider.getChartAttributes();
-        for (String attribute : attributes) {
-            if (!attribute.equals(xAttribute)
-                    && !attribute.equals(yAttribute)) {
-                mode = Mode.OBJECT;
-                break;
-            }
-        }
+        checkRequiredProperties(attributes);
+        Mode mode = inferSerializationMode(attributes);
 
-        if (mode != Mode.OBJECT) {
-            if (chartDataProvider.getChartAttributes().contains(xAttribute)) {
-                mode = Mode.XY;
-            } else {
-                mode = Mode.ONLY_Y;
-            }
-        }
-
-        List<Map<String, Object>> chartAttributesToValues = chartDataProvider
-                .getValues();
-
-        for (Map<String, Object> chartAttributeToValue : chartAttributesToValues) {
+        for (Map<String, Object> chartAttributeToValue : chartDataProvider
+                .getValues()) {
             Object xValue = chartAttributeToValue.get(xAttribute);
             Object yValue = chartAttributeToValue.get(yAttribute);
+            Object oValue = chartAttributeToValue
+                    .get(OPEN_PROPERTY);
+            Object lValue = chartAttributeToValue
+                    .get(LOW_PROPERTY);
+            Object hValue = chartAttributeToValue
+                    .get(HIGH_PROPERTY);
+            Object cValue = chartAttributeToValue
+                    .get(CLOSE_PROPERTY);
+
             switch (mode) {
             case ONLY_Y:
                 Object value = chartAttributeToValue.get(yAttribute);
@@ -110,6 +104,33 @@ public class DataProviderSeriesBeanSerializer
                     data.add(entryArray);
                     addValue(entryArray, xValue);
                     addValue(entryArray, yValue);
+                } else {
+                    data.addNull();
+                }
+                break;
+            case XLH:
+
+                if (xValue != null && lValue != null && hValue != null) {
+                    ArrayNode entryArray = JsonNodeFactory.instance.arrayNode();
+                    data.add(entryArray);
+                    addValue(entryArray, xValue);
+                    addValue(entryArray, lValue);
+                    addValue(entryArray, hValue);
+                } else {
+                    data.addNull();
+                }
+                break;
+            case XOHLC:
+
+                if (xValue != null && oValue != null && hValue != null
+                        && lValue != null && cValue != null) {
+                    ArrayNode entryArray = JsonNodeFactory.instance.arrayNode();
+                    data.add(entryArray);
+                    addValue(entryArray, xValue);
+                    addValue(entryArray, oValue);
+                    addValue(entryArray, hValue);
+                    addValue(entryArray, lValue);
+                    addValue(entryArray, cValue);
                 } else {
                     data.addNull();
                 }
@@ -143,20 +164,49 @@ public class DataProviderSeriesBeanSerializer
         return data;
     }
 
-    private void checkRequiredProperties(DataProviderSeries chartDataSeries) {
+    private void checkRequiredProperties(Set<String> attributes) {
 
-        Set<String> attributes = chartDataSeries.getChartAttributes();
         Boolean hasYProperty = attributes.contains(yAttribute);
         Boolean hasHighProperty = attributes
-                .contains(DataProviderSeries.HIGH_PROPERTY);
+                .contains(HIGH_PROPERTY);
         Boolean hasLowProperty = attributes
-                .contains(DataProviderSeries.LOW_PROPERTY);
+                .contains(LOW_PROPERTY);
 
         if (!hasYProperty && (!hasHighProperty || !hasLowProperty)) {
             throw new IllegalStateException(
                     "ChartDataSeries' must have a property for 'y' values or for "
                             + "both high and low values. Check "
                             + DataProviderSeries.class.getName() + " Javadoc");
+        }
+    }
+
+    private Mode inferSerializationMode(Set<String> attributes) {
+        switch (attributes.size()) {
+        case 1:
+            if (attributes.contains(yAttribute)) {
+                return Mode.ONLY_Y;
+            }
+        case 2:
+            if (attributes.contains(yAttribute)
+                    && attributes.contains(xAttribute)) {
+                return Mode.XY;
+            }
+        case 3:
+            if (attributes.contains(xAttribute)
+                    && attributes.contains(LOW_PROPERTY)
+                    && attributes.contains(HIGH_PROPERTY)) {
+                return Mode.XLH;
+            }
+        case 5:
+            if (attributes.contains(xAttribute)
+                    && attributes.contains(OPEN_PROPERTY)
+                    && attributes.contains(HIGH_PROPERTY)
+                    && attributes.contains(LOW_PROPERTY)
+                    && attributes.contains(CLOSE_PROPERTY)) {
+                return Mode.XOHLC;
+            }
+        default:
+            return Mode.OBJECT;
         }
     }
 

@@ -90,6 +90,44 @@ public class ChartDataSeriesJSONSerializationTest {
         }
     }
 
+    private class TestItemOHLC {
+        private Number x;
+        private Number o;
+        private Number h;
+        private Number l;
+        private Number c;
+
+        public TestItemOHLC(int x, double o, double h, double l,
+                double c) {
+            this.x = x;
+            this.o = o;
+            this.h = h;
+            this.l = l;
+            this.c = c;
+        }
+
+        public Number getX() {
+            return x;
+        }
+
+        public Number getO() {
+            return o;
+        }
+
+        public Number getH() {
+            return h;
+        }
+
+        public Number getL() {
+            return l;
+        }
+
+        public Number getC() {
+            return c;
+        }
+
+    }
+
     private DataProvider<TestItem, ?> dataProvider;
     private DataProviderSeries<TestItem> chartDataSeries;
     private Collection<TestItem> col = new ArrayList<>();
@@ -147,6 +185,25 @@ public class ChartDataSeriesJSONSerializationTest {
         chartDataSeries.setY(TestItem::getY);
 
         assertEquals("{\"data\":[[80,80],[20,20]]}", toJSON(chartDataSeries));
+    }
+
+    @Test
+    public void serialize_ContainerWithXOHLC_SerializedAsArray() {
+
+        Collection<TestItemOHLC> col = new ArrayList<>();
+        col.add(new TestItemOHLC(2, 113.84,
+                115.92, 113.75,
+                115.19));
+        DataProviderSeries<TestItemOHLC> chartDataSeries = new DataProviderSeries<>(
+                new ListDataProvider<>(col));
+        chartDataSeries.setX(TestItemOHLC::getX);
+        chartDataSeries.setOpen(TestItemOHLC::getO);
+        chartDataSeries.setHigh(TestItemOHLC::getH);
+        chartDataSeries.setLow(TestItemOHLC::getL);
+        chartDataSeries.setClose(TestItemOHLC::getC);
+
+        assertEquals("{\"data\":[[2,113.84,115.92,113.75,115.19]]}",
+                toJSON(chartDataSeries));
     }
 
     @Test
