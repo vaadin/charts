@@ -19,8 +19,8 @@ import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataProviderSeries;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.PlotOptionsSeries;
-import com.vaadin.server.data.DataProvider;
-import com.vaadin.server.data.ListDataProvider;
+import com.vaadin.data.provider.DataProvider;
+import com.vaadin.data.provider.ListDataProvider;
 
 public class ChartDataSeriesJSONSerializationTest {
 

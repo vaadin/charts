@@ -14,8 +14,8 @@ import com.vaadin.addon.charts.model.Title;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
-import com.vaadin.server.data.DataProvider;
-import com.vaadin.server.data.ListDataProvider;
+import com.vaadin.data.provider.DataProvider;
+import com.vaadin.data.provider.ListDataProvider;
 import com.vaadin.ui.Component;
 
 @SkipFromDemo

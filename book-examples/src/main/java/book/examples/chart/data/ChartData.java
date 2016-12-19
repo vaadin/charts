@@ -17,8 +17,8 @@ import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.RangeSeries;
 import com.vaadin.addon.charts.model.Series;
 import com.vaadin.addon.charts.model.style.SolidColor;
-import com.vaadin.server.data.DataProvider;
-import com.vaadin.server.data.ListDataProvider;
+import com.vaadin.data.provider.DataProvider;
+import com.vaadin.data.provider.ListDataProvider;
 import com.vaadin.ui.HorizontalLayout;
 
 public class ChartData {
