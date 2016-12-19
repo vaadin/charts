@@ -100,7 +100,7 @@ Add the following dependency declaration just before the end tag (`</dependencie
 ----
 ...
    <dependency>
-      <groupId>com.vaadin.addon</groupId>
+      <groupId>com.vaadin</groupId>
       <artifactId>vaadin-charts</artifactId>
       <version>4.0.0</version>
    </dependency>
