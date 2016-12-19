@@ -128,7 +128,10 @@ public class SplineWithPlotBandRemoveFunctionality extends
             }
         });
 
-        return new VerticalLayout(removePlotBand, chart);
+        VerticalLayout verticalLayout = new VerticalLayout(removePlotBand, chart);
+        verticalLayout.setSpacing(false);
+        verticalLayout.setMargin(false);
+        return verticalLayout;
     }
 
     private void createPlotBand(YAxis yAxis) {

@@ -46,6 +46,8 @@ public class PieWithGradientFill extends AbstractVaadinChartExample {
 
         chart.drawChart();
         VerticalLayout layout = new VerticalLayout();
+        layout.setSpacing(false);
+        layout.setMargin(false);
         layout.addComponent(chart);
         CheckBox button = new CheckBox("Slice one part");
         button.addValueChangeListener(e-> {

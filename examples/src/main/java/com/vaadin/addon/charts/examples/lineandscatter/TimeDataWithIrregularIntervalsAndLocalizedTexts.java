@@ -118,8 +118,13 @@ public class TimeDataWithIrregularIntervalsAndLocalizedTexts extends
             }
         });
 
-        return new VerticalLayout(new HorizontalLayout(enButton, fiButton),
+        HorizontalLayout horizontalLayout = new HorizontalLayout(enButton, fiButton);
+        horizontalLayout.setSpacing(false);
+        VerticalLayout verticalLayout = new VerticalLayout(horizontalLayout,
                 chart);
+        verticalLayout.setSpacing(false);
+        verticalLayout.setMargin(false);
+        return verticalLayout;
     }
 
     private Object[][] getData3() {

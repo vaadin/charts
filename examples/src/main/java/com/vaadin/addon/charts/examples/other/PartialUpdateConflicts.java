@@ -1,5 +1,9 @@
 package com.vaadin.addon.charts.examples.other;
 
+import java.util.Random;
+
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.examples.SkipFromDemo;
@@ -9,9 +13,6 @@ import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.VerticalLayout;
-import org.apache.commons.lang3.ArrayUtils;
-
-import java.util.Random;
 
 @SkipFromDemo
 public class PartialUpdateConflicts extends AbstractVaadinChartExample {
@@ -71,7 +72,10 @@ public class PartialUpdateConflicts extends AbstractVaadinChartExample {
                 });
         button2.setId("b2");
 
-        return new VerticalLayout(chart, button, chart2, button2);
+        VerticalLayout verticalLayout = new VerticalLayout(chart, button, chart2, button2);
+        verticalLayout.setSpacing(false);
+        verticalLayout.setMargin(false);
+        return verticalLayout;
     }
 
 }

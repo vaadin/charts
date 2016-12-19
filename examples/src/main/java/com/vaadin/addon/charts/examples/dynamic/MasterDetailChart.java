@@ -185,6 +185,8 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
     @Override
     protected Component getChart() {
         VerticalLayout lo = new VerticalLayout();
+        lo.setSpacing(false);
+        lo.setMargin(false);
         lo.setWidth("100%");
         lo.setHeight("600px");
 
@@ -234,7 +236,7 @@ public class MasterDetailChart extends AbstractVaadinChartExample {
     }
 
     private List<Number> getPartialList(long start, long end) {
-        List<Number> list = new ArrayList<Number>();
+        List<Number> list = new ArrayList<>();
         for (int i = 0; i < FULL_DEMO_DATA_SET.length; i++) {
             long dataTimeStamp = Util.toHighchartsTS(DEMO_DATASET_START.atStartOfDay().toInstant(ZoneOffset.UTC)) + i
                     * DAY_IN_MILLIS;

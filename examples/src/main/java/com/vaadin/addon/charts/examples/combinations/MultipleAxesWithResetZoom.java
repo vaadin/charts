@@ -29,7 +29,10 @@ public class MultipleAxesWithResetZoom extends AbstractVaadinChartExample {
                 chart.getConfiguration().resetZoom();
             }
         });
-        return new VerticalLayout(chart, button);
+        VerticalLayout verticalLayout = new VerticalLayout(chart, button);
+        verticalLayout.setSpacing(false);
+        verticalLayout.setMargin(false);
+        return verticalLayout;
     }
 
 }

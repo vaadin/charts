@@ -40,6 +40,8 @@ public class ChangingThemes extends AbstractVaadinChartExample {
     protected Component getChart() {
         ChartOptions.get().setTheme(new HighChartsDefaultTheme());
         HorizontalLayout buttons = new HorizontalLayout();
+        buttons.setSpacing(false);
+
         content.addComponent(buttons);
 
         Button vaadin = new Button("Vaadin", new ThemeChangeListener(
