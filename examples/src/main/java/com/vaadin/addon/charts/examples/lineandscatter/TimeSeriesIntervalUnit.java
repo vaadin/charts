@@ -55,6 +55,8 @@ public class TimeSeriesIntervalUnit extends AbstractVaadinChartExample {
         configuration.setSeries(ls);
 
         VerticalLayout layout = new VerticalLayout();
+        layout.setSpacing(false);
+        layout.setMargin(false);
         layout.addComponent(chart);
         layout.addComponent(new Button("one day interval",
                 new Button.ClickListener() {

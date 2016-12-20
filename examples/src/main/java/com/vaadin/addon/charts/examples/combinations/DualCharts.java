@@ -18,6 +18,7 @@ public class DualCharts extends AbstractVaadinChartExample {
     @Override
     protected Component getChart() {
         HorizontalLayout layout = new HorizontalLayout();
+        layout.setSpacing(false);
         layout.setWidth("100%");
 
         Chart chartA = PercentageArea.createNewChart();

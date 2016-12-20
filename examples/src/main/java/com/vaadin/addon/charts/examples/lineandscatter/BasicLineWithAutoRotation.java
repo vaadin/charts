@@ -24,6 +24,8 @@ public class BasicLineWithAutoRotation extends AbstractVaadinChartExample {
     @Override
     protected Component getChart() {
         VerticalLayout layout = new VerticalLayout();
+        layout.setSpacing(false);
+        layout.setMargin(false);
         final Chart chart = new Chart(ChartType.LINE);
         chart.setHeight("400px");
         chart.setWidth("100%");

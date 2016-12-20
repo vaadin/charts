@@ -103,6 +103,8 @@ public class ClickToAddPoint extends AbstractVaadinChartExample {
             }
         });
         VerticalLayout verticalLayout = new VerticalLayout();
+        verticalLayout.setSpacing(false);
+        verticalLayout.setMargin(false);
         verticalLayout.addComponent(chart);
         verticalLayout.addComponent(lastAction);
         verticalLayout.addComponent(eventDetails);

@@ -69,6 +69,7 @@ public abstract class AbstractVaadinChartExample extends VerticalLayout
         content = this;
         content.setSizeFull();
         content.setMargin(true);
+        content.setSpacing(false);
     }
 
     protected abstract Component getChart();

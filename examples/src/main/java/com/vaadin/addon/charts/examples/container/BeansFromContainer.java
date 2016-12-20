@@ -12,8 +12,8 @@ import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataProviderSeries;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
 import com.vaadin.addon.charts.model.YAxis;
-import com.vaadin.server.data.DataProvider;
-import com.vaadin.server.data.ListDataProvider;
+import com.vaadin.data.provider.DataProvider;
+import com.vaadin.data.provider.ListDataProvider;
 import com.vaadin.ui.Component;
 
 @SkipFromDemo

@@ -25,8 +25,8 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.vaadin.server.data.DataProvider;
-import com.vaadin.server.data.Query;
+import com.vaadin.data.provider.DataProvider;
+import com.vaadin.data.provider.Query;
 
 /**
  * A series which is based on data from a DataProvider.
