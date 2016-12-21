@@ -166,7 +166,7 @@ RangeSeries series =
 conf.addSeries(series);
 ----
 
-[[charts.data.dataseries]]
+[[charts.data.dataproviderseries]]
 == Data Provider Series
 
 [classname]#DataProviderSeries# is an adapter for using a Vaadin [interfacename]#DataProvider# as a [classname]#DataSeries# in a chart. Using [methodname]#setPointName()#, [methodname]#setX()#, and [methodname]#setY()# you can define which parts of the bean in the [interfacename]#DataProvider# are used in the chart.

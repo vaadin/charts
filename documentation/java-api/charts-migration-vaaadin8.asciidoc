@@ -20,7 +20,7 @@ Most of Vaadin Charts 3 API is compatible with Vaadin Charts 4.x.
 There are two main changes:
 
 * Methods that use [classname]#Date# were deprecated, use [classname]#Instant# instead.
-* [classname]#ContainerDataSeries# is deprecated, use [classname]#DataProviderSeries# instead, see <<charts-data#charts.data.dataseries,"instructions">>.
+* [classname]#ContainerDataSeries# is deprecated, use [classname]#DataProviderSeries# instead, see <<charts-data#charts.data.dataproviderseries,"instructions">>.
 
 [[charts4.migration.using.compatibility]]
 == Using Vaadin Charts compatibility package
