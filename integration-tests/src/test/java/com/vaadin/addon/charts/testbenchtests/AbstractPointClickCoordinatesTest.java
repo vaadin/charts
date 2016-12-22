@@ -86,13 +86,13 @@ public abstract class AbstractPointClickCoordinatesTest
         new Actions(driver)
                 .moveToElement(layout, expectedPointX, expectedPointY).click()
                 .build().perform();
-        getTestBenchCommandExecutor().waitForVaadin();
+        waitForVaadin();
     }
 
     private void clickChart() {
         WebElement chart = findElement(By.className("vaadin-chart"));
         new Actions(driver).moveToElement(chart, expectedChartX, expectedChartY)
                 .click().build().perform();
-        getTestBenchCommandExecutor().waitForVaadin();
+        waitForVaadin();
     }
 }
