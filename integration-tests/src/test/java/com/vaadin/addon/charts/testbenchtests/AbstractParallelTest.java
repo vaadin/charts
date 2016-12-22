@@ -91,7 +91,7 @@ public abstract class AbstractParallelTest extends ParallelTest {
             ExpectedConditions
                 .presenceOfElementLocated(
                     com.vaadin.testbench.By.className("highcharts-container")));
-        getTestBenchCommandExecutor().waitForVaadin();
+        getCommandExecutor().waitForVaadin();
     }
 
     private boolean getBooleanProperty(String key) {
@@ -140,7 +140,7 @@ public abstract class AbstractParallelTest extends ParallelTest {
 
     @BrowserConfiguration
     public List<DesiredCapabilities> getBrowsersToTest() {
-        List<DesiredCapabilities> allBrowsers = new ArrayList<DesiredCapabilities>();
+        List<DesiredCapabilities> allBrowsers = new ArrayList<>();
         allBrowsers.add(Browser.IE11.getDesiredCapabilities());
         allBrowsers.add(Browser.FIREFOX.getDesiredCapabilities());
         allBrowsers.add(Browser.CHROME.getDesiredCapabilities());
@@ -203,7 +203,7 @@ public abstract class AbstractParallelTest extends ParallelTest {
     }
 
     protected void waitForVaadin() {
-        getTestBenchCommandExecutor().waitForVaadin();
+        getCommandExecutor().waitForVaadin();
     }
 
     /**

@@ -278,7 +278,7 @@ public class ServerSideEventsTBTest extends AbstractParallelTest {
 
     private void click(WebElement secondCheckBox) {
         new Actions(driver).click(secondCheckBox).build().perform();
-        getTestBenchCommandExecutor().waitForVaadin();
+        waitForVaadin();
     }
 
     private WebElement findHideFirstSeriesButton() {
