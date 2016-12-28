@@ -36,7 +36,7 @@ To start off, we need to create a new project where we can add the charts.
 For more details on this topic, please refer to <<charts-installing.asciidoc#, "Installing Vaadin Charts">> and link:../../framework/addons/addons-overview.html[Vaadin Add-ons].
 
 Here we use Maven to set up a project, using the command-line.
-You can then be import the project into your IDE. You can use the IDE to generate a new maven project using the `vaadin-archetype-application` archetype, version 7.6.2, but in the following we do it on command-line.
+You can then be import the project into your IDE. You can use the IDE to generate a new maven project using the `vaadin-archetype-application` archetype, but in the following we do it on command-line.
 // TODO Why is a specific Vaadin version used here?
 // I left it as is, as I didn't know if there is some unknown purpose for that.
 
@@ -46,7 +46,7 @@ Execute the following command to create the project:
 ----
 [prompt]#+++$+++# [command]#mvn# archetype:generate -DarchetypeGroupId=com.vaadin \
  -DarchetypeArtifactId=vaadin-archetype-application \
- -DarchetypeVersion=[replaceable]#7.6.2#
+ -DarchetypeVersion=[replaceable]#LATEST#
 ----
 // TODO Same version number question here.
 
