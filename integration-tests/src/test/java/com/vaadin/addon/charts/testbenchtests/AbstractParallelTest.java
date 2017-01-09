@@ -37,6 +37,8 @@ public abstract class AbstractParallelTest extends ParallelTest {
     private static final String REF_IMAGE_ROOT = "src/test/resources/screenshots/reference";
     protected TestBenchCommands testBench;
     protected static final String ERROR_IMAGE_ROOT = "target/testbench/errors/";
+    protected static final String HUB_NAME_PROPERTY = "com.vaadin.testbench.Parameters.hubHostname";
+    private String hubHostName;
 
     public AbstractParallelTest() {
         super();
@@ -44,6 +46,7 @@ public abstract class AbstractParallelTest extends ParallelTest {
 
     @Override
     public void setup() throws Exception {
+        hubHostName = System.getProperty(HUB_NAME_PROPERTY);
         // override local driver behaviour, so we can easily specify local
         // PhantomJS
         // with a system property
@@ -54,7 +57,6 @@ public abstract class AbstractParallelTest extends ParallelTest {
         } else {
             super.setup();
         }
-
         new File(ERROR_IMAGE_ROOT).mkdirs();
         Parameters.setScreenshotErrorDirectory(ERROR_IMAGE_ROOT);
         Parameters.setScreenshotComparisonTolerance(0.05);
@@ -69,6 +71,15 @@ public abstract class AbstractParallelTest extends ParallelTest {
         testBench = (TestBenchCommands) getDriver();
 
         configBrowser();
+    }
+
+    @Override
+    protected String getHubHostname() {
+        if (hubHostName != null) {
+            return hubHostName;
+        } else {
+            return super.getHubHostname();
+        }
     }
 
     /**
