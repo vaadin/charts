@@ -68,6 +68,7 @@
                         <goals>
                             <goal>install-node-and-npm</goal>
                         </goals>
+                        <phase>deploy</phase>
                         <configuration>
                             <nodeVersion>v5.1.0</nodeVersion>
                             <npmVersion>3.3.12</npmVersion>
@@ -79,6 +80,7 @@
                         <goals>
                             <goal>npm</goal>
                         </goals>
+                        <phase>deploy</phase>
                     </execution>
 
                     <execution>
@@ -86,6 +88,7 @@
                         <goals>
                             <goal>bower</goal>
                         </goals>
+                        <phase>deploy</phase>
                     </execution>
 
                     <execution>
@@ -93,6 +96,7 @@
                         <goals>
                             <goal>gulp</goal>
                         </goals>
+                        <phase>deploy</phase>
 
                         <!-- the default phase is "generate-resources" -->
 
@@ -106,6 +110,7 @@
                         <goals>
                             <goal>gulp</goal>
                         </goals>
+                        <phase>deploy</phase>
                         <configuration>
                             <arguments>war</arguments>
                         </configuration>
