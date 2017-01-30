@@ -54,6 +54,16 @@ $v-included-additional-styles: ();
     font-weight: $v-font-weight;
   }
 
+  .feedback-button {
+      position: absolute;
+      bottom: 4px;
+    right: 8px;
+    width: 10em;
+    //font-size: $v-font-size--small;
+    $v-border: none;
+    $v-background-color: #eee;
+    //@include valo-button-borderless-style;
+  }
 
 
   // Logo
@@ -72,7 +82,34 @@ $v-included-additional-styles: ();
     }
   }
 
+  #feedback, #email {
+    width: 100%;
+    font-size: 20px;
+    padding: 10px;
+    border:none;
+    box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.75);
+    box-sizing: border-box;
+    opacity: 1;
+  }
 
+  #panel {
+    padding:30px;
+  }
+
+  #feedback {
+    height: 5em;
+  }
+
+  #submit {
+    border: none;
+    background: #00b4f0;
+    color: white;
+    line-height: 30px;
+    font-size: 20px;
+    margin-top: 30px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.75);
+  }
 
   // Sidebar links
 
