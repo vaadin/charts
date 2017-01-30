@@ -259,8 +259,6 @@ public class ChartsDemoUI extends UI {
         });
         Button feedback = new Button("Got feedback?", FontAwesome.COMMENTING_O);
         feedback.addStyleName("feedback-button");
-
-//        feedback.addStyleName(ValoTheme.BUTTON_BORDERLESS);
         feedback.addClickListener(e -> {
             getUI().addWindow(new FeedbackForm());
         });
