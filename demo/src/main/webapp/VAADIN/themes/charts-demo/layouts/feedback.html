@@ -46,7 +46,7 @@
 		if (feedback.value !== 'It would be awesome if ') {
 			var formData = new FormData();
 			formData.append('name', 'Charts Demo');
-			formData.append('idea', '344909');
+			formData.append('ideas[0][id]', '344909');
 			formData.append('feedback', feedback.value);
 			formData.append('email', email.value);
 			request.open('POST', 'https://api.prodpad.com/v1/feedbacks?apikey=262ae208ca624b565962a1e204e2b231f595c39d427e680875561634d5c83d9c');
