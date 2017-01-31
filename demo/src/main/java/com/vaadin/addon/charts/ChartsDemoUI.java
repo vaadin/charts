@@ -36,6 +36,7 @@ import com.vaadin.server.FontAwesome;
 import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.shared.ui.label.ContentMode;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.CssLayout;
@@ -259,12 +260,15 @@ public class ChartsDemoUI extends UI {
         });
         Button feedback = new Button("Got feedback?", FontAwesome.COMMENTING_O);
         feedback.addStyleName("feedback-button");
+        feedback.addStyleName(ValoTheme.BUTTON_PRIMARY);
+        feedback.addStyleName(ValoTheme.BUTTON_TINY);
         feedback.addClickListener(e -> {
             getUI().addWindow(new FeedbackForm());
         });
 
-        content.addComponents(logo, links, filterField, tree,
+        content.addComponents(logo, links, feedback, filterField, tree,
                 version);
+        content.setComponentAlignment(feedback, Alignment.MIDDLE_CENTER);
         horizontalSplitPanel.setFirstComponent(content);
 
         selectItem();
@@ -282,7 +286,6 @@ public class ChartsDemoUI extends UI {
                 setSizeFull();
                 addComponent(horizontalSplitPanel);
                 addComponent(themeSelector);
-                addComponent(feedback);
             }
         });
 
