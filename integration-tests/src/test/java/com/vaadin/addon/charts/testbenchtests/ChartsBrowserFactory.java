@@ -25,13 +25,13 @@ public class ChartsBrowserFactory extends DefaultBrowserFactory {
             return create(browser, "40", Platform.VISTA);
         case FIREFOX:
         default:
-            return createFirefox(browser);
+            return createFirefox();
         }
     }
 
-    private DesiredCapabilities createFirefox(Browser browser) {
-        DesiredCapabilities desiredCapabilities =
-            create(browser, "24", Platform.XP);
+    private DesiredCapabilities createFirefox() {
+        DesiredCapabilities desiredCapabilities = create(Browser.FIREFOX, "45", Platform.WINDOWS);
+        desiredCapabilities.setCapability("marionette", "false");
         // Configuring an empty Firefox profile fixes tests
         // where a data point is clicked.
         //    - pointClick, select and unselect in ServerSideEvents tests
