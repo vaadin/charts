@@ -36,6 +36,8 @@ import com.vaadin.server.FontAwesome;
 import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.shared.ui.label.ContentMode;
+import com.vaadin.ui.Alignment;
+import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.HorizontalLayout;
@@ -108,7 +110,7 @@ public class ChartsDemoUI extends UI {
         Set<Class<? extends AbstractVaadinChartExample>> subTypes = reflections
                 .getSubTypesOf(AbstractVaadinChartExample.class);
 
-        Map<String, List<Class<? extends AbstractVaadinChartExample>>> grouped = new HashMap<String, List<Class<? extends AbstractVaadinChartExample>>>();
+        Map<String, List<Class<? extends AbstractVaadinChartExample>>> grouped = new HashMap<>();
 
         for (Class<? extends AbstractVaadinChartExample> class1 : subTypes) {
             if (class1.getAnnotation(SkipFromDemo.class) != null) {
@@ -121,7 +123,7 @@ public class ChartsDemoUI extends UI {
             List<Class<? extends AbstractVaadinChartExample>> list = grouped
                     .get(name);
             if (list == null) {
-                list = new ArrayList<Class<? extends AbstractVaadinChartExample>>();
+                list = new ArrayList<>();
                 grouped.put(name, list);
             }
             list.add(class1);
@@ -165,7 +167,7 @@ public class ChartsDemoUI extends UI {
         Link homepage = new Link("Home page", new ExternalResource(
                 "https://vaadin.com/add-ons/charts"));
         Link javadoc = new Link("JavaDoc", new ExternalResource(
-                "http://demo.vaadin.com/javadoc/com.vaadin.addon/vaadin-charts/"
+                "http://demo.vaadin.com/javadoc/com.vaadin/vaadin-charts/"
                         + getVersion() + "/"));
         Link manual = new Link("Manual", new ExternalResource(
                 "https://vaadin.com/docs/-/part/charts/charts-overview.html"));
@@ -256,8 +258,17 @@ public class ChartsDemoUI extends UI {
                 }
             }
         });
+        Button feedback = new Button("Got feedback?", FontAwesome.COMMENTING_O);
+        feedback.addStyleName("feedback-button");
+        feedback.addStyleName(ValoTheme.BUTTON_PRIMARY);
+        feedback.addStyleName(ValoTheme.BUTTON_TINY);
+        feedback.addClickListener(e -> {
+            getUI().addWindow(new FeedbackForm());
+        });
 
-        content.addComponents(logo, links, filterField, tree, version);
+        content.addComponents(logo, links, feedback, filterField, tree,
+                version);
+        content.setComponentAlignment(feedback, Alignment.MIDDLE_CENTER);
         horizontalSplitPanel.setFirstComponent(content);
 
         selectItem();
@@ -355,7 +366,7 @@ public class ChartsDemoUI extends UI {
         return p;
     }
 
-    HashSet<Object> expandedItemIds = new HashSet<Object>();
+    HashSet<Object> expandedItemIds = new HashSet<>();
 
     private void expandForFiltering() {
         expandedItemIds.clear();
