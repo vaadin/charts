@@ -91,7 +91,7 @@ usually with a [literal]#++-D++# option. For example, on the command-line:
 [prompt]#$# [command]#java# -D[parameter]##vaadin.charts.developer.license##=[replaceable]##L1cen5e-c0de## ...
 ----
 ifdef::web[]
-See link:https://vaadin.com/directory/help/installing-cval-license[the AGPL
+See link:https://vaadin.com/directory/help/installing-cval-license[the CVAL
 license key installation instructions] for more details.
 endif::web[]
 
