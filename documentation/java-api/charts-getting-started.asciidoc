@@ -453,7 +453,7 @@ Try something like the following filter to show only the values for each Sunday:
 
 [source,java]
 ----
-DataProvider<WeatherInfo, ?> filteredDataProvider = dataProvider.withFilter(point -> {
+dataProvider.addFilter(point -> {
   LocalDateTime date = LocalDateTime.ofInstant(point.getInstant(), ZoneId.of("Europe/Helsinki"));
   return date.getDayOfWeek() == DayOfWeek.SUNDAY;
 });

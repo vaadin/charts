@@ -18,7 +18,6 @@ import com.vaadin.addon.charts.model.PlotOptionsColumn;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
-import com.vaadin.data.provider.DataProvider;
 import com.vaadin.data.provider.ListDataProvider;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.VerticalLayout;
@@ -198,8 +197,7 @@ public class GettingStarted {
 
     public void addColumnsSnippet4(ChartsData data,
             ListDataProvider<WeatherInfo> dataProvider) {
-        DataProvider<WeatherInfo, ?> filteredDataProvider = dataProvider
-                .withFilter(point -> {
+        dataProvider.addFilter(point -> {
             LocalDateTime date = LocalDateTime.ofInstant(point.getInstant(),
                     ZoneId.of("Europe/Helsinki"));
                     return date.getDayOfWeek() == DayOfWeek.SUNDAY;
