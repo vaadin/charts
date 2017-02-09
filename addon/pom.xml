@@ -133,7 +133,7 @@
 						<configuration>
 							<includeDependencySources>true</includeDependencySources>
 							<dependencySourceIncludes>
-								<dependencySourceInclude>com.vaadin.addon:vaadin-charts-model</dependencySourceInclude>
+								<dependencySourceInclude>com.vaadin:vaadin-charts-model</dependencySourceInclude>
 							</dependencySourceIncludes>
 						</configuration>
 					</execution>
