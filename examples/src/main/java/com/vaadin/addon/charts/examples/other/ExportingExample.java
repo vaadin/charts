@@ -3,7 +3,7 @@ package com.vaadin.addon.charts.examples.other;
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.columnandbar.DualAxesLineAndColumn;
 import com.vaadin.addon.charts.model.Exporting;
-import com.vaadin.shared.ui.label.ContentMode;
+import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
