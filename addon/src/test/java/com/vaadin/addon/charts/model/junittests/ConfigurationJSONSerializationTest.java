@@ -11,6 +11,7 @@ import com.vaadin.addon.charts.events.DataAddedEvent;
 import com.vaadin.addon.charts.events.DataRemovedEvent;
 import com.vaadin.addon.charts.events.DataUpdatedEvent;
 import com.vaadin.addon.charts.events.ItemSlicedEvent;
+import com.vaadin.addon.charts.events.SeriesChangedEvent;
 import com.vaadin.addon.charts.events.SeriesStateEvent;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.Series;
@@ -69,6 +70,11 @@ public class ConfigurationJSONSerializationTest {
 
             @Override
             public void resetZoom(boolean redraw, boolean animate) {
+
+            }
+
+            @Override
+            public void seriesChanged(SeriesChangedEvent event) {
 
             }
         });
