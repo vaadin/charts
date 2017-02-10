@@ -95,6 +95,14 @@ public interface ConfigurationChangeListener extends Serializable {
     void itemSliced(ItemSlicedEvent event);
 
     /**
+     * The series has been changed.
+     * 
+     * @param event
+     *            The event
+     */
+    void seriesChanged(SeriesChangedEvent event);
+
+    /**
      * Reset zoom level by setting axis extremes to null
      * 
      * @param redraw

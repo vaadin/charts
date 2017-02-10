@@ -32,6 +32,7 @@ import com.vaadin.addon.charts.events.DataAddedEvent;
 import com.vaadin.addon.charts.events.DataRemovedEvent;
 import com.vaadin.addon.charts.events.DataUpdatedEvent;
 import com.vaadin.addon.charts.events.ItemSlicedEvent;
+import com.vaadin.addon.charts.events.SeriesChangedEvent;
 import com.vaadin.addon.charts.events.SeriesStateEvent;
 import com.vaadin.addon.charts.shared.ChartClientRpc;
 
@@ -39,8 +40,8 @@ import com.vaadin.addon.charts.shared.ChartClientRpc;
  * Chart's configuration root object containing all the child objects that are
  * used to configure chart, axes, legend, titles etc.
  */
-public class Configuration extends AbstractConfigurationObject implements
-        ChartConfiguration {
+public class Configuration extends AbstractConfigurationObject
+        implements ChartConfiguration {
 
     private ChartModel chart;
     private Title title;
@@ -875,6 +876,19 @@ public class Configuration extends AbstractConfigurationObject implements
                 pointIndex);
         for (ConfigurationChangeListener listener : changeListeners) {
             listener.dataUpdated(dataUpdatedEvent);
+        }
+    }
+
+    /**
+     * Notifies listeners that a data series has been updated.
+     * 
+     * @param series
+     *            The updated series
+     */
+    void fireDataUpdated(Series series) {
+        SeriesChangedEvent event = new SeriesChangedEvent(series);
+        for (ConfigurationChangeListener listener : changeListeners) {
+            listener.seriesChanged(event);
         }
     }
 
