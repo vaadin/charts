@@ -258,6 +258,10 @@ The result, with some added titles, is shown in <<figure.charts.data.containerse
 .Chart Bound to a [interfacename]#DataProvider#
 image::img/charts-dataprovider.png[]
 
+[NOTE]
+Dynamic changes to the data will be loaded in the data series after calling the [methodname]#refreshAll()# method in the [classname]#DataProvider#.
+This behavior can be disabled by setting the [propertyname]#automaticChartUpdateEnabled# property to [literal]#false# in [classname]#DataProviderSeries#.
+
 [[charts.data.drilldown]]
 == Drill-Down
 
