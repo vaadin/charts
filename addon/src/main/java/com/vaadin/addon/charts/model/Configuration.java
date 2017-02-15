@@ -885,7 +885,7 @@ public class Configuration extends AbstractConfigurationObject
      * @param series
      *            The updated series
      */
-    void fireDataUpdated(Series series) {
+    void fireSeriesChanged(Series series) {
         SeriesChangedEvent event = new SeriesChangedEvent(series);
         for (ConfigurationChangeListener listener : changeListeners) {
             listener.seriesChanged(event);

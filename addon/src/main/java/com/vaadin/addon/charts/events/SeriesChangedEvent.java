@@ -3,7 +3,7 @@ package com.vaadin.addon.charts.events;
 import com.vaadin.addon.charts.model.Series;
 
 /**
- * Event for information about a changes data series
+ * Event for information about changes in data of series
  * 
  * @since 4.0
  *

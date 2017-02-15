@@ -59,17 +59,17 @@ public class DataProviderSeries<T> extends AbstractSeries {
     private final Map<String, Function<T, Object>> chartAttributeToCallback;
 
     @JsonIgnore
-    private boolean automaticChartUpdateEnabled;
+    private boolean automaticChartUpdateEnabled = true;
 
     @JsonIgnore
     private Registration dataProviderRegistration;
 
     @JsonIgnore
-    private DataProviderListener listener = new DataProviderListener() {
+    private DataProviderListener<T> listener = new DataProviderListener<T>() {
 
         @Override
-        public void onDataChange(DataChangeEvent event) {
-            getConfiguration().fireDataUpdated(DataProviderSeries.this);
+        public void onDataChange(DataChangeEvent<T> event) {
+            getConfiguration().fireSeriesChanged(DataProviderSeries.this);
         }
 
     };
@@ -95,7 +95,6 @@ public class DataProviderSeries<T> extends AbstractSeries {
     public DataProviderSeries(DataProvider<T, ?> dataProvider) {
         this.dataProvider = dataProvider;
         chartAttributeToCallback = new HashMap<>();
-        automaticChartUpdateEnabled = true;
         dataProviderRegistration = dataProvider
                 .addDataProviderListener(listener);
     }
@@ -113,9 +112,6 @@ public class DataProviderSeries<T> extends AbstractSeries {
             Function<T, Object> callBack) {
         this(dataProvider);
         setY(callBack);
-        automaticChartUpdateEnabled = true;
-        dataProviderRegistration = dataProvider
-                .addDataProviderListener(listener);
     }
 
     /**

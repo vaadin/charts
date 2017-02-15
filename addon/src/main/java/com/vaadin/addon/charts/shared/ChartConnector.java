@@ -160,7 +160,6 @@ public class ChartConnector extends AbstractComponentConnector implements Deferr
                 Scheduler.get().scheduleDeferred(new ScheduledCommand() {
                     @Override
                     public void execute() {
-
                         getWidget().updateSeries(seriesIndex, seriesJson);
                     }
                 });

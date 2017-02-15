@@ -183,7 +183,7 @@ public class Chart extends AbstractComponent {
                 pointIndex);
 
         }
-        
+
         @Override
         public void seriesChanged(SeriesChangedEvent event) {
             chart.getRpcProxy(ChartClientRpc.class).updateSeries(

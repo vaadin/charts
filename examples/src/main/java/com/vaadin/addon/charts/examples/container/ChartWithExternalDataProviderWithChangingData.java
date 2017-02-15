@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.examples.SkipFromDemo;
 import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
@@ -27,10 +28,10 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
+@SkipFromDemo
 public class ChartWithExternalDataProviderWithChangingData
         extends AbstractVaadinChartExample {
 
@@ -57,10 +58,9 @@ public class ChartWithExternalDataProviderWithChangingData
                         "The field cannot be empty")
                 .withConverter(new StringToDoubleConverter("Not a double"))
                 .bind(Data::getValue, Data::setValue);
-        Button button = new Button("Add data");
         binder.readBean(new Data(0.0));
 
-        button.addClickListener(e -> {
+        Button button = new Button("Add data", e -> {
             Data v = new Data(0.0);
             try {
                 binder.writeBean(v);
@@ -68,17 +68,12 @@ public class ChartWithExternalDataProviderWithChangingData
                 v = new Data(1.0);
                 binder.readBean(v);
             } catch (ValidationException ve) {
-             
             }
-
         });
         Component chart = createChart(ds);
-        vlo.addComponent(field);
-        vlo.addComponent(button);
-        vlo.addComponents(grid);
+        vlo.addComponents(field, button, grid);
         vlo.setSpacing(true);
-        lo.addComponent(vlo);
-        lo.addComponent(chart);
+        lo.addComponents(vlo, chart);
 
         grid.setSizeFull();
         chart.setSizeFull();
@@ -167,7 +162,7 @@ public class ChartWithExternalDataProviderWithChangingData
         }
 
         public void setValue(double d) {
-            this.value = d;
+            value = d;
         }
     }
 
