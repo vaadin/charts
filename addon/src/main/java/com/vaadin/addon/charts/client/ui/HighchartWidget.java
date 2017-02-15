@@ -79,6 +79,10 @@ public class HighchartWidget extends Widget {
         jsOverlay.removePoint(pointIndex, seriesIndex);
     }
 
+    public void updateSeries(int seriesIndex, String seriesJson) {
+        jsOverlay.updateSeries(seriesIndex, seriesJson);
+    }
+
     public void setSeriesEnabled(int seriesIndex, boolean enabled) {
         jsOverlay.setSeriesEnabled(seriesIndex, enabled);
     }

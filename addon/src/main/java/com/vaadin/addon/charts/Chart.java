@@ -37,6 +37,7 @@ import com.vaadin.addon.charts.events.DataAddedEvent;
 import com.vaadin.addon.charts.events.DataRemovedEvent;
 import com.vaadin.addon.charts.events.DataUpdatedEvent;
 import com.vaadin.addon.charts.events.ItemSlicedEvent;
+import com.vaadin.addon.charts.events.SeriesChangedEvent;
 import com.vaadin.addon.charts.events.SeriesStateEvent;
 import com.vaadin.addon.charts.model.AbstractConfigurationObject;
 import com.vaadin.addon.charts.model.AbstractSeries;
@@ -181,6 +182,13 @@ public class Chart extends AbstractComponent {
                 toJSON((AbstractConfigurationObject) series), seriesIndex,
                 pointIndex);
 
+        }
+
+        @Override
+        public void seriesChanged(SeriesChangedEvent event) {
+            chart.getRpcProxy(ChartClientRpc.class).updateSeries(
+                    getSeriesIndex(event),
+                    toJSON((AbstractConfigurationObject) event.getSeries()));
         }
 
     }

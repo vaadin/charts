@@ -56,6 +56,17 @@ public interface ChartClientRpc extends ClientRpc {
 
     void updatePoint(int indexOf, int pointIndex, String json);
 
+    /**
+     * Updates the series given by the series index parameter with the data
+     * given as JSON string.
+     * 
+     * @param seriesIndex
+     *            The index of the series
+     * @param seriesJson
+     *            The new series as JSON
+     */
+    void updateSeries(int seriesIndex, String seriesJson);
+
     public static final short X_AXIS = 0;
     public static final short Y_AXIS = 1;
     public static final short Z_AXIS = 2;

@@ -156,6 +156,16 @@ public class ChartConnector extends AbstractComponentConnector implements Deferr
             }
 
             @Override
+            public void updateSeries(int seriesIndex, String seriesJson) {
+                Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+                    @Override
+                    public void execute() {
+                        getWidget().updateSeries(seriesIndex, seriesJson);
+                    }
+                });
+            }
+
+            @Override
             public void rescaleAxis(final int axisCategory,
                     final int axisIndex, final double minimum,
                     final double maximum, final boolean redraw,

@@ -109,7 +109,7 @@ public class HighchartJsOverlay extends JavaScriptObject {
         return this.title.textStr;
     }-*/;
 
-    public final native void setTitle(String title,String subtitle)
+    public final native void setTitle(String title, String subtitle)
     /*-{
         this.setTitle(title,subtitle,true);
     }-*/;
@@ -126,4 +126,9 @@ public class HighchartJsOverlay extends JavaScriptObject {
         this.addSeriesAsDrilldown(point,newDrilldownData);
     }-*/;
 
+    public final native void updateSeries(int seriesIndex, String seriesJson)
+    /*-{
+        var seriesData = $wnd.eval('('+seriesJson+')');
+        this.series[seriesIndex].setData(seriesData.data, true);
+    }-*/;
 }

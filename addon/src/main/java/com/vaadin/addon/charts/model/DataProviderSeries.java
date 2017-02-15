@@ -25,8 +25,11 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.vaadin.data.provider.DataChangeEvent;
 import com.vaadin.data.provider.DataProvider;
+import com.vaadin.data.provider.DataProviderListener;
 import com.vaadin.data.provider.Query;
+import com.vaadin.shared.Registration;
 
 /**
  * A series which is based on data from a DataProvider.
@@ -55,6 +58,22 @@ public class DataProviderSeries<T> extends AbstractSeries {
     @JsonIgnore
     private final Map<String, Function<T, Object>> chartAttributeToCallback;
 
+    @JsonIgnore
+    private boolean automaticChartUpdateEnabled = true;
+
+    @JsonIgnore
+    private Registration dataProviderRegistration;
+
+    @JsonIgnore
+    private DataProviderListener<T> listener = new DataProviderListener<T>() {
+
+        @Override
+        public void onDataChange(DataChangeEvent<T> event) {
+            getConfiguration().fireSeriesChanged(DataProviderSeries.this);
+        }
+
+    };
+
     /**
      * Creates a new series using data from the given data provider.
      * <p>
@@ -76,6 +95,8 @@ public class DataProviderSeries<T> extends AbstractSeries {
     public DataProviderSeries(DataProvider<T, ?> dataProvider) {
         this.dataProvider = dataProvider;
         chartAttributeToCallback = new HashMap<>();
+        dataProviderRegistration = dataProvider
+                .addDataProviderListener(listener);
     }
 
     /**
@@ -235,5 +256,38 @@ public class DataProviderSeries<T> extends AbstractSeries {
      */
     public Set<String> getChartAttributes() {
         return chartAttributeToCallback.keySet();
+    }
+
+    /**
+     * Returns true if the chart is updated automatically when a DataChangeEvent
+     * is emitted by the data provider. Default is true.
+     * 
+     * @return
+     */
+    public boolean isAutomaticChartUpdateEnabled() {
+        return automaticChartUpdateEnabled;
+    }
+
+    /**
+     * Sets if the chart should be updated automatically when a DataChangeEvent
+     * is emitted by the data provider. Default is true.
+     * 
+     * @param updateOnDataProviderChange
+     *            True sets the chart updating to enabled, false disables it.
+     */
+    public void setAutomaticChartUpdateEnabled(
+            boolean automaticChartUpdateEnabled) {
+        this.automaticChartUpdateEnabled = automaticChartUpdateEnabled;
+        if (automaticChartUpdateEnabled) {
+            if (dataProviderRegistration == null) {
+                dataProviderRegistration = dataProvider
+                        .addDataProviderListener(listener);
+            }
+        } else {
+            if (dataProviderRegistration != null) {
+                dataProviderRegistration.remove();
+                dataProviderRegistration = null;
+            }
+        }
     }
 }
