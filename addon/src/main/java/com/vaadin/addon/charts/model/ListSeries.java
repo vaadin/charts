@@ -8,16 +8,17 @@ package com.vaadin.addon.charts.model;
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
- * 
+ *
  * See the file licensing.txt distributed with this software for more
  * information about licensing.
- * 
+ *
  * You should have received a copy of the CVALv3 along with this program.
  * If not, see <https://vaadin.com/license/cval-3>.
  * #L%
  */
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -31,14 +32,14 @@ import java.util.List;
  */
 public class ListSeries extends AbstractSeries {
 
-    private List<Number> data = new ArrayList<Number>();
+    private List<Number> data = new ArrayList<>();
 
     public ListSeries() {
     }
 
     /**
-     * Constructs a ListSeries with the given series name
-     * 
+     * Constructs a ListSeries with the given series name.
+     *
      * @param name
      */
     public ListSeries(String name) {
@@ -46,8 +47,8 @@ public class ListSeries extends AbstractSeries {
     }
 
     /**
-     * Constructs a ListSeries with the given array of values
-     * 
+     * Constructs a ListSeries with the given array of values.
+     *
      * @param values
      */
     public ListSeries(Number... values) {
@@ -55,14 +56,38 @@ public class ListSeries extends AbstractSeries {
     }
 
     /**
-     * Constructs a ListSeries with the given series name and array of values
-     * 
+     * Constructs a ListSeries with the given collection of values.
+     *
+     * @param values
+     *            the values to use
+     */
+    public ListSeries(Collection<Number> values) {
+        data.addAll(values);
+    }
+
+    /**
+     * Constructs a ListSeries with the given series name and array of values.
+     *
      * @param name
      * @param values
      */
     public ListSeries(String name, Number... values) {
         this(name);
         setData(values);
+    }
+
+    /**
+     * Constructs a ListSeries with the given series name and collection of
+     * values.
+     *
+     * @param name
+     *            the name of the series
+     * @param values
+     *            the values to use
+     */
+    public ListSeries(String name, Collection<Number> values) {
+        this(name);
+        data.addAll(values);
     }
 
     /**
@@ -74,7 +99,7 @@ public class ListSeries extends AbstractSeries {
 
     /**
      * Sets the values in the list series to the ones provided.
-     * 
+     *
      * @param values
      */
     public void setData(Number... values) {
@@ -84,7 +109,7 @@ public class ListSeries extends AbstractSeries {
 
     /**
      * Sets the given list of numeric values as the values in this list series.
-     * 
+     *
      * @param data
      */
     public void setData(List<Number> data) {
@@ -95,7 +120,7 @@ public class ListSeries extends AbstractSeries {
      * Adds a given number to the series and immediately updates the chart if it
      * already has been drawn. If the chart has not yet been drawn all items are
      * added to the chart when it is drawn the first time.
-     * 
+     *
      * @param number
      *            the number to be added to the series
      */
@@ -106,11 +131,11 @@ public class ListSeries extends AbstractSeries {
     /**
      * Adds a given number to the series and optionally immediately updates the
      * chart if it has been drawn.
-     * 
+     *
      * This method is useful if you want to add many items without a
      * client/server round-trip for each item added. Do this by specifying false
      * for the updateChartImmediately parameter.
-     * 
+     *
      * @param number
      *            the number to be added to the series
      * @param updateChartImmediately
@@ -136,7 +161,7 @@ public class ListSeries extends AbstractSeries {
     /**
      * Updates the value of the data point at pointIndex to newValue and
      * immediately updates it on the chart using animation if enabled.
-     * 
+     *
      * @param pointIndex
      *            the index of the point to update
      * @param newValue
