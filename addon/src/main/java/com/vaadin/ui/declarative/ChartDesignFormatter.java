@@ -28,11 +28,7 @@ public class ChartDesignFormatter {
             extends AbstractStringToNumberConverter<Number> {
 
         public NumberToStringConverter() {
-            super("");
-        }
-
-        public NumberToStringConverter(String error) {
-            super(error);
+            super(null, "");
         }
 
         @Override
