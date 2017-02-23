@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
+import org.junit.Assume;
 import org.junit.internal.AssumptionViolatedException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -220,17 +221,6 @@ public abstract class AbstractParallelTest extends ParallelTest {
     }
 
     /**
-     * Exception which is thrown when some specific browser is wanted to be skipped.
-     * Extends AssumptionViolatedException which causes JUnit to ignore the running
-     * test.
-     */
-    private class BrowserSkipped extends AssumptionViolatedException {
-        public BrowserSkipped(String message) {
-            super("Skipped <"+message+">");
-        }
-    }
-
-    /**
      * Call this method if you want to skip the test on some specific browser.
      * For example, some versions of PhantomJS does not fire onContextMenu event on right click so
      * that browser could be skipped for a test which relays on it.
@@ -248,15 +238,20 @@ public abstract class AbstractParallelTest extends ParallelTest {
     private void skipBrowser(String reason, Browser browser) {
         DesiredCapabilities capabilities = getDesiredCapabilities();
         switch (browser) {
-        case FIREFOX: if(BrowserUtil.isFirefox(capabilities)) { throw new BrowserSkipped(reason); }
+        case FIREFOX:
+            Assume.assumeFalse("Skipped <" + reason + ">", BrowserUtil.isFirefox(capabilities));
             break;
-        case CHROME: if(BrowserUtil.isChrome(capabilities)) { throw new BrowserSkipped(reason); }
+        case CHROME:
+            Assume.assumeFalse("Skipped <" + reason + ">", BrowserUtil.isChrome(capabilities));
             break;
-        case SAFARI: if(BrowserUtil.isSafari(capabilities)) { throw new BrowserSkipped(reason); }
+        case SAFARI:
+            Assume.assumeFalse("Skipped <" + reason + ">", BrowserUtil.isSafari(capabilities));
             break;
-        case IE11: if(BrowserUtil.isIE(capabilities, 11)) { throw new BrowserSkipped(reason); }
+        case IE11:
+            Assume.assumeFalse("Skipped <" + reason + ">", BrowserUtil.isIE(capabilities, 11));
             break;
-        case PHANTOMJS: if(BrowserUtil.isPhantomJS(capabilities)) { throw new BrowserSkipped(reason); }
+        case PHANTOMJS:
+            Assume.assumeFalse("Skipped <" + reason + ">", BrowserUtil.isPhantomJS(capabilities));
             break;
         default: throw new RuntimeException("Unknown browser: "+browser);
         }
