@@ -17,16 +17,18 @@ package com.vaadin.addon.charts.testbenchtests;
  * #L%
  */
 
-import com.vaadin.addon.charts.examples.timeline.RangeSelectorCustomDateParser;
-import com.vaadin.testbench.parallel.Browser;
+import java.util.List;
+
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-import java.util.List;
+import com.vaadin.addon.charts.examples.timeline.RangeSelectorCustomDateParser;
+import com.vaadin.testbench.parallel.Browser;
 
 public class RangeSelectorCustomDateParserTBTest extends AbstractSimpleScreenShotTestBenchTest {
 
+    @Override
     protected String getTestViewName() {
         return RangeSelectorCustomDateParser.class.getSimpleName();
     }

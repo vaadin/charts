@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.junit.Test;
 
 import com.vaadin.addon.charts.examples.themes.ChangingThemes;
-import com.vaadin.testbench.By;
+import com.vaadin.testbench.elements.ButtonElement;
 
 public class ChangingThemesTBTest extends AbstractParallelTest {
 
@@ -16,33 +16,32 @@ public class ChangingThemesTBTest extends AbstractParallelTest {
         waitForVaadin();
 
         captureAndCompare("1-start");
-
-        driver.findElement(By.id("vaadin-button")).click();
+        $(ButtonElement.class).id("vaadin-button").click();
         waitForVaadin();
         waitForDynamicChanges();
         captureAndCompare("2-vaadin");
 
-        driver.findElement(By.id("grid-button")).click();
+        $(ButtonElement.class).id("grid-button").click();
         waitForVaadin();
         waitForDynamicChanges();
         captureAndCompare("3-grid");
 
-        driver.findElement(By.id("skies-button")).click();
+        $(ButtonElement.class).id("skies-button").click();
         waitForVaadin();
         waitForDynamicChanges();
         captureAndCompare("4-skies");
 
-        driver.findElement(By.id("gray-button")).click();
+        $(ButtonElement.class).id("gray-button").click();
         waitForVaadin();
         waitForDynamicChanges();
         captureAndCompare("5-gray");
 
-        driver.findElement(By.id("vl-button")).click();
+        $(ButtonElement.class).id("vl-button").click();
         waitForVaadin();
         waitForDynamicChanges();
         captureAndCompare("6-valoLight");
 
-        driver.findElement(By.id("vd-button")).click();
+        $(ButtonElement.class).id("vd-button").click();
         waitForVaadin();
         waitForDynamicChanges();
         captureAndCompare("7-valoDark");
