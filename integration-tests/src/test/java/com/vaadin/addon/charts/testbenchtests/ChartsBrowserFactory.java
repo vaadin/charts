@@ -19,7 +19,7 @@ public class ChartsBrowserFactory extends DefaultBrowserFactory {
         case PHANTOMJS:
             DesiredCapabilities phantom2 = create(browser, "2", Platform.LINUX);
             // Hack for the test cluster
-            phantom2.setCapability("phantomjs.binary.path", "/usr/bin/phantomjs2");
+            phantom2.setCapability("phantomjs.binary.path", "/opt/phantomjs21/bin/phantomjs");
             return phantom2;
         case CHROME:
             return create(browser, "40", Platform.VISTA);
