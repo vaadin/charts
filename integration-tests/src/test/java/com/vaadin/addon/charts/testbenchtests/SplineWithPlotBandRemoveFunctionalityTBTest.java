@@ -3,10 +3,9 @@ package com.vaadin.addon.charts.testbenchtests;
 import java.io.IOException;
 
 import org.junit.Test;
-import org.openqa.selenium.WebElement;
 
 import com.vaadin.addon.charts.examples.lineandscatter.SplineWithPlotBandRemoveFunctionality;
-import com.vaadin.testbench.By;
+import com.vaadin.testbench.elements.ButtonElement;
 
 public class SplineWithPlotBandRemoveFunctionalityTBTest extends
         AbstractParallelTest {
@@ -16,7 +15,7 @@ public class SplineWithPlotBandRemoveFunctionalityTBTest extends
     @Test
     public void test() throws IOException, AssertionError {
         driver.get(getTestUrl());
-        WebElement button = driver.findElement(By.id("vaadin-button"));
+        ButtonElement button = $(ButtonElement.class).first();
         // toggle first to give focus for button
         button.click();
         button.click();
@@ -29,10 +28,8 @@ public class SplineWithPlotBandRemoveFunctionalityTBTest extends
         captureAndCompare("2-removed");
 
         button.click();
-
         waitForVaadin();
         captureAndCompare("1-start");
-
     }
 
     @Override

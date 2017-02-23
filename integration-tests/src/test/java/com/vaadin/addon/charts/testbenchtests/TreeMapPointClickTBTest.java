@@ -54,7 +54,8 @@ public class TreeMapPointClickTBTest extends AbstractParallelTest {
     }
 
     private void click(WebElement secondCheckBox) {
-        new Actions(driver).click(secondCheckBox).build().perform();
+        new Actions(driver).moveToElement(secondCheckBox, 20, 20).click()
+                .build().perform();
         waitForVaadin();
     }
 
