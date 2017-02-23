@@ -12,7 +12,7 @@ import java.util.Enumeration;
 import java.util.List;
 
 import org.junit.Assume;
-import org.junit.internal.AssumptionViolatedException;
+import org.junit.Rule;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -31,6 +31,9 @@ import com.vaadin.testbench.parallel.setup.SetupDriver;
 @RunOnHub("tb3-hub.intra.itmill.com")
 @BrowserFactory(ChartsBrowserFactory.class)
 public abstract class AbstractParallelTest extends ParallelTest {
+
+    @Rule
+    public RetryRule rule = new RetryRule(2);
 
     protected int TESTPORT;
     protected String BASEURL = getTestBaseUrl();
