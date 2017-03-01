@@ -69,7 +69,9 @@ public class DataProviderSeries<T> extends AbstractSeries {
 
         @Override
         public void onDataChange(DataChangeEvent<T> event) {
-            getConfiguration().fireSeriesChanged(DataProviderSeries.this);
+            if (getConfiguration() != null) {
+                getConfiguration().fireSeriesChanged(DataProviderSeries.this);
+            }
         }
 
     };
