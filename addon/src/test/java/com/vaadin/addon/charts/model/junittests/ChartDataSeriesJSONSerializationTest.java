@@ -128,7 +128,7 @@ public class ChartDataSeriesJSONSerializationTest {
 
     }
 
-    private DataProvider<TestItem, ?> dataProvider;
+    private ListDataProvider<TestItem> dataProvider;
     private DataProviderSeries<TestItem> chartDataSeries;
     private Collection<TestItem> col = new ArrayList<>();
 
@@ -352,6 +352,20 @@ public class ChartDataSeriesJSONSerializationTest {
         chartDataSeries.setY(TestItem::getY);
 
         assertEquals("{\"id\":\"foo\",\"data\":[]}", toJSON(chartDataSeries));
+    }
+
+    @Test
+    public void serialize_ContainerWithFilteredValues_dataWasFiltered() {
+        col.add(new TestItem(80, 80));
+        col.add(new TestItem(20, 20));
+        dataProvider = DataProvider.ofCollection(col);
+        chartDataSeries = new DataProviderSeries<>(dataProvider);
+        dataProvider.addFilter(item -> {
+            return item.getX() >= 50;
+        });
+        chartDataSeries.setX(TestItem::getX);
+        chartDataSeries.setY(TestItem::getY);
+        assertEquals("{\"data\":[[80,80]]}", toJSON(chartDataSeries));
     }
 
 }
