@@ -1,4 +1,4 @@
-package com.vaadin.addon.charts.examples.container;
+package com.vaadin.addon.charts.examples.dataprovider;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,21 +17,20 @@ import com.vaadin.data.provider.ListDataProvider;
 import com.vaadin.ui.Component;
 
 @SkipFromDemo
-public class BeansFromContainer extends AbstractVaadinChartExample {
+public class BeansFromDataProvider extends AbstractVaadinChartExample {
 
     @Override
     public String getDescription() {
-        return "Simple Chart with BeanItemContainer";
+        return "Simple Chart with DataProvider";
     }
 
     @Override
     protected Component getChart() {
-        DataProvider<ClaimsReportItem, ?> ds = new ListDataProvider<>(
-                getMockData());
-
+        ListDataProvider<ClaimsReportItem> dp = DataProvider
+                .ofCollection(getMockData());
 
         // Create ChartDataSeries
-        DataProviderSeries<ClaimsReportItem> series = new DataProviderSeries<>(ds);
+        DataProviderSeries<ClaimsReportItem> series = new DataProviderSeries<>(dp);
         series.setName("Claims");
         series.setPlotOptions(new PlotOptionsColumn());
         series.setY(ClaimsReportItem::getAmount);
