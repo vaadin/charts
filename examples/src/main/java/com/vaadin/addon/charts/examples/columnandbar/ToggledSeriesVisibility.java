@@ -119,7 +119,6 @@ public class ToggledSeriesVisibility extends AbstractVaadinChartExample {
     protected void setup() {
         super.setup();
         setSpacing(false);
-        // setMargin(ENABLED);
         checkBoxGroup = new CheckBoxGroup<>();
         checkBoxGroup.setId("vaadin-optiongroup");
 

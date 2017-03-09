@@ -2,17 +2,13 @@ package com.vaadin.addon.charts.testbenchtests;
 
 import java.io.IOException;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.vaadin.addon.charts.examples.columnandbar.ToggledSeriesVisibility;
-import com.vaadin.testbench.By;
 import com.vaadin.testbench.Parameters;
+import com.vaadin.testbench.elements.CheckBoxGroupElement;
 
-@Ignore("Overlapping components due to theme change")
 public class ToggledSeriesVisibilityTBTest extends AbstractParallelTest {
-
-    boolean screenshotErrors = false;
 
     @Test
     public void test() throws IOException, AssertionError {
@@ -25,16 +21,20 @@ public class ToggledSeriesVisibilityTBTest extends AbstractParallelTest {
 
         waitForVaadin();
 
-        driver.findElements(By.tagName("input")).get(0).click();
-        driver.findElements(By.tagName("input")).get(0).click();
+        CheckBoxGroupElement checkBoxGroup = $(CheckBoxGroupElement.class)
+                .first();
+        checkBoxGroup.selectByText("Tokyo");
+        checkBoxGroup.selectByText("Tokyo");
         waitForDynamicChanges();
         captureAndCompare("1-start");
 
-        driver.findElements(By.tagName("input")).get(0).click();
+        checkBoxGroup.selectByText("Tokyo");
+
         waitForDynamicChanges();
         captureAndCompare("2-disable");
 
-        driver.findElements(By.tagName("input")).get(1).click();
+        checkBoxGroup.selectByText("New York");
+
         waitForDynamicChanges();
         captureAndCompare("3-disable");
 
