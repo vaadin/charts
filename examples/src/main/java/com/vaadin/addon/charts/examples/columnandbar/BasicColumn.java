@@ -30,7 +30,7 @@ public class BasicColumn extends AbstractVaadinChartExample {
 
         Configuration conf = chart.getConfiguration();
 
-        conf.setTitle("Total fruit consumption, grouped by gender");
+        conf.setTitle("Monthly Average Rainfall");
         conf.setSubTitle("Source: WorldClimate.com");
 
         XAxis x = new XAxis();

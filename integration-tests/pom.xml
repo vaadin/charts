@@ -86,7 +86,11 @@
         <!-- Test dependencies -->
         <dependency>
             <groupId>com.vaadin</groupId>
-            <artifactId>vaadin-testbench</artifactId>
+            <artifactId>vaadin-testbench-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-testbench-api</artifactId>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
