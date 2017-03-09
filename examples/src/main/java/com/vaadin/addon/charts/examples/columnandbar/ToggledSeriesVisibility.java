@@ -47,7 +47,7 @@ public class ToggledSeriesVisibility extends AbstractVaadinChartExample {
 
         Configuration conf = chart.getConfiguration();
 
-        conf.setTitle("Total fruit consumption, grouped by gender");
+        conf.setTitle("Monthly Average Rainfall");
         conf.setSubTitle("Source: WorldClimate.com");
 
         XAxis x = new XAxis();
@@ -118,8 +118,11 @@ public class ToggledSeriesVisibility extends AbstractVaadinChartExample {
     @Override
     protected void setup() {
         super.setup();
+        setSpacing(false);
+        // setMargin(ENABLED);
         checkBoxGroup = new CheckBoxGroup<>();
         checkBoxGroup.setId("vaadin-optiongroup");
+
         final List<Series> series = chart.getConfiguration().getSeries();
         checkBoxGroup.setItems(series);
         checkBoxGroup.setItemCaptionGenerator(Series::getName);
