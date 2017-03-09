@@ -1,31 +1,10 @@
 package com.vaadin.addon.charts.examples.container;
 
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2015 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- *
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- *
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
-import java.util.ArrayList;
-import java.util.Collection;
-
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
-import com.vaadin.addon.charts.model.DataProviderSeries;
 import com.vaadin.addon.charts.model.Hover;
 import com.vaadin.addon.charts.model.Marker;
 import com.vaadin.addon.charts.model.PlotOptionsArea;
@@ -33,61 +12,74 @@ import com.vaadin.addon.charts.model.Series;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
-import com.vaadin.data.provider.DataProvider;
-import com.vaadin.data.provider.ListDataProvider;
 import com.vaadin.ui.Component;
-import com.vaadin.ui.Grid;
 import com.vaadin.ui.HorizontalLayout;
-
+import com.vaadin.v7.addon.charts.model.ContainerDataSeries;
+import com.vaadin.v7.data.Container;
+import com.vaadin.v7.data.Item;
+import com.vaadin.v7.data.util.IndexedContainer;
+import com.vaadin.v7.ui.AbstractSelect.ItemCaptionMode;
+import com.vaadin.v7.ui.Table;
 
 public class ContainerWithLotsOfData extends AbstractVaadinChartExample {
 
     @Override
     public String getDescription() {
-        return "Chart with Container containing much data VEIGHT";
+        return "Chart with Container containing much data";
     }
 
-    private DataProvider<Data, ?> data = new ListDataProvider<>(getMockData());
     @Override
     protected Component getChart() {
         HorizontalLayout lo = new HorizontalLayout();
-        DataProviderSeries<Data> ds = createChartDS();
-        Component grid = createGrid();
-        Component chart = createChart(ds);
+        ContainerDataSeries container = createContainer();
+        Component table = createTable(container.getVaadinContainer());
+        Component chart = createChart(container);
 
-        lo.addComponents(grid);
+        lo.addComponents(table);
         lo.addComponent(chart);
 
-        grid.setSizeFull();
+        table.setSizeFull();
         chart.setSizeFull();
         lo.setSizeFull();
-        lo.setExpandRatio(grid, 1);
+        lo.setExpandRatio(table, 1);
         lo.setExpandRatio(chart, 5);
         return lo;
     }
 
-    private DataProviderSeries<Data> createChartDS(){
-        DataProviderSeries<Data> ds = new DataProviderSeries<>(data,
-                Data::getValue);
-        ds.setName("USD to EUR");
-        return ds;
+    @SuppressWarnings("unchecked")
+    private ContainerDataSeries createContainer() {
+        IndexedContainer vaadinContainer = new IndexedContainer();
+        ContainerDataSeries container = new ContainerDataSeries(vaadinContainer);
+        vaadinContainer.addContainerProperty("y", Number.class, null);
+
+        for (int i = 0; i < getContainerData().length; i++) {
+            Item item = vaadinContainer.addItem(i);
+            item.getItemProperty("y").setValue(getContainerData()[i]);
+        }
+
+        container.setName("USD to EUR");
+        container.setPlotOptions(new PlotOptionsArea());
+        container.setYPropertyId("y");
+
+        return container;
     }
 
-    private Component createGrid() {
-        Grid<Data> g = new Grid<>();
-        g.setDataProvider(data);
-        g.setCaption("Data from Vaadin DataProvider");
-        g.addColumn(data -> Double.toString(data.getValue()))
-                .setCaption("USD to EUR");
-        return g;
+    private Component createTable(Container container) {
+        Table t = new Table();
+        t.setCaption("Data from Vaadin Container");
+        t.setContainerDataSource(container);
+        t.setItemCaptionMode(ItemCaptionMode.ID);
+        t.setImmediate(true);
+        return t;
     }
 
-
-    public static Chart createChart(Series ds) {
-        final Chart chart = new Chart(ChartType.AREA);
+    public static Chart createChart(Series container) {
+        final Chart chart = new Chart();
 
         final Configuration configuration = chart.getConfiguration();
-        configuration.getTitle().setText("Data from Vaadin DataProvider");
+        configuration.getChart().setType(ChartType.AREA);
+        configuration.getTitle().setText("Data from Vaadin Container");
+
         configuration.getLegend().setEnabled(false);
 
         YAxis yAxis = configuration.getyAxis();
@@ -119,32 +111,15 @@ public class ContainerWithLotsOfData extends AbstractVaadinChartExample {
         plotOptions.setShadow(false);
         configuration.setPlotOptions(plotOptions);
 
-        configuration.setSeries(ds);
+        configuration.setSeries(container);
 
         chart.drawChart(configuration);
 
         return chart;
     }
-    private Collection<Data> getMockData(){
-        Collection<Data> data=new ArrayList<>();
-        for (Double value : getContainerData()) {
-            data.add(new Data(value));
-        }
-        return data;
-    }
-    private class Data {
-        private  double value;
 
-        private Data(double value) {
-            this.value = value;
-        }
-
-        public double getValue() {
-            return value;
-        }
-    }
-    private Double[] getContainerData() {
-        return new Double[] { 0.8446, 0.8445, 0.8444, 0.8451, 0.8418, 0.8264,
+    private Number[] getContainerData() {
+        return new Number[] { 0.8446, 0.8445, 0.8444, 0.8451, 0.8418, 0.8264,
                 0.8258, 0.8232, 0.8233, 0.8258, 0.8283, 0.8278, 0.8256, 0.8292,
                 0.8239, 0.8239, 0.8245, 0.8265, 0.8261, 0.8269, 0.8273, 0.8244,
                 0.8244, 0.8172, 0.8139, 0.8146, 0.8164, 0.82, 0.8269, 0.8269,

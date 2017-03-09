@@ -20,19 +20,19 @@ import java.util.Set;
 import org.reflections.Reflections;
 
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
+import com.vaadin.server.ExternalResource;
+import com.vaadin.server.VaadinRequest;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.Link;
+import com.vaadin.ui.UI;
+import com.vaadin.ui.VerticalLayout;
 import com.vaadin.v7.data.Container;
 import com.vaadin.v7.data.Item;
 import com.vaadin.v7.data.util.IndexedContainer;
 import com.vaadin.v7.event.FieldEvents.TextChangeEvent;
 import com.vaadin.v7.event.FieldEvents.TextChangeListener;
-import com.vaadin.server.ExternalResource;
-import com.vaadin.server.VaadinRequest;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.Link;
-import com.vaadin.v7.ui.TextField;
-import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
 import com.vaadin.v7.ui.Table;
+import com.vaadin.v7.ui.TextField;
 
 
 /**
@@ -68,6 +68,7 @@ public class TListUi extends UI {
         listTestClasses(testClassess, "timeline");
         listTestClasses(testClassess, "threed");
         listTestClasses(testClassess, "declarative");
+        listTestClasses(testClassess, "dataprovider");
 
         Table table = new Table("Test cases", testClassess);
         table.addGeneratedColumn("name", new Table.ColumnGenerator() {

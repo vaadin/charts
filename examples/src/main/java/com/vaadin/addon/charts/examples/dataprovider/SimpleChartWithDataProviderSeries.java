@@ -1,4 +1,4 @@
-package com.vaadin.addon.charts.examples.container;
+package com.vaadin.addon.charts.examples.dataprovider;
 
 /*
  * #%L
@@ -33,7 +33,7 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.HorizontalLayout;
 
-public class SimpleChartWithContainerSeries extends AbstractVaadinChartExample {
+public class SimpleChartWithDataProviderSeries extends AbstractVaadinChartExample {
 
     @Override
     public String getDescription() {
@@ -70,7 +70,7 @@ public class SimpleChartWithContainerSeries extends AbstractVaadinChartExample {
                 .setCaption("Y");
         grid.addColumn(browser -> browser.getColor().toString())
                 .setCaption("Color");
-        grid.setCaption("Data from Vaadin Container");
+        grid.setCaption("Data from Vaadin DataProvider");
         return grid;
     }
 
@@ -89,7 +89,7 @@ public class SimpleChartWithContainerSeries extends AbstractVaadinChartExample {
 
         final Configuration configuration = chart.getConfiguration();
         configuration.getChart().setType(ChartType.PIE);
-        configuration.getTitle().setText("Data from Vaadin Container");
+        configuration.getTitle().setText("Data from Vaadin DataProvider");
 
         configuration.setSeries(ds);
 

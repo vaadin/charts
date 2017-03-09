@@ -1,4 +1,4 @@
-package com.vaadin.addon.charts.examples.container;
+package com.vaadin.addon.charts.examples.dataprovider;
 
 import java.util.ArrayList;
 import java.util.List;

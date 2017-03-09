@@ -84,10 +84,11 @@ public class ChartsDemoUI extends UI {
 
     private static final String[] GROUP_ORDER = {"columnandbar", "pie",
             "area", "lineandscatter", "dynamic", "combinations", "other",
-            "container", "timeline", "threed", "declarative"};
+            "dataprovider", "timeline", "threed", "declarative", "container" };
     private static final String[] GROUP_CAPTIONS = {"Column and Bar", "Pie",
             "Area", "Line and Scatter", "Dynamic", "Combinations", "Other",
-            "Container", "Timeline", "3D", "Declarative"};
+            "Data Provider", "Timeline", "3D", "Declarative",
+            "Vaadin 7 Container" };
 
     static String splitCamelCase(String s) {
         String replaced = s.replaceAll(String.format("%s|%s|%s",

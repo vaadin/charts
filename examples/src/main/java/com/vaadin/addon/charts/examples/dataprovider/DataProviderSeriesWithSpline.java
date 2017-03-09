@@ -1,4 +1,4 @@
-package com.vaadin.addon.charts.examples.container;
+package com.vaadin.addon.charts.examples.dataprovider;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -18,7 +18,7 @@ import com.vaadin.data.provider.ListDataProvider;
 import com.vaadin.ui.Component;
 
 @SkipFromDemo
-public class ContainerSeriesWithSpline extends AbstractVaadinChartExample {
+public class DataProviderSeriesWithSpline extends AbstractVaadinChartExample {
 
     private class TestItem {
         Instant date;

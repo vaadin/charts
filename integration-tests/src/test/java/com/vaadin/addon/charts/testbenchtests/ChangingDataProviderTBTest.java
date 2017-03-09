@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.junit.Test;
 import org.openqa.selenium.WebElement;
 
-import com.vaadin.addon.charts.examples.container.ChartWithExternalDataProviderWithChangingData;
+import com.vaadin.addon.charts.examples.dataprovider.ChartWithExternalDataProviderWithChangingData;
 import com.vaadin.testbench.By;
 
 public class ChangingDataProviderTBTest extends AbstractParallelTest {
@@ -33,7 +33,7 @@ public class ChangingDataProviderTBTest extends AbstractParallelTest {
 
     @Override
     protected String getPackageName() {
-        return "container";
+        return "dataprovider";
     }
 
 }
