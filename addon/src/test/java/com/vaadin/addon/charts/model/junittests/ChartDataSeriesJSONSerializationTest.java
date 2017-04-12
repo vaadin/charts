@@ -228,14 +228,6 @@ public class ChartDataSeriesJSONSerializationTest {
         assertEquals("{\"data\":[{\"x\":80,\"y\":80,\"name\":80},{\"x\":20,\"y\":20,\"name\":20},{\"x\":10,\"y\":10}]}", toJSON(chartDataSeries));
     }
 
-    //final Date utcTime = Date.from(nowUTC.toInstant()); //local representation, based on UTC
-    //final Instant nowEuropeParisInstantUTC = nowEuropeParis.toInstant(); //toInstant converts to UTC !!
-    //final Date europeTime = Date.from(nowEuropeParisInstantUTC);//local representation, based on UTC
-    //final Instant europeTimeInstant = europeTime.toInstant();// instant in UTC again
-
-    //final Collection<TestDateItem> col = singletonList(new TestDateItem(nowEuropeParis, 80)); // implizite convert to UTC again ( lost of timezone, machine dependend )
-
-
     @Test
     public void serialize_ContainerWithNonUTCDate_DateSerializedAsUTC() {
         final ZonedDateTime nowUTC = ZonedDateTime.of(2010, 10, 10, 10, 39,00,00, ZoneId.of("UTC"));
