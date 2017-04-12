@@ -1,14 +1,11 @@
 package com.vaadin.addon.charts.model.junittests;
 
 import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
+import static java.util.Collections.singletonList;
 import static org.junit.Assert.assertEquals;
 
 import java.time.*;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Date;
-import java.util.TimeZone;
+import java.util.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -236,20 +233,17 @@ public class ChartDataSeriesJSONSerializationTest {
 
     @Test
     public void serialize_ContainerWithNonUTCDate_DateSerializedAsUTC() {
-//        final LocalDateTime nowOnThisMachine = LocalDateTime.now(Clock.fixed(Instant.parse("2007-12-03T10:15:30.00Z"), ZoneId.of("America/Sao_Paulo")));
         final LocalDateTime nowOnThisMachine = LocalDateTime.of(2010, 10, 10, 10, 39);
         final ZonedDateTime nowUTC = ZonedDateTime.of(nowOnThisMachine,ZoneId.of("UTC"));
         final ZonedDateTime nowEuropeParis = ZonedDateTime.of(nowOnThisMachine,ZoneId.of("Europe/Paris"));
 
-        Date utcTime = Date.from(nowUTC.toInstant());
-        Date europeTime = Date.from(nowEuropeParis.toInstant());
+        final Date utcTime = Date.from(nowUTC.toInstant());
+        final Date europeTime = Date.from(nowEuropeParis.toInstant());
 
-        Collection<TestDateItem> col = new ArrayList<>();
-        col.add(new TestDateItem(europeTime, 80));
-        DataProvider<TestDateItem, ?> DataProvider = new ListDataProvider<>(
-                col);
-        DataProviderSeries<TestDateItem> chartDataSeries = new DataProviderSeries<>(
-                DataProvider);
+        final Collection<TestDateItem> col = singletonList(new TestDateItem(europeTime, 80));
+        final DataProvider<TestDateItem, ?> DataProvider = new ListDataProvider<>(col);
+
+        DataProviderSeries<TestDateItem> chartDataSeries = new DataProviderSeries<>(DataProvider);
         chartDataSeries.setX(TestDateItem::getDate);
         chartDataSeries.setY(TestDateItem::getValue);
 
