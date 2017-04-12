@@ -241,14 +241,14 @@ public class ChartDataSeriesJSONSerializationTest {
         final ZonedDateTime nowUTC = ZonedDateTime.of(2010, 10, 10, 10, 39,00,00, ZoneId.of("UTC"));
         final ZonedDateTime nowEuropeParis = ZonedDateTime.of(2010, 10, 10, 10, 39,00,00, ZoneId.of("Europe/Paris"));
 
-        final Collection<TestDateItem> colEurope = singletonList(new TestDateItem(nowEuropeParis, 80)); // implizite convert to UTC again ( lost of timezone, machine dependend )
+        final Collection<TestDateItem> colEurope = singletonList(new TestDateItem(nowEuropeParis, 80));
         final DataProvider<TestDateItem, ?> dataProviderEurope = new ListDataProvider<>(colEurope);
 
         final DataProviderSeries<TestDateItem> chartDataSeriesEurope = new DataProviderSeries<>(dataProviderEurope);
         chartDataSeriesEurope.setX(TestDateItem::getDate);
         chartDataSeriesEurope.setY(TestDateItem::getValue);
 
-        final Collection<TestDateItem> colUTC = singletonList(new TestDateItem(nowUTC, 80)); // implizite convert to UTC again ( lost of timezone, machine dependend )
+        final Collection<TestDateItem> colUTC = singletonList(new TestDateItem(nowUTC, 80));
         final DataProvider<TestDateItem, ?> dataProviderUTC = new ListDataProvider<>(colUTC);
 
         final DataProviderSeries<TestDateItem> chartDataSeriesUTC = new DataProviderSeries<>(dataProviderUTC);
