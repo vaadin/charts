@@ -1,21 +1,26 @@
 package com.vaadin.addon.charts.model.junittests;
 
-import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
-import static java.util.Collections.singletonList;
-import static org.junit.Assert.assertEquals;
-
-import java.time.*;
-import java.util.*;
-
-import org.junit.Before;
-import org.junit.Test;
-
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataProviderSeries;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.PlotOptionsSeries;
 import com.vaadin.data.provider.DataProvider;
 import com.vaadin.data.provider.ListDataProvider;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+
+import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
+import static java.util.Collections.singletonList;
+import static org.junit.Assert.assertEquals;
 
 public class ChartDataSeriesJSONSerializationTest {
 
