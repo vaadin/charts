@@ -3,9 +3,7 @@ package com.vaadin.addon.charts.model.junittests;
 import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
 import static org.junit.Assert.assertEquals;
 
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
+import java.time.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -238,18 +236,16 @@ public class ChartDataSeriesJSONSerializationTest {
 
     @Test
     public void serialize_ContainerWithNonUTCDate_DateSerializedAsUTC() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR, 1);
-        calendar.setTimeZone(TimeZone.getTimeZone("Etc/UTC"));
+//        final LocalDateTime nowOnThisMachine = LocalDateTime.now(Clock.fixed(Instant.parse("2007-12-03T10:15:30.00Z"), ZoneId.of("America/Sao_Paulo")));
+        final LocalDateTime nowOnThisMachine = LocalDateTime.of(2010, 10, 10, 10, 39);
+        final ZonedDateTime nowUTC = ZonedDateTime.of(nowOnThisMachine,ZoneId.of("UTC"));
+        final ZonedDateTime nowEuropeParis = ZonedDateTime.of(nowOnThisMachine,ZoneId.of("Europe/Paris"));
 
-        Date utcTime = calendar.getTime();
+        Date utcTime = Date.from(nowUTC.toInstant());
+        Date europeTime = Date.from(nowEuropeParis.toInstant());
 
-        calendar.setTimeZone(TimeZone.getTimeZone("Europe/Helsinki"));
-        calendar.set(Calendar.HOUR, 1);
-
-        Date helsinkiTime = calendar.getTime();
         Collection<TestDateItem> col = new ArrayList<>();
-        col.add(new TestDateItem(helsinkiTime, 80));
+        col.add(new TestDateItem(europeTime, 80));
         DataProvider<TestDateItem, ?> DataProvider = new ListDataProvider<>(
                 col);
         DataProviderSeries<TestDateItem> chartDataSeries = new DataProviderSeries<>(
@@ -260,6 +256,9 @@ public class ChartDataSeriesJSONSerializationTest {
         String expected = "{\"data\":[[" + utcTime.getTime() + ",80]]}";
         assertEquals(expected, toJSON(chartDataSeries));
     }
+
+
+
 
     @Test
     public void serialize_Instant_ToHigcharts() {
