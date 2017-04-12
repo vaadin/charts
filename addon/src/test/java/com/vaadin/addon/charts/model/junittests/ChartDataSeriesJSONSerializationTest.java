@@ -1,14 +1,9 @@
 package com.vaadin.addon.charts.model.junittests;
 
-import com.vaadin.addon.charts.model.Configuration;
-import com.vaadin.addon.charts.model.DataProviderSeries;
-import com.vaadin.addon.charts.model.PlotOptionsLine;
-import com.vaadin.addon.charts.model.PlotOptionsSeries;
-import com.vaadin.data.provider.DataProvider;
-import com.vaadin.data.provider.ListDataProvider;
-import org.junit.Before;
-import org.junit.Test;
-
+import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
+import static java.util.Collections.singletonList;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -18,9 +13,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
-import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
-import static java.util.Collections.singletonList;
-import static org.junit.Assert.assertEquals;
+import org.junit.Before;
+import org.junit.Test;
+
+import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.DataProviderSeries;
+import com.vaadin.addon.charts.model.PlotOptionsLine;
+import com.vaadin.addon.charts.model.PlotOptionsSeries;
+import com.vaadin.data.provider.DataProvider;
+import com.vaadin.data.provider.ListDataProvider;
 
 public class ChartDataSeriesJSONSerializationTest {
 
@@ -43,15 +44,15 @@ public class ChartDataSeriesJSONSerializationTest {
     }
 
     private class TestDateItem {
-        private Date date;
+        private ZonedDateTime date;
         private Integer value;
 
-        public TestDateItem(Date date, Integer value) {
+        public TestDateItem(ZonedDateTime date, Integer value) {
             this.date = date;
             this.value = value;
         }
 
-        public Date getDate() {
+        public ZonedDateTime getDate() {
             return date;
         }
 
@@ -97,8 +98,7 @@ public class ChartDataSeriesJSONSerializationTest {
         private Number l;
         private Number c;
 
-        public TestItemOHLC(int x, double o, double h, double l,
-                double c) {
+        public TestItemOHLC(int x, double o, double h, double l, double c) {
             this.x = x;
             this.o = o;
             this.h = h;
@@ -191,19 +191,15 @@ public class ChartDataSeriesJSONSerializationTest {
     public void serialize_ContainerWithXOHLC_SerializedAsArray() {
 
         Collection<TestItemOHLC> col = new ArrayList<>();
-        col.add(new TestItemOHLC(2, 113.84,
-                115.92, 113.75,
-                115.19));
-        DataProviderSeries<TestItemOHLC> chartDataSeries = new DataProviderSeries<>(
-                new ListDataProvider<>(col));
+        col.add(new TestItemOHLC(2, 113.84, 115.92, 113.75, 115.19));
+        DataProviderSeries<TestItemOHLC> chartDataSeries = new DataProviderSeries<>(new ListDataProvider<>(col));
         chartDataSeries.setX(TestItemOHLC::getX);
         chartDataSeries.setOpen(TestItemOHLC::getO);
         chartDataSeries.setHigh(TestItemOHLC::getH);
         chartDataSeries.setLow(TestItemOHLC::getL);
         chartDataSeries.setClose(TestItemOHLC::getC);
 
-        assertEquals("{\"data\":[[2,113.84,115.92,113.75,115.19]]}",
-                toJSON(chartDataSeries));
+        assertEquals("{\"data\":[[2,113.84,115.92,113.75,115.19]]}", toJSON(chartDataSeries));
     }
 
     @Test
@@ -215,9 +211,7 @@ public class ChartDataSeriesJSONSerializationTest {
         chartDataSeries.setX(TestItem::getX);
         chartDataSeries.setY(TestItem::getY);
         chartDataSeries.setPointName(TestItem::getZ);
-        assertEquals(
-                "{\"data\":[{\"x\":80,\"y\":80,\"name\":80},{\"x\":20,\"y\":20,\"name\":20}]}",
-                toJSON(chartDataSeries));
+        assertEquals("{\"data\":[{\"x\":80,\"y\":80,\"name\":80},{\"x\":20,\"y\":20,\"name\":20}]}", toJSON(chartDataSeries));
     }
 
     @Test
@@ -231,33 +225,42 @@ public class ChartDataSeriesJSONSerializationTest {
         chartDataSeries.setY(TestItem::getY);
         chartDataSeries.setPointName(TestItem::getZ);
 
-        assertEquals(
-                "{\"data\":[{\"x\":80,\"y\":80,\"name\":80},{\"x\":20,\"y\":20,\"name\":20},{\"x\":10,\"y\":10}]}",
-                toJSON(chartDataSeries));
+        assertEquals("{\"data\":[{\"x\":80,\"y\":80,\"name\":80},{\"x\":20,\"y\":20,\"name\":20},{\"x\":10,\"y\":10}]}", toJSON(chartDataSeries));
     }
+
+    //final Date utcTime = Date.from(nowUTC.toInstant()); //local representation, based on UTC
+    //final Instant nowEuropeParisInstantUTC = nowEuropeParis.toInstant(); //toInstant converts to UTC !!
+    //final Date europeTime = Date.from(nowEuropeParisInstantUTC);//local representation, based on UTC
+    //final Instant europeTimeInstant = europeTime.toInstant();// instant in UTC again
+
+    //final Collection<TestDateItem> col = singletonList(new TestDateItem(nowEuropeParis, 80)); // implizite convert to UTC again ( lost of timezone, machine dependend )
+
 
     @Test
     public void serialize_ContainerWithNonUTCDate_DateSerializedAsUTC() {
-        final LocalDateTime nowOnThisMachine = LocalDateTime.of(2010, 10, 10, 10, 39);
-        final ZonedDateTime nowUTC = ZonedDateTime.of(nowOnThisMachine,ZoneId.of("UTC"));
-        final ZonedDateTime nowEuropeParis = ZonedDateTime.of(nowOnThisMachine,ZoneId.of("Europe/Paris"));
+        final ZonedDateTime nowUTC = ZonedDateTime.of(2010, 10, 10, 10, 39,00,00, ZoneId.of("UTC"));
+        final ZonedDateTime nowEuropeParis = ZonedDateTime.of(2010, 10, 10, 10, 39,00,00, ZoneId.of("Europe/Paris"));
 
-        final Date utcTime = Date.from(nowUTC.toInstant());
-        final Date europeTime = Date.from(nowEuropeParis.toInstant());
+        final Collection<TestDateItem> colEurope = singletonList(new TestDateItem(nowEuropeParis, 80)); // implizite convert to UTC again ( lost of timezone, machine dependend )
+        final DataProvider<TestDateItem, ?> dataProviderEurope = new ListDataProvider<>(colEurope);
 
-        final Collection<TestDateItem> col = singletonList(new TestDateItem(europeTime, 80));
-        final DataProvider<TestDateItem, ?> DataProvider = new ListDataProvider<>(col);
+        final DataProviderSeries<TestDateItem> chartDataSeriesEurope = new DataProviderSeries<>(dataProviderEurope);
+        chartDataSeriesEurope.setX(TestDateItem::getDate);
+        chartDataSeriesEurope.setY(TestDateItem::getValue);
 
-        DataProviderSeries<TestDateItem> chartDataSeries = new DataProviderSeries<>(DataProvider);
-        chartDataSeries.setX(TestDateItem::getDate);
-        chartDataSeries.setY(TestDateItem::getValue);
+        final Collection<TestDateItem> colUTC = singletonList(new TestDateItem(nowUTC, 80)); // implizite convert to UTC again ( lost of timezone, machine dependend )
+        final DataProvider<TestDateItem, ?> dataProviderUTC = new ListDataProvider<>(colUTC);
 
-        String expected = "{\"data\":[[" + utcTime.getTime() + ",80]]}";
-        assertEquals(expected, toJSON(chartDataSeries));
+        final DataProviderSeries<TestDateItem> chartDataSeriesUTC = new DataProviderSeries<>(dataProviderUTC);
+        chartDataSeriesUTC.setX(TestDateItem::getDate);
+        chartDataSeriesUTC.setY(TestDateItem::getValue);
+
+        final String actualEurope = toJSON(chartDataSeriesEurope);
+        final String actualUTC = toJSON(chartDataSeriesUTC);
+
+        assertNotEquals(actualUTC, actualEurope);  // not loosing TimeZone
+
     }
-
-
-
 
     @Test
     public void serialize_Instant_ToHigcharts() {
@@ -265,16 +268,13 @@ public class ChartDataSeriesJSONSerializationTest {
         Collection<TestInstantItem> col = new ArrayList<>();
         Instant instant = dateTime.toInstant(ZoneOffset.UTC);
         col.add(new TestInstantItem(instant, 80));
-        DataProvider<TestInstantItem, ?> DataProvider = new ListDataProvider<>(
-                col);
+        DataProvider<TestInstantItem, ?> DataProvider = new ListDataProvider<>(col);
 
-        DataProviderSeries<TestInstantItem> chartDataSeries = new DataProviderSeries<>(
-                DataProvider);
+        DataProviderSeries<TestInstantItem> chartDataSeries = new DataProviderSeries<>(DataProvider);
         chartDataSeries.setX(TestInstantItem::getDate);
         chartDataSeries.setY(TestInstantItem::getValue);
 
-        String expected = "{\"data\":[[" + instant.getEpochSecond() * 1000
-                + ",80]]}";
+        String expected = "{\"data\":[[" + instant.getEpochSecond() * 1000 + ",80]]}";
         assertEquals(expected, toJSON(chartDataSeries));
     }
 
@@ -287,8 +287,7 @@ public class ChartDataSeriesJSONSerializationTest {
         chartDataSeries.setLow(TestItem::getX);
         chartDataSeries.setHigh(TestItem::getY);
 
-        assertEquals("{\"data\":[{\"high\":5,\"low\":-5}]}",
-                toJSON(chartDataSeries));
+        assertEquals("{\"data\":[{\"high\":5,\"low\":-5}]}", toJSON(chartDataSeries));
     }
 
     @Test
@@ -303,8 +302,7 @@ public class ChartDataSeriesJSONSerializationTest {
 
         Configuration config = new Configuration();
         config.addSeries(chartDataSeries);
-        assertEquals("{\"type\":\"line\",\"showInLegend\":true,\"data\":[]}",
-                toJSON(chartDataSeries));
+        assertEquals("{\"type\":\"line\",\"showInLegend\":true,\"data\":[]}", toJSON(chartDataSeries));
     }
 
     @Test
@@ -320,8 +318,7 @@ public class ChartDataSeriesJSONSerializationTest {
         Configuration config = new Configuration();
         config.addSeries(chartDataSeries);
 
-        assertEquals("{\"showInLegend\":true,\"data\":[]}",
-                toJSON(chartDataSeries));
+        assertEquals("{\"showInLegend\":true,\"data\":[]}", toJSON(chartDataSeries));
     }
 
     @Test
@@ -337,8 +334,7 @@ public class ChartDataSeriesJSONSerializationTest {
         Configuration config = new Configuration();
         config.addSeries(chartDataSeries);
 
-        assertEquals("{\"name\":\"foo\",\"stack\":\"bar\",\"data\":[]}",
-                toJSON(chartDataSeries));
+        assertEquals("{\"name\":\"foo\",\"stack\":\"bar\",\"data\":[]}", toJSON(chartDataSeries));
     }
 
     @Test

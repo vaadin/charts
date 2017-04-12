@@ -16,7 +16,14 @@ package com.vaadin.addon.charts.model.serializers;
  * If not, see <https://vaadin.com/license/cval-3>.
  * #L%
  */
+
 import java.io.IOException;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -29,7 +36,6 @@ import com.vaadin.addon.charts.util.Util;
 
 /**
  * Serializes all {@link Date} objects as UTC long.
- *
  */
 public class DateSerializer extends JsonSerializer<Date> {
 
@@ -42,8 +48,10 @@ public class DateSerializer extends JsonSerializer<Date> {
 
     @Override
     public void serialize(Date value, JsonGenerator gen,
-            SerializerProvider serializers) throws IOException,
-            JsonProcessingException {
-        gen.writeNumber(Util.toHighchartsTS(value.toInstant()));
+        SerializerProvider serializers)
+        throws IOException, JsonProcessingException {
+        final Instant instantUTC = value.toInstant(); // converting to UTC
+        gen.writeNumber(Util.toHighchartsTS(instantUTC));
     }
+
 }
