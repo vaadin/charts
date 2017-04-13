@@ -235,7 +235,7 @@ public class DataProviderSeries<T> extends AbstractSeries {
             .map((item) -> chartAttributeToCallback
                 .entrySet()
                 .stream()
-                .collect(Collectors.toMap(Map.Entry::getKey, value -> value.getValue().apply(item))))
+                .collect(Collectors.toMap(Map.Entry::getKey, value -> (value.getValue() != null) ? value.getValue().apply(item) : null)))
             .collect(Collectors.toList());
     }
 
