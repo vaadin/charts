@@ -54,7 +54,7 @@ different chart types in mixed-type charts.
 [[charts.basic-use.configuration]]
 == Basic Chart Configuration
 
-After adding a chart web component to your html page, you need to configure it further. At the least, you need
+After adding a chart web component to your html page, you need to configure it further. At the very least, you need
 to specify the data series to be displayed in the configuration.
 
 The chart-specific properties can be changed by adding <property-name> tags into the chart. Here we add
