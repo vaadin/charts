@@ -298,7 +298,7 @@ To do that, we add a `data` attribute to the `<data-series>` element.
 </data-series>
 ----
 
-Gongratulations!
+Congratulations!
 After page refresh, you should see the chart with the temperature data fetched from the REST service.
 
 [[add.columns]]
