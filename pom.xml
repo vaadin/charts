@@ -99,6 +99,16 @@
                 <version>${vaadin.version}</version>
             </dependency>
 
+            <!--external-->
+
+            <dependency>
+                <groupId>org.rapidpm</groupId>
+                <artifactId>rapidpm-functional-reactive</artifactId>
+                <version>0.0.1</version>
+            </dependency>
+
+
+
             <!-- Testing -->
             <dependency>
                 <groupId>com.vaadin</groupId>

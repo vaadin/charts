@@ -17,9 +17,14 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
+import static java.util.Map.*;
+import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -229,14 +234,22 @@ public class DataProviderSeries<T> extends AbstractSeries {
      * 
      * @return
      */
-    public List<Map<String, Object>> getValues() {
+    public List<Map<String, Optional<Object>>> getValues() {
+
         return dataProvider
             .fetch(new Query<>())
-            .map((item) -> chartAttributeToCallback
-                .entrySet()
-                .stream()
-                .collect(Collectors.toMap(Map.Entry::getKey, value -> (value.getValue() != null) ? value.getValue().apply(item) : null)))
-            .collect(Collectors.toList());
+            .map((item) ->
+                chartAttributeToCallback
+                    .entrySet()
+                    .stream()
+                    .collect(
+                        toMap(
+                            Entry::getKey,
+                            entry -> (entry.getValue() != null) ?
+                                Optional.of(entry.getValue().apply(item)) :
+                                Optional.empty()))
+            )
+            .collect(toList());
     }
 
     /**
@@ -262,11 +275,12 @@ public class DataProviderSeries<T> extends AbstractSeries {
      * Sets if the chart should be updated automatically when a DataChangeEvent
      * is emitted by the data provider. Default is true.
      * 
-     * @param updateOnDataProviderChange
+     * @param automaticChartUpdateEnabled
      *            True sets the chart updating to enabled, false disables it.
      */
     public void setAutomaticChartUpdateEnabled(boolean automaticChartUpdateEnabled) {
         this.automaticChartUpdateEnabled = automaticChartUpdateEnabled;
+
         if (automaticChartUpdateEnabled) {
             if (dataProviderRegistration == null) {
                 dataProviderRegistration = dataProvider.addDataProviderListener(listener);
