@@ -25,7 +25,6 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.vaadin.data.provider.DataChangeEvent;
 import com.vaadin.data.provider.DataProvider;
 import com.vaadin.data.provider.DataProviderListener;
 import com.vaadin.data.provider.Query;
@@ -65,15 +64,10 @@ public class DataProviderSeries<T> extends AbstractSeries {
     private Registration dataProviderRegistration;
 
     @JsonIgnore
-    private DataProviderListener<T> listener = new DataProviderListener<T>() {
-
-        @Override
-        public void onDataChange(DataChangeEvent<T> event) {
-            if (getConfiguration() != null) {
-                getConfiguration().fireSeriesChanged(DataProviderSeries.this);
-            }
+    private DataProviderListener<T> listener = (DataProviderListener<T>) event -> {
+        if (getConfiguration() != null) {
+            getConfiguration().fireSeriesChanged(DataProviderSeries.this);
         }
-
     };
 
     /**
@@ -236,19 +230,13 @@ public class DataProviderSeries<T> extends AbstractSeries {
      * @return
      */
     public List<Map<String, Object>> getValues() {
-        List<Map<String, Object>> list = dataProvider
-                .fetch(new Query<>()).map((item) -> {
-            Map<String, Object> tmp = new HashMap<>();
-            for (Map.Entry<String, Function<T, Object>> entry : chartAttributeToCallback
-                    .entrySet()) {
-                String key = entry.getKey();
-                Object value = entry.getValue().apply(item);
-                tmp.put(key, value);
-            }
-            return tmp;
-
-        }).collect(Collectors.toList());
-        return list;
+        return dataProvider
+            .fetch(new Query<>())
+            .map((item) -> chartAttributeToCallback
+                .entrySet()
+                .stream()
+                .collect(Collectors.toMap(Map.Entry::getKey, value -> (value.getValue() != null) ? value.getValue().apply(item) : null)))
+            .collect(Collectors.toList());
     }
 
     /**
@@ -277,13 +265,11 @@ public class DataProviderSeries<T> extends AbstractSeries {
      * @param updateOnDataProviderChange
      *            True sets the chart updating to enabled, false disables it.
      */
-    public void setAutomaticChartUpdateEnabled(
-            boolean automaticChartUpdateEnabled) {
+    public void setAutomaticChartUpdateEnabled(boolean automaticChartUpdateEnabled) {
         this.automaticChartUpdateEnabled = automaticChartUpdateEnabled;
         if (automaticChartUpdateEnabled) {
             if (dataProviderRegistration == null) {
-                dataProviderRegistration = dataProvider
-                        .addDataProviderListener(listener);
+                dataProviderRegistration = dataProvider.addDataProviderListener(listener);
             }
         } else {
             if (dataProviderRegistration != null) {
