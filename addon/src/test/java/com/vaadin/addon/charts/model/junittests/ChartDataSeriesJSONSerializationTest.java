@@ -352,10 +352,8 @@ public class ChartDataSeriesJSONSerializationTest {
         assertEquals(expected, actual);
     }
 
-    @Test @Ignore // I do not understand this test..
+    @Test
     public void serialize_ContainerWithNameAndStack_NameAndStackSerialized() {
-        PlotOptionsSeries plotOptions = new PlotOptionsSeries();
-        plotOptions.setShowInLegend(true);
 
         final Tuple<ListDataProvider<TestItem>, DataProviderSeries<TestItem>> tuple = createTuple();
         final DataProviderSeries<TestItem> dataProviderSeries = tuple.getT2();
