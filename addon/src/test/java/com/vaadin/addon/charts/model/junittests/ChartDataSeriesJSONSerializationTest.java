@@ -157,17 +157,6 @@ public class ChartDataSeriesJSONSerializationTest {
         return builder.build();
     }
 
-    private ListDataProvider<TestItem> dataProvider;
-    private DataProviderSeries<TestItem> chartDataSeries;
-    private Collection<TestItem> col = new ArrayList<>();
-
-    @Before
-    public void setup() {
-        Collection<TestItem> col = new ArrayList<>();
-        dataProvider = new ListDataProvider<>(col);
-        chartDataSeries = new DataProviderSeries<>(dataProvider);
-    }
-
     @Test
     public void serialize_ContainerWithXY_ValuesMappedAsArray() {
 
