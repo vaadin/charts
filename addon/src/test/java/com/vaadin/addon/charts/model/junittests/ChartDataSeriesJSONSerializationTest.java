@@ -11,10 +11,11 @@ import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.rapidpm.frp.model.Tuple;
 
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataProviderSeries;
@@ -62,9 +63,9 @@ public class ChartDataSeriesJSONSerializationTest {
     }
 
     private class TestItem {
-        private Integer x;
-        private Integer y;
-        private Integer z;
+        private final Integer x;
+        private final Integer y;
+        private final Integer z;
 
         public TestItem(Integer x, Integer y) {
             this.x = x;
@@ -128,6 +129,33 @@ public class ChartDataSeriesJSONSerializationTest {
 
     }
 
+    private static final class TupleBuilder<T> {
+
+        public static <T> TupleBuilder<T> builder() {
+            return new TupleBuilder<>();
+        }
+
+        final List<T> colls = new ArrayList<>();
+
+        public TupleBuilder<T> addItem(T item) {
+            colls.add(item);
+            return this;
+        }
+
+        public Tuple<ListDataProvider<T>, DataProviderSeries<T>> build() {
+            final ListDataProvider<T> dataProvider = new ListDataProvider<>(colls);
+            return new Tuple<>(dataProvider, new DataProviderSeries<>(dataProvider));
+        }
+    }
+
+    private <T> Tuple<ListDataProvider<T>, DataProviderSeries<T>> createTuple(T... items) {
+        final TupleBuilder<T> builder = TupleBuilder.builder();
+        for (T item : items) {
+            builder.addItem(item);
+        }
+        return builder.build();
+    }
+
     private ListDataProvider<TestItem> dataProvider;
     private DataProviderSeries<TestItem> chartDataSeries;
     private Collection<TestItem> col = new ArrayList<>();
@@ -136,63 +164,63 @@ public class ChartDataSeriesJSONSerializationTest {
     public void setup() {
         Collection<TestItem> col = new ArrayList<>();
         dataProvider = new ListDataProvider<>(col);
-
         chartDataSeries = new DataProviderSeries<>(dataProvider);
-
     }
 
     @Test
     public void serialize_ContainerWithXY_ValuesMappedAsArray() {
-        col.add(new TestItem(80, 80));
-        col.add(new TestItem(20, 20));
-        dataProvider = new ListDataProvider<>(col);
-        chartDataSeries = new DataProviderSeries<>(dataProvider);
-        chartDataSeries.setX(TestItem::getX);
-        chartDataSeries.setY(TestItem::getY);
-        assertEquals("{\"data\":[[80,80],[20,20]]}", toJSON(chartDataSeries));
+
+        final Tuple<ListDataProvider<TestItem>, DataProviderSeries<TestItem>> tuple =
+            createTuple(
+                new TestItem(80, 80),
+                new TestItem(20, 20));
+
+        tuple.getT2().setX(TestItem::getX);
+        tuple.getT2().setY(TestItem::getY);
+
+        String actual = toJSON(tuple.getT2());
+        String expected = "{\"data\":[[80,80],[20,20]]}";
+        assertEquals(expected, actual);
     }
 
     @Test(expected = RuntimeException.class)
     public void serialize_ContainerWithoutY_ExceptionIsThrown() {
-        dataProvider = new ListDataProvider<>(col);
-
-        chartDataSeries = new DataProviderSeries<>(dataProvider);
-        chartDataSeries.setId("foo");
-        chartDataSeries.setX(TestItem::getX);
-
-        toJSON(chartDataSeries);
+        final Tuple<ListDataProvider<TestItem>, DataProviderSeries<TestItem>> tuple = createTuple();
+        tuple.getT2().setId("foo");
+        tuple.getT2().setX(TestItem::getX);
+        toJSON(tuple.getT2());
     }
 
     @Test(expected = RuntimeException.class)
     public void serialize_ContainerWithoutYAndLow_ExceptionIsThrown() {
-        col.add(new TestItem(80, 80));
-        col.add(new TestItem(20, 20));
-        dataProvider = new ListDataProvider<>(col);
-        chartDataSeries = new DataProviderSeries<>(dataProvider);
-        chartDataSeries.setX(TestItem::getX);
-        chartDataSeries.setHigh(TestItem::getY);
+        final Tuple<ListDataProvider<TestItem>, DataProviderSeries<TestItem>> tuple =
+            createTuple(new TestItem(80, 80), new TestItem(20, 20));
+        final DataProviderSeries<TestItem> dataProviderSeries = tuple.getT2();
 
-        toJSON(chartDataSeries);
+        dataProviderSeries.setX(TestItem::getX);
+        dataProviderSeries.setHigh(TestItem::getY);
+        toJSON(dataProviderSeries);
     }
 
     @Test
     public void serialize_ContainerWithXYZ_UnmappedPropertyNotSerialized() {
-        col.add(new TestItem(80, 80, 80));
-        col.add(new TestItem(20, 20, 20));
-        dataProvider = new ListDataProvider<>(col);
-        chartDataSeries = new DataProviderSeries<>(dataProvider);
+        final Tuple<ListDataProvider<TestItem>, DataProviderSeries<TestItem>> tuple =
+            createTuple(new TestItem(80, 80, 80), new TestItem(20, 20, 20));
+        final DataProviderSeries<TestItem> chartDataSeries = tuple.getT2();
         chartDataSeries.setX(TestItem::getX);
         chartDataSeries.setY(TestItem::getY);
 
-        assertEquals("{\"data\":[[80,80],[20,20]]}", toJSON(chartDataSeries));
+        final String actual = toJSON(chartDataSeries);
+        final String expected = "{\"data\":[[80,80],[20,20]]}";
+        assertEquals(expected, actual);
     }
 
     @Test
     public void serialize_ContainerWithXOHLC_SerializedAsArray() {
+        final Tuple<ListDataProvider<TestItemOHLC>, DataProviderSeries<TestItemOHLC>> tuple
+            = createTuple(new TestItemOHLC(2, 113.84, 115.92, 113.75, 115.19));
+        final DataProviderSeries<TestItemOHLC> chartDataSeries = tuple.getT2();
 
-        Collection<TestItemOHLC> col = new ArrayList<>();
-        col.add(new TestItemOHLC(2, 113.84, 115.92, 113.75, 115.19));
-        DataProviderSeries<TestItemOHLC> chartDataSeries = new DataProviderSeries<>(new ListDataProvider<>(col));
         chartDataSeries.setX(TestItemOHLC::getX);
         chartDataSeries.setOpen(TestItemOHLC::getO);
         chartDataSeries.setHigh(TestItemOHLC::getH);
@@ -203,7 +231,7 @@ public class ChartDataSeriesJSONSerializationTest {
     }
 
     @Test
-    public void serialize_ZMappedToName_ValuesMappedAsObject() {
+    public void serialize_ZMappedToName_ValuesMappedAsObject_Orig() {
         col.add(new TestItem(80, 80, 80));
         col.add(new TestItem(20, 20, 20));
         dataProvider = new ListDataProvider<>(col);
@@ -213,25 +241,45 @@ public class ChartDataSeriesJSONSerializationTest {
         chartDataSeries.setPointName(TestItem::getZ);
         assertEquals("{\"data\":[{\"x\":80,\"y\":80,\"name\":80},{\"x\":20,\"y\":20,\"name\":20}]}", toJSON(chartDataSeries));
     }
-
     @Test
-    public void serialize_ContainerItemWithMissingZ_MissingItemSerializedCorrectly() {
-        col.add(new TestItem(80, 80, 80));
-        col.add(new TestItem(20, 20, 20));
-        col.add(new TestItem(10, 10, null));
-        dataProvider = new ListDataProvider<>(col);
-        chartDataSeries = new DataProviderSeries<>(dataProvider);
+    public void serialize_ZMappedToName_ValuesMappedAsObject() {
+        final Tuple<ListDataProvider<TestItem>, DataProviderSeries<TestItem>> tuple
+            = createTuple(
+                new TestItem(80, 80, 80),
+                new TestItem(20, 20, 20));
+        final DataProviderSeries<TestItem> chartDataSeries = tuple.getT2();
+
         chartDataSeries.setX(TestItem::getX);
         chartDataSeries.setY(TestItem::getY);
         chartDataSeries.setPointName(TestItem::getZ);
+        final String actual = toJSON(chartDataSeries);
+        final String expected = "{\"data\":[{\"x\":80,\"y\":80,\"name\":80},{\"x\":20,\"y\":20,\"name\":20}]}";
 
-        assertEquals("{\"data\":[{\"x\":80,\"y\":80,\"name\":80},{\"x\":20,\"y\":20,\"name\":20},{\"x\":10,\"y\":10}]}", toJSON(chartDataSeries));
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void serialize_ContainerItemWithMissingZ_MissingItemSerializedCorrectly() {
+        final Tuple<ListDataProvider<TestItem>, DataProviderSeries<TestItem>> tuple
+            = createTuple(
+                new TestItem(80, 80, 80),
+                new TestItem(20, 20, 20),
+                new TestItem(10, 10, null));
+        final DataProviderSeries<TestItem> series = tuple.getT2();
+
+        series.setX(TestItem::getX);
+        series.setY(TestItem::getY);
+        series.setPointName(TestItem::getZ);
+
+        String actual = toJSON(series);
+        String expected = "{\"data\":[{\"x\":80,\"y\":80,\"name\":80},{\"x\":20,\"y\":20,\"name\":20},{\"x\":10,\"y\":10}]}";
+        assertEquals(expected, actual);
     }
 
     @Test
     public void serialize_ContainerWithNonUTCDate_DateSerializedAsUTC() {
-        final ZonedDateTime nowUTC = ZonedDateTime.of(2010, 10, 10, 10, 39,00,00, ZoneId.of("UTC"));
-        final ZonedDateTime nowEuropeParis = ZonedDateTime.of(2010, 10, 10, 10, 39,00,00, ZoneId.of("Europe/Paris"));
+        final ZonedDateTime nowUTC = ZonedDateTime.of(2010, 10, 10, 10, 39, 00, 00, ZoneId.of("UTC"));
+        final ZonedDateTime nowEuropeParis = ZonedDateTime.of(2010, 10, 10, 10, 39, 00, 00, ZoneId.of("Europe/Paris"));
 
         final Collection<TestDateItem> colEurope = singletonList(new TestDateItem(nowEuropeParis, 80));
         final DataProvider<TestDateItem, ?> dataProviderEurope = new ListDataProvider<>(colEurope);
@@ -279,7 +327,9 @@ public class ChartDataSeriesJSONSerializationTest {
         chartDataSeries.setLow(TestItem::getX);
         chartDataSeries.setHigh(TestItem::getY);
 
-        assertEquals("{\"data\":[{\"high\":5,\"low\":-5}]}", toJSON(chartDataSeries));
+        final String actual = toJSON(chartDataSeries);
+        final String expected = "{\"data\":[{\"high\":5,\"low\":-5}]}";
+        assertEquals(expected, actual);
     }
 
     @Test
