@@ -18,8 +18,6 @@ package com.vaadin.addon.charts.util;
  */
 
 import java.io.Serializable;
-import java.time.ZoneId;
-import java.util.TimeZone;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.JsonInclude;

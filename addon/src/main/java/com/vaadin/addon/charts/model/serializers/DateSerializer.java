@@ -19,11 +19,6 @@ package com.vaadin.addon.charts.model.serializers;
 
 import java.io.IOException;
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 import com.fasterxml.jackson.core.JsonGenerator;

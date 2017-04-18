@@ -147,8 +147,8 @@ public class DataProviderSeriesBeanSerializer
                 chartAttributeToValue
                     .entrySet()
                     .stream()
-                    .filter(e -> e.getKey().equals(xAttribute))
-                    .filter(e -> e.getKey().equals(yAttribute))
+                    .filter(e -> ! e.getKey().equals(xAttribute))
+                    .filter(e -> ! e.getKey().equals(yAttribute))
                     .forEach(e -> addNamedValue(entryObject, e.getKey(), e.getValue()));
 
                 data.add(entryObject);

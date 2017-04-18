@@ -17,17 +17,15 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
-import static java.util.Map.*;
+import static java.util.Map.Entry;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.vaadin.data.provider.DataProvider;
@@ -234,6 +232,22 @@ public class DataProviderSeries<T> extends AbstractSeries {
      * 
      * @return
      */
+//    public List<Map<String, Optional<Object>>> getValues() {
+//        List<Map<String, Optional<Object>>> list = dataProvider
+//            .fetch(new Query<>())
+//            .map((item) -> {
+//                Map<String, Optional<Object>> tmp = new HashMap<>();
+//                for (Map.Entry<String, Function<T, Object>> entry : chartAttributeToCallback.entrySet()) {
+//                    String key = entry.getKey();
+//                    Object value = entry.getValue().apply(item);
+//                    tmp.put(key, Optional.ofNullable(value));
+//                }
+//                return tmp;
+//
+//            }).collect(Collectors.toList());
+//        return list;
+//    }
+
     public List<Map<String, Optional<Object>>> getValues() {
 
         return dataProvider
@@ -246,7 +260,7 @@ public class DataProviderSeries<T> extends AbstractSeries {
                         toMap(
                             Entry::getKey,
                             entry -> (entry.getValue() != null) ?
-                                Optional.of(entry.getValue().apply(item)) :
+                                Optional.ofNullable(entry.getValue().apply(item)) :
                                 Optional.empty()))
             )
             .collect(toList());
