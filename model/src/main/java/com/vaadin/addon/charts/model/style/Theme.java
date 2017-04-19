@@ -242,7 +242,7 @@ public class Theme extends AbstractConfigurationObject {
     /**
      * Set new style for credits
      * 
-     * @param style
+     * @param credits
      *            Credits style
      */
     public void setCredits(Credits credits) {
