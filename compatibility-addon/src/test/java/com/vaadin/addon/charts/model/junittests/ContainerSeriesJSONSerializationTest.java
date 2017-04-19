@@ -174,36 +174,6 @@ public class ContainerSeriesJSONSerializationTest {
 
     }
 
-    //    @Test
-    //    public void serialize_ContainerWithNonUTCDate_DateSerializedAsUTC() {
-    //        containerSeries.setXPropertyId("x");
-    //        containerSeries.setYPropertyId("y");
-    //        vaadinContainer.addContainerProperty("x", Date.class, null);
-    //
-    //        final ZonedDateTime nowUTC = ZonedDateTime.of(2010, 10, 10, 10, 39, 00, 00, ZoneId.of("UTC"));
-    //        final ZonedDateTime nowEuropeParis = ZonedDateTime.of(2010, 10, 10, 10, 39, 00, 00, ZoneId.of("Europe/Paris"));
-    //
-    //        final Collection<TestDateItem> colEurope = singletonList(new TestDateItem(nowEuropeParis, 80));
-    //        final DataProvider<TestDateItem, ?> dataProviderEurope = new ListDataProvider<>(colEurope);
-    //
-    //        final DataProviderSeries<TestDateItem> chartDataSeriesEurope = new DataProviderSeries<>(dataProviderEurope);
-    //        chartDataSeriesEurope.setX(TestDateItem::getDate);
-    //        chartDataSeriesEurope.setY(TestDateItem::getValue);
-    //
-    //        final Collection<TestDateItem> colUTC = singletonList(new TestDateItem(nowUTC, 80));
-    //        final DataProvider<TestDateItem, ?> dataProviderUTC = new ListDataProvider<>(colUTC);
-    //
-    //        final DataProviderSeries<TestDateItem> chartDataSeriesUTC = new DataProviderSeries<>(dataProviderUTC);
-    //        chartDataSeriesUTC.setX(TestDateItem::getDate);
-    //        chartDataSeriesUTC.setY(TestDateItem::getValue);
-    //
-    //        final String actualEurope = toJSON(chartDataSeriesEurope);
-    //        final String actualUTC = toJSON(chartDataSeriesUTC);
-    //
-    //        assertNotEquals(actualUTC, actualEurope);  // not loosing TimeZone
-    //
-    //    }
-
     @Test
     public void serialize_ContainerWithLowAndHighValues_LowAndHighValuesSerialized() {
         containerSeries.setHighPropertyId("somehigh");
