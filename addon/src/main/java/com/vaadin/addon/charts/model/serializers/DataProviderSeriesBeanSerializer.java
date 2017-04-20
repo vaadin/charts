@@ -4,6 +4,19 @@ import static com.vaadin.addon.charts.model.DataProviderSeries.CLOSE_PROPERTY;
 import static com.vaadin.addon.charts.model.DataProviderSeries.HIGH_PROPERTY;
 import static com.vaadin.addon.charts.model.DataProviderSeries.LOW_PROPERTY;
 import static com.vaadin.addon.charts.model.DataProviderSeries.OPEN_PROPERTY;
+import java.io.IOException;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.node.ValueNode;
+import com.vaadin.addon.charts.model.DataProviderSeries;
+import com.vaadin.addon.charts.model.PlotOptionsSeries;
 
 /*
  * #%L
@@ -21,19 +34,6 @@ import static com.vaadin.addon.charts.model.DataProviderSeries.OPEN_PROPERTY;
  * If not, see <https://vaadin.com/license/cval-3>.
  * #L%
  */
-
-import java.io.IOException;
-import java.util.Map;
-import java.util.Set;
-
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.SerializerProvider;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.JsonNodeFactory;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.fasterxml.jackson.databind.node.ValueNode;
-import com.vaadin.addon.charts.model.DataProviderSeries;
-import com.vaadin.addon.charts.model.PlotOptionsSeries;
 
 /**
  * Custom bean serializer for {@link DataProviderSeries}
@@ -80,27 +80,22 @@ public class DataProviderSeriesBeanSerializer
         checkRequiredProperties(attributes);
         Mode mode = inferSerializationMode(attributes);
 
-        for (Map<String, Object> chartAttributeToValue : chartDataProvider
-                .getValues()) {
-            Object xValue = chartAttributeToValue.get(xAttribute);
-            Object yValue = chartAttributeToValue.get(yAttribute);
-            Object oValue = chartAttributeToValue
-                    .get(OPEN_PROPERTY);
-            Object lValue = chartAttributeToValue
-                    .get(LOW_PROPERTY);
-            Object hValue = chartAttributeToValue
-                    .get(HIGH_PROPERTY);
-            Object cValue = chartAttributeToValue
-                    .get(CLOSE_PROPERTY);
+        for (final Map<String, Optional<Object>> chartAttributeToValue : chartDataProvider.getValues()) {
+            Optional<Object> xValue = chartAttributeToValue.getOrDefault(xAttribute, Optional.empty());
+            Optional<Object> yValue = chartAttributeToValue.getOrDefault(yAttribute, Optional.empty());
+            Optional<Object> oValue = chartAttributeToValue.getOrDefault(OPEN_PROPERTY, Optional.empty());
+            Optional<Object> lValue = chartAttributeToValue.getOrDefault(LOW_PROPERTY, Optional.empty());
+            Optional<Object> hValue = chartAttributeToValue.getOrDefault(HIGH_PROPERTY, Optional.empty());
+            Optional<Object> cValue = chartAttributeToValue.getOrDefault(CLOSE_PROPERTY, Optional.empty());
 
             switch (mode) {
             case ONLY_Y:
-                Object value = chartAttributeToValue.get(yAttribute);
+                final Optional<Object> value = chartAttributeToValue.get(yAttribute);
                 addValue(data, value);
                 break;
             case XY:
-                if (xValue != null && yValue != null) {
-                    ArrayNode entryArray = JsonNodeFactory.instance.arrayNode();
+                if (xValue.isPresent() && yValue.isPresent()) {
+                    final ArrayNode entryArray = JsonNodeFactory.instance.arrayNode();
                     data.add(entryArray);
                     addValue(entryArray, xValue);
                     addValue(entryArray, yValue);
@@ -110,8 +105,8 @@ public class DataProviderSeriesBeanSerializer
                 break;
             case XLH:
 
-                if (xValue != null && lValue != null && hValue != null) {
-                    ArrayNode entryArray = JsonNodeFactory.instance.arrayNode();
+                if (xValue.isPresent() && lValue.isPresent() && hValue.isPresent()) {
+                    final ArrayNode entryArray = JsonNodeFactory.instance.arrayNode();
                     data.add(entryArray);
                     addValue(entryArray, xValue);
                     addValue(entryArray, lValue);
@@ -122,9 +117,13 @@ public class DataProviderSeriesBeanSerializer
                 break;
             case XOHLC:
 
-                if (xValue != null && oValue != null && hValue != null
-                        && lValue != null && cValue != null) {
-                    ArrayNode entryArray = JsonNodeFactory.instance.arrayNode();
+                if (xValue.isPresent() &&
+                    oValue.isPresent() &&
+                    hValue.isPresent() &&
+                    lValue.isPresent() &&
+                    cValue.isPresent()) {
+
+                    final ArrayNode entryArray = JsonNodeFactory.instance.arrayNode();
                     data.add(entryArray);
                     addValue(entryArray, xValue);
                     addValue(entryArray, oValue);
@@ -138,23 +137,18 @@ public class DataProviderSeriesBeanSerializer
 
             default:
                 // render as json object
-                ObjectNode entryObject = JsonNodeFactory.instance.objectNode();
-                if (xValue != null) {
-                    addNamedValue(entryObject, xAttribute, xValue);
-                }
+                final ObjectNode entryObject = JsonNodeFactory.instance.objectNode();
 
-                if (yValue != null) {
-                    addNamedValue(entryObject, yAttribute, yValue);
-                }
+                xValue.ifPresent(o -> addNamedValue(entryObject, xAttribute, xValue));
+                yValue.ifPresent(o -> addNamedValue(entryObject, yAttribute, yValue));
 
-                for (Map.Entry<String, Object> object : chartAttributeToValue
-                        .entrySet()) {
-                    if (!object.getKey().equals(xAttribute)
-                            && !object.getKey().equals(yAttribute)) {
-                        addNamedValue(entryObject, object.getKey(),
-                                object.getValue());
-                    }
-                }
+                chartAttributeToValue
+                    .entrySet()
+                    .stream()
+                    .filter(e -> !e.getKey().equals(xAttribute))
+                    .filter(e -> !e.getKey().equals(yAttribute))
+                    .forEach(e -> addNamedValue(entryObject, e.getKey(), e.getValue()));
+
                 data.add(entryObject);
 
                 break;
@@ -210,16 +204,16 @@ public class DataProviderSeriesBeanSerializer
         }
     }
 
-    private void addValue(ArrayNode data, Object value) {
-        if (value != null) {
-            ValueNode node = JsonNodeFactory.instance.pojoNode(value);
+    private void addValue(ArrayNode data, Optional<Object> value) {
+        if (value.isPresent()) {
+            ValueNode node = JsonNodeFactory.instance.pojoNode(value.get());
             data.add(node);
         }
     }
 
-    private void addNamedValue(ObjectNode data, String name, Object value) {
-        if (value != null) {
-            ValueNode node = JsonNodeFactory.instance.pojoNode(value);
+    private void addNamedValue(ObjectNode data, String name, Optional<Object> value) {
+        if (value.isPresent()) {
+            ValueNode node = JsonNodeFactory.instance.pojoNode(value.get());
             data.set(name, node);
 
         }

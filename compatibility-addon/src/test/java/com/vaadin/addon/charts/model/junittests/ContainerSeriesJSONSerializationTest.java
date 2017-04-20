@@ -2,10 +2,9 @@ package com.vaadin.addon.charts.model.junittests;
 
 import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
 import static org.junit.Assert.assertEquals;
-
 import java.util.Calendar;
-import java.util.Date;
 import java.util.TimeZone;
+import java.util.function.Supplier;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -115,9 +114,7 @@ public class ContainerSeriesJSONSerializationTest {
         ie.getItemProperty("y").setValue(20);
         ie.getItemProperty("z").setValue(20);
 
-        assertEquals(
-                "{\"data\":[{\"x\":80,\"y\":80,\"name\":80},{\"x\":20,\"y\":20,\"name\":20}]}",
-                toJSON(containerSeries));
+        assertEquals("{\"data\":[{\"x\":80,\"y\":80,\"name\":80},{\"x\":20,\"y\":20,\"name\":20}]}", toJSON(containerSeries));
     }
 
     @SuppressWarnings("unchecked")
@@ -144,37 +141,16 @@ public class ContainerSeriesJSONSerializationTest {
         ie.getItemProperty("x").setValue(10);
         ie.getItemProperty("y").setValue(10);
 
-        assertEquals(
-                "{\"data\":[{\"x\":80,\"y\":80,\"name\":80},{\"x\":20,\"y\":20,\"name\":20},{\"x\":10,\"y\":10}]}",
-                toJSON(containerSeries));
+        assertEquals("{\"data\":[{\"x\":80,\"y\":80,\"name\":80},{\"x\":20,\"y\":20,\"name\":20},{\"x\":10,\"y\":10}]}", toJSON(containerSeries));
     }
 
-    @Test
-    public void serialize_ContainerWithNonUTCDate_DateSerializedAsUTC() {
-        containerSeries.setXPropertyId("x");
-        containerSeries.setYPropertyId("y");
-
-        vaadinContainer.addContainerProperty("x", Date.class, null);
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR, 1);
-        calendar.setTimeZone(TimeZone.getTimeZone("Etc/UTC"));
-
-        Date utcTime = calendar.getTime();
-
-        calendar.setTimeZone(TimeZone.getTimeZone("Europe/Helsinki"));
-        calendar.set(Calendar.HOUR, 1);
-
-        Date helsinkiTime = calendar.getTime();
-
-        Item ie = vaadinContainer.addItem(1);
-        ie.getItemProperty("x").setValue(helsinkiTime);
-        ie.getItemProperty("y").setValue(80);
-
-        String expected = "{\"data\":[[" + utcTime.getTime() + ",80]]}";
-
-        assertEquals(expected, toJSON(containerSeries));
-    }
+    private static Supplier<Calendar> initialUTCCalendar = () -> {
+        final Calendar calendar = Calendar.getInstance();
+        calendar.clear();
+        calendar.setTimeZone(TimeZone.getTimeZone("GMT+0:00"));
+        calendar.set(2010, 9, 10, 10, 39, 00);
+        return calendar;
+    };
 
     @Test
     public void serialize_ContainerWithLowAndHighValues_LowAndHighValuesSerialized() {
@@ -189,8 +165,7 @@ public class ContainerSeriesJSONSerializationTest {
         item.getItemProperty("somehigh").setValue(5);
         item.getItemProperty("somelow").setValue(-5);
 
-        assertEquals("{\"data\":[{\"high\":5,\"low\":-5}]}",
-                toJSON(containerSeries));
+        assertEquals("{\"data\":[{\"high\":5,\"low\":-5}]}", toJSON(containerSeries));
     }
 
     @Test
@@ -201,8 +176,7 @@ public class ContainerSeriesJSONSerializationTest {
 
         Configuration config = new Configuration();
         config.addSeries(containerSeries);
-        assertEquals("{\"type\":\"line\",\"showInLegend\":true,\"data\":[]}",
-                toJSON(containerSeries));
+        assertEquals("{\"type\":\"line\",\"showInLegend\":true,\"data\":[]}", toJSON(containerSeries));
     }
 
     @Test
@@ -214,8 +188,7 @@ public class ContainerSeriesJSONSerializationTest {
         Configuration config = new Configuration();
         config.addSeries(containerSeries);
 
-        assertEquals("{\"showInLegend\":true,\"data\":[]}",
-                toJSON(containerSeries));
+        assertEquals("{\"showInLegend\":true,\"data\":[]}", toJSON(containerSeries));
     }
 
     @Test
@@ -225,8 +198,7 @@ public class ContainerSeriesJSONSerializationTest {
         Configuration config = new Configuration();
         config.addSeries(containerSeries);
 
-        assertEquals("{\"name\":\"foo\",\"stack\":\"bar\",\"data\":[]}",
-                toJSON(containerSeries));
+        assertEquals("{\"name\":\"foo\",\"stack\":\"bar\",\"data\":[]}", toJSON(containerSeries));
     }
 
     @Test

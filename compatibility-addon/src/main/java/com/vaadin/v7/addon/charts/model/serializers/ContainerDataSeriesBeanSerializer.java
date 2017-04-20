@@ -20,8 +20,10 @@ import static com.vaadin.v7.addon.charts.model.ContainerDataSeries.HIGH_PROPERTY
 import static com.vaadin.v7.addon.charts.model.ContainerDataSeries.LOW_PROPERTY;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Objects;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
@@ -160,16 +162,19 @@ public class ContainerDataSeriesBeanSerializer extends
         return data;
     }
 
-    private void checkRequiredProperties(Container container,
-            Map<String, Object> pidMap, Object yProperty) {
-        Object highProperty = pidMap.get(HIGH_PROPERTY);
-        Object lowProperty = pidMap.get(LOW_PROPERTY);
+    private void checkRequiredProperties(Container container, Map<String, Object> pidMap, Object yProperty) {
+        final Object highProperty = pidMap.get(HIGH_PROPERTY);
+        final Object lowProperty = pidMap.get(LOW_PROPERTY);
 
-        if (!container.getContainerPropertyIds().contains(yProperty)
-                && (highProperty == null
-                        || !container.getContainerPropertyIds().contains(
-                                highProperty) || lowProperty == null || !container
-                        .getContainerPropertyIds().contains(lowProperty))) {
+        final Collection<?> containerPropertyIds = container.getContainerPropertyIds();
+
+        boolean containsYProperty = containerPropertyIds.contains(yProperty);
+        boolean containsHighProperty = containerPropertyIds.contains(highProperty);
+        boolean containsLowProperty = containerPropertyIds.contains(lowProperty);
+
+        if (!containsYProperty &&
+              (   highProperty == null || ! containsHighProperty ||
+                  lowProperty  == null || ! containsLowProperty)) {
             throw new IllegalStateException(
                     "ContainerDataSeries' container should always have a property for 'y' values or for "
                             + "both high and low values. Check ContainerDataSeries Javadoc");
@@ -177,23 +182,22 @@ public class ContainerDataSeriesBeanSerializer extends
     }
 
     private void addValue(ArrayNode data, Property<?> itemProperty) {
+        Objects.requireNonNull(itemProperty);
         Object value = itemProperty.getValue();
-        if (itemProperty != null && value != null) {
-            ValueNode node = JsonNodeFactory.instance.pojoNode(itemProperty
-                    .getValue());
+        if (value != null) {
+            ValueNode node = JsonNodeFactory.instance.pojoNode(itemProperty.getValue());
             data.add(node);
-
         }
     }
 
-    private void addNamedValue(ObjectNode data, String name,
-            Property<?> itemProperty) {
+    private void addNamedValue(ObjectNode data, String name, Property<?> itemProperty) {
+        Objects.requireNonNull(itemProperty);
+        Objects.requireNonNull(name);
+        Objects.requireNonNull(data);
         Object value = itemProperty.getValue();
-        if (itemProperty != null && value != null) {
-            ValueNode node = JsonNodeFactory.instance.pojoNode(itemProperty
-                    .getValue());
+        if (value != null) {
+            ValueNode node = JsonNodeFactory.instance.pojoNode(itemProperty.getValue());
             data.set(name, node);
-
         }
     }
 }
