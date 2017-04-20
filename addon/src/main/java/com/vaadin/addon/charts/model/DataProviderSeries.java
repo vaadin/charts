@@ -232,21 +232,6 @@ public class DataProviderSeries<T> extends AbstractSeries {
      * 
      * @return
      */
-//    public List<Map<String, Optional<Object>>> getValues() {
-//        List<Map<String, Optional<Object>>> list = dataProvider
-//            .fetch(new Query<>())
-//            .map((item) -> {
-//                Map<String, Optional<Object>> tmp = new HashMap<>();
-//                for (Map.Entry<String, Function<T, Object>> entry : chartAttributeToCallback.entrySet()) {
-//                    String key = entry.getKey();
-//                    Object value = entry.getValue().apply(item);
-//                    tmp.put(key, Optional.ofNullable(value));
-//                }
-//                return tmp;
-//
-//            }).collect(Collectors.toList());
-//        return list;
-//    }
 
     public List<Map<String, Optional<Object>>> getValues() {
 
