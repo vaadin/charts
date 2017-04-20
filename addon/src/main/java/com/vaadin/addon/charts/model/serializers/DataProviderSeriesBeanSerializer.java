@@ -4,6 +4,19 @@ import static com.vaadin.addon.charts.model.DataProviderSeries.CLOSE_PROPERTY;
 import static com.vaadin.addon.charts.model.DataProviderSeries.HIGH_PROPERTY;
 import static com.vaadin.addon.charts.model.DataProviderSeries.LOW_PROPERTY;
 import static com.vaadin.addon.charts.model.DataProviderSeries.OPEN_PROPERTY;
+import java.io.IOException;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.node.ValueNode;
+import com.vaadin.addon.charts.model.DataProviderSeries;
+import com.vaadin.addon.charts.model.PlotOptionsSeries;
 
 /*
  * #%L
@@ -21,21 +34,6 @@ import static com.vaadin.addon.charts.model.DataProviderSeries.OPEN_PROPERTY;
  * If not, see <https://vaadin.com/license/cval-3>.
  * #L%
  */
-
-import java.io.IOException;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
-import java.util.function.Consumer;
-
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.SerializerProvider;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.JsonNodeFactory;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.fasterxml.jackson.databind.node.ValueNode;
-import com.vaadin.addon.charts.model.DataProviderSeries;
-import com.vaadin.addon.charts.model.PlotOptionsSeries;
 
 /**
  * Custom bean serializer for {@link DataProviderSeries}
