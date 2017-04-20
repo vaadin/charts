@@ -86,8 +86,7 @@ public class SVGGeneratorTest {
         conf.setSubTitle("Source: Wikipedia.org");
 
         XAxis x = new XAxis();
-        x.setCategories(new String[] { "Africa", "America", "Asia", "Europe",
-                "Oceania" });
+        x.setCategories("Africa", "America", "Asia", "Europe", "Oceania");
         x.setTitle(new AxisTitle((String) null));
         conf.addxAxis(x);
 

@@ -3,12 +3,10 @@ package com.vaadin.addon.charts.model.junittests;
 import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
 import static org.junit.Assert.assertEquals;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.TimeZone;
 import java.util.function.Supplier;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.vaadin.addon.charts.model.Configuration;
@@ -153,26 +151,6 @@ public class ContainerSeriesJSONSerializationTest {
         calendar.set(2010, 9, 10, 10, 39, 00);
         return calendar;
     };
-
-    @Test @Ignore
-    public void serialize_ContainerWithNonUTCDate_DateSerializedAsUTC() {
-        containerSeries.setXPropertyId("x");
-        containerSeries.setYPropertyId("y");
-
-        vaadinContainer.addContainerProperty("x", Date.class, null);
-
-        final Date now = new Date(); // non UTC
-
-        Item ie = vaadinContainer.addItem(1);
-        ie.getItemProperty("x").setValue(now);
-        ie.getItemProperty("y").setValue(80);
-
-        final String expected = "{\"data\":[[" + now.getTime() + ",80]]}";
-        final String actual = toJSON(containerSeries);
-
-        assertEquals(expected, actual);
-
-    }
 
     @Test
     public void serialize_ContainerWithLowAndHighValues_LowAndHighValuesSerialized() {
