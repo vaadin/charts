@@ -284,11 +284,6 @@
 			<version>1.4</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.rapidpm</groupId>
-			<artifactId>rapidpm-functional-reactive</artifactId>
-		</dependency>
-
 		<!-- Testing -->
 		<dependency>
 			<groupId>junit</groupId>
