@@ -343,8 +343,6 @@ public class ChartDataSeriesJSONSerializationTest {
         final DataProviderSeries<TestItem> dataProviderSeries = pair.getT2();
 
         dataProviderSeries.setY(TestItem::getY);
-        //dataProviderSeries.setPlotOptions(plotOptions);
-        dataProviderSeries.setY(TestItem::getY);
         dataProviderSeries.setName("foo");
         dataProviderSeries.setStack("bar");
         Configuration config = new Configuration();
