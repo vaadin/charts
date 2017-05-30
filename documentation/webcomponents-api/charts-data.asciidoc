@@ -220,7 +220,7 @@ item from a series use [methodname]#remove()# of a [classname]#Point# class.
   </template>
   <script>
     class AddUpdateExample extends Polymer.Element {
-      static get is() { return 'add-update-example' }
+      static get is() { return 'add-update-example'; }
 
       static get properties() {
         return {
