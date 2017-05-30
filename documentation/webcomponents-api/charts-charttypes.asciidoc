@@ -358,56 +358,61 @@ of a scatter chart where 300 random points in the unit circle is shown.
 
 [source,html]
 ----
-<template id="scatterExample" is="dom-bind">
-  <div style="width:450px;height:400px">
-  <vaadin-scatter-chart>
-    <chart-title>Random Sphere</chart-title>
-    <legend>
-      <enabled>false</enabled>
-    </legend>
-    <y-axis>
-      <chart-title>Y</chart-title>
-      <min>-1</min>
-      <max>1</max>
-    </y-axis>
-    <x-axis>
-      <grid-line-width>1</grid-line-width>
-      <chart-title>X</chart-title>
-      <min>-1</min>
-      <max>1</max>
-    </x-axis>
-    <data-series name="Data" data="[[sphereData]]">
-    </data-series>
-  </vaadin-scatter-chart>
-  </div>
-</template>
+<dom-bind id="scatterExample">
+  <template>
+    <div style="width:450px;height:400px">
+      <vaadin-scatter-chart>
+        <chart-title>Random Sphere</chart-title>
+        <legend>
+          <enabled>false</enabled>
+        </legend>
+        <y-axis>
+          <chart-title>Y</chart-title>
+          <min>-1</min>
+          <max>1</max>
+        </y-axis>
+        <x-axis>
+          <grid-line-width>1</grid-line-width>
+          <chart-title>X</chart-title>
+          <min>-1</min>
+          <max>1</max>
+        </x-axis>
+        <data-series name="Data" data="[[sphereData]]">
+        </data-series>
+      </vaadin-scatter-chart>
+    </div>
+  </template>
+</dom-bind>
 <script>
-  var scatter = document.querySelector('#scatterExample');
-  scatter.addEventListener('dom-change', function() {
-      data = [];
-      for (i=0; i<300; i++) {
-          data.push(createRandomPoint());
-      }
-      scatter.sphereData = data;
+  (function () {
 
-      function createRandomPoint() {
-          lng = Math.random() * 2 * Math.PI;
-          lat = Math.random() * Math.PI - Math.PI/2;
-          z = Math.cos(lng) * Math.cos(lat);
-          colorLevel = parseInt(Math.round((1-z)*127));
+    const scatter = document.querySelector('#scatterExample');
 
-          return {x: Math.cos(lat) * Math.sin(lng),
-                  y: Math.sin(lat),
-                  marker: {
-                    fillColor: "rgb("+(255-colorLevel)+",0,"+colorLevel+")",
-                    radius: (z+1)*5,
-                    lineWidth: 1,
-                    lineColor: "black",
-                    symbol: Math.random() > 0.9 ? "diamond" : "circle"
-                  }
-          };
-      }
-  });
+    let data = [];
+    for (i = 0; i < 300; i++) {
+      data.push(createRandomPoint());
+    }
+    scatter.sphereData = data;
+
+    function createRandomPoint() {
+      const lng = Math.random() * 2 * Math.PI;
+      const lat = Math.random() * Math.PI - Math.PI / 2;
+      const z = Math.cos(lng) * Math.cos(lat);
+      const colorLevel = parseInt(Math.round((1 - z) * 127));
+
+      return {
+        x: Math.cos(lat) * Math.sin(lng),
+        y: Math.sin(lat),
+        marker: {
+          fillColor: "rgb(" + (255 - colorLevel) + ",0," + colorLevel + ")",
+          radius: (z + 1) * 5,
+          lineWidth: 1,
+          lineColor: "black",
+          symbol: Math.random() > 0.9 ? "diamond" : "circle"
+        }
+      };
+    }
+  })();
 </script>
 ----
 
@@ -1093,6 +1098,7 @@ Here is an example.
           ['Eaten', 50]
       </data>
   </data-series>
+</vaadin-funnel-chart>
 ----
 
 endif::web[]
@@ -1635,9 +1641,10 @@ with a date and the open, highest, lowest, and close price on that date.
         </vaadin-ohlc-chart>
     </template>
     <script>
-        Polymer({
-            is: 'ohlc-example'
-        });
+      class OhlcExample extends Polymer.Element {
+        static get is() { return 'ohlc-example'; }
+      }
+      customElements.define(OhlcExample.is, OhlcExample);
     </script>
 </dom-module>
 <ohlc-example></ohlc-example>
