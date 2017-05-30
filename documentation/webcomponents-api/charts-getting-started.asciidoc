@@ -227,11 +227,20 @@ Those files will mimic our REST service to fetch the weather data.
 Next, we create a new web component named `weather-chart` that wraps the Charts component and makes REST calls to fetch the data.
 First, let us do it so that it only wraps the `vaadin-line-chart` component.
 
-You can make it as follows:
+First, create a new file [filename]#weather-chart.html# and add the following:
+
+[source, html]
+----
+<link rel="import" href="bower_components/polymer/polymer-element.html">
+<link rel="import" href="bower_components/vaadin-charts/vaadin-line-chart.html">
+----
+
+These are the dependencies required for our new web-component.
+
+Then, let's add the component declaration:
 
 [source,html]
 ----
-<weather-chart></weather-chart>
 <dom-module id="weather-chart">
   <template>
     <vaadin-line-chart>
@@ -246,17 +255,31 @@ You can make it as follows:
       </data-series>
     </vaadin-line-chart>
   </template>
-  <script>
-    Polymer({
-      is: 'weather-chart'
-    });
-  </script>
+    class WeatherChart extends Polymer.Element {
+      static get is() { return 'weather-chart' }
+    }
+
+    customElements.define(WeatherChart.is, WeatherChart);
 </dom-module>
+----
+
+Then, at [filename]#index.html# we should import our newly created component, so let us add it inside `<head>`:
+
+[source,html]
+----
+<link rel="import" href="weather-chart.html">
+----
+
+Then, add a `<weather-chart>` element after `<vaadin-line-chart>`:
+
+[source, html]
+----
+<weather-chart></weather-chart>
 ----
 
 Next, we want to call the REST service to fetch the data and bind that to the chart.
 We use the `iron-ajax` component to make the request.
-Add the following inside the `<template>` element next to the `<vaadin-line-chart>`.
+Back to [filename]#weather-chart.html#, add the following inside the `<template>` element next to the `<vaadin-line-chart>`.
 
 [source,html]
 ----
@@ -275,17 +298,22 @@ These can be done by modifying the [classname]#Polymer# object in a `<script>` e
 [source,html]
 ----
 <script>
-  Polymer({
-    is: 'weather-chart',
-    properties: {
-      temperatureData: Object
-    },
-    attached: function() {
-      this.async(function() {
-        this.$.temperatureFetcher.generateRequest();
-      }, 2);
+  class WeatherChart extends Polymer.Element {
+    static get is() { return 'weather-chart' }
+
+    static get properties() {
+      return {
+        temperatureData: Object,
+      }
     }
-  });
+
+    connectedCallback() {
+      super.connectedCallback();
+      this.$.temperatureFetcher.generateRequest();
+    }
+  }
+
+  customElements.define(WeatherChart.is, WeatherChart);
 </script>
 ----
 
@@ -321,12 +349,24 @@ Then, make sure that the request will be made.
 
 [source,javascript]
 ----
-attached: function() {
-  this.async(function() {
+class WeatherChart extends Polymer.Element {
+  static get is() { return 'weather-chart' }
+
+  static get properties() {
+    return {
+      temperatureData: Object,
+      humidityData: Object,
+    }
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
     this.$.temperatureFetcher.generateRequest();
     this.$.humidityFetcher.generateRequest();
-  }, 2);
+  }
 }
+
+customElements.define(WeatherChart.is, WeatherChart);
 ----
 
 Finally, create a `<data-series>` element for humidity.
