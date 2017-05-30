@@ -75,17 +75,19 @@ Please, see more details about these in the Polymer
 ----
 <body>
   <button id="add" onclick="addSeries()">Add point</button>
-  <template id="t" is="dom-bind">
-    <vaadin-line-chart id="mainchart">
-       <data-series name="Total Reindeer Population" data="[[mySeriesData]]">
-            <color>red</color>
-      </data-series>
+  <dom-bind id="t">
+    <template>
+      <vaadin-line-chart id="mainchart">
+        <data-series name="Total Reindeer Population" data="[[mySeriesData]]">
+          <color>red</color>
+        </data-series>
 
-      <plot-options>
-        <series point-interval="1" point-start="1959">  </series>
-      </plot-options>
-    </vaadin-line-chart>
-  </template>
+        <plot-options>
+          <series point-interval="1" point-start="1959"> </series>
+        </plot-options>
+      </vaadin-line-chart>
+    </template>
+  </dom-bind>
 
   <script>
     var t = document.querySelector('#t');
@@ -143,24 +145,26 @@ The configuration options are described in
 
 [source,javascript]
 ----
- properties: {
-   mySeriesData: {
-     type: Array,
-     value:
-      [
-      181091,
-      {y:188105,
-        marker: {
-          symbol: 'square',
-          fillColor: "green",
-          radius: 10
-        }
-      },
-      201485,
-      188136
-      ]
-   }
- }
+  static get properties() {
+   return {
+    mySeriesData: {
+      type: Array,
+      value:
+        [
+        181091,
+        {y:188105,
+          marker: {
+            symbol: 'square',
+            fillColor: "green",
+            radius: 10
+          }
+        },
+        201485,
+        188136
+        ]
+    }
+   };
+  }
 ----
 
 [[charts.data.dataseries.add]]
@@ -173,19 +177,25 @@ the chart data series.
 [source,javascript]
 ----
 <script>
-      Polymer({
-          is: 'example1-chart',
-          properties: {
-            mySeriesData: {
-              type: Array,
-              value: [181091, 201485, 188105,188136]
-            }
-          },
-          _addSeriesPoint: function () {
-              var y = Math.floor((Math.random() * 100000));
-              this.push('mySeriesData', y);
-          }
-      });
+  class Example1Chart extends Polymer.Element {
+    static get is() { return 'example1-chart'; }
+
+    static get properties() {
+      return {
+        'mySeriesData': {
+          type: Array,
+          value: [181091, 201485, 188105, 188136]
+        }        
+      };
+    }
+
+    _addSeriesPoint() {
+      const y = Math.floor((Math.random() * 100000));
+      this.push('mySeriesData', y);
+    }
+  }
+
+  customElements.define(Example1Chart.is, Example1Chart);
 </script>
 ----
 
@@ -197,40 +207,46 @@ item from a series use [methodname]#remove()# of a [classname]#Point# class.
 [source,html]
 ----
 <dom-module id="add-update-example">
-     <template>
-         <button id="add" on-click="_addSeries">
-          Add point
-         </button>
+  <template>
+    <button id="add" on-click="_addSeries">
+      Add point
+    </button>
 
-         <vaadin-line-chart id="mainchart"
-          on-point-click="pointClickListener">
-            <data-series data="[[mySeriesData]]">
-                 <color>red</color>
-           </data-series>
-         </vaadin-line-chart>
-     </template>
-     <script>
-      Polymer({
-        is: 'add-update-example',
-        properties: {
+    <vaadin-line-chart id="mainchart" on-point-click="pointClickListener">
+      <data-series data="[[mySeriesData]]">
+        <color>red</color>
+      </data-series>
+    </vaadin-line-chart>
+  </template>
+  <script>
+    class AddUpdateExample extends Polymer.Element {
+      static get is() { return 'add-update-example' }
+
+      static get properties() {
+        return {
           mySeriesData: {
             type: Array,
             value: [181091, 201485, 188105, 188136]
           }
-        },
-        pointClickListener: function (e) {
-          if (e.detail.point.series.data.length > 1) {
-            e.detail.point.remove();
-            // Use udpate method instead of remove to update
-            //e.detail.point.update(400000);
-          }
-        },
-        _addSeries: function () {
-          var y = Math.floor((Math.random() * 100000));
-          this.$.mainchart.chart.series[0].addPoint(y);
-        },
-      });
-     </script>
+        };
+      }
+
+      pointClickListener (e) {
+        if (e.detail.point.series.data.length > 1) {
+          e.detail.point.remove();
+          // Use udpate method instead of remove to update
+          //e.detail.point.update(400000);
+        }
+      }
+
+      _addSeries () {
+        const y = Math.floor((Math.random() * 100000));
+        this.$.mainchart.chart.series[0].addPoint(y);
+      }
+    }
+
+    customElements.define(AddUpdateExample.is, AddUpdateExample);
+  </script>
 </dom-module>
 ----
 
@@ -266,38 +282,42 @@ Afterwards you need to assign the table id as an attribute to a data tag.
 [source,html]
 ----
 <dom-module id="html-table">
-    <template>
-      <vaadin-line-chart id="html-table-data">
-        <data table="datatable">
-        </data>
-        <y-axis allow-decimals="false">
-            <chart-title>Units</chart-title>
-        </y-axis>
-    </vaadin-line-chart>
+  <template>
+    <vaadin-line-chart id="html-table-data">
+      <data>
+        <table>
+            <thead>
+            <tr>
+                <th></th>
+                <th>Ford Avg price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th>19551</th>
+                <td>2272</td>
+            </tr>
+            <tr>
+                <th>1956</th>
+                <td>2450</td>
+            </tr>
+            </tbody>
+        </table>
+      </data>
+      <y-axis allow-decimals="false">
+          <chart-title>Units</chart-title>
+      </y-axis>
+  </vaadin-line-chart>
 
-    <table id="datatable">
-        <thead>
-        <tr>
-            <th></th>
-            <th>Ford Avg price</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <th>1955</th>
-            <td>2272</td>
-        </tr>
-        <tr>
-            <th>1956</th>
-            <td>2450</td>
-        </tr>
-        </tbody>
-    </table>
-    </template>
+  </template>
 
-    <script>
-          Polymer({});
-    </script>
+  <script>
+    class HtmlTable extends Polymer.Element {
+      static get is() { return 'html-table'; }
+    }
+    
+    customElements.define(HtmlTable.is, HtmlTable);
+  </script>
 </dom-module>
 ----
 
