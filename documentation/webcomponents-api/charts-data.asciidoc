@@ -68,7 +68,7 @@ You can also add new points to a chart, by adding new items to a Data object. Da
 should be bound to a element property by using either one-way binding
 or automatic binding.
 Please, see more details about these in the Polymer
- https://www.polymer-project.org/1.0/docs/devguide/data-binding.html[Data binding]
+ https://www.polymer-project.org/2.0/docs/devguide/data-binding.html[Data binding]
  documentation.
 
 [source,html]
