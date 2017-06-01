@@ -237,7 +237,7 @@ First, create a new file [filename]#weather-chart.html# and add the following:
 
 These are the dependencies required for our new web-component.
 
-Then, let's add the component declaration:
+Then, let us add the component declaration:
 
 [source,html]
 ----
