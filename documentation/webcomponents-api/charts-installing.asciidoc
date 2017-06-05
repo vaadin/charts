@@ -15,7 +15,7 @@ If you are using http://bower.io[Bower] for managing your front-end dependencies
 
 [subs="normal"]
 ----
-[prompt]#$# [command]#bower# install --save vaadin-charts#[replaceable]#5.x.x#
+[prompt]#$# [command]#bower# install --save vaadin-charts#[replaceable]#3.x.x#
 ----
 
 Replace the version number with the most current one.
@@ -39,7 +39,7 @@ For an example, the following is how you could load `vaadin-line-chart` in the `
 [source, html]
 ----
 <link rel="import"
-      href="https://cdn.vaadin.com/vaadin-charts/5.0.0/vaadin-line-chart.html">
+      href="https://cdn.vaadin.com/vaadin-charts/3.2.0/vaadin-line-chart.html">
 ----
 
 Again, notice to specify the correct version number for Charts.
