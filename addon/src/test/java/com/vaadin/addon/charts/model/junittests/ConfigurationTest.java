@@ -125,7 +125,7 @@ public class ConfigurationTest {
         conf.getChart().setType(ChartType.AREA);
 
         XAxis xAxis = new XAxis();
-        xAxis.setCategories("A", "B", "C", "D", "E");
+        xAxis.setCategories(new String[] { "A", "B", "C", "D", "E" });
         conf.addxAxis(xAxis);
         YAxis yAxis = new YAxis();
         AxisTitle title = new AxisTitle();
@@ -133,7 +133,7 @@ public class ConfigurationTest {
         yAxis.setTitle(title);
         conf.addyAxis(yAxis);
 
-        DataProviderSeries<Pair> ds = new DataProviderSeries<>(createDataProvider());
+        DataProviderSeries<Pair> ds = new DataProviderSeries(createDataProvider());
 
 
         ds.setName("Test Series1");
