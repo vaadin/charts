@@ -9,7 +9,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -133,7 +132,7 @@ public class ChartDesignWriter implements Serializable {
     }
 
     private static String formatNumber(Number value) {
-        return NumberFormat.getInstance(Locale.US).format(value);
+        return NumberFormat.getInstance().format(value);
     }
 
     private static void writeAttribute(

@@ -18,7 +18,7 @@ public class StopJSONSerializationTest {
         Stop stop1 = new Stop(0.1f, SolidColor.GREEN);
         Stop stop2 = new Stop(0.5f, SolidColor.YELLOW);
         Stop stop3 = new Stop(0.9f, SolidColor.RED);
-        yaxis.setStops(stop1, stop2, stop3);
+        yaxis.setStops(new Stop[] { stop1, stop2, stop3 });
 
         // stops array should look like this
         // stops: [
