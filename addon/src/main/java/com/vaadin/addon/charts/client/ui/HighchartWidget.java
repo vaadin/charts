@@ -205,6 +205,10 @@ public class HighchartWidget extends Widget {
     }
 
     public int getNumberOfSeries() {
-        return jsOverlay.getSeries().length();
+        if (jsOverlay.getSeries() != null) {
+            return jsOverlay.getSeries().length();
+        } else {
+            return 0;
+        }
     }
 }

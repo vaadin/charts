@@ -484,7 +484,7 @@ public class ChartConnector extends AbstractComponentConnector implements Deferr
         super.onUnregister();
     }
 
-    public static class ChartsRenderingObserver {
+    public class ChartsRenderingObserver {
 
         private int numberOfSeries;
         private int numberOfRenderedSeries;
@@ -521,6 +521,9 @@ public class ChartConnector extends AbstractComponentConnector implements Deferr
         }
 
         public boolean isWorkPending() {
+            if(getWidget().getNumberOfSeries()==0) {
+                seriesAndDataLabelsRendered = true;
+            }
             return !loaded || !seriesAndDataLabelsRendered;
         }
 

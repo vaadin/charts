@@ -1,6 +1,5 @@
 package com.vaadin.addon.charts.testbenchtests;
 
-import com.vaadin.testbench.parallel.Browser;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -29,7 +28,7 @@ public class PieChartTBTest extends AbstractSimpleScreenShotTestBenchTest {
 
         WebElement firstSeriesPoint = driver.findElement(By
                 .cssSelector(".highcharts-series > path"));
-        Action click = new Actions(driver).moveToElement(firstSeriesPoint)
+        Action click = new Actions(driver).moveToElement(firstSeriesPoint, 0,0)
             .click().build();
 
         click.perform();

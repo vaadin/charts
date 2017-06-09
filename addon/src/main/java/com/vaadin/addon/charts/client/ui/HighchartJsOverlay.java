@@ -57,7 +57,12 @@ public class HighchartJsOverlay extends JavaScriptObject {
 
     public final native JsArray<HighchartSeries> getSeries()
     /*-{
-        return this.series;
+        if(this) {
+            return this.series;
+        } else{
+            return [];
+        }
+
     }-*/;
 
     public final native JsArray<HighchartAxis> getxAxes()
