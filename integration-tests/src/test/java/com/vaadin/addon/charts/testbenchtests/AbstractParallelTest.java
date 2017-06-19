@@ -12,9 +12,10 @@ import java.util.Enumeration;
 import java.util.List;
 
 import org.junit.Assume;
-import org.junit.Rule;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -32,8 +33,6 @@ import com.vaadin.testbench.parallel.setup.SetupDriver;
 @BrowserFactory(ChartsBrowserFactory.class)
 public abstract class AbstractParallelTest extends ParallelTest {
 
-    @Rule
-    public RetryRule rule = new RetryRule(2);
 
     protected int TESTPORT;
     protected String BASEURL = getTestBaseUrl();
@@ -91,11 +90,17 @@ public abstract class AbstractParallelTest extends ParallelTest {
      * necessary in the cases where the test grid is overloaded.
      */
     protected void waitUntilChartRendered() {
-        new WebDriverWait(driver, 90).until(
-            ExpectedConditions
-                .presenceOfElementLocated(
-                    com.vaadin.testbench.By.className("highcharts-container")));
+        waitForElementPresent(By.className("highcharts-container"), 90);
         getCommandExecutor().waitForVaadin();
+    }
+
+    protected void waitForElementPresent(By locator, int timeout) {
+        waitUntil(ExpectedConditions.presenceOfElementLocated(locator),
+                timeout);
+    }
+
+    protected void waitUntil(ExpectedCondition<?> condition, int timeout) {
+        new WebDriverWait(getDriver(), timeout).until(condition);
     }
 
     private boolean getBooleanProperty(String key) {
