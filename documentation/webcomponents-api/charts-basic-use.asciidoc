@@ -385,64 +385,69 @@ ifdef::web[]
 To add a bit more 3D effect, you can do some tricks, such as calculate the
 distance of the data points from a viewpoint and set the marker size and color
 according to the distance. To add custom JavaScript to do this,
-https://www.polymer-project.org/1.0/docs/devguide/templates.html#dom-bind[dom-bind]
+https://www.polymer-project.org/2.0/docs/devguide/templates.html#dom-bind[dom-bind]
 element can be used. More information about binding data to a chart can be found
 <<dummy/../../../charts/webcomponents-api/charts-data#charts.data,"here">>.
 
 [source,html]
 ----
-<template id="fade" is="dom-bind">
-  ...
-  <vaadin-scatter-chart id="fadeChart">
+<dom-bind id="fade">
+  <template>
     ...
-    <data-series name="Data" data="[[distanceFadeData]]">
-    </data-series>
-  </vaadin-scatter-chart>
-</template>
+    <vaadin-scatter-chart id="fadeChart">
+      ...
+      <data-series name="Data" data="[[distanceFadeData]]">
+      </data-series>
+    </vaadin-scatter-chart>
+  </template>
+</dom-bind>
 <script>
-  var fade = document.querySelector('#fade');
-  fade.addEventListener('dom-change', function() {
-        var viewX = 0; var viewY = 0; var viewZ = 0;
-        calculateViewPoint();
+  (function () {
+    var fade = document.querySelector('#fade');
+    var viewX = 0; var viewY = 0; var viewZ = 0;
+    
+    calculateViewPoint();
 
-        fade.distanceFadeData =  [createPoint(0.0, 0.0, 0.0),
-                                  createPoint(1.0, 0.0, 0.0),
-                                  createPoint(0.0, 1.0, 0.0),
-                                  createPoint(0.0, 0.0, 1.0),
-                                  createPoint(-1.0, 0.0, 0.0),
-                                  createPoint(0.0, -1.0, 0.0),
-                                  createPoint(0.0, 0.0, -1.0)];
+    fade.distanceFadeData =  [createPoint(0.0, 0.0, 0.0),
+                                createPoint(1.0, 0.0, 0.0),
+                                createPoint(0.0, 1.0, 0.0),
+                                createPoint(0.0, 0.0, 1.0),
+                                createPoint(-1.0, 0.0, 0.0),
+                                createPoint(0.0, -1.0, 0.0),
+                                createPoint(0.0, 0.0, -1.0)];
 
-        function calculateViewPoint() {
-          var viewDist = 2;
-          var fadeChart = document.querySelector('#fadeChart');
-          var alpha = fadeChart.chart.options.chart.options3d.alpha;
-          var beta = fadeChart.chart.options.chart.options3d.beta;
-          var theta = alpha * Math.PI / 180;
-          var phi = beta * Math.PI / 180;
-          viewX = viewDist * Math.sin(theta) * Math.cos(phi);
-          viewY = viewDist * Math.sin(theta) * Math.sin(phi);
-          viewZ = - viewDist * Math.cos(theta);
-        }
+    function calculateViewPoint() {
+      var viewDist = 2;
+      var fadeChart = fade.$.fadeChart;
+      var alpha = fadeChart.chart.options.chart.options3d.alpha;
+      var beta = fadeChart.chart.options.chart.options3d.beta;
+      var theta = alpha * Math.PI / 180;
+      var phi = beta * Math.PI / 180;
+      viewX = viewDist * Math.sin(theta) * Math.cos(phi);
+      viewY = viewDist * Math.sin(theta) * Math.sin(phi);
+      viewZ = - viewDist * Math.cos(theta);
+    }
 
-        function createPoint(x, y, z) {
-            var distance = calculateDistance(x,y,z);
-            var grayness = parseInt(distance*75);
-            return {x: x, y: y, z: z,
-                    radius: 1+ 10/distance,
-                    color: createColor(grayness)};
-        }
+    function createPoint(x, y, z) {
+      var distance = calculateDistance(x, y, z);
+      var grayness = parseInt(distance * 75);
+      return {
+        x: x, y: y, z: z,
+        radius: 1 + 10 / distance,
+        color: createColor(grayness)
+      };
+    }
 
-        function createColor(color) {
-            return "rgb("+color+","+color+","+color+")";
-        }
+    function createColor(color) {
+      return "rgb(" + color + "," + color + "," + color + ")";
+    }
 
-        function calculateDistance(x, y, z) {
-            return Math.sqrt(Math.pow(viewX - x, 2) +
-                             Math.pow(viewY - y, 2) +
-                             Math.pow(viewZ - z, 2));
-        }
-  });
+    function calculateDistance(x, y, z) {
+      return Math.sqrt(Math.pow(viewX - x, 2) +
+        Math.pow(viewY - y, 2) +
+        Math.pow(viewZ - z, 2));
+    }
+  })();
 </script>
 ----
 
@@ -456,3 +461,39 @@ effect, the result is shown in <<figure.charts.basic-use.3d.fade>>.
 image::img/charts-3d-fade.png[]
 
 endif::web[]
+
+[[charts.basic-use.es6-transpile]]
+== Internet Explorer 11 & Safari 9 support
+
+Vaadin Charts is using Polymer 2 and ES6. To support IE11 and Safari 9 you need to transpile ES6 to ES5.
+The easiest way to do that, is using link:https://www.polymer-project.org/2.0/docs/tools/polymer-cli#build[Polymer CLI].
+Add a build configuration to your link:https://www.polymer-project.org/2.0/docs/tools/polymer-json[polymer.json]:
+
+[source, html]
+----
+  "builds": [{
+    "name": "my-app",
+    "js": {"minify": true, "compile": true},
+    "css": {"minify": true},
+    "html": {"minify": true}
+  }]
+----
+Running [command]`polymer build` in you application folder will create a transpiled version of your application.
+Your application will be transpiled and saved in build folder.
+
+Another option to transpile ES6 to ES5 is to use link:https://babeljs.io/[Babel].
+
+[[charts.basic-use.known-issues]]
+== Known Issues
+
+- Because non-chrome browsers need to load a polyfill, you can see flickering, before definition of the web component comes in.
+You can suspend rendering the component before it is ready by adding the `unresolved` attribute in body:
+
+[source, html]
+----
+  <body unresolved>
+   //Your code here
+  </body>
+----
+
+- There is a memory leak problem with Internet Explorer 11 and Polymer 2, see details link:https://github.com/Polymer/polymer/issues/3430[here].

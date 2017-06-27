@@ -3,14 +3,11 @@ package com.vaadin.addon.charts.testbenchtests;
 import java.io.IOException;
 
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
 import com.vaadin.addon.charts.examples.columnandbar.ColumnWithNativeLazyDrilldown;
-import com.vaadin.testbench.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ColumnWithNativeLazyDrilldownTBTest extends AbstractParallelTest {
 
@@ -23,8 +20,7 @@ public class ColumnWithNativeLazyDrilldownTBTest extends AbstractParallelTest {
     public void test() throws IOException, AssertionError {
         driver.get(getTestUrl());
 
-        new WebDriverWait(driver, 120).until(ExpectedConditions
-                .presenceOfElementLocated(By.id("chart")));
+        waitForElementPresent(By.id("chart"), 120);
         waitForVaadin();
         captureAndCompare("before");
 
