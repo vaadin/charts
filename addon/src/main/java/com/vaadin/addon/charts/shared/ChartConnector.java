@@ -526,6 +526,9 @@ public class ChartConnector extends AbstractComponentConnector implements Deferr
 
         public void setNumberOfSeries(int numberOfSeries) {
             this.numberOfSeries = numberOfSeries;
+            if (numberOfSeries == 0) {
+                seriesAndDataLabelsRendered = true;
+            }
         }
     }
 
