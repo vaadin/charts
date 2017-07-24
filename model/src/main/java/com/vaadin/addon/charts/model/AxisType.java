@@ -1,12 +1,10 @@
 package com.vaadin.addon.charts.model;
 
-import java.util.Date;
-
 /*
  * #%L
  * Vaadin Charts
  * %%
- * Copyright (C) 2014 Vaadin Ltd
+ * Copyright (C) 2012 - 2017 Vaadin Ltd
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
@@ -18,6 +16,9 @@ import java.util.Date;
  * If not, see <https://vaadin.com/license/cval-3>.
  * #L%
  */
+
+import java.util.Date;
+
 
 /**
  * Enum representing different axis types. Can be one of LINEAR, LOGARITHMIC,
