@@ -65,11 +65,7 @@ public class Pane extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * An object, or array of objects, for backgrounds. Sub options include
-	 * <code>backgroundColor</code> (can be solid or gradient),
-	 * <code>shape</code> ("solid" or "arc"), <code>innerWidth</code>,
-	 * <code>outerWidth</code>, <code>borderWidth</code>,
-	 * <code>borderColor</code>.
+	 * An object, or array of objects, for backgrounds.
 	 */
 	public void setBackground(Background... background) {
 		this.background = new ArrayList<Background>(Arrays.asList(background));

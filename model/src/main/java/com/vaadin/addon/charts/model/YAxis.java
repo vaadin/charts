@@ -38,6 +38,7 @@ public class YAxis extends Axis {
 
 	private Boolean allowDecimals;
 	private Color alternateGridColor;
+	private Number angle;
 	private Breaks[] breaks;
 	private ArrayList<String> categories;
 	private Number ceiling;
@@ -69,6 +70,7 @@ public class YAxis extends Axis {
 	private Number minorTickLength;
 	private TickPosition minorTickPosition;
 	private Number minorTickWidth;
+	private Boolean nameToX;
 	private Number offset;
 	private Boolean opposite;
 	private ArrayList<PlotBand> plotBands;
@@ -138,6 +140,24 @@ public class YAxis extends Axis {
 	 */
 	public void setAlternateGridColor(Color alternateGridColor) {
 		this.alternateGridColor = alternateGridColor;
+	}
+
+	/**
+	 * @see #setAngle(Number)
+	 */
+	public Number getAngle() {
+		return angle;
+	}
+
+	/**
+	 * In a polar chart, this is the angle of the Y axis in degrees, where 0 is
+	 * up and 90 is right. The angle determines the position of the axis line
+	 * and the labels, though the coordinate system is unaffected.
+	 * <p>
+	 * Defaults to: 0
+	 */
+	public void setAngle(Number angle) {
+		this.angle = angle;
 	}
 
 	/**
@@ -758,6 +778,28 @@ public class YAxis extends Axis {
 	 */
 	public void setMinorTickWidth(Number minorTickWidth) {
 		this.minorTickWidth = minorTickWidth;
+	}
+
+	/**
+	 * @see #setNameToX(Boolean)
+	 */
+	public Boolean getNameToX() {
+		return nameToX;
+	}
+
+	/**
+	 * Applies only when the axis <code>type</code> is <code>category</code>.
+	 * When <code>nameToX</code> is true, points are placed on the X axis
+	 * according to their names. If the same point name is repeated in the same
+	 * or another series, the point is placed on the same X position as other
+	 * points of the same name. When <code>nameToX</code> is false, the points
+	 * are laid out in increasing X positions regardless of their names, and the
+	 * X axis category will take the name of the last point in each position.
+	 * <p>
+	 * Defaults to: true
+	 */
+	public void setNameToX(Boolean nameToX) {
+		this.nameToX = nameToX;
 	}
 
 	/**

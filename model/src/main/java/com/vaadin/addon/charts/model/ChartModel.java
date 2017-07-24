@@ -76,11 +76,17 @@ public class ChartModel extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * <p>
 	 * When using multiple axis, the ticks of two or more opposite axes will
 	 * automatically be aligned by adding ticks to the axis or axes with the
-	 * least ticks. This can be prevented by setting <code>alignTicks</code> to
-	 * false. If the grid lines look messy, it's a good idea to hide them for
-	 * the secondary axis by setting <code>gridLineWidth</code> to 0.
+	 * least ticks, as if <code>tickAmount</code> were specified.
+	 * </p>
+	 * 
+	 * <p>
+	 * This can be prevented by setting <code>alignTicks</code> to false. If the
+	 * grid lines look messy, it's a good idea to hide them for the secondary
+	 * axis by setting <code>gridLineWidth</code> to 0.
+	 * </p>
 	 * <p>
 	 * Defaults to: true
 	 */

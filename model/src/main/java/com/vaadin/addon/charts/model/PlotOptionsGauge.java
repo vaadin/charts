@@ -47,8 +47,6 @@ public class PlotOptionsGauge extends GaugeOptions {
 	private SeriesTooltip tooltip;
 	private Boolean visible;
 	private Boolean wrap;
-	private String zoneAxis;
-	private ArrayList<Zones> zones;
 
 	public PlotOptionsGauge() {
 	}
@@ -476,67 +474,5 @@ public class PlotOptionsGauge extends GaugeOptions {
 	 */
 	public void setWrap(Boolean wrap) {
 		this.wrap = wrap;
-	}
-
-	/**
-	 * @see #setZoneAxis(String)
-	 */
-	public String getZoneAxis() {
-		return zoneAxis;
-	}
-
-	/**
-	 * Defines the Axis on which the zones are applied.
-	 * <p>
-	 * Defaults to: y
-	 */
-	public void setZoneAxis(String zoneAxis) {
-		this.zoneAxis = zoneAxis;
-	}
-
-	/**
-	 * @see #setZones(Zones...)
-	 */
-	public Zones[] getZones() {
-		if (zones == null) {
-			return new Zones[]{};
-		}
-		Zones[] arr = new Zones[zones.size()];
-		zones.toArray(arr);
-		return arr;
-	}
-
-	/**
-	 * An array defining zones within a series. Zones can be applied to the X
-	 * axis, Y axis or Z axis for bubbles, according to the
-	 * <code>zoneAxis</code> option.
-	 */
-	public void setZones(Zones... zones) {
-		this.zones = new ArrayList<Zones>(Arrays.asList(zones));
-	}
-
-	/**
-	 * Adds zone to the zones array
-	 * 
-	 * @param zone
-	 *            to add
-	 * @see #setZones(Zones...)
-	 */
-	public void addZone(Zones zone) {
-		if (this.zones == null) {
-			this.zones = new ArrayList<Zones>();
-		}
-		this.zones.add(zone);
-	}
-
-	/**
-	 * Removes first occurrence of zone in zones array
-	 * 
-	 * @param zone
-	 *            to remove
-	 * @see #setZones(Zones...)
-	 */
-	public void removeZone(Zones zone) {
-		this.zones.remove(zone);
 	}
 }

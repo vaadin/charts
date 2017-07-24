@@ -851,10 +851,9 @@ public class PlotOptionsCandlestick extends OhlcOptions {
 	}
 
 	/**
-	 * The fill color of the candlestick when values are rising. Defaults to
-	 * <code>"white"</code>.
+	 * The fill color of the candlestick when values are rising.
 	 * <p>
-	 * Defaults to: "white"
+	 * Defaults to: white
 	 */
 	public void setUpColor(Color upColor) {
 		this.upColor = upColor;

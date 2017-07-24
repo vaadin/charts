@@ -146,26 +146,9 @@ public class RangeSelector extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * An array of configuration objects for the buttons. The individual options
-	 * for each item are:
-	 * 
-	 * <dl>
-	 * <dt><code>type</code></dt>
-	 * <dd>Defines the timespan, can be one of 'millisecond', 'second',
-	 * 'minute', 'day', 'week', 'month', 'ytd' (year to date), 'year' and 'all'.
-	 * </dd>
-	 * 
-	 * <dt><code>count</code></dt>
-	 * <dd>Defines how many units of the defined type to use.</dd>
-	 * 
-	 * <dt><code>dataGrouping</code></dt>
-	 * <dd>A custom data grouping definition for the button.</dd>
-	 * 
-	 * <dt><code>text</code></dt>
-	 * <dd>The text for the button itself</dd>
-	 * 
-	 * </dl>
-	 * 
+	 * <p>
+	 * An array of configuration objects for the buttons.
+	 * </p>
 	 * 
 	 * Defaults to
 	 * 

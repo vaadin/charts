@@ -130,8 +130,9 @@ public class Label extends AbstractConfigurationObject {
 
 	/**
 	 * <p>
-	 * Whether to <a href="http://docs.highcharts.com/#formatting$html">use
-	 * HTML</a> to render the labels.
+	 * Whether to <a href=
+	 * "http://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#html"
+	 * >use HTML</a> to render the labels.
 	 * <p>
 	 * Defaults to: false
 	 */
