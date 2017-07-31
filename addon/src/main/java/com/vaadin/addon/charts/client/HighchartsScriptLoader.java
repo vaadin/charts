@@ -58,6 +58,7 @@ public class HighchartsScriptLoader {
             inject(HighchartResources.INSTANCE.heatmap().getText());
             inject(HighchartResources.INSTANCE.treemap().getText());
             inject(HighchartResources.INSTANCE.drilldown().getText());
+            inject(HighchartResources.INSTANCE.bugFixWrappers().getText());
         }
     }
 

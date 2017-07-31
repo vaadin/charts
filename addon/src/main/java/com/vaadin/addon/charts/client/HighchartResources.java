@@ -35,6 +35,9 @@ public interface HighchartResources extends ClientBundle {
     @Source("highstock.js")
     TextResource highstock();
 
+    @Source("bug-fix-wrappers.js")
+    TextResource bugFixWrappers();
+
     @Source("no-data-to-display.js")
     TextResource noData();
 
