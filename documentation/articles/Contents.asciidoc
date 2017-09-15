@@ -1,0 +1,20 @@
+---
+title: Contents
+order: 1
+layout: page
+---
+
+= Community articles for Vaadin Charts
+
+These helpful articles about Vaadin Charts written by the users for the users. The
+articles are presented as written by the author. Vaadin does not edit or maintain them.
+Pull requests welcome!
+
+NOTE: All contributions are very welcome! Just write your article in link:asciidoctor.org/docs/asciidoc-writers-guide[AsciiDoc],
+put it in this directory and send us a pull request. Updates to existing articles
+are great, too.
+
+[discrete]
+== Articles
+* <<VaadinChartsTutorial#,Vaadin Charts tutorial>>
+* <<VaadinChartsTutorialDrillDown#,Vaadin Charts tutorial: drill-down>>

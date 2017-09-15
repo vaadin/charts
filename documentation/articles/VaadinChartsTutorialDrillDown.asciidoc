@@ -1,0 +1,236 @@
+---
+title: Vaadin Charts tutorial: Drill-down
+order: 2
+layout: page
+---
+
+[[introduction]]
+= Introduction
+
+In this
+tutorial we will give a short walk through of a Vaadin Charts feature -
+drill-down. If you have not worked with Vaadin Charts before, it is
+recommended that you go through
+https://vaadin.com/wiki/-/wiki/-/Vaadin+Charts+Tutorial[https://vaadin.com/wiki/-/wiki/-/Vaadin+Charts+Tutorial]
+first. You can even re-use the project from that tutorial. The code of
+this tutorial is available in
+https://github.com/ripla/charts-tutorial[GitHub].
+
+[[project-setup]]
+== Project setup
+
+After
+finishing the basic tutorial, you should already have a maven project
+ready. If not, you can easily create one with the Vaadin maven
+archetype:
+
+[source]
+....
+mvn archetype:generate -DarchetypeGroupId=com.vaadin -DarchetypeArtifactId=vaadin-archetype-application -DarchetypeVersion=7.x.x
+....
+
+The version
+should be the latest Vaadin version, e.g. 7.4.4. After the creation you
+just need to add the Charts dependency to pom.xml:
+
+[source,xml]
+....
+<dependency>
+  <groupId>com.vaadin.addon</groupId>
+  <artifactId>vaadin-charts</artifactId>
+  <version>2.1.0</version>
+</dependency>
+....
+
+If you don’t
+have a license yet, check
+https://vaadin.com/wiki/-/wiki/-/Vaadin+Charts+Tutorial[https://vaadin.com/wiki/-/wiki/-/Vaadin+Charts+Tutorial]
+for instructions.
+
+Now you should be able to run the project with
+
+[source]
+....
+mvn clean vaadin:update-widgetset vaadin:compile jetty:run
+....
+
+Before we
+start, we need some data. In the basic tutorial we had the weather data,
+but we can’t use that directly. If only it was grouped in some way… and
+now it is! Grab
+https://github.com/ripla/charts-tutorial/blob/master/src/main/java/com/vaadin/ChartsData.java[ChartsData]
+and
+https://github.com/ripla/charts-tutorial/blob/master/src/main/java/com/vaadin/ChartsDataGrouped.java[ChartsDataGrouped]
+into your project, and you’re good to go. If you followed the previous
+tutorial, you can just grab
+https://github.com/ripla/charts-tutorial/blob/master/src/main/java/com/vaadin/ChartsDataGrouped.java[ChartsDataGrouped].
+
+[[using-drill-down]]
+=== Using Drill-Down
+
+You can
+imagine drill-down as a tree of items and series. There are two ways to
+build that tree; synchronous and asynchronous.
+
+[[synchronous-drill-down]]
+=== Synchronous Drill-Down
+
+Let’s start
+with the synchronous version. It’s a good way to start if you don’t have
+that much data, or the calls to fetch the detailed data are fast. When
+using synchronous drill-down, we just pre-build the whole tree.
+
+Let’s start with the basic chart config:
+
+[source,java]
+....
+@Override protected void init(VaadinRequest request) {
+  final VerticalLayout layout = new VerticalLayout();
+  layout.setMargin(true);
+  setContent(layout);
+
+  ChartsDataGrouped data = new ChartsDataGrouped();
+  layout.addComponent(getWeatherChart(data));
+}
+
+private Chart getWeatherChart(ChartsDataGrouped data) \{
+  Chart chart = new Chart();
+  Configuration conf = chart.getConfiguration();
+  conf.setTitle("Monthly mean temperatures in Turku, Finland 2013");
+
+  conf.getChart().setType(ChartType.COLUMN);
+
+  DataSeries temp = createDrillDownDataSeriesSync(data);
+
+  conf.getxAxis().setTitle("Month");
+  conf.getxAxis().setType(AxisType.CATEGORY);
+  conf.getyAxis().setTitle("Temperature (°C)");
+
+  conf.addSeries(temp);
+
+  return chart;
+}
+....
+
+The contents
+are pretty much the same as in the first tutorial. We create a chart,
+configure the axis, and add a series. We’ve encapsulated the actual
+series creation to a separate method, createDrillDownDataSeriesSync(),
+and that’s where the magic happens. First we create a normal DataSeries:
+
+[source,java]
+....
+private DataSeries createDrillDownDataSeriesSync(ChartsDataGrouped data) {
+  DataSeries temp = new DataSeries();
+  temp.setName("Temperature");
+  ...
+  return temp;
+}
+....
+
+Nothing
+special yet. Then we need to loop through the data provided by
+ChartsDataGrouped and add the items:
+
+[source,java]
+....
+for(Map.Entry<String, Double> entry : data.getWeatherMeanTempByMonth().entrySet()) {
+  String month = entry.getKey();
+  double meanForMonth = entry.getValue();
+  DataSeriesItem dsi = new DataSeriesItem(month, meanForMonth);
+
+  Series drillDownSeries = createSeriesForMonth(data, month);
+  drillDownSeries.setId(month);
+  temp.addItemWithDrillDown(dsi, drillDownSeries);
+}
+....
+
+By looping
+through the data, we get two things: the name of the month and the mean
+temperature for that month. We then create the DataSeriesItem as usual,
+but we also create the accompanying drilldown series and add it via the
+new and shiny addItemWithDrillDown() method. That’s it, drill-down done!
+
+Note that
+unless you’re creating multi-level drill-downs, the drill-down series
+can be of any type, so creating the series is the same as any other
+series. One way to do it is to use a DataSeries:
+
+[source,java]
+....
+private Series createSeriesForMonth(ChartsDataGrouped data, String month) {
+  List<ChartsData.WeatherInfo> weatherInfosForThisMonth = data.getWeatherByMonth().get(month);
+
+  DataSeries drillDownSeries = new DataSeries();
+  drillDownSeries.setName("Temperature for " + month);
+
+  for(ChartsData.WeatherInfo wi : weatherInfosForThisMonth) {
+     String day = new SimpleDateFormat("dd").format(wi.getDate());
+
+     drillDownSeries.add(new DataSeriesItem(day, wi.getMeanTemp()));
+  }
+
+  return drillDownSeries;
+}
+....
+
+You should
+now be able to start the project, browse to
+http://localhost:8080[http://localhost:8080] and drill down! The
+application should look more or less as in the screenshots below.
+image:https://lh5.googleusercontent.com/mzSTzU8r26S-eQXMox1olVB81OvKCQoq_XTtYAhWPFMrpcxO-j_JM3Q3F6sJOt_RYNUocB_SWC-o6Rv6BTuTWKrqvCOHdfOb_W_UvWN7-wowj8kO2X4jDgjd-_oyBLKrS1FHk6s[image]
+image:https://lh4.googleusercontent.com/okX4KzoFralMt3Z7VHqFEviDEatPlClXnlUnid20mky0IeKCJmCGPly-iANb-Vutqjci1uY-iaZqs_P_yc5Xjs6Yci6jnSt_3kQ77T1K_vMnHy1cNHLNvYNV3cbQwxKx9EMQ_4k[image]
+But what if
+the getWeatherByMonth() method would require an expensive backend
+lookup? Then you should definitely use the asynchronous version of
+drill-down.
+
+[[asynchronous-drill-down]]
+== Asynchronous Drill-Down
+
+In
+asynchronous drill-down you provide a callback which generates the
+drill-down series. We can quite easily change the previous example to
+use this mechanism:
+
+[source,java]
+....
+private DataSeries createDrillDownDataSeriesAsync(Chart chart, final ChartsDataGrouped data) {
+  DataSeries temp = new DataSeries();
+  temp.setName("Temperature");
+
+  for(Map.Entry<String, Double> entry : data.getWeatherMeanTempByMonth().entrySet()) {
+      String month = entry.getKey();
+      double meanForMonth = entry.getValue();
+      DataSeriesItem dsi = new DataSeriesItem(month, meanForMonth);
+      dsi.setId(month);
+      temp.addItemWithDrillDown(dsi);
+  }
+...
+....
+
+The looping
+of the data and creating the items is exactly the same. We just don’t
+create the drill-down series, but simply add the item with
+addItemDrillDown(). Note that we use setId() to set a String ID for the
+item, so we can easily recognize it later on.
+
+Then, we just
+need to provide a callback that actually creates the drill-down series
+on-demand::
+
+[source,java]
+....
+chart.setDrilldownCallback(new DrilldownCallback() {
+  @Override public Series handleDrilldown(DrilldownEvent event) {
+    return createSeriesForMonth(data, event.getItem().getId());
+  }
+});
+....
+
+By using the item ID we set, it’s easy to use the same method for actually creating the series.
+
+For more examples and reference, please check out the
+https://demo.vaadin.com/charts[official demo] and the relevant chapter
+in the https://vaadin.com/book/-/page/charts.data.html#charts.data.drilldown[Book
+of Vaadin].
