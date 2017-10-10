@@ -17,6 +17,7 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
+
 /**
  * What frame the button should be placed related to. Can be either "plot" or
  * "chart". Defaults to plot.

@@ -1,22 +1,5 @@
 package com.vaadin.addon.charts.model;
 
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import com.vaadin.addon.charts.model.style.ButtonTheme;
 /**
  * The button that appears after a selection zoom, allowing the user to reset
@@ -42,9 +25,7 @@ public class ResetZoomButton extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * The position of the button. This is an object that can hold the
-	 * properties <code>align</code>, <code>verticalAlign</code>, <code>x</code>
-	 * and <code>y</code>.
+	 * The position of the button.
 	 */
 	public void setPosition(Position position) {
 		this.position = position;

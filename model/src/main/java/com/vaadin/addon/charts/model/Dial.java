@@ -1,25 +1,17 @@
 package com.vaadin.addon.charts.model;
 
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import com.vaadin.addon.charts.model.style.Color;
 /**
+ * <p>
  * Options for the dial or arrow pointer of the gauge.
+ * </p>
+ * 
+ * <p>
+ * In <a
+ * href="http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+ * >styled mode</a>, the dial is styled with the
+ * <code>.highcharts-gauge-series .highcharts-dial</code> rule.
+ * </p>
  */
 public class Dial extends AbstractConfigurationObject {
 
@@ -45,7 +37,7 @@ public class Dial extends AbstractConfigurationObject {
 	/**
 	 * The background or fill color of the gauge's dial.
 	 * <p>
-	 * Defaults to: black
+	 * Defaults to: #000000
 	 */
 	public void setBackgroundColor(Color backgroundColor) {
 		this.backgroundColor = backgroundColor;
@@ -97,7 +89,7 @@ public class Dial extends AbstractConfigurationObject {
 	 * borderWidth is 0, so this must be set in addition to a custom border
 	 * color.
 	 * <p>
-	 * Defaults to: silver
+	 * Defaults to: #cccccc
 	 */
 	public void setBorderColor(Color borderColor) {
 		this.borderColor = borderColor;

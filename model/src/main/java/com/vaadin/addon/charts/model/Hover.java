@@ -1,28 +1,12 @@
 package com.vaadin.addon.charts.model;
 
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import com.vaadin.addon.charts.model.style.Color;
 /**
  * Options for the hovered series
  */
 public class Hover extends AbstractConfigurationObject {
 
+	private Boolean animation;
 	private Boolean enabled;
 	private Halo halo;
 	private Number lineWidth;
@@ -31,9 +15,29 @@ public class Hover extends AbstractConfigurationObject {
 	private Color lineColor;
 	private Number radius;
 	private Number radiusPlus;
+	private Color borderColor;
+	private Number brightness;
+	private Color color;
+	private Number opacity;
 	private Marker marker;
 
 	public Hover() {
+	}
+
+	/**
+	 * @see #setAnimation(Boolean)
+	 */
+	public Boolean getAnimation() {
+		return animation;
+	}
+
+	/**
+	 * Animation setting for hovering the graph in line-type series.
+	 * <p>
+	 * Defaults to: { "duration": 50 }
+	 */
+	public void setAnimation(Boolean animation) {
+		this.animation = animation;
 	}
 
 	public Hover(Boolean enabled) {
@@ -68,11 +72,21 @@ public class Hover extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * <p>
 	 * Options for the halo appearing around the hovered point in line-type
 	 * series as well as outside the hovered slice in pie charts. By default the
 	 * halo is filled by the current point or series color with an opacity of
 	 * 0.25. The halo can be disabled by setting the <code>halo</code> option to
 	 * <code>false</code>.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the halo is styled with the
+	 * <code>.highcharts-halo</code> class, with colors inherited from
+	 * <code>.highcharts-color-{n}</code>.
+	 * </p>
 	 */
 	public void setHalo(Halo halo) {
 		this.halo = halo;
@@ -135,7 +149,7 @@ public class Hover extends AbstractConfigurationObject {
 	 * The color of the point marker's outline. When <code>null</code>, the
 	 * series' or point's color is used.
 	 * <p>
-	 * Defaults to: #FFFFFF
+	 * Defaults to: #ffffff
 	 */
 	public void setLineColor(Color lineColor) {
 		this.lineColor = lineColor;
@@ -172,6 +186,80 @@ public class Hover extends AbstractConfigurationObject {
 	 */
 	public void setRadiusPlus(Number radiusPlus) {
 		this.radiusPlus = radiusPlus;
+	}
+
+	/**
+	 * @see #setBorderColor(Color)
+	 */
+	public Color getBorderColor() {
+		return borderColor;
+	}
+
+	/**
+	 * A specific border color for the hovered point. Defaults to inherit the
+	 * normal state border color.
+	 */
+	public void setBorderColor(Color borderColor) {
+		this.borderColor = borderColor;
+	}
+
+	/**
+	 * @see #setBrightness(Number)
+	 */
+	public Number getBrightness() {
+		return brightness;
+	}
+
+	/**
+	 * <p>
+	 * How much to brighten the point on interaction. Requires the main color to
+	 * be defined in hex or rgb(a) format.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the hover brightening is by default replaced with a
+	 * fill-opacity set in the <code>.highcharts-point:hover</code> rule.
+	 * </p>
+	 * <p>
+	 * Defaults to: 0.1
+	 */
+	public void setBrightness(Number brightness) {
+		this.brightness = brightness;
+	}
+
+	/**
+	 * @see #setColor(Color)
+	 */
+	public Color getColor() {
+		return color;
+	}
+
+	/**
+	 * A specific color for the hovered point.
+	 * <p>
+	 * Defaults to: undefined
+	 */
+	public void setColor(Color color) {
+		this.color = color;
+	}
+
+	/**
+	 * @see #setOpacity(Number)
+	 */
+	public Number getOpacity() {
+		return opacity;
+	}
+
+	/**
+	 * The opacity of a point in treemap. When a point has children, the
+	 * visibility of the children is determined by the opacity.
+	 * <p>
+	 * Defaults to: 0.75
+	 */
+	public void setOpacity(Number opacity) {
+		this.opacity = opacity;
 	}
 
 	/**

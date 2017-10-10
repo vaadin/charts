@@ -17,6 +17,8 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
+import com.vaadin.addon.charts.model.DataGrouping;
+
 /**
  * Options for range selector buttons.
  */

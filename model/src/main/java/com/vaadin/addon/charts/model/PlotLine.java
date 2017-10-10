@@ -1,29 +1,23 @@
 package com.vaadin.addon.charts.model;
 
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import com.vaadin.addon.charts.model.style.Color;
 /**
+ * <p>
  * An array of lines stretching across the plot area, marking a specific value
  * on one of the axes.
+ * </p>
+ * 
+ * <p>
+ * In <a
+ * href="http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+ * >styled mode</a>, the plot lines are styled by the
+ * <code>.highcharts-plot-line</code> class in addition to the
+ * <code>className</code> option.
+ * </p>
  */
 public class PlotLine extends AbstractConfigurationObject {
 
+	private String className;
 	private Color color;
 	private DashStyle dashStyle;
 	private String id;
@@ -33,6 +27,21 @@ public class PlotLine extends AbstractConfigurationObject {
 	private Number zIndex;
 
 	public PlotLine() {
+	}
+
+	/**
+	 * @see #setClassName(String)
+	 */
+	public String getClassName() {
+		return className;
+	}
+
+	/**
+	 * A custom class name, in addition to the default
+	 * <code>highcharts-plot-line</code>, to apply to each individual line.
+	 */
+	public void setClassName(String className) {
+		this.className = className;
 	}
 
 	/**
@@ -59,7 +68,7 @@ public class PlotLine extends AbstractConfigurationObject {
 	/**
 	 * The dashing or dot style for the plot line. For possible values see <a
 	 * href=
-	 * "http://jsfiddle.net/gh/get/jquery/1.7.1/highslide-software/highcharts.com/tree/master/samples/highcharts/plotoptions/series-dashstyle-all/"
+	 * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-dashstyle-all/"
 	 * >this overview</a>.
 	 * <p>
 	 * Defaults to: Solid
