@@ -1,22 +1,5 @@
 package com.vaadin.addon.charts.model;
 
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import com.vaadin.addon.charts.model.style.Color;
 /**
  * In Highcharts 1.0, the appearance of all markers belonging to the hovered
@@ -102,7 +85,7 @@ public class Marker extends AbstractConfigurationObject {
 	 * The color of the point marker's outline. When <code>null</code>, the
 	 * series' or point's color is used.
 	 * <p>
-	 * Defaults to: #FFFFFF
+	 * Defaults to: #ffffff
 	 */
 	public void setLineColor(Color lineColor) {
 		this.lineColor = lineColor;

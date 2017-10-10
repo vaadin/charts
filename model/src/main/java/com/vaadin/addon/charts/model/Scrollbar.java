@@ -1,26 +1,22 @@
 package com.vaadin.addon.charts.model;
 
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import com.vaadin.addon.charts.model.style.Color;
 /**
+ * <p>
  * An optional scrollbar to display on the Y axis in response to limiting the
  * minimum an maximum of the axis values.
+ * </p>
+ * 
+ * <p>
+ * In <a
+ * href="http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+ * >styled mode</a>, all the presentational options for the scrollbar are
+ * replaced by the classes <code>.highcharts-scrollbar-thumb</code>,
+ * <code>.highcharts-scrollbar-arrow</code>,
+ * <code>.highcharts-scrollbar-button</code>,
+ * <code>.highcharts-scrollbar-rifles</code> and
+ * <code>.highcharts-scrollbar-track</code>.
+ * </p>
  */
 public class Scrollbar extends AbstractConfigurationObject {
 
@@ -41,6 +37,7 @@ public class Scrollbar extends AbstractConfigurationObject {
 	private Boolean showFull;
 	private Number size;
 	private Color trackBackgroundColor;
+	private Color trackBorderColor;
 	private Number trackBorderRadius;
 	private Number zIndex;
 	private Number height;
@@ -58,7 +55,7 @@ public class Scrollbar extends AbstractConfigurationObject {
 	/**
 	 * The background color of the scrollbar itself.
 	 * <p>
-	 * Defaults to: #bfc8d1
+	 * Defaults to: #cccccc
 	 */
 	public void setBarBackgroundColor(Color barBackgroundColor) {
 		this.barBackgroundColor = barBackgroundColor;
@@ -74,7 +71,7 @@ public class Scrollbar extends AbstractConfigurationObject {
 	/**
 	 * The color of the scrollbar's border.
 	 * <p>
-	 * Defaults to: #bfc8d1
+	 * Defaults to: #cccccc
 	 */
 	public void setBarBorderColor(Color barBorderColor) {
 		this.barBorderColor = barBorderColor;
@@ -122,7 +119,7 @@ public class Scrollbar extends AbstractConfigurationObject {
 	/**
 	 * The color of the small arrow inside the scrollbar buttons.
 	 * <p>
-	 * Defaults to: #666
+	 * Defaults to: #333333
 	 */
 	public void setButtonArrowColor(Color buttonArrowColor) {
 		this.buttonArrowColor = buttonArrowColor;
@@ -138,7 +135,7 @@ public class Scrollbar extends AbstractConfigurationObject {
 	/**
 	 * The color of scrollbar buttons.
 	 * <p>
-	 * Defaults to: #ebe7e8
+	 * Defaults to: #e6e6e6
 	 */
 	public void setButtonBackgroundColor(Color buttonBackgroundColor) {
 		this.buttonBackgroundColor = buttonBackgroundColor;
@@ -154,7 +151,7 @@ public class Scrollbar extends AbstractConfigurationObject {
 	/**
 	 * The color of the border of the scrollbar buttons.
 	 * <p>
-	 * Defaults to: #bbbbbb
+	 * Defaults to: #cccccc
 	 */
 	public void setButtonBorderColor(Color buttonBorderColor) {
 		this.buttonBorderColor = buttonBorderColor;
@@ -270,7 +267,7 @@ public class Scrollbar extends AbstractConfigurationObject {
 	/**
 	 * The color of the small rifles in the middle of the scrollbar.
 	 * <p>
-	 * Defaults to: #666
+	 * Defaults to: #333333
 	 */
 	public void setRifleColor(Color rifleColor) {
 		this.rifleColor = rifleColor;
@@ -321,10 +318,26 @@ public class Scrollbar extends AbstractConfigurationObject {
 	/**
 	 * The color of the track background.
 	 * <p>
-	 * Defaults to: #eeeeee
+	 * Defaults to: #f2f2f2
 	 */
 	public void setTrackBackgroundColor(Color trackBackgroundColor) {
 		this.trackBackgroundColor = trackBackgroundColor;
+	}
+
+	/**
+	 * @see #setTrackBorderColor(Color)
+	 */
+	public Color getTrackBorderColor() {
+		return trackBorderColor;
+	}
+
+	/**
+	 * The color of the border of the scrollbar track.
+	 * <p>
+	 * Defaults to: #f2f2f2
+	 */
+	public void setTrackBorderColor(Color trackBorderColor) {
+		this.trackBorderColor = trackBorderColor;
 	}
 
 	/**

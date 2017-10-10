@@ -163,17 +163,6 @@ public abstract class AbstractDataLabels extends AbstractConfigurationObject {
     abstract public void setPadding(Number padding);
 
     /**
-     * @see #setReserveSpace(Boolean)
-     */
-    abstract public Boolean getReserveSpace();
-
-    /**
-     * Whether to reserve space for the labels. This can be turned off when for
-     * example the labels are rendered inside the plot area instead of outside.
-     */
-    abstract public void setReserveSpace(Boolean reserveSpace);
-
-    /**
      * @see #setRotation(Number)
      */
     abstract public Number getRotation();

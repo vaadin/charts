@@ -1,22 +1,5 @@
 package com.vaadin.addon.charts.model;
 
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import com.vaadin.addon.charts.model.style.Style;
 /**
  * The loading options control the appearance of the loading screen that covers
@@ -100,16 +83,10 @@ public class Loading extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * CSS styles for the loading screen that covers the plot area. Defaults to:
-	 * 
-	 * <pre>
-	 * style: {
-	 * 		position: 'absolute',
-	 * 		backgroundColor: 'white',
-	 * 		opacity: 0.5,
-	 * 		textAlign: 'center'
-	 * 	}
-	 * </pre>
+	 * CSS styles for the loading screen that covers the plot area.
+	 * <p>
+	 * Defaults to: { "position": "absolute", "backgroundColor": "#ffffff",
+	 * "opacity": 0.5, "textAlign": "center" }
 	 */
 	public void setStyle(Style style) {
 		this.style = style;

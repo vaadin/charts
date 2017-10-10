@@ -1,25 +1,18 @@
 package com.vaadin.addon.charts.model;
 
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import com.vaadin.addon.charts.model.style.Color;
 /**
+ * <p>
  * A collection of options for buttons appearing in the exporting module.
+ * </p>
+ * 
+ * <p>
+ * In <a
+ * href="http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+ * >styled mode</a>, the buttons are styled with the
+ * <code>.highcharts-contextbutton</code> and
+ * <code>.highcharts-button-symbol</code> class.
+ * </p>
  */
 public class ButtonOptions extends AbstractConfigurationObject {
 
@@ -102,7 +95,7 @@ public class ButtonOptions extends AbstractConfigurationObject {
 	/**
 	 * Fill color for the symbol within the button.
 	 * <p>
-	 * Defaults to: #E0E0E0
+	 * Defaults to: #666666
 	 */
 	public void setSymbolFill(Color symbolFill) {
 		this.symbolFill = symbolFill;
@@ -134,7 +127,7 @@ public class ButtonOptions extends AbstractConfigurationObject {
 	/**
 	 * The color of the symbol's stroke or line.
 	 * <p>
-	 * Defaults to: #666
+	 * Defaults to: #666666
 	 */
 	public void setSymbolStroke(Color symbolStroke) {
 		this.symbolStroke = symbolStroke;

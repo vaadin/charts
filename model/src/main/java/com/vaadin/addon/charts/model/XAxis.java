@@ -1,22 +1,5 @@
 package com.vaadin.addon.charts.model;
 
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import com.vaadin.addon.charts.model.style.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,8 +21,10 @@ public class XAxis extends Axis {
 	private Breaks[] breaks;
 	private ArrayList<String> categories;
 	private Number ceiling;
+	private String className;
 	private Crosshair crosshair;
 	private DateTimeLabelFormats dateTimeLabelFormats;
+	private String description;
 	private Boolean endOnTick;
 	private Number floor;
 	private Color gridLineColor;
@@ -71,6 +56,8 @@ public class XAxis extends Axis {
 	private Boolean showEmpty;
 	private Boolean showFirstLabel;
 	private Boolean showLastLabel;
+	private Number softMax;
+	private Number softMin;
 	private Number startOfWeek;
 	private Boolean startOnTick;
 	private Number tickAmount;
@@ -84,6 +71,7 @@ public class XAxis extends Axis {
 	private TickmarkPlacement tickmarkPlacement;
 	private AxisTitle title;
 	private AxisType type;
+	private Boolean uniqueNames;
 	private ArrayList<TimeUnitMultiples> units;
 	private Boolean visible;
 	private Boolean ordinal;
@@ -218,6 +206,24 @@ public class XAxis extends Axis {
 	}
 
 	/**
+	 * @see #setClassName(String)
+	 */
+	public String getClassName() {
+		return className;
+	}
+
+	/**
+	 * A class name that opens for styling the axis by CSS, especially in
+	 * Highcharts <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>. The class name is applied to group elements for the
+	 * grid, axis elements and labels.
+	 */
+	public void setClassName(String className) {
+		this.className = className;
+	}
+
+	/**
 	 * @see #setCrosshair(Crosshair)
 	 */
 	public Crosshair getCrosshair() {
@@ -228,8 +234,19 @@ public class XAxis extends Axis {
 	}
 
 	/**
+	 * <p>
 	 * Configure a crosshair that follows either the mouse pointer or the
 	 * hovered point.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the crosshairs are styled in the
+	 * <code>.highcharts-crosshair</code>,
+	 * <code>.highcharts-crosshair-thin</code> or
+	 * <code>.highcharts-xaxis-category</code> classes.
+	 * </p>
 	 * <p>
 	 * Defaults to: false
 	 */
@@ -277,6 +294,28 @@ public class XAxis extends Axis {
 	}
 
 	/**
+	 * @see #setDescription(String)
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * <p>
+	 * <i>Requires Accessibility module</i>
+	 * </p>
+	 * 
+	 * <p>
+	 * Description of the axis to screen reader users.
+	 * </p>
+	 * <p>
+	 * Defaults to: undefined
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	/**
 	 * @see #setEndOnTick(Boolean)
 	 */
 	public Boolean getEndOnTick() {
@@ -317,9 +356,18 @@ public class XAxis extends Axis {
 	}
 
 	/**
-	 * Color of the grid lines extending the ticks across the plot area.
 	 * <p>
-	 * Defaults to: #D8D8D8
+	 * Color of the grid lines extending the ticks across the plot area.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the stroke is given in the
+	 * <code>.highcharts-grid-line</code> class.
+	 * </p>
+	 * <p>
+	 * Defaults to: #e6e6e6
 	 */
 	public void setGridLineColor(Color gridLineColor) {
 		this.gridLineColor = gridLineColor;
@@ -335,7 +383,7 @@ public class XAxis extends Axis {
 	/**
 	 * The dash or dot style of the grid lines. For possible values, see <a
 	 * href=
-	 * "http://jsfiddle.net/gh/get/jquery/1.7.2/highslide-software/highcharts.com/tree/master/samples/highcharts/plotoptions/series-dashstyle-all/"
+	 * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-dashstyle-all/"
 	 * >this demonstration</a>.
 	 * <p>
 	 * Defaults to: Solid
@@ -352,7 +400,16 @@ public class XAxis extends Axis {
 	}
 
 	/**
+	 * <p>
 	 * The width of the grid lines extending the ticks across the plot area.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the stroke width is given in the
+	 * <code>.highcharts-grid-line</code> class.
+	 * </p>
 	 * <p>
 	 * Defaults to: 0
 	 */
@@ -416,9 +473,19 @@ public class XAxis extends Axis {
 	}
 
 	/**
-	 * The color of the line marking the axis itself.
 	 * <p>
-	 * Defaults to: #C0D0E0
+	 * The color of the line marking the axis itself.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the line stroke is given in the
+	 * <code>.highcharts-axis-line</code> or <code>.highcharts-xaxis-line</code>
+	 * class.
+	 * </p>
+	 * <p>
+	 * Defaults to: #ccd6eb
 	 */
 	public void setLineColor(Color lineColor) {
 		this.lineColor = lineColor;
@@ -432,7 +499,17 @@ public class XAxis extends Axis {
 	}
 
 	/**
+	 * <p>
 	 * The width of the line marking the axis itself.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the stroke width is given in the
+	 * <code>.highcharts-axis-line</code> or <code>.highcharts-xaxis-line</code>
+	 * class.
+	 * </p>
 	 * <p>
 	 * Defaults to: 1
 	 */
@@ -558,9 +635,19 @@ public class XAxis extends Axis {
 	}
 
 	/**
-	 * Color of the minor, secondary grid lines.
 	 * <p>
-	 * Defaults to: #E0E0E0
+	 * Color of the minor, secondary grid lines.
+	 * </p>
+	 * 
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the stroke width is given in the
+	 * <code>.highcharts-minor-grid-line</code> class.
+	 * </p>
+	 * <p>
+	 * Defaults to: #f2f2f2
 	 */
 	public void setMinorGridLineColor(Color minorGridLineColor) {
 		this.minorGridLineColor = minorGridLineColor;
@@ -576,7 +663,7 @@ public class XAxis extends Axis {
 	/**
 	 * The dash or dot style of the minor grid lines. For possible values, see
 	 * <a href=
-	 * "http://jsfiddle.net/gh/get/jquery/1.7.1/highslide-software/highcharts.com/tree/master/samples/highcharts/plotoptions/series-dashstyle-all/"
+	 * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-dashstyle-all/"
 	 * >this demonstration</a>.
 	 * <p>
 	 * Defaults to: Solid
@@ -593,7 +680,16 @@ public class XAxis extends Axis {
 	}
 
 	/**
+	 * <p>
 	 * Width of the minor, secondary grid lines.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the stroke width is given in the
+	 * <code>.highcharts-grid-line</code> class.
+	 * </p>
 	 * <p>
 	 * Defaults to: 1
 	 */
@@ -611,7 +707,7 @@ public class XAxis extends Axis {
 	/**
 	 * Color for the minor tick marks.
 	 * <p>
-	 * Defaults to: #A0A0A0
+	 * Defaults to: #999999
 	 */
 	public void setMinorTickColor(Color minorTickColor) {
 		this.minorTickColor = minorTickColor;
@@ -763,6 +859,14 @@ public class XAxis extends Axis {
 	 * In a gauge, a plot band on the Y axis (value axis) will stretch along the
 	 * perimeter of the gauge.
 	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the plot bands are styled by the
+	 * <code>.highcharts-plot-band</code> class in addition to the
+	 * <code>className</code> option.
+	 * </p>
 	 */
 	public void setPlotBands(PlotBand... plotBands) {
 		this.plotBands = new ArrayList<PlotBand>(Arrays.asList(plotBands));
@@ -806,8 +910,18 @@ public class XAxis extends Axis {
 	}
 
 	/**
+	 * <p>
 	 * An array of lines stretching across the plot area, marking a specific
 	 * value on one of the axes.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the plot lines are styled by the
+	 * <code>.highcharts-plot-line</code> class in addition to the
+	 * <code>className</code> option.
+	 * </p>
 	 */
 	public void setPlotLines(PlotLine... plotLines) {
 		this.plotLines = new ArrayList<PlotLine>(Arrays.asList(plotLines));
@@ -904,6 +1018,38 @@ public class XAxis extends Axis {
 	}
 
 	/**
+	 * @see #setSoftMax(Number)
+	 */
+	public Number getSoftMax() {
+		return softMax;
+	}
+
+	/**
+	 * A soft maximum for the axis. If the series data maximum is less than
+	 * this, the axis will stay at this maximum, but if the series data maximum
+	 * is higher, the axis will flex to show all data.
+	 */
+	public void setSoftMax(Number softMax) {
+		this.softMax = softMax;
+	}
+
+	/**
+	 * @see #setSoftMin(Number)
+	 */
+	public Number getSoftMin() {
+		return softMin;
+	}
+
+	/**
+	 * A soft minimum for the axis. If the series data minimum is greater than
+	 * this, the axis will stay at this minimum, but if the series data minimum
+	 * is lower, the axis will flex to show all data.
+	 */
+	public void setSoftMin(Number softMin) {
+		this.softMin = softMin;
+	}
+
+	/**
 	 * @see #setStartOfWeek(Number)
 	 */
 	public Number getStartOfWeek() {
@@ -967,9 +1113,18 @@ public class XAxis extends Axis {
 	}
 
 	/**
-	 * Color for the main tick marks.
 	 * <p>
-	 * Defaults to: #C0D0E0
+	 * Color for the main tick marks.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the stroke is given in the
+	 * <code>.highcharts-tick</code> class.
+	 * </p>
+	 * <p>
+	 * Defaults to: #ccd6eb
 	 */
 	public void setTickColor(Color tickColor) {
 		this.tickColor = tickColor;
@@ -1039,10 +1194,21 @@ public class XAxis extends Axis {
 	}
 
 	/**
+	 * <p>
 	 * If tickInterval is <code>null</code> this option sets the approximate
 	 * pixel interval of the tick marks. Not applicable to categorized axis.
+	 * </p>
+	 * 
+	 * <p>
+	 * The tick interval is also influenced by the <a
+	 * href="#xAxis.minTickInterval">minTickInterval</a> option, that, by
+	 * default prevents ticks from being denser than the data points.
+	 * </p>
+	 * 
+	 * <p>
 	 * Defaults to <code>72</code> for the Y axis and <code>100</code> for the X
 	 * axis.
+	 * </p>
 	 */
 	public void setTickPixelInterval(Number tickPixelInterval) {
 		this.tickPixelInterval = tickPixelInterval;
@@ -1090,7 +1256,16 @@ public class XAxis extends Axis {
 	}
 
 	/**
+	 * <p>
 	 * The pixel width of the major tick marks.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the stroke width is given in the
+	 * <code>.highcharts-tick</code> class.
+	 * </p>
 	 * <p>
 	 * Defaults to: 1
 	 */
@@ -1154,6 +1329,29 @@ public class XAxis extends Axis {
 	 */
 	public void setType(AxisType type) {
 		this.type = type;
+	}
+
+	/**
+	 * @see #setUniqueNames(Boolean)
+	 */
+	public Boolean getUniqueNames() {
+		return uniqueNames;
+	}
+
+	/**
+	 * Applies only when the axis <code>type</code> is <code>category</code>.
+	 * When <code>uniqueNames</code> is true, points are placed on the X axis
+	 * according to their names. If the same point name is repeated in the same
+	 * or another series, the point is placed on the same X position as other
+	 * points of the same name. When <code>uniqueNames</code> is false, the
+	 * points are laid out in increasing X positions regardless of their names,
+	 * and the X axis category will take the name of the last point in each
+	 * position.
+	 * <p>
+	 * Defaults to: true
+	 */
+	public void setUniqueNames(Boolean uniqueNames) {
+		this.uniqueNames = uniqueNames;
 	}
 
 	/**

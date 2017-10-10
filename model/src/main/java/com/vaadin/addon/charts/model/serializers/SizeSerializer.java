@@ -17,14 +17,14 @@ package com.vaadin.addon.charts.model.serializers;
  * #L%
  */
 
-import java.io.IOException;
-
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.vaadin.server.SizeWithUnit;
 import com.vaadin.server.Sizeable.Unit;
+
+import java.io.IOException;
 
 public class SizeSerializer extends JsonSerializer<String> {
 

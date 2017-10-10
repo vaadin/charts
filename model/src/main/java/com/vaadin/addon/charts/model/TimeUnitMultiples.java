@@ -16,6 +16,7 @@ package com.vaadin.addon.charts.model;
  * If not, see <https://vaadin.com/license/cval-3>.
  * #L%
  */
+
 /**
  * Class used to define allowed multiples a time unit is allowed to be grouped
  * to.

@@ -17,6 +17,7 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
+
 /**
  * For a DATETIME axis, the scale will automatically adjust to the appropriate
  * unit. This member gives the default string representations used for each

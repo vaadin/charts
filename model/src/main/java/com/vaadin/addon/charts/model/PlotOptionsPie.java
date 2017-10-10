@@ -1,22 +1,5 @@
 package com.vaadin.addon.charts.model;
 
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import com.vaadin.addon.charts.model.style.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,12 +19,17 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	private Color borderColor;
 	private Number borderWidth;
 	private String[] center;
+	private String className;
+	private Number colorIndex;
 	private ArrayList<Color> colors;
 	private Cursor cursor;
 	private DataLabels dataLabels;
 	private Number depth;
+	private String description;
 	private Boolean enableMouseTracking;
 	private Number endAngle;
+	private Boolean exposeElementToA11y;
+	private String findNearestPointBy;
 	private Boolean getExtremesFromAll;
 	private Boolean ignoreHiddenPoint;
 	@JsonSerialize(using = SizeSerializer.class)
@@ -49,11 +37,13 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	private ArrayList<String> keys;
 	private String linkedTo;
 	private Number minSize;
+	private String _fn_pointDescriptionFormatter;
 	private Boolean selected;
 	private Boolean shadow;
 	private Boolean showInLegend;
 	@JsonSerialize(using = SizeSerializer.class)
 	private String size;
+	private Boolean skipKeyboardNavigation;
 	private Number slicedOffset;
 	private Number startAngle;
 	private States states;
@@ -110,7 +100,7 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	 * <dt>easing</dt>
 	 * <dd>A string reference to an easing function set on the <code>Math</code>
 	 * object. See <a href=
-	 * "http://jsfiddle.net/gh/get/jquery/1.7.2/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/"
+	 * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/"
 	 * >the easing demo</a>.</dd>
 	 * </dl>
 	 * <p>
@@ -150,12 +140,21 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	}
 
 	/**
+	 * <p>
 	 * The color of the border surrounding each slice. When <code>null</code>,
 	 * the border takes the same color as the slice fill. This can be used
 	 * together with a <code>borderWidth</code> to fill drawing gaps created by
 	 * antialiazing artefacts in borderless pies.
+	 * </p>
+	 * 
 	 * <p>
-	 * Defaults to: #FFFFFF
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the border stroke is given in the
+	 * <code>.highcharts-point</code> class.
+	 * </p>
+	 * <p>
+	 * Defaults to: #ffffff
 	 */
 	public void setBorderColor(Color borderColor) {
 		this.borderColor = borderColor;
@@ -179,6 +178,13 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	 * border width at 0.5 or 1, but set the <code>borderColor</code> to
 	 * <code>null</code> instead.
 	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the border stroke width is given in the
+	 * <code>.highcharts-point</code> class.
+	 * </p>
 	 * <p>
 	 * Defaults to: 1
 	 */
@@ -198,6 +204,38 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	 */
 	public void setCenter(String[] center) {
 		this.center = center;
+	}
+
+	/**
+	 * @see #setClassName(String)
+	 */
+	public String getClassName() {
+		return className;
+	}
+
+	/**
+	 * A class name to apply to the series' graphical elements.
+	 */
+	public void setClassName(String className) {
+		this.className = className;
+	}
+
+	/**
+	 * @see #setColorIndex(Number)
+	 */
+	public Number getColorIndex() {
+		return colorIndex;
+	}
+
+	/**
+	 * <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >Styled mode</a> only. A specific color index to use for the series, so
+	 * its graphic representations are given the class name
+	 * <code>highcharts-color-{n}</code>.
+	 */
+	public void setColorIndex(Number colorIndex) {
+		this.colorIndex = colorIndex;
 	}
 
 	/**
@@ -292,6 +330,28 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	}
 
 	/**
+	 * @see #setDescription(String)
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * <p>
+	 * <i>Requires Accessibility module</i>
+	 * </p>
+	 * <p>
+	 * A description of the series to add to the screen reader information about
+	 * the series.
+	 * </p>
+	 * <p>
+	 * Defaults to: undefined
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	/**
 	 * @see #setEnableMouseTracking(Boolean)
 	 */
 	public Boolean getEnableMouseTracking() {
@@ -324,6 +384,55 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	 */
 	public void setEndAngle(Number endAngle) {
 		this.endAngle = endAngle;
+	}
+
+	/**
+	 * @see #setExposeElementToA11y(Boolean)
+	 */
+	public Boolean getExposeElementToA11y() {
+		return exposeElementToA11y;
+	}
+
+	/**
+	 * <p>
+	 * By default, series are exposed to screen readers as regions. By enabling
+	 * this option, the series element itself will be exposed in the same way as
+	 * the data points. This is useful if the series is not used as a grouping
+	 * entity in the chart, but you still want to attach a description to the
+	 * series.
+	 * </p>
+	 * <p>
+	 * Requires the Accessibility module.
+	 * </p>
+	 * <p>
+	 * Defaults to: undefined
+	 */
+	public void setExposeElementToA11y(Boolean exposeElementToA11y) {
+		this.exposeElementToA11y = exposeElementToA11y;
+	}
+
+	/**
+	 * @see #setFindNearestPointBy(String)
+	 */
+	public String getFindNearestPointBy() {
+		return findNearestPointBy;
+	}
+
+	/**
+	 * <p>
+	 * Determines whether the series should look for the nearest point in both
+	 * dimensions or just the x-dimension when hovering the series. Defaults to
+	 * <code>'xy'</code> for scatter series and <code>'x'</code> for most other
+	 * series. If the data has duplicate x-values, it is recommended to set this
+	 * to <code>'xy'</code> to allow hovering over all points.
+	 * </p>
+	 * <p>
+	 * Applies only to series types using nearest neighbor search (not direct
+	 * hover) for tooltip.
+	 * </p>
+	 */
+	public void setFindNearestPointBy(String findNearestPointBy) {
+		this.findNearestPointBy = findNearestPointBy;
 	}
 
 	/**
@@ -526,6 +635,15 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 		this.minSize = minSize;
 	}
 
+	public String getPointDescriptionFormatter() {
+		return _fn_pointDescriptionFormatter;
+	}
+
+	public void setPointDescriptionFormatter(
+			String _fn_pointDescriptionFormatter) {
+		this._fn_pointDescriptionFormatter = _fn_pointDescriptionFormatter;
+	}
+
 	/**
 	 * @see #setSelected(Boolean)
 	 */
@@ -653,6 +771,21 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 			value = null;
 		}
 		this.size = value;
+	}
+
+	/**
+	 * @see #setSkipKeyboardNavigation(Boolean)
+	 */
+	public Boolean getSkipKeyboardNavigation() {
+		return skipKeyboardNavigation;
+	}
+
+	/**
+	 * If set to <code>True</code>, the accessibility module will skip past the
+	 * points in this series for keyboard navigation.
+	 */
+	public void setSkipKeyboardNavigation(Boolean skipKeyboardNavigation) {
+		this.skipKeyboardNavigation = skipKeyboardNavigation;
 	}
 
 	/**
@@ -791,9 +924,21 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	}
 
 	/**
+	 * <p>
 	 * An array defining zones within a series. Zones can be applied to the X
 	 * axis, Y axis or Z axis for bubbles, according to the
 	 * <code>zoneAxis</code> option.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the color zones are styled with the
+	 * <code>.highcharts-zone-{n}</code> class, or custom classed from the
+	 * <code>className</code> option (<a href=
+	 * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/color-zones/"
+	 * >view live demo</a>).
+	 * </p>
 	 */
 	public void setZones(Zones... zones) {
 		this.zones = new ArrayList<Zones>(Arrays.asList(zones));

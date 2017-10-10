@@ -17,6 +17,7 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
+
 /**
  * The layout algorithm used by {@link ChartType#TREEMAP} charts.
  */

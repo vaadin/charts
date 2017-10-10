@@ -1,22 +1,5 @@
 package com.vaadin.addon.charts.model;
 
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import com.vaadin.addon.charts.model.style.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,23 +22,31 @@ public class PlotOptionsHeatmap extends AbstractPlotOptions {
 	private Color borderColor;
 	private Number borderRadius;
 	private Number borderWidth;
+	private String className;
 	private Color color;
 	private Boolean colorByPoint;
+	private Number colorIndex;
 	private ArrayList<Color> colors;
 	private Number colsize;
+	private Boolean crisp;
 	private Number cropThreshold;
 	private Cursor cursor;
 	private DataLabels dataLabels;
+	private String description;
 	private Boolean enableMouseTracking;
+	private Boolean exposeElementToA11y;
+	private String findNearestPointBy;
 	private Boolean getExtremesFromAll;
 	private ArrayList<String> keys;
 	private String linkedTo;
 	private Number maxPointWidth;
+	private String _fn_pointDescriptionFormatter;
 	private Number rowsize;
 	private Boolean selected;
 	private Boolean shadow;
 	private Boolean showCheckbox;
 	private Boolean showInLegend;
+	private Boolean skipKeyboardNavigation;
 	private States states;
 	private Boolean stickyTracking;
 	private SeriesTooltip tooltip;
@@ -111,7 +102,7 @@ public class PlotOptionsHeatmap extends AbstractPlotOptions {
 	 * <dt>easing</dt>
 	 * <dd>A string reference to an easing function set on the <code>Math</code>
 	 * object. See <a href=
-	 * "http://jsfiddle.net/gh/get/jquery/1.7.2/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/"
+	 * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/"
 	 * >the easing demo</a>.</dd>
 	 * </dl>
 	 * <p>
@@ -151,9 +142,18 @@ public class PlotOptionsHeatmap extends AbstractPlotOptions {
 	}
 
 	/**
-	 * The color of the border surrounding each column or bar.
 	 * <p>
-	 * Defaults to: #FFFFFF
+	 * The color of the border surrounding each column or bar.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the border stroke can be set with the
+	 * <code>.highcharts-point</code> rule.
+	 * </p>
+	 * <p>
+	 * Defaults to: #ffffff
 	 */
 	public void setBorderColor(Color borderColor) {
 		this.borderColor = borderColor;
@@ -183,12 +183,35 @@ public class PlotOptionsHeatmap extends AbstractPlotOptions {
 	}
 
 	/**
+	 * <p>
 	 * The width of the border surrounding each column or bar.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the stroke width can be set with the
+	 * <code>.highcharts-point</code> rule.
+	 * </p>
 	 * <p>
 	 * Defaults to: 1
 	 */
 	public void setBorderWidth(Number borderWidth) {
 		this.borderWidth = borderWidth;
+	}
+
+	/**
+	 * @see #setClassName(String)
+	 */
+	public String getClassName() {
+		return className;
+	}
+
+	/**
+	 * A class name to apply to the series' graphical elements.
+	 */
+	public void setClassName(String className) {
+		this.className = className;
 	}
 
 	/**
@@ -226,6 +249,24 @@ public class PlotOptionsHeatmap extends AbstractPlotOptions {
 	 */
 	public void setColorByPoint(Boolean colorByPoint) {
 		this.colorByPoint = colorByPoint;
+	}
+
+	/**
+	 * @see #setColorIndex(Number)
+	 */
+	public Number getColorIndex() {
+		return colorIndex;
+	}
+
+	/**
+	 * <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >Styled mode</a> only. A specific color index to use for the series, so
+	 * its graphic representations are given the class name
+	 * <code>highcharts-color-{n}</code>.
+	 */
+	public void setColorIndex(Number colorIndex) {
+		this.colorIndex = colorIndex;
 	}
 
 	/**
@@ -292,6 +333,27 @@ public class PlotOptionsHeatmap extends AbstractPlotOptions {
 	}
 
 	/**
+	 * @see #setCrisp(Boolean)
+	 */
+	public Boolean getCrisp() {
+		return crisp;
+	}
+
+	/**
+	 * When true, each column edge is rounded to its nearest pixel in order to
+	 * render sharp on screen. In some cases, when there are a lot of densely
+	 * packed columns, this leads to visible difference in column widths or
+	 * distance between columns. In these cases, setting <code>crisp</code> to
+	 * <code>false</code> may look better, even though each column is rendered
+	 * blurry.
+	 * <p>
+	 * Defaults to: true
+	 */
+	public void setCrisp(Boolean crisp) {
+		this.crisp = crisp;
+	}
+
+	/**
 	 * @see #setCropThreshold(Number)
 	 */
 	public Number getCropThreshold() {
@@ -340,8 +402,45 @@ public class PlotOptionsHeatmap extends AbstractPlotOptions {
 		return dataLabels;
 	}
 
+	/**
+	 * <p>
+	 * Options for the series data labels, appearing next to each data point.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the data labels can be styled wtih the
+	 * <code>.highcharts-data-label-box</code> and
+	 * <code>.highcharts-data-label</code> class names (<a href=
+	 * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/series-datalabels"
+	 * >see example</a>).
+	 * </p>
+	 */
 	public void setDataLabels(DataLabels dataLabels) {
 		this.dataLabels = dataLabels;
+	}
+
+	/**
+	 * @see #setDescription(String)
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * <p>
+	 * <i>Requires Accessibility module</i>
+	 * </p>
+	 * <p>
+	 * A description of the series to add to the screen reader information about
+	 * the series.
+	 * </p>
+	 * <p>
+	 * Defaults to: undefined
+	 */
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	/**
@@ -360,6 +459,55 @@ public class PlotOptionsHeatmap extends AbstractPlotOptions {
 	 */
 	public void setEnableMouseTracking(Boolean enableMouseTracking) {
 		this.enableMouseTracking = enableMouseTracking;
+	}
+
+	/**
+	 * @see #setExposeElementToA11y(Boolean)
+	 */
+	public Boolean getExposeElementToA11y() {
+		return exposeElementToA11y;
+	}
+
+	/**
+	 * <p>
+	 * By default, series are exposed to screen readers as regions. By enabling
+	 * this option, the series element itself will be exposed in the same way as
+	 * the data points. This is useful if the series is not used as a grouping
+	 * entity in the chart, but you still want to attach a description to the
+	 * series.
+	 * </p>
+	 * <p>
+	 * Requires the Accessibility module.
+	 * </p>
+	 * <p>
+	 * Defaults to: undefined
+	 */
+	public void setExposeElementToA11y(Boolean exposeElementToA11y) {
+		this.exposeElementToA11y = exposeElementToA11y;
+	}
+
+	/**
+	 * @see #setFindNearestPointBy(String)
+	 */
+	public String getFindNearestPointBy() {
+		return findNearestPointBy;
+	}
+
+	/**
+	 * <p>
+	 * Determines whether the series should look for the nearest point in both
+	 * dimensions or just the x-dimension when hovering the series. Defaults to
+	 * <code>'xy'</code> for scatter series and <code>'x'</code> for most other
+	 * series. If the data has duplicate x-values, it is recommended to set this
+	 * to <code>'xy'</code> to allow hovering over all points.
+	 * </p>
+	 * <p>
+	 * Applies only to series types using nearest neighbor search (not direct
+	 * hover) for tooltip.
+	 * </p>
+	 */
+	public void setFindNearestPointBy(String findNearestPointBy) {
+		this.findNearestPointBy = findNearestPointBy;
 	}
 
 	/**
@@ -461,6 +609,15 @@ public class PlotOptionsHeatmap extends AbstractPlotOptions {
 		this.maxPointWidth = maxPointWidth;
 	}
 
+	public String getPointDescriptionFormatter() {
+		return _fn_pointDescriptionFormatter;
+	}
+
+	public void setPointDescriptionFormatter(
+			String _fn_pointDescriptionFormatter) {
+		this._fn_pointDescriptionFormatter = _fn_pointDescriptionFormatter;
+	}
+
 	/**
 	 * @see #setRowsize(Number)
 	 */
@@ -548,6 +705,21 @@ public class PlotOptionsHeatmap extends AbstractPlotOptions {
 	 */
 	public void setShowInLegend(Boolean showInLegend) {
 		this.showInLegend = showInLegend;
+	}
+
+	/**
+	 * @see #setSkipKeyboardNavigation(Boolean)
+	 */
+	public Boolean getSkipKeyboardNavigation() {
+		return skipKeyboardNavigation;
+	}
+
+	/**
+	 * If set to <code>True</code>, the accessibility module will skip past the
+	 * points in this series for keyboard navigation.
+	 */
+	public void setSkipKeyboardNavigation(Boolean skipKeyboardNavigation) {
+		this.skipKeyboardNavigation = skipKeyboardNavigation;
 	}
 
 	/**
@@ -675,9 +847,21 @@ public class PlotOptionsHeatmap extends AbstractPlotOptions {
 	}
 
 	/**
+	 * <p>
 	 * An array defining zones within a series. Zones can be applied to the X
 	 * axis, Y axis or Z axis for bubbles, according to the
 	 * <code>zoneAxis</code> option.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the color zones are styled with the
+	 * <code>.highcharts-zone-{n}</code> class, or custom classed from the
+	 * <code>className</code> option (<a href=
+	 * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/color-zones/"
+	 * >view live demo</a>).
+	 * </p>
 	 */
 	public void setZones(Zones... zones) {
 		this.zones = new ArrayList<Zones>(Arrays.asList(zones));

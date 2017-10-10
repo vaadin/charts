@@ -1,21 +1,4 @@
 package com.vaadin.addon.charts.model;
-
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
 /**
  * A configuration object for the tooltip rendering of each single series.
  * Properties are inherited from <a href="#tooltip">tooltip</a>, but only the
@@ -29,8 +12,10 @@ public class SeriesTooltip extends AbstractConfigurationObject {
 	private String footerFormat;
 	private String headerFormat;
 	private Number hideDelay;
+	private Number padding;
 	private String pointFormat;
 	private String _fn_pointFormatter;
+	private Boolean split;
 	private Number valueDecimals;
 	private String valuePrefix;
 	private String valueSuffix;
@@ -118,8 +103,10 @@ public class SeriesTooltip extends AbstractConfigurationObject {
 
 	/**
 	 * Whether the tooltip should follow the finger as it moves on a touch
-	 * device. If <a href="#chart.zoomType">chart.zoomType</a> is set, it will
-	 * override <code>followTouchMove</code>.
+	 * device. If this is <code>true</code> and <a
+	 * href="#chart.panning">chart.panning</a> is set,
+	 * <code>followTouchMove</code> will take over one-finger touches, so the
+	 * user needs to use two fingers for zooming and panning.
 	 * <p>
 	 * Defaults to: true
 	 */
@@ -188,6 +175,22 @@ public class SeriesTooltip extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * @see #setPadding(Number)
+	 */
+	public Number getPadding() {
+		return padding;
+	}
+
+	/**
+	 * Padding inside the tooltip, in pixels.
+	 * <p>
+	 * Defaults to: 8
+	 */
+	public void setPadding(Number padding) {
+		this.padding = padding;
+	}
+
+	/**
 	 * @see #setPointFormat(String)
 	 */
 	public String getPointFormat() {
@@ -204,6 +207,12 @@ public class SeriesTooltip extends AbstractConfigurationObject {
 	 * for each series, which makes it a good hook for displaying units.
 	 * </p>
 	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the dot is colored by a class name rather than the
+	 * point color.
+	 * </p>
+	 * <p>
 	 * Defaults to: <span style="color:{point.color}">\u25CF</span>
 	 * {series.name}: <b>{point.y}</b><br/>
 	 */
@@ -217,6 +226,25 @@ public class SeriesTooltip extends AbstractConfigurationObject {
 
 	public void setPointFormatter(String _fn_pointFormatter) {
 		this._fn_pointFormatter = _fn_pointFormatter;
+	}
+
+	/**
+	 * @see #setSplit(Boolean)
+	 */
+	public Boolean getSplit() {
+		return split;
+	}
+
+	/**
+	 * Split the tooltip into one label per series, with the header close to the
+	 * axis. This is recommended over <a href="#tooltip.shared">shared</a>
+	 * tooltips for charts with multiple line series, generally making them
+	 * easier to read.
+	 * <p>
+	 * Defaults to: false
+	 */
+	public void setSplit(Boolean split) {
+		this.split = split;
 	}
 
 	/**

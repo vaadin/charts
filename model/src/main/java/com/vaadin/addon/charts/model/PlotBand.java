@@ -1,22 +1,5 @@
 package com.vaadin.addon.charts.model;
 
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.server.SizeWithUnit;
 import com.vaadin.server.Sizeable.Unit;
@@ -32,6 +15,7 @@ public class PlotBand extends AbstractConfigurationObject {
 
 	private Color borderColor;
 	private Number borderWidth;
+	private String className;
 	private Color color;
 	private Number from;
 	private String id;
@@ -80,6 +64,21 @@ public class PlotBand extends AbstractConfigurationObject {
 	 */
 	public void setBorderWidth(Number borderWidth) {
 		this.borderWidth = borderWidth;
+	}
+
+	/**
+	 * @see #setClassName(String)
+	 */
+	public String getClassName() {
+		return className;
+	}
+
+	/**
+	 * A custom class name, in addition to the default
+	 * <code>highcharts-plot-band</code>, to apply to each individual band.
+	 */
+	public void setClassName(String className) {
+		this.className = className;
 	}
 
 	/**

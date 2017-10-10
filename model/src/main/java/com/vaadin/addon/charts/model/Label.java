@@ -1,22 +1,5 @@
 package com.vaadin.addon.charts.model;
 
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import com.vaadin.addon.charts.model.style.Style;
 /**
  * Text labels for the plot bands
@@ -79,7 +62,16 @@ public class Label extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * <p>
 	 * CSS styles for the text label.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the labels are styled by the
+	 * <code>.highcharts-plot-band-label</code> class.
+	 * </p>
 	 */
 	public void setStyle(Style style) {
 		this.style = style;
@@ -130,8 +122,9 @@ public class Label extends AbstractConfigurationObject {
 
 	/**
 	 * <p>
-	 * Whether to <a href="http://docs.highcharts.com/#formatting$html">use
-	 * HTML</a> to render the labels.
+	 * Whether to <a href=
+	 * "http://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#html"
+	 * >use HTML</a> to render the labels.
 	 * <p>
 	 * Defaults to: false
 	 */

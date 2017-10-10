@@ -17,6 +17,7 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
+
 /**
  * The name of a symbol to use for the border in {@link ChartType#FLAGS} series.
  */

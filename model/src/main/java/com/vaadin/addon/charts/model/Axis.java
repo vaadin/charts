@@ -17,11 +17,15 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
-import java.util.Date;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.vaadin.addon.charts.model.AxisTitle;
+import com.vaadin.addon.charts.model.Labels;
+import com.vaadin.addon.charts.model.PlotBand;
+import com.vaadin.addon.charts.model.PlotLine;
 import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.util.Util;
+
+import java.util.Date;
 
 public abstract class Axis extends AbstractConfigurationObject {
 
@@ -42,7 +46,7 @@ public abstract class Axis extends AbstractConfigurationObject {
         axisIndex = i;
     }
 
-    Integer getAxisIndex() {
+    protected Integer getAxisIndex() {
         return axisIndex;
     }
 
@@ -309,7 +313,7 @@ public abstract class Axis extends AbstractConfigurationObject {
      * Whether to force the axis to end on a tick. Use this option with the
      * <code>maxPadding</code> option to control the axis end.
      */
-    abstract void setEndOnTick(Boolean endOnTick);
+    protected abstract void setEndOnTick(Boolean endOnTick);
 
     /**
      * @see #setFloor(Number)
