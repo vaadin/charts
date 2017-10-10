@@ -1,22 +1,5 @@
 package com.vaadin.addon.charts.model;
 
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import com.vaadin.addon.charts.model.style.Style;
 public class Labels extends AbstractConfigurationObject {
 
@@ -50,7 +33,9 @@ public class Labels extends AbstractConfigurationObject {
 
 	/**
 	 * What part of the string the given position is anchored to. Can be one of
-	 * <code>"left"</code>, <code>"center"</code> or <code>"right"</code>.
+	 * <code>"left"</code>, <code>"center"</code> or <code>"right"</code>. The
+	 * exact position also depends on the <code>labels.x</code> setting. Angular
+	 * gauges and solid gauges defaults to <code>center</code>.
 	 * <p>
 	 * Defaults to: right
 	 */
@@ -109,7 +94,7 @@ public class Labels extends AbstractConfigurationObject {
 	 * Angular gauges and solid gauges only. The label's pixel distance from the
 	 * perimeter of the plot area.
 	 * <p>
-	 * Defaults to: 15
+	 * Defaults to: -25
 	 */
 	public void setDistance(Number distance) {
 		this.distance = distance;
@@ -245,11 +230,21 @@ public class Labels extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * <p>
 	 * CSS styles for the label. Use <code>whiteSpace: 'nowrap'</code> to
 	 * prevent wrapping of category labels. Use
 	 * <code>textOverflow: 'none'</code> to prevent ellipsis (dots).
+	 * </p>
+	 * 
 	 * <p>
-	 * Defaults to: {"color":"#6D869F","fontWeight":"bold"}
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the labels are styled with the
+	 * <code>.highcharts-axis-labels</code> class.
+	 * </p>
+	 * <p>
+	 * Defaults to: { "color": "#666666", "cursor": "default", "fontSize":
+	 * "11px" }
 	 */
 	public void setStyle(Style style) {
 		this.style = style;

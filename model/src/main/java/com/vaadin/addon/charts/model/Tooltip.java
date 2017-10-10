@@ -1,22 +1,5 @@
 package com.vaadin.addon.charts.model;
 
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.Style;
 /**
@@ -38,6 +21,7 @@ public class Tooltip extends AbstractConfigurationObject {
 	private String _fn_formatter;
 	private String headerFormat;
 	private Number hideDelay;
+	private Number padding;
 	private String pointFormat;
 	private String _fn_pointFormatter;
 	private String _fn_positioner;
@@ -45,6 +29,7 @@ public class Tooltip extends AbstractConfigurationObject {
 	private Shape shape;
 	private Boolean shared;
 	private Number snap;
+	private Boolean split;
 	private Style style;
 	private Boolean useHTML;
 	private Number valueDecimals;
@@ -81,9 +66,18 @@ public class Tooltip extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * The background color or gradient for the tooltip.
 	 * <p>
-	 * Defaults to: rgba(255, 255, 255, 0.85)
+	 * The background color or gradient for the tooltip.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the stroke width is set in the
+	 * <code>.highcharts-tooltip-box</code> class.
+	 * </p>
+	 * <p>
+	 * Defaults to: rgba(247,247,247,0.85)
 	 */
 	public void setBackgroundColor(Color backgroundColor) {
 		this.backgroundColor = backgroundColor;
@@ -130,7 +124,16 @@ public class Tooltip extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * <p>
 	 * The pixel width of the tooltip border.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the stroke width is set in the
+	 * <code>.highcharts-tooltip-box</code> class.
+	 * </p>
 	 * <p>
 	 * Defaults to: 1
 	 */
@@ -235,8 +238,10 @@ public class Tooltip extends AbstractConfigurationObject {
 
 	/**
 	 * Whether the tooltip should follow the finger as it moves on a touch
-	 * device. If <a href="#chart.zoomType">chart.zoomType</a> is set, it will
-	 * override <code>followTouchMove</code>.
+	 * device. If this is <code>true</code> and <a
+	 * href="#chart.panning">chart.panning</a> is set,
+	 * <code>followTouchMove</code> will take over one-finger touches, so the
+	 * user needs to use two fingers for zooming and panning.
 	 * <p>
 	 * Defaults to: true
 	 */
@@ -313,6 +318,22 @@ public class Tooltip extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * @see #setPadding(Number)
+	 */
+	public Number getPadding() {
+		return padding;
+	}
+
+	/**
+	 * Padding inside the tooltip, in pixels.
+	 * <p>
+	 * Defaults to: 8
+	 */
+	public void setPadding(Number padding) {
+		this.padding = padding;
+	}
+
+	/**
 	 * @see #setPointFormat(String)
 	 */
 	public String getPointFormat() {
@@ -327,6 +348,12 @@ public class Tooltip extends AbstractConfigurationObject {
 	 * can be extended by the <code>tooltip.valuePrefix</code> and
 	 * <code>tooltip.valueSuffix</code> variables. This can also be overridden
 	 * for each series, which makes it a good hook for displaying units.
+	 * </p>
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the dot is colored by a class name rather than the
+	 * point color.
 	 * </p>
 	 * <p>
 	 * Defaults to: <span style="color:{point.color}">\u25CF</span>
@@ -402,10 +429,8 @@ public class Tooltip extends AbstractConfigurationObject {
 	 * </p>
 	 * 
 	 * <p>
-	 * See also the experimental implementation for <a href=
-	 * "http://jsfiddle.net/gh/get/jquery/1.7.2/highcharts/highcharts/tree/master/samples/highcharts/studies/tooltip-split/"
-	 * >tooltip.split</a>, that is better suited for charts with many series,
-	 * especially line-type series.
+	 * See also <a href="#tooltip.split">tooltip.split</a>, that is better
+	 * suited for charts with many series, especially line-type series.
 	 * </p>
 	 * <p>
 	 * Defaults to: false
@@ -422,16 +447,41 @@ public class Tooltip extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * Proximity snap for graphs or single points. Does not apply to bars,
-	 * columns and pie slices. It defaults to 10 for mouse-powered devices and
-	 * 25 for touch devices. Note that since Highcharts 4.1 the whole plot area
-	 * by default captures pointer events in order to show the tooltip, so for
-	 * tooltip.snap to make sense, <a
-	 * href="#plotOptions.series.stickyTracking">stickyTracking</a> must be
-	 * <code>false</code>.
+	 * <p>
+	 * Proximity snap for graphs or single points. It defaults to 10 for
+	 * mouse-powered devices and 25 for touch devices.
+	 * </p>
+	 * 
+	 * <p>
+	 * Note that in most cases the whole plot area captures the mouse movement,
+	 * and in these cases <code>tooltip.snap</code> doesn't make sense. This
+	 * applies when <a
+	 * href="#plotOptions.series.stickyTracking">stickyTracking</a> is
+	 * <code>true</code> (default) and when the tooltip is <a
+	 * href="#tooltip.shared">shared</a> or <a href="#tooltip.split">split</a>.
+	 * </p>
 	 */
 	public void setSnap(Number snap) {
 		this.snap = snap;
+	}
+
+	/**
+	 * @see #setSplit(Boolean)
+	 */
+	public Boolean getSplit() {
+		return split;
+	}
+
+	/**
+	 * Split the tooltip into one label per series, with the header close to the
+	 * axis. This is recommended over <a href="#tooltip.shared">shared</a>
+	 * tooltips for charts with multiple line series, generally making them
+	 * easier to read.
+	 * <p>
+	 * Defaults to: false
+	 */
+	public void setSplit(Boolean split) {
+		this.split = split;
 	}
 
 	/**
@@ -449,8 +499,7 @@ public class Tooltip extends AbstractConfigurationObject {
 	 * CSS class <code>.highcharts-tooltip</code>.
 	 * <p>
 	 * Defaults to: { "color": "#333333", "cursor": "default", "fontSize":
-	 * "12px", "padding": "8px", "pointerEvents": "none", "whiteSpace": "nowrap"
-	 * }
+	 * "12px", "pointerEvents": "none", "whiteSpace": "nowrap" }
 	 */
 	public void setStyle(Style style) {
 		this.style = style;

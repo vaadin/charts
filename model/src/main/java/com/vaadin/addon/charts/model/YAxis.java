@@ -1,22 +1,5 @@
 package com.vaadin.addon.charts.model;
 
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import com.vaadin.addon.charts.model.style.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,11 +21,14 @@ public class YAxis extends Axis {
 
 	private Boolean allowDecimals;
 	private Color alternateGridColor;
+	private Number angle;
 	private Breaks[] breaks;
 	private ArrayList<String> categories;
 	private Number ceiling;
+	private String className;
 	private Crosshair crosshair;
 	private DateTimeLabelFormats dateTimeLabelFormats;
+	private String description;
 	private Boolean endOnTick;
 	private Number floor;
 	private Color gridLineColor;
@@ -78,6 +64,8 @@ public class YAxis extends Axis {
 	private Boolean showEmpty;
 	private Boolean showFirstLabel;
 	private Boolean showLastLabel;
+	private Number softMax;
+	private Number softMin;
 	private StackLabels stackLabels;
 	private Number startOfWeek;
 	private Boolean startOnTick;
@@ -92,6 +80,7 @@ public class YAxis extends Axis {
 	private TickmarkPlacement tickmarkPlacement;
 	private AxisTitle title;
 	private AxisType type;
+	private Boolean uniqueNames;
 	private ArrayList<TimeUnitMultiples> units;
 	private Boolean visible;
 	@JsonSerialize(using = SizeSerializer.class)
@@ -99,8 +88,7 @@ public class YAxis extends Axis {
 	private Boolean ordinal;
 	private Number range;
 	private Scrollbar scrollbar;
-	@JsonSerialize(using = SizeSerializer.class)
-	private String top;
+	private Top top;
 	private Number pane;
 	private ArrayList<Stop> stops;
 
@@ -138,6 +126,24 @@ public class YAxis extends Axis {
 	 */
 	public void setAlternateGridColor(Color alternateGridColor) {
 		this.alternateGridColor = alternateGridColor;
+	}
+
+	/**
+	 * @see #setAngle(Number)
+	 */
+	public Number getAngle() {
+		return angle;
+	}
+
+	/**
+	 * In a polar chart, this is the angle of the Y axis in degrees, where 0 is
+	 * up and 90 is right. The angle determines the position of the axis line
+	 * and the labels, though the coordinate system is unaffected.
+	 * <p>
+	 * Defaults to: 0
+	 */
+	public void setAngle(Number angle) {
+		this.angle = angle;
 	}
 
 	/**
@@ -232,6 +238,24 @@ public class YAxis extends Axis {
 	}
 
 	/**
+	 * @see #setClassName(String)
+	 */
+	public String getClassName() {
+		return className;
+	}
+
+	/**
+	 * A class name that opens for styling the axis by CSS, especially in
+	 * Highcharts <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>. The class name is applied to group elements for the
+	 * grid, axis elements and labels.
+	 */
+	public void setClassName(String className) {
+		this.className = className;
+	}
+
+	/**
 	 * @see #setCrosshair(Crosshair)
 	 */
 	public Crosshair getCrosshair() {
@@ -242,8 +266,19 @@ public class YAxis extends Axis {
 	}
 
 	/**
+	 * <p>
 	 * Configure a crosshair that follows either the mouse pointer or the
 	 * hovered point.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the crosshairs are styled in the
+	 * <code>.highcharts-crosshair</code>,
+	 * <code>.highcharts-crosshair-thin</code> or
+	 * <code>.highcharts-xaxis-category</code> classes.
+	 * </p>
 	 * <p>
 	 * Defaults to: false
 	 */
@@ -291,6 +326,28 @@ public class YAxis extends Axis {
 	}
 
 	/**
+	 * @see #setDescription(String)
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * <p>
+	 * <i>Requires Accessibility module</i>
+	 * </p>
+	 * 
+	 * <p>
+	 * Description of the axis to screen reader users.
+	 * </p>
+	 * <p>
+	 * Defaults to: undefined
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	/**
 	 * @see #setEndOnTick(Boolean)
 	 */
 	public Boolean getEndOnTick() {
@@ -331,9 +388,18 @@ public class YAxis extends Axis {
 	}
 
 	/**
-	 * Color of the grid lines extending the ticks across the plot area.
 	 * <p>
-	 * Defaults to: #D8D8D8
+	 * Color of the grid lines extending the ticks across the plot area.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the stroke is given in the
+	 * <code>.highcharts-grid-line</code> class.
+	 * </p>
+	 * <p>
+	 * Defaults to: #e6e6e6
 	 */
 	public void setGridLineColor(Color gridLineColor) {
 		this.gridLineColor = gridLineColor;
@@ -349,7 +415,7 @@ public class YAxis extends Axis {
 	/**
 	 * The dash or dot style of the grid lines. For possible values, see <a
 	 * href=
-	 * "http://jsfiddle.net/gh/get/jquery/1.7.2/highslide-software/highcharts.com/tree/master/samples/highcharts/plotoptions/series-dashstyle-all/"
+	 * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-dashstyle-all/"
 	 * >this demonstration</a>.
 	 * <p>
 	 * Defaults to: Solid
@@ -445,9 +511,19 @@ public class YAxis extends Axis {
 	}
 
 	/**
-	 * The color of the line marking the axis itself.
 	 * <p>
-	 * Defaults to: #C0D0E0
+	 * The color of the line marking the axis itself.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the line stroke is given in the
+	 * <code>.highcharts-axis-line</code> or <code>.highcharts-xaxis-line</code>
+	 * class.
+	 * </p>
+	 * <p>
+	 * Defaults to: #ccd6eb
 	 */
 	public void setLineColor(Color lineColor) {
 		this.lineColor = lineColor;
@@ -497,7 +573,7 @@ public class YAxis extends Axis {
 	 * Solid gauge only. Unless <a href="#yAxis.stops">stops</a> are set, the
 	 * color to represent the maximum value of the Y axis.
 	 * <p>
-	 * Defaults to: #102D4C
+	 * Defaults to: #003399
 	 */
 	public void setMaxColor(Color maxColor) {
 		this.maxColor = maxColor;
@@ -532,7 +608,7 @@ public class YAxis extends Axis {
 	 * Solid gauge only. Unless <a href="#yAxis.stops">stops</a> are set, the
 	 * color to represent the minimum value of the Y axis.
 	 * <p>
-	 * Defaults to: #EFEFFF
+	 * Defaults to: #e6ebf5
 	 */
 	public void setMinColor(Color minColor) {
 		this.minColor = minColor;
@@ -617,9 +693,19 @@ public class YAxis extends Axis {
 	}
 
 	/**
-	 * Color of the minor, secondary grid lines.
 	 * <p>
-	 * Defaults to: #E0E0E0
+	 * Color of the minor, secondary grid lines.
+	 * </p>
+	 * 
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the stroke width is given in the
+	 * <code>.highcharts-minor-grid-line</code> class.
+	 * </p>
+	 * <p>
+	 * Defaults to: #f2f2f2
 	 */
 	public void setMinorGridLineColor(Color minorGridLineColor) {
 		this.minorGridLineColor = minorGridLineColor;
@@ -635,7 +721,7 @@ public class YAxis extends Axis {
 	/**
 	 * The dash or dot style of the minor grid lines. For possible values, see
 	 * <a href=
-	 * "http://jsfiddle.net/gh/get/jquery/1.7.1/highslide-software/highcharts.com/tree/master/samples/highcharts/plotoptions/series-dashstyle-all/"
+	 * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-dashstyle-all/"
 	 * >this demonstration</a>.
 	 * <p>
 	 * Defaults to: Solid
@@ -652,7 +738,16 @@ public class YAxis extends Axis {
 	}
 
 	/**
+	 * <p>
 	 * Width of the minor, secondary grid lines.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the stroke width is given in the
+	 * <code>.highcharts-grid-line</code> class.
+	 * </p>
 	 * <p>
 	 * Defaults to: 1
 	 */
@@ -670,7 +765,7 @@ public class YAxis extends Axis {
 	/**
 	 * Color for the minor tick marks.
 	 * <p>
-	 * Defaults to: #A0A0A0
+	 * Defaults to: #999999
 	 */
 	public void setMinorTickColor(Color minorTickColor) {
 		this.minorTickColor = minorTickColor;
@@ -963,12 +1058,43 @@ public class YAxis extends Axis {
 	}
 
 	/**
-	 * Whether to show the last tick label.
-	 * <p>
-	 * Defaults to: true
+	 * Whether to show the last tick label. Defaults to <code>true</code> on
+	 * cartesian charts, and <code>false</code> on polar charts.
 	 */
 	public void setShowLastLabel(Boolean showLastLabel) {
 		this.showLastLabel = showLastLabel;
+	}
+
+	/**
+	 * @see #setSoftMax(Number)
+	 */
+	public Number getSoftMax() {
+		return softMax;
+	}
+
+	/**
+	 * A soft maximum for the axis. If the series data maximum is less than
+	 * this, the axis will stay at this maximum, but if the series data maximum
+	 * is higher, the axis will flex to show all data.
+	 */
+	public void setSoftMax(Number softMax) {
+		this.softMax = softMax;
+	}
+
+	/**
+	 * @see #setSoftMin(Number)
+	 */
+	public Number getSoftMin() {
+		return softMin;
+	}
+
+	/**
+	 * A soft minimum for the axis. If the series data minimum is greater than
+	 * this, the axis will stay at this minimum, but if the series data minimum
+	 * is lower, the axis will flex to show all data.
+	 */
+	public void setSoftMin(Number softMin) {
+		this.softMin = softMin;
 	}
 
 	/**
@@ -1056,9 +1182,18 @@ public class YAxis extends Axis {
 	}
 
 	/**
-	 * Color for the main tick marks.
 	 * <p>
-	 * Defaults to: #C0D0E0
+	 * Color for the main tick marks.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the stroke is given in the
+	 * <code>.highcharts-tick</code> class.
+	 * </p>
+	 * <p>
+	 * Defaults to: #ccd6eb
 	 */
 	public void setTickColor(Color tickColor) {
 		this.tickColor = tickColor;
@@ -1128,10 +1263,21 @@ public class YAxis extends Axis {
 	}
 
 	/**
+	 * <p>
 	 * If tickInterval is <code>null</code> this option sets the approximate
 	 * pixel interval of the tick marks. Not applicable to categorized axis.
+	 * </p>
+	 * 
+	 * <p>
+	 * The tick interval is also influenced by the <a
+	 * href="#xAxis.minTickInterval">minTickInterval</a> option, that, by
+	 * default prevents ticks from being denser than the data points.
+	 * </p>
+	 * 
+	 * <p>
 	 * Defaults to <code>72</code> for the Y axis and <code>100</code> for the X
 	 * axis.
+	 * </p>
 	 */
 	public void setTickPixelInterval(Number tickPixelInterval) {
 		this.tickPixelInterval = tickPixelInterval;
@@ -1240,6 +1386,29 @@ public class YAxis extends Axis {
 	 */
 	public void setType(AxisType type) {
 		this.type = type;
+	}
+
+	/**
+	 * @see #setUniqueNames(Boolean)
+	 */
+	public Boolean getUniqueNames() {
+		return uniqueNames;
+	}
+
+	/**
+	 * Applies only when the axis <code>type</code> is <code>category</code>.
+	 * When <code>uniqueNames</code> is true, points are placed on the X axis
+	 * according to their names. If the same point name is repeated in the same
+	 * or another series, the point is placed on the same X position as other
+	 * points of the same name. When <code>uniqueNames</code> is false, the
+	 * points are laid out in increasing X positions regardless of their names,
+	 * and the X axis category will take the name of the last point in each
+	 * position.
+	 * <p>
+	 * Defaults to: true
+	 */
+	public void setUniqueNames(Boolean uniqueNames) {
+		this.uniqueNames = uniqueNames;
 	}
 
 	/**
@@ -1456,86 +1625,50 @@ public class YAxis extends Axis {
 	}
 
 	/**
+	 * <p>
 	 * An optional scrollbar to display on the Y axis in response to limiting
 	 * the minimum an maximum of the axis values.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, all the presentational options for the scrollbar are
+	 * replaced by the classes <code>.highcharts-scrollbar-thumb</code>,
+	 * <code>.highcharts-scrollbar-arrow</code>,
+	 * <code>.highcharts-scrollbar-button</code>,
+	 * <code>.highcharts-scrollbar-rifles</code> and
+	 * <code>.highcharts-scrollbar-track</code>.
+	 * </p>
 	 */
 	public void setScrollbar(Scrollbar scrollbar) {
 		this.scrollbar = scrollbar;
 	}
 
 	/**
-	 * @see #setTop(String)
+	 * @see #setTop(Top)
 	 */
-	public float getTop() {
-		String tmp = top;
+	public Top getTop() {
 		if (top == null) {
-			return -1.0f;
+			top = new Top();
 		}
-		if (this.top.contains("%")) {
-			tmp = tmp.replace("%", "");
-		}
-		return Float.valueOf(tmp).floatValue();
+		return top;
 	}
 
 	/**
-	 * Sets the top using String presentation. String presentation is similar to
-	 * what is used in Cascading Style Sheets. Size can be pixels or percentage,
-	 * otherwise IllegalArgumentException is thrown. The empty string ("") or
-	 * null will unset the height and set the units to pixels.
-	 * 
-	 * @param top
-	 *            CSS style string representation
+	 * <p>
+	 * The top position of the Y axis. If it's a number, it is interpreted as
+	 * pixel position relative to the chart.
+	 * </p>
+	 * <p>
+	 * Since Highstock 2: If it's a percentage string, it is interpreted as
+	 * percentages of the plot height, offset from plot area top.
+	 * </p>
+	 * <p>
+	 * Defaults to: null
 	 */
-	public void setTop(String top) {
-		SizeWithUnit sizeWithUnit = SizeWithUnit.parseStringSize(top);
-		if (sizeWithUnit != null) {
-			Unit unit = sizeWithUnit.getUnit();
-			if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
-				throw new IllegalArgumentException(
-						unit.toString()
-								+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
-			}
-			setTop(sizeWithUnit.getSize(), sizeWithUnit.getUnit());
-		} else {
-			setTop(-1, Unit.PIXELS);
-		}
-	}
-
-	/**
-	 * @see #setTop(float,Unit)
-	 */
-	public Unit getTopUnit() {
-		if (this.top == null) {
-			return Unit.PIXELS;
-		}
-		if (this.top.contains("%")) {
-			return Unit.PERCENTAGE;
-		}
-		return Unit.PIXELS;
-	}
-
-	/**
-	 * Sets the top using Vaadin Unit. Only Unit.PIXELS and Unit.PERCENTAGE are
-	 * supported. In all other cases, IllegalArgumentException is thrown.
-	 * 
-	 * @param top
-	 * @param unit
-	 *            the unit used for the top
-	 */
-	public void setTop(float top, Unit unit) {
-		if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
-			throw new IllegalArgumentException(
-					unit.toString()
-							+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
-		}
-		String value = Float.toString(top);
-		if (unit.equals(Unit.PERCENTAGE)) {
-			value += "%";
-		}
-		if (top == -1) {
-			value = null;
-		}
-		this.top = value;
+	public void setTop(Top top) {
+		this.top = top;
 	}
 
 	public Number getPane() {

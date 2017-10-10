@@ -1,6 +1,7 @@
 package com.vaadin.addon.charts.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.vaadin.addon.charts.model.Halo;
 import com.vaadin.addon.charts.model.style.Color;
 
 /*

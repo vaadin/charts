@@ -1,23 +1,10 @@
 package com.vaadin.addon.charts.model;
 
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import com.vaadin.addon.charts.model.style.Color;
+import com.vaadin.server.SizeWithUnit;
+import com.vaadin.server.Sizeable.Unit;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.vaadin.addon.charts.model.serializers.SizeSerializer;
 import com.vaadin.addon.charts.model.style.Style;
 /**
  * Options regarding the chart area and plot area as well as general chart
@@ -32,7 +19,10 @@ public class ChartModel extends AbstractConfigurationObject {
 	private Number borderRadius;
 	private Number borderWidth;
 	private String className;
-	private Number height;
+	private Number colorCount;
+	private String description;
+	@JsonSerialize(using = SizeSerializer.class)
+	private String height;
 	private Boolean ignoreHiddenSeries;
 	private Boolean inverted;
 	private Number[] margin;
@@ -62,6 +52,7 @@ public class ChartModel extends AbstractConfigurationObject {
 	private Number spacingTop;
 	private Style style;
 	private ChartType type;
+	private String typeDescription;
 	private Number width;
 	private ZoomType zoomType;
 
@@ -76,11 +67,17 @@ public class ChartModel extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * <p>
 	 * When using multiple axis, the ticks of two or more opposite axes will
 	 * automatically be aligned by adding ticks to the axis or axes with the
-	 * least ticks. This can be prevented by setting <code>alignTicks</code> to
-	 * false. If the grid lines look messy, it's a good idea to hide them for
-	 * the secondary axis by setting <code>gridLineWidth</code> to 0.
+	 * least ticks, as if <code>tickAmount</code> were specified.
+	 * </p>
+	 * 
+	 * <p>
+	 * This can be prevented by setting <code>alignTicks</code> to false. If the
+	 * grid lines look messy, it's a good idea to hide them for the secondary
+	 * axis by setting <code>gridLineWidth</code> to 0.
+	 * </p>
 	 * <p>
 	 * Defaults to: true
 	 */
@@ -118,7 +115,7 @@ public class ChartModel extends AbstractConfigurationObject {
 	 * <dt>easing</dt>
 	 * <dd>A string reference to an easing function set on the <code>Math</code>
 	 * object. See <a href=
-	 * "http://jsfiddle.net/gh/get/jquery/1.7.2/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/"
+	 * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/"
 	 * >the easing demo</a>.</dd>
 	 * </dl>
 	 * <p>
@@ -154,7 +151,7 @@ public class ChartModel extends AbstractConfigurationObject {
 	/**
 	 * The color of the outer chart border.
 	 * <p>
-	 * Defaults to: #4572A7
+	 * Defaults to: #335cad
 	 */
 	public void setBorderColor(Color borderColor) {
 		this.borderColor = borderColor;
@@ -208,21 +205,124 @@ public class ChartModel extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setHeight(Number)
+	 * @see #setColorCount(Number)
 	 */
-	public Number getHeight() {
-		return height;
+	public Number getColorCount() {
+		return colorCount;
 	}
 
 	/**
-	 * An explicit height for the chart. By default (when <code>null</code>) the
-	 * height is calculated from the offset height of the containing element, or
-	 * 400 pixels if the containing element's height is 0.
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, this sets how many colors the class names should rotate
+	 * between. With ten colors, series (or points) are given class names like
+	 * <code>highcharts-color-0</code>, <code>highcharts-color-0</code> [...]
+	 * <code>highcharts-color-9</code>. The equivalent in non-styled mode is to
+	 * set colors using the <a href="#colors">colors</a> setting.
 	 * <p>
-	 * Defaults to: null
+	 * Defaults to: 10
 	 */
-	public void setHeight(Number height) {
-		this.height = height;
+	public void setColorCount(Number colorCount) {
+		this.colorCount = colorCount;
+	}
+
+	/**
+	 * @see #setDescription(String)
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * <p>
+	 * A text description of the chart.
+	 * </p>
+	 * 
+	 * <p>
+	 * If the Accessibility module is loaded, this is included by default as a
+	 * long description of the chart and its contents in the hidden screen
+	 * reader information region.
+	 * </p>
+	 * <p>
+	 * Defaults to: undefined
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	/**
+	 * @see #setHeight(String)
+	 */
+	public float getHeight() {
+		String tmp = height;
+		if (height == null) {
+			return -1.0f;
+		}
+		if (this.height.contains("%")) {
+			tmp = tmp.replace("%", "");
+		}
+		return Float.valueOf(tmp).floatValue();
+	}
+
+	/**
+	 * Sets the height using String presentation. String presentation is similar
+	 * to what is used in Cascading Style Sheets. Size can be pixels or
+	 * percentage, otherwise IllegalArgumentException is thrown. The empty
+	 * string ("") or null will unset the height and set the units to pixels.
+	 * 
+	 * @param height
+	 *            CSS style string representation
+	 */
+	public void setHeight(String height) {
+		SizeWithUnit sizeWithUnit = SizeWithUnit.parseStringSize(height);
+		if (sizeWithUnit != null) {
+			Unit unit = sizeWithUnit.getUnit();
+			if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
+				throw new IllegalArgumentException(
+						unit.toString()
+								+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
+			}
+			setHeight(sizeWithUnit.getSize(), sizeWithUnit.getUnit());
+		} else {
+			setHeight(-1, Unit.PIXELS);
+		}
+	}
+
+	/**
+	 * @see #setHeight(float,Unit)
+	 */
+	public Unit getHeightUnit() {
+		if (this.height == null) {
+			return Unit.PIXELS;
+		}
+		if (this.height.contains("%")) {
+			return Unit.PERCENTAGE;
+		}
+		return Unit.PIXELS;
+	}
+
+	/**
+	 * Sets the height using Vaadin Unit. Only Unit.PIXELS and Unit.PERCENTAGE
+	 * are supported. In all other cases, IllegalArgumentException is thrown.
+	 * 
+	 * @param height
+	 * @param unit
+	 *            the unit used for the height
+	 */
+	public void setHeight(float height, Unit unit) {
+		if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
+			throw new IllegalArgumentException(
+					unit.toString()
+							+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
+		}
+		String value = Float.toString(height);
+		if (unit.equals(Unit.PERCENTAGE)) {
+			value += "%";
+		}
+		if (height == -1) {
+			value = null;
+		}
+		this.height = value;
 	}
 
 	/**
@@ -373,7 +473,12 @@ public class ChartModel extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * Allows setting a key to switch between zooming and panning.
+	 * Allows setting a key to switch between zooming and panning. Can be one of
+	 * <code>alt</code>, <code>ctrl</code>, <code>meta</code> (the command key
+	 * on Mac and Windows key on Windows) or <code>shift</code>. The keys are
+	 * mapped directly to the key properties of the click event argument (
+	 * <code>event.altKey</code>, <code>event.ctrlKey</code>,
+	 * <code>event.metaKey</code> and <code>event.shiftKey</code>).
 	 */
 	public void setPanKey(String panKey) {
 		this.panKey = panKey;
@@ -387,8 +492,18 @@ public class ChartModel extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * <p>
 	 * Allow panning in a chart. Best used with <a
 	 * href="#chart.panKey">panKey</a> to combine zooming and panning.
+	 * </p>
+	 * 
+	 * <p>
+	 * On touch devices, when the <a
+	 * href="#tooltip.followTouchMove">tooltip.followTouchMove</a> option is
+	 * <code>true</code> (default), panning requires two fingers. To allow
+	 * panning with one finger, set <code>followTouchMove</code> to
+	 * <code>false</code>.
+	 * </p>
 	 * <p>
 	 * Defaults to: false
 	 */
@@ -408,7 +523,9 @@ public class ChartModel extends AbstractConfigurationObject {
 	 * gestures only. By default, the <code>pinchType</code> is the same as the
 	 * <code>zoomType</code> setting. However, pinching can be enabled
 	 * separately in some cases, for example in stock charts where a mouse drag
-	 * pans the chart, while pinching is enabled.
+	 * pans the chart, while pinching is enabled. When <a
+	 * href="#tooltip.followTouchMove">tooltip.followTouchMove</a> is true,
+	 * pinchType only applies to two-finger touches.
 	 * <p>
 	 * Defaults to: null
 	 */
@@ -457,7 +574,7 @@ public class ChartModel extends AbstractConfigurationObject {
 	/**
 	 * The color of the inner chart or plot area border.
 	 * <p>
-	 * Defaults to: #C0C0C0
+	 * Defaults to: #cccccc
 	 */
 	public void setPlotBorderColor(Color plotBorderColor) {
 		this.plotBorderColor = plotBorderColor;
@@ -488,9 +605,9 @@ public class ChartModel extends AbstractConfigurationObject {
 
 	/**
 	 * Whether to apply a drop shadow to the plot area. Requires that
-	 * plotBackgroundColor be set. Since 2.3 the shadow can be an object
-	 * configuration containing <code>color</code>, <code>offsetX</code>,
-	 * <code>offsetY</code>, <code>opacity</code> and <code>width</code>.
+	 * plotBackgroundColor be set. The shadow can be an object configuration
+	 * containing <code>color</code>, <code>offsetX</code>, <code>offsetY</code>
+	 * , <code>opacity</code> and <code>width</code>.
 	 * <p>
 	 * Defaults to: false
 	 */
@@ -562,7 +679,7 @@ public class ChartModel extends AbstractConfigurationObject {
 	 * The background color of the marker square when selecting (zooming in on)
 	 * an area of the chart.
 	 * <p>
-	 * Defaults to: rgba(69,114,167,0.25)
+	 * Defaults to: rgba(51,92,173,0.25)
 	 */
 	public void setSelectionMarkerFill(Color selectionMarkerFill) {
 		this.selectionMarkerFill = selectionMarkerFill;
@@ -577,9 +694,9 @@ public class ChartModel extends AbstractConfigurationObject {
 
 	/**
 	 * Whether to apply a drop shadow to the outer chart area. Requires that
-	 * backgroundColor be set. Since 2.3 the shadow can be an object
-	 * configuration containing <code>color</code>, <code>offsetX</code>,
-	 * <code>offsetY</code>, <code>opacity</code> and <code>width</code>.
+	 * backgroundColor be set. The shadow can be an object configuration
+	 * containing <code>color</code>, <code>offsetX</code>, <code>offsetY</code>
+	 * , <code>opacity</code> and <code>width</code>.
 	 * <p>
 	 * Defaults to: false
 	 */
@@ -614,10 +731,10 @@ public class ChartModel extends AbstractConfigurationObject {
 
 	/**
 	 * The distance between the outer edge of the chart and the content, like
-	 * title, legend, axis title or labels. The numbers in the array designate
-	 * top, right, bottom and left respectively. Use the options spacingTop,
-	 * spacingRight, spacingBottom and spacingLeft options for shorthand setting
-	 * of one option.
+	 * title or legend, or axis title or labels if present. The numbers in the
+	 * array designate top, right, bottom and left respectively. Use the options
+	 * spacingTop, spacingRight, spacingBottom and spacingLeft options for
+	 * shorthand setting of one option.
 	 * <p>
 	 * Defaults to: [10, 10, 15, 10]
 	 */
@@ -715,14 +832,6 @@ public class ChartModel extends AbstractConfigurationObject {
 	 * Additional CSS styles to apply inline to the container <code>div</code>.
 	 * Note that since the default font styles are applied in the renderer, it
 	 * is ignorant of the individual chart options and must be set globally.
-	 * Defaults to:
-	 * 
-	 * <pre>
-	 * style: {
-	 * 		fontFamily: '"Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif', // default font
-	 * 		fontSize: '12px'
-	 * 	}
-	 * </pre>
 	 * <p>
 	 * Defaults to: {"fontFamily":
 	 * "\"Lucida Grande\", \"Lucida Sans Unicode\", Verdana, Arial, Helvetica, sans-serif"
@@ -747,6 +856,32 @@ public class ChartModel extends AbstractConfigurationObject {
 	 */
 	public void setType(ChartType type) {
 		this.type = type;
+	}
+
+	/**
+	 * @see #setTypeDescription(String)
+	 */
+	public String getTypeDescription() {
+		return typeDescription;
+	}
+
+	/**
+	 * <p>
+	 * A text description of the chart type.
+	 * </p>
+	 * <p>
+	 * If the Accessibility module is loaded, this will be included in the
+	 * description of the chart in the screen reader information region.
+	 * </p>
+	 * <p>
+	 * Highcharts will by default attempt to guess the chart type, but for more
+	 * complex charts it is recommended to specify this property for clarity.
+	 * </p>
+	 * <p>
+	 * Defaults to: undefined
+	 */
+	public void setTypeDescription(String typeDescription) {
+		this.typeDescription = typeDescription;
 	}
 
 	/**

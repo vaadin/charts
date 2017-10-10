@@ -19,7 +19,7 @@ package com.vaadin.addon.charts.model;
 
 import com.vaadin.addon.charts.model.style.Color;
 
-public class Stop extends AbstractConfigurationObject{
+public class Stop extends AbstractConfigurationObject {
     private float position;
     private Color color;
 

@@ -1,21 +1,4 @@
 package com.vaadin.addon.charts.model;
-
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
 /**
  * Global options that don't apply to each chart. These options, like the
  * <code>lang</code> options, must be set using the
@@ -32,7 +15,7 @@ package com.vaadin.addon.charts.model;
 public class Global extends AbstractConfigurationObject {
 
 	private String VMLRadialGradientURL;
-	private String canvasToolsURL;
+	private String timezone;
 	private Number timezoneOffset;
 	private Boolean useUTC;
 
@@ -58,24 +41,24 @@ public class Global extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setCanvasToolsURL(String)
+	 * @see #setTimezone(String)
 	 */
-	public String getCanvasToolsURL() {
-		return canvasToolsURL;
+	public String getTimezone() {
+		return timezone;
 	}
 
 	/**
-	 * The URL to the additional file to lazy load for Android 2.x devices.
-	 * These devices don't support SVG, so we download a helper file that
-	 * contains <a href="http://code.google.com/p/canvg/">canvg</a>, its
-	 * dependency rbcolor, and our own CanVG Renderer class. To avoid hotlinking
-	 * to our site, you can install canvas-tools.js on your own server and
-	 * change this option accordingly.
+	 * Requires <a href="http://momentjs.com/">moment.js</a>. If the timezone
+	 * option is specified, it creates a default <a
+	 * href="#global.getTimezoneOffset">getTimezoneOffset</a> function that
+	 * looks up the specified timezone in moment.js. If moment.js is not
+	 * included, this throws a Highcharts error in the console, but does not
+	 * crash the chart.
 	 * <p>
-	 * Defaults to: http://code.highcharts.com/{version}/modules/canvas-tools.js
+	 * Defaults to: undefined
 	 */
-	public void setCanvasToolsURL(String canvasToolsURL) {
-		this.canvasToolsURL = canvasToolsURL;
+	public void setTimezone(String timezone) {
+		this.timezone = timezone;
 	}
 
 	/**

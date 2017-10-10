@@ -17,6 +17,10 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
+import com.vaadin.addon.charts.model.DataLabels;
+import com.vaadin.addon.charts.model.SeriesTooltip;
+import com.vaadin.addon.charts.model.Zones;
+
 public abstract class GaugeOptions extends AbstractPlotOptions {
 
     /**
@@ -207,44 +211,4 @@ public abstract class GaugeOptions extends AbstractPlotOptions {
      * dial stops at 360.
      */
     public abstract void setWrap(Boolean wrap);
-
-    /**
-     * @see #setZoneAxis(String)
-     */
-    public abstract String getZoneAxis();
-
-    /**
-     * Defines the Axis on which the zones are applied.
-     */
-    public abstract void setZoneAxis(String zoneAxis);
-
-    /**
-     * @see #setZones(Zones...)
-     */
-    public abstract Zones[] getZones();
-
-    /**
-     * An array defining zones within a series. Zones can be applied to the X
-     * axis, Y axis or Z axis for bubbles, according to the
-     * <code>zoneAxis</code> option.
-     */
-    public abstract void setZones(Zones... zones);
-
-    /**
-     * Adds zone to the zones array
-     * 
-     * @param zone
-     *            to add
-     * @see #setZones(Zones...)
-     */
-    public abstract void addZone(Zones zone);
-
-    /**
-     * Removes first occurrence of zone in zones array
-     * 
-     * @param zone
-     *            to remove
-     * @see #setZones(Zones...)
-     */
-    public abstract void removeZone(Zones zone);
 }
