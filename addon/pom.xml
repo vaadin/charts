@@ -1,308 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-	<parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
 		<groupId>com.vaadin</groupId>
 		<artifactId>vaadin-charts-parent</artifactId>
-		<version>4.0-SNAPSHOT</version>
+		<version>6.0-SNAPSHOT</version>
 	</parent>
 
-	<modelVersion>4.0.0</modelVersion>
+    <groupId>com.vaadin</groupId>
+    <artifactId>charts</artifactId>
+    <version>6.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
-	<artifactId>vaadin-charts</artifactId>
-	<packaging>jar</packaging>
-	<name>Vaadin Charts Addon</name>
-	<inceptionYear>2012</inceptionYear>
+    <name>Vaadin Charts</name>
 
-	<build>
-		<resources>
-			<!-- These are also needed for the sources required by the GWT compiler 
-				to be included in the produced JARs -->
-			<resource>
-				<directory>src/main/java</directory>
-			</resource>
-			<resource>
-				<directory>src/main/resources</directory>
-			</resource>
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-		</resources>
+        <!-- Dependencies -->
+        <servlet.api.version>3.1.0</servlet.api.version>
+        <selenium.server.version>3.4.0</selenium.server.version>
 
-		<plugins>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>license-maven-plugin</artifactId>
-				<version>1.8</version>
-				<configuration>
-					<licenseName>cval3</licenseName>
-					<licenseResolver>file://${basedir}/src/license</licenseResolver>
-					<includes>
-						<include>**/main/**/*.java</include>
-					</includes>
-				</configuration>
-			</plugin>
+        <!-- Plugins -->
+        <frontend.maven.plugin.version>1.4</frontend.maven.plugin.version>
+        <driver.binary.downloader.maven.plugin.version>1.0.14</driver.binary.downloader.maven.plugin.version>
+        <maven.failsafe.plugin.version>2.20</maven.failsafe.plugin.version>
+        <maven.clean.plugin.version>3.0.0</maven.clean.plugin.version>
+        <maven.war.plugin.version>3.1.0</maven.war.plugin.version>
+        <maven.resources.plugin.version>3.0.2</maven.resources.plugin.version>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.3.1</version>
-				<configuration>
-					<archive>
-						<manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
-						<index>true</index>
-						<manifest>
-							<addClasspath>true</addClasspath>
-							<!-- Implementation-Title and Implementation-Version come from the 
-								POM by default -->
-							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-						</manifest>
-						<manifestEntries>
-							<!-- Package format version - do not change -->
-							<Vaadin-Package-Version>1</Vaadin-Package-Version>
+        <!-- Frontend -->
+        <!-- Not the newest version because of https://www.polymer-project.org/2.0/docs/tools/node-support -->
+        <node.version>v7.10.1</node.version>
+        <npm.version>5.3.0</npm.version>
 
-							<!-- Add-on specific fields to update -->
-							<AdVaaLicen>cval</AdVaaLicen>
-							<AdVaaName>vaadin-charts</AdVaaName>
-							<AdVaaPkg>com.vaadin.addon.charts.client</AdVaaPkg>
+        <frontend.working.directory>src/main/frontend</frontend.working.directory>
+        <vaadin.frontend.path>VAADIN/static/frontend</vaadin.frontend.path>
+    </properties>
 
-							<!-- Implementation-Title and Implementation-Version come from the 
-								POM by default -->
-							<Implementation-Title>Vaadin Charts</Implementation-Title>
+    <repositories>
+        <repository>
+            <id>flow-internal-release</id>
+            <url>https://repo.vaadin.com/nexus/content/repositories/flow</url>
+        </repository>
 
-							<!-- Comma-separated list of widgetsets in the package -->
-							<Vaadin-Widgetsets>com.vaadin.addon.charts.Widgetset</Vaadin-Widgetsets>
-						</manifestEntries>
-					</archive>
-					<excludes>
-						<!-- Remove resources included due to gwt compilation -->
-						<exclude>**/demoandtestapp/*</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
+        <repository>
+            <id>vaadin-addons</id>
+            <url>http://maven.vaadin.com/vaadin-addons</url>
+        </repository>
+    </repositories>
 
-			<plugin>
-				<groupId>org.apache.felix</groupId>
-				<artifactId>maven-bundle-plugin</artifactId>
-				<version>2.5.3</version>
-				<executions>
-					<execution>
-						<id>bundle-manifest</id>
-						<phase>process-classes</phase>
-						<goals>
-							<goal>manifest</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<excludeDependencies>*;scope=provided|runtime</excludeDependencies>
-					<!-- <excludeDependencies>vaadin-client,vaadin-server</excludeDependencies> -->
-					<instructions>
-						<Export-Package>com.vaadin.addon.charts,com.vaadin.addon.charts.events,com.vaadin.addon.charts.model,com.vaadin.addon.charts.model.style,com.vaadin.addon.charts.themes,com.vaadin.addon.charts.util</Export-Package>
-						<!-- Ignore GWT dirt, not needed in osgi bundles, gwt compilation seldom 
-							happens in such -->
-						<Import-Package>!com.google.gwt.*,
-							!com.vaadin.client.*, *</Import-Package>
-					</instructions>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
-				<version>2.1.2</version>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.10.3</version>
-				<configuration>
-					<failOnError>false</failOnError>
-				</configuration>
-				<executions>
-					<execution>
-						<id>attach-javadocs</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-						<configuration>
-							<includeDependencySources>true</includeDependencySources>
-							<dependencySourceIncludes>
-								<dependencySourceInclude>com.vaadin:vaadin-charts-model</dependencySourceInclude>
-							</dependencySourceIncludes>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>copy-dependencies</id>
-						<phase>package</phase>
-						<goals>
-							<goal>copy-dependencies</goal>
-						</goals>
-						<configuration>
-							<includeScope>runtime</includeScope>
-							<outputDirectory>target/libs</outputDirectory>
-						</configuration>
-					</execution>
-					<execution>
-						<id>copy-model-sources</id>
-						<phase>package</phase>
-						<goals>
-							<goal>copy-dependencies</goal>
-						</goals>
-						<configuration>
-							<includeArtifactIds>vaadin-charts-model</includeArtifactIds>
-							<classifier>sources</classifier>
-							<outputDirectory>target/libs</outputDirectory>
-						</configuration>
-					</execution>
-					<execution>
-						<id>copy-model-javadoc</id>
-						<phase>package</phase>
-						<goals>
-							<goal>copy-dependencies</goal>
-						</goals>
-						<configuration>
-							<includeArtifactIds>vaadin-charts-model</includeArtifactIds>
-							<classifier>javadoc</classifier>
-							<outputDirectory>target/libs</outputDirectory>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<!-- This creates a zip file of jar and sources jar. When publishing in 
-				the Directory this makes sources available to maven users automatically. 
-				We could also use this to package required dependecies for those poor developer 
-				souls that still dont know how to use a build system that supports transient 
-				dependencies... -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<configuration>
-					<finalName>directorystuff</finalName>
-					<appendAssemblyId>false</appendAssemblyId>
-					<descriptors>
-						<descriptor>assembly.xml</descriptor>
-					</descriptors>
-				</configuration>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>single</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
+    <dependencies>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-charts-model</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
-	<reporting>
-		<plugins>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>cobertura-maven-plugin</artifactId>
-				<configuration>
-					<instrumentation>
-						<ignores>
-							<ignore>com.vaadin.addon.charts.client.*</ignore>
-							<ignore>com.vaadin.addon.charts.model.*.get*</ignore>
-							<ignore>com.vaadin.addon.charts.model.*.is*</ignore>
-							<ignoreMethod>com.vaadin.addon.charts.model.*.get*</ignoreMethod>
-							<ignoreMethod>com.vaadin.addon.charts.model.*.is*</ignoreMethod>
-						</ignores>
-						<excludes>
-							<exclude>com/vaadin/addon/charts/client/**/*.class</exclude>
-						</excludes>
-					</instrumentation>
-				</configuration>
-			</plugin>
-		</plugins>
-	</reporting>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>flow-html-components</artifactId>
+            <version>0.1.22</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.5.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.5.2</version>
+        </dependency>
+    </dependencies>
 
-	<repositories>
-		<repository>
-			<id>Vaadin releases</id>
-			<url>https://oss.sonatype.org/content/repositories/vaadin-releases</url>
-		</repository>
-		<repository>
-			<id>vaadin-addons</id>
-			<url>http://maven.vaadin.com/vaadin-addons</url>
-		</repository>
-		<repository>
-			<id>vaadin-snapshots</id>
-			<url>${snapshot.repository.url}</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>maven2-repository.dev.java.net</id>
-			<name>Java.net Maven 2 Repository</name>
-			<url>http://download.java.net/maven/2</url>
-			<layout>default</layout>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
+    <build>
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/frontend</directory>
+                <includes>
+                    <include>bower.json</include>
+                </includes>
+                <targetPath>META-INF</targetPath>
+            </resource>
+        </resources>
 
-	</repositories>
+        <plugins>
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${maven.failsafe.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <systemPropertyVariables>
+                        <webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin>
 
-	<dependencies>
-		<dependency>
-			<groupId>com.vaadin</groupId>
-			<artifactId>vaadin-charts-model</artifactId>
-			<version>${project.version}</version>
-		</dependency>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>${maven.clean.plugin.version}</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>${frontend.working.directory}/bower_components</directory>
+                        </fileset>
+                        <fileset>
+                            <directory>${frontend.working.directory}/build</directory>
+                        </fileset>
+                        <fileset>
+                            <directory>${frontend.working.directory}/node</directory>
+                        </fileset>
+                        <fileset>
+                            <directory>${frontend.working.directory}/node_modules</directory>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
 
-		<dependency>
-			<groupId>com.vaadin</groupId>
-			<artifactId>vaadin-server</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.vaadin</groupId>
-			<artifactId>vaadin-client</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>1.4</version>
-		</dependency>
-
-		<!-- Testing -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.hamcrest</groupId>
-			<artifactId>hamcrest-library</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
-			<scope>test</scope>
-		</dependency>
-
-	</dependencies>
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>${frontend.maven.plugin.version}</version>
+                <configuration>
+                    <nodeVersion>${node.version}</nodeVersion>
+                    <npmVersion>${npm.version}</npmVersion>
+                    <workingDirectory>${frontend.working.directory}</workingDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>install-node-and-npm</id>
+                        <goals>
+                            <goal>install-node-and-npm</goal>
+                            <goal>npm</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>npm run</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>${npm.build.goal}</arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

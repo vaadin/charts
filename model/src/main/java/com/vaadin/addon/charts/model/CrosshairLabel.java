@@ -1,25 +1,17 @@
 package com.vaadin.addon.charts.model;
 
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import com.vaadin.addon.charts.model.style.Color;
 /**
+ * <p>
  * A label on the axis next to the crosshair.
+ * </p>
+ * 
+ * <p>
+ * In <a
+ * href="http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+ * >styled mode</a>, the label is styled with the
+ * <code>.highcharts-crosshair-label</code> class.
+ * </p>
  */
 public class CrosshairLabel extends AbstractConfigurationObject {
 
@@ -62,7 +54,7 @@ public class CrosshairLabel extends AbstractConfigurationObject {
 
 	/**
 	 * The background color for the label. Defaults to the related series color,
-	 * or <code>gray</code> if that is not available.
+	 * or <code>#666666</code> if that is not available.
 	 */
 	public void setBackgroundColor(Color backgroundColor) {
 		this.backgroundColor = backgroundColor;

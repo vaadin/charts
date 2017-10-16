@@ -1,4 +1,0 @@
-[submodule "charts-webcomponent"]
-	path = charts-webcomponent
-	url = https://github.com/vaadin/vaadin-charts.git
-	branch = master

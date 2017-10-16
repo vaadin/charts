@@ -17,6 +17,7 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
+
 /**
  * Possible timespan values for range selector buttons
  */

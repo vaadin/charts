@@ -17,6 +17,8 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
+import com.vaadin.addon.charts.model.PlotOptionsLine;
+
 /**
  * Defines different step line types. Configurable in {@link PlotOptionsLine}.
  */

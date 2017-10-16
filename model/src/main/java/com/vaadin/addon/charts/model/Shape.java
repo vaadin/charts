@@ -17,6 +17,8 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
+import com.vaadin.addon.charts.model.Tooltip;
+
 /**
  * The name of a symbol to use for the border around the {@link Datalabels} or
  * {@link Tooltip}.

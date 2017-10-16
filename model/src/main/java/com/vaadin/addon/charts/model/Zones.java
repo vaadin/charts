@@ -1,35 +1,47 @@
 package com.vaadin.addon.charts.model;
 
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import com.vaadin.addon.charts.model.style.Color;
 /**
+ * <p>
  * An array defining zones within a series. Zones can be applied to the X axis,
  * Y axis or Z axis for bubbles, according to the <code>zoneAxis</code> option.
+ * </p>
+ * 
+ * <p>
+ * In <a
+ * href="http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+ * >styled mode</a>, the color zones are styled with the
+ * <code>.highcharts-zone-{n}</code> class, or custom classed from the
+ * <code>className</code> option (<a href=
+ * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/color-zones/"
+ * >view live demo</a>).
+ * </p>
  */
 public class Zones extends AbstractConfigurationObject {
 
+	private String className;
 	private Color color;
 	private DashStyle dashStyle;
 	private Color fillColor;
 	private Number value;
 
 	public Zones() {
+	}
+
+	/**
+	 * @see #setClassName(String)
+	 */
+	public String getClassName() {
+		return className;
+	}
+
+	/**
+	 * <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >Styled mode</a> only. A custom class name for the zone.
+	 */
+	public void setClassName(String className) {
+		this.className = className;
 	}
 
 	/**

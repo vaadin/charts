@@ -17,6 +17,7 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
+
 /**
  * For categorized axes only. If ON the tick mark is placed in the center of the
  * category, if BETWEEN the tick mark is placed between categories. Defaults to

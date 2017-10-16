@@ -17,9 +17,10 @@ package com.vaadin.addon.charts.model.style;
  * #L%
  */
 
-import java.util.Locale;
 
 import com.vaadin.addon.charts.model.AbstractConfigurationObject;
+
+import java.util.Locale;
 
 /**
  * Solid (non gradient) colors

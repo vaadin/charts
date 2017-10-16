@@ -1,22 +1,5 @@
 package com.vaadin.addon.charts.model;
 
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import com.vaadin.addon.charts.model.style.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,14 +14,21 @@ public class PlotOptionsOhlc extends OhlcOptions {
 	private Boolean allowPointSelect;
 	private Boolean animation;
 	private Number animationLimit;
+	private String className;
 	private Color color;
 	private Boolean colorByPoint;
+	private Number colorIndex;
 	private ArrayList<Color> colors;
 	private Compare compare;
+	private Number compareBase;
 	private Number cropThreshold;
 	private Cursor cursor;
 	private DataGrouping dataGrouping;
+	private String description;
 	private Boolean enableMouseTracking;
+	private Boolean exposeElementToA11y;
+	private String findNearestPointBy;
+	private String gapUnit;
 	private Boolean getExtremesFromAll;
 	private Number groupPadding;
 	private Boolean grouping;
@@ -48,6 +38,9 @@ public class PlotOptionsOhlc extends OhlcOptions {
 	private String linkedTo;
 	private Number maxPointWidth;
 	private Number minPointLength;
+	private PlotOptionsSeries navigatorOptions;
+	private Color negativeColor;
+	private String _fn_pointDescriptionFormatter;
 	private Number pointInterval;
 	private IntervalUnit pointIntervalUnit;
 	private Number pointPadding;
@@ -59,12 +52,15 @@ public class PlotOptionsOhlc extends OhlcOptions {
 	private Boolean shadow;
 	private Boolean showCheckbox;
 	private Boolean showInLegend;
+	private Boolean showInNavigator;
+	private Boolean skipKeyboardNavigation;
 	private Boolean softThreshold;
 	private States states;
 	private Boolean stickyTracking;
 	private Number threshold;
 	private SeriesTooltip tooltip;
 	private Number turboThreshold;
+	private Color upColor;
 	private Boolean visible;
 	private String zoneAxis;
 	private ArrayList<Zones> zones;
@@ -116,7 +112,7 @@ public class PlotOptionsOhlc extends OhlcOptions {
 	 * <dt>easing</dt>
 	 * <dd>A string reference to an easing function set on the <code>Math</code>
 	 * object. See <a href=
-	 * "http://jsfiddle.net/gh/get/jquery/1.7.2/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/"
+	 * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/"
 	 * >the easing demo</a>.</dd>
 	 * </dl>
 	 * <p>
@@ -149,6 +145,20 @@ public class PlotOptionsOhlc extends OhlcOptions {
 	}
 
 	/**
+	 * @see #setClassName(String)
+	 */
+	public String getClassName() {
+		return className;
+	}
+
+	/**
+	 * A class name to apply to the series' graphical elements.
+	 */
+	public void setClassName(String className) {
+		this.className = className;
+	}
+
+	/**
 	 * @see #setColor(Color)
 	 */
 	public Color getColor() {
@@ -156,10 +166,24 @@ public class PlotOptionsOhlc extends OhlcOptions {
 	}
 
 	/**
+	 * <p>
 	 * The main color of the series. In line type series it applies to the line
 	 * and the point markers unless otherwise specified. In bar type series it
 	 * applies to the bars unless a color is specified per point. The default
 	 * value is pulled from the <code>options.colors</code> array.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the color can be defined by the <a
+	 * href="#plotOptions.series.colorIndex">colorIndex</a> option. Also, the
+	 * series color can be set with the <code>.highcharts-series</code>,
+	 * <code>.highcharts-color-{n}</code>,
+	 * <code>.highcharts-{type}-series</code> or
+	 * <code>.highcharts-series-{n}</code> class, or individual classes given by
+	 * the <code>className</code> option.
+	 * </p>
 	 */
 	public void setColor(Color color) {
 		this.color = color;
@@ -181,6 +205,24 @@ public class PlotOptionsOhlc extends OhlcOptions {
 	 */
 	public void setColorByPoint(Boolean colorByPoint) {
 		this.colorByPoint = colorByPoint;
+	}
+
+	/**
+	 * @see #setColorIndex(Number)
+	 */
+	public Number getColorIndex() {
+		return colorIndex;
+	}
+
+	/**
+	 * <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >Styled mode</a> only. A specific color index to use for the series, so
+	 * its graphic representations are given the class name
+	 * <code>highcharts-color-{n}</code>.
+	 */
+	public void setColorIndex(Number colorIndex) {
+		this.colorIndex = colorIndex;
 	}
 
 	/**
@@ -251,6 +293,24 @@ public class PlotOptionsOhlc extends OhlcOptions {
 	}
 
 	/**
+	 * @see #setCompareBase(Number)
+	 */
+	public Number getCompareBase() {
+		return compareBase;
+	}
+
+	/**
+	 * When <a href="#plotOptions.series.compare">compare</a> is
+	 * <code>percent</code>, this option dictates whether to use 0 or 100 as the
+	 * base of comparison.
+	 * <p>
+	 * Defaults to: 0
+	 */
+	public void setCompareBase(Number compareBase) {
+		this.compareBase = compareBase;
+	}
+
+	/**
 	 * @see #setCropThreshold(Number)
 	 */
 	public Number getCropThreshold() {
@@ -284,8 +344,6 @@ public class PlotOptionsOhlc extends OhlcOptions {
 	 * You can set the cursor to "pointer" if you have click events attached to
 	 * the series, to signal to the user that the points and lines can be
 	 * clicked.
-	 * <p>
-	 * Defaults to: ''
 	 */
 	public void setCursor(Cursor cursor) {
 		this.cursor = cursor;
@@ -306,6 +364,28 @@ public class PlotOptionsOhlc extends OhlcOptions {
 	}
 
 	/**
+	 * @see #setDescription(String)
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * <p>
+	 * <i>Requires Accessibility module</i>
+	 * </p>
+	 * <p>
+	 * A description of the series to add to the screen reader information about
+	 * the series.
+	 * </p>
+	 * <p>
+	 * Defaults to: undefined
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	/**
 	 * @see #setEnableMouseTracking(Boolean)
 	 */
 	public Boolean getEnableMouseTracking() {
@@ -322,6 +402,72 @@ public class PlotOptionsOhlc extends OhlcOptions {
 	 */
 	public void setEnableMouseTracking(Boolean enableMouseTracking) {
 		this.enableMouseTracking = enableMouseTracking;
+	}
+
+	/**
+	 * @see #setExposeElementToA11y(Boolean)
+	 */
+	public Boolean getExposeElementToA11y() {
+		return exposeElementToA11y;
+	}
+
+	/**
+	 * <p>
+	 * By default, series are exposed to screen readers as regions. By enabling
+	 * this option, the series element itself will be exposed in the same way as
+	 * the data points. This is useful if the series is not used as a grouping
+	 * entity in the chart, but you still want to attach a description to the
+	 * series.
+	 * </p>
+	 * <p>
+	 * Requires the Accessibility module.
+	 * </p>
+	 * <p>
+	 * Defaults to: undefined
+	 */
+	public void setExposeElementToA11y(Boolean exposeElementToA11y) {
+		this.exposeElementToA11y = exposeElementToA11y;
+	}
+
+	/**
+	 * @see #setFindNearestPointBy(String)
+	 */
+	public String getFindNearestPointBy() {
+		return findNearestPointBy;
+	}
+
+	/**
+	 * <p>
+	 * Determines whether the series should look for the nearest point in both
+	 * dimensions or just the x-dimension when hovering the series. Defaults to
+	 * <code>'xy'</code> for scatter series and <code>'x'</code> for most other
+	 * series. If the data has duplicate x-values, it is recommended to set this
+	 * to <code>'xy'</code> to allow hovering over all points.
+	 * </p>
+	 * <p>
+	 * Applies only to series types using nearest neighbor search (not direct
+	 * hover) for tooltip.
+	 * </p>
+	 */
+	public void setFindNearestPointBy(String findNearestPointBy) {
+		this.findNearestPointBy = findNearestPointBy;
+	}
+
+	/**
+	 * @see #setGapUnit(String)
+	 */
+	public String getGapUnit() {
+		return gapUnit;
+	}
+
+	/**
+	 * Together with <code>gapSize</code>, this option defines where to draw
+	 * gaps in the graph.
+	 * <p>
+	 * Defaults to: relative
+	 */
+	public void setGapUnit(String gapUnit) {
+		this.gapUnit = gapUnit;
 	}
 
 	/**
@@ -509,6 +655,60 @@ public class PlotOptionsOhlc extends OhlcOptions {
 	}
 
 	/**
+	 * @see #setNavigatorOptions(PlotOptionsSeries)
+	 */
+	public PlotOptionsSeries getNavigatorOptions() {
+		return navigatorOptions;
+	}
+
+	/**
+	 * <p>
+	 * Options for the corresponding navigator series if
+	 * <code>showInNavigator</code> is <code>true</code> for this series.
+	 * Available options are the same as any series, documented at <a
+	 * class="internal" href="#plotOptions.series">plotOptions</a> and <a
+	 * class="internal" href="#series">series</a>.
+	 * </p>
+	 * 
+	 * <p>
+	 * These options are merged with options in <a
+	 * href="#navigator.series">navigator.series</a>, and will take precedence
+	 * if the same option is defined both places.
+	 * </p>
+	 * <p>
+	 * Defaults to: undefined
+	 */
+	public void setNavigatorOptions(PlotOptionsSeries navigatorOptions) {
+		this.navigatorOptions = navigatorOptions;
+	}
+
+	/**
+	 * @see #setNegativeColor(Color)
+	 */
+	public Color getNegativeColor() {
+		return negativeColor;
+	}
+
+	/**
+	 * The color for the parts of the graph or points that are below the <a
+	 * href="#plotOptions.series.threshold">threshold</a>.
+	 * <p>
+	 * Defaults to: null
+	 */
+	public void setNegativeColor(Color negativeColor) {
+		this.negativeColor = negativeColor;
+	}
+
+	public String getPointDescriptionFormatter() {
+		return _fn_pointDescriptionFormatter;
+	}
+
+	public void setPointDescriptionFormatter(
+			String _fn_pointDescriptionFormatter) {
+		this._fn_pointDescriptionFormatter = _fn_pointDescriptionFormatter;
+	}
+
+	/**
 	 * @see #setPointInterval(Number)
 	 */
 	public Number getPointInterval() {
@@ -542,7 +742,7 @@ public class PlotOptionsOhlc extends OhlcOptions {
 
 	/**
 	 * On datetime series, this allows for setting the <a
-	 * href="plotOptions.series.pointInterval">pointInterval</a> to irregular
+	 * href="#plotOptions.series.pointInterval">pointInterval</a> to irregular
 	 * time units, <code>day</code>, <code>month</code> and <code>year</code>. A
 	 * day is usually the same as 24 hours, but pointIntervalUnit also takes the
 	 * DST crossover into consideration when dealing with local time. Combine
@@ -741,6 +941,38 @@ public class PlotOptionsOhlc extends OhlcOptions {
 	}
 
 	/**
+	 * @see #setShowInNavigator(Boolean)
+	 */
+	public Boolean getShowInNavigator() {
+		return showInNavigator;
+	}
+
+	/**
+	 * Whether or not to show the series in the navigator. Takes precedence over
+	 * <a href="#navigator.baseSeries">navigator.baseSeries</a> if defined.
+	 * <p>
+	 * Defaults to: undefined
+	 */
+	public void setShowInNavigator(Boolean showInNavigator) {
+		this.showInNavigator = showInNavigator;
+	}
+
+	/**
+	 * @see #setSkipKeyboardNavigation(Boolean)
+	 */
+	public Boolean getSkipKeyboardNavigation() {
+		return skipKeyboardNavigation;
+	}
+
+	/**
+	 * If set to <code>True</code>, the accessibility module will skip past the
+	 * points in this series for keyboard navigation.
+	 */
+	public void setSkipKeyboardNavigation(Boolean skipKeyboardNavigation) {
+		this.skipKeyboardNavigation = skipKeyboardNavigation;
+	}
+
+	/**
 	 * @see #setSoftThreshold(Boolean)
 	 */
 	public Boolean getSoftThreshold() {
@@ -865,6 +1097,20 @@ public class PlotOptionsOhlc extends OhlcOptions {
 	}
 
 	/**
+	 * @see #setUpColor(Color)
+	 */
+	public Color getUpColor() {
+		return upColor;
+	}
+
+	/**
+	 * Line color for up points.
+	 */
+	public void setUpColor(Color upColor) {
+		this.upColor = upColor;
+	}
+
+	/**
 	 * @see #setVisible(Boolean)
 	 */
 	public Boolean getVisible() {
@@ -909,9 +1155,21 @@ public class PlotOptionsOhlc extends OhlcOptions {
 	}
 
 	/**
+	 * <p>
 	 * An array defining zones within a series. Zones can be applied to the X
 	 * axis, Y axis or Z axis for bubbles, according to the
 	 * <code>zoneAxis</code> option.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the color zones are styled with the
+	 * <code>.highcharts-zone-{n}</code> class, or custom classed from the
+	 * <code>className</code> option (<a href=
+	 * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/color-zones/"
+	 * >view live demo</a>).
+	 * </p>
 	 */
 	public void setZones(Zones... zones) {
 		this.zones = new ArrayList<Zones>(Arrays.asList(zones));

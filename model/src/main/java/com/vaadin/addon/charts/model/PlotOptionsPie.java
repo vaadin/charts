@@ -1,29 +1,8 @@
 package com.vaadin.addon.charts.model;
 
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import com.vaadin.addon.charts.model.style.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
-import com.vaadin.server.SizeWithUnit;
-import com.vaadin.server.Sizeable.Unit;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.vaadin.addon.charts.model.serializers.SizeSerializer;
 /**
  * A pie chart is a circular chart divided into sectors, illustrating numerical
  * proportion.
@@ -36,24 +15,29 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	private Color borderColor;
 	private Number borderWidth;
 	private String[] center;
+	private String className;
+	private Number colorIndex;
 	private ArrayList<Color> colors;
 	private Cursor cursor;
 	private DataLabels dataLabels;
 	private Number depth;
+	private String description;
 	private Boolean enableMouseTracking;
 	private Number endAngle;
+	private Boolean exposeElementToA11y;
+	private String findNearestPointBy;
 	private Boolean getExtremesFromAll;
 	private Boolean ignoreHiddenPoint;
-	@JsonSerialize(using = SizeSerializer.class)
 	private String innerSize;
 	private ArrayList<String> keys;
 	private String linkedTo;
 	private Number minSize;
+	private String _fn_pointDescriptionFormatter;
 	private Boolean selected;
 	private Boolean shadow;
 	private Boolean showInLegend;
-	@JsonSerialize(using = SizeSerializer.class)
 	private String size;
+	private Boolean skipKeyboardNavigation;
 	private Number slicedOffset;
 	private Number startAngle;
 	private States states;
@@ -110,7 +94,7 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	 * <dt>easing</dt>
 	 * <dd>A string reference to an easing function set on the <code>Math</code>
 	 * object. See <a href=
-	 * "http://jsfiddle.net/gh/get/jquery/1.7.2/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/"
+	 * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/"
 	 * >the easing demo</a>.</dd>
 	 * </dl>
 	 * <p>
@@ -150,12 +134,21 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	}
 
 	/**
+	 * <p>
 	 * The color of the border surrounding each slice. When <code>null</code>,
 	 * the border takes the same color as the slice fill. This can be used
 	 * together with a <code>borderWidth</code> to fill drawing gaps created by
 	 * antialiazing artefacts in borderless pies.
+	 * </p>
+	 * 
 	 * <p>
-	 * Defaults to: #FFFFFF
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the border stroke is given in the
+	 * <code>.highcharts-point</code> class.
+	 * </p>
+	 * <p>
+	 * Defaults to: #ffffff
 	 */
 	public void setBorderColor(Color borderColor) {
 		this.borderColor = borderColor;
@@ -179,6 +172,13 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	 * border width at 0.5 or 1, but set the <code>borderColor</code> to
 	 * <code>null</code> instead.
 	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the border stroke width is given in the
+	 * <code>.highcharts-point</code> class.
+	 * </p>
 	 * <p>
 	 * Defaults to: 1
 	 */
@@ -198,6 +198,38 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	 */
 	public void setCenter(String[] center) {
 		this.center = center;
+	}
+
+	/**
+	 * @see #setClassName(String)
+	 */
+	public String getClassName() {
+		return className;
+	}
+
+	/**
+	 * A class name to apply to the series' graphical elements.
+	 */
+	public void setClassName(String className) {
+		this.className = className;
+	}
+
+	/**
+	 * @see #setColorIndex(Number)
+	 */
+	public Number getColorIndex() {
+		return colorIndex;
+	}
+
+	/**
+	 * <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >Styled mode</a> only. A specific color index to use for the series, so
+	 * its graphic representations are given the class name
+	 * <code>highcharts-color-{n}</code>.
+	 */
+	public void setColorIndex(Number colorIndex) {
+		this.colorIndex = colorIndex;
 	}
 
 	/**
@@ -292,6 +324,28 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	}
 
 	/**
+	 * @see #setDescription(String)
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * <p>
+	 * <i>Requires Accessibility module</i>
+	 * </p>
+	 * <p>
+	 * A description of the series to add to the screen reader information about
+	 * the series.
+	 * </p>
+	 * <p>
+	 * Defaults to: undefined
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	/**
 	 * @see #setEnableMouseTracking(Boolean)
 	 */
 	public Boolean getEnableMouseTracking() {
@@ -324,6 +378,55 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	 */
 	public void setEndAngle(Number endAngle) {
 		this.endAngle = endAngle;
+	}
+
+	/**
+	 * @see #setExposeElementToA11y(Boolean)
+	 */
+	public Boolean getExposeElementToA11y() {
+		return exposeElementToA11y;
+	}
+
+	/**
+	 * <p>
+	 * By default, series are exposed to screen readers as regions. By enabling
+	 * this option, the series element itself will be exposed in the same way as
+	 * the data points. This is useful if the series is not used as a grouping
+	 * entity in the chart, but you still want to attach a description to the
+	 * series.
+	 * </p>
+	 * <p>
+	 * Requires the Accessibility module.
+	 * </p>
+	 * <p>
+	 * Defaults to: undefined
+	 */
+	public void setExposeElementToA11y(Boolean exposeElementToA11y) {
+		this.exposeElementToA11y = exposeElementToA11y;
+	}
+
+	/**
+	 * @see #setFindNearestPointBy(String)
+	 */
+	public String getFindNearestPointBy() {
+		return findNearestPointBy;
+	}
+
+	/**
+	 * <p>
+	 * Determines whether the series should look for the nearest point in both
+	 * dimensions or just the x-dimension when hovering the series. Defaults to
+	 * <code>'xy'</code> for scatter series and <code>'x'</code> for most other
+	 * series. If the data has duplicate x-values, it is recommended to set this
+	 * to <code>'xy'</code> to allow hovering over all points.
+	 * </p>
+	 * <p>
+	 * Applies only to series types using nearest neighbor search (not direct
+	 * hover) for tooltip.
+	 * </p>
+	 */
+	public void setFindNearestPointBy(String findNearestPointBy) {
+		this.findNearestPointBy = findNearestPointBy;
 	}
 
 	/**
@@ -372,77 +475,26 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	/**
 	 * @see #setInnerSize(String)
 	 */
-	public float getInnerSize() {
-		String tmp = innerSize;
-		if (innerSize == null) {
-			return -1.0f;
-		}
-		if (this.innerSize.contains("%")) {
-			tmp = tmp.replace("%", "");
-		}
-		return Float.valueOf(tmp).floatValue();
+	public String getInnerSize() {
+		return innerSize;
 	}
 
 	/**
-	 * Sets the innerSize using String presentation. String presentation is
-	 * similar to what is used in Cascading Style Sheets. Size can be pixels or
-	 * percentage, otherwise IllegalArgumentException is thrown. The empty
-	 * string ("") or null will unset the height and set the units to pixels.
+	 * <p>
+	 * The size of the inner diameter for the pie. A size greater than 0 renders
+	 * a donut chart. Can be a percentage or pixel value. Percentages are
+	 * relative to the pie size. Pixel values are given as integers.
+	 * </p>
 	 * 
-	 * @param innerSize
-	 *            CSS style string representation
+	 * <p>
+	 * Note: in Highcharts < 4.1.2, the percentage was relative to the plot
+	 * area, not the pie size.
+	 * </p>
+	 * <p>
+	 * Defaults to: 0
 	 */
 	public void setInnerSize(String innerSize) {
-		SizeWithUnit sizeWithUnit = SizeWithUnit.parseStringSize(innerSize);
-		if (sizeWithUnit != null) {
-			Unit unit = sizeWithUnit.getUnit();
-			if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
-				throw new IllegalArgumentException(
-						unit.toString()
-								+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
-			}
-			setInnerSize(sizeWithUnit.getSize(), sizeWithUnit.getUnit());
-		} else {
-			setInnerSize(-1, Unit.PIXELS);
-		}
-	}
-
-	/**
-	 * @see #setInnerSize(float,Unit)
-	 */
-	public Unit getInnerSizeUnit() {
-		if (this.innerSize == null) {
-			return Unit.PIXELS;
-		}
-		if (this.innerSize.contains("%")) {
-			return Unit.PERCENTAGE;
-		}
-		return Unit.PIXELS;
-	}
-
-	/**
-	 * Sets the innerSize using Vaadin Unit. Only Unit.PIXELS and
-	 * Unit.PERCENTAGE are supported. In all other cases,
-	 * IllegalArgumentException is thrown.
-	 * 
-	 * @param innerSize
-	 * @param unit
-	 *            the unit used for the innerSize
-	 */
-	public void setInnerSize(float innerSize, Unit unit) {
-		if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
-			throw new IllegalArgumentException(
-					unit.toString()
-							+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
-		}
-		String value = Float.toString(innerSize);
-		if (unit.equals(Unit.PERCENTAGE)) {
-			value += "%";
-		}
-		if (innerSize == -1) {
-			value = null;
-		}
-		this.innerSize = value;
+		this.innerSize = innerSize;
 	}
 
 	/**
@@ -526,6 +578,15 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 		this.minSize = minSize;
 	}
 
+	public String getPointDescriptionFormatter() {
+		return _fn_pointDescriptionFormatter;
+	}
+
+	public void setPointDescriptionFormatter(
+			String _fn_pointDescriptionFormatter) {
+		this._fn_pointDescriptionFormatter = _fn_pointDescriptionFormatter;
+	}
+
 	/**
 	 * @see #setSelected(Boolean)
 	 */
@@ -583,76 +644,37 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	/**
 	 * @see #setSize(String)
 	 */
-	public float getSize() {
-		String tmp = size;
-		if (size == null) {
-			return -1.0f;
-		}
-		if (this.size.contains("%")) {
-			tmp = tmp.replace("%", "");
-		}
-		return Float.valueOf(tmp).floatValue();
+	public String getSize() {
+		return size;
 	}
 
 	/**
-	 * Sets the size using String presentation. String presentation is similar
-	 * to what is used in Cascading Style Sheets. Size can be pixels or
-	 * percentage, otherwise IllegalArgumentException is thrown. The empty
-	 * string ("") or null will unset the height and set the units to pixels.
-	 * 
-	 * @param size
-	 *            CSS style string representation
+	 * The diameter of the pie relative to the plot area. Can be a percentage or
+	 * pixel value. Pixel values are given as integers. The default behaviour
+	 * (as of 3.0) is to scale to the plot area and give room for data labels
+	 * within the plot area. As a consequence, the size of the pie may vary when
+	 * points are updated and data labels more around. In that case it is best
+	 * to set a fixed value, for example <code>"75%"</code>.
+	 * <p>
+	 * Defaults to:
 	 */
 	public void setSize(String size) {
-		SizeWithUnit sizeWithUnit = SizeWithUnit.parseStringSize(size);
-		if (sizeWithUnit != null) {
-			Unit unit = sizeWithUnit.getUnit();
-			if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
-				throw new IllegalArgumentException(
-						unit.toString()
-								+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
-			}
-			setSize(sizeWithUnit.getSize(), sizeWithUnit.getUnit());
-		} else {
-			setSize(-1, Unit.PIXELS);
-		}
+		this.size = size;
 	}
 
 	/**
-	 * @see #setSize(float,Unit)
+	 * @see #setSkipKeyboardNavigation(Boolean)
 	 */
-	public Unit getSizeUnit() {
-		if (this.size == null) {
-			return Unit.PIXELS;
-		}
-		if (this.size.contains("%")) {
-			return Unit.PERCENTAGE;
-		}
-		return Unit.PIXELS;
+	public Boolean getSkipKeyboardNavigation() {
+		return skipKeyboardNavigation;
 	}
 
 	/**
-	 * Sets the size using Vaadin Unit. Only Unit.PIXELS and Unit.PERCENTAGE are
-	 * supported. In all other cases, IllegalArgumentException is thrown.
-	 * 
-	 * @param size
-	 * @param unit
-	 *            the unit used for the size
+	 * If set to <code>True</code>, the accessibility module will skip past the
+	 * points in this series for keyboard navigation.
 	 */
-	public void setSize(float size, Unit unit) {
-		if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
-			throw new IllegalArgumentException(
-					unit.toString()
-							+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
-		}
-		String value = Float.toString(size);
-		if (unit.equals(Unit.PERCENTAGE)) {
-			value += "%";
-		}
-		if (size == -1) {
-			value = null;
-		}
-		this.size = value;
+	public void setSkipKeyboardNavigation(Boolean skipKeyboardNavigation) {
+		this.skipKeyboardNavigation = skipKeyboardNavigation;
 	}
 
 	/**
@@ -791,9 +813,21 @@ public class PlotOptionsPie extends AbstractPlotOptions {
 	}
 
 	/**
+	 * <p>
 	 * An array defining zones within a series. Zones can be applied to the X
 	 * axis, Y axis or Z axis for bubbles, according to the
 	 * <code>zoneAxis</code> option.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the color zones are styled with the
+	 * <code>.highcharts-zone-{n}</code> class, or custom classed from the
+	 * <code>className</code> option (<a href=
+	 * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/color-zones/"
+	 * >view live demo</a>).
+	 * </p>
 	 */
 	public void setZones(Zones... zones) {
 		this.zones = new ArrayList<Zones>(Arrays.asList(zones));

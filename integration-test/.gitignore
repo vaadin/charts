@@ -1,0 +1,24 @@
+# Maven files
+target/
+
+# Eclipse files
+.project
+.settings
+.classpath
+
+# IDEA files
+.idea
+*.iml
+
+# macOs
+.DS_Store
+
+# Frontend
+/src/main/frontend/bin/
+/src/main/frontend/bower_components/
+/src/main/frontend/build/
+/src/main/frontend/etc/
+/src/main/frontend/lib/
+/src/main/frontend/node/
+/src/main/frontend/node_modules/
+/src/main/frontend/yarn.lock

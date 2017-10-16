@@ -1,21 +1,4 @@
 package com.vaadin.addon.charts.model;
-
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
 /**
  * Language object. The language object is global and it can't be set on each
  * chart initiation. Instead, use <code>Highcharts.setOptions</code> to set it
@@ -43,6 +26,7 @@ public class Lang extends AbstractConfigurationObject {
 	private String loading;
 	private String[] months;
 	private String noData;
+	private Number numericSymbolMagnitude;
 	private String[] numericSymbols;
 	private String printChart;
 	private String resetZoom;
@@ -244,6 +228,24 @@ public class Lang extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * @see #setNumericSymbolMagnitude(Number)
+	 */
+	public Number getNumericSymbolMagnitude() {
+		return numericSymbolMagnitude;
+	}
+
+	/**
+	 * The magnitude of <a href="#lang.numericSymbol">numericSymbols</a>
+	 * replacements. Use 10000 for Japanese, Korean and various Chinese locales,
+	 * which use symbols for 10^4, 10^8 and 10^12.
+	 * <p>
+	 * Defaults to: 1000
+	 */
+	public void setNumericSymbolMagnitude(Number numericSymbolMagnitude) {
+		this.numericSymbolMagnitude = numericSymbolMagnitude;
+	}
+
+	/**
 	 * @see #setNumericSymbols(String[])
 	 */
 	public String[] getNumericSymbols() {
@@ -350,11 +352,17 @@ public class Lang extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * <p>
 	 * The default thousands separator used in the
 	 * <code>Highcharts.numberFormat</code> method unless otherwise specified in
 	 * the function arguments. Since Highcharts 4.1 it defaults to a single
 	 * space character, which is compatible with ISO and works across
 	 * Anglo-American and continental European languages.
+	 * </p>
+	 * 
+	 * <p>
+	 * The default is a single space.
+	 * </p>
 	 * <p>
 	 * Defaults to:
 	 */

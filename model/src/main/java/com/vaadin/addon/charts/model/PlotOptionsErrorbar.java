@@ -1,29 +1,8 @@
 package com.vaadin.addon.charts.model;
 
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import com.vaadin.addon.charts.model.style.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
-import com.vaadin.server.SizeWithUnit;
-import com.vaadin.server.Sizeable.Unit;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.vaadin.addon.charts.model.serializers.SizeSerializer;
 import java.util.Date;
 import java.time.Instant;
 import com.vaadin.addon.charts.util.Util;
@@ -36,14 +15,20 @@ public class PlotOptionsErrorbar extends AbstractPlotOptions {
 
 	private Boolean allowPointSelect;
 	private Number animationLimit;
+	private String className;
 	private Color color;
 	private Boolean colorByPoint;
+	private Number colorIndex;
 	private ArrayList<Color> colors;
+	private Boolean crisp;
 	private Cursor cursor;
 	private Number depth;
+	private String description;
 	private Color edgeColor;
 	private Number edgeWidth;
 	private Boolean enableMouseTracking;
+	private Boolean exposeElementToA11y;
+	private String findNearestPointBy;
 	private Boolean getExtremesFromAll;
 	private Number groupZPadding;
 	private ArrayList<String> keys;
@@ -51,6 +36,7 @@ public class PlotOptionsErrorbar extends AbstractPlotOptions {
 	private String linkedTo;
 	private Number maxPointWidth;
 	private Color negativeColor;
+	private String _fn_pointDescriptionFormatter;
 	private Number pointInterval;
 	private IntervalUnit pointIntervalUnit;
 	private Number pointPadding;
@@ -59,6 +45,7 @@ public class PlotOptionsErrorbar extends AbstractPlotOptions {
 	private Number pointStart;
 	private Number pointWidth;
 	private Boolean selected;
+	private Boolean skipKeyboardNavigation;
 	private States states;
 	private Color stemColor;
 	private DashStyle stemDashStyle;
@@ -68,7 +55,6 @@ public class PlotOptionsErrorbar extends AbstractPlotOptions {
 	private Number turboThreshold;
 	private Boolean visible;
 	private Color whiskerColor;
-	@JsonSerialize(using = SizeSerializer.class)
 	private String whiskerLength;
 	private Number whiskerWidth;
 	private String zoneAxis;
@@ -118,6 +104,20 @@ public class PlotOptionsErrorbar extends AbstractPlotOptions {
 	}
 
 	/**
+	 * @see #setClassName(String)
+	 */
+	public String getClassName() {
+		return className;
+	}
+
+	/**
+	 * A class name to apply to the series' graphical elements.
+	 */
+	public void setClassName(String className) {
+		this.className = className;
+	}
+
+	/**
 	 * @see #setColor(Color)
 	 */
 	public Color getColor() {
@@ -151,6 +151,24 @@ public class PlotOptionsErrorbar extends AbstractPlotOptions {
 	 */
 	public void setColorByPoint(Boolean colorByPoint) {
 		this.colorByPoint = colorByPoint;
+	}
+
+	/**
+	 * @see #setColorIndex(Number)
+	 */
+	public Number getColorIndex() {
+		return colorIndex;
+	}
+
+	/**
+	 * <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >Styled mode</a> only. A specific color index to use for the series, so
+	 * its graphic representations are given the class name
+	 * <code>highcharts-color-{n}</code>.
+	 */
+	public void setColorIndex(Number colorIndex) {
+		this.colorIndex = colorIndex;
 	}
 
 	/**
@@ -200,6 +218,27 @@ public class PlotOptionsErrorbar extends AbstractPlotOptions {
 	}
 
 	/**
+	 * @see #setCrisp(Boolean)
+	 */
+	public Boolean getCrisp() {
+		return crisp;
+	}
+
+	/**
+	 * When true, each column edge is rounded to its nearest pixel in order to
+	 * render sharp on screen. In some cases, when there are a lot of densely
+	 * packed columns, this leads to visible difference in column widths or
+	 * distance between columns. In these cases, setting <code>crisp</code> to
+	 * <code>false</code> may look better, even though each column is rendered
+	 * blurry.
+	 * <p>
+	 * Defaults to: true
+	 */
+	public void setCrisp(Boolean crisp) {
+		this.crisp = crisp;
+	}
+
+	/**
 	 * @see #setCursor(Cursor)
 	 */
 	public Cursor getCursor() {
@@ -230,6 +269,28 @@ public class PlotOptionsErrorbar extends AbstractPlotOptions {
 	 */
 	public void setDepth(Number depth) {
 		this.depth = depth;
+	}
+
+	/**
+	 * @see #setDescription(String)
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * <p>
+	 * <i>Requires Accessibility module</i>
+	 * </p>
+	 * <p>
+	 * A description of the series to add to the screen reader information about
+	 * the series.
+	 * </p>
+	 * <p>
+	 * Defaults to: undefined
+	 */
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	/**
@@ -280,6 +341,55 @@ public class PlotOptionsErrorbar extends AbstractPlotOptions {
 	 */
 	public void setEnableMouseTracking(Boolean enableMouseTracking) {
 		this.enableMouseTracking = enableMouseTracking;
+	}
+
+	/**
+	 * @see #setExposeElementToA11y(Boolean)
+	 */
+	public Boolean getExposeElementToA11y() {
+		return exposeElementToA11y;
+	}
+
+	/**
+	 * <p>
+	 * By default, series are exposed to screen readers as regions. By enabling
+	 * this option, the series element itself will be exposed in the same way as
+	 * the data points. This is useful if the series is not used as a grouping
+	 * entity in the chart, but you still want to attach a description to the
+	 * series.
+	 * </p>
+	 * <p>
+	 * Requires the Accessibility module.
+	 * </p>
+	 * <p>
+	 * Defaults to: undefined
+	 */
+	public void setExposeElementToA11y(Boolean exposeElementToA11y) {
+		this.exposeElementToA11y = exposeElementToA11y;
+	}
+
+	/**
+	 * @see #setFindNearestPointBy(String)
+	 */
+	public String getFindNearestPointBy() {
+		return findNearestPointBy;
+	}
+
+	/**
+	 * <p>
+	 * Determines whether the series should look for the nearest point in both
+	 * dimensions or just the x-dimension when hovering the series. Defaults to
+	 * <code>'xy'</code> for scatter series and <code>'x'</code> for most other
+	 * series. If the data has duplicate x-values, it is recommended to set this
+	 * to <code>'xy'</code> to allow hovering over all points.
+	 * </p>
+	 * <p>
+	 * Applies only to series types using nearest neighbor search (not direct
+	 * hover) for tooltip.
+	 * </p>
+	 */
+	public void setFindNearestPointBy(String findNearestPointBy) {
+		this.findNearestPointBy = findNearestPointBy;
 	}
 
 	/**
@@ -435,6 +545,15 @@ public class PlotOptionsErrorbar extends AbstractPlotOptions {
 		this.negativeColor = negativeColor;
 	}
 
+	public String getPointDescriptionFormatter() {
+		return _fn_pointDescriptionFormatter;
+	}
+
+	public void setPointDescriptionFormatter(
+			String _fn_pointDescriptionFormatter) {
+		this._fn_pointDescriptionFormatter = _fn_pointDescriptionFormatter;
+	}
+
 	/**
 	 * @see #setPointInterval(Number)
 	 */
@@ -468,7 +587,7 @@ public class PlotOptionsErrorbar extends AbstractPlotOptions {
 
 	/**
 	 * On datetime series, this allows for setting the <a
-	 * href="plotOptions.series.pointInterval">pointInterval</a> to irregular
+	 * href="#plotOptions.series.pointInterval">pointInterval</a> to irregular
 	 * time units, <code>day</code>, <code>month</code> and <code>year</code>. A
 	 * day is usually the same as 24 hours, but pointIntervalUnit also takes the
 	 * DST crossover into consideration when dealing with local time. Combine
@@ -601,6 +720,21 @@ public class PlotOptionsErrorbar extends AbstractPlotOptions {
 	 */
 	public void setSelected(Boolean selected) {
 		this.selected = selected;
+	}
+
+	/**
+	 * @see #setSkipKeyboardNavigation(Boolean)
+	 */
+	public Boolean getSkipKeyboardNavigation() {
+		return skipKeyboardNavigation;
+	}
+
+	/**
+	 * If set to <code>True</code>, the accessibility module will skip past the
+	 * points in this series for keyboard navigation.
+	 */
+	public void setSkipKeyboardNavigation(Boolean skipKeyboardNavigation) {
+		this.skipKeyboardNavigation = skipKeyboardNavigation;
 	}
 
 	/**
@@ -771,77 +905,19 @@ public class PlotOptionsErrorbar extends AbstractPlotOptions {
 	/**
 	 * @see #setWhiskerLength(String)
 	 */
-	public float getWhiskerLength() {
-		String tmp = whiskerLength;
-		if (whiskerLength == null) {
-			return -1.0f;
-		}
-		if (this.whiskerLength.contains("%")) {
-			tmp = tmp.replace("%", "");
-		}
-		return Float.valueOf(tmp).floatValue();
+	public String getWhiskerLength() {
+		return whiskerLength;
 	}
 
 	/**
-	 * Sets the whiskerLength using String presentation. String presentation is
-	 * similar to what is used in Cascading Style Sheets. Size can be pixels or
-	 * percentage, otherwise IllegalArgumentException is thrown. The empty
-	 * string ("") or null will unset the height and set the units to pixels.
-	 * 
-	 * @param whiskerLength
-	 *            CSS style string representation
+	 * The length of the whiskers, the horizontal lines marking low and high
+	 * values. It can be a numerical pixel value, or a percentage value of the
+	 * box width. Set <code>0</code> to disable whiskers.
+	 * <p>
+	 * Defaults to: 50%
 	 */
 	public void setWhiskerLength(String whiskerLength) {
-		SizeWithUnit sizeWithUnit = SizeWithUnit.parseStringSize(whiskerLength);
-		if (sizeWithUnit != null) {
-			Unit unit = sizeWithUnit.getUnit();
-			if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
-				throw new IllegalArgumentException(
-						unit.toString()
-								+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
-			}
-			setWhiskerLength(sizeWithUnit.getSize(), sizeWithUnit.getUnit());
-		} else {
-			setWhiskerLength(-1, Unit.PIXELS);
-		}
-	}
-
-	/**
-	 * @see #setWhiskerLength(float,Unit)
-	 */
-	public Unit getWhiskerLengthUnit() {
-		if (this.whiskerLength == null) {
-			return Unit.PIXELS;
-		}
-		if (this.whiskerLength.contains("%")) {
-			return Unit.PERCENTAGE;
-		}
-		return Unit.PIXELS;
-	}
-
-	/**
-	 * Sets the whiskerLength using Vaadin Unit. Only Unit.PIXELS and
-	 * Unit.PERCENTAGE are supported. In all other cases,
-	 * IllegalArgumentException is thrown.
-	 * 
-	 * @param whiskerLength
-	 * @param unit
-	 *            the unit used for the whiskerLength
-	 */
-	public void setWhiskerLength(float whiskerLength, Unit unit) {
-		if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
-			throw new IllegalArgumentException(
-					unit.toString()
-							+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
-		}
-		String value = Float.toString(whiskerLength);
-		if (unit.equals(Unit.PERCENTAGE)) {
-			value += "%";
-		}
-		if (whiskerLength == -1) {
-			value = null;
-		}
-		this.whiskerLength = value;
+		this.whiskerLength = whiskerLength;
 	}
 
 	/**
@@ -891,9 +967,21 @@ public class PlotOptionsErrorbar extends AbstractPlotOptions {
 	}
 
 	/**
+	 * <p>
 	 * An array defining zones within a series. Zones can be applied to the X
 	 * axis, Y axis or Z axis for bubbles, according to the
 	 * <code>zoneAxis</code> option.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the color zones are styled with the
+	 * <code>.highcharts-zone-{n}</code> class, or custom classed from the
+	 * <code>className</code> option (<a href=
+	 * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/color-zones/"
+	 * >view live demo</a>).
+	 * </p>
 	 */
 	public void setZones(Zones... zones) {
 		this.zones = new ArrayList<Zones>(Arrays.asList(zones));

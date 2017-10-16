@@ -17,7 +17,6 @@ package com.vaadin.addon.charts.model.style;
  * #L%
  */
 import com.vaadin.addon.charts.model.AbstractConfigurationObject;
-import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.PlotOptionsArea;
 import com.vaadin.addon.charts.model.PlotOptionsArearange;
 import com.vaadin.addon.charts.model.PlotOptionsAreaspline;

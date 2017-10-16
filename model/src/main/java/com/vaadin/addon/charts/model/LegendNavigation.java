@@ -1,29 +1,12 @@
 package com.vaadin.addon.charts.model;
 
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.Style;
 /**
  * Options for the paging or navigation appearing when the legend is overflown.
  * Navigation works well on screen, but not in static exported images. One way
  * of working around that is to <a href=
- * "http://jsfiddle.net/gh/get/jquery/1.7.2/highslide-software/highcharts.com/tree/master/samples/highcharts/legend/navigation-enabled-false/"
+ * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/navigation-enabled-false/"
  * >increase the chart height in export</a>.
  */
 public class LegendNavigation extends AbstractConfigurationObject {
@@ -48,7 +31,7 @@ public class LegendNavigation extends AbstractConfigurationObject {
 	/**
 	 * The color for the active up or down arrow in the legend page navigation.
 	 * <p>
-	 * Defaults to: #3E576F
+	 * Defaults to: #003399
 	 */
 	public void setActiveColor(Color activeColor) {
 		this.activeColor = activeColor;
@@ -102,8 +85,17 @@ public class LegendNavigation extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * <p>
 	 * Whether to enable the legend navigation. In most cases, disabling the
 	 * navigation results in an unwanted overflow.
+	 * </p>
+	 * 
+	 * <p>
+	 * See also the <a href=
+	 * "http://www.highcharts.com/plugin-registry/single/8/Adapt-Chart-To-Legend"
+	 * >adapt chart to legend</a> plugin for a solution to extend the chart
+	 * height to make room for the legend, optionally in exported charts only.
+	 * </p>
 	 * <p>
 	 * Defaults to: true
 	 */
@@ -122,7 +114,7 @@ public class LegendNavigation extends AbstractConfigurationObject {
 	 * The color of the inactive up or down arrow in the legend page navigation.
 	 * .
 	 * <p>
-	 * Defaults to: #CCC
+	 * Defaults to: #cccccc
 	 */
 	public void setInactiveColor(Color inactiveColor) {
 		this.inactiveColor = inactiveColor;

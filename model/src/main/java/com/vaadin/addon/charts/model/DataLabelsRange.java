@@ -1,22 +1,5 @@
 package com.vaadin.addon.charts.model;
 
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.Style;
 /**
@@ -34,6 +17,7 @@ public class DataLabelsRange extends AbstractDataLabels {
 	private Color borderColor;
 	private Number borderRadius;
 	private Number borderWidth;
+	private String className;
 	private Color color;
 	private Boolean crop;
 	private Boolean defer;
@@ -43,7 +27,6 @@ public class DataLabelsRange extends AbstractDataLabels {
 	private Boolean inside;
 	private String overflow;
 	private Number padding;
-	private Boolean reserveSpace;
 	private Number rotation;
 	private Boolean shadow;
 	private Shape shape;
@@ -158,6 +141,26 @@ public class DataLabelsRange extends AbstractDataLabels {
 	 */
 	public void setBorderWidth(Number borderWidth) {
 		this.borderWidth = borderWidth;
+	}
+
+	/**
+	 * @see #setClassName(String)
+	 */
+	public String getClassName() {
+		return className;
+	}
+
+	/**
+	 * A class name for the data label. Particularly in <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, this can be used to give each series' or point's data
+	 * label unique styling. In addition to this option, a default color class
+	 * name is added so that we can give the labels a <a href=
+	 * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/data-label-contrast/"
+	 * >contrast text shadow</a>.
+	 */
+	public void setClassName(String className) {
+		this.className = className;
 	}
 
 	/**
@@ -310,23 +313,6 @@ public class DataLabelsRange extends AbstractDataLabels {
 	}
 
 	/**
-	 * @see #setReserveSpace(Boolean)
-	 */
-	public Boolean getReserveSpace() {
-		return reserveSpace;
-	}
-
-	/**
-	 * Whether to reserve space for the labels. This can be turned off when for
-	 * example the labels are rendered inside the plot area instead of outside.
-	 * <p>
-	 * Defaults to: true
-	 */
-	public void setReserveSpace(Boolean reserveSpace) {
-		this.reserveSpace = reserveSpace;
-	}
-
-	/**
 	 * @see #setRotation(Number)
 	 */
 	public Number getRotation() {
@@ -390,10 +376,19 @@ public class DataLabelsRange extends AbstractDataLabels {
 	}
 
 	/**
-	 * Styles for the label.
+	 * Styles for the label. The default <code>color</code> setting is
+	 * <code>"contrast"</code>, which is a pseudo color that Highcharts picks up
+	 * and applies the maximum contrast to the underlying point item, for
+	 * example the bar in a bar chart. The <code>textOutline</code> is a pseudo
+	 * property that applies an outline of the given width with the given color,
+	 * which by default is the maximum contrast to the text. So a bright text
+	 * color will result in a black text outline for maximum readability on a
+	 * mixed background. In some cases, especially with grayscale text, the text
+	 * outline doesn't work well, in which cases it can be disabled by setting
+	 * it to <code>"none"</code>.
 	 * <p>
 	 * Defaults to: {"color": "contrast", "fontSize": "11px", "fontWeight":
-	 * "bold", "textShadow": "0 0 6px contrast, 0 0 3px contrast" }
+	 * "bold", "textOutline": "1px contrast" }
 	 */
 	public void setStyle(Style style) {
 		this.style = style;
