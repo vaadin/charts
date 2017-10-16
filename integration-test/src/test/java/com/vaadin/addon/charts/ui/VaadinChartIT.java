@@ -5,16 +5,25 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class VaadinChartIT {
 
-	private final ChromeDriver driver = new ChromeDriver();
+	private static ChromeDriver driver;
+
+	@BeforeClass
+	public static void setupClass() {
+		final ChromeOptions chromeOptions = new ChromeOptions();
+		chromeOptions.addArguments("--headless");
+		driver = new ChromeDriver(chromeOptions);
+	}
 
 	@Before
 	public void setUp() {
