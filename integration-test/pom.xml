@@ -55,6 +55,11 @@
             <id>vaadin-addons</id>
             <url>http://maven.vaadin.com/vaadin-addons</url>
         </repository>
+
+        <repository>
+            <id>saucelabs-repository</id>
+            <url>http://repository-saucelabs.forge.cloudbees.com/release</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -91,6 +96,12 @@
             <scope>provided</scope>
         </dependency>
 
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-testbench-core</artifactId>
+            <version>5.1.0.alpha1</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-server</artifactId>
@@ -175,6 +186,41 @@
                         <phase>post-integration-test</phase>
                         <goals>
                             <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.saucelabs.maven.plugin</groupId>
+                <artifactId>sauce-connect-plugin</artifactId>
+                <version>2.1.23</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.saucelabs</groupId>
+                        <artifactId>ci-sauce</artifactId>
+                        <version>1.129</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <sauceUsername>${SAUCE_USERNAME}</sauceUsername>
+                    <sauceAccessKey>${SAUCE_ACCESS_KEY}</sauceAccessKey>
+                </configuration>
+                <executions>
+                    <!-- Start Sauce Connect prior to running the integration tests -->
+                    <execution>
+                        <id>start-sauceconnect</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>start-sauceconnect</goal>
+                        </goals>
+                    </execution>
+                    <!-- Stop the Sauce Connect process after the integration tests have finished -->
+                    <execution>
+                        <id>stop-sauceconnect</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop-sauceconnect</goal>
                         </goals>
                     </execution>
                 </executions>

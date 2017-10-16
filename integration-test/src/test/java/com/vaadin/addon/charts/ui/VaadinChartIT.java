@@ -3,6 +3,8 @@ package com.vaadin.addon.charts.ui;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import com.vaadin.testbench.annotations.RunOnHub;
+import com.vaadin.testbench.parallel.ParallelTest;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -14,7 +16,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class VaadinChartIT {
+@RunOnHub
+public class VaadinChartIT extends ParallelTest {
 
 	private static ChromeDriver driver;
 
@@ -23,6 +26,13 @@ public class VaadinChartIT {
 		final ChromeOptions chromeOptions = new ChromeOptions();
 		chromeOptions.addArguments("--headless");
 		driver = new ChromeDriver(chromeOptions);
+	}
+
+	@Override
+	protected String getHubURL() {
+		final String username = System.getProperty("SAUCE_USERNAME");
+		final String accessKey = System.getProperty("SAUCE_ACCESS_KEY");
+		return "http://" + username + ":" + accessKey + "@localhost:4445/wd/hub";
 	}
 
 	@Before
