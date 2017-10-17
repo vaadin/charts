@@ -199,6 +199,7 @@
                 <configuration>
                     <sauceUsername>${SAUCE_USERNAME}</sauceUsername>
                     <sauceAccessKey>${SAUCE_ACCESS_KEY}</sauceAccessKey>
+                    <options>-X 8888</options>
                 </configuration>
                 <executions>
                     <!-- Start Sauce Connect prior to running the integration tests -->
