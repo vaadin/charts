@@ -36,10 +36,7 @@ public class VaadinChartIT extends ParallelTest {
 
 	@Before
 	public void setUp() throws InterruptedException {
-		final String remoteTest = System.getProperty("test.remote");
-		System.out.println("HOSTNAME: " + findAutoHostname());
 		getDriver().get("http://" + findAutoHostname() + ":8080");
-
 	}
 
 	@After
