@@ -1,21 +1,4 @@
 package com.vaadin.addon.charts.model;
-
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
 /**
  * Options to render charts in 3 dimensions. This feature requires
  * <code>highcharts-3d.js</code>, found in the download package or online at <a
@@ -25,6 +8,7 @@ package com.vaadin.addon.charts.model;
 public class Options3d extends AbstractConfigurationObject {
 
 	private Number alpha;
+	private String axisLabelPosition;
 	private Number beta;
 	private Number depth;
 	private Boolean enabled;
@@ -49,6 +33,23 @@ public class Options3d extends AbstractConfigurationObject {
 	 */
 	public void setAlpha(Number alpha) {
 		this.alpha = alpha;
+	}
+
+	/**
+	 * @see #setAxisLabelPosition(String)
+	 */
+	public String getAxisLabelPosition() {
+		return axisLabelPosition;
+	}
+
+	/**
+	 * Set it to <code>"auto"</code> to automatically move the labels to the
+	 * best edge.
+	 * <p>
+	 * Defaults to: null
+	 */
+	public void setAxisLabelPosition(String axisLabelPosition) {
+		this.axisLabelPosition = axisLabelPosition;
 	}
 
 	/**

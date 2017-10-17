@@ -17,6 +17,7 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
+
 /**
  * Parameters for in what dimensions the user can do multitouch gestures.
  */

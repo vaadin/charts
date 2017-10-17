@@ -1,27 +1,19 @@
 package com.vaadin.addon.charts.model;
-
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
 /**
+ * <p>
  * Options for the halo appearing around the hovered point in line-type series
  * as well as outside the hovered slice in pie charts. By default the halo is
  * filled by the current point or series color with an opacity of 0.25. The halo
  * can be disabled by setting the <code>halo</code> option to <code>false</code>
  * .
+ * </p>
+ * 
+ * <p>
+ * In <a
+ * href="http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+ * >styled mode</a>, the halo is styled with the <code>.highcharts-halo</code>
+ * class, with colors inherited from <code>.highcharts-color-{n}</code>.
+ * </p>
  */
 public class Halo extends AbstractConfigurationObject {
 

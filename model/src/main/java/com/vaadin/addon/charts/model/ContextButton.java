@@ -1,22 +1,5 @@
 package com.vaadin.addon.charts.model;
 
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.ButtonTheme;
 /**
@@ -27,6 +10,7 @@ public class ContextButton extends AbstractConfigurationObject {
 	private HorizontalAlign align;
 	private Boolean enabled;
 	private Number height;
+	private ContextButtonMenuItem[] menuItems;
 	private String symbol;
 	private Color symbolFill;
 	private Number symbolSize;
@@ -97,6 +81,31 @@ public class ContextButton extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * @see #setMenuItems(ContextButtonMenuItem[])
+	 */
+	public ContextButtonMenuItem[] getMenuItems() {
+		return menuItems;
+	}
+
+	/**
+	 * <p>
+	 * A collection of config options for the menu items. Each options object
+	 * consists of a <code>text</code> option which is a string to show in the
+	 * menu item, as well as an <code>onclick</code> parameter which is a
+	 * callback function to run on click.
+	 * </p>
+	 * <p>
+	 * By default, there is the "Print" menu item plus one menu item for each of
+	 * the available export types. Menu items can be customized by defining a
+	 * new array of items and assigning <code>null</code> to unwanted positions
+	 * (see override example below).
+	 * </p>
+	 */
+	public void setMenuItems(ContextButtonMenuItem[] menuItems) {
+		this.menuItems = menuItems;
+	}
+
+	/**
 	 * @see #setSymbol(String)
 	 */
 	public String getSymbol() {
@@ -126,7 +135,7 @@ public class ContextButton extends AbstractConfigurationObject {
 	 * href="#navigation.buttonOptions">navigation.buttonOptions</a> =&gt;
 	 * symbolFill.
 	 * <p>
-	 * Defaults to: #A8BF77
+	 * Defaults to: #666666
 	 */
 	public void setSymbolFill(Color symbolFill) {
 		this.symbolFill = symbolFill;
@@ -158,7 +167,7 @@ public class ContextButton extends AbstractConfigurationObject {
 	/**
 	 * The color of the symbol's stroke or line.
 	 * <p>
-	 * Defaults to: #666
+	 * Defaults to: #666666
 	 */
 	public void setSymbolStroke(Color symbolStroke) {
 		this.symbolStroke = symbolStroke;

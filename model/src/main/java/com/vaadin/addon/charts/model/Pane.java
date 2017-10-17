@@ -1,28 +1,7 @@
 package com.vaadin.addon.charts.model;
 
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import java.util.ArrayList;
 import java.util.Arrays;
-import com.vaadin.server.SizeWithUnit;
-import com.vaadin.server.Sizeable.Unit;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.vaadin.addon.charts.model.serializers.SizeSerializer;
 /**
  * Applies only to polar charts and angular gauges. This configuration object
  * holds general options for the combined X and Y axes set. Each xAxis or yAxis
@@ -34,7 +13,6 @@ public class Pane extends AbstractConfigurationObject {
 	private ArrayList<Background> background;
 	private String[] center;
 	private Number endAngle;
-	@JsonSerialize(using = SizeSerializer.class)
 	private String size;
 	private Number startAngle;
 
@@ -65,11 +43,7 @@ public class Pane extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * An object, or array of objects, for backgrounds. Sub options include
-	 * <code>backgroundColor</code> (can be solid or gradient),
-	 * <code>shape</code> ("solid" or "arc"), <code>innerWidth</code>,
-	 * <code>outerWidth</code>, <code>borderWidth</code>,
-	 * <code>borderColor</code>.
+	 * An object, or array of objects, for backgrounds.
 	 */
 	public void setBackground(Background... background) {
 		this.background = new ArrayList<Background>(Arrays.asList(background));
@@ -130,76 +104,18 @@ public class Pane extends AbstractConfigurationObject {
 	/**
 	 * @see #setSize(String)
 	 */
-	public float getSize() {
-		String tmp = size;
-		if (size == null) {
-			return -1.0f;
-		}
-		if (this.size.contains("%")) {
-			tmp = tmp.replace("%", "");
-		}
-		return Float.valueOf(tmp).floatValue();
+	public String getSize() {
+		return size;
 	}
 
 	/**
-	 * Sets the size using String presentation. String presentation is similar
-	 * to what is used in Cascading Style Sheets. Size can be pixels or
-	 * percentage, otherwise IllegalArgumentException is thrown. The empty
-	 * string ("") or null will unset the height and set the units to pixels.
-	 * 
-	 * @param size
-	 *            CSS style string representation
+	 * The size of the pane, either as a number defining pixels, or a percentage
+	 * defining a percentage of the plot are.
+	 * <p>
+	 * Defaults to: 85%
 	 */
 	public void setSize(String size) {
-		SizeWithUnit sizeWithUnit = SizeWithUnit.parseStringSize(size);
-		if (sizeWithUnit != null) {
-			Unit unit = sizeWithUnit.getUnit();
-			if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
-				throw new IllegalArgumentException(
-						unit.toString()
-								+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
-			}
-			setSize(sizeWithUnit.getSize(), sizeWithUnit.getUnit());
-		} else {
-			setSize(-1, Unit.PIXELS);
-		}
-	}
-
-	/**
-	 * @see #setSize(float,Unit)
-	 */
-	public Unit getSizeUnit() {
-		if (this.size == null) {
-			return Unit.PIXELS;
-		}
-		if (this.size.contains("%")) {
-			return Unit.PERCENTAGE;
-		}
-		return Unit.PIXELS;
-	}
-
-	/**
-	 * Sets the size using Vaadin Unit. Only Unit.PIXELS and Unit.PERCENTAGE are
-	 * supported. In all other cases, IllegalArgumentException is thrown.
-	 * 
-	 * @param size
-	 * @param unit
-	 *            the unit used for the size
-	 */
-	public void setSize(float size, Unit unit) {
-		if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
-			throw new IllegalArgumentException(
-					unit.toString()
-							+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
-		}
-		String value = Float.toString(size);
-		if (unit.equals(Unit.PERCENTAGE)) {
-			value += "%";
-		}
-		if (size == -1) {
-			value = null;
-		}
-		this.size = value;
+		this.size = size;
 	}
 
 	/**

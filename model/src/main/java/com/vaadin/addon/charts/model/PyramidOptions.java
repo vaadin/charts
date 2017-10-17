@@ -18,7 +18,6 @@ package com.vaadin.addon.charts.model;
  */
 
 import com.vaadin.addon.charts.model.style.Color;
-import com.vaadin.server.Sizeable.Unit;
 
 public abstract class PyramidOptions extends AbstractPlotOptions {
 
@@ -161,7 +160,7 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
     /**
      * @see #setHeight(String)
      */
-    public abstract float getHeight();
+    public abstract String getHeight();
 
     /**
      * Sets the height using String presentation. String presentation is similar
@@ -173,21 +172,6 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
      *            CSS style string representation
      */
     public abstract void setHeight(String height);
-
-    /**
-     * @see #setHeight(float,Unit)
-     */
-    public abstract Unit getHeightUnit();
-
-    /**
-     * Sets the height using Vaadin Unit. Only Unit.PIXELS and Unit.PERCENTAGE
-     * are supported. In all other cases, IllegalArgumentException is thrown.
-     * 
-     * @param height
-     * @param unit
-     *            the unit used for the height
-     */
-    public abstract void setHeight(float height, Unit unit);
 
     /**
      * @see #setKeys(String...)
@@ -347,7 +331,7 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
     /**
      * @see #setWidth(String)
      */
-    public abstract float getWidth();
+    public abstract String getWidth();
 
     /**
      * Sets the width using String presentation. String presentation is similar
@@ -359,21 +343,6 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
      *            CSS style string representation
      */
     public abstract void setWidth(String width);
-
-    /**
-     * @see #setWidth(float,Unit)
-     */
-    public abstract Unit getWidthUnit();
-
-    /**
-     * Sets the width using Vaadin Unit. Only Unit.PIXELS and Unit.PERCENTAGE
-     * are supported. In all other cases, IllegalArgumentException is thrown.
-     * 
-     * @param width
-     * @param unit
-     *            the unit used for the width
-     */
-    public abstract void setWidth(float width, Unit unit);
 
     /**
      * @see #setZoneAxis(String)

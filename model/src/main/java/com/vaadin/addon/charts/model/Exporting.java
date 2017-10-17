@@ -1,21 +1,6 @@
 package com.vaadin.addon.charts.model;
 
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
+import java.util.Map;
 /**
  * Options for the exporting module. For an overview on the matter, see <a
  * href="http://www.highcharts.com/docs/export-module/export-module-overview"
@@ -26,8 +11,11 @@ public class Exporting extends AbstractConfigurationObject {
 	private Boolean allowHTML;
 	private Buttons buttons;
 	private Boolean enabled;
+	private String _fn_error;
 	private Boolean fallbackToExportServer;
 	private String filename;
+	private String libURL;
+	private Map<String, ExportingMenuItemDefinition> menuItemDefinitions;
 	private Number printMaxWidth;
 	private Number scale;
 	private Number sourceHeight;
@@ -109,6 +97,14 @@ public class Exporting extends AbstractConfigurationObject {
 		this.enabled = enabled;
 	}
 
+	public String getError() {
+		return _fn_error;
+	}
+
+	public void setError(String _fn_error) {
+		this._fn_error = _fn_error;
+	}
+
 	/**
 	 * @see #setFallbackToExportServer(Boolean)
 	 */
@@ -140,6 +136,59 @@ public class Exporting extends AbstractConfigurationObject {
 	 */
 	public void setFilename(String filename) {
 		this.filename = filename;
+	}
+
+	/**
+	 * @see #setLibURL(String)
+	 */
+	public String getLibURL() {
+		return libURL;
+	}
+
+	/**
+	 * Path where Highcharts will look for export module dependencies to load on
+	 * demand if they don't already exist on <code>window</code>.
+	 * 
+	 * Should currently point to location of <a
+	 * href="https://github.com/canvg/canvg">CanVG</a> library, <a
+	 * href="https://github.com/canvg/canvg">RGBColor.js</a>, <a
+	 * href="https://github.com/yWorks/jsPDF">jsPDF</a> and <a
+	 * href="https://github.com/yWorks/svg2pdf.js">svg2pdf.js</a>, required for
+	 * client side export in certain browsers.
+	 * <p>
+	 * Defaults to: https://code.highcharts.com/{version}/lib
+	 */
+	public void setLibURL(String libURL) {
+		this.libURL = libURL;
+	}
+
+	/**
+	 * @see #setMenuItemDefinitions(Map)
+	 */
+	public Map<String, ExportingMenuItemDefinition> getMenuItemDefinitions() {
+		return menuItemDefinitions;
+	}
+
+	/**
+	 * <p>
+	 * An object consisting of definitions for the menu items in the context
+	 * menu. Each key value pair has a <code>key</code> that is referenced in
+	 * the <a href="#exporting.buttons.contextButton.menuItems">menuItems</a>
+	 * setting, and a <code>value</code>, which is an object with the following
+	 * properties:
+	 * </p>
+	 * <dl>
+	 * <dt>onclick</dt>
+	 * <dd>The click handler for the menu item</dd>
+	 * <dt>text</dt>
+	 * <dd>The text for the menu item</dt>
+	 * <dt>textKey</dt>
+	 * <dd>If internationalization is required, the key to a language string</dd>
+	 * <dl>
+	 */
+	public void setMenuItemDefinitions(
+			Map<String, ExportingMenuItemDefinition> menuItemDefinitions) {
+		this.menuItemDefinitions = menuItemDefinitions;
 	}
 
 	/**
@@ -241,7 +290,7 @@ public class Exporting extends AbstractConfigurationObject {
 	 * The URL for the server module converting the SVG string to an image
 	 * format. By default this points to Highchart's free web service.
 	 * <p>
-	 * Defaults to: http://export.highcharts.com
+	 * Defaults to: https://export.highcharts.com
 	 */
 	public void setUrl(String url) {
 		this.url = url;

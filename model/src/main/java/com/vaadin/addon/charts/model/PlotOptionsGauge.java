@@ -1,22 +1,5 @@
 package com.vaadin.addon.charts.model;
 
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import com.vaadin.addon.charts.model.style.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,27 +11,32 @@ public class PlotOptionsGauge extends GaugeOptions {
 
 	private Boolean animation;
 	private Number animationLimit;
+	private String className;
 	private Color color;
+	private Number colorIndex;
 	private Cursor cursor;
 	private DataLabels dataLabels;
+	private String description;
 	private Dial dial;
 	private Boolean enableMouseTracking;
+	private Boolean exposeElementToA11y;
+	private String findNearestPointBy;
 	private Boolean getExtremesFromAll;
 	private ArrayList<String> keys;
 	private String linkedTo;
 	private Color negativeColor;
 	private Number overshoot;
 	private Pivot pivot;
+	private String _fn_pointDescriptionFormatter;
 	private Boolean selected;
 	private Boolean showCheckbox;
 	private Boolean showInLegend;
+	private Boolean skipKeyboardNavigation;
 	private Boolean stickyTracking;
 	private Number threshold;
 	private SeriesTooltip tooltip;
 	private Boolean visible;
 	private Boolean wrap;
-	private String zoneAxis;
-	private ArrayList<Zones> zones;
 
 	public PlotOptionsGauge() {
 	}
@@ -80,7 +68,7 @@ public class PlotOptionsGauge extends GaugeOptions {
 	 * <dt>easing</dt>
 	 * <dd>A string reference to an easing function set on the <code>Math</code>
 	 * object. See <a href=
-	 * "http://jsfiddle.net/gh/get/jquery/1.7.2/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/"
+	 * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/"
 	 * >the easing demo</a>.</dd>
 	 * </dl>
 	 * <p>
@@ -113,6 +101,20 @@ public class PlotOptionsGauge extends GaugeOptions {
 	}
 
 	/**
+	 * @see #setClassName(String)
+	 */
+	public String getClassName() {
+		return className;
+	}
+
+	/**
+	 * A class name to apply to the series' graphical elements.
+	 */
+	public void setClassName(String className) {
+		this.className = className;
+	}
+
+	/**
 	 * @see #setColor(Color)
 	 */
 	public Color getColor() {
@@ -120,13 +122,45 @@ public class PlotOptionsGauge extends GaugeOptions {
 	}
 
 	/**
+	 * <p>
 	 * The main color or the series. In line type series it applies to the line
 	 * and the point markers unless otherwise specified. In bar type series it
 	 * applies to the bars unless a color is specified per point. The default
 	 * value is pulled from the <code>options.colors</code> array.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the color can be defined by the <a
+	 * href="#plotOptions.series.colorIndex">colorIndex</a> option. Also, the
+	 * series color can be set with the <code>.highcharts-series</code>,
+	 * <code>.highcharts-color-{n}</code>,
+	 * <code>.highcharts-{type}-series</code> or
+	 * <code>.highcharts-series-{n}</code> class, or individual classes given by
+	 * the <code>className</code> option.
+	 * </p>
 	 */
 	public void setColor(Color color) {
 		this.color = color;
+	}
+
+	/**
+	 * @see #setColorIndex(Number)
+	 */
+	public Number getColorIndex() {
+		return colorIndex;
+	}
+
+	/**
+	 * <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >Styled mode</a> only. A specific color index to use for the series, so
+	 * its graphic representations are given the class name
+	 * <code>highcharts-color-{n}</code>.
+	 */
+	public void setColorIndex(Number colorIndex) {
+		this.colorIndex = colorIndex;
 	}
 
 	/**
@@ -164,6 +198,28 @@ public class PlotOptionsGauge extends GaugeOptions {
 	}
 
 	/**
+	 * @see #setDescription(String)
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * <p>
+	 * <i>Requires Accessibility module</i>
+	 * </p>
+	 * <p>
+	 * A description of the series to add to the screen reader information about
+	 * the series.
+	 * </p>
+	 * <p>
+	 * Defaults to: undefined
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	/**
 	 * @see #setDial(Dial)
 	 */
 	public Dial getDial() {
@@ -174,7 +230,16 @@ public class PlotOptionsGauge extends GaugeOptions {
 	}
 
 	/**
+	 * <p>
 	 * Options for the dial or arrow pointer of the gauge.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the dial is styled with the
+	 * <code>.highcharts-gauge-series .highcharts-dial</code> rule.
+	 * </p>
 	 */
 	public void setDial(Dial dial) {
 		this.dial = dial;
@@ -196,6 +261,55 @@ public class PlotOptionsGauge extends GaugeOptions {
 	 */
 	public void setEnableMouseTracking(Boolean enableMouseTracking) {
 		this.enableMouseTracking = enableMouseTracking;
+	}
+
+	/**
+	 * @see #setExposeElementToA11y(Boolean)
+	 */
+	public Boolean getExposeElementToA11y() {
+		return exposeElementToA11y;
+	}
+
+	/**
+	 * <p>
+	 * By default, series are exposed to screen readers as regions. By enabling
+	 * this option, the series element itself will be exposed in the same way as
+	 * the data points. This is useful if the series is not used as a grouping
+	 * entity in the chart, but you still want to attach a description to the
+	 * series.
+	 * </p>
+	 * <p>
+	 * Requires the Accessibility module.
+	 * </p>
+	 * <p>
+	 * Defaults to: undefined
+	 */
+	public void setExposeElementToA11y(Boolean exposeElementToA11y) {
+		this.exposeElementToA11y = exposeElementToA11y;
+	}
+
+	/**
+	 * @see #setFindNearestPointBy(String)
+	 */
+	public String getFindNearestPointBy() {
+		return findNearestPointBy;
+	}
+
+	/**
+	 * <p>
+	 * Determines whether the series should look for the nearest point in both
+	 * dimensions or just the x-dimension when hovering the series. Defaults to
+	 * <code>'xy'</code> for scatter series and <code>'x'</code> for most other
+	 * series. If the data has duplicate x-values, it is recommended to set this
+	 * to <code>'xy'</code> to allow hovering over all points.
+	 * </p>
+	 * <p>
+	 * Applies only to series types using nearest neighbor search (not direct
+	 * hover) for tooltip.
+	 * </p>
+	 */
+	public void setFindNearestPointBy(String findNearestPointBy) {
+		this.findNearestPointBy = findNearestPointBy;
 	}
 
 	/**
@@ -325,10 +439,28 @@ public class PlotOptionsGauge extends GaugeOptions {
 	}
 
 	/**
+	 * <p>
 	 * Options for the pivot or the center point of the gauge.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the pivot is styled with the
+	 * <code>.highcharts-gauge-series .highcharts-pivot</code> rule.
+	 * </p>
 	 */
 	public void setPivot(Pivot pivot) {
 		this.pivot = pivot;
+	}
+
+	public String getPointDescriptionFormatter() {
+		return _fn_pointDescriptionFormatter;
+	}
+
+	public void setPointDescriptionFormatter(
+			String _fn_pointDescriptionFormatter) {
+		this._fn_pointDescriptionFormatter = _fn_pointDescriptionFormatter;
 	}
 
 	/**
@@ -380,6 +512,21 @@ public class PlotOptionsGauge extends GaugeOptions {
 	 */
 	public void setShowInLegend(Boolean showInLegend) {
 		this.showInLegend = showInLegend;
+	}
+
+	/**
+	 * @see #setSkipKeyboardNavigation(Boolean)
+	 */
+	public Boolean getSkipKeyboardNavigation() {
+		return skipKeyboardNavigation;
+	}
+
+	/**
+	 * If set to <code>True</code>, the accessibility module will skip past the
+	 * points in this series for keyboard navigation.
+	 */
+	public void setSkipKeyboardNavigation(Boolean skipKeyboardNavigation) {
+		this.skipKeyboardNavigation = skipKeyboardNavigation;
 	}
 
 	/**
@@ -476,67 +623,5 @@ public class PlotOptionsGauge extends GaugeOptions {
 	 */
 	public void setWrap(Boolean wrap) {
 		this.wrap = wrap;
-	}
-
-	/**
-	 * @see #setZoneAxis(String)
-	 */
-	public String getZoneAxis() {
-		return zoneAxis;
-	}
-
-	/**
-	 * Defines the Axis on which the zones are applied.
-	 * <p>
-	 * Defaults to: y
-	 */
-	public void setZoneAxis(String zoneAxis) {
-		this.zoneAxis = zoneAxis;
-	}
-
-	/**
-	 * @see #setZones(Zones...)
-	 */
-	public Zones[] getZones() {
-		if (zones == null) {
-			return new Zones[]{};
-		}
-		Zones[] arr = new Zones[zones.size()];
-		zones.toArray(arr);
-		return arr;
-	}
-
-	/**
-	 * An array defining zones within a series. Zones can be applied to the X
-	 * axis, Y axis or Z axis for bubbles, according to the
-	 * <code>zoneAxis</code> option.
-	 */
-	public void setZones(Zones... zones) {
-		this.zones = new ArrayList<Zones>(Arrays.asList(zones));
-	}
-
-	/**
-	 * Adds zone to the zones array
-	 * 
-	 * @param zone
-	 *            to add
-	 * @see #setZones(Zones...)
-	 */
-	public void addZone(Zones zone) {
-		if (this.zones == null) {
-			this.zones = new ArrayList<Zones>();
-		}
-		this.zones.add(zone);
-	}
-
-	/**
-	 * Removes first occurrence of zone in zones array
-	 * 
-	 * @param zone
-	 *            to remove
-	 * @see #setZones(Zones...)
-	 */
-	public void removeZone(Zones zone) {
-		this.zones.remove(zone);
 	}
 }

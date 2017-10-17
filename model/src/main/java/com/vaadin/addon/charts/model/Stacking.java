@@ -17,6 +17,7 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
+
 /**
  * Whether to stack the values of each series on top of each other. Possible
  * values are null to disable, NORMAL to stack by value or PERCENT. Defaults to

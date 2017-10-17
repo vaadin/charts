@@ -1,56 +1,43 @@
 package com.vaadin.addon.charts.model;
 
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import com.vaadin.addon.charts.model.style.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.time.Instant;
 import com.vaadin.addon.charts.util.Util;
-import com.vaadin.server.SizeWithUnit;
-import com.vaadin.server.Sizeable.Unit;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.vaadin.addon.charts.model.serializers.SizeSerializer;
 /**
  * A bubble series is a three dimensional series type where each point renders
  * an X, Y and Z value. Each points is drawn as a bubble where the position
  * along the X and Y axes mark the X and Y values, and the size of the bubble
- * relates to the Z value.
+ * relates to the Z value. Requires <code>highcharts-more.js</code>.
  */
 public class PlotOptionsBubble extends AbstractPlotOptions {
 
 	private Boolean allowPointSelect;
 	private Boolean animation;
 	private Number animationLimit;
+	private String className;
 	private Color color;
+	private Number colorIndex;
 	private Number cropThreshold;
 	private Cursor cursor;
 	private DashStyle dashStyle;
 	private DataLabels dataLabels;
+	private String description;
 	private Boolean displayNegative;
 	private Boolean enableMouseTracking;
+	private Boolean exposeElementToA11y;
+	private String findNearestPointBy;
 	private Boolean getExtremesFromAll;
 	private ArrayList<String> keys;
 	private Number lineWidth;
 	private String linkedTo;
 	private Marker marker;
+	private String maxSize;
+	private String minSize;
 	private Color negativeColor;
+	private String _fn_pointDescriptionFormatter;
 	private Number pointInterval;
 	private IntervalUnit pointIntervalUnit;
 	private Number pointStart;
@@ -60,6 +47,7 @@ public class PlotOptionsBubble extends AbstractPlotOptions {
 	private Boolean showInLegend;
 	private String sizeBy;
 	private Boolean sizeByAbsoluteValue;
+	private Boolean skipKeyboardNavigation;
 	private Boolean softThreshold;
 	private States states;
 	private Boolean stickyTracking;
@@ -71,10 +59,6 @@ public class PlotOptionsBubble extends AbstractPlotOptions {
 	private Number zThreshold;
 	private String zoneAxis;
 	private ArrayList<Zones> zones;
-	@JsonSerialize(using = SizeSerializer.class)
-	private String minSize;
-	@JsonSerialize(using = SizeSerializer.class)
-	private String maxSize;
 
 	public PlotOptionsBubble() {
 	}
@@ -123,7 +107,7 @@ public class PlotOptionsBubble extends AbstractPlotOptions {
 	 * <dt>easing</dt>
 	 * <dd>A string reference to an easing function set on the <code>Math</code>
 	 * object. See <a href=
-	 * "http://jsfiddle.net/gh/get/jquery/1.7.2/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/"
+	 * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/"
 	 * >the easing demo</a>.</dd>
 	 * </dl>
 	 * <p>
@@ -156,6 +140,20 @@ public class PlotOptionsBubble extends AbstractPlotOptions {
 	}
 
 	/**
+	 * @see #setClassName(String)
+	 */
+	public String getClassName() {
+		return className;
+	}
+
+	/**
+	 * A class name to apply to the series' graphical elements.
+	 */
+	public void setClassName(String className) {
+		this.className = className;
+	}
+
+	/**
 	 * @see #setColor(Color)
 	 */
 	public Color getColor() {
@@ -163,13 +161,45 @@ public class PlotOptionsBubble extends AbstractPlotOptions {
 	}
 
 	/**
+	 * <p>
 	 * The main color or the series. In line type series it applies to the line
 	 * and the point markers unless otherwise specified. In bar type series it
 	 * applies to the bars unless a color is specified per point. The default
 	 * value is pulled from the <code>options.colors</code> array.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the color can be defined by the <a
+	 * href="#plotOptions.series.colorIndex">colorIndex</a> option. Also, the
+	 * series color can be set with the <code>.highcharts-series</code>,
+	 * <code>.highcharts-color-{n}</code>,
+	 * <code>.highcharts-{type}-series</code> or
+	 * <code>.highcharts-series-{n}</code> class, or individual classes given by
+	 * the <code>className</code> option.
+	 * </p>
 	 */
 	public void setColor(Color color) {
 		this.color = color;
+	}
+
+	/**
+	 * @see #setColorIndex(Number)
+	 */
+	public Number getColorIndex() {
+		return colorIndex;
+	}
+
+	/**
+	 * <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >Styled mode</a> only. A specific color index to use for the series, so
+	 * its graphic representations are given the class name
+	 * <code>highcharts-color-{n}</code>.
+	 */
+	public void setColorIndex(Number colorIndex) {
+		this.colorIndex = colorIndex;
 	}
 
 	/**
@@ -181,13 +211,13 @@ public class PlotOptionsBubble extends AbstractPlotOptions {
 
 	/**
 	 * When the series contains less points than the crop threshold, all points
-	 * are drawn, event if the points fall outside the visible plot area at the
+	 * are drawn, even if the points fall outside the visible plot area at the
 	 * current zoom. The advantage of drawing all points (including markers and
 	 * columns), is that animation is performed on updates. On the other hand,
 	 * when the series contains more points than the crop threshold, the series
 	 * data is cropped to only contain points that fall within the plot area.
 	 * The advantage of cropping away invisible points is to increase
-	 * performance on large series. .
+	 * performance on large series.
 	 * <p>
 	 * Defaults to: 300
 	 */
@@ -253,8 +283,45 @@ public class PlotOptionsBubble extends AbstractPlotOptions {
 		return dataLabels;
 	}
 
+	/**
+	 * <p>
+	 * Options for the series data labels, appearing next to each data point.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the data labels can be styled wtih the
+	 * <code>.highcharts-data-label-box</code> and
+	 * <code>.highcharts-data-label</code> class names (<a href=
+	 * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/series-datalabels"
+	 * >see example</a>).
+	 * </p>
+	 */
 	public void setDataLabels(DataLabels dataLabels) {
 		this.dataLabels = dataLabels;
+	}
+
+	/**
+	 * @see #setDescription(String)
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * <p>
+	 * <i>Requires Accessibility module</i>
+	 * </p>
+	 * <p>
+	 * A description of the series to add to the screen reader information about
+	 * the series.
+	 * </p>
+	 * <p>
+	 * Defaults to: undefined
+	 */
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	/**
@@ -292,6 +359,55 @@ public class PlotOptionsBubble extends AbstractPlotOptions {
 	 */
 	public void setEnableMouseTracking(Boolean enableMouseTracking) {
 		this.enableMouseTracking = enableMouseTracking;
+	}
+
+	/**
+	 * @see #setExposeElementToA11y(Boolean)
+	 */
+	public Boolean getExposeElementToA11y() {
+		return exposeElementToA11y;
+	}
+
+	/**
+	 * <p>
+	 * By default, series are exposed to screen readers as regions. By enabling
+	 * this option, the series element itself will be exposed in the same way as
+	 * the data points. This is useful if the series is not used as a grouping
+	 * entity in the chart, but you still want to attach a description to the
+	 * series.
+	 * </p>
+	 * <p>
+	 * Requires the Accessibility module.
+	 * </p>
+	 * <p>
+	 * Defaults to: undefined
+	 */
+	public void setExposeElementToA11y(Boolean exposeElementToA11y) {
+		this.exposeElementToA11y = exposeElementToA11y;
+	}
+
+	/**
+	 * @see #setFindNearestPointBy(String)
+	 */
+	public String getFindNearestPointBy() {
+		return findNearestPointBy;
+	}
+
+	/**
+	 * <p>
+	 * Determines whether the series should look for the nearest point in both
+	 * dimensions or just the x-dimension when hovering the series. Defaults to
+	 * <code>'xy'</code> for scatter series and <code>'x'</code> for most other
+	 * series. If the data has duplicate x-values, it is recommended to set this
+	 * to <code>'xy'</code> to allow hovering over all points.
+	 * </p>
+	 * <p>
+	 * Applies only to series types using nearest neighbor search (not direct
+	 * hover) for tooltip.
+	 * </p>
+	 */
+	public void setFindNearestPointBy(String findNearestPointBy) {
+		this.findNearestPointBy = findNearestPointBy;
 	}
 
 	/**
@@ -401,8 +517,65 @@ public class PlotOptionsBubble extends AbstractPlotOptions {
 		return marker;
 	}
 
+	/**
+	 * <p>
+	 * Options for the point markers of line-like series. Properties like
+	 * <code>fillColor</code>, <code>lineColor</code> and <code>lineWidth</code>
+	 * define the visual appearance of the markers. Other series types, like
+	 * column series, don't have markers, but have visual options on the series
+	 * level instead.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the markers can be styled with the
+	 * <code>.highcharts-point</code>, <code>.highcharts-point-hover</code> and
+	 * <code>.highcharts-point-select</code> class names.
+	 * </p>
+	 */
 	public void setMarker(Marker marker) {
 		this.marker = marker;
+	}
+
+	/**
+	 * @see #setMaxSize(String)
+	 */
+	public String getMaxSize() {
+		return maxSize;
+	}
+
+	/**
+	 * Maximum bubble size. Bubbles will automatically size between the
+	 * <code>minSize</code> and <code>maxSize</code> to reflect the
+	 * <code>z</code> value of each bubble. Can be either pixels (when no unit
+	 * is given), or a percentage of the smallest one of the plot width and
+	 * height.
+	 * <p>
+	 * Defaults to: 20%
+	 */
+	public void setMaxSize(String maxSize) {
+		this.maxSize = maxSize;
+	}
+
+	/**
+	 * @see #setMinSize(String)
+	 */
+	public String getMinSize() {
+		return minSize;
+	}
+
+	/**
+	 * Minimum bubble size. Bubbles will automatically size between the
+	 * <code>minSize</code> and <code>maxSize</code> to reflect the
+	 * <code>z</code> value of each bubble. Can be either pixels (when no unit
+	 * is given), or a percentage of the smallest one of the plot width and
+	 * height.
+	 * <p>
+	 * Defaults to: 8
+	 */
+	public void setMinSize(String minSize) {
+		this.minSize = minSize;
 	}
 
 	/**
@@ -421,6 +594,15 @@ public class PlotOptionsBubble extends AbstractPlotOptions {
 	 */
 	public void setNegativeColor(Color negativeColor) {
 		this.negativeColor = negativeColor;
+	}
+
+	public String getPointDescriptionFormatter() {
+		return _fn_pointDescriptionFormatter;
+	}
+
+	public void setPointDescriptionFormatter(
+			String _fn_pointDescriptionFormatter) {
+		this._fn_pointDescriptionFormatter = _fn_pointDescriptionFormatter;
 	}
 
 	/**
@@ -456,7 +638,7 @@ public class PlotOptionsBubble extends AbstractPlotOptions {
 
 	/**
 	 * On datetime series, this allows for setting the <a
-	 * href="plotOptions.series.pointInterval">pointInterval</a> to irregular
+	 * href="#plotOptions.series.pointInterval">pointInterval</a> to irregular
 	 * time units, <code>day</code>, <code>month</code> and <code>year</code>. A
 	 * day is usually the same as 24 hours, but pointIntervalUnit also takes the
 	 * DST crossover into consideration when dealing with local time. Combine
@@ -594,6 +776,21 @@ public class PlotOptionsBubble extends AbstractPlotOptions {
 	 */
 	public void setSizeByAbsoluteValue(Boolean sizeByAbsoluteValue) {
 		this.sizeByAbsoluteValue = sizeByAbsoluteValue;
+	}
+
+	/**
+	 * @see #setSkipKeyboardNavigation(Boolean)
+	 */
+	public Boolean getSkipKeyboardNavigation() {
+		return skipKeyboardNavigation;
+	}
+
+	/**
+	 * If set to <code>True</code>, the accessibility module will skip past the
+	 * points in this series for keyboard navigation.
+	 */
+	public void setSkipKeyboardNavigation(Boolean skipKeyboardNavigation) {
+		this.skipKeyboardNavigation = skipKeyboardNavigation;
 	}
 
 	/**
@@ -798,9 +995,21 @@ public class PlotOptionsBubble extends AbstractPlotOptions {
 	}
 
 	/**
+	 * <p>
 	 * An array defining zones within a series. Zones can be applied to the X
 	 * axis, Y axis or Z axis for bubbles, according to the
 	 * <code>zoneAxis</code> option.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the color zones are styled with the
+	 * <code>.highcharts-zone-{n}</code> class, or custom classed from the
+	 * <code>className</code> option (<a href=
+	 * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/color-zones/"
+	 * >view live demo</a>).
+	 * </p>
 	 */
 	public void setZones(Zones... zones) {
 		this.zones = new ArrayList<Zones>(Arrays.asList(zones));
@@ -844,155 +1053,5 @@ public class PlotOptionsBubble extends AbstractPlotOptions {
 	 */
 	public void setPointStart(Instant instant) {
 		this.pointStart = Util.toHighchartsTS(instant);
-	}
-
-	/**
-	 * @see #setMinSize(String)
-	 */
-	public float getMinSize() {
-		String tmp = minSize;
-		if (minSize == null) {
-			return -1.0f;
-		}
-		if (this.minSize.contains("%")) {
-			tmp = tmp.replace("%", "");
-		}
-		return Float.valueOf(tmp).floatValue();
-	}
-
-	/**
-	 * Sets the minSize using String presentation. String presentation is
-	 * similar to what is used in Cascading Style Sheets. Size can be pixels or
-	 * percentage, otherwise IllegalArgumentException is thrown. The empty
-	 * string ("") or null will unset the height and set the units to pixels.
-	 * 
-	 * @param minSize
-	 *            CSS style string representation
-	 */
-	public void setMinSize(String minSize) {
-		SizeWithUnit sizeWithUnit = SizeWithUnit.parseStringSize(minSize);
-		if (sizeWithUnit != null) {
-			Unit unit = sizeWithUnit.getUnit();
-			if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
-				throw new IllegalArgumentException(
-						unit.toString()
-								+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
-			}
-			setMinSize(sizeWithUnit.getSize(), sizeWithUnit.getUnit());
-		} else {
-			setMinSize(-1, Unit.PIXELS);
-		}
-	}
-
-	/**
-	 * @see #setMinSize(float,Unit)
-	 */
-	public Unit getMinSizeUnit() {
-		if (this.minSize == null) {
-			return Unit.PIXELS;
-		}
-		if (this.minSize.contains("%")) {
-			return Unit.PERCENTAGE;
-		}
-		return Unit.PIXELS;
-	}
-
-	/**
-	 * Sets the minSize using Vaadin Unit. Only Unit.PIXELS and Unit.PERCENTAGE
-	 * are supported. In all other cases, IllegalArgumentException is thrown.
-	 * 
-	 * @param minSize
-	 * @param unit
-	 *            the unit used for the minSize
-	 */
-	public void setMinSize(float minSize, Unit unit) {
-		if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
-			throw new IllegalArgumentException(
-					unit.toString()
-							+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
-		}
-		String value = Float.toString(minSize);
-		if (unit.equals(Unit.PERCENTAGE)) {
-			value += "%";
-		}
-		if (minSize == -1) {
-			value = null;
-		}
-		this.minSize = value;
-	}
-
-	/**
-	 * @see #setMaxSize(String)
-	 */
-	public float getMaxSize() {
-		String tmp = maxSize;
-		if (maxSize == null) {
-			return -1.0f;
-		}
-		if (this.maxSize.contains("%")) {
-			tmp = tmp.replace("%", "");
-		}
-		return Float.valueOf(tmp).floatValue();
-	}
-
-	/**
-	 * Sets the maxSize using String presentation. String presentation is
-	 * similar to what is used in Cascading Style Sheets. Size can be pixels or
-	 * percentage, otherwise IllegalArgumentException is thrown. The empty
-	 * string ("") or null will unset the height and set the units to pixels.
-	 * 
-	 * @param maxSize
-	 *            CSS style string representation
-	 */
-	public void setMaxSize(String maxSize) {
-		SizeWithUnit sizeWithUnit = SizeWithUnit.parseStringSize(maxSize);
-		if (sizeWithUnit != null) {
-			Unit unit = sizeWithUnit.getUnit();
-			if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
-				throw new IllegalArgumentException(
-						unit.toString()
-								+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
-			}
-			setMaxSize(sizeWithUnit.getSize(), sizeWithUnit.getUnit());
-		} else {
-			setMaxSize(-1, Unit.PIXELS);
-		}
-	}
-
-	/**
-	 * @see #setMaxSize(float,Unit)
-	 */
-	public Unit getMaxSizeUnit() {
-		if (this.maxSize == null) {
-			return Unit.PIXELS;
-		}
-		if (this.maxSize.contains("%")) {
-			return Unit.PERCENTAGE;
-		}
-		return Unit.PIXELS;
-	}
-
-	/**
-	 * Sets the maxSize using Vaadin Unit. Only Unit.PIXELS and Unit.PERCENTAGE
-	 * are supported. In all other cases, IllegalArgumentException is thrown.
-	 * 
-	 * @param maxSize
-	 * @param unit
-	 *            the unit used for the maxSize
-	 */
-	public void setMaxSize(float maxSize, Unit unit) {
-		if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
-			throw new IllegalArgumentException(
-					unit.toString()
-							+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
-		}
-		String value = Float.toString(maxSize);
-		if (unit.equals(Unit.PERCENTAGE)) {
-			value += "%";
-		}
-		if (maxSize == -1) {
-			value = null;
-		}
-		this.maxSize = value;
 	}
 }

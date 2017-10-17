@@ -1,29 +1,8 @@
 package com.vaadin.addon.charts.model;
 
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import com.vaadin.addon.charts.model.style.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
-import com.vaadin.server.SizeWithUnit;
-import com.vaadin.server.Sizeable.Unit;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.vaadin.addon.charts.model.serializers.SizeSerializer;
 /**
  * A pyramid chart consists of a single pyramid with item heights corresponding
  * to each point value. Technically it is the same as a reversed funnel chart
@@ -36,27 +15,32 @@ public class PlotOptionsPyramid extends PyramidOptions {
 	private Color borderColor;
 	private Number borderWidth;
 	private String[] center;
+	private String className;
+	private Number colorIndex;
 	private ArrayList<Color> colors;
 	private Cursor cursor;
 	private DataLabelsFunnel dataLabels;
 	private Number depth;
+	private String description;
 	private Boolean enableMouseTracking;
+	private Boolean exposeElementToA11y;
+	private String findNearestPointBy;
 	private Boolean getExtremesFromAll;
-	@JsonSerialize(using = SizeSerializer.class)
 	private String height;
 	private ArrayList<String> keys;
 	private String linkedTo;
 	private Number minSize;
+	private String _fn_pointDescriptionFormatter;
 	private Boolean reversed;
 	private Boolean selected;
 	private Boolean shadow;
 	private Boolean showInLegend;
+	private Boolean skipKeyboardNavigation;
 	private Number slicedOffset;
 	private States states;
 	private Boolean stickyTracking;
 	private SeriesTooltip tooltip;
 	private Boolean visible;
-	@JsonSerialize(using = SizeSerializer.class)
 	private String width;
 	private String zoneAxis;
 	private ArrayList<Zones> zones;
@@ -112,12 +96,21 @@ public class PlotOptionsPyramid extends PyramidOptions {
 	}
 
 	/**
+	 * <p>
 	 * The color of the border surrounding each slice. When <code>null</code>,
 	 * the border takes the same color as the slice fill. This can be used
 	 * together with a <code>borderWidth</code> to fill drawing gaps created by
 	 * antialiazing artefacts in borderless pies.
+	 * </p>
+	 * 
 	 * <p>
-	 * Defaults to: #FFFFFF
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the border stroke is given in the
+	 * <code>.highcharts-point</code> class.
+	 * </p>
+	 * <p>
+	 * Defaults to: #ffffff
 	 */
 	public void setBorderColor(Color borderColor) {
 		this.borderColor = borderColor;
@@ -141,6 +134,13 @@ public class PlotOptionsPyramid extends PyramidOptions {
 	 * border width at 0.5 or 1, but set the <code>borderColor</code> to
 	 * <code>null</code> instead.
 	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the border stroke width is given in the
+	 * <code>.highcharts-point</code> class.
+	 * </p>
 	 * <p>
 	 * Defaults to: 1
 	 */
@@ -156,6 +156,38 @@ public class PlotOptionsPyramid extends PyramidOptions {
 	 */
 	public void setCenter(String[] center) {
 		this.center = center;
+	}
+
+	/**
+	 * @see #setClassName(String)
+	 */
+	public String getClassName() {
+		return className;
+	}
+
+	/**
+	 * A class name to apply to the series' graphical elements.
+	 */
+	public void setClassName(String className) {
+		this.className = className;
+	}
+
+	/**
+	 * @see #setColorIndex(Number)
+	 */
+	public Number getColorIndex() {
+		return colorIndex;
+	}
+
+	/**
+	 * <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >Styled mode</a> only. A specific color index to use for the series, so
+	 * its graphic representations are given the class name
+	 * <code>highcharts-color-{n}</code>.
+	 */
+	public void setColorIndex(Number colorIndex) {
+		this.colorIndex = colorIndex;
 	}
 
 	/**
@@ -250,6 +282,28 @@ public class PlotOptionsPyramid extends PyramidOptions {
 	}
 
 	/**
+	 * @see #setDescription(String)
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * <p>
+	 * <i>Requires Accessibility module</i>
+	 * </p>
+	 * <p>
+	 * A description of the series to add to the screen reader information about
+	 * the series.
+	 * </p>
+	 * <p>
+	 * Defaults to: undefined
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	/**
 	 * @see #setEnableMouseTracking(Boolean)
 	 */
 	public Boolean getEnableMouseTracking() {
@@ -265,6 +319,55 @@ public class PlotOptionsPyramid extends PyramidOptions {
 	 */
 	public void setEnableMouseTracking(Boolean enableMouseTracking) {
 		this.enableMouseTracking = enableMouseTracking;
+	}
+
+	/**
+	 * @see #setExposeElementToA11y(Boolean)
+	 */
+	public Boolean getExposeElementToA11y() {
+		return exposeElementToA11y;
+	}
+
+	/**
+	 * <p>
+	 * By default, series are exposed to screen readers as regions. By enabling
+	 * this option, the series element itself will be exposed in the same way as
+	 * the data points. This is useful if the series is not used as a grouping
+	 * entity in the chart, but you still want to attach a description to the
+	 * series.
+	 * </p>
+	 * <p>
+	 * Requires the Accessibility module.
+	 * </p>
+	 * <p>
+	 * Defaults to: undefined
+	 */
+	public void setExposeElementToA11y(Boolean exposeElementToA11y) {
+		this.exposeElementToA11y = exposeElementToA11y;
+	}
+
+	/**
+	 * @see #setFindNearestPointBy(String)
+	 */
+	public String getFindNearestPointBy() {
+		return findNearestPointBy;
+	}
+
+	/**
+	 * <p>
+	 * Determines whether the series should look for the nearest point in both
+	 * dimensions or just the x-dimension when hovering the series. Defaults to
+	 * <code>'xy'</code> for scatter series and <code>'x'</code> for most other
+	 * series. If the data has duplicate x-values, it is recommended to set this
+	 * to <code>'xy'</code> to allow hovering over all points.
+	 * </p>
+	 * <p>
+	 * Applies only to series types using nearest neighbor search (not direct
+	 * hover) for tooltip.
+	 * </p>
+	 */
+	public void setFindNearestPointBy(String findNearestPointBy) {
+		this.findNearestPointBy = findNearestPointBy;
 	}
 
 	/**
@@ -288,76 +391,17 @@ public class PlotOptionsPyramid extends PyramidOptions {
 	/**
 	 * @see #setHeight(String)
 	 */
-	public float getHeight() {
-		String tmp = height;
-		if (height == null) {
-			return -1.0f;
-		}
-		if (this.height.contains("%")) {
-			tmp = tmp.replace("%", "");
-		}
-		return Float.valueOf(tmp).floatValue();
+	public String getHeight() {
+		return height;
 	}
 
 	/**
-	 * Sets the height using String presentation. String presentation is similar
-	 * to what is used in Cascading Style Sheets. Size can be pixels or
-	 * percentage, otherwise IllegalArgumentException is thrown. The empty
-	 * string ("") or null will unset the height and set the units to pixels.
-	 * 
-	 * @param height
-	 *            CSS style string representation
+	 * The height of the funnel or pyramid. If it is a number it defines the
+	 * pixel height, if it is a percentage string it is the percentage of the
+	 * plot area height.
 	 */
 	public void setHeight(String height) {
-		SizeWithUnit sizeWithUnit = SizeWithUnit.parseStringSize(height);
-		if (sizeWithUnit != null) {
-			Unit unit = sizeWithUnit.getUnit();
-			if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
-				throw new IllegalArgumentException(
-						unit.toString()
-								+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
-			}
-			setHeight(sizeWithUnit.getSize(), sizeWithUnit.getUnit());
-		} else {
-			setHeight(-1, Unit.PIXELS);
-		}
-	}
-
-	/**
-	 * @see #setHeight(float,Unit)
-	 */
-	public Unit getHeightUnit() {
-		if (this.height == null) {
-			return Unit.PIXELS;
-		}
-		if (this.height.contains("%")) {
-			return Unit.PERCENTAGE;
-		}
-		return Unit.PIXELS;
-	}
-
-	/**
-	 * Sets the height using Vaadin Unit. Only Unit.PIXELS and Unit.PERCENTAGE
-	 * are supported. In all other cases, IllegalArgumentException is thrown.
-	 * 
-	 * @param height
-	 * @param unit
-	 *            the unit used for the height
-	 */
-	public void setHeight(float height, Unit unit) {
-		if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
-			throw new IllegalArgumentException(
-					unit.toString()
-							+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
-		}
-		String value = Float.toString(height);
-		if (unit.equals(Unit.PERCENTAGE)) {
-			value += "%";
-		}
-		if (height == -1) {
-			value = null;
-		}
-		this.height = value;
+		this.height = height;
 	}
 
 	/**
@@ -441,6 +485,15 @@ public class PlotOptionsPyramid extends PyramidOptions {
 		this.minSize = minSize;
 	}
 
+	public String getPointDescriptionFormatter() {
+		return _fn_pointDescriptionFormatter;
+	}
+
+	public void setPointDescriptionFormatter(
+			String _fn_pointDescriptionFormatter) {
+		this._fn_pointDescriptionFormatter = _fn_pointDescriptionFormatter;
+	}
+
 	/**
 	 * @see #setReversed(Boolean)
 	 */
@@ -510,6 +563,21 @@ public class PlotOptionsPyramid extends PyramidOptions {
 	 */
 	public void setShowInLegend(Boolean showInLegend) {
 		this.showInLegend = showInLegend;
+	}
+
+	/**
+	 * @see #setSkipKeyboardNavigation(Boolean)
+	 */
+	public Boolean getSkipKeyboardNavigation() {
+		return skipKeyboardNavigation;
+	}
+
+	/**
+	 * If set to <code>True</code>, the accessibility module will skip past the
+	 * points in this series for keyboard navigation.
+	 */
+	public void setSkipKeyboardNavigation(Boolean skipKeyboardNavigation) {
+		this.skipKeyboardNavigation = skipKeyboardNavigation;
 	}
 
 	/**
@@ -606,76 +674,18 @@ public class PlotOptionsPyramid extends PyramidOptions {
 	/**
 	 * @see #setWidth(String)
 	 */
-	public float getWidth() {
-		String tmp = width;
-		if (width == null) {
-			return -1.0f;
-		}
-		if (this.width.contains("%")) {
-			tmp = tmp.replace("%", "");
-		}
-		return Float.valueOf(tmp).floatValue();
+	public String getWidth() {
+		return width;
 	}
 
 	/**
-	 * Sets the width using String presentation. String presentation is similar
-	 * to what is used in Cascading Style Sheets. Size can be pixels or
-	 * percentage, otherwise IllegalArgumentException is thrown. The empty
-	 * string ("") or null will unset the height and set the units to pixels.
-	 * 
-	 * @param width
-	 *            CSS style string representation
+	 * The width of the funnel compared to the width of the plot area, or the
+	 * pixel width if it is a number.
+	 * <p>
+	 * Defaults to: 90%
 	 */
 	public void setWidth(String width) {
-		SizeWithUnit sizeWithUnit = SizeWithUnit.parseStringSize(width);
-		if (sizeWithUnit != null) {
-			Unit unit = sizeWithUnit.getUnit();
-			if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
-				throw new IllegalArgumentException(
-						unit.toString()
-								+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
-			}
-			setWidth(sizeWithUnit.getSize(), sizeWithUnit.getUnit());
-		} else {
-			setWidth(-1, Unit.PIXELS);
-		}
-	}
-
-	/**
-	 * @see #setWidth(float,Unit)
-	 */
-	public Unit getWidthUnit() {
-		if (this.width == null) {
-			return Unit.PIXELS;
-		}
-		if (this.width.contains("%")) {
-			return Unit.PERCENTAGE;
-		}
-		return Unit.PIXELS;
-	}
-
-	/**
-	 * Sets the width using Vaadin Unit. Only Unit.PIXELS and Unit.PERCENTAGE
-	 * are supported. In all other cases, IllegalArgumentException is thrown.
-	 * 
-	 * @param width
-	 * @param unit
-	 *            the unit used for the width
-	 */
-	public void setWidth(float width, Unit unit) {
-		if (!(unit.equals(Unit.PERCENTAGE) || unit.equals(Unit.PIXELS))) {
-			throw new IllegalArgumentException(
-					unit.toString()
-							+ "is not a valid unit for sizing. Only percentage and pixels are allowed.");
-		}
-		String value = Float.toString(width);
-		if (unit.equals(Unit.PERCENTAGE)) {
-			value += "%";
-		}
-		if (width == -1) {
-			value = null;
-		}
-		this.width = value;
+		this.width = width;
 	}
 
 	/**
@@ -707,9 +717,21 @@ public class PlotOptionsPyramid extends PyramidOptions {
 	}
 
 	/**
+	 * <p>
 	 * An array defining zones within a series. Zones can be applied to the X
 	 * axis, Y axis or Z axis for bubbles, according to the
 	 * <code>zoneAxis</code> option.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the color zones are styled with the
+	 * <code>.highcharts-zone-{n}</code> class, or custom classed from the
+	 * <code>className</code> option (<a href=
+	 * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/color-zones/"
+	 * >view live demo</a>).
+	 * </p>
 	 */
 	public void setZones(Zones... zones) {
 		this.zones = new ArrayList<Zones>(Arrays.asList(zones));

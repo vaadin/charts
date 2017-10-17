@@ -1,22 +1,5 @@
 package com.vaadin.addon.charts.model;
 
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import com.vaadin.addon.charts.model.style.Color;
 /**
  * Set options on specific levels. Takes precedence over series options, but not
@@ -44,7 +27,8 @@ public class Level extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * Can set borderColor on all points which lies on the same level.
+	 * Can set a <code>borderColor</code> on all points which lies on the same
+	 * level.
 	 */
 	public void setBorderColor(Color borderColor) {
 		this.borderColor = borderColor;
