@@ -7,6 +7,7 @@ import com.vaadin.testbench.annotations.BrowserConfiguration;
 import com.vaadin.testbench.annotations.RunOnHub;
 import com.vaadin.testbench.parallel.BrowserUtil;
 import com.vaadin.testbench.parallel.ParallelTest;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -15,8 +16,12 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Enumeration;
 import java.util.List;
 
 @RunOnHub
@@ -31,7 +36,14 @@ public class VaadinChartIT extends ParallelTest {
 
 	@Before
 	public void setUp() throws InterruptedException {
-		getDriver().get("http://localhost:8080");
+		final String remoteTest = System.getProperty("test.remote");
+		System.out.println("HOSTNAME: " + findAutoHostname());
+		getDriver().get("http://" + findAutoHostname() + ":8080");
+	}
+
+	@After
+	public void tearDown() {
+
 	}
 
 	@Test
@@ -66,5 +78,41 @@ public class VaadinChartIT extends ParallelTest {
 	@BrowserConfiguration
 	public List<DesiredCapabilities> getBrowserConfiguration() {
 		return getAllBrowsers();
+	}
+
+	/**
+	 * Tries to automatically determine the IP address of the machine the test
+	 * is running on.
+	 *
+	 * @return An IP address of one of the network interfaces in the machine.
+	 * @throws RuntimeException
+	 *             if there was an error or no IP was found
+	 */
+	private static String findAutoHostname() {
+		try {
+			Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
+			while (interfaces.hasMoreElements()) {
+				NetworkInterface nwInterface = interfaces.nextElement();
+				if (!nwInterface.isUp() || nwInterface.isLoopback()
+						|| nwInterface.isVirtual()) {
+					continue;
+				}
+				Enumeration<InetAddress> addresses = nwInterface.getInetAddresses();
+				while (addresses.hasMoreElements()) {
+					InetAddress address = addresses.nextElement();
+					if (address.isLoopbackAddress()) {
+						continue;
+					}
+					if (address.isSiteLocalAddress()) {
+						return address.getHostAddress();
+					}
+				}
+			}
+		} catch (SocketException e) {
+			throw new RuntimeException("Could not enumerate ");
+		}
+
+		throw new RuntimeException(
+				"No compatible (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) ip address found.");
 	}
 }
