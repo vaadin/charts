@@ -15,9 +15,7 @@ import org.junit.Assume;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.vaadin.testbench.Parameters;
 import com.vaadin.testbench.annotations.BrowserConfiguration;
@@ -97,10 +95,6 @@ public abstract class AbstractParallelTest extends ParallelTest {
     protected void waitForElementPresent(By locator, int timeout) {
         waitUntil(ExpectedConditions.presenceOfElementLocated(locator),
                 timeout);
-    }
-
-    protected void waitUntil(ExpectedCondition<?> condition, int timeout) {
-        new WebDriverWait(getDriver(), timeout).until(condition);
     }
 
     private boolean getBooleanProperty(String key) {
