@@ -258,7 +258,7 @@ public class ChartConnector extends AbstractComponentConnector implements Deferr
         chartsRenderingObserver.startRendering();
         cfg.setChartsRenderingObserver(chartsRenderingObserver);
 
-        if (listenerExistsForEvent(CHART_CLICK_EVENT_ID)) {
+        if (hasEventListener(CHART_CLICK_EVENT_ID)) {
             cfg.setClickHandler(new ChartClickHandler() {
                 @Override
                 public void onClick(ChartClickEvent event) {
@@ -285,7 +285,7 @@ public class ChartConnector extends AbstractComponentConnector implements Deferr
                 rpc.onChartDrillup();
             }
         });
-        if (listenerExistsForEvent(POINT_CLICK_EVENT_ID)) {
+        if (hasEventListener(POINT_CLICK_EVENT_ID)) {
             cfg.setSeriesPointClickHandler(new PointClickHandler() {
 
                 @Override
@@ -304,7 +304,7 @@ public class ChartConnector extends AbstractComponentConnector implements Deferr
             });
         }
 
-        if (listenerExistsForEvent(CHART_SELECTION_EVENT_ID)) {
+        if (hasEventListener(CHART_SELECTION_EVENT_ID)) {
             cfg.setChartSelectionHandler(new ChartSelectionHandler() {
 
                 @Override
@@ -323,7 +323,7 @@ public class ChartConnector extends AbstractComponentConnector implements Deferr
 
             @Override
             public boolean onClick(SeriesEvent event) {
-                if (listenerExistsForEvent(LEGENDITEM_CLICK_EVENT_ID)) {
+                if (hasEventListener(LEGENDITEM_CLICK_EVENT_ID)) {
                     int seriesIndex = getWidget().getSeriesIndex(
                             event.getSeries());
                     rpc.onLegendItemClick(seriesIndex,
@@ -333,7 +333,7 @@ public class ChartConnector extends AbstractComponentConnector implements Deferr
             }
         });
 
-        if (listenerExistsForEvent(CHECKBOX_CLICK_EVENT_ID)) {
+        if (hasEventListener(CHECKBOX_CLICK_EVENT_ID)) {
             cfg.setCheckboxClickHandler(new CheckboxClickHandler() {
                 @Override public void onClick(CheckboxClickEvent event) {
                     int seriesIndex = getWidget().getSeriesIndex(
@@ -343,7 +343,7 @@ public class ChartConnector extends AbstractComponentConnector implements Deferr
             });
         }
 
-        if (listenerExistsForEvent(HIDE_SERIES_EVENT_ID)) {
+        if (hasEventListener(HIDE_SERIES_EVENT_ID)) {
             cfg.setSeriesHideHandler(new SeriesHideHandler() {
                 @Override
                 public void onHide(SeriesEvent event) {
@@ -354,7 +354,7 @@ public class ChartConnector extends AbstractComponentConnector implements Deferr
             });
         }
 
-        if (listenerExistsForEvent(SHOW_SERIES_EVENT_ID)) {
+        if (hasEventListener(SHOW_SERIES_EVENT_ID)) {
             cfg.setSeriesShowHandler(new SeriesShowHandler() {
                 @Override
                 public void onShow(SeriesEvent event) {
@@ -365,7 +365,7 @@ public class ChartConnector extends AbstractComponentConnector implements Deferr
             });
         }
 
-        if (listenerExistsForEvent(X_AXES_EXTREMES_CHANGE_EVENT_ID)) {
+        if (hasEventListener(X_AXES_EXTREMES_CHANGE_EVENT_ID)) {
             cfg.setXAxesAfterSetExtremeHandler(new AfterSetExtremeHandler() {
                 @Override
                 public void afterSetExtreme(SetExtremesEvent event) {
@@ -377,7 +377,7 @@ public class ChartConnector extends AbstractComponentConnector implements Deferr
             });
         }
 
-        if (listenerExistsForEvent(Y_AXES_EXTREMES_CHANGE_EVENT_ID)) {
+        if (hasEventListener(Y_AXES_EXTREMES_CHANGE_EVENT_ID)) {
             cfg.setYAxesAfterSetExtremeHandler(new AfterSetExtremeHandler() {
                 @Override
                 public void afterSetExtreme(SetExtremesEvent event) {
@@ -389,7 +389,7 @@ public class ChartConnector extends AbstractComponentConnector implements Deferr
             });
         }
 
-        if (listenerExistsForEvent(POINT_SELECT_EVENT_ID)) {
+        if (hasEventListener(POINT_SELECT_EVENT_ID)) {
             cfg.setPointSelectHandler(new PointSelectHandler(){
                 @Override
                 public void onSelect(PointEvent event) {
@@ -404,7 +404,7 @@ public class ChartConnector extends AbstractComponentConnector implements Deferr
             });
         }
 
-        if (listenerExistsForEvent(POINT_UNSELECT_EVENT_ID)) {
+        if (hasEventListener(POINT_UNSELECT_EVENT_ID)) {
             cfg.setPointUnselectHandler(new PointUnselectHandler() {
 
                 @Override
@@ -467,11 +467,6 @@ public class ChartConnector extends AbstractComponentConnector implements Deferr
 
 
         });
-    }
-
-    private boolean listenerExistsForEvent(String chartEventId) {
-        return getState().registeredEventListeners != null
-            && getState().registeredEventListeners.contains(chartEventId);
     }
 
     @Override
