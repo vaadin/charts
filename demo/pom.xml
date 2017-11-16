@@ -72,12 +72,11 @@
             <artifactId>commons-io</artifactId>
             <version>2.4</version>
         </dependency>
-
         <dependency>
-                    <groupId>org.vaadin.addons</groupId>
-                    <artifactId>googleanalyticstracker</artifactId>
-                    <version>2.1.0</version>
-                </dependency>
+            <groupId>org.vaadin.addons</groupId>
+            <artifactId>googleanalyticstracker</artifactId>
+            <version>2.1.0</version>
+        </dependency>
     </dependencies>
 
     <build>
