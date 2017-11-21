@@ -281,7 +281,7 @@ public class ChartDataSeriesJSONSerializationTest {
         chartDataSeries.setX(TestInstantItem::getDate);
         chartDataSeries.setY(TestInstantItem::getValue);
 
-        String expected = "{\"data\":[[" + instant.getEpochSecond() * 1000 + ",80]]}";
+        String expected = "{\"data\":[[" + instant.toEpochMilli() + ",80]]}";
         assertEquals(expected, toJSON(chartDataSeries));
     }
 
