@@ -103,7 +103,7 @@
             <dependency>
                 <groupId>com.vaadin</groupId>
                 <artifactId>vaadin-testbench-core</artifactId>
-                <version>5.1.0.beta2</version>
+                <version>5.1.0</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
