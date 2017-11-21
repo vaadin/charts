@@ -39,7 +39,7 @@ public class Util {
      * @return
      */
     public static long toHighchartsTS(Instant date) {
-        return date.getEpochMilli();
+        return date.toEpochMilli();
     }
 
      /**
