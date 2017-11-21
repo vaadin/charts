@@ -104,7 +104,7 @@ Add the following dependency declaration just before the end tag (`</dependencie
    <dependency>
       <groupId>com.vaadin</groupId>
       <artifactId>vaadin-charts</artifactId>
-      <version>4.0.0</version>
+      <version>4.0.1</version>
    </dependency>
 </dependencies>
 ...
