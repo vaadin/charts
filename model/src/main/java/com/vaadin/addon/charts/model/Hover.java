@@ -27,7 +27,7 @@ public class Hover extends AbstractConfigurationObject {
 	private Halo halo;
 	private Number lineWidth;
 	private Number lineWidthPlus;
-	private Color fillColor;
+	private Color color;
 	private Color lineColor;
 	private Number radius;
 	private Number radiusPlus;
@@ -114,14 +114,14 @@ public class Hover extends AbstractConfigurationObject {
 	 * @see #setFillColor(Color)
 	 */
 	public Color getFillColor() {
-		return fillColor;
+		return color;
 	}
 
 	/**
 	 * The fill color of the marker in hover state.
 	 */
 	public void setFillColor(Color fillColor) {
-		this.fillColor = fillColor;
+		this.color = fillColor;
 	}
 
 	/**

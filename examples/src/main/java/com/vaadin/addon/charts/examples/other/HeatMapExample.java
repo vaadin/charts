@@ -7,9 +7,11 @@ import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.HeatSeries;
 import com.vaadin.addon.charts.model.HorizontalAlign;
+import com.vaadin.addon.charts.model.Hover;
 import com.vaadin.addon.charts.model.LayoutDirection;
 import com.vaadin.addon.charts.model.PlotOptionsHeatmap;
 import com.vaadin.addon.charts.model.SeriesTooltip;
+import com.vaadin.addon.charts.model.States;
 import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.Component;
@@ -60,6 +62,13 @@ public class HeatMapExample extends AbstractVaadinChartExample {
         tooltip.setHeaderFormat("{series.name}<br/>");
         tooltip.setPointFormat("Amount: <b>{point.value}</b> ");
         plotOptionsHeatmap.setTooltip(tooltip);
+
+        Hover hover = new Hover();
+        hover.setFillColor(SolidColor.RED);
+        States states = new States();
+        states.setHover(hover);
+
+        plotOptionsHeatmap.setStates(states);
         config.setPlotOptions(plotOptionsHeatmap);
 
         config.setSeries(rs);
