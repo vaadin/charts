@@ -383,11 +383,15 @@ public class Chart extends AbstractComponent {
 
     private DrilldownCallback drilldownCallback;
 
+    private DrillDownStateResetCallback drillDownStateResetCallback;
+
     private String jsonConfig;
 
     private Configuration configuration;
 
     private boolean stateDirty = false;
+
+    private ChartServerRpcImplementation srvRpcImpl;
 
     /**
      * Constructs a chart component with default settings.
@@ -401,7 +405,10 @@ public class Chart extends AbstractComponent {
         setHeight(400, Unit.PIXELS);
         configuration = new Configuration();
 
-        registerRpc(new ChartServerRpcImplementation(), ChartServerRpc.class);
+       /* System.out.println("Created a new chart");
+        System.err.println("Created a new chart");*/
+        srvRpcImpl = new ChartServerRpcImplementation();
+        registerRpc(srvRpcImpl, ChartServerRpc.class);
     }
 
     /**
@@ -689,6 +696,23 @@ public class Chart extends AbstractComponent {
      */
     public void setDrilldownCallback(DrilldownCallback drilldownCallback) {
         this.drilldownCallback = drilldownCallback;
+    }
+
+    /**
+     * Register a DrillResetCallBack that will be notified upon drilldown state reset
+     * @param drillDownStateResetCallback CallBack to notify
+     */
+    public void setDrillDownStateResetCallback(DrillDownStateResetCallback drillDownStateResetCallback) {
+        this.drillDownStateResetCallback = drillDownStateResetCallback;
+    }
+
+    /**
+     * Triggers a Drilldown state reset
+     */
+    public void resetDrillDownState() {
+        this.srvRpcImpl.drilldownStack.clear();
+        if (this.drillDownStateResetCallback != null)
+            this.drillDownStateResetCallback.handleDrillDownStateReset();
     }
 
     /**
