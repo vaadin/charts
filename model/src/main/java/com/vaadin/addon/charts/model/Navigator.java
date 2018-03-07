@@ -4,7 +4,7 @@ package com.vaadin.addon.charts.model;
  * #%L
  * Vaadin Charts
  * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
+ * Copyright (C) 2012 - 2018 Vaadin Ltd
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
@@ -35,8 +35,8 @@ public class Navigator extends AbstractConfigurationObject {
 	private Color outlineColor;
 	private Number outlineWidth;
 	private PlotOptionsSeries series;
-	private XAxis[] xAxis;
-	private YAxis[] yAxis;
+	private XAxis xAxis;
+	private YAxis yAxis;
 
 	public Navigator() {
 	}
@@ -245,9 +245,12 @@ public class Navigator extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setXAxis(XAxis[])
+	 * @see #setXAxis(XAxis)
 	 */
-	public XAxis[] getXAxis() {
+	public XAxis getXAxis() {
+		if (xAxis == null) {
+			xAxis = new XAxis();
+		}
 		return xAxis;
 	}
 
@@ -273,14 +276,17 @@ public class Navigator extends AbstractConfigurationObject {
 	 * 	}
 	 * </pre>
 	 */
-	public void setXAxis(XAxis[] xAxis) {
+	public void setXAxis(XAxis xAxis) {
 		this.xAxis = xAxis;
 	}
 
 	/**
-	 * @see #setYAxis(YAxis[])
+	 * @see #setYAxis(YAxis)
 	 */
-	public YAxis[] getYAxis() {
+	public YAxis getYAxis() {
+		if (yAxis == null) {
+			yAxis = new YAxis();
+		}
 		return yAxis;
 	}
 
@@ -306,7 +312,7 @@ public class Navigator extends AbstractConfigurationObject {
 	 * 	}
 	 * </pre>
 	 */
-	public void setYAxis(YAxis[] yAxis) {
+	public void setYAxis(YAxis yAxis) {
 		this.yAxis = yAxis;
 	}
 }
