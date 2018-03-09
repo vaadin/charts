@@ -14,15 +14,15 @@ import static org.junit.Assert.assertTrue;
  */
 public class SerializationTest {
 
-  @Test
-  public void dateUtils_toAndFromHighchartsTS_equalValueObtained() {
-    Instant instant       = LocalDateTime.now().toInstant(ZoneOffset.UTC);
-    long    highchartsTS  = Util.toHighchartsTS(instant);
-    Instant serverInstant = Util.toServerInstant(highchartsTS);
+    @Test
+    public void dateUtils_toAndFromHighchartsTS_equalValueObtained() {
+        Instant instant = LocalDateTime.now().toInstant(ZoneOffset.UTC);
+        long highchartsTS = Util.toHighchartsTS(instant);
+        Instant serverInstant = Util.toServerInstant(highchartsTS);
 
-    final String serverString = serverInstant.toString();
-    final String strToCompare = serverString.substring(0, serverString.length() - 1);
-    assertTrue(instant.toString().startsWith(strToCompare));
-  }
+        final String serverString = serverInstant.toString();
+        final String strToCompare = serverString.substring(0, serverString.length() - 1);
+        assertTrue(instant.toString().startsWith(strToCompare));
+    }
 
 }
