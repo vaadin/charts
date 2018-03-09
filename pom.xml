@@ -14,7 +14,6 @@
     <description>Parent project for Charts addon, demos and packaging</description>
 
     <modules>
-        <module>model</module>
         <module>addon</module>
         <module>compatibility-addon</module>
         <module>examples</module>
