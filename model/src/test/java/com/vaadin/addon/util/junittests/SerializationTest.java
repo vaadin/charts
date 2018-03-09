@@ -1,5 +1,6 @@
 package com.vaadin.addon.util.junittests;
 
+import static org.junit.Assert.assertTrue
 import com.vaadin.addon.charts.util.Util;
 import org.junit.Test;
 
@@ -7,7 +8,9 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
-import static org.junit.Assert.assertTrue;
+import org.junit.Test
+
+import com.vaadin.addon.charts.util.Util
 
 /**
  * Tests for Instant to Highcharts TS conversion.
