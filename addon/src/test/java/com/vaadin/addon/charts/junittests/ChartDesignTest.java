@@ -34,7 +34,7 @@ public class ChartDesignTest {
 //            "<legend align=\"right\" border-width=\"0\" layout=\"vertical\" vertical-align=\"top\" x=\"-10\" y=\"100\"></legend>\n" +
            "<plot-options>\n" +
             " <line>\n" +
-            "  <data-labels enabled></data-labels>\n" +
+            "  <data-labels enabled=''></data-labels>\n" +
             " </line>\n" +
             "</plot-options>";
         Elements elements = createElements(testHtml);
@@ -44,7 +44,8 @@ public class ChartDesignTest {
         ChartDesignReader.readConfigurationFromElements(elements, configuration);
         ChartDesignWriter.writeConfigurationToElement(configuration, parent, designContext);
 
-        assertEquals(testHtml, parent.html());
+        // Workaround for https://github.com/vaadin/framework/issues/10703
+        assertEquals(testHtml.replaceAll("=''", ""), parent.html());
     }
 
     @Test
@@ -76,9 +77,9 @@ public class ChartDesignTest {
         String testHtml =
             "<chart-title text=\"Fruit consumption\"></chart-title>\n" +
             "<plot-options>\n" +
-            " <treemap alternate-starting-direction layout-algorithm=\"stripes\">\n" +
+            " <treemap alternate-starting-direction='' layout-algorithm=\"stripes\">\n" +
             "  <levels layout-algorithm=\"sliceanddice\" level=\"1\">\n" +
-            "   <data-labels align=\"left\" enabled vertical-align=\"top\">\n" +
+            "   <data-labels align=\"left\" enabled='' vertical-align=\"top\">\n" +
             "    <chart-style font-weight=\"bold\" font-size=\"15px\"></chart-style>\n" +
             "   </data-labels>\n" +
             "  </levels>\n" +
@@ -92,7 +93,8 @@ public class ChartDesignTest {
         DesignContext designContext = new DesignContext();
         ChartDesignWriter.writeConfigurationToElement(configuration, parent, designContext);
 
-        assertEquals(testHtml, parent.html());
+        // Workaround for https://github.com/vaadin/framework/issues/10703
+        assertEquals(testHtml.replaceAll("=''", ""), parent.html());
     }
 
 
