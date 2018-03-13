@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Element;
 
 import com.vaadin.addon.charts.model.AbstractConfigurationObject;
@@ -151,9 +152,8 @@ public class ChartDesignWriter implements Serializable {
             // with the prefix
             String attributeValue = parent.attributes().get(attributeName);
             parent.attributes().remove(attributeName);
-            parent.attributes().put(
-                    ChartDesignCommon.RESERVED_PROPERTY_PREFIX + attributeName,
-                    attributeValue);
+            parent.attributes().put(new Attribute(ChartDesignCommon.RESERVED_PROPERTY_PREFIX
+                    + attributeName, attributeValue));
         }
     }
 
