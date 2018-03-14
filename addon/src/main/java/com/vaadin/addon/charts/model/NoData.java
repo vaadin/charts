@@ -2,9 +2,9 @@ package com.vaadin.addon.charts.model;
 
 /*
  * #%L
- * Vaadin Charts
+ * Vaadin Charts Addon
  * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
+ * Copyright (C) 2012 - 2018 Vaadin Ltd
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
@@ -17,6 +17,7 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
+import javax.annotation.Generated;
 import com.vaadin.addon.charts.model.style.Style;
 /**
  * Options for displaying a message like "No data to display". This feature
@@ -24,6 +25,7 @@ import com.vaadin.addon.charts.model.style.Style;
  * page. The actual text to display is set in the <a
  * href="#lang.noData">lang.noData</a> option.
  */
+@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
 public class NoData extends AbstractConfigurationObject {
 
 	private Position position;

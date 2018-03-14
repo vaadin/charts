@@ -2,9 +2,9 @@ package com.vaadin.addon.charts.model;
 
 /*
  * #%L
- * Vaadin Charts
+ * Vaadin Charts Addon
  * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
+ * Copyright (C) 2012 - 2018 Vaadin Ltd
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
@@ -17,6 +17,7 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
+import javax.annotation.Generated;
 import java.util.ArrayList;
 import java.util.Arrays;
 import com.vaadin.server.SizeWithUnit;
@@ -28,6 +29,7 @@ import com.vaadin.addon.charts.model.serializers.SizeSerializer;
  * holds general options for the combined X and Y axes set. Each xAxis or yAxis
  * can reference the pane by index.
  */
+@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
 public class Pane extends AbstractConfigurationObject {
 
 	private Integer paneIndex;

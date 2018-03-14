@@ -2,9 +2,9 @@ package com.vaadin.addon.charts.model;
 
 /*
  * #%L
- * Vaadin Charts
+ * Vaadin Charts Addon
  * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
+ * Copyright (C) 2012 - 2018 Vaadin Ltd
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
@@ -16,6 +16,8 @@ package com.vaadin.addon.charts.model;
  * If not, see <https://vaadin.com/license/cval-3>.
  * #L%
  */
+
+import javax.annotation.Generated;
 /**
  * Options for the halo appearing around the hovered point in line-type series
  * as well as outside the hovered slice in pie charts. By default the halo is
@@ -23,6 +25,7 @@ package com.vaadin.addon.charts.model;
  * can be disabled by setting the <code>halo</code> option to <code>false</code>
  * .
  */
+@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
 public class Halo extends AbstractConfigurationObject {
 
 	private Attributes attributes;

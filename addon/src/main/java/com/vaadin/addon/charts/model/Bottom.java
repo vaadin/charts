@@ -2,9 +2,9 @@ package com.vaadin.addon.charts.model;
 
 /*
  * #%L
- * Vaadin Charts
+ * Vaadin Charts Addon
  * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
+ * Copyright (C) 2012 - 2018 Vaadin Ltd
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
@@ -17,10 +17,12 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
+import javax.annotation.Generated;
 import com.vaadin.addon.charts.model.style.Color;
 /**
  * The bottom of the frame around a 3D chart.
  */
+@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
 public class Bottom extends AbstractConfigurationObject {
 
 	private Color color;

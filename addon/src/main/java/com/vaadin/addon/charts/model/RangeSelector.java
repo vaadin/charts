@@ -2,9 +2,9 @@ package com.vaadin.addon.charts.model;
 
 /*
  * #%L
- * Vaadin Charts
+ * Vaadin Charts Addon
  * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
+ * Copyright (C) 2012 - 2018 Vaadin Ltd
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
@@ -17,6 +17,7 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
+import javax.annotation.Generated;
 import com.vaadin.addon.charts.model.style.ButtonTheme;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,6 +29,7 @@ import com.vaadin.addon.charts.model.style.Style;
  * 1 day, 1 week, 1 month etc. It also provides input boxes where min and max
  * dates can be manually input.
  */
+@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
 public class RangeSelector extends AbstractConfigurationObject {
 
 	private Boolean allButtonsEnabled;
