@@ -30,7 +30,7 @@ import com.vaadin.addon.charts.model.serializers.SizeSerializer;
  * project, where the top are the initial stages with the most clients. It
  * requires that the <code>modules/funnel.js</code> file is loaded.
  */
-@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
+@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class PlotOptionsFunnel extends PyramidOptions {
 
 	private Boolean allowPointSelect;

@@ -22,7 +22,7 @@ import com.vaadin.addon.charts.model.style.Style;
 /**
  * The axis title, showing next to the axis line.
  */
-@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
+@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class AxisTitle extends AbstractConfigurationObject {
 
 	private VerticalAlign align;

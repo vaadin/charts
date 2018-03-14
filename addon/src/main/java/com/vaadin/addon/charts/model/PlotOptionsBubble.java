@@ -34,7 +34,7 @@ import com.vaadin.addon.charts.model.serializers.SizeSerializer;
  * along the X and Y axes mark the X and Y values, and the size of the bubble
  * relates to the Z value.
  */
-@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
+@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class PlotOptionsBubble extends AbstractPlotOptions {
 
 	private Boolean allowPointSelect;

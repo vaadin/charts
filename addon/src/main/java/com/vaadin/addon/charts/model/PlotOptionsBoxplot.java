@@ -34,7 +34,7 @@ import com.vaadin.addon.charts.util.Util;
  * quartile (Q1), median (Q2), upper quartile (Q3), and largest observation
  * (sample maximum).
  */
-@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
+@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class PlotOptionsBoxplot extends AbstractPlotOptions {
 
 	private Boolean allowPointSelect;

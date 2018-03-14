@@ -24,7 +24,7 @@ import com.vaadin.addon.charts.model.style.Color;
  * point. By default, the crosshair is enabled on the X axis and disabled on Y
  * axis.
  */
-@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
+@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class Crosshair extends AbstractConfigurationObject {
 
 	private Color color;

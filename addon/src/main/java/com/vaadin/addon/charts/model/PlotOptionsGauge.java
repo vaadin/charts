@@ -25,7 +25,7 @@ import java.util.Arrays;
  * General plotting options for the gauge series type. Requires
  * <code>highcharts-more.js</code>
  */
-@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
+@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class PlotOptionsGauge extends GaugeOptions {
 
 	private Boolean animation;

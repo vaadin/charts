@@ -27,7 +27,7 @@ import com.vaadin.addon.charts.model.style.Style;
  * <code>yHigh</code> options to allow the higher and lower data label sets
  * individually.
  */
-@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
+@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class DataLabelsRange extends AbstractDataLabels {
 
 	private HorizontalAlign align;

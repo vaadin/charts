@@ -27,7 +27,7 @@ import java.util.Arrays;
  * href="#yAxis.maxColor">maxColor</a> and <a href="#yAxis.stops">stops</a>, to
  * control the color of the gauge itself.
  */
-@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
+@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class PlotOptionsSolidgauge extends GaugeOptions {
 
 	private Boolean animation;

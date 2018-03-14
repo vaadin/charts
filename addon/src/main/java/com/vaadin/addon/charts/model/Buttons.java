@@ -24,7 +24,7 @@ import javax.annotation.Generated;
  * href="#navigation.buttonOptions">navigation.buttonOptions</a> for general
  * options.
  */
-@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
+@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class Buttons extends AbstractConfigurationObject {
 
 	private ContextButton contextButton;

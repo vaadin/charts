@@ -23,7 +23,7 @@ import javax.annotation.Generated;
  * Properties are inherited from <a href="#tooltip">tooltip</a>, but only the
  * following properties can be defined on a series level.
  */
-@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
+@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class SeriesTooltip extends AbstractConfigurationObject {
 
 	private DateTimeLabelFormats dateTimeLabelFormats;

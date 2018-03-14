@@ -29,7 +29,7 @@ import com.vaadin.addon.charts.model.style.Style;
  * 1 day, 1 week, 1 month etc. It also provides input boxes where min and max
  * dates can be manually input.
  */
-@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
+@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class RangeSelector extends AbstractConfigurationObject {
 
 	private Boolean allButtonsEnabled;

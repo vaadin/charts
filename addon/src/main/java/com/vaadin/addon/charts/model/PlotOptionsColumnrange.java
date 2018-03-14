@@ -30,7 +30,7 @@ import com.vaadin.addon.charts.util.Util;
  * horizontal bars, set <a href="#chart.inverted">chart.inverted</a> to
  * <code>true</code>.
  */
-@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
+@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class PlotOptionsColumnrange extends ColumnOptions {
 
 	private Boolean allowPointSelect;

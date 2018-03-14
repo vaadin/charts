@@ -32,7 +32,7 @@ import javax.annotation.Generated;
  * });
  * </pre>
  */
-@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
+@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class Lang extends AbstractConfigurationObject {
 
 	private String contextButtonTitle;

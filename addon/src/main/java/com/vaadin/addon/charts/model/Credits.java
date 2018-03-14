@@ -23,7 +23,7 @@ import com.vaadin.addon.charts.model.style.Style;
  * Highchart by default puts a credits label in the lower right corner of the
  * chart. This can be changed using these options.
  */
-@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
+@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class Credits extends AbstractConfigurationObject {
 
 	private Boolean enabled;

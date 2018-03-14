@@ -24,7 +24,7 @@ import javax.annotation.Generated;
  * href="http://code.highcharts.com/highcharts-3d.js">code.highcharts.com/
  * highcharts-3d.js</a>.
  */
-@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
+@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class Options3d extends AbstractConfigurationObject {
 
 	private Number alpha;

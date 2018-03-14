@@ -19,7 +19,7 @@ package com.vaadin.addon.charts.model;
 
 import javax.annotation.Generated;
 import com.vaadin.addon.charts.model.style.Style;
-@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
+@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class Labels extends AbstractConfigurationObject {
 
 	private HorizontalAlign align;
