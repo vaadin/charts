@@ -40,16 +40,9 @@ import com.vaadin.addon.charts.model.AbstractConfigurationObject;
 import com.vaadin.addon.charts.model.AbstractPlotOptions;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.style.Color;
-import com.vaadin.ui.declarative.ChartDesignFormatter;
-import com.vaadin.ui.declarative.DesignAttributeHandler;
 import com.vaadin.ui.declarative.DesignException;
 
 public class ChartDesignReader implements Serializable {
-
-    static {
-        // This is needed to add a converter from String to Number
-        ChartDesignFormatter.init();
-    }
 
     private static Logger logger = Logger.getLogger(ChartDesignReader.class
             .getName());
@@ -119,14 +112,14 @@ public class ChartDesignReader implements Serializable {
     private static void readTextContentNodes(Element element, Object value) {
         if (textContentNodes.contains(element.nodeName())
                 && hasOnlyText(element)) {
-            DesignAttributeHandler.assignValue(value, "text", element.text());
+            ChartDesignAttributeHandler.assignValue(value, "text", element.text());
         }
     }
 
     private static void readAttributeValues(Element element, Object value) {
         for (Attribute attribute : element.attributes()) {
             String attributeName = removeDrawPrefix(attribute.getKey());
-            DesignAttributeHandler.assignValue(value, attributeName,
+            ChartDesignAttributeHandler.assignValue(value, attributeName,
                     attribute.getValue());
         }
     }

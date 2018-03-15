@@ -30,6 +30,8 @@ public class TestClassesSerializable extends TestCase {
 
     private static String[] EXCLUDED_PATTERNS = {
             "com\\.vaadin\\.addon\\.charts\\.client\\..*",
+            "com\\.vaadin\\.addon\\.charts\\.declarative\\.ChartDesignAttributeHandler",
+            "com\\.vaadin\\.addon\\.charts\\.declarative\\.ChartDesignFormatter",
             "com\\.vaadin\\.addon\\.charts\\.shared\\..*",
             "com\\.vaadin\\.addon\\.charts\\.demoandtestapp\\..*",
             "com\\.vaadin\\.addon\\.charts\\.model\\.serializers\\..*",
