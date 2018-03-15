@@ -49,6 +49,10 @@ public class HighchartsScriptLoader {
         if (!hasHighcharts()) {
             inject(HighchartResources.INSTANCE.highstock().getText());
         }
+        // Load heatmap before treemap
+        if (!hasHeatmap()) {
+            inject(HighchartResources.INSTANCE.heatmap().getText());
+        }
         // Inject other resources only if not already injected
         if (!hasExtraImports()) {
             inject(HighchartResources.INSTANCE.noData().getText());
@@ -60,9 +64,6 @@ public class HighchartsScriptLoader {
             inject(HighchartResources.INSTANCE.solidGauge().getText());
             inject(HighchartResources.INSTANCE.treemap().getText());
             inject(HighchartResources.INSTANCE.drilldown().getText());
-        }
-        if (!hasHeatmap()) {
-            inject(HighchartResources.INSTANCE.heatmap().getText());
         }
     }
 
