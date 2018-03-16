@@ -29,7 +29,7 @@ The Maven dependency for Vaadin Charts is as follows:
 &lt;dependency&gt;
     &lt;groupId&gt;com.vaadin&lt;/groupId&gt;
     &lt;artifactId&gt;vaadin-charts&lt;/artifactId&gt;
-    &lt;version&gt;[replaceable]##4.0.2##&lt;/version&gt;
+    &lt;version&gt;[replaceable]##4.0.3##&lt;/version&gt;
 &lt;/dependency&gt;
 ----
 You also need to define the Vaadin add-ons repository if not already defined:
@@ -51,7 +51,7 @@ The Ivy dependency, to be defined in [filename]#ivy.xml#, would be as follows:
 [subs="normal"]
 ----
 &lt;dependency org="com.vaadin" name="vaadin-charts"
-            rev="**4.0.2**" /&gt;
+            rev="**4.0.3**" /&gt;
 ----
 It is generally recommended to use a fixed version number, but you can also use
 [literal]#++latest.release++# to get the latest release.
