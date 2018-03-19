@@ -33,7 +33,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.organization>Vaadin Ltd</project.organization>
         <vaadin.version>8.3.1</vaadin.version>
-        <jetty.version>9.3.9.v20160517</jetty.version>
+        <jetty.version>9.4.8.v20171121</jetty.version>
     </properties>
 
     <url>http://vaadin.com/charts</url>
@@ -137,8 +137,11 @@
             <plugins>
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.3</version>
+                    <version>3.7.0</version>
                     <configuration>
+                        <excludes>
+                            <exclude>module-info.java</exclude>
+                        </excludes>
                         <source>1.8</source>
                         <target>1.8</target>
                         <encoding>UTF-8</encoding>
@@ -220,6 +223,28 @@
             </plugins>
         </pluginManagement>
     </build>
+
+    <profiles>
+        <profile>
+            <id>jdk9</id>
+            <activation>
+                <jdk>[1.9,)</jdk>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <configuration>
+                            <includes>
+                                <include>module-info.java</include>
+                            </includes>
+                            <release>8</release>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <repositories>
         <repository>
