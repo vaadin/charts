@@ -21,7 +21,7 @@ public class SerializationTest {
         Instant instant = LocalDateTime.now().toInstant(ZoneOffset.UTC);
         long highchartsTS = Util.toHighchartsTS(instant);
         Instant serverInstant = Util.toServerInstant(highchartsTS);
-        assertEquals(instant, serverInstant);
+        assertEquals(instant.toEpochMilli(), serverInstant.toEpochMilli());
     }
 
 }
