@@ -19,7 +19,6 @@ package com.vaadin.addon.charts.declarative;
 
 import java.io.Serializable;
 
-import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.ui.declarative.DesignException;

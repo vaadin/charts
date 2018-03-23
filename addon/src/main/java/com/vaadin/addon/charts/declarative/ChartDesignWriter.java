@@ -40,17 +40,10 @@ import com.vaadin.addon.charts.model.Axis;
 import com.vaadin.addon.charts.model.AxisList;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.style.GradientColor;
-import com.vaadin.ui.declarative.ChartDesignFormatter;
-import com.vaadin.ui.declarative.DesignAttributeHandler;
 import com.vaadin.ui.declarative.DesignContext;
 import com.vaadin.ui.declarative.DesignException;
 
 public class ChartDesignWriter implements Serializable {
-
-    static {
-        // This is needed to add a converter from String to Number
-        ChartDesignFormatter.init();
-    }
 
     /**
      * These properties are ignored when reading values from configuration
@@ -108,7 +101,7 @@ public class ChartDesignWriter implements Serializable {
     }
 
     private static boolean isAttribute(Class<?> type) {
-        return DesignAttributeHandler.getFormatter().canConvert(type);
+        return ChartDesignAttributeHandler.getFormatter().canConvert(type);
     }
 
     private static boolean isCollection(Field field) {
@@ -161,7 +154,7 @@ public class ChartDesignWriter implements Serializable {
                 .getClass());
         String attributeName = toNodeName(field.getName().replace("_fn_", ""));
 
-        DesignAttributeHandler.writeAttribute(configuration, attributeName,
+        ChartDesignAttributeHandler.writeAttribute(configuration, attributeName,
                 parent.attributes(), defaultConfiguration,context);
         if (ChartDesignCommon.isReservedProperty(attributeName)
                 && parent.attributes().hasKey(attributeName)) {
@@ -249,7 +242,7 @@ public class ChartDesignWriter implements Serializable {
                                 + configuration.getClass().getName());
                 continue;
             }
-            String formatted = DesignAttributeHandler.getFormatter().format(
+            String formatted = ChartDesignAttributeHandler.getFormatter().format(
                     object);
             collectionValue.append(formatted);
         }
