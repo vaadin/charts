@@ -20,15 +20,9 @@ package com.vaadin.addon.charts.declarative;
 import com.googlecode.gentyref.GenericTypeReflector;
 import com.vaadin.data.Converter;
 import com.vaadin.data.ValueContext;
-import com.vaadin.shared.ui.AlignmentInfo;
 import com.vaadin.shared.util.SharedUtil;
-import com.vaadin.ui.Alignment;
 import com.vaadin.ui.declarative.DesignContext;
-import com.vaadin.ui.declarative.DesignException;
-import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Attributes;
-import org.jsoup.nodes.Element;
-import org.jsoup.nodes.Node;
 
 import java.beans.BeanInfo;
 import java.beans.IntrospectionException;
@@ -37,9 +31,6 @@ import java.beans.PropertyDescriptor;
 import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -48,7 +39,12 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ChartDesignAttributeHandler {
+/**
+ * Inspired by DesignAttributeHandler
+ *
+ * @see com.vaadin.ui.declarative.DesignAttributeHandler
+ */
+public class ChartDesignAttributeHandler implements Serializable {
 
     private static Logger getLogger() {
         return Logger.getLogger(ChartDesignAttributeHandler.class.getName());
@@ -65,24 +61,6 @@ public class ChartDesignAttributeHandler {
      */
     public static ChartDesignFormatter getFormatter() {
         return FORMATTER;
-    }
-
-    /**
-     * Clears the children and attributes of the given element.
-     *
-     * @param design
-     *            the element to be cleared
-     */
-    public static void clearElement(Element design) {
-        Attributes attr = design.attributes();
-        for (Attribute a : attr.asList()) {
-            attr.remove(a.getKey());
-        }
-        List<Node> children = new ArrayList<>();
-        children.addAll(design.childNodes());
-        for (Node node : children) {
-            node.remove();
-        }
     }
 
     /**
@@ -126,19 +104,6 @@ public class ChartDesignAttributeHandler {
                     + " ignored by default attribute handler");
         }
         return success;
-    }
-
-    /**
-     * Searches for supported setter and getter types from the specified class
-     * and returns the list of corresponding design attributes.
-     *
-     * @param clazz
-     *            the class scanned for setters
-     * @return the list of supported design attributes
-     */
-    public static Collection<String> getSupportedAttributes(Class<?> clazz) {
-        resolveSupportedAttributes(clazz);
-        return CACHE.get(clazz).getAttributes();
     }
 
     /**
@@ -249,60 +214,6 @@ public class ChartDesignAttributeHandler {
                 attributes.put(attribute, true);
             } else {
                 attributes.put(attribute, attributeValue);
-            }
-        }
-    }
-
-    /**
-     * Reads the given attribute from a set of attributes. If attribute does not
-     * exist return a given default value.
-     *
-     * @param attribute
-     *            the attribute key
-     * @param attributes
-     *            the set of attributes to read from
-     * @param defaultValue
-     *            the default value to return if attribute does not exist
-     * @param outputType
-     *            the output type for the attribute
-     * @return the attribute value or the default value if the attribute is not
-     *         found
-     */
-    public static <T> T readAttribute(String attribute, Attributes attributes,
-                                      T defaultValue, Class<T> outputType) {
-        T value = readAttribute(attribute, attributes, outputType);
-        if (value != null) {
-            return value;
-        }
-        return defaultValue;
-    }
-
-    /**
-     * Reads the given attribute from a set of attributes.
-     *
-     * @param attribute
-     *            the attribute key
-     * @param attributes
-     *            the set of attributes to read from
-     * @param outputType
-     *            the output type for the attribute
-     * @return the attribute value or null
-     */
-    public static <T> T readAttribute(String attribute, Attributes attributes,
-                                      Class<T> outputType) {
-        if (!getFormatter().canConvert(outputType)) {
-            throw new IllegalArgumentException(
-                    "output type: " + outputType.getName() + " not supported");
-        }
-        if (!attributes.hasKey(attribute)) {
-            return null;
-        } else {
-            try {
-                String value = attributes.get(attribute);
-                return getFormatter().parse(value, outputType);
-            } catch (Exception e) {
-                throw new DesignException(
-                        "Failed to read attribute " + attribute, e);
             }
         }
     }
@@ -442,12 +353,6 @@ public class ChartDesignAttributeHandler {
             accessMethods.put(attribute, methods);
         }
 
-        private Collection<String> getAttributes() {
-            List<String> attributes = new ArrayList<>();
-            attributes.addAll(accessMethods.keySet());
-            return attributes;
-        }
-
         private Method getGetter(String attribute) {
             Method[] methods = accessMethods.get(attribute);
             return (methods != null && methods.length > 0) ? methods[0] : null;
@@ -456,57 +361,6 @@ public class ChartDesignAttributeHandler {
         private Method getSetter(String attribute) {
             Method[] methods = accessMethods.get(attribute);
             return (methods != null && methods.length > 1) ? methods[1] : null;
-        }
-    }
-
-    /**
-     * Read the alignment from the given child component attributes.
-     *
-     * @since 7.6.4
-     * @param attr
-     *            the child component attributes
-     * @return the component alignment
-     */
-    public static Alignment readAlignment(Attributes attr) {
-        int bitMask = 0;
-        if (attr.hasKey(":middle")) {
-            bitMask += AlignmentInfo.Bits.ALIGNMENT_VERTICAL_CENTER;
-        } else if (attr.hasKey(":bottom")) {
-            bitMask += AlignmentInfo.Bits.ALIGNMENT_BOTTOM;
-        } else {
-            bitMask += AlignmentInfo.Bits.ALIGNMENT_TOP;
-        }
-        if (attr.hasKey(":center")) {
-            bitMask += AlignmentInfo.Bits.ALIGNMENT_HORIZONTAL_CENTER;
-        } else if (attr.hasKey(":right")) {
-            bitMask += AlignmentInfo.Bits.ALIGNMENT_RIGHT;
-        } else {
-            bitMask += AlignmentInfo.Bits.ALIGNMENT_LEFT;
-        }
-
-        return new Alignment(bitMask);
-    }
-
-    /**
-     * Writes the alignment to the given child element attributes.
-     *
-     * @since 7.6.4
-     * @param childElement
-     *            the child element
-     * @param alignment
-     *            the component alignment
-     */
-    public static void writeAlignment(Element childElement,
-                                      Alignment alignment) {
-        if (alignment.isMiddle()) {
-            childElement.attr(":middle", true);
-        } else if (alignment.isBottom()) {
-            childElement.attr(":bottom", true);
-        }
-        if (alignment.isCenter()) {
-            childElement.attr(":center", true);
-        } else if (alignment.isRight()) {
-            childElement.attr(":right", true);
         }
     }
 }
