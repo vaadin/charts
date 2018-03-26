@@ -45,6 +45,7 @@ public class DateTimeLabelFormats extends AbstractConfigurationObject {
     private String week;
     private String month;
     private String year;
+    private String millisecond;
 
     public DateTimeLabelFormats() {
     }
@@ -59,6 +60,24 @@ public class DateTimeLabelFormats extends AbstractConfigurationObject {
     public DateTimeLabelFormats(String month, String year) {
         this.month = month;
         this.year = year;
+    }
+
+    /**
+     * @see #setMillisecond(String)
+     * @return The format string for millisecond resolution.
+     */
+    public String setMillisecond() {
+        return second;
+    }
+
+
+    /**
+     * Sets the format String for millisecond resolution.
+     *
+     * @param millisecond
+     */
+    public void setMillisecond(String millisecond) {
+        this.millisecond = millisecond;
     }
 
     /**
@@ -154,9 +173,10 @@ public class DateTimeLabelFormats extends AbstractConfigurationObject {
         return month;
     }
 
+
     /**
      * Sets the format String for month resolution.
-     * 
+     *
      * @param month
      */
     public void setMonth(String month) {
