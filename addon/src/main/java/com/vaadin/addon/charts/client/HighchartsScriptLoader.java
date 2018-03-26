@@ -48,6 +48,13 @@ public class HighchartsScriptLoader {
         // Inject highcharts only if not already injected
         if (!hasHighcharts()) {
             inject(HighchartResources.INSTANCE.highstock().getText());
+        }
+        // Load heatmap before treemap
+        if (!hasHeatmap()) {
+            inject(HighchartResources.INSTANCE.heatmap().getText());
+        }
+        // Inject other resources only if not already injected
+        if (!hasExtraImports()) {
             inject(HighchartResources.INSTANCE.noData().getText());
             inject(HighchartResources.INSTANCE.highchartsMore().getText());
             inject(HighchartResources.INSTANCE.funnel().getText());
@@ -55,7 +62,6 @@ public class HighchartsScriptLoader {
             inject(HighchartResources.INSTANCE.defaultTheme().getText());
             inject(HighchartResources.INSTANCE.highcharts3d().getText());
             inject(HighchartResources.INSTANCE.solidGauge().getText());
-            inject(HighchartResources.INSTANCE.heatmap().getText());
             inject(HighchartResources.INSTANCE.treemap().getText());
             inject(HighchartResources.INSTANCE.drilldown().getText());
         }
@@ -71,6 +77,25 @@ public class HighchartsScriptLoader {
     protected native static boolean hasHighcharts()
     /*-{
         if($wnd.Highcharts)
+            return true;
+        return false;
+    }-*/;
+
+    protected native static boolean hasHeatmap()
+    /*-{
+        if($wnd.Highcharts.seriesTypes.heatmap)
+            return true;
+        return false;
+    }-*/;
+
+    /**
+     * Funnel should be enough to check that extra modules are missing
+     * 
+     * @return true if other imports were loaded
+     */
+    protected native static boolean hasExtraImports()
+    /*-{
+        if($wnd.Highcharts.seriesTypes.funnel)
             return true;
         return false;
     }-*/;
