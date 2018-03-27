@@ -22,6 +22,7 @@ import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
 import java.util.Iterator;
 
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
+import com.vaadin.addon.charts.model.Global;
 import com.vaadin.addon.charts.model.Lang;
 import com.vaadin.addon.charts.model.style.Theme;
 import com.vaadin.addon.charts.shared.ChartOptionsState;
@@ -44,6 +45,8 @@ public class ChartOptions extends AbstractExtension {
     private Theme theme;
 
     private Lang lang;
+
+    private Global global;
 
     protected ChartOptions() {
     }
@@ -98,6 +101,28 @@ public class ChartOptions extends AbstractExtension {
     public Theme getTheme() {
         return theme;
     }
+
+    /**
+     * Changes the Global params of all charts.
+     *
+     * @param global
+     */
+    public void setGlobal(Global global) {
+        this.global = global;
+        buildOptionsJson();
+        notifyListeners();
+    }
+
+    /**
+     * Returns the {@link Global} in use or {@code null} if no lang configuration
+     * has been set.
+     *
+     * @return the {@link Global} in use or {@code null}.
+     */
+    public Global getGlobal() {
+        return global;
+    }
+
 
     /**
      * Changes the language of all charts.
