@@ -12,12 +12,14 @@ import java.util.Enumeration;
 import java.util.List;
 
 import org.junit.Assume;
+import org.junit.Rule;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.vaadin.testbench.Parameters;
+import com.vaadin.testbench.RetryRule;
 import com.vaadin.testbench.annotations.BrowserConfiguration;
 import com.vaadin.testbench.annotations.BrowserFactory;
 import com.vaadin.testbench.annotations.RunOnHub;
@@ -31,6 +33,8 @@ import com.vaadin.testbench.parallel.setup.SetupDriver;
 @BrowserFactory(ChartsBrowserFactory.class)
 public abstract class AbstractParallelTest extends ParallelTest {
 
+    @Rule
+    public RetryRule maxAttempts = new RetryRule(2);
 
     protected int TESTPORT;
     protected String BASEURL = getTestBaseUrl();
