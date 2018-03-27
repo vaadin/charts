@@ -25,6 +25,7 @@ package com.vaadin.addon.charts.model;
  * 
  * <code>
  * { 
+ *   millisecond: '%H:%M:%S.%L',
  *   second: '%H:%M:%S',
  *   minute: '%H:%M',
  *   hour: '%H:%M',
@@ -38,6 +39,7 @@ package com.vaadin.addon.charts.model;
 @SuppressWarnings("serial")
 public class DateTimeLabelFormats extends AbstractConfigurationObject {
 
+    private String millisecond;
     private String second;
     private String minute;
     private String hour;
@@ -59,6 +61,24 @@ public class DateTimeLabelFormats extends AbstractConfigurationObject {
     public DateTimeLabelFormats(String month, String year) {
         this.month = month;
         this.year = year;
+    }
+
+    /**
+     * @see #setMillisecond(String)
+     * @return The format string for millisecond resolution.
+     */
+    public String getMillisecond() {
+        return millisecond;
+    }
+
+
+    /**
+     * Sets the format String for millisecond resolution.
+     *
+     * @param millisecond
+     */
+    public void setMillisecond(String millisecond) {
+        this.millisecond = millisecond;
     }
 
     /**
@@ -154,9 +174,10 @@ public class DateTimeLabelFormats extends AbstractConfigurationObject {
         return month;
     }
 
+
     /**
      * Sets the format String for month resolution.
-     * 
+     *
      * @param month
      */
     public void setMonth(String month) {
