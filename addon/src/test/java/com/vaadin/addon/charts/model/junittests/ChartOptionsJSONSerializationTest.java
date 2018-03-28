@@ -1,15 +1,10 @@
 package com.vaadin.addon.charts.model.junittests;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.vaadin.addon.charts.ChartOptions;
-import com.vaadin.addon.charts.model.DataSeries;
-import com.vaadin.addon.charts.model.DataSeriesItem;
-import com.vaadin.addon.charts.model.Lang;
-import com.vaadin.addon.charts.model.style.GradientColor;
-import com.vaadin.addon.charts.model.style.SolidColor;
-import com.vaadin.addon.charts.model.style.Theme;
-import com.vaadin.addon.charts.util.ChartSerialization;
-import com.vaadin.ui.UI;
+import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
+import static org.junit.Assert.assertEquals;
+
+import java.io.IOException;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,10 +12,17 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import java.io.IOException;
-
-import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
-import static org.junit.Assert.assertEquals;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.vaadin.addon.charts.ChartOptions;
+import com.vaadin.addon.charts.model.DataSeries;
+import com.vaadin.addon.charts.model.DataSeriesItem;
+import com.vaadin.addon.charts.model.Global;
+import com.vaadin.addon.charts.model.Lang;
+import com.vaadin.addon.charts.model.style.GradientColor;
+import com.vaadin.addon.charts.model.style.SolidColor;
+import com.vaadin.addon.charts.model.style.Theme;
+import com.vaadin.addon.charts.util.ChartSerialization;
+import com.vaadin.ui.UI;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ChartOptionsJSONSerializationTest {
@@ -52,6 +54,15 @@ public class ChartOptionsJSONSerializationTest {
         options.setTheme(theme);
 
         assertEquals(EmptyThemeJson, toJSON(options));
+    }
+
+    @Test
+    public void toJSON_GlobalSet_GlobalSerialized() {
+        Global global = new Global();
+        global.setUseUTC(false);
+        options.setGlobal(global);
+
+        assertEquals("{\"global\":{\"useUTC\":false}}", toJSON(options));
     }
 
     @Test
