@@ -33,7 +33,7 @@ To do that, add a dependency to the vaadin-charts-compatibility package:
 &lt;dependency&gt;
     &lt;groupId&gt;com.vaadin&lt;/groupId&gt;
     &lt;artifactId&gt;vaadin-charts-compatibility&lt;/artifactId&gt;
-    &lt;version&gt;[replaceable]##4.0.2##&lt;/version&gt;
+    &lt;version&gt;[replaceable]##4.0.4##&lt;/version&gt;
 &lt;/dependency&gt;
 ----
 
