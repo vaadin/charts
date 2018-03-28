@@ -21,10 +21,6 @@
 			<directory>assembly/assets</directory>
 			<outputDirectory>assets</outputDirectory>
 		</fileSet>
-		<fileSet>
-			<directory>../charts-webcomponent/target/zip</directory>
-			<outputDirectory>webcomponent</outputDirectory>
-		</fileSet>
 	</fileSets>
 
 	<files>
@@ -45,10 +41,6 @@
 		</file>
 		<file>
 			<source>assembly/license.html</source>
-			<filtered>true</filtered>
-		</file>
-		<file>
-			<source>assembly/releasenotes.html</source>
 			<filtered>true</filtered>
 		</file>
 	</files>
