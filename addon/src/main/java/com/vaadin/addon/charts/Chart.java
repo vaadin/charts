@@ -328,6 +328,10 @@ public class Chart extends AbstractComponent {
             fireEvent(event);
         }
 
+        public void clearDrilldownStack() {
+            drilldownStack.clear();
+        }
+
         private Series resolveSeriesFor(int seriesIndex) {
             Series series;
             if (drilldownStack.isEmpty()) {
@@ -368,6 +372,7 @@ public class Chart extends AbstractComponent {
         PointSelectListener.class, "onSelect", PointSelectEvent.class);
     private final static Method pointUnselectMethod = ReflectTools.findMethod(
         PointUnselectListener.class, "onUnselect", PointUnselectEvent.class);
+    private ChartServerRpcImplementation srvRpcImpl;
 
     private final static List<ChartType> TIMELINE_NOT_SUPPORTED = Arrays.asList(
         ChartType.PIE, ChartType.GAUGE, ChartType.SOLIDGAUGE, ChartType.PYRAMID,
@@ -400,8 +405,8 @@ public class Chart extends AbstractComponent {
         setWidth(100, Unit.PERCENTAGE);
         setHeight(400, Unit.PIXELS);
         configuration = new Configuration();
-
-        registerRpc(new ChartServerRpcImplementation(), ChartServerRpc.class);
+        srvRpcImpl = new ChartServerRpcImplementation();
+        registerRpc(srvRpcImpl, ChartServerRpc.class);
     }
 
     /**
@@ -431,6 +436,9 @@ public class Chart extends AbstractComponent {
                 configuration == null ? null : toJSON(configuration);
             getState().jsonState = jsonConfig;
             stateDirty = false;
+        }
+        if (initial) {
+            srvRpcImpl.clearDrilldownStack();
         }
         if (configuration != null) {
             // Start listening to data series events once the chart has been
