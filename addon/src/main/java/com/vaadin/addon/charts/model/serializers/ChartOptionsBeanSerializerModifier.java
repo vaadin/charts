@@ -41,13 +41,15 @@ public class ChartOptionsBeanSerializerModifier extends
             List<BeanPropertyWriter> beanProperties) {
 
         if (ChartOptions.class.isAssignableFrom(beanDesc.getBeanClass())) {
-            // make sure we only serialize the lang and theme fields from
+            // make sure we only serialize the lang, theme and global fields
+            // from
             // ChartOptions, otherwise everything from parent would be
             // serialized
             List<BeanPropertyWriter> newProperties = new ArrayList<BeanPropertyWriter>();
 
             for (BeanPropertyWriter writer : beanProperties) {
-                if ("lang" == writer.getName() || "theme" == writer.getName()) {
+                if ("lang" == writer.getName() || "theme" == writer.getName()
+                        || "global" == writer.getName()) {
                     newProperties.add(writer);
                 }
             }
