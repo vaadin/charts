@@ -17,6 +17,7 @@ package com.vaadin.addon.charts.model.serializers;
  * #L%
  */
 import java.io.IOException;
+import java.util.Set;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
@@ -48,6 +49,11 @@ public class ThemeGradientColorBeanSerializer extends BeanSerializerBase {
         super(source, toIgnore);
     }
 
+    protected ThemeGradientColorBeanSerializer(BeanSerializerBase source,
+            Set<String> toIgnore) {
+        super(source, toIgnore);
+    }
+
     public ThemeGradientColorBeanSerializer(BeanSerializerBase source,
             Object filterId) {
         super(source, null, filterId);
@@ -64,7 +70,12 @@ public class ThemeGradientColorBeanSerializer extends BeanSerializerBase {
     }
 
     @Override
-    protected BeanSerializerBase withFilterId(Object filterId) {
+    protected BeanSerializerBase withIgnorals(Set<String> toIgnore) {
+        return new ThemeGradientColorBeanSerializer(this, toIgnore);
+    }
+
+    @Override
+    public BeanSerializerBase withFilterId(Object filterId) {
         return new ThemeGradientColorBeanSerializer(this, filterId);
     }
 
