@@ -21,15 +21,19 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.vaadin.addon.charts.model.AbstractConfigurationObject;
+import com.vaadin.addon.charts.model.serializers.ButtonThemeWidthFilter;
 
 public class ButtonTheme extends AbstractConfigurationObject {
+
+    public final static Number DEFAULT_WIDTH = 32;
+
     private Color fill;
     private Color stroke;
     @JsonProperty("stroke-width")
     private Number strokeWidth;
     private Style style;
-    @JsonInclude(Include.NON_DEFAULT)
-    private Number width = 32;
+    @JsonInclude(value = Include.CUSTOM, valueFilter = ButtonThemeWidthFilter.class)
+    private Number width = DEFAULT_WIDTH;
 
     public Color getFill() {
         return fill;

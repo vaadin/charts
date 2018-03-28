@@ -17,6 +17,7 @@ package com.vaadin.addon.charts.model.serializers;
  * #L%
  */
 import java.io.IOException;
+import java.util.Set;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -49,6 +50,10 @@ public class BeanSerializerDelegator<T> extends BeanSerializerBase {
         super(source, toIgnore);
     }
 
+    protected BeanSerializerDelegator(BeanSerializerBase source, Set<String> toIgnore) {
+        super(source, toIgnore);
+    }
+
     public BeanSerializerDelegator(BeanSerializerBase source, Object filterId) {
         super(source, null, filterId);
     }
@@ -71,7 +76,12 @@ public class BeanSerializerDelegator<T> extends BeanSerializerBase {
     }
 
     @Override
-    protected BeanSerializerBase withFilterId(Object filterId) {
+    protected BeanSerializerBase withIgnorals(Set<String> toIgnore) {
+        return new BeanSerializerDelegator(this, toIgnore);
+    }
+
+    @Override
+    public BeanSerializerBase withFilterId(Object filterId) {
         return new BeanSerializerDelegator(this, filterId);
     }
 
