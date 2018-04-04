@@ -48,14 +48,6 @@ public class Navigation extends AbstractConfigurationObject {
 	 * <p>
 	 * A collection of options for buttons appearing in the exporting module.
 	 * </p>
-	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the buttons are styled with the
-	 * <code>.highcharts-contextbutton</code> and
-	 * <code>.highcharts-button-symbol</code> class.
-	 * </p>
 	 */
 	public void setButtonOptions(ButtonOptions buttonOptions) {
 		this.buttonOptions = buttonOptions;

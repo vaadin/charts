@@ -147,18 +147,6 @@ public class PlotOptionsGauge extends GaugeOptions {
 	 * applies to the bars unless a color is specified per point. The default
 	 * value is pulled from the <code>options.colors</code> array.
 	 * </p>
-	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the color can be defined by the <a
-	 * href="#plotOptions.series.colorIndex">colorIndex</a> option. Also, the
-	 * series color can be set with the <code>.highcharts-series</code>,
-	 * <code>.highcharts-color-{n}</code>,
-	 * <code>.highcharts-{type}-series</code> or
-	 * <code>.highcharts-series-{n}</code> class, or individual classes given by
-	 * the <code>className</code> option.
-	 * </p>
 	 */
 	public void setColor(Color color) {
 		this.color = color;
@@ -172,11 +160,7 @@ public class PlotOptionsGauge extends GaugeOptions {
 	}
 
 	/**
-	 * <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >Styled mode</a> only. A specific color index to use for the series, so
-	 * its graphic representations are given the class name
-	 * <code>highcharts-color-{n}</code>.
+	 * 
 	 */
 	public void setColorIndex(Number colorIndex) {
 		this.colorIndex = colorIndex;
@@ -251,13 +235,6 @@ public class PlotOptionsGauge extends GaugeOptions {
 	/**
 	 * <p>
 	 * Options for the dial or arrow pointer of the gauge.
-	 * </p>
-	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the dial is styled with the
-	 * <code>.highcharts-gauge-series .highcharts-dial</code> rule.
 	 * </p>
 	 */
 	public void setDial(Dial dial) {
@@ -460,13 +437,6 @@ public class PlotOptionsGauge extends GaugeOptions {
 	/**
 	 * <p>
 	 * Options for the pivot or the center point of the gauge.
-	 * </p>
-	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the pivot is styled with the
-	 * <code>.highcharts-gauge-series .highcharts-pivot</code> rule.
 	 * </p>
 	 */
 	public void setPivot(Pivot pivot) {

@@ -193,18 +193,6 @@ public class PlotOptionsArea extends AreaOptions {
 	 * applies to the bars unless a color is specified per point. The default
 	 * value is pulled from the <code>options.colors</code> array.
 	 * </p>
-	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the color can be defined by the <a
-	 * href="#plotOptions.series.colorIndex">colorIndex</a> option. Also, the
-	 * series color can be set with the <code>.highcharts-series</code>,
-	 * <code>.highcharts-color-{n}</code>,
-	 * <code>.highcharts-{type}-series</code> or
-	 * <code>.highcharts-series-{n}</code> class, or individual classes given by
-	 * the <code>className</code> option.
-	 * </p>
 	 */
 	public void setColor(Color color) {
 		this.color = color;
@@ -218,11 +206,7 @@ public class PlotOptionsArea extends AreaOptions {
 	}
 
 	/**
-	 * <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >Styled mode</a> only. A specific color index to use for the series, so
-	 * its graphic representations are given the class name
-	 * <code>highcharts-color-{n}</code>.
+	 * 
 	 */
 	public void setColorIndex(Number colorIndex) {
 		this.colorIndex = colorIndex;
@@ -345,16 +329,6 @@ public class PlotOptionsArea extends AreaOptions {
 	/**
 	 * <p>
 	 * Options for the series data labels, appearing next to each data point.
-	 * </p>
-	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the data labels can be styled wtih the
-	 * <code>.highcharts-data-label-box</code> and
-	 * <code>.highcharts-data-label</code> class names (<a href=
-	 * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/series-datalabels"
-	 * >see example</a>).
 	 * </p>
 	 */
 	public void setDataLabels(DataLabels dataLabels) {
@@ -633,14 +607,6 @@ public class PlotOptionsArea extends AreaOptions {
 	 * define the visual appearance of the markers. Other series types, like
 	 * column series, don't have markers, but have visual options on the series
 	 * level instead.
-	 * </p>
-	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the markers can be styled with the
-	 * <code>.highcharts-point</code>, <code>.highcharts-point-hover</code> and
-	 * <code>.highcharts-point-select</code> class names.
 	 * </p>
 	 */
 	public void setMarker(Marker marker) {
@@ -1112,16 +1078,6 @@ public class PlotOptionsArea extends AreaOptions {
 	 * An array defining zones within a series. Zones can be applied to the X
 	 * axis, Y axis or Z axis for bubbles, according to the
 	 * <code>zoneAxis</code> option.
-	 * </p>
-	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the color zones are styled with the
-	 * <code>.highcharts-zone-{n}</code> class, or custom classed from the
-	 * <code>className</code> option (<a href=
-	 * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/color-zones/"
-	 * >view live demo</a>).
 	 * </p>
 	 */
 	public void setZones(Zones... zones) {

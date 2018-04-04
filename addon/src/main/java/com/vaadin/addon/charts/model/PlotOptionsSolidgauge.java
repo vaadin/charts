@@ -140,11 +140,7 @@ public class PlotOptionsSolidgauge extends GaugeOptions {
 	}
 
 	/**
-	 * <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >Styled mode</a> only. A specific color index to use for the series, so
-	 * its graphic representations are given the class name
-	 * <code>highcharts-color-{n}</code>.
+	 * 
 	 */
 	public void setColorIndex(Number colorIndex) {
 		this.colorIndex = colorIndex;

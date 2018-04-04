@@ -107,12 +107,6 @@ public class Title extends AbstractConfigurationObject {
 	 * </p>
 	 * 
 	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the title style is given in the
-	 * <code>.highcharts-title</code> class.
-	 * </p>
-	 * <p>
 	 * Defaults to: { "color": "#333333", "fontSize": "18px" }
 	 */
 	public void setStyle(Style style) {

@@ -90,12 +90,6 @@ public class Tooltip extends AbstractConfigurationObject {
 	 * </p>
 	 * 
 	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the stroke width is set in the
-	 * <code>.highcharts-tooltip-box</code> class.
-	 * </p>
-	 * <p>
 	 * Defaults to: rgba(247,247,247,0.85)
 	 */
 	public void setBackgroundColor(Color backgroundColor) {
@@ -147,12 +141,6 @@ public class Tooltip extends AbstractConfigurationObject {
 	 * The pixel width of the tooltip border.
 	 * </p>
 	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the stroke width is set in the
-	 * <code>.highcharts-tooltip-box</code> class.
-	 * </p>
 	 * <p>
 	 * Defaults to: 1
 	 */
@@ -367,12 +355,6 @@ public class Tooltip extends AbstractConfigurationObject {
 	 * can be extended by the <code>tooltip.valuePrefix</code> and
 	 * <code>tooltip.valueSuffix</code> variables. This can also be overridden
 	 * for each series, which makes it a good hook for displaying units.
-	 * </p>
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the dot is colored by a class name rather than the
-	 * point color.
 	 * </p>
 	 * <p>
 	 * Defaults to: <span style="color:{point.color}">\u25CF</span>

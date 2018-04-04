@@ -139,12 +139,6 @@ public class AxisTitle extends AbstractConfigurationObject {
 	 * </p>
 	 * 
 	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the stroke width is given in the
-	 * <code>.highcharts-axis-title</code> class.
-	 * </p>
-	 * <p>
 	 * Defaults to: { "color": "#666666" }
 	 */
 	public void setStyle(Style style) {

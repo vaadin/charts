@@ -138,12 +138,6 @@ public class StackLabels extends AbstractConfigurationObject {
 	 * </p>
 	 * 
 	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the styles are set in the
-	 * <code>.highcharts-stack-label</code> class.
-	 * </p>
-	 * <p>
 	 * Defaults to: { "color": "#000000", "fontSize": "11px", "fontWeight":
 	 * "bold", "textShadow":
 	 * "1px 1px contrast, -1px -1px contrast, -1px 1px contrast, 1px -1px contrast"

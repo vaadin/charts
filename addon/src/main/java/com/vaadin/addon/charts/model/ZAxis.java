@@ -213,10 +213,7 @@ public class ZAxis extends Axis {
 
 	/**
 	 * A class name that opens for styling the axis by CSS, especially in
-	 * Highcharts <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>. The class name is applied to group elements for the
-	 * grid, axis elements and labels.
+	 * Highcharts
 	 */
 	public void setClassName(String className) {
 		this.className = className;
@@ -238,14 +235,6 @@ public class ZAxis extends Axis {
 	 * hovered point.
 	 * </p>
 	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the crosshairs are styled in the
-	 * <code>.highcharts-crosshair</code>,
-	 * <code>.highcharts-crosshair-thin</code> or
-	 * <code>.highcharts-xaxis-category</code> classes.
-	 * </p>
 	 * <p>
 	 * Defaults to: false
 	 */
@@ -360,12 +349,6 @@ public class ZAxis extends Axis {
 	 * </p>
 	 * 
 	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the stroke is given in the
-	 * <code>.highcharts-grid-line</code> class.
-	 * </p>
-	 * <p>
 	 * Defaults to: #e6e6e6
 	 */
 	public void setGridLineColor(Color gridLineColor) {
@@ -403,12 +386,6 @@ public class ZAxis extends Axis {
 	 * The width of the grid lines extending the ticks across the plot area.
 	 * </p>
 	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the stroke width is given in the
-	 * <code>.highcharts-grid-line</code> class.
-	 * </p>
 	 * <p>
 	 * Defaults to: 0
 	 */
@@ -477,13 +454,6 @@ public class ZAxis extends Axis {
 	 * </p>
 	 * 
 	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the line stroke is given in the
-	 * <code>.highcharts-axis-line</code> or <code>.highcharts-xaxis-line</code>
-	 * class.
-	 * </p>
-	 * <p>
 	 * Defaults to: #ccd6eb
 	 */
 	public void setLineColor(Color lineColor) {
@@ -502,13 +472,6 @@ public class ZAxis extends Axis {
 	 * The width of the line marking the axis itself.
 	 * </p>
 	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the stroke width is given in the
-	 * <code>.highcharts-axis-line</code> or <code>.highcharts-xaxis-line</code>
-	 * class.
-	 * </p>
 	 * <p>
 	 * Defaults to: 1
 	 */
@@ -682,12 +645,6 @@ public class ZAxis extends Axis {
 	 * 
 	 * 
 	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the stroke width is given in the
-	 * <code>.highcharts-minor-grid-line</code> class.
-	 * </p>
-	 * <p>
 	 * Defaults to: #f2f2f2
 	 */
 	public void setMinorGridLineColor(Color minorGridLineColor) {
@@ -725,12 +682,6 @@ public class ZAxis extends Axis {
 	 * Width of the minor, secondary grid lines.
 	 * </p>
 	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the stroke width is given in the
-	 * <code>.highcharts-grid-line</code> class.
-	 * </p>
 	 * <p>
 	 * Defaults to: 1
 	 */
@@ -900,14 +851,6 @@ public class ZAxis extends Axis {
 	 * In a gauge, a plot band on the Y axis (value axis) will stretch along the
 	 * perimeter of the gauge.
 	 * </p>
-	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the plot bands are styled by the
-	 * <code>.highcharts-plot-band</code> class in addition to the
-	 * <code>className</code> option.
-	 * </p>
 	 */
 	public void setPlotBands(PlotBand... plotBands) {
 		this.plotBands = new ArrayList<PlotBand>(Arrays.asList(plotBands));
@@ -954,14 +897,6 @@ public class ZAxis extends Axis {
 	 * <p>
 	 * An array of lines stretching across the plot area, marking a specific
 	 * value on one of the axes.
-	 * </p>
-	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the plot lines are styled by the
-	 * <code>.highcharts-plot-line</code> class in addition to the
-	 * <code>className</code> option.
 	 * </p>
 	 */
 	public void setPlotLines(PlotLine... plotLines) {
@@ -1159,12 +1094,6 @@ public class ZAxis extends Axis {
 	 * </p>
 	 * 
 	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the stroke is given in the
-	 * <code>.highcharts-tick</code> class.
-	 * </p>
-	 * <p>
 	 * Defaults to: #ccd6eb
 	 */
 	public void setTickColor(Color tickColor) {
@@ -1301,12 +1230,6 @@ public class ZAxis extends Axis {
 	 * The pixel width of the major tick marks.
 	 * </p>
 	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the stroke width is given in the
-	 * <code>.highcharts-tick</code> class.
-	 * </p>
 	 * <p>
 	 * Defaults to: 1
 	 */

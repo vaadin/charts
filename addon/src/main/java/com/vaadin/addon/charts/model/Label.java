@@ -84,13 +84,6 @@ public class Label extends AbstractConfigurationObject {
 	 * <p>
 	 * CSS styles for the text label.
 	 * </p>
-	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the labels are styled by the
-	 * <code>.highcharts-plot-band-label</code> class.
-	 * </p>
 	 */
 	public void setStyle(Style style) {
 		this.style = style;

@@ -98,14 +98,6 @@ public class Hover extends AbstractConfigurationObject {
 	 * 0.25. The halo can be disabled by setting the <code>halo</code> option to
 	 * <code>false</code>.
 	 * </p>
-	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the halo is styled with the
-	 * <code>.highcharts-halo</code> class, with colors inherited from
-	 * <code>.highcharts-color-{n}</code>.
-	 * </p>
 	 */
 	public void setHalo(Halo halo) {
 		this.halo = halo;
@@ -235,12 +227,6 @@ public class Hover extends AbstractConfigurationObject {
 	 * be defined in hex or rgb(a) format.
 	 * </p>
 	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the hover brightening is by default replaced with a
-	 * fill-opacity set in the <code>.highcharts-point:hover</code> rule.
-	 * </p>
 	 * <p>
 	 * Defaults to: 0.1
 	 */

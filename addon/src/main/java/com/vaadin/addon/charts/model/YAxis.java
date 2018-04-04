@@ -265,10 +265,7 @@ public class YAxis extends Axis {
 
 	/**
 	 * A class name that opens for styling the axis by CSS, especially in
-	 * Highcharts <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>. The class name is applied to group elements for the
-	 * grid, axis elements and labels.
+	 * Highcharts
 	 */
 	public void setClassName(String className) {
 		this.className = className;
@@ -290,14 +287,6 @@ public class YAxis extends Axis {
 	 * hovered point.
 	 * </p>
 	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the crosshairs are styled in the
-	 * <code>.highcharts-crosshair</code>,
-	 * <code>.highcharts-crosshair-thin</code> or
-	 * <code>.highcharts-xaxis-category</code> classes.
-	 * </p>
 	 * <p>
 	 * Defaults to: false
 	 */
@@ -411,12 +400,6 @@ public class YAxis extends Axis {
 	 * Color of the grid lines extending the ticks across the plot area.
 	 * </p>
 	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the stroke is given in the
-	 * <code>.highcharts-grid-line</code> class.
-	 * </p>
 	 * <p>
 	 * Defaults to: #e6e6e6
 	 */
@@ -534,13 +517,6 @@ public class YAxis extends Axis {
 	 * The color of the line marking the axis itself.
 	 * </p>
 	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the line stroke is given in the
-	 * <code>.highcharts-axis-line</code> or <code>.highcharts-xaxis-line</code>
-	 * class.
-	 * </p>
 	 * <p>
 	 * Defaults to: #ccd6eb
 	 */
@@ -718,12 +694,6 @@ public class YAxis extends Axis {
 	 * 
 	 * 
 	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the stroke width is given in the
-	 * <code>.highcharts-minor-grid-line</code> class.
-	 * </p>
-	 * <p>
 	 * Defaults to: #f2f2f2
 	 */
 	public void setMinorGridLineColor(Color minorGridLineColor) {
@@ -761,12 +731,6 @@ public class YAxis extends Axis {
 	 * Width of the minor, secondary grid lines.
 	 * </p>
 	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the stroke width is given in the
-	 * <code>.highcharts-grid-line</code> class.
-	 * </p>
 	 * <p>
 	 * Defaults to: 1
 	 */
@@ -1206,12 +1170,6 @@ public class YAxis extends Axis {
 	 * </p>
 	 * 
 	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the stroke is given in the
-	 * <code>.highcharts-tick</code> class.
-	 * </p>
-	 * <p>
 	 * Defaults to: #ccd6eb
 	 */
 	public void setTickColor(Color tickColor) {
@@ -1647,17 +1605,6 @@ public class YAxis extends Axis {
 	 * <p>
 	 * An optional scrollbar to display on the Y axis in response to limiting
 	 * the minimum an maximum of the axis values.
-	 * </p>
-	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, all the presentational options for the scrollbar are
-	 * replaced by the classes <code>.highcharts-scrollbar-thumb</code>,
-	 * <code>.highcharts-scrollbar-arrow</code>,
-	 * <code>.highcharts-scrollbar-button</code>,
-	 * <code>.highcharts-scrollbar-rifles</code> and
-	 * <code>.highcharts-scrollbar-track</code>.
 	 * </p>
 	 */
 	public void setScrollbar(Scrollbar scrollbar) {

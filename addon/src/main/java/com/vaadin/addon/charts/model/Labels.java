@@ -256,12 +256,6 @@ public class Labels extends AbstractConfigurationObject {
 	 * </p>
 	 * 
 	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the labels are styled with the
-	 * <code>.highcharts-axis-labels</code> class.
-	 * </p>
-	 * <p>
 	 * Defaults to: { "color": "#666666", "cursor": "default", "fontSize":
 	 * "11px" }
 	 */

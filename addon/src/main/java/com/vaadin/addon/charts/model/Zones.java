@@ -55,9 +55,7 @@ public class Zones extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >Styled mode</a> only. A custom class name for the zone.
+	 * 
 	 */
 	public void setClassName(String className) {
 		this.className = className;

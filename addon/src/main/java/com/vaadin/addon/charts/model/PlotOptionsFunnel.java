@@ -133,12 +133,6 @@ public class PlotOptionsFunnel extends PyramidOptions {
 	 * </p>
 	 * 
 	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the border stroke is given in the
-	 * <code>.highcharts-point</code> class.
-	 * </p>
-	 * <p>
 	 * Defaults to: #ffffff
 	 */
 	public void setBorderColor(Color borderColor) {
@@ -164,12 +158,6 @@ public class PlotOptionsFunnel extends PyramidOptions {
 	 * <code>null</code> instead.
 	 * </p>
 	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the border stroke width is given in the
-	 * <code>.highcharts-point</code> class.
-	 * </p>
 	 * <p>
 	 * Defaults to: 1
 	 */
@@ -209,11 +197,7 @@ public class PlotOptionsFunnel extends PyramidOptions {
 	}
 
 	/**
-	 * <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >Styled mode</a> only. A specific color index to use for the series, so
-	 * its graphic representations are given the class name
-	 * <code>highcharts-color-{n}</code>.
+	 * 
 	 */
 	public void setColorIndex(Number colorIndex) {
 		this.colorIndex = colorIndex;
@@ -1029,16 +1013,6 @@ public class PlotOptionsFunnel extends PyramidOptions {
 	 * An array defining zones within a series. Zones can be applied to the X
 	 * axis, Y axis or Z axis for bubbles, according to the
 	 * <code>zoneAxis</code> option.
-	 * </p>
-	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the color zones are styled with the
-	 * <code>.highcharts-zone-{n}</code> class, or custom classed from the
-	 * <code>className</code> option (<a href=
-	 * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/color-zones/"
-	 * >view live demo</a>).
 	 * </p>
 	 */
 	public void setZones(Zones... zones) {

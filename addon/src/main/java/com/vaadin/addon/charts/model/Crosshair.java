@@ -159,13 +159,6 @@ public class Crosshair extends AbstractConfigurationObject {
 	 * <p>
 	 * A label on the axis next to the crosshair.
 	 * </p>
-	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the label is styled with the
-	 * <code>.highcharts-crosshair-label</code> class.
-	 * </p>
 	 */
 	public void setLabel(CrosshairLabel label) {
 		this.label = label;

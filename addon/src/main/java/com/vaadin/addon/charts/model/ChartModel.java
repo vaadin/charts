@@ -231,15 +231,7 @@ public class ChartModel extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, this sets how many colors the class names should rotate
-	 * between. With ten colors, series (or points) are given class names like
-	 * <code>highcharts-color-0</code>, <code>highcharts-color-0</code> [...]
-	 * <code>highcharts-color-9</code>. The equivalent in non-styled mode is to
-	 * set colors using the <a href="#colors">colors</a> setting.
-	 * <p>
-	 * Defaults to: 10
+	 * In
 	 */
 	public void setColorCount(Number colorCount) {
 		this.colorCount = colorCount;

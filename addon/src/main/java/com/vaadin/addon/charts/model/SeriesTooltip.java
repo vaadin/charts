@@ -227,12 +227,6 @@ public class SeriesTooltip extends AbstractConfigurationObject {
 	 * for each series, which makes it a good hook for displaying units.
 	 * </p>
 	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the dot is colored by a class name rather than the
-	 * point color.
-	 * </p>
-	 * <p>
 	 * Defaults to: <span style="color:{point.color}">\u25CF</span>
 	 * {series.name}: <b>{point.y}</b><br/>
 	 */

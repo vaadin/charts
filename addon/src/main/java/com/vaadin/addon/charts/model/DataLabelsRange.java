@@ -170,13 +170,7 @@ public class DataLabelsRange extends AbstractDataLabels {
 	}
 
 	/**
-	 * A class name for the data label. Particularly in <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, this can be used to give each series' or point's data
-	 * label unique styling. In addition to this option, a default color class
-	 * name is added so that we can give the labels a <a href=
-	 * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/data-label-contrast/"
-	 * >contrast text shadow</a>.
+	 * A class name for the data label. Particularly in
 	 */
 	public void setClassName(String className) {
 		this.className = className;

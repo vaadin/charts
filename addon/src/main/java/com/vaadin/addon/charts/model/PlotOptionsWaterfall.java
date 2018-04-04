@@ -177,12 +177,6 @@ public class PlotOptionsWaterfall extends ColumnOptions {
 	 * </p>
 	 * 
 	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the border stroke can be set with the
-	 * <code>.highcharts-point</code> class.
-	 * </p>
-	 * <p>
 	 * Defaults to: #333333
 	 */
 	public void setBorderColor(Color borderColor) {
@@ -218,12 +212,6 @@ public class PlotOptionsWaterfall extends ColumnOptions {
 	 * </p>
 	 * 
 	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the stroke width can be set with the
-	 * <code>.highcharts-point</code> rule.
-	 * </p>
-	 * <p>
 	 * Defaults to: 1
 	 */
 	public void setBorderWidth(Number borderWidth) {
@@ -258,18 +246,6 @@ public class PlotOptionsWaterfall extends ColumnOptions {
 	 * applies to the bars unless a color is specified per point. The default
 	 * value is pulled from the <code>options.colors</code> array.
 	 * </p>
-	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the color can be defined by the <a
-	 * href="#plotOptions.series.colorIndex">colorIndex</a> option. Also, the
-	 * series color can be set with the <code>.highcharts-series</code>,
-	 * <code>.highcharts-color-{n}</code>,
-	 * <code>.highcharts-{type}-series</code> or
-	 * <code>.highcharts-series-{n}</code> class, or individual classes given by
-	 * the <code>className</code> option.
-	 * </p>
 	 */
 	public void setColor(Color color) {
 		this.color = color;
@@ -301,11 +277,7 @@ public class PlotOptionsWaterfall extends ColumnOptions {
 	}
 
 	/**
-	 * <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >Styled mode</a> only. A specific color index to use for the series, so
-	 * its graphic representations are given the class name
-	 * <code>highcharts-color-{n}</code>.
+	 * 
 	 */
 	public void setColorIndex(Number colorIndex) {
 		this.colorIndex = colorIndex;
@@ -421,12 +393,6 @@ public class PlotOptionsWaterfall extends ColumnOptions {
 	 * </p>
 	 * 
 	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the stroke dash-array can be set with the
-	 * <code>.highcharts-graph</code> class.
-	 * </p>
-	 * <p>
 	 * Defaults to: Dot
 	 */
 	public void setDashStyle(DashStyle dashStyle) {
@@ -446,16 +412,6 @@ public class PlotOptionsWaterfall extends ColumnOptions {
 	/**
 	 * <p>
 	 * Options for the series data labels, appearing next to each data point.
-	 * </p>
-	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the data labels can be styled wtih the
-	 * <code>.highcharts-data-label-box</code> and
-	 * <code>.highcharts-data-label</code> class names (<a href=
-	 * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/series-datalabels"
-	 * >see example</a>).
 	 * </p>
 	 */
 	public void setDataLabels(DataLabels dataLabels) {
@@ -727,12 +683,6 @@ public class PlotOptionsWaterfall extends ColumnOptions {
 	 * The color of the line that connects columns in a waterfall series.
 	 * </p>
 	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the stroke can be set with the
-	 * <code>.highcharts-graph</code> class.
-	 * </p>
 	 * <p>
 	 * Defaults to: #333333
 	 */
@@ -1184,14 +1134,6 @@ public class PlotOptionsWaterfall extends ColumnOptions {
 	 * The color used specifically for positive point columns. When not
 	 * specified, the general series color is used.
 	 * </p>
-	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the waterfall colors can be set with the
-	 * <code>.highcharts-point-negative</code>, <code>.highcharts-sum</code> and
-	 * <code>.highcharts-intermediate-sum</code> classes.
-	 * </p>
 	 */
 	public void setUpColor(Color upColor) {
 		this.upColor = upColor;
@@ -1246,16 +1188,6 @@ public class PlotOptionsWaterfall extends ColumnOptions {
 	 * An array defining zones within a series. Zones can be applied to the X
 	 * axis, Y axis or Z axis for bubbles, according to the
 	 * <code>zoneAxis</code> option.
-	 * </p>
-	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the color zones are styled with the
-	 * <code>.highcharts-zone-{n}</code> class, or custom classed from the
-	 * <code>className</code> option (<a href=
-	 * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/color-zones/"
-	 * >view live demo</a>).
 	 * </p>
 	 */
 	public void setZones(Zones... zones) {

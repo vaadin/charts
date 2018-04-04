@@ -191,18 +191,6 @@ public class PlotOptionsCandlestick extends OhlcOptions {
 	 * applies to the bars unless a color is specified per point. The default
 	 * value is pulled from the <code>options.colors</code> array.
 	 * </p>
-	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the color can be defined by the <a
-	 * href="#plotOptions.series.colorIndex">colorIndex</a> option. Also, the
-	 * series color can be set with the <code>.highcharts-series</code>,
-	 * <code>.highcharts-color-{n}</code>,
-	 * <code>.highcharts-{type}-series</code> or
-	 * <code>.highcharts-series-{n}</code> class, or individual classes given by
-	 * the <code>className</code> option.
-	 * </p>
 	 */
 	public void setColor(Color color) {
 		this.color = color;
@@ -216,11 +204,7 @@ public class PlotOptionsCandlestick extends OhlcOptions {
 	}
 
 	/**
-	 * <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >Styled mode</a> only. A specific color index to use for the series, so
-	 * its graphic representations are given the class name
-	 * <code>highcharts-color-{n}</code>.
+	 * 
 	 */
 	public void setColorIndex(Number colorIndex) {
 		this.colorIndex = colorIndex;
@@ -577,12 +561,6 @@ public class PlotOptionsCandlestick extends OhlcOptions {
 	 * </p>
 	 * 
 	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the line stroke can be set with the
-	 * <code>.highcharts-candlestick-series .highcahrts-point</code> rule.
-	 * </p>
-	 * <p>
 	 * Defaults to: #000000
 	 */
 	public void setLineColor(Color lineColor) {
@@ -602,12 +580,6 @@ public class PlotOptionsCandlestick extends OhlcOptions {
 	 * <code>1</code>.
 	 * </p>
 	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the line stroke width can be set with the
-	 * <code>.highcharts-candlestick-series .highcahrts-point</code> rule.
-	 * </p>
 	 * <p>
 	 * Defaults to: 1
 	 */
@@ -1137,12 +1109,6 @@ public class PlotOptionsCandlestick extends OhlcOptions {
 	 * </p>
 	 * 
 	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the up color can be set with the
-	 * <code>.highcharts-candlestick-series .highcharts-point-up</code> rule.
-	 * </p>
-	 * <p>
 	 * Defaults to: #ffffff
 	 */
 	public void setUpColor(Color upColor) {
@@ -1215,16 +1181,6 @@ public class PlotOptionsCandlestick extends OhlcOptions {
 	 * An array defining zones within a series. Zones can be applied to the X
 	 * axis, Y axis or Z axis for bubbles, according to the
 	 * <code>zoneAxis</code> option.
-	 * </p>
-	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the color zones are styled with the
-	 * <code>.highcharts-zone-{n}</code> class, or custom classed from the
-	 * <code>className</code> option (<a href=
-	 * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/color-zones/"
-	 * >view live demo</a>).
 	 * </p>
 	 */
 	public void setZones(Zones... zones) {
