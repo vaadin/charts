@@ -18,6 +18,7 @@ package com.vaadin.addon.charts.model;
  */
 
 import javax.annotation.Generated;
+import java.util.Map;
 /**
  * Options for the exporting module. For an overview on the matter, see <a
  * href="http://www.highcharts.com/docs/export-module/export-module-overview"
@@ -29,11 +30,11 @@ public class Exporting extends AbstractConfigurationObject {
 	private Boolean allowHTML;
 	private Buttons buttons;
 	private Boolean enabled;
-	private Object error;
+	private String _fn_error;
 	private Boolean fallbackToExportServer;
 	private String filename;
 	private String libURL;
-	private Object menuItemDefinitions;
+	private Map<String, ExportingMenuItemDefinition> menuItemDefinitions;
 	private Number printMaxWidth;
 	private Number scale;
 	private Number sourceHeight;
@@ -115,26 +116,12 @@ public class Exporting extends AbstractConfigurationObject {
 		this.enabled = enabled;
 	}
 
-	/**
-	 * @see #setError(Object)
-	 */
-	public Object getError() {
-		if (error == null) {
-			error = new Object();
-		}
-		return error;
+	public String getError() {
+		return _fn_error;
 	}
 
-	/**
-	 * Function to call if the offline-exporting module fails to export a chart
-	 * on the client side, and <a
-	 * href="#exporting.fallbackToExportServer">fallbackToExportServer</a> is
-	 * disabled. If left undefined, an exception is thrown instead.
-	 * <p>
-	 * Defaults to: undefined
-	 */
-	public void setError(Object error) {
-		this.error = error;
+	public void setError(String _fn_error) {
+		this._fn_error = _fn_error;
 	}
 
 	/**
@@ -195,12 +182,9 @@ public class Exporting extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setMenuItemDefinitions(Object)
+	 * @see #setMenuItemDefinitions(Map)
 	 */
-	public Object getMenuItemDefinitions() {
-		if (menuItemDefinitions == null) {
-			menuItemDefinitions = new Object();
-		}
+	public Map<String, ExportingMenuItemDefinition> getMenuItemDefinitions() {
 		return menuItemDefinitions;
 	}
 
@@ -221,7 +205,8 @@ public class Exporting extends AbstractConfigurationObject {
 	 * <dd>If internationalization is required, the key to a language string</dd>
 	 * <dl>
 	 */
-	public void setMenuItemDefinitions(Object menuItemDefinitions) {
+	public void setMenuItemDefinitions(
+			Map<String, ExportingMenuItemDefinition> menuItemDefinitions) {
 		this.menuItemDefinitions = menuItemDefinitions;
 	}
 

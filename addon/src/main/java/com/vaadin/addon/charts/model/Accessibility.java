@@ -34,12 +34,12 @@ public class Accessibility extends AbstractConfigurationObject {
 	private Boolean describeSingleSeries;
 	private Boolean enabled;
 	private KeyboardNavigation keyboardNavigation;
-	private Object onTableAnchorClick;
+	private String _fn_onTableAnchorClick;
 	private String pointDateFormat;
-	private Object pointDateFormatter;
-	private Object pointDescriptionFormatter;
-	private Object screenReaderSectionFormatter;
-	private Object seriesDescriptionFormatter;
+	private String _fn_pointDateFormatter;
+	private String _fn_pointDescriptionFormatter;
+	private String _fn_screenReaderSectionFormatter;
+	private String _fn_seriesDescriptionFormatter;
 
 	public Accessibility() {
 	}
@@ -97,29 +97,12 @@ public class Accessibility extends AbstractConfigurationObject {
 		this.keyboardNavigation = keyboardNavigation;
 	}
 
-	/**
-	 * @see #setOnTableAnchorClick(Object)
-	 */
-	public Object getOnTableAnchorClick() {
-		if (onTableAnchorClick == null) {
-			onTableAnchorClick = new Object();
-		}
-		return onTableAnchorClick;
+	public String getOnTableAnchorClick() {
+		return _fn_onTableAnchorClick;
 	}
 
-	/**
-	 * <p>
-	 * Function to run upon clicking the "View as Data Table" link in the screen
-	 * reader region.
-	 * </p>
-	 * 
-	 * <p>
-	 * By default Highcharts will insert and set focus to a data table
-	 * representation of the chart.
-	 * </p>
-	 */
-	public void setOnTableAnchorClick(Object onTableAnchorClick) {
-		this.onTableAnchorClick = onTableAnchorClick;
+	public void setOnTableAnchorClick(String _fn_onTableAnchorClick) {
+		this._fn_onTableAnchorClick = _fn_onTableAnchorClick;
 	}
 
 	/**
@@ -146,99 +129,38 @@ public class Accessibility extends AbstractConfigurationObject {
 		this.pointDateFormat = pointDateFormat;
 	}
 
-	/**
-	 * @see #setPointDateFormatter(Object)
-	 */
-	public Object getPointDateFormatter() {
-		if (pointDateFormatter == null) {
-			pointDateFormatter = new Object();
-		}
-		return pointDateFormatter;
+	public String getPointDateFormatter() {
+		return _fn_pointDateFormatter;
 	}
 
-	/**
-	 * <p>
-	 * Formatter function to determine the date/time format used with points on
-	 * datetime axes when describing them to screen reader users. Receives one
-	 * argument, <code>point</code>, referring to the point to describe. Should
-	 * return a date format string compatible with <a
-	 * href="#Highcharts.dateFormat">dateFormat</a>.
-	 * </p>
-	 */
-	public void setPointDateFormatter(Object pointDateFormatter) {
-		this.pointDateFormatter = pointDateFormatter;
+	public void setPointDateFormatter(String _fn_pointDateFormatter) {
+		this._fn_pointDateFormatter = _fn_pointDateFormatter;
 	}
 
-	/**
-	 * @see #setPointDescriptionFormatter(Object)
-	 */
-	public Object getPointDescriptionFormatter() {
-		if (pointDescriptionFormatter == null) {
-			pointDescriptionFormatter = new Object();
-		}
-		return pointDescriptionFormatter;
+	public String getPointDescriptionFormatter() {
+		return _fn_pointDescriptionFormatter;
 	}
 
-	/**
-	 * <p>
-	 * Formatter function to use instead of the default for point descriptions.
-	 * Receives one argument, <code>point</code>, referring to the point to
-	 * describe. Should return a String with the description of the point for a
-	 * screen reader user.
-	 * </p>
-	 */
-	public void setPointDescriptionFormatter(Object pointDescriptionFormatter) {
-		this.pointDescriptionFormatter = pointDescriptionFormatter;
+	public void setPointDescriptionFormatter(
+			String _fn_pointDescriptionFormatter) {
+		this._fn_pointDescriptionFormatter = _fn_pointDescriptionFormatter;
 	}
 
-	/**
-	 * @see #setScreenReaderSectionFormatter(Object)
-	 */
-	public Object getScreenReaderSectionFormatter() {
-		if (screenReaderSectionFormatter == null) {
-			screenReaderSectionFormatter = new Object();
-		}
-		return screenReaderSectionFormatter;
+	public String getScreenReaderSectionFormatter() {
+		return _fn_screenReaderSectionFormatter;
 	}
 
-	/**
-	 * <p>
-	 * A formatter function to create the HTML contents of the hidden screen
-	 * reader information region. Receives one argument, <code>chart</code>,
-	 * referring to the chart object. Should return a String with the HTML
-	 * content of the region.
-	 * </p>
-	 * <p>
-	 * The link to view the chart as a data table will be added automatically
-	 * after the custom HTML content.
-	 * </p>
-	 * <p>
-	 * Defaults to: undefined
-	 */
 	public void setScreenReaderSectionFormatter(
-			Object screenReaderSectionFormatter) {
-		this.screenReaderSectionFormatter = screenReaderSectionFormatter;
+			String _fn_screenReaderSectionFormatter) {
+		this._fn_screenReaderSectionFormatter = _fn_screenReaderSectionFormatter;
 	}
 
-	/**
-	 * @see #setSeriesDescriptionFormatter(Object)
-	 */
-	public Object getSeriesDescriptionFormatter() {
-		if (seriesDescriptionFormatter == null) {
-			seriesDescriptionFormatter = new Object();
-		}
-		return seriesDescriptionFormatter;
+	public String getSeriesDescriptionFormatter() {
+		return _fn_seriesDescriptionFormatter;
 	}
 
-	/**
-	 * <p>
-	 * Formatter function to use instead of the default for series descriptions.
-	 * Receives one argument, <code>series</code>, referring to the series to
-	 * describe. Should return a String with the description of the series for a
-	 * screen reader user.
-	 * </p>
-	 */
-	public void setSeriesDescriptionFormatter(Object seriesDescriptionFormatter) {
-		this.seriesDescriptionFormatter = seriesDescriptionFormatter;
+	public void setSeriesDescriptionFormatter(
+			String _fn_seriesDescriptionFormatter) {
+		this._fn_seriesDescriptionFormatter = _fn_seriesDescriptionFormatter;
 	}
 }

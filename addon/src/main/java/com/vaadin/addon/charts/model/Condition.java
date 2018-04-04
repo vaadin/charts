@@ -24,7 +24,7 @@ import javax.annotation.Generated;
 @Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class Condition extends AbstractConfigurationObject {
 
-	private Object callback;
+	private String _fn_callback;
 	private Number maxHeight;
 	private Number maxWidth;
 	private Number minHeight;
@@ -33,24 +33,12 @@ public class Condition extends AbstractConfigurationObject {
 	public Condition() {
 	}
 
-	/**
-	 * @see #setCallback(Object)
-	 */
-	public Object getCallback() {
-		if (callback == null) {
-			callback = new Object();
-		}
-		return callback;
+	public String getCallback() {
+		return _fn_callback;
 	}
 
-	/**
-	 * A callback function to gain complete control on when the responsive rule
-	 * applies. Return <code>true</code> if it applies. This opens for checking
-	 * against other metrics than the chart size, or example the document size
-	 * or other elements.
-	 */
-	public void setCallback(Object callback) {
-		this.callback = callback;
+	public void setCallback(String _fn_callback) {
+		this._fn_callback = _fn_callback;
 	}
 
 	/**

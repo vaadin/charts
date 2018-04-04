@@ -224,9 +224,6 @@ public class Navigator extends AbstractConfigurationObject {
 	 * @see #setSeries(PlotOptionsSeries)
 	 */
 	public PlotOptionsSeries getSeries() {
-		if (series == null) {
-			series = new PlotOptionsSeries();
-		}
 		return series;
 	}
 

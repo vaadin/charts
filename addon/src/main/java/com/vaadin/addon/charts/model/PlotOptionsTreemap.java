@@ -62,7 +62,7 @@ public class PlotOptionsTreemap extends AbstractPlotOptions {
 	private String linkedTo;
 	private Number maxPointWidth;
 	private Number opacity;
-	private Object pointDescriptionFormatter;
+	private String _fn_pointDescriptionFormatter;
 	private Boolean selected;
 	private Boolean shadow;
 	private Boolean showCheckbox;
@@ -749,23 +749,13 @@ public class PlotOptionsTreemap extends AbstractPlotOptions {
 		this.opacity = opacity;
 	}
 
-	/**
-	 * @see #setPointDescriptionFormatter(Object)
-	 */
-	public Object getPointDescriptionFormatter() {
-		if (pointDescriptionFormatter == null) {
-			pointDescriptionFormatter = new Object();
-		}
-		return pointDescriptionFormatter;
+	public String getPointDescriptionFormatter() {
+		return _fn_pointDescriptionFormatter;
 	}
 
-	/**
-	 * Same as <a href="#accessibility.pointDescriptionFormatter">accessibility.
-	 * pointDescriptionFormatter</a>, but for an individual series. Overrides
-	 * the chart wide configuration.
-	 */
-	public void setPointDescriptionFormatter(Object pointDescriptionFormatter) {
-		this.pointDescriptionFormatter = pointDescriptionFormatter;
+	public void setPointDescriptionFormatter(
+			String _fn_pointDescriptionFormatter) {
+		this._fn_pointDescriptionFormatter = _fn_pointDescriptionFormatter;
 	}
 
 	/**
