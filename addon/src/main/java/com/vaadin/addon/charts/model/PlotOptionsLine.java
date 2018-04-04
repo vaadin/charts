@@ -77,7 +77,7 @@ public class PlotOptionsLine extends PointOptions {
 	private Number gapSize;
 	private String gapUnit;
 	private Number legendIndex;
-	private Object navigatorOptions;
+	private PlotOptionsSeries navigatorOptions;
 	private Number pointRange;
 	private Boolean showInNavigator;
 
@@ -1136,12 +1136,9 @@ public class PlotOptionsLine extends PointOptions {
 	}
 
 	/**
-	 * @see #setNavigatorOptions(Object)
+	 * @see #setNavigatorOptions(PlotOptionsSeries)
 	 */
-	public Object getNavigatorOptions() {
-		if (navigatorOptions == null) {
-			navigatorOptions = new Object();
-		}
+	public PlotOptionsSeries getNavigatorOptions() {
 		return navigatorOptions;
 	}
 
@@ -1162,7 +1159,7 @@ public class PlotOptionsLine extends PointOptions {
 	 * <p>
 	 * Defaults to: undefined
 	 */
-	public void setNavigatorOptions(Object navigatorOptions) {
+	public void setNavigatorOptions(PlotOptionsSeries navigatorOptions) {
 		this.navigatorOptions = navigatorOptions;
 	}
 

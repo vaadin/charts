@@ -49,7 +49,7 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 	private Number lineWidth;
 	private String linkedTo;
 	private Number maxPointWidth;
-	private Object navigatorOptions;
+	private PlotOptionsSeries navigatorOptions;
 	private Color negativeColor;
 	private String onKey;
 	private String onSeries;
@@ -528,12 +528,9 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setNavigatorOptions(Object)
+	 * @see #setNavigatorOptions(PlotOptionsSeries)
 	 */
-	public Object getNavigatorOptions() {
-		if (navigatorOptions == null) {
-			navigatorOptions = new Object();
-		}
+	public PlotOptionsSeries getNavigatorOptions() {
 		return navigatorOptions;
 	}
 
@@ -554,7 +551,7 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 	 * <p>
 	 * Defaults to: undefined
 	 */
-	public void setNavigatorOptions(Object navigatorOptions) {
+	public void setNavigatorOptions(PlotOptionsSeries navigatorOptions) {
 		this.navigatorOptions = navigatorOptions;
 	}
 

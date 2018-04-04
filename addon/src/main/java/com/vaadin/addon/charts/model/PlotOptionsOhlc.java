@@ -57,7 +57,7 @@ public class PlotOptionsOhlc extends OhlcOptions {
 	private String linkedTo;
 	private Number maxPointWidth;
 	private Number minPointLength;
-	private Object navigatorOptions;
+	private PlotOptionsSeries navigatorOptions;
 	private Color negativeColor;
 	private String _fn_pointDescriptionFormatter;
 	private Number pointInterval;
@@ -658,12 +658,9 @@ public class PlotOptionsOhlc extends OhlcOptions {
 	}
 
 	/**
-	 * @see #setNavigatorOptions(Object)
+	 * @see #setNavigatorOptions(PlotOptionsSeries)
 	 */
-	public Object getNavigatorOptions() {
-		if (navigatorOptions == null) {
-			navigatorOptions = new Object();
-		}
+	public PlotOptionsSeries getNavigatorOptions() {
 		return navigatorOptions;
 	}
 
@@ -684,7 +681,7 @@ public class PlotOptionsOhlc extends OhlcOptions {
 	 * <p>
 	 * Defaults to: undefined
 	 */
-	public void setNavigatorOptions(Object navigatorOptions) {
+	public void setNavigatorOptions(PlotOptionsSeries navigatorOptions) {
 		this.navigatorOptions = navigatorOptions;
 	}
 

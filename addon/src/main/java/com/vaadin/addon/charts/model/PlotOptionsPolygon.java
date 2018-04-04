@@ -73,7 +73,7 @@ public class PlotOptionsPolygon extends AbstractPlotOptions {
 	private DataGrouping dataGrouping;
 	private String gapUnit;
 	private Number legendIndex;
-	private Object navigatorOptions;
+	private PlotOptionsSeries navigatorOptions;
 	private PointPlacement pointPlacement;
 	private Number pointRange;
 	private Boolean showInNavigator;
@@ -920,12 +920,9 @@ public class PlotOptionsPolygon extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setNavigatorOptions(Object)
+	 * @see #setNavigatorOptions(PlotOptionsSeries)
 	 */
-	public Object getNavigatorOptions() {
-		if (navigatorOptions == null) {
-			navigatorOptions = new Object();
-		}
+	public PlotOptionsSeries getNavigatorOptions() {
 		return navigatorOptions;
 	}
 
@@ -946,7 +943,7 @@ public class PlotOptionsPolygon extends AbstractPlotOptions {
 	 * <p>
 	 * Defaults to: undefined
 	 */
-	public void setNavigatorOptions(Object navigatorOptions) {
+	public void setNavigatorOptions(PlotOptionsSeries navigatorOptions) {
 		this.navigatorOptions = navigatorOptions;
 	}
 

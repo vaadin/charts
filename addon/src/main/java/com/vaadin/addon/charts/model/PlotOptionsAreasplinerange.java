@@ -80,7 +80,7 @@ public class PlotOptionsAreasplinerange extends AreaOptions {
 	private Number gapSize;
 	private String gapUnit;
 	private Number legendIndex;
-	private Object navigatorOptions;
+	private PlotOptionsSeries navigatorOptions;
 	private Number pointRange;
 	private Boolean showInNavigator;
 	private Stacking stacking;
@@ -1107,12 +1107,9 @@ public class PlotOptionsAreasplinerange extends AreaOptions {
 	}
 
 	/**
-	 * @see #setNavigatorOptions(Object)
+	 * @see #setNavigatorOptions(PlotOptionsSeries)
 	 */
-	public Object getNavigatorOptions() {
-		if (navigatorOptions == null) {
-			navigatorOptions = new Object();
-		}
+	public PlotOptionsSeries getNavigatorOptions() {
 		return navigatorOptions;
 	}
 
@@ -1133,7 +1130,7 @@ public class PlotOptionsAreasplinerange extends AreaOptions {
 	 * <p>
 	 * Defaults to: undefined
 	 */
-	public void setNavigatorOptions(Object navigatorOptions) {
+	public void setNavigatorOptions(PlotOptionsSeries navigatorOptions) {
 		this.navigatorOptions = navigatorOptions;
 	}
 
