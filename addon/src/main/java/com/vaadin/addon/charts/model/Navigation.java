@@ -45,7 +45,17 @@ public class Navigation extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * <p>
 	 * A collection of options for buttons appearing in the exporting module.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the buttons are styled with the
+	 * <code>.highcharts-contextbutton</code> and
+	 * <code>.highcharts-button-symbol</code> class.
+	 * </p>
 	 */
 	public void setButtonOptions(ButtonOptions buttonOptions) {
 		this.buttonOptions = buttonOptions;
@@ -64,14 +74,9 @@ public class Navigation extends AbstractConfigurationObject {
 	/**
 	 * CSS styles for the hover state of the individual items within the popup
 	 * menu appearing by default when the export icon is clicked. The menu items
-	 * are rendered in HTML. Defaults to
-	 * 
-	 * <pre>
-	 * menuItemHoverStyle: {
-	 * 		background: '#4572A5',
-	 * 		color: '#FFFFFF'
-	 * 	}
-	 * </pre>
+	 * are rendered in HTML.
+	 * <p>
+	 * Defaults to: { "background": "#335cad", "color": "#ffffff" }
 	 */
 	public void setMenuItemHoverStyle(Style menuItemHoverStyle) {
 		this.menuItemHoverStyle = menuItemHoverStyle;
@@ -90,15 +95,10 @@ public class Navigation extends AbstractConfigurationObject {
 	/**
 	 * CSS styles for the individual items within the popup menu appearing by
 	 * default when the export icon is clicked. The menu items are rendered in
-	 * HTML. Defaults to
-	 * 
-	 * <pre>
-	 * menuItemStyle: {
-	 * 		padding: '0 5px',
-	 * 		background: NONE,
-	 * 		color: '#303030'
-	 * 	}
-	 * </pre>
+	 * HTML.
+	 * <p>
+	 * Defaults to: { "padding": "0.5em 1em", "color": "#333333", "background":
+	 * "none" }
 	 */
 	public void setMenuItemStyle(Style menuItemStyle) {
 		this.menuItemStyle = menuItemStyle;
@@ -116,14 +116,10 @@ public class Navigation extends AbstractConfigurationObject {
 
 	/**
 	 * CSS styles for the popup menu appearing by default when the export icon
-	 * is clicked. This menu is rendered in HTML. Defaults to
-	 * 
-	 * <pre>
-	 * menuStyle: {
-	 * 		border: '1px solid #A0A0A0',
-	 * 		background: '#FFFFFF'
-	 * 	}
-	 * </pre>
+	 * is clicked. This menu is rendered in HTML.
+	 * <p>
+	 * Defaults to: { "border": "1px solid #999999", "background": "#ffffff",
+	 * "padding": "5px 0" }
 	 */
 	public void setMenuStyle(Style menuStyle) {
 		this.menuStyle = menuStyle;

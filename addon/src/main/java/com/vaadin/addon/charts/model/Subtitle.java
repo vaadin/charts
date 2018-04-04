@@ -31,6 +31,7 @@ public class Subtitle extends AbstractConfigurationObject {
 	private String text;
 	private Boolean useHTML;
 	private VerticalAlign verticalAlign;
+	private Number widthAdjust;
 	private Number x;
 	private Number y;
 
@@ -82,11 +83,18 @@ public class Subtitle extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * CSS styles for the title. Exact positioning of the title can be achieved
-	 * by changing the margin property, or by adding
-	 * <code>position: "absolute"</code> and left and top properties.
 	 * <p>
-	 * Defaults to: { "color": "#555555" }
+	 * CSS styles for the title.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the subtitle style is given in the
+	 * <code>.highcharts-subtitle</code> class.
+	 * </p>
+	 * <p>
+	 * Defaults to: { "color": "#666666" }
 	 */
 	public void setStyle(Style style) {
 		this.style = style;
@@ -143,6 +151,23 @@ public class Subtitle extends AbstractConfigurationObject {
 	 */
 	public void setVerticalAlign(VerticalAlign verticalAlign) {
 		this.verticalAlign = verticalAlign;
+	}
+
+	/**
+	 * @see #setWidthAdjust(Number)
+	 */
+	public Number getWidthAdjust() {
+		return widthAdjust;
+	}
+
+	/**
+	 * Adjustment made to the subtitle width, normally to reserve space for the
+	 * exporting burger menu.
+	 * <p>
+	 * Defaults to: -44
+	 */
+	public void setWidthAdjust(Number widthAdjust) {
+		this.widthAdjust = widthAdjust;
 	}
 
 	/**

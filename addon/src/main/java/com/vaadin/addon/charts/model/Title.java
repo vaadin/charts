@@ -101,8 +101,17 @@ public class Title extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * <p>
 	 * CSS styles for the title. Use this for font styling, but use
 	 * <code>align</code>, <code>x</code> and <code>y</code> for text alignment.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the title style is given in the
+	 * <code>.highcharts-title</code> class.
+	 * </p>
 	 * <p>
 	 * Defaults to: { "color": "#333333", "fontSize": "18px" }
 	 */
@@ -157,10 +166,10 @@ public class Title extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * The vertical alignment of the title. Can be one of "top", "middle" and
-	 * "bottom". When a value is given, the title behaves as floating.
-	 * <p>
-	 * Defaults to:
+	 * The vertical alignment of the title. Can be one of <code>"top"</code>,
+	 * <code>"middle"</code> and <code>"bottom"</code>. When a value is given,
+	 * the title behaves as if <a href="#title.floating">floating</a> were
+	 * <code>true</code>.
 	 */
 	public void setVerticalAlign(VerticalAlign verticalAlign) {
 		this.verticalAlign = verticalAlign;

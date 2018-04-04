@@ -20,7 +20,16 @@ package com.vaadin.addon.charts.model;
 import javax.annotation.Generated;
 import com.vaadin.addon.charts.model.style.Color;
 /**
+ * <p>
  * Options for the dial or arrow pointer of the gauge.
+ * </p>
+ * 
+ * <p>
+ * In <a
+ * href="http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+ * >styled mode</a>, the dial is styled with the
+ * <code>.highcharts-gauge-series .highcharts-dial</code> rule.
+ * </p>
  */
 @Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class Dial extends AbstractConfigurationObject {
@@ -47,7 +56,7 @@ public class Dial extends AbstractConfigurationObject {
 	/**
 	 * The background or fill color of the gauge's dial.
 	 * <p>
-	 * Defaults to: black
+	 * Defaults to: #000000
 	 */
 	public void setBackgroundColor(Color backgroundColor) {
 		this.backgroundColor = backgroundColor;
@@ -99,7 +108,7 @@ public class Dial extends AbstractConfigurationObject {
 	 * borderWidth is 0, so this must be set in addition to a custom border
 	 * color.
 	 * <p>
-	 * Defaults to: silver
+	 * Defaults to: #cccccc
 	 */
 	public void setBorderColor(Color borderColor) {
 		this.borderColor = borderColor;

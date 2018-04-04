@@ -82,18 +82,7 @@ public class Credits extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * Position configuration for the credits label. Supported properties are
-	 * <code>align</code>, <code>verticalAlign</code>, <code>x</code> and
-	 * <code>y</code>. Defaults to
-	 * 
-	 * <pre>
-	 * position: {
-	 * 		align: 'right',
-	 * 		x: -10,
-	 * 		verticalAlign: 'bottom',
-	 * 		y: -5
-	 * 	}
-	 * </pre>
+	 * Position configuration for the credits label.
 	 */
 	public void setPosition(Position position) {
 		this.position = position;
@@ -110,16 +99,10 @@ public class Credits extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * CSS styles for the credits label. Defaults to:
-	 * 
-	 * <pre>
-	 * style: {
-	 * 		cursor: 'pointer',
-	 * 		color: '#909090',
-	 * 		fontSize: '10px'
-	 * 
-	 * 	}
-	 * </pre>
+	 * CSS styles for the credits label.
+	 * <p>
+	 * Defaults to: { "cursor": "pointer", "color": "#999999", "fontSize":
+	 * "10px" }
 	 */
 	public void setStyle(Style style) {
 		this.style = style;

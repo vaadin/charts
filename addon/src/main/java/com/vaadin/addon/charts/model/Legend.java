@@ -52,6 +52,7 @@ public class Legend extends AbstractConfigurationObject {
 	private Boolean reversed;
 	private Boolean rtl;
 	private Boolean shadow;
+	private Boolean squareSymbol;
 	private Number symbolHeight;
 	private Number symbolPadding;
 	private Number symbolRadius;
@@ -115,7 +116,7 @@ public class Legend extends AbstractConfigurationObject {
 	/**
 	 * The color of the drawn border around the legend.
 	 * <p>
-	 * Defaults to: #909090
+	 * Defaults to: #999999
 	 */
 	public void setBorderColor(Color borderColor) {
 		this.borderColor = borderColor;
@@ -221,13 +222,9 @@ public class Legend extends AbstractConfigurationObject {
 	 * CSS styles for each legend item when the corresponding series or point is
 	 * hidden. Only a subset of CSS is supported, notably those options related
 	 * to text. Properties are inherited from <code>style</code> unless
-	 * overridden here. Defaults to:
-	 * 
-	 * <pre>
-	 * itemHiddenStyle: {
-	 * 		color: '#CCC'
-	 * 	}
-	 * </pre>
+	 * overridden here.
+	 * <p>
+	 * Defaults to: { "color": "#cccccc" }
 	 */
 	public void setItemHiddenStyle(Style itemHiddenStyle) {
 		this.itemHiddenStyle = itemHiddenStyle;
@@ -246,13 +243,9 @@ public class Legend extends AbstractConfigurationObject {
 	/**
 	 * CSS styles for each legend item in hover mode. Only a subset of CSS is
 	 * supported, notably those options related to text. Properties are
-	 * inherited from <code>style</code> unless overridden here. Defaults to:
-	 * 
-	 * <pre>
-	 * itemHoverStyle: {
-	 * 		color: '#000'
-	 * 	}
-	 * </pre>
+	 * inherited from <code>style</code> unless overridden here.
+	 * <p>
+	 * Defaults to: { "color": "#000000" }
 	 */
 	public void setItemHoverStyle(Style itemHoverStyle) {
 		this.itemHoverStyle = itemHoverStyle;
@@ -302,10 +295,13 @@ public class Legend extends AbstractConfigurationObject {
 
 	/**
 	 * CSS styles for each legend item. Only a subset of CSS is supported,
-	 * notably those options related to text.
+	 * notably those options related to text. The default
+	 * <code>textOverflow</code> property makes long texts truncate. Set it to
+	 * <code>null</code> to wrap text instead. A <code>width</code> property can
+	 * be added to control the text width.
 	 * <p>
 	 * Defaults to: { "color": "#333333", "cursor": "pointer", "fontSize":
-	 * "12px", "fontWeight": "bold" }
+	 * "12px", "fontWeight": "bold", "textOverflow": "ellipsis" }
 	 */
 	public void setItemStyle(Style itemStyle) {
 		this.itemStyle = itemStyle;
@@ -434,7 +430,7 @@ public class Legend extends AbstractConfigurationObject {
 	 * Options for the paging or navigation appearing when the legend is
 	 * overflown. Navigation works well on screen, but not in static exported
 	 * images. One way of working around that is to <a href=
-	 * "http://jsfiddle.net/gh/get/jquery/1.7.2/highslide-software/highcharts.com/tree/master/samples/highcharts/legend/navigation-enabled-false/"
+	 * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/navigation-enabled-false/"
 	 * >increase the chart height in export</a>.
 	 */
 	public void setNavigation(LegendNavigation navigation) {
@@ -512,6 +508,23 @@ public class Legend extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * @see #setSquareSymbol(Boolean)
+	 */
+	public Boolean getSquareSymbol() {
+		return squareSymbol;
+	}
+
+	/**
+	 * When this is true, the legend symbol width will be the same as the symbol
+	 * height, which in turn defaults to the font size of the legend items.
+	 * <p>
+	 * Defaults to: true
+	 */
+	public void setSquareSymbol(Boolean squareSymbol) {
+		this.squareSymbol = squareSymbol;
+	}
+
+	/**
 	 * @see #setSymbolHeight(Number)
 	 */
 	public Number getSymbolHeight() {
@@ -552,9 +565,7 @@ public class Legend extends AbstractConfigurationObject {
 
 	/**
 	 * The border radius of the symbol for series types that use a rectangle in
-	 * the legend.
-	 * <p>
-	 * Defaults to: 0
+	 * the legend. Defaults to half the <code>symbolHeight</code>.
 	 */
 	public void setSymbolRadius(Number symbolRadius) {
 		this.symbolRadius = symbolRadius;
@@ -568,9 +579,9 @@ public class Legend extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * The pixel width of the legend item symbol.
-	 * <p>
-	 * Defaults to: 16
+	 * The pixel width of the legend item symbol. When the
+	 * <code>squareSymbol</code> option is set, this defaults to the
+	 * <code>symbolHeight</code>, otherwise 16.
 	 */
 	public void setSymbolWidth(Number symbolWidth) {
 		this.symbolWidth = symbolWidth;

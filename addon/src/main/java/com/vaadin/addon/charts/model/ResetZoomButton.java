@@ -44,9 +44,7 @@ public class ResetZoomButton extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * The position of the button. This is an object that can hold the
-	 * properties <code>align</code>, <code>verticalAlign</code>, <code>x</code>
-	 * and <code>y</code>.
+	 * The position of the button.
 	 */
 	public void setPosition(Position position) {
 		this.position = position;

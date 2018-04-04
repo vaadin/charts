@@ -28,6 +28,7 @@ public class Frame extends AbstractConfigurationObject {
 	private Back back;
 	private Bottom bottom;
 	private Side side;
+	private Top top;
 
 	public Frame() {
 	}
@@ -77,9 +78,33 @@ public class Frame extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * <p>
+	 * Note: As of v5.0.12, <code>frame.left</code> or <code>frame.right</code>
+	 * should be used instead.
+	 * </p>
+	 * 
+	 * <p>
 	 * The side for the frame around a 3D chart.
+	 * </p>
 	 */
 	public void setSide(Side side) {
 		this.side = side;
+	}
+
+	/**
+	 * @see #setTop(Top)
+	 */
+	public Top getTop() {
+		if (top == null) {
+			top = new Top();
+		}
+		return top;
+	}
+
+	/**
+	 * The top of the frame around a 3D chart.
+	 */
+	public void setTop(Top top) {
+		this.top = top;
 	}
 }

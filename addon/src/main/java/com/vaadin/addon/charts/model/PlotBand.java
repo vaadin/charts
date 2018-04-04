@@ -34,6 +34,7 @@ public class PlotBand extends AbstractConfigurationObject {
 
 	private Color borderColor;
 	private Number borderWidth;
+	private String className;
 	private Color color;
 	private Number from;
 	private String id;
@@ -82,6 +83,21 @@ public class PlotBand extends AbstractConfigurationObject {
 	 */
 	public void setBorderWidth(Number borderWidth) {
 		this.borderWidth = borderWidth;
+	}
+
+	/**
+	 * @see #setClassName(String)
+	 */
+	public String getClassName() {
+		return className;
+	}
+
+	/**
+	 * A custom class name, in addition to the default
+	 * <code>highcharts-plot-band</code>, to apply to each individual band.
+	 */
+	public void setClassName(String className) {
+		this.className = className;
 	}
 
 	/**

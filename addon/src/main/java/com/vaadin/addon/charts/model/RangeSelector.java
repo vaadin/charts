@@ -130,6 +130,18 @@ public class RangeSelector extends AbstractConfigurationObject {
 	 * presentational options for <code>hover</code>, <code>select</code> or
 	 * <code>disabled</code> button states.
 	 * </p>
+	 * 
+	 * <p>
+	 * CSS styles for the text label.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the buttons are styled by the
+	 * <code>.highcharts-range-selector-buttons .highcharts-button</code> rule
+	 * with its different states.
+	 * </p>
 	 */
 	public void setButtonTheme(ButtonTheme buttonTheme) {
 		this.buttonTheme = buttonTheme;
@@ -148,26 +160,9 @@ public class RangeSelector extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * An array of configuration objects for the buttons. The individual options
-	 * for each item are:
-	 * 
-	 * <dl>
-	 * <dt><code>type</code></dt>
-	 * <dd>Defines the timespan, can be one of 'millisecond', 'second',
-	 * 'minute', 'day', 'week', 'month', 'ytd' (year to date), 'year' and 'all'.
-	 * </dd>
-	 * 
-	 * <dt><code>count</code></dt>
-	 * <dd>Defines how many units of the defined type to use.</dd>
-	 * 
-	 * <dt><code>dataGrouping</code></dt>
-	 * <dd>A custom data grouping definition for the button.</dd>
-	 * 
-	 * <dt><code>text</code></dt>
-	 * <dd>The text for the button itself</dd>
-	 * 
-	 * </dl>
-	 * 
+	 * <p>
+	 * An array of configuration objects for the buttons.
+	 * </p>
 	 * 
 	 * Defaults to
 	 * 
@@ -274,7 +269,7 @@ public class RangeSelector extends AbstractConfigurationObject {
 	/**
 	 * The border color of the date input boxes.
 	 * <p>
-	 * Defaults to: silver
+	 * Defaults to: #cccccc
 	 */
 	public void setInputBoxBorderColor(Color inputBoxBorderColor) {
 		this.inputBoxBorderColor = inputBoxBorderColor;
@@ -401,7 +396,17 @@ public class RangeSelector extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * <p>
 	 * CSS for the HTML inputs in the range selector.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the inputs are styled by the
+	 * <code>.highcharts-range-input text</code> rule in SVG mode, and
+	 * <code>input.highcharts-range-selector</code> when active.
+	 * </p>
 	 */
 	public void setInputStyle(Style inputStyle) {
 		this.inputStyle = inputStyle;
@@ -418,7 +423,16 @@ public class RangeSelector extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * <p>
 	 * CSS styles for the labels - the Zoom, From and To texts.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the labels are styled by the
+	 * <code>.highcharts-range-label</code> class.
+	 * </p>
 	 */
 	public void setLabelStyle(Style labelStyle) {
 		this.labelStyle = labelStyle;

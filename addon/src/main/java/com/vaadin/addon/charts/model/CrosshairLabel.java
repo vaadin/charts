@@ -20,7 +20,16 @@ package com.vaadin.addon.charts.model;
 import javax.annotation.Generated;
 import com.vaadin.addon.charts.model.style.Color;
 /**
+ * <p>
  * A label on the axis next to the crosshair.
+ * </p>
+ * 
+ * <p>
+ * In <a
+ * href="http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+ * >styled mode</a>, the label is styled with the
+ * <code>.highcharts-crosshair-label</code> class.
+ * </p>
  */
 @Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class CrosshairLabel extends AbstractConfigurationObject {
@@ -64,7 +73,7 @@ public class CrosshairLabel extends AbstractConfigurationObject {
 
 	/**
 	 * The background color for the label. Defaults to the related series color,
-	 * or <code>gray</code> if that is not available.
+	 * or <code>#666666</code> if that is not available.
 	 */
 	public void setBackgroundColor(Color backgroundColor) {
 		this.backgroundColor = backgroundColor;

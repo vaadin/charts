@@ -20,7 +20,18 @@ package com.vaadin.addon.charts.model;
 import javax.annotation.Generated;
 import com.vaadin.addon.charts.model.style.Color;
 /**
+ * <p>
  * Options for the handles for dragging the zoomed area.
+ * </p>
+ * 
+ * <p>
+ * In <a
+ * href="http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+ * >styled mode</a>, the navigator handles are styled with the
+ * <code>.highcharts-navigator-handle</code>,
+ * <code>.highcharts-navigator-handle-left</code> and
+ * <code>.highcharts-navigator-handle-right</code> classes.
+ * </p>
  */
 @Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class Handles extends AbstractConfigurationObject {
@@ -41,7 +52,7 @@ public class Handles extends AbstractConfigurationObject {
 	/**
 	 * The fill for the handle.
 	 * <p>
-	 * Defaults to: #ebe7e8
+	 * Defaults to: #f2f2f2
 	 */
 	public void setBackgroundColor(Color backgroundColor) {
 		this.backgroundColor = backgroundColor;
@@ -57,7 +68,7 @@ public class Handles extends AbstractConfigurationObject {
 	/**
 	 * The stroke for the handle border and the stripes inside.
 	 * <p>
-	 * Defaults to: #b2b1b6
+	 * Defaults to: #999999
 	 */
 	public void setBorderColor(Color borderColor) {
 		this.borderColor = borderColor;

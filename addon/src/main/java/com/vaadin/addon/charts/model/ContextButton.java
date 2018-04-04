@@ -128,7 +128,7 @@ public class ContextButton extends AbstractConfigurationObject {
 	 * href="#navigation.buttonOptions">navigation.buttonOptions</a> =&gt;
 	 * symbolFill.
 	 * <p>
-	 * Defaults to: #A8BF77
+	 * Defaults to: #666666
 	 */
 	public void setSymbolFill(Color symbolFill) {
 		this.symbolFill = symbolFill;
@@ -160,7 +160,7 @@ public class ContextButton extends AbstractConfigurationObject {
 	/**
 	 * The color of the symbol's stroke or line.
 	 * <p>
-	 * Defaults to: #666
+	 * Defaults to: #666666
 	 */
 	public void setSymbolStroke(Color symbolStroke) {
 		this.symbolStroke = symbolStroke;

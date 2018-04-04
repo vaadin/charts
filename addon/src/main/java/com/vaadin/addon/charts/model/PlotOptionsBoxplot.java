@@ -39,15 +39,21 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 
 	private Boolean allowPointSelect;
 	private Number animationLimit;
+	private String className;
 	private Color color;
 	private Boolean colorByPoint;
+	private Number colorIndex;
 	private ArrayList<Color> colors;
+	private Boolean crisp;
 	private Cursor cursor;
 	private Number depth;
+	private String description;
 	private Color edgeColor;
 	private Number edgeWidth;
 	private Boolean enableMouseTracking;
+	private Boolean exposeElementToA11y;
 	private Color fillColor;
+	private String findNearestPointBy;
 	private Boolean getExtremesFromAll;
 	private Number groupPadding;
 	private Number groupZPadding;
@@ -59,6 +65,7 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 	private Color medianColor;
 	private Number medianWidth;
 	private Color negativeColor;
+	private Object pointDescriptionFormatter;
 	private Number pointInterval;
 	private IntervalUnit pointIntervalUnit;
 	private Number pointPadding;
@@ -69,6 +76,7 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 	private Boolean selected;
 	private Boolean showCheckbox;
 	private Boolean showInLegend;
+	private Boolean skipKeyboardNavigation;
 	private States states;
 	private Color stemColor;
 	private DashStyle stemDashStyle;
@@ -128,6 +136,20 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 	}
 
 	/**
+	 * @see #setClassName(String)
+	 */
+	public String getClassName() {
+		return className;
+	}
+
+	/**
+	 * A class name to apply to the series' graphical elements.
+	 */
+	public void setClassName(String className) {
+		this.className = className;
+	}
+
+	/**
 	 * @see #setColor(Color)
 	 */
 	public Color getColor() {
@@ -135,10 +157,24 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 	}
 
 	/**
+	 * <p>
 	 * The main color or the series. In line type series it applies to the line
 	 * and the point markers unless otherwise specified. In bar type series it
 	 * applies to the bars unless a color is specified per point. The default
 	 * value is pulled from the <code>options.colors</code> array.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the color can be defined by the <a
+	 * href="#plotOptions.series.colorIndex">colorIndex</a> option. Also, the
+	 * series color can be set with the <code>.highcharts-series</code>,
+	 * <code>.highcharts-color-{n}</code>,
+	 * <code>.highcharts-{type}-series</code> or
+	 * <code>.highcharts-series-{n}</code> class, or individual classes given by
+	 * the <code>className</code> option.
+	 * </p>
 	 */
 	public void setColor(Color color) {
 		this.color = color;
@@ -160,6 +196,24 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 	 */
 	public void setColorByPoint(Boolean colorByPoint) {
 		this.colorByPoint = colorByPoint;
+	}
+
+	/**
+	 * @see #setColorIndex(Number)
+	 */
+	public Number getColorIndex() {
+		return colorIndex;
+	}
+
+	/**
+	 * <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >Styled mode</a> only. A specific color index to use for the series, so
+	 * its graphic representations are given the class name
+	 * <code>highcharts-color-{n}</code>.
+	 */
+	public void setColorIndex(Number colorIndex) {
+		this.colorIndex = colorIndex;
 	}
 
 	/**
@@ -209,6 +263,27 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 	}
 
 	/**
+	 * @see #setCrisp(Boolean)
+	 */
+	public Boolean getCrisp() {
+		return crisp;
+	}
+
+	/**
+	 * When true, each column edge is rounded to its nearest pixel in order to
+	 * render sharp on screen. In some cases, when there are a lot of densely
+	 * packed columns, this leads to visible difference in column widths or
+	 * distance between columns. In these cases, setting <code>crisp</code> to
+	 * <code>false</code> may look better, even though each column is rendered
+	 * blurry.
+	 * <p>
+	 * Defaults to: true
+	 */
+	public void setCrisp(Boolean crisp) {
+		this.crisp = crisp;
+	}
+
+	/**
 	 * @see #setCursor(Cursor)
 	 */
 	public Cursor getCursor() {
@@ -239,6 +314,28 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 	 */
 	public void setDepth(Number depth) {
 		this.depth = depth;
+	}
+
+	/**
+	 * @see #setDescription(String)
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * <p>
+	 * <i>Requires Accessibility module</i>
+	 * </p>
+	 * <p>
+	 * A description of the series to add to the screen reader information about
+	 * the series.
+	 * </p>
+	 * <p>
+	 * Defaults to: undefined
+	 */
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	/**
@@ -292,6 +389,31 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 	}
 
 	/**
+	 * @see #setExposeElementToA11y(Boolean)
+	 */
+	public Boolean getExposeElementToA11y() {
+		return exposeElementToA11y;
+	}
+
+	/**
+	 * <p>
+	 * By default, series are exposed to screen readers as regions. By enabling
+	 * this option, the series element itself will be exposed in the same way as
+	 * the data points. This is useful if the series is not used as a grouping
+	 * entity in the chart, but you still want to attach a description to the
+	 * series.
+	 * </p>
+	 * <p>
+	 * Requires the Accessibility module.
+	 * </p>
+	 * <p>
+	 * Defaults to: undefined
+	 */
+	public void setExposeElementToA11y(Boolean exposeElementToA11y) {
+		this.exposeElementToA11y = exposeElementToA11y;
+	}
+
+	/**
 	 * @see #setFillColor(Color)
 	 */
 	public Color getFillColor() {
@@ -301,10 +423,34 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 	/**
 	 * The fill color of the box.
 	 * <p>
-	 * Defaults to: #FFFFFF
+	 * Defaults to: #ffffff
 	 */
 	public void setFillColor(Color fillColor) {
 		this.fillColor = fillColor;
+	}
+
+	/**
+	 * @see #setFindNearestPointBy(String)
+	 */
+	public String getFindNearestPointBy() {
+		return findNearestPointBy;
+	}
+
+	/**
+	 * <p>
+	 * Determines whether the series should look for the nearest point in both
+	 * dimensions or just the x-dimension when hovering the series. Defaults to
+	 * <code>'xy'</code> for scatter series and <code>'x'</code> for most other
+	 * series. If the data has duplicate x-values, it is recommended to set this
+	 * to <code>'xy'</code> to allow hovering over all points.
+	 * </p>
+	 * <p>
+	 * Applies only to series types using nearest neighbor search (not direct
+	 * hover) for tooltip.
+	 * </p>
+	 */
+	public void setFindNearestPointBy(String findNearestPointBy) {
+		this.findNearestPointBy = findNearestPointBy;
 	}
 
 	/**
@@ -529,6 +675,25 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 	}
 
 	/**
+	 * @see #setPointDescriptionFormatter(Object)
+	 */
+	public Object getPointDescriptionFormatter() {
+		if (pointDescriptionFormatter == null) {
+			pointDescriptionFormatter = new Object();
+		}
+		return pointDescriptionFormatter;
+	}
+
+	/**
+	 * Same as <a href="#accessibility.pointDescriptionFormatter">accessibility.
+	 * pointDescriptionFormatter</a>, but for an individual series. Overrides
+	 * the chart wide configuration.
+	 */
+	public void setPointDescriptionFormatter(Object pointDescriptionFormatter) {
+		this.pointDescriptionFormatter = pointDescriptionFormatter;
+	}
+
+	/**
 	 * @see #setPointInterval(Number)
 	 */
 	public Number getPointInterval() {
@@ -561,7 +726,7 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 
 	/**
 	 * On datetime series, this allows for setting the <a
-	 * href="plotOptions.series.pointInterval">pointInterval</a> to irregular
+	 * href="#plotOptions.series.pointInterval">pointInterval</a> to irregular
 	 * time units, <code>day</code>, <code>month</code> and <code>year</code>. A
 	 * day is usually the same as 24 hours, but pointIntervalUnit also takes the
 	 * DST crossover into consideration when dealing with local time. Combine
@@ -730,6 +895,21 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 	 */
 	public void setShowInLegend(Boolean showInLegend) {
 		this.showInLegend = showInLegend;
+	}
+
+	/**
+	 * @see #setSkipKeyboardNavigation(Boolean)
+	 */
+	public Boolean getSkipKeyboardNavigation() {
+		return skipKeyboardNavigation;
+	}
+
+	/**
+	 * If set to <code>True</code>, the accessibility module will skip past the
+	 * points in this series for keyboard navigation.
+	 */
+	public void setSkipKeyboardNavigation(Boolean skipKeyboardNavigation) {
+		this.skipKeyboardNavigation = skipKeyboardNavigation;
 	}
 
 	/**
@@ -1020,9 +1200,21 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 	}
 
 	/**
+	 * <p>
 	 * An array defining zones within a series. Zones can be applied to the X
 	 * axis, Y axis or Z axis for bubbles, according to the
 	 * <code>zoneAxis</code> option.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the color zones are styled with the
+	 * <code>.highcharts-zone-{n}</code> class, or custom classed from the
+	 * <code>className</code> option (<a href=
+	 * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/color-zones/"
+	 * >view live demo</a>).
+	 * </p>
 	 */
 	public void setZones(Zones... zones) {
 		this.zones = new ArrayList<Zones>(Arrays.asList(zones));

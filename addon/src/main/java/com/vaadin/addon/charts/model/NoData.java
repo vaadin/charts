@@ -69,7 +69,7 @@ public class NoData extends AbstractConfigurationObject {
 	 * CSS styles for the no-data label.
 	 * <p>
 	 * Defaults to: { "fontSize": "12px", "fontWeight": "bold", "color":
-	 * "#60606a" }
+	 * "#666666" }
 	 */
 	public void setStyle(Style style) {
 		this.style = style;

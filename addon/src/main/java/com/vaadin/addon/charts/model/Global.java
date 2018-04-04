@@ -35,7 +35,7 @@ import javax.annotation.Generated;
 public class Global extends AbstractConfigurationObject {
 
 	private String VMLRadialGradientURL;
-	private String canvasToolsURL;
+	private String timezone;
 	private Number timezoneOffset;
 	private Boolean useUTC;
 
@@ -61,24 +61,24 @@ public class Global extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setCanvasToolsURL(String)
+	 * @see #setTimezone(String)
 	 */
-	public String getCanvasToolsURL() {
-		return canvasToolsURL;
+	public String getTimezone() {
+		return timezone;
 	}
 
 	/**
-	 * The URL to the additional file to lazy load for Android 2.x devices.
-	 * These devices don't support SVG, so we download a helper file that
-	 * contains <a href="http://code.google.com/p/canvg/">canvg</a>, its
-	 * dependency rbcolor, and our own CanVG Renderer class. To avoid hotlinking
-	 * to our site, you can install canvas-tools.js on your own server and
-	 * change this option accordingly.
+	 * Requires <a href="http://momentjs.com/">moment.js</a>. If the timezone
+	 * option is specified, it creates a default <a
+	 * href="#global.getTimezoneOffset">getTimezoneOffset</a> function that
+	 * looks up the specified timezone in moment.js. If moment.js is not
+	 * included, this throws a Highcharts error in the console, but does not
+	 * crash the chart.
 	 * <p>
-	 * Defaults to: http://code.highcharts.com/{version}/modules/canvas-tools.js
+	 * Defaults to: undefined
 	 */
-	public void setCanvasToolsURL(String canvasToolsURL) {
-		this.canvasToolsURL = canvasToolsURL;
+	public void setTimezone(String timezone) {
+		this.timezone = timezone;
 	}
 
 	/**

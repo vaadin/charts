@@ -20,7 +20,16 @@ package com.vaadin.addon.charts.model;
 import javax.annotation.Generated;
 import com.vaadin.addon.charts.model.style.Color;
 /**
+ * <p>
  * Options for the pivot or the center point of the gauge.
+ * </p>
+ * 
+ * <p>
+ * In <a
+ * href="http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+ * >styled mode</a>, the pivot is styled with the
+ * <code>.highcharts-gauge-series .highcharts-pivot</code> rule.
+ * </p>
  */
 @Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class Pivot extends AbstractConfigurationObject {
@@ -43,7 +52,7 @@ public class Pivot extends AbstractConfigurationObject {
 	/**
 	 * The background color or fill of the pivot.
 	 * <p>
-	 * Defaults to: black
+	 * Defaults to: #000000
 	 */
 	public void setBackgroundColor(Color backgroundColor) {
 		this.backgroundColor = backgroundColor;
@@ -60,7 +69,7 @@ public class Pivot extends AbstractConfigurationObject {
 	 * The border or stroke color of the pivot. In able to change this, the
 	 * borderWidth must also be set to something other than the default 0.
 	 * <p>
-	 * Defaults to: silver
+	 * Defaults to: #cccccc
 	 */
 	public void setBorderColor(Color borderColor) {
 		this.borderColor = borderColor;

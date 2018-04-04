@@ -43,7 +43,16 @@ public class Buttons extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * <p>
 	 * Options for the export button.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, export button styles can be applied with the
+	 * <code>.highcharts-contextbutton</code> class.
+	 * </p>
 	 */
 	public void setContextButton(ContextButton contextButton) {
 		this.contextButton = contextButton;

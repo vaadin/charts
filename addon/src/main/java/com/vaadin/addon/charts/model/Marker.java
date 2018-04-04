@@ -104,7 +104,7 @@ public class Marker extends AbstractConfigurationObject {
 	 * The color of the point marker's outline. When <code>null</code>, the
 	 * series' or point's color is used.
 	 * <p>
-	 * Defaults to: #FFFFFF
+	 * Defaults to: #ffffff
 	 */
 	public void setLineColor(Color lineColor) {
 		this.lineColor = lineColor;

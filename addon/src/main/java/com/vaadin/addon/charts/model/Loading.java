@@ -102,16 +102,10 @@ public class Loading extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * CSS styles for the loading screen that covers the plot area. Defaults to:
-	 * 
-	 * <pre>
-	 * style: {
-	 * 		position: 'absolute',
-	 * 		backgroundColor: 'white',
-	 * 		opacity: 0.5,
-	 * 		textAlign: 'center'
-	 * 	}
-	 * </pre>
+	 * CSS styles for the loading screen that covers the plot area.
+	 * <p>
+	 * Defaults to: { "position": "absolute", "backgroundColor": "#ffffff",
+	 * "opacity": 0.5, "textAlign": "center" }
 	 */
 	public void setStyle(Style style) {
 		this.style = style;

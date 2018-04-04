@@ -46,7 +46,8 @@ public class Level extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * Can set borderColor on all points which lies on the same level.
+	 * Can set a <code>borderColor</code> on all points which lies on the same
+	 * level.
 	 */
 	public void setBorderColor(Color borderColor) {
 		this.borderColor = borderColor;

@@ -28,6 +28,7 @@ import javax.annotation.Generated;
 public class Options3d extends AbstractConfigurationObject {
 
 	private Number alpha;
+	private String axisLabelPosition;
 	private Number beta;
 	private Number depth;
 	private Boolean enabled;
@@ -52,6 +53,23 @@ public class Options3d extends AbstractConfigurationObject {
 	 */
 	public void setAlpha(Number alpha) {
 		this.alpha = alpha;
+	}
+
+	/**
+	 * @see #setAxisLabelPosition(String)
+	 */
+	public String getAxisLabelPosition() {
+		return axisLabelPosition;
+	}
+
+	/**
+	 * Set it to <code>"auto"</code> to automatically move the labels to the
+	 * best edge.
+	 * <p>
+	 * Defaults to: null
+	 */
+	public void setAxisLabelPosition(String axisLabelPosition) {
+		this.axisLabelPosition = axisLabelPosition;
 	}
 
 	/**

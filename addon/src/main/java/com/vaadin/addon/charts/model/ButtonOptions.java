@@ -20,7 +20,17 @@ package com.vaadin.addon.charts.model;
 import javax.annotation.Generated;
 import com.vaadin.addon.charts.model.style.Color;
 /**
+ * <p>
  * A collection of options for buttons appearing in the exporting module.
+ * </p>
+ * 
+ * <p>
+ * In <a
+ * href="http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+ * >styled mode</a>, the buttons are styled with the
+ * <code>.highcharts-contextbutton</code> and
+ * <code>.highcharts-button-symbol</code> class.
+ * </p>
  */
 @Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class ButtonOptions extends AbstractConfigurationObject {
@@ -104,7 +114,7 @@ public class ButtonOptions extends AbstractConfigurationObject {
 	/**
 	 * Fill color for the symbol within the button.
 	 * <p>
-	 * Defaults to: #E0E0E0
+	 * Defaults to: #666666
 	 */
 	public void setSymbolFill(Color symbolFill) {
 		this.symbolFill = symbolFill;
@@ -136,7 +146,7 @@ public class ButtonOptions extends AbstractConfigurationObject {
 	/**
 	 * The color of the symbol's stroke or line.
 	 * <p>
-	 * Defaults to: #666
+	 * Defaults to: #666666
 	 */
 	public void setSymbolStroke(Color symbolStroke) {
 		this.symbolStroke = symbolStroke;

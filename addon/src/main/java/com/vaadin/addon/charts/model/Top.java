@@ -20,22 +20,15 @@ package com.vaadin.addon.charts.model;
 import javax.annotation.Generated;
 import com.vaadin.addon.charts.model.style.Color;
 /**
- * <p>
- * Note: As of v5.0.12, <code>frame.left</code> or <code>frame.right</code>
- * should be used instead.
- * </p>
- * 
- * <p>
- * The side for the frame around a 3D chart.
- * </p>
+ * The top of the frame around a 3D chart.
  */
 @Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
-public class Side extends AbstractConfigurationObject {
+public class Top extends AbstractConfigurationObject {
 
 	private Color color;
 	private Number size;
 
-	public Side() {
+	public Top() {
 	}
 
 	/**
@@ -62,7 +55,7 @@ public class Side extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * The thickness of the panel.
+	 * The pixel thickness of the panel.
 	 * <p>
 	 * Defaults to: 1
 	 */

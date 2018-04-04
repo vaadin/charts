@@ -28,6 +28,7 @@ public class AxisTitle extends AbstractConfigurationObject {
 	private VerticalAlign align;
 	private Number margin;
 	private Number offset;
+	private Boolean reserveSpace;
 	private Number rotation;
 	private Style style;
 	private String text;
@@ -89,6 +90,22 @@ public class AxisTitle extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * @see #setReserveSpace(Boolean)
+	 */
+	public Boolean getReserveSpace() {
+		return reserveSpace;
+	}
+
+	/**
+	 * Whether to reserve space for the title when laying out the axis.
+	 * <p>
+	 * Defaults to: true
+	 */
+	public void setReserveSpace(Boolean reserveSpace) {
+		this.reserveSpace = reserveSpace;
+	}
+
+	/**
 	 * @see #setRotation(Number)
 	 */
 	public Number getRotation() {
@@ -116,10 +133,19 @@ public class AxisTitle extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * <p>
 	 * CSS styles for the title. When titles are rotated they are rendered using
 	 * vector graphic techniques and not all styles are applicable.
+	 * </p>
+	 * 
 	 * <p>
-	 * Defaults to: { "color": "#707070", "fontWeight": "bold" }
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the stroke width is given in the
+	 * <code>.highcharts-axis-title</code> class.
+	 * </p>
+	 * <p>
+	 * Defaults to: { "color": "#666666" }
 	 */
 	public void setStyle(Style style) {
 		this.style = style;

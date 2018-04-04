@@ -29,8 +29,11 @@ public class Exporting extends AbstractConfigurationObject {
 	private Boolean allowHTML;
 	private Buttons buttons;
 	private Boolean enabled;
+	private Object error;
 	private Boolean fallbackToExportServer;
 	private String filename;
+	private String libURL;
+	private Object menuItemDefinitions;
 	private Number printMaxWidth;
 	private Number scale;
 	private Number sourceHeight;
@@ -113,6 +116,28 @@ public class Exporting extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * @see #setError(Object)
+	 */
+	public Object getError() {
+		if (error == null) {
+			error = new Object();
+		}
+		return error;
+	}
+
+	/**
+	 * Function to call if the offline-exporting module fails to export a chart
+	 * on the client side, and <a
+	 * href="#exporting.fallbackToExportServer">fallbackToExportServer</a> is
+	 * disabled. If left undefined, an exception is thrown instead.
+	 * <p>
+	 * Defaults to: undefined
+	 */
+	public void setError(Object error) {
+		this.error = error;
+	}
+
+	/**
 	 * @see #setFallbackToExportServer(Boolean)
 	 */
 	public Boolean getFallbackToExportServer() {
@@ -143,6 +168,61 @@ public class Exporting extends AbstractConfigurationObject {
 	 */
 	public void setFilename(String filename) {
 		this.filename = filename;
+	}
+
+	/**
+	 * @see #setLibURL(String)
+	 */
+	public String getLibURL() {
+		return libURL;
+	}
+
+	/**
+	 * Path where Highcharts will look for export module dependencies to load on
+	 * demand if they don't already exist on <code>window</code>.
+	 * 
+	 * Should currently point to location of <a
+	 * href="https://github.com/canvg/canvg">CanVG</a> library, <a
+	 * href="https://github.com/canvg/canvg">RGBColor.js</a>, <a
+	 * href="https://github.com/yWorks/jsPDF">jsPDF</a> and <a
+	 * href="https://github.com/yWorks/svg2pdf.js">svg2pdf.js</a>, required for
+	 * client side export in certain browsers.
+	 * <p>
+	 * Defaults to: https://code.highcharts.com/{version}/lib
+	 */
+	public void setLibURL(String libURL) {
+		this.libURL = libURL;
+	}
+
+	/**
+	 * @see #setMenuItemDefinitions(Object)
+	 */
+	public Object getMenuItemDefinitions() {
+		if (menuItemDefinitions == null) {
+			menuItemDefinitions = new Object();
+		}
+		return menuItemDefinitions;
+	}
+
+	/**
+	 * <p>
+	 * An object consisting of definitions for the menu items in the context
+	 * menu. Each key value pair has a <code>key</code> that is referenced in
+	 * the <a href="#exporting.buttons.contextButton.menuItems">menuItems</a>
+	 * setting, and a <code>value</code>, which is an object with the following
+	 * properties:
+	 * </p>
+	 * <dl>
+	 * <dt>onclick</dt>
+	 * <dd>The click handler for the menu item</dd>
+	 * <dt>text</dt>
+	 * <dd>The text for the menu item</dt>
+	 * <dt>textKey</dt>
+	 * <dd>If internationalization is required, the key to a language string</dd>
+	 * <dl>
+	 */
+	public void setMenuItemDefinitions(Object menuItemDefinitions) {
+		this.menuItemDefinitions = menuItemDefinitions;
 	}
 
 	/**
@@ -244,7 +324,7 @@ public class Exporting extends AbstractConfigurationObject {
 	 * The URL for the server module converting the SVG string to an image
 	 * format. By default this points to Highchart's free web service.
 	 * <p>
-	 * Defaults to: http://export.highcharts.com
+	 * Defaults to: https://export.highcharts.com
 	 */
 	public void setUrl(String url) {
 		this.url = url;

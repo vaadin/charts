@@ -34,6 +34,7 @@ public class Navigator extends AbstractConfigurationObject {
 	private Number margin;
 	private Color maskFill;
 	private Boolean maskInside;
+	private Boolean opposite;
 	private Color outlineColor;
 	private Number outlineWidth;
 	private PlotOptionsSeries series;
@@ -95,7 +96,18 @@ public class Navigator extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * <p>
 	 * Options for the handles for dragging the zoomed area.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the navigator handles are styled with the
+	 * <code>.highcharts-navigator-handle</code>,
+	 * <code>.highcharts-navigator-handle-left</code> and
+	 * <code>.highcharts-navigator-handle-right</code> classes.
+	 * </p>
 	 */
 	public void setHandles(Handles handles) {
 		this.handles = handles;
@@ -145,7 +157,7 @@ public class Navigator extends AbstractConfigurationObject {
 	 * currently not visible in the main series. The default color is bluish
 	 * with an opacity of 0.3 to see the series below.
 	 * <p>
-	 * Defaults to: rgba(128,179,236,0.3)
+	 * Defaults to: rgba(102,133,194,0.3)
 	 */
 	public void setMaskFill(Color maskFill) {
 		this.maskFill = maskFill;
@@ -169,6 +181,23 @@ public class Navigator extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * @see #setOpposite(Boolean)
+	 */
+	public Boolean getOpposite() {
+		return opposite;
+	}
+
+	/**
+	 * When the chart is inverted, whether to draw the navigator on the opposite
+	 * side.
+	 * <p>
+	 * Defaults to: false
+	 */
+	public void setOpposite(Boolean opposite) {
+		this.opposite = opposite;
+	}
+
+	/**
 	 * @see #setOutlineColor(Color)
 	 */
 	public Color getOutlineColor() {
@@ -178,7 +207,7 @@ public class Navigator extends AbstractConfigurationObject {
 	/**
 	 * The color of the line marking the currently zoomed area in the navigator.
 	 * <p>
-	 * Defaults to: #b2b1b6
+	 * Defaults to: #cccccc
 	 */
 	public void setOutlineColor(Color outlineColor) {
 		this.outlineColor = outlineColor;

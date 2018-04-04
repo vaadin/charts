@@ -24,7 +24,7 @@ import com.vaadin.addon.charts.model.style.Style;
  * Options for the paging or navigation appearing when the legend is overflown.
  * Navigation works well on screen, but not in static exported images. One way
  * of working around that is to <a href=
- * "http://jsfiddle.net/gh/get/jquery/1.7.2/highslide-software/highcharts.com/tree/master/samples/highcharts/legend/navigation-enabled-false/"
+ * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/navigation-enabled-false/"
  * >increase the chart height in export</a>.
  */
 @Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
@@ -50,7 +50,7 @@ public class LegendNavigation extends AbstractConfigurationObject {
 	/**
 	 * The color for the active up or down arrow in the legend page navigation.
 	 * <p>
-	 * Defaults to: #3E576F
+	 * Defaults to: #003399
 	 */
 	public void setActiveColor(Color activeColor) {
 		this.activeColor = activeColor;
@@ -104,8 +104,17 @@ public class LegendNavigation extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * <p>
 	 * Whether to enable the legend navigation. In most cases, disabling the
 	 * navigation results in an unwanted overflow.
+	 * </p>
+	 * 
+	 * <p>
+	 * See also the <a href=
+	 * "http://www.highcharts.com/plugin-registry/single/8/Adapt-Chart-To-Legend"
+	 * >adapt chart to legend</a> plugin for a solution to extend the chart
+	 * height to make room for the legend, optionally in exported charts only.
+	 * </p>
 	 * <p>
 	 * Defaults to: true
 	 */
@@ -124,7 +133,7 @@ public class LegendNavigation extends AbstractConfigurationObject {
 	 * The color of the inactive up or down arrow in the legend page navigation.
 	 * .
 	 * <p>
-	 * Defaults to: #CCC
+	 * Defaults to: #cccccc
 	 */
 	public void setInactiveColor(Color inactiveColor) {
 		this.inactiveColor = inactiveColor;
