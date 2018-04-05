@@ -1,3 +1,4 @@
+[![Published on vaadin.com/directory](https://img.shields.io/vaadin-directory/status/vaadin-charts.svg)](https://vaadin.com/directory/component/vaadin-charts)
 # Vaadin Charts
 
 Vaadin Charts is a UI component add-on for Vaadin Framework 7+ which provides means to create multiple different types of charts in Vaadin applications.
