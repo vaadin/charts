@@ -65,7 +65,7 @@ key is checked during widget set compilation, so you do not need it when
 deploying the application.
 
 You can purchase Vaadin Charts or obtain a free trial key from the
-link:https://vaadin.com/directory#addon/vaadin-charts[Vaadin Charts download
+link:https://vaadin.com/directory/component/vaadin-charts[Vaadin Charts download
 page] in Vaadin Directory. You need to register in Vaadin Directory to obtain
 the key.
 
