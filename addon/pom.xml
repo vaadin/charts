@@ -50,7 +50,7 @@
 						<manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
 						<index>true</index>
 						<manifest>
-							<addClasspath>true</addClasspath>
+							<addClasspath>false</addClasspath>
 							<!-- Implementation-Title and Implementation-Version come from the 
 								POM by default -->
 							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
