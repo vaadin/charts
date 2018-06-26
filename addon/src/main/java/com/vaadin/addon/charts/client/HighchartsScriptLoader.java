@@ -10,10 +10,10 @@ import com.google.gwt.core.client.GWT;
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
- * 
+ *
  * See the file licensing.txt distributed with this software for more
  * information about licensing.
- * 
+ *
  * You should have received a copy of the CVALv3 along with this program.
  * If not, see <https://vaadin.com/license/cval-3>.
  * #L%
@@ -53,10 +53,13 @@ public class HighchartsScriptLoader {
         if (!hasHeatmap()) {
             inject(HighchartResources.INSTANCE.heatmap().getText());
         }
+        // Inject highchartsmore only if not already injected
+        if (!hasHighchartsMore()) {
+            inject(HighchartResources.INSTANCE.highchartsMore().getText());
+        }
         // Inject other resources only if not already injected
         if (!hasExtraImports()) {
             inject(HighchartResources.INSTANCE.noData().getText());
-            inject(HighchartResources.INSTANCE.highchartsMore().getText());
             inject(HighchartResources.INSTANCE.funnel().getText());
             inject(HighchartResources.INSTANCE.exporting().getText());
             inject(HighchartResources.INSTANCE.defaultTheme().getText());
@@ -90,12 +93,19 @@ public class HighchartsScriptLoader {
 
     /**
      * Funnel should be enough to check that extra modules are missing
-     * 
+     *
      * @return true if other imports were loaded
      */
     protected native static boolean hasExtraImports()
     /*-{
         if($wnd.Highcharts.seriesTypes.funnel)
+            return true;
+        return false;
+    }-*/;
+
+    protected native static boolean hasHighchartsMore()
+    /*-{
+        if($wnd.Highcharts.seriesTypes.bubble)
             return true;
         return false;
     }-*/;
