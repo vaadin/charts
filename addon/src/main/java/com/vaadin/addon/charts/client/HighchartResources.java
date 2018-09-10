@@ -41,9 +41,6 @@ public interface HighchartResources extends ClientBundle {
     @Source("vaadintheme.js")
     TextResource defaultTheme();
 
-    @Source("standalone-framework.js")
-    TextResource standaloneframework();
-
     @Source("exporting.js")
     TextResource exporting();
 
