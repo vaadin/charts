@@ -128,10 +128,15 @@ function render(configstr, themeStr, langStr, width, height, timeline) {
 
 		// dynamic script insertion
 		function loadScript(varStr, codeStr) {
-			var $script = $('<script>').attr('type', 'text/javascript');
-			$script.html('var ' + varStr + ' = ' + codeStr);
-			document.getElementsByTagName("head")[0].appendChild($script[0]);
-		}
+			var $script = document.createElement('script');
+			$script.type = 'text/javascript';
+
+			var code = 'var ' + varStr + ' = ' + codeStr +  ';';			
+			var inlineScript = document.createTextNode(code);
+			$script.appendChild(inlineScript) ;
+
+			document.getElementsByTagName('head')[0].appendChild($script);
+		} 
 
 		// are all images loaded in time?
 		function logCounter(counter) {
@@ -143,7 +148,7 @@ function render(configstr, themeStr, langStr, width, height, timeline) {
 
 		function loadImages() {
 			// are images loaded?
-			var $images = $('svg image'), counter, i, img;
+			var $images = document.querySelectorAll('svg image'), counter, i, img;
 
 			if ($images.length > 0) {
 
