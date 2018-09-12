@@ -41,10 +41,6 @@ public class HighchartsScriptLoader {
     }
 
     protected void injectResources() {
-        // As jquery is so popular, inject it conditionally
-        if (!hasJQuery()) {
-            inject(HighchartResources.INSTANCE.standaloneframework().getText());
-        }
         // Inject highcharts only if not already injected
         if (!hasHighcharts()) {
             inject(HighchartResources.INSTANCE.highstock().getText());
@@ -69,13 +65,6 @@ public class HighchartsScriptLoader {
             inject(HighchartResources.INSTANCE.drilldown().getText());
         }
     }
-
-    protected native static boolean hasJQuery()
-    /*-{
-        if($wnd.jQuery)
-            return true;
-        return false;
-    }-*/;
 
     protected native static boolean hasHighcharts()
     /*-{

@@ -22,27 +22,37 @@ public class HighchartsPluginScriptLoader extends HighchartsScriptLoader {
 
     @Override
     protected void injectResources() {
-        // As jquery is so popular, inject it conditionally
-        if (!hasJQuery()) {
-            inject(HighchartResources.INSTANCE.jquery().getText());
+    	
+        // Inject highcharts only if not already injected
+        if (!hasHighcharts()) {
+            inject(HighchartResources.INSTANCE.highstock().getText());
         }
-        // This would be default, but we also demo using newer highcharts version
-//        inject(HighchartResources.INSTANCE.highcharts().getText());
+        // Load heatmap before treemap
+        if (!hasHeatmap()) {
+            inject(HighchartResources.INSTANCE.heatmap().getText());
+        }
+        // Inject highchartsmore only if not already injected
+        if (!hasHighchartsMore()) {
+            inject(HighchartResources.INSTANCE.highchartsMore().getText());
+        }
 
-        inject(HighchartPluginResources.INSTANCE.highcharts3().getText());
-        
-        // Map plugin needs to be injected before defaultTheme and after jquery
-        // and highcharts
+        // Map plugin needs to be injected before defaultTheme and after highcharts
         inject(HighchartPluginResources.INSTANCE.worldMapShapes().getText());
         inject(HighchartPluginResources.INSTANCE.mapSrcJs().getText());
+        inject(HighchartPluginResources.INSTANCE.dataSrcJs().getText());
 
-        // This is new extra module in HC3
-        inject(HighchartPluginResources.INSTANCE.funnel().getText());
-        
-        // inject(HighchartResources.INSTANCE.highchartsMore().getText());
-        // inject(HighchartResources.INSTANCE.exporting().getText());
-        inject(HighchartPluginResources.INSTANCE.more3().getText());
-        inject(HighchartPluginResources.INSTANCE.exporting3().getText());
-        inject(HighchartResources.INSTANCE.defaultTheme().getText());
+        // Inject other resources only if not already injected
+        if (!hasExtraImports()) {
+            inject(HighchartResources.INSTANCE.noData().getText());
+            inject(HighchartResources.INSTANCE.funnel().getText());
+            inject(HighchartResources.INSTANCE.exporting().getText());
+            inject(HighchartResources.INSTANCE.defaultTheme().getText());
+            inject(HighchartResources.INSTANCE.highcharts3d().getText());
+            inject(HighchartResources.INSTANCE.solidGauge().getText());
+            inject(HighchartResources.INSTANCE.treemap().getText());
+            inject(HighchartResources.INSTANCE.drilldown().getText());
+        }
     }
+    
+    
 }
