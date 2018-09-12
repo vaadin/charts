@@ -15,16 +15,5 @@ public interface HighchartPluginResources extends ClientBundle {
     @Source("map.src.js")
     TextResource mapSrcJs();
 
-    @Source("highcharts.js")
-    TextResource highcharts3();
-
-    @Source("highcharts-more.js")
-    TextResource more3();
-
-    @Source("funnel.js")
-    TextResource funnel();
-
-    @Source("exporting.js")
-    TextResource exporting3();
 
 }

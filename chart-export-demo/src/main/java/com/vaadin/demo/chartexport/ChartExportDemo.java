@@ -14,9 +14,9 @@ import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.Cursor;
+import com.vaadin.addon.charts.model.DataLabels;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
-import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.PlotOptionsPie;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.addon.charts.util.SVGGenerator;
@@ -161,7 +161,7 @@ public class ChartExportDemo extends VerticalLayout {
 
         PlotOptionsPie plotOptions = new PlotOptionsPie();
         plotOptions.setCursor(Cursor.POINTER);
-        Labels dataLabels = new Labels();
+        DataLabels dataLabels = new DataLabels();
         dataLabels.setEnabled(true);
         dataLabels.setColor(new SolidColor(0, 0, 0));
         dataLabels.setConnectorColor(new SolidColor(0, 0, 0));
