@@ -10,7 +10,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<vaadin.version>7.3.6</vaadin.version>
+		<vaadin.version>7.5.4</vaadin.version>
 		<vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
 		<vaadin.charts.version>3.0-SNAPSHOT</vaadin.charts.version>
 		<batik.version>1.7</batik.version>
