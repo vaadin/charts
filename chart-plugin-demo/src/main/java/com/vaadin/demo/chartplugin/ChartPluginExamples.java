@@ -6,7 +6,6 @@ import java.util.Random;
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.model.ChartModel;
 import com.vaadin.addon.charts.model.Configuration;
-import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.HorizontalAlign;
 import com.vaadin.addon.charts.model.LayoutDirection;
@@ -20,7 +19,6 @@ import com.vaadin.demo.chartplugin.model.CustomChartTypes;
 import com.vaadin.demo.chartplugin.model.MapSeries;
 import com.vaadin.demo.chartplugin.model.ValueRange;
 import com.vaadin.shared.ui.label.ContentMode;
-import com.vaadin.ui.Component;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
@@ -77,7 +75,7 @@ public class ChartPluginExamples extends VerticalLayout {
         yAxis.setReversed(true);
 
         Legend legend = configuration.getLegend();
-        legend.setHorizontalAlign(HorizontalAlign.LEFT);
+        legend.setAlign(HorizontalAlign.LEFT);
         legend.setVerticalAlign(VerticalAlign.BOTTOM);
         legend.setFloating(true);
         legend.setLayout(LayoutDirection.VERTICAL);

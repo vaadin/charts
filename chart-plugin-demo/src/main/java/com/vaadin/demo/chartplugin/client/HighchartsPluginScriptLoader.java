@@ -20,29 +20,25 @@ import com.vaadin.addon.charts.client.HighchartsScriptLoader;
  */
 public class HighchartsPluginScriptLoader extends HighchartsScriptLoader {
 
-    @Override
-    protected void injectResources() {
-        // As jquery is so popular, inject it conditionally
-        if (!hasJQuery()) {
-            inject(HighchartResources.INSTANCE.jquery().getText());
-        }
-        // This would be default, but we also demo using newer highcharts version
-//        inject(HighchartResources.INSTANCE.highcharts().getText());
+	@Override
+	protected void injectResources() {
 
-        inject(HighchartPluginResources.INSTANCE.highcharts3().getText());
-        
-        // Map plugin needs to be injected before defaultTheme and after jquery
-        // and highcharts
-        inject(HighchartPluginResources.INSTANCE.worldMapShapes().getText());
-        inject(HighchartPluginResources.INSTANCE.mapSrcJs().getText());
-
-        // This is new extra module in HC3
-        inject(HighchartPluginResources.INSTANCE.funnel().getText());
-        
-        // inject(HighchartResources.INSTANCE.highchartsMore().getText());
-        // inject(HighchartResources.INSTANCE.exporting().getText());
-        inject(HighchartPluginResources.INSTANCE.more3().getText());
-        inject(HighchartPluginResources.INSTANCE.exporting3().getText());
-        inject(HighchartResources.INSTANCE.defaultTheme().getText());
-    }
+		// Inject highcharts only if not already injected
+		if (!hasHighcharts()) {
+			inject(HighchartResources.INSTANCE.highstock().getText());
+			inject(HighchartResources.INSTANCE.noData().getText());
+			inject(HighchartResources.INSTANCE.highchartsMore().getText());
+			inject(HighchartResources.INSTANCE.funnel().getText());
+			inject(HighchartResources.INSTANCE.exporting().getText());
+			// Map plugin needs to be injected before defaultTheme and after highcharts
+			inject(HighchartPluginResources.INSTANCE.worldMapShapes().getText());
+			inject(HighchartPluginResources.INSTANCE.mapSrcJs().getText());
+			inject(HighchartResources.INSTANCE.defaultTheme().getText());
+			inject(HighchartResources.INSTANCE.highcharts3d().getText());
+			inject(HighchartResources.INSTANCE.solidGauge().getText());
+			inject(HighchartResources.INSTANCE.heatmap().getText());
+			inject(HighchartResources.INSTANCE.treemap().getText());
+			inject(HighchartResources.INSTANCE.drilldown().getText());
+		}
+	}
 }
