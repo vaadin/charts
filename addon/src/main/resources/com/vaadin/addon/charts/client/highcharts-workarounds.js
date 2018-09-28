@@ -1,8 +1,18 @@
 //workaround for plotband labels issues with modern browsers
 //https://github.com/highcharts/highcharts/issues/8997
 
-(function(H) {
-  H.Axis.prototype.getPlotBandPath = function(from, to) {
+(function(Highcharts) {
+
+
+  Highcharts.wrap(Highcharts.Axis.prototype, 'getPlotLinePath', function(proceed) {
+    var path = proceed.apply(this, Array.prototype.slice.call(arguments, 1));
+    if (path) {
+      path.flat = false;
+    }
+    return path;
+  });
+
+  Highcharts.Axis.prototype.getPlotBandPath = function(from, to) {
     var toPath = this.getPlotLinePath(to, null, null, true), path = this
         .getPlotLinePath(from, null, null, true), result = [], i,
     // #4964 check if chart is inverted or plotband is on yAxis
