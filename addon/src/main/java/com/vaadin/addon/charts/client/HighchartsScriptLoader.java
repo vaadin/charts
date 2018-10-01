@@ -44,6 +44,7 @@ public class HighchartsScriptLoader {
         // Inject highcharts only if not already injected
         if (!hasHighcharts()) {
             inject(HighchartResources.INSTANCE.highstock().getText());
+            inject(HighchartResources.INSTANCE.highchartsWorkarounds().getText());
         }
         // Load heatmap before treemap
         if (!hasHeatmap()) {

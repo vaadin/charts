@@ -63,7 +63,49 @@ public class SplineWithPlotBands extends AbstractVaadinChartExample {
         // disable alternate grid color from Vaadin theme, disturbs
         // demonstrating plotbands
         yAxis.setAlternateGridColor(TRANSPARENT);
+        createPlotBands(yAxis);
 
+        configuration
+                .getTooltip().setValueSuffix(" m/s");
+
+        PlotOptionsSpline plotOptions = new PlotOptionsSpline();
+        configuration.setPlotOptions(plotOptions);
+        plotOptions.setMarker(new Marker(false));
+        plotOptions.getMarker().setLineWidth(4);
+        plotOptions.getMarker().setSymbol(MarkerSymbolEnum.CIRCLE);
+        States states = new States();
+        Hover hover = new Hover(true);
+        hover.setRadius(5);
+        hover.setLineWidth(1);
+        states.setHover(hover);
+        plotOptions.getMarker().setStates(states);
+
+        plotOptions.setPointInterval(ONE_HOUR);
+        LocalDate date =LocalDate.of(2009,9,6);
+        plotOptions.setPointStart(date.atStartOfDay().toInstant(ZoneOffset.UTC));
+
+        ListSeries ls = new ListSeries();
+        ls.setName("Hestavollane");
+        ls.setData(4.3, 5.1, 4.3, 5.2, 5.4, 4.7, 3.5, 4.1, 5.6, 7.4, 6.9, 7.1,
+                7.9, 7.9, 7.5, 6.7, 7.7, 7.7, 7.4, 7.0, 7.1, 5.8, 5.9, 7.4,
+                8.2, 8.5, 9.4, 8.1, 10.9, 10.4, 10.9, 12.4, 12.1, 9.5, 7.5,
+                7.1, 7.5, 8.1, 6.8, 3.4, 2.1, 1.9, 2.8, 2.9, 1.3, 4.4, 4.2,
+                3.0, 3.0);
+        configuration.addSeries(ls);
+
+        ls = new ListSeries();
+        ls.setName("Voll");
+        ls.setData(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.1, 0.0, 0.3, 0.0,
+                0.0, 0.4, 0.0, 0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                0.0, 0.6, 1.2, 1.7, 0.7, 2.9, 4.1, 2.6, 3.7, 3.9, 1.7, 2.3,
+                3.0, 3.3, 4.8, 5.0, 4.8, 5.0, 3.2, 2.0, 0.9, 0.4, 0.3, 0.5, 0.4);
+        configuration.addSeries(ls);
+
+        chart.drawChart(configuration);
+        return chart;
+    }
+    
+    protected void createPlotBands(YAxis yAxis) {
         Style style = new Style();
         style.setColor(LIGHT_GRAY);
 
@@ -118,46 +160,5 @@ public class SplineWithPlotBands extends AbstractVaadinChartExample {
 
         yAxis.setPlotBands(lightAir, lightBreeze, gentleBreeze, moderateBreeze,
                 freshBreeze, strongBreeze, highWind);
-
-        configuration
-                .getTooltip()
-                .setFormatter(
-                        "Highcharts.dateFormat('%e. %b %Y, %H:00', this.x) +': '+ this.y +' m/s'");
-
-        PlotOptionsSpline plotOptions = new PlotOptionsSpline();
-        configuration.setPlotOptions(plotOptions);
-        plotOptions.setMarker(new Marker(false));
-        plotOptions.getMarker().setLineWidth(4);
-        plotOptions.getMarker().setSymbol(MarkerSymbolEnum.CIRCLE);
-        States states = new States();
-        Hover hover = new Hover(true);
-        hover.setRadius(5);
-        hover.setLineWidth(1);
-        states.setHover(hover);
-        plotOptions.getMarker().setStates(states);
-
-        plotOptions.setPointInterval(ONE_HOUR);
-        LocalDate date =LocalDate.of(2009,9,6);
-        plotOptions.setPointStart(date.atStartOfDay().toInstant(ZoneOffset.UTC));
-
-        ListSeries ls = new ListSeries();
-        ls.setName("Hestavollane");
-        ls.setData(4.3, 5.1, 4.3, 5.2, 5.4, 4.7, 3.5, 4.1, 5.6, 7.4, 6.9, 7.1,
-                7.9, 7.9, 7.5, 6.7, 7.7, 7.7, 7.4, 7.0, 7.1, 5.8, 5.9, 7.4,
-                8.2, 8.5, 9.4, 8.1, 10.9, 10.4, 10.9, 12.4, 12.1, 9.5, 7.5,
-                7.1, 7.5, 8.1, 6.8, 3.4, 2.1, 1.9, 2.8, 2.9, 1.3, 4.4, 4.2,
-                3.0, 3.0);
-        configuration.addSeries(ls);
-
-        ls = new ListSeries();
-        ls.setName("Voll");
-        ls.setData(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.1, 0.0, 0.3, 0.0,
-                0.0, 0.4, 0.0, 0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-                0.0, 0.6, 1.2, 1.7, 0.7, 2.9, 4.1, 2.6, 3.7, 3.9, 1.7, 2.3,
-                3.0, 3.3, 4.8, 5.0, 4.8, 5.0, 3.2, 2.0, 0.9, 0.4, 0.3, 0.5, 0.4);
-        configuration.addSeries(ls);
-
-        chart.drawChart(configuration);
-        return chart;
     }
 }
