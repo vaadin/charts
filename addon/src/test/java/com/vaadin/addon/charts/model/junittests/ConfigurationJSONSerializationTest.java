@@ -1,10 +1,5 @@
 package com.vaadin.addon.charts.model.junittests;
 
-import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
-
 import com.vaadin.addon.charts.events.AxisRescaledEvent;
 import com.vaadin.addon.charts.events.ConfigurationChangeListener;
 import com.vaadin.addon.charts.events.DataAddedEvent;
@@ -14,8 +9,14 @@ import com.vaadin.addon.charts.events.ItemSlicedEvent;
 import com.vaadin.addon.charts.events.SeriesChangedEvent;
 import com.vaadin.addon.charts.events.SeriesStateEvent;
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.Lang;
 import com.vaadin.addon.charts.model.Series;
 import com.vaadin.addon.charts.model.YAxis;
+
+import org.junit.Test;
+
+import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Tests for the JSON serialization in {@link Configuration}
@@ -92,5 +93,24 @@ public class ConfigurationJSONSerializationTest {
         assertEquals(
                 "{\"yAxis\":{\"axisIndex\":0},\"plotOptions\":{},\"series\":[],\"exporting\":{\"enabled\":false}}",
                 toJSON(conf));
+    }
+
+    @Test
+    public void configurationJSONSerialization_configurationSerializedWithLang_langConfigurationSerialized() {
+        Configuration conf = new Configuration();
+        Lang lang = new Lang();
+        lang.setNoData("No data for chart");
+        conf.setLang(lang);
+        assertEquals(
+          "{\"plotOptions\":{},\"series\":[],\"exporting\":{\"enabled\":false},\"lang\":{\"noData\":\"No data for chart\"}}",
+          toJSON(conf));
+    }
+
+    @Test
+    public void configurationJSONSerialization_configurationSerializedWithoutLang_langConfigurationNotSerialized() {
+        Configuration conf = new Configuration();
+        assertEquals(
+          "{\"plotOptions\":{},\"series\":[],\"exporting\":{\"enabled\":false}}",
+          toJSON(conf));
     }
 }
