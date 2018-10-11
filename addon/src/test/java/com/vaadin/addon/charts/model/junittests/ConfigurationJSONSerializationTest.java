@@ -1,5 +1,10 @@
 package com.vaadin.addon.charts.model.junittests;
 
+import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
+
 import com.vaadin.addon.charts.events.AxisRescaledEvent;
 import com.vaadin.addon.charts.events.ConfigurationChangeListener;
 import com.vaadin.addon.charts.events.DataAddedEvent;
@@ -12,11 +17,6 @@ import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.Lang;
 import com.vaadin.addon.charts.model.Series;
 import com.vaadin.addon.charts.model.YAxis;
-
-import org.junit.Test;
-
-import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
-import static org.junit.Assert.assertEquals;
 
 /**
  * Tests for the JSON serialization in {@link Configuration}
