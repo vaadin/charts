@@ -67,6 +67,7 @@ public class Configuration extends AbstractConfigurationObject
     private Navigation navigation;
     private NoData noData;
     private Navigator navigator;
+    private Lang lang;
 
     @JsonIgnore
     private final List<ConfigurationChangeListener> changeListeners = new ArrayList<ConfigurationChangeListener>();
@@ -798,6 +799,23 @@ public class Configuration extends AbstractConfigurationObject
      */
     public void setNavigator(Navigator navigator) {
         this.navigator = navigator;
+    }
+
+    /**
+     * @see #setLang(Lang)
+     */
+    public Lang getLang() {
+        return this.lang;
+    }
+
+    /**
+     * Returns the {@link Lang} in use or {@code null} if no lang configuration
+     * has been set.
+     *
+     * @return the {@link Lang} in use or {@code null}.
+     */
+    public void setLang(final Lang lang) {
+        this.lang = lang;
     }
 
     /**
