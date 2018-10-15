@@ -67,6 +67,7 @@ public class Configuration extends AbstractConfigurationObject
     private Navigation navigation;
     private NoData noData;
     private Navigator navigator;
+    private Lang lang;
 
     @JsonIgnore
     private final List<ConfigurationChangeListener> changeListeners = new ArrayList<ConfigurationChangeListener>();
