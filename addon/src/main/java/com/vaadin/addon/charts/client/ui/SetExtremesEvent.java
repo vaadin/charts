@@ -32,12 +32,20 @@ public class SetExtremesEvent extends JavaScriptObject {
 
     public native final double getMin()
     /*-{
-        return this.min;
+        if (this.min) {
+          return this.min;
+        } else {
+          return 0;
+        }
     }-*/;
 
     public native final double getMax()
     /*-{
-        return this.max;
+        if (this.max) {
+          return this.max;
+        } else {
+          return 0;
+        }
     }-*/;
 
 }
