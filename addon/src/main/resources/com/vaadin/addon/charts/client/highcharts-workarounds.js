@@ -1,5 +1,5 @@
 //workaround for plotband labels issues with modern browsers
-//https://github.com/highcharts/highcharts/issues/8997
+//https://github.com/highcharts/highcharts/issues/8997 (Fixed in Highcharts 6.0.2)
 
 (function(Highcharts) {
 
