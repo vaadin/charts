@@ -165,17 +165,21 @@ public class ChartsDemoUI extends UI {
         tabSheet.setSizeFull();
         tabSheet.addStyleName(ValoTheme.TABSHEET_PADDED_TABBAR);
 
-        Link homepage = new Link("Home page", new ExternalResource(
-                "https://vaadin.com/add-ons/charts"));
+        Link homepage = new Link("Home Page", new ExternalResource(
+                "https://vaadin.com/components/vaadin-charts"));
         Link javadoc = new Link("JavaDoc", new ExternalResource(
                 "http://demo.vaadin.com/javadoc/com.vaadin/vaadin-charts/"
                         + getVersion() + "/"));
         Link manual = new Link("Manual", new ExternalResource(
-                "https://vaadin.com/docs/-/part/charts/charts-overview.html"));
+                "https://vaadin.com/docs/v8/charts/charts-overview.html"));
+        Link pricing = new Link("Pricing",
+                new ExternalResource("https://vaadin.com/pricing"));
+
         Label version = new Label("Version " + getVersion());
         version.addStyleName("version");
 
-        HorizontalLayout links = new HorizontalLayout(homepage, javadoc, manual);
+        HorizontalLayout links = new HorizontalLayout(homepage, pricing,
+                javadoc, manual);
         links.setSpacing(true);
         links.addStyleName("links");
 
@@ -219,7 +223,7 @@ public class ChartsDemoUI extends UI {
         content.setSpacing(true);
         content.setMargin(false);
 
-        Label logo = new Label("Vaadin Charts");
+        Label logo = new Label("Vaadin Charts for Vaadin 8");
         logo.setWidth("100%");
         logo.addStyleName("h3");
         logo.addStyleName("logo");
@@ -259,17 +263,17 @@ public class ChartsDemoUI extends UI {
                 }
             }
         });
-        Button feedback = new Button("Got feedback?", FontAwesome.COMMENTING_O);
-        feedback.addStyleName("feedback-button");
-        feedback.addStyleName(ValoTheme.BUTTON_PRIMARY);
-        feedback.addStyleName(ValoTheme.BUTTON_TINY);
-        feedback.addClickListener(e -> {
-            getUI().addWindow(new FeedbackForm());
+
+        Button trial = new Button("Start Free Trial");
+        trial.addStyleName(ValoTheme.BUTTON_PRIMARY);
+        trial.addStyleName(ValoTheme.BUTTON_TINY);
+        trial.addClickListener(e -> {
+            getUI().getPage().open("https://vaadin.com/trial", "_blank");
         });
 
-        content.addComponents(logo, links, feedback, filterField, tree,
+        content.addComponents(logo, links, trial, filterField, tree,
                 version);
-        content.setComponentAlignment(feedback, Alignment.MIDDLE_CENTER);
+        content.setComponentAlignment(trial, Alignment.MIDDLE_CENTER);
         horizontalSplitPanel.setFirstComponent(content);
 
         selectItem();
