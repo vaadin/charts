@@ -66,6 +66,7 @@ public class PlotOptionsSpline extends PointOptions {
 	private Number gapSize;
 	private Number legendIndex;
 	private Number pointRange;
+	private Number zIndex;
 
 	public PlotOptionsSpline() {
 	}
@@ -959,4 +960,15 @@ public class PlotOptionsSpline extends PointOptions {
 	public void setPointStart(Instant instant) {
 		this.pointStart = Util.toHighchartsTS(instant);
 	}
+
+	/**
+	 *
+	 * @param zIndex : Z coordinate
+	 */
+	public void setZindex(Number zIndex) { this.zIndex = zIndex; }
+
+	/**
+	 * @see #setZindex(Number)
+	 */
+	public Number getZindex() { return this.zIndex; }
 }

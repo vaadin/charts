@@ -534,4 +534,16 @@ public abstract class PointOptions extends AbstractPlotOptions {
      * @see #setPointStart(Number)
      */
     public abstract void setPointStart(Date date);
+
+    /**
+     * Set Serie's zIndex value to allow placing on the Z axis
+     * @param zIndex : Z coordinate
+     */
+    public abstract void setZindex(Number zIndex);
+
+    /**
+     *
+     * @see #setZindex(Number)
+     */
+    public abstract Number getZindex();
 }

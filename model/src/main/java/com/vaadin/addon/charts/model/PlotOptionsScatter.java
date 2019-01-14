@@ -62,6 +62,7 @@ public class PlotOptionsScatter extends PointOptions {
 	private PointPlacement pointPlacement;
 	private Number pointRange;
 	private Stacking stacking;
+	private Number zIndex;
 
 	public PlotOptionsScatter() {
 	}
@@ -882,4 +883,15 @@ public class PlotOptionsScatter extends PointOptions {
 	public void setPointStart(Instant instant) {
 		this.pointStart = Util.toHighchartsTS(instant);
 	}
+
+	/**
+	 *
+	 * @param zIndex : Z coordinate
+	 */
+	public void setZindex(Number zIndex) { this.zIndex = zIndex; }
+
+	/**
+	 * @see #setZindex(Number)
+	 */
+	public Number getZindex() { return this.zIndex; }
 }
