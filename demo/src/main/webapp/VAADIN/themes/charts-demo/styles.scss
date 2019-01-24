@@ -70,40 +70,6 @@ $v-included-additional-styles: button;
     }
   }
 
-  #feedback, #email {
-    border-radius: 5px;
-    border: 1px solid #bbb; 
-    width: 100%;
-    font-size: 20px;
-    padding: 10px;
-    max-width:100%;
-    box-sizing: border-box;
-    opacity: 1;
-  }
-
-  #feedback-title {
-    margin-top:0;
-  }
-
-  #panel {
-    padding:30px;
-  }
-
-  #feedback {
-    height: 5em;
-  }
-
-  #submit {
-    padding: 0.4em 0.8em;
-    border: none;
-    background: $v-focus-color;
-    color: white;
-    line-height: 30px;
-    font-size: 20px;
-    margin-top: 30px;
-    border-radius: 5px;
-  }
-
   // Sidebar links
 
   .v-slot-links {

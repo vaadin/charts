@@ -65,4 +65,7 @@ public interface HighchartResources extends ClientBundle {
     @Source("drilldown.js")
     TextResource drilldown();
 
+    @Source("highcharts-workarounds.js")
+    TextResource highchartsWorkarounds();
+
 }
