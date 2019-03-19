@@ -19,6 +19,7 @@ import com.vaadin.ui.Component;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.TimeZone;
 
 @SkipFromDemo
 public class TimeSeriesWithTimeline extends AbstractVaadinChartExample {
@@ -231,7 +232,7 @@ public class TimeSeriesWithTimeline extends AbstractVaadinChartExample {
         configuration.setPlotOptions(plotOptions);
 
         SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
-
+        df.setTimeZone(TimeZone.getTimeZone("UTC"));
         ListSeries ls = new ListSeries();
         PlotOptionsArea options = new PlotOptionsArea();
         options.setPointInterval(DAY_IN_MILLIS);
@@ -239,7 +240,7 @@ public class TimeSeriesWithTimeline extends AbstractVaadinChartExample {
         ls.setName("USD to EUR");
 
         try {
-            options.setPointStart(df.parse("2006/01/02").getTime());
+            options.setPointStart(df.parse("2006/01/01").getTime());
         } catch (ParseException e) {
             e.printStackTrace();
         }
