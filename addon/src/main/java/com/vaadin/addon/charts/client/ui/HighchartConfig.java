@@ -31,7 +31,7 @@ public class HighchartConfig extends JavaScriptObject {
             String jsonState) {
         HighchartConfig conf;
         if (confStr != null) {
-            conf = (HighchartConfig) JSONParser.parseLenient(confStr)
+            conf = (HighchartConfig) JSONParser.parseStrict(confStr)
                     .isObject().getJavaScriptObject();
             conf.prepare();
         } else {

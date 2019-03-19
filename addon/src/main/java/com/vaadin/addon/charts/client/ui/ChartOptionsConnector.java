@@ -39,7 +39,7 @@ public class ChartOptionsConnector extends AbstractExtensionConnector {
         super.onStateChanged(event);
 
         if (getState().json != null) {
-            JavaScriptObject options = JSONParser.parseLenient(getState().json)
+            JavaScriptObject options = JSONParser.parseStrict(getState().json)
                     .isObject().getJavaScriptObject();
             applyOptions(options);
         }
