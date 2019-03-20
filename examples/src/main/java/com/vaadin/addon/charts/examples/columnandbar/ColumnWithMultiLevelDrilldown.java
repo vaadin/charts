@@ -125,41 +125,6 @@ public class ColumnWithMultiLevelDrilldown extends AbstractVaadinChartExample {
 
         regionsSeries.addItemWithDrilldown(regionItem, countriesSeries);
 
-        regionItem = new DataSeriesItem("Western Nations", 50);
-
-        countriesSeries = new DataSeries("Countries");
-        countriesSeries.setId("Western Nations Countries");
-
-        countryItem = new DataSeriesItem("New Zealand", 51.6);
-        detailsSeries = new DataSeries("Details");
-        detailsSeries.setId("Details New Zealand");
-        ys = new Number[] { 80.7, 7.2, 4.3 };
-        detailsSeries.setData(categories, ys);
-        countriesSeries.addItemWithDrilldown(countryItem, detailsSeries);
-
-        countryItem = new DataSeriesItem("Norway", 51.4);
-        detailsSeries = new DataSeries("Details");
-        detailsSeries.setId("Details Norway");
-        ys = new Number[] { 81.1, 7.6, 4.8 };
-        detailsSeries.setData(categories, ys);
-        countriesSeries.addItemWithDrilldown(countryItem, detailsSeries);
-
-        countryItem = new DataSeriesItem("Switzerland", 50.3);
-        detailsSeries = new DataSeries("Details");
-        detailsSeries.setId("Details Switzerland");
-        ys = new Number[] { 82.3, 7.5, 5.0 };
-        detailsSeries.setData(categories, ys);
-        countriesSeries.addItemWithDrilldown(countryItem, detailsSeries);
-
-        countryItem = new DataSeriesItem("United Kingdom", 47.9);
-        detailsSeries = new DataSeries("Details");
-        detailsSeries.setId("Details United Kingdom");
-        ys = new Number[] { 80.2, 7.0, 4.7 };
-        detailsSeries.setData(categories, ys);
-        countriesSeries.addItemWithDrilldown(countryItem, detailsSeries);
-
-        regionsSeries.addItemWithDrilldown(regionItem, countriesSeries);
-
         regionItem = new DataSeriesItem("Middle East and North Africa", 53);
 
         countriesSeries = new DataSeries("Countries");
