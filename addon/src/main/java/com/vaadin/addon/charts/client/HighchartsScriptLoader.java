@@ -64,6 +64,7 @@ public class HighchartsScriptLoader {
             inject(HighchartResources.INSTANCE.solidGauge().getText());
             inject(HighchartResources.INSTANCE.treemap().getText());
             inject(HighchartResources.INSTANCE.drilldown().getText());
+            inject(HighchartResources.INSTANCE.highchartsDrilldownWorkarounds().getText());
         }
     }
 

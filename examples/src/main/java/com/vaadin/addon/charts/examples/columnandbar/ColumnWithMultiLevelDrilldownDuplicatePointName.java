@@ -2,6 +2,7 @@ package com.vaadin.addon.charts.examples.columnandbar;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
+import com.vaadin.addon.charts.examples.SkipFromDemo;
 import com.vaadin.addon.charts.model.AxisType;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
@@ -15,7 +16,9 @@ import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.ui.Component;
 
 @SuppressWarnings("serial")
-public class ColumnWithMultiLevelDrilldown extends AbstractVaadinChartExample {
+@SkipFromDemo
+public class ColumnWithMultiLevelDrilldownDuplicatePointName
+        extends AbstractVaadinChartExample {
 
     @Override
     public String getDescription() {
@@ -74,7 +77,8 @@ public class ColumnWithMultiLevelDrilldown extends AbstractVaadinChartExample {
         detailsSeries.setData(categories, ys);
         countriesSeries.addItemWithDrilldown(countryItem, detailsSeries);
 
-        countryItem = new DataSeriesItem("Belize", 59.3);
+        // Add point with duplicated name
+        countryItem = new DataSeriesItem("Switzerland", 59.3);
         detailsSeries = new DataSeries("Details");
         detailsSeries.setId("Details Belize");
         ys = new Number[] { 76.1, 6.5, 2.1 };
