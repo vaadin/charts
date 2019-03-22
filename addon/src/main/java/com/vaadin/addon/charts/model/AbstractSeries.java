@@ -1,14 +1,10 @@
 package com.vaadin.addon.charts.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonUnwrapped;
-import com.vaadin.addon.charts.Chart;
-
-/*
+/*-
  * #%L
- * Vaadin Charts
+ * Vaadin Charts Addon
  * %%
- * Copyright (C) 2014 Vaadin Ltd
+ * Copyright (C) 2012 - 2019 Vaadin Ltd
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
@@ -20,6 +16,10 @@ import com.vaadin.addon.charts.Chart;
  * If not, see <https://vaadin.com/license/cval-3>.
  * #L%
  */
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
+import com.vaadin.addon.charts.Chart;
 
 /**
  * Abstract base class for series

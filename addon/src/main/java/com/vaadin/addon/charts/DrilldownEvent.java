@@ -1,15 +1,10 @@
 package com.vaadin.addon.charts;
 
-import java.io.Serializable;
-
-import com.vaadin.addon.charts.model.DataSeriesItem;
-import com.vaadin.addon.charts.model.Series;
-
-/*
+/*-
  * #%L
- * Vaadin Charts
+ * Vaadin Charts Addon
  * %%
- * Copyright (C) 2014 Vaadin Ltd
+ * Copyright (C) 2012 - 2019 Vaadin Ltd
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
@@ -21,6 +16,11 @@ import com.vaadin.addon.charts.model.Series;
  * If not, see <https://vaadin.com/license/cval-3>.
  * #L%
  */
+
+import java.io.Serializable;
+
+import com.vaadin.addon.charts.model.DataSeriesItem;
+import com.vaadin.addon.charts.model.Series;
 
 /**
  * The DrilldownEvent class stores information on click events in drilldown
