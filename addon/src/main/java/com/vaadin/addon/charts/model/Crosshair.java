@@ -1,10 +1,10 @@
 package com.vaadin.addon.charts.model;
 
-/*
+/*-
  * #%L
  * Vaadin Charts Addon
  * %%
- * Copyright (C) 2012 - 2018 Vaadin Ltd
+ * Copyright (C) 2012 - 2019 Vaadin Ltd
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
