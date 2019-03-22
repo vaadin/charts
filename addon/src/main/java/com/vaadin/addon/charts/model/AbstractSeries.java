@@ -30,6 +30,7 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
     private String name;
     private String stack;
     private String id;
+    private Number zIndex;
 
     @JsonUnwrapped
     private AbstractPlotOptions plotOptions;
@@ -239,6 +240,16 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
                     "This method can only be used if axis is already attached to the same configuration object");
         }
         setyAxis(indexOf);
+    }
+
+    @Override
+    public Number getZIndex() {
+        return zIndex;
+    }
+
+    @Override
+    public void setZIndex(Number zIndex) {
+        this.zIndex = zIndex;
     }
 
 }

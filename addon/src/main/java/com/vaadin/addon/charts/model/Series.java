@@ -37,6 +37,22 @@ public interface Series {
     void setName(String name);
 
     /**
+     * @see #setZIndex(String)
+     * @return the visual z index of the series.
+     */
+    Number getZIndex();
+
+    /**
+     * Define the visual z index of the series. With no z index, the series
+     * defined last are on top. With a z index, the series with the highest z
+     * index is on top.
+     * 
+     * @param zIndex
+     *            to set to the series
+     */
+    void setZIndex(Number zIndex);
+
+    /**
      * Sets the configuration to which this series is linked.
      * 
      * @param configuration

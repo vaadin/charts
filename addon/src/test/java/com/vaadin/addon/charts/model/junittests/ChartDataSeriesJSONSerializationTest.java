@@ -4,6 +4,7 @@ import static com.vaadin.addon.charts.util.ChartSerialization.toJSON;
 import static java.util.Collections.singletonList;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -18,6 +19,7 @@ import org.junit.Test;
 
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataProviderSeries;
+import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.PlotOptionsSeries;
 import com.vaadin.data.provider.DataProvider;
@@ -379,6 +381,16 @@ public class ChartDataSeriesJSONSerializationTest {
         dataProviderSeries.setY(TestItem::getY);
         String actual = toJSON(dataProviderSeries);
         String expected = "{\"data\":[[80,80]]}";
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void serialize_SeriesHasZIndex_zIndexSerialized() {
+        final ListSeries dataSeries = new ListSeries(1,2,3); 
+        dataSeries.setZIndex(134);
+
+        String actual = toJSON(dataSeries);
+        String expected = "{\"zIndex\":134,\"data\":[1,2,3]}";
         assertEquals(expected, actual);
     }
 
