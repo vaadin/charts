@@ -1,10 +1,10 @@
 package com.vaadin.addon.charts.client;
 
-/*
+/*-
  * #%L
- * Vaadin Charts
+ * Vaadin Charts Addon
  * %%
- * Copyright (C) 2014 Vaadin Ltd
+ * Copyright (C) 2012 - 2019 Vaadin Ltd
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
@@ -67,5 +67,8 @@ public interface HighchartResources extends ClientBundle {
 
     @Source("highcharts-workarounds.js")
     TextResource highchartsWorkarounds();
+
+    @Source("highcharts-drilldown-workarounds.js")
+    TextResource highchartsDrilldownWorkarounds();
 
 }

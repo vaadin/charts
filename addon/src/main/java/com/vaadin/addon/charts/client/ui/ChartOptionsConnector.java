@@ -1,10 +1,10 @@
 package com.vaadin.addon.charts.client.ui;
 
-/*
+/*-
  * #%L
- * Vaadin Charts
+ * Vaadin Charts Addon
  * %%
- * Copyright (C) 2014 Vaadin Ltd
+ * Copyright (C) 2012 - 2019 Vaadin Ltd
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
@@ -39,7 +39,7 @@ public class ChartOptionsConnector extends AbstractExtensionConnector {
         super.onStateChanged(event);
 
         if (getState().json != null) {
-            JavaScriptObject options = JSONParser.parseLenient(getState().json)
+            JavaScriptObject options = JSONParser.parseStrict(getState().json)
                     .isObject().getJavaScriptObject();
             applyOptions(options);
         }

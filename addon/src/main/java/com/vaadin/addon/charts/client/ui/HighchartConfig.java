@@ -1,10 +1,10 @@
 package com.vaadin.addon.charts.client.ui;
 
-/*
+/*-
  * #%L
- * Vaadin Charts
+ * Vaadin Charts Addon
  * %%
- * Copyright (C) 2014 Vaadin Ltd
+ * Copyright (C) 2012 - 2019 Vaadin Ltd
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
@@ -31,7 +31,7 @@ public class HighchartConfig extends JavaScriptObject {
             String jsonState) {
         HighchartConfig conf;
         if (confStr != null) {
-            conf = (HighchartConfig) JSONParser.parseLenient(confStr)
+            conf = (HighchartConfig) JSONParser.parseStrict(confStr)
                     .isObject().getJavaScriptObject();
             conf.prepare();
         } else {

@@ -1,14 +1,10 @@
 package com.vaadin.addon.charts.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonUnwrapped;
-import com.vaadin.addon.charts.Chart;
-
-/*
+/*-
  * #%L
- * Vaadin Charts
+ * Vaadin Charts Addon
  * %%
- * Copyright (C) 2014 Vaadin Ltd
+ * Copyright (C) 2012 - 2019 Vaadin Ltd
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
@@ -21,6 +17,10 @@ import com.vaadin.addon.charts.Chart;
  * #L%
  */
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
+import com.vaadin.addon.charts.Chart;
+
 /**
  * Abstract base class for series
  */
@@ -30,6 +30,7 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
     private String name;
     private String stack;
     private String id;
+    private Number zIndex;
 
     @JsonUnwrapped
     private AbstractPlotOptions plotOptions;
@@ -239,6 +240,16 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
                     "This method can only be used if axis is already attached to the same configuration object");
         }
         setyAxis(indexOf);
+    }
+
+    @Override
+    public Number getZIndex() {
+        return zIndex;
+    }
+
+    @Override
+    public void setZIndex(Number zIndex) {
+        this.zIndex = zIndex;
     }
 
 }

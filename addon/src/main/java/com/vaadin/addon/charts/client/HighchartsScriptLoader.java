@@ -1,23 +1,23 @@
 package com.vaadin.addon.charts.client;
 
-import com.google.gwt.core.client.GWT;
-
-/*
+/*-
  * #%L
- * Vaadin Charts
+ * Vaadin Charts Addon
  * %%
- * Copyright (C) 2014 Vaadin Ltd
+ * Copyright (C) 2012 - 2019 Vaadin Ltd
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
- *
+ * 
  * See the file licensing.txt distributed with this software for more
  * information about licensing.
- *
+ * 
  * You should have received a copy of the CVALv3 along with this program.
  * If not, see <https://vaadin.com/license/cval-3>.
  * #L%
  */
+
+import com.google.gwt.core.client.GWT;
 
 /**
  * Helper to load the JavaScripts required by Highcharts
@@ -64,6 +64,7 @@ public class HighchartsScriptLoader {
             inject(HighchartResources.INSTANCE.solidGauge().getText());
             inject(HighchartResources.INSTANCE.treemap().getText());
             inject(HighchartResources.INSTANCE.drilldown().getText());
+            inject(HighchartResources.INSTANCE.highchartsDrilldownWorkarounds().getText());
         }
     }
 

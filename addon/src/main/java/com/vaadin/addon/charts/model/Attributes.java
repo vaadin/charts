@@ -1,13 +1,10 @@
 package com.vaadin.addon.charts.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.vaadin.addon.charts.model.style.Color;
-
-/*
+/*-
  * #%L
- * Vaadin Charts
+ * Vaadin Charts Addon
  * %%
- * Copyright (C) 2014 Vaadin Ltd
+ * Copyright (C) 2012 - 2019 Vaadin Ltd
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
@@ -19,6 +16,9 @@ import com.vaadin.addon.charts.model.style.Color;
  * If not, see <https://vaadin.com/license/cval-3>.
  * #L%
  */
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.vaadin.addon.charts.model.style.Color;
 
 /**
  * A collection of style attributes for the {@link Halo}

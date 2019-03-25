@@ -1,10 +1,10 @@
 package com.vaadin.addon.charts.model;
 
-/*
+/*-
  * #%L
- * Vaadin Charts
+ * Vaadin Charts Addon
  * %%
- * Copyright (C) 2014 Vaadin Ltd
+ * Copyright (C) 2012 - 2019 Vaadin Ltd
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
@@ -35,6 +35,22 @@ public interface Series {
      * @param name
      */
     void setName(String name);
+
+    /**
+     * @see #setZIndex(String)
+     * @return the visual z index of the series.
+     */
+    Number getZIndex();
+
+    /**
+     * Define the visual z index of the series. With no z index, the series
+     * defined last are on top. With a z index, the series with the highest z
+     * index is on top.
+     * 
+     * @param zIndex
+     *            to set to the series
+     */
+    void setZIndex(Number zIndex);
 
     /**
      * Sets the configuration to which this series is linked.
