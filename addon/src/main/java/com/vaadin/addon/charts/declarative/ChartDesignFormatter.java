@@ -17,8 +17,6 @@ package com.vaadin.addon.charts.declarative;
  * #L%
  */
 
-import java.util.Locale;
-
 import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.data.Converter;
@@ -36,7 +34,7 @@ public class ChartDesignFormatter extends DesignFormatter {
             @Override
             public Result<Number> convertToModel(String value,
                     ValueContext context) {
-                return convertToNumber(value, getLocaleFromContext(context));
+                return convertToNumber(value, context);
             }
         });
 
@@ -56,11 +54,6 @@ public class ChartDesignFormatter extends DesignFormatter {
                 return null;
             }
         });
-    }
-
-    private static Locale getLocaleFromContext(ValueContext context) {
-        return context.getLocale().isPresent() ? context.getLocale().get()
-                : Locale.getDefault();
     }
 
     @Override
