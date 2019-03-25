@@ -156,4 +156,19 @@ public class ChartType implements ChartEnum {
     public String toString() {
         return type;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ChartType)) return false;
+
+        ChartType chartType = (ChartType) o;
+
+        return type != null ? type.equals(chartType.type) : chartType.type == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return type != null ? type.hashCode() : 0;
+    }
 }
