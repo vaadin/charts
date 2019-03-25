@@ -6,8 +6,7 @@ public class BasicLineWithRedGridColorTBTest extends
         AbstractSimpleScreenShotTestBenchTest {
 
     protected String getTestViewName() {
-        String simpleName = BasicLineWithRedGridLines.class.getSimpleName();
-        return simpleName;
+        return BasicLineWithRedGridLines.class.getSimpleName();
     }
 
     @Override
