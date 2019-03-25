@@ -2,11 +2,10 @@ package com.vaadin.addon.charts.testbenchtests;
 
 import com.vaadin.addon.charts.examples.lineandscatter.LineWithDashSelector;
 
-public class DashLineTBTest extends AbstractSimpleScreenShotTestBenchTest {
+public class LineWithDashSelectorTBTest extends AbstractSimpleScreenShotTestBenchTest {
 
     protected String getTestViewName() {
-        String simpleName = LineWithDashSelector.class.getSimpleName();
-        return simpleName;
+        return LineWithDashSelector.class.getSimpleName();
     }
 
     @Override
