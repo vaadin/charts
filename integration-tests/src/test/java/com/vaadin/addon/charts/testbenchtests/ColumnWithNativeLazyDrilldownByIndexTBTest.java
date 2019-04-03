@@ -4,8 +4,6 @@ import java.io.IOException;
 
 import org.junit.Test;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
 
 import com.vaadin.addon.charts.examples.columnandbar.ColumnWithNativeLazyDrilldownByIndex;
 import com.vaadin.testbench.By;
