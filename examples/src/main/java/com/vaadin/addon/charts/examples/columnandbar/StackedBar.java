@@ -42,6 +42,7 @@ public class StackedBar extends AbstractVaadinChartExample {
         Legend legend = new Legend();
         legend.setBackgroundColor(new SolidColor("#FFFFFF"));
         legend.setReversed(true);
+        conf.setLegend(legend);
 
         Tooltip tooltip = new Tooltip();
         tooltip.setFormatter("this.series.name +': '+ this.y");
