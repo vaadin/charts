@@ -1,6 +1,5 @@
 package com.vaadin.addon.charts.testbenchtests;
 
-import com.vaadin.addon.charts.examples.timeline.Candlestick;
 import com.vaadin.addon.charts.examples.timeline.FlagsPlacement;
 
 public class FlagsPlacementTBTest extends
