@@ -15,6 +15,7 @@ import com.vaadin.addon.charts.events.SeriesChangedEvent;
 import com.vaadin.addon.charts.events.SeriesStateEvent;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.Lang;
+import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.Series;
 import com.vaadin.addon.charts.model.YAxis;
 
@@ -111,6 +112,16 @@ public class ConfigurationJSONSerializationTest {
         Configuration conf = new Configuration();
         assertEquals(
           "{\"plotOptions\":{},\"series\":[],\"exporting\":{\"enabled\":false}}",
+          toJSON(conf));
+    }
+
+    @Test
+    public void configurationJSONSerialization_setSeriesAddSeries_noExceptions() {
+        Configuration conf = new Configuration();
+        conf.setSeries(new ListSeries(),new ListSeries());
+        conf.addSeries(new ListSeries());
+        assertEquals(
+          "{\"plotOptions\":{},\"series\":[{\"data\":[]},{\"data\":[]},{\"data\":[]}],\"exporting\":{\"enabled\":false}}",
           toJSON(conf));
     }
 }
