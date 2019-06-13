@@ -18,6 +18,7 @@ package com.vaadin.addon.charts.client.ui;
  */
 
 import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.dom.client.NativeEvent;
 
 public class SeriesEvent extends JavaScriptObject {
 
@@ -50,6 +51,15 @@ public class SeriesEvent extends JavaScriptObject {
           return this.target.index;
         }
         return this.target.x;
+    }-*/;
+
+    /**
+     * Returns the native (actual event) that triggered this SeriesEvent
+     * @return the native browser event for this SeriesEvent
+     */
+    public native final NativeEvent getBrowserEvent()
+    /*-{
+        return this.browserEvent;
     }-*/;
 
 }

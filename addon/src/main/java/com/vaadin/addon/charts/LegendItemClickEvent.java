@@ -18,6 +18,7 @@ package com.vaadin.addon.charts;
  */
 
 import com.vaadin.addon.charts.model.Series;
+import com.vaadin.addon.charts.shared.MouseEventDetails;
 
 /**
  * The LegendItemClickEvent class stores information on click events on the
@@ -25,16 +26,25 @@ import com.vaadin.addon.charts.model.Series;
  */
 public class LegendItemClickEvent extends AbstractSeriesEvent {
 
+    private MouseEventDetails mouseEventDetails;
+
     /**
      * Constructs a LegendItemClickEvent
      * 
      * @param source
      * @param seriesName
+     * @param mouseEventDetails
      */
-    public LegendItemClickEvent(Chart source, Series series, int seriesItemIndex) {
+    public LegendItemClickEvent(Chart source, Series series, int seriesItemIndex, MouseEventDetails mouseEventDetails) {
         super(source, series, seriesItemIndex);
+        this.mouseEventDetails = mouseEventDetails;
     }
 
-
-
+    /**
+     * Returns the mouse event details for this legend item click
+     * @return
+     */
+    public MouseEventDetails getMouseEventDetails() {
+        return mouseEventDetails;
+    }
 }
