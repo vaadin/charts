@@ -21,7 +21,6 @@ import com.google.gwt.dom.client.NativeEvent;
 import com.google.gwt.user.client.ui.UIObject;
 import com.vaadin.addon.charts.shared.MouseEventDetails;
 import com.vaadin.addon.charts.shared.MouseEventDetails.MouseButton;
-import com.vaadin.client.WidgetUtil;
 
 /**
  * Helper class for constructing a MouseEventDetails object from different types
@@ -93,13 +92,16 @@ public class MouseEventDetailsBuilder {
     /**
      * Construct a {@link MouseEventDetails} object from the given event.
      *
-     * @param evt               The event to use as a source for the details
-     * @param relativeToObject The element whose position
-     *                          {@link MouseEventDetails#getxValue()} ()} and
-     *                          {@link MouseEventDetails#getyValue()} ()} are relative to.
+     * @param evt
+     *            The event to use as a source for the details
+     * @param relativeToObject
+     *            The element whose position
+     *            {@link MouseEventDetails#getxValue()} ()} and
+     *            {@link MouseEventDetails#getyValue()} ()} are relative to.
      * @return a MouseEventDetails containing information from the event
      */
-    public static MouseEventDetails buildMouseEventDetails(NativeEvent evt, UIObject relativeToObject) {
+    public static MouseEventDetails buildMouseEventDetails(NativeEvent evt,
+            UIObject relativeToObject) {
         MouseEventDetails mouseEventDetails = new MouseEventDetails();
 
         mouseEventDetails.setAbsoluteX(evt.getClientX());
