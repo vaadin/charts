@@ -259,11 +259,11 @@ public class Chart extends AbstractComponent {
 
         @Override
         public void onLegendItemClick(final int seriesIndex,
-            int seriesItemIndex) {
+            int seriesItemIndex, MouseEventDetails details) {
             Series series = resolveSeriesFor(seriesIndex);
             final LegendItemClickEvent legendItemClickEvent =
                 new LegendItemClickEvent(
-                    Chart.this, series, seriesItemIndex);
+                    Chart.this, series, seriesItemIndex, details);
             fireEvent(legendItemClickEvent);
         }
 

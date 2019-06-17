@@ -326,8 +326,10 @@ public class ChartConnector extends AbstractComponentConnector implements Deferr
                 if (hasEventListener(LEGENDITEM_CLICK_EVENT_ID)) {
                     int seriesIndex = getWidget().getSeriesIndex(
                             event.getSeries());
+
+                    MouseEventDetails mouseEventDetails = MouseEventDetailsBuilder.buildMouseEventDetails(event.getBrowserEvent(), getWidget());
                     rpc.onLegendItemClick(seriesIndex,
-                        event.getSeriesItemIndex());
+                        event.getSeriesItemIndex(), mouseEventDetails);
                 }
                 return !getState().seriesVisibilityTogglingDisabled;
             }
