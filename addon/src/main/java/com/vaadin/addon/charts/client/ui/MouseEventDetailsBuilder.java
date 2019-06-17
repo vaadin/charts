@@ -17,14 +17,10 @@ package com.vaadin.addon.charts.client.ui;
  * #L%
  */
 
-import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.NativeEvent;
-import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.ui.UIObject;
-import com.google.gwt.user.client.ui.Widget;
 import com.vaadin.addon.charts.shared.MouseEventDetails;
 import com.vaadin.addon.charts.shared.MouseEventDetails.MouseButton;
-import com.vaadin.client.VConsole;
 import com.vaadin.client.WidgetUtil;
 
 /**
@@ -114,9 +110,6 @@ public class MouseEventDetailsBuilder {
 
         mouseEventDetails.setxValue(relativeX);
         mouseEventDetails.setyValue(relativeY);
-
-        VConsole.error("Abs y val: " + evt.getClientY() + " Relative y val: " + relativeY + " Widget util Y: "+ WidgetUtil.getTouchOrMouseClientY(evt));
-
 
         if (evt.getButton() == NativeEvent.BUTTON_LEFT) {
             mouseEventDetails.setButton(MouseButton.LEFT);
