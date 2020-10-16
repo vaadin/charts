@@ -26,4 +26,6 @@
 	<inherits name="com.vaadin.DefaultWidgetSet" />
 	<inherits name="com.google.gwt.json.JSON" />
 
+	<!-- Widget styles in public -directory -->
+	<stylesheet src="charts/styles.css"/>	
 </module>
