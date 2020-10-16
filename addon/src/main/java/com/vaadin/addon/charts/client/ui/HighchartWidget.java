@@ -25,11 +25,12 @@ import com.google.gwt.user.client.ui.HasEnabled;
 import com.google.gwt.user.client.ui.Widget;
 import com.vaadin.addon.charts.client.HighchartsScriptLoader;
 import com.vaadin.client.BrowserInfo;
+import com.vaadin.client.StyleConstants;
 
 public class HighchartWidget extends Widget implements HasEnabled {
 
     private HighchartJsOverlay jsOverlay;
-	private boolean enabled;
+    private boolean enabled;
 
     public HighchartWidget() {
         HighchartsScriptLoader.ensureInjected();
