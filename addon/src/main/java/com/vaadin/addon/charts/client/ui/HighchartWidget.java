@@ -21,13 +21,15 @@ import com.google.gwt.core.client.JsArray;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.dom.client.Document;
+import com.google.gwt.user.client.ui.HasEnabled;
 import com.google.gwt.user.client.ui.Widget;
 import com.vaadin.addon.charts.client.HighchartsScriptLoader;
 import com.vaadin.client.BrowserInfo;
 
-public class HighchartWidget extends Widget {
+public class HighchartWidget extends Widget implements HasEnabled {
 
     private HighchartJsOverlay jsOverlay;
+	private boolean enabled;
 
     public HighchartWidget() {
         HighchartsScriptLoader.ensureInjected();
@@ -206,5 +208,18 @@ public class HighchartWidget extends Widget {
 
     public int getNumberOfSeries() {
         return jsOverlay.getSeries().length();
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    @Override
+    public void setEnabled(boolean enabled) {
+        if (this.enabled != enabled) {
+            this.enabled = enabled;
+            setStyleName(StyleConstants.DISABLED, !enabled);
+        }
     }
 }
