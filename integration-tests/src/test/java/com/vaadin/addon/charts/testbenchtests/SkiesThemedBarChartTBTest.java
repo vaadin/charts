@@ -1,7 +1,10 @@
 package com.vaadin.addon.charts.testbenchtests;
 
+import org.junit.Ignore;
+
 import com.vaadin.addon.charts.examples.themes.SkiesThemedBarChart;
 
+@Ignore
 public class SkiesThemedBarChartTBTest extends
         AbstractSimpleScreenShotTestBenchTest {
 
