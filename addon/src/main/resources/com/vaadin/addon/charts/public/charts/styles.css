@@ -1,0 +1,6 @@
+.v-disabled {
+    .vaadin-chart {
+        pointer-events: none;
+        opacity: 70%;
+    }
+}
