@@ -17,8 +17,6 @@ package com.vaadin.addon.charts.events;
  * #L%
  */
 
-import java.io.Serializable;
-
 import com.vaadin.addon.charts.model.Series;
 import com.vaadin.event.SerializableEventListener;
 
