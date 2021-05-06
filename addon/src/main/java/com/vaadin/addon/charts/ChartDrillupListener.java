@@ -19,11 +19,13 @@ package com.vaadin.addon.charts;
 
 import java.io.Serializable;
 
+import com.vaadin.event.SerializableEventListener;
+
 /**
  * Listener interface for drillup events on the chart
  */
 @FunctionalInterface
-public interface ChartDrillupListener extends Serializable {
+public interface ChartDrillupListener extends SerializableEventListener {
 
     /**
      * Called when the user clicks the 'Back to previous series' button.

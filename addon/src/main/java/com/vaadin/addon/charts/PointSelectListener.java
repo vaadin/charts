@@ -19,11 +19,13 @@ package com.vaadin.addon.charts;
 
 import java.io.Serializable;
 
+import com.vaadin.event.SerializableEventListener;
+
 /**
  * Listener interface for select events on the data points of the chart
  */
 @FunctionalInterface
-public interface PointSelectListener extends Serializable {
+public interface PointSelectListener extends SerializableEventListener {
     /**
      * Called when a data point is selected
      *
