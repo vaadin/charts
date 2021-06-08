@@ -17,13 +17,13 @@ package com.vaadin.addon.charts;
  * #L%
  */
 
-import java.io.Serializable;
+import com.vaadin.event.SerializableEventListener;
 
 /**
  * Listener interface for unselect events on the data points of the chart
  */
 @FunctionalInterface
-public interface PointUnselectListener extends Serializable {
+public interface PointUnselectListener extends SerializableEventListener {
 
     /**
      * Called when a data point is selected

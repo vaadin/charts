@@ -17,13 +17,13 @@ package com.vaadin.addon.charts;
  * #L%
  */
 
-import java.io.Serializable;
+import com.vaadin.event.SerializableEventListener;
 
 /**
  * Listener interface for chart selection events
  */
 @FunctionalInterface
-public interface ChartSelectionListener extends Serializable {
+public interface ChartSelectionListener extends SerializableEventListener {
 
     /**
      * Called when the user finishes the selection of an area on the X axis.
