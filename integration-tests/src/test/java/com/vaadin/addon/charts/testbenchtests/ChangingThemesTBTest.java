@@ -26,11 +26,6 @@ public class ChangingThemesTBTest extends AbstractParallelTest {
         waitForDynamicChanges();
         captureAndCompare("3-grid");
 
-        $(ButtonElement.class).id("skies-button").click();
-        waitForVaadin();
-        waitForDynamicChanges();
-        captureAndCompare("4-skies");
-
         $(ButtonElement.class).id("gray-button").click();
         waitForVaadin();
         waitForDynamicChanges();
