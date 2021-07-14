@@ -17,9 +17,8 @@ package com.vaadin.addon.charts.events;
  * #L%
  */
 
-import java.io.Serializable;
-
 import com.vaadin.addon.charts.model.Series;
+import com.vaadin.event.SerializableEventListener;
 
 /**
  * Listener interface for events triggered in Configuration. E.g. in DataSeries,
@@ -28,7 +27,7 @@ import com.vaadin.addon.charts.model.Series;
  * @since 2.0
  * 
  */
-public interface ConfigurationChangeListener extends Serializable {
+public interface ConfigurationChangeListener extends SerializableEventListener {
     /**
      * A data point has been added
      *

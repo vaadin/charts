@@ -17,13 +17,13 @@ package com.vaadin.addon.charts;
  * #L%
  */
 
-import java.io.Serializable;
+import com.vaadin.event.SerializableEventListener;
 
 /**
  * Listener interface for Y axes extremes changed events
  */
 @FunctionalInterface
-public interface YAxesExtremesChangeListener extends Serializable {
+public interface YAxesExtremesChangeListener extends SerializableEventListener {
 
     /**
      * Called when a Y axis extremes has changed

@@ -17,13 +17,13 @@ package com.vaadin.addon.charts;
  * #L%
  */
 
-import java.io.Serializable;
+import com.vaadin.event.SerializableEventListener;
 
 /**
  * Listener interface for checkbox click events
  */
 @FunctionalInterface
-public interface CheckboxClickListener extends Serializable {
+public interface CheckboxClickListener extends SerializableEventListener {
 
     /**
      * Called when the user has clicked a checkbox in the legend
