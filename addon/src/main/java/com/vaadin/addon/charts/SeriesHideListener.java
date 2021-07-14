@@ -17,13 +17,13 @@ package com.vaadin.addon.charts;
  * #L%
  */
 
-import java.io.Serializable;
+import com.vaadin.event.SerializableEventListener;
 
 /**
  * Listener interface for series hide events
  */
 @FunctionalInterface
-public interface SeriesHideListener extends Serializable {
+public interface SeriesHideListener extends SerializableEventListener {
 
     /**
      * Called when a series is hidden
