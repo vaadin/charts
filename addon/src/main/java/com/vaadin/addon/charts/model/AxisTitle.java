@@ -126,7 +126,7 @@ public class AxisTitle extends AbstractConfigurationObject {
 	}
 
 	public AxisTitle(String text) {
-		this.text = text;
+		this.text = Configuration.sanitize(text);
 	}
 
 	/**
@@ -145,7 +145,7 @@ public class AxisTitle extends AbstractConfigurationObject {
 	 * Defaults to: Values
 	 */
 	public void setText(String text) {
-		this.text = text;
+		this.text = Configuration.sanitize(text);;
 	}
 
 	/**
