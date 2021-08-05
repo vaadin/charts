@@ -17,7 +17,7 @@
   	pick,
       svg,
       SVGRenderer
-  } = H;
+  } = Highcharts;
 
   Highcharts.wrap(Highcharts.Axis.prototype, 'getPlotLinePath', function(proceed) {
     var path = proceed.apply(this, Array.prototype.slice.call(arguments, 1));
