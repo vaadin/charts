@@ -191,7 +191,7 @@ public class ButtonOptions extends AbstractConfigurationObject {
 	}
 
 	public ButtonOptions(String text) {
-		this.text = text;
+		this.text = Configuration.sanitize(text);
 	}
 
 	/**
@@ -207,7 +207,7 @@ public class ButtonOptions extends AbstractConfigurationObject {
 	 * Defaults to: null
 	 */
 	public void setText(String text) {
-		this.text = text;
+		this.text = Configuration.sanitize(text);
 	}
 
 	/**
