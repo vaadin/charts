@@ -60,7 +60,7 @@ public class DataSeriesItem extends AbstractSeriesItem {
      *            Y-value of the item.
      */
     public DataSeriesItem(String name, Number y) {
-        setName(name);
+        setName(Configuration.sanitize(name));
         setY(y);
         makeCustomized();
     }
@@ -77,7 +77,7 @@ public class DataSeriesItem extends AbstractSeriesItem {
      *            Color of the item.
      */
     public DataSeriesItem(String name, Number y, Color color) {
-        setName(name);
+        setName(Configuration.sanitize(name));
         setY(y);
         setColor(color);
         makeCustomized();
