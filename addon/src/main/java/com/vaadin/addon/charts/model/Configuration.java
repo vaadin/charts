@@ -204,7 +204,6 @@ public class Configuration extends AbstractConfigurationObject
      */
     public void setTitle(String text) {
         title = new Title(text);
-        title.setText(sanitize(title.getText()));
     }
 
     /**
