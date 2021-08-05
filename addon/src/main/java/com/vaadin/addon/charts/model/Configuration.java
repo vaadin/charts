@@ -1161,7 +1161,7 @@ public class Configuration extends AbstractConfigurationObject
      * Helper function for conent sanitization, this preserves common formmatting, but
      * strips scripts.
      */
-    String sanitize(String html) {
+    static String sanitize(String html) {
         if (html == null) {
             return null;
         }
