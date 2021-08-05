@@ -51,7 +51,7 @@ public class LegendTitle extends AbstractConfigurationObject {
 	}
 
 	public LegendTitle(String text) {
-		this.text = text;
+		this.text = Configuration.sanitize(text);
 	}
 
 	/**
@@ -67,6 +67,6 @@ public class LegendTitle extends AbstractConfigurationObject {
 	 * Defaults to: null
 	 */
 	public void setText(String text) {
-		this.text = text;
+		this.text = Configuration.sanitize(text);
 	}
 }
