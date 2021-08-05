@@ -1162,6 +1162,9 @@ public class Configuration extends AbstractConfigurationObject
      * strips scripts.
      */
     String sanitize(String html) {
+        if (html == null) {
+            return null;
+        }
         return org.jsoup.Jsoup.clean(html,
                 org.jsoup.safety.Whitelist.basic()
                         .addTags("img", "h1", "h2", "h3", "s")
