@@ -193,9 +193,6 @@ public class Configuration extends AbstractConfigurationObject
      * @param title
      */
     public void setTitle(Title title) {
-        // Workaround for: https://github.com/highcharts/highcharts/issues/13559
-        // See also: SNYK-JS-HIGHCHARTS-571995
-        title.setText(sanitize(title.getText()));
         this.title = title;
     }
 
@@ -207,8 +204,6 @@ public class Configuration extends AbstractConfigurationObject
      */
     public void setTitle(String text) {
         title = new Title(text);
-        // Workaround for: https://github.com/highcharts/highcharts/issues/13559
-        // See also: SNYK-JS-HIGHCHARTS-571995
         title.setText(sanitize(title.getText()));
     }
 
@@ -230,9 +225,6 @@ public class Configuration extends AbstractConfigurationObject
      */
     public void setSubTitle(String text) {
         subtitle = new Subtitle(text);
-        // Workaround for: https://github.com/highcharts/highcharts/issues/13559
-        // See also: SNYK-JS-HIGHCHARTS-571995
-        subtitle.setText(sanitize(subtitle.getText()));
     }
 
     /**
@@ -241,9 +233,6 @@ public class Configuration extends AbstractConfigurationObject
      * @param subTitle
      */
     public void setSubTitle(Subtitle subTitle) {
-        // Workaround for: https://github.com/highcharts/highcharts/issues/13559
-        // See also: SNYK-JS-HIGHCHARTS-571995
-        subTitle.setText(sanitize(subTitle.getText()));
         subtitle = subTitle;
     }
 
@@ -1155,6 +1144,8 @@ public class Configuration extends AbstractConfigurationObject
     /*
      * Helper function for conent sanitization, this preserves common formmatting, but
      * strips scripts.
+     * Workaround for: https://github.com/highcharts/highcharts/issues/13559
+     * See also: SNYK-JS-HIGHCHARTS-571995
      */
     static String sanitize(String html) {
         if (html == null) {
