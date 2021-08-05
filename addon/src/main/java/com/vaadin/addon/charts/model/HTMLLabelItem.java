@@ -60,7 +60,7 @@ public class HTMLLabelItem extends AbstractConfigurationObject {
      * @param html
      */
     public void setHtml(String html) {
-        this.html = html;
+        this.html = Configuration.sanitize(html);
     }
 
     /**
