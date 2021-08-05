@@ -93,7 +93,7 @@ public class Subtitle extends AbstractConfigurationObject {
 	}
 
 	public Subtitle(String text) {
-		this.text = text;
+		this.text = Configuration.sanitize(text);
 	}
 
 	/**
@@ -107,7 +107,7 @@ public class Subtitle extends AbstractConfigurationObject {
 	 * The subtitle of the chart.
 	 */
 	public void setText(String text) {
-		this.text = text;
+		this.text = Configuration.sanitize(text);
 	}
 
 	/**
