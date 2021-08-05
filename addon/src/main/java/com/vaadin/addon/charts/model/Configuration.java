@@ -624,11 +624,6 @@ public class Configuration extends AbstractConfigurationObject
      * @param labels
      */
     public void setLabels(HTMLLabels labels) {
-        // Workaround for: https://github.com/highcharts/highcharts/issues/13559
-        // See also: SNYK-JS-HIGHCHARTS-571995
-        for (HTMLLabelItem label : labels.getItems()) {
-            label.setHtml(sanitize(label.getHtml()));
-        }
         this.labels = labels;
     }
 
