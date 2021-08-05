@@ -88,7 +88,7 @@ public class Label extends AbstractConfigurationObject {
 	}
 
 	public Label(String text) {
-		this.text = text;
+		this.text = Configuration.sanitize(text);
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class Label extends AbstractConfigurationObject {
 	 * The text itself. A subset of HTML is supported.
 	 */
 	public void setText(String text) {
-		this.text = text;
+		this.text = Configuration.sanitize(text);
 	}
 
 	/**
