@@ -193,6 +193,9 @@ public class Configuration extends AbstractConfigurationObject
      * @param title
      */
     public void setTitle(Title title) {
+        // Workaround for: https://github.com/highcharts/highcharts/issues/13559
+        // See also: SNYK-JS-HIGHCHARTS-571995
+        title.setText(sanitize(title.getText()));
         this.title = title;
     }
 
@@ -204,6 +207,9 @@ public class Configuration extends AbstractConfigurationObject
      */
     public void setTitle(String text) {
         title = new Title(text);
+        // Workaround for: https://github.com/highcharts/highcharts/issues/13559
+        // See also: SNYK-JS-HIGHCHARTS-571995
+        title.setText(sanitize(title.getText()));
     }
 
     /**
@@ -224,6 +230,9 @@ public class Configuration extends AbstractConfigurationObject
      */
     public void setSubTitle(String text) {
         subtitle = new Subtitle(text);
+        // Workaround for: https://github.com/highcharts/highcharts/issues/13559
+        // See also: SNYK-JS-HIGHCHARTS-571995
+        subtitle.setText(sanitize(subtitle.getText()));
     }
 
     /**
@@ -232,6 +241,9 @@ public class Configuration extends AbstractConfigurationObject
      * @param subTitle
      */
     public void setSubTitle(Subtitle subTitle) {
+        // Workaround for: https://github.com/highcharts/highcharts/issues/13559
+        // See also: SNYK-JS-HIGHCHARTS-571995
+        subTitle.setText(sanitize(subTitle.getText()));
         subtitle = subTitle;
     }
 
@@ -612,6 +624,11 @@ public class Configuration extends AbstractConfigurationObject
      * @param labels
      */
     public void setLabels(HTMLLabels labels) {
+        // Workaround for: https://github.com/highcharts/highcharts/issues/13559
+        // See also: SNYK-JS-HIGHCHARTS-571995
+        for (HTMLLabelItem label : labels.getItems()) {
+            label.setHtml(sanitize(label.getHtml()));
+        }
         this.labels = labels;
     }
 
@@ -1140,4 +1157,17 @@ public class Configuration extends AbstractConfigurationObject
         colorAxis.addAxis(axis);
     }
 
+    /*
+     * Helper function for conent sanitization, this preserves common formmatting, but
+     * strips scripts.
+     */
+    String sanitize(String html) {
+        return org.jsoup.Jsoup.clean(html,
+                org.jsoup.safety.Whitelist.basic()
+                        .addTags("img", "h1", "h2", "h3", "s")
+                        .addAttributes("img", "align", "alt", "height", "src",
+                                "title", "width")
+                        .addAttributes(":all", "style")
+                        .addProtocols("img", "src", "data"));
+    }    
 }
