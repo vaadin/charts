@@ -111,7 +111,7 @@ public class Title extends AbstractConfigurationObject {
 	}
 
 	public Title(String text) {
-		this.text = text;
+		this.text = Configuration.sanitize(text);
 	}
 
 	/**
@@ -128,7 +128,7 @@ public class Title extends AbstractConfigurationObject {
 	 * Defaults to: Chart title
 	 */
 	public void setText(String text) {
-		this.text = text;
+		this.text = Configuration.sanitize(text);
 	}
 
 	/**
