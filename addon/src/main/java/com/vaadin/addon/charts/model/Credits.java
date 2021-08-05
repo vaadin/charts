@@ -126,7 +126,7 @@ public class Credits extends AbstractConfigurationObject {
 	}
 
 	public Credits(String text) {
-		this.text = text;
+		this.text = Configuration.sanitize(text);
 	}
 
 	/**
@@ -142,6 +142,6 @@ public class Credits extends AbstractConfigurationObject {
 	 * Defaults to: Highcharts.com
 	 */
 	public void setText(String text) {
-		this.text = text;
+		this.text = Configuration.sanitize(text);
 	}
 }
