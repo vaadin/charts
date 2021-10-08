@@ -168,7 +168,7 @@ public class ChartsDemoUI extends UI {
         Link homepage = new Link("Home Page", new ExternalResource(
                 "https://vaadin.com/components/vaadin-charts"));
         Link javadoc = new Link("JavaDoc", new ExternalResource(
-                "http://demo.vaadin.com/javadoc/com.vaadin/vaadin-charts/"
+                "https://vaadin.com/api/com.vaadin/vaadin-charts/"
                         + getVersion() + "/"));
         Link manual = new Link("Manual", new ExternalResource(
                 "https://vaadin.com/docs/v8/charts/charts-overview.html"));
