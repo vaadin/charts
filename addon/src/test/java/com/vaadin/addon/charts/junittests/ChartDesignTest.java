@@ -36,7 +36,8 @@ public class ChartDesignTest {
             " <line>\n" +
             "  <data-labels enabled=''></data-labels>\n" +
             " </line>\n" +
-            "</plot-options>";
+            "</plot-options>\n" +
+            "<exporting></exporting>";
         Elements elements = createElements(testHtml);
         Configuration configuration = new Configuration();
         Element parent = new Element(Tag.valueOf("test"), "");
@@ -61,6 +62,7 @@ public class ChartDesignTest {
             "<plot-options>\n" +
             " <series compare=\"percent\"></series>\n" +
             "</plot-options>\n" +
+            "<exporting></exporting>\n" +
             "<range-selector selected=\"4\"></range-selector>";
         Elements elements = createElements(testHtml);
         Configuration configuration = new Configuration();
@@ -84,7 +86,8 @@ public class ChartDesignTest {
             "   </data-labels>\n" +
             "  </levels>\n" +
             " </treemap>\n" +
-            "</plot-options>";
+            "</plot-options>\n" +
+            "<exporting></exporting>";
         Elements elements = createElements(testHtml);
         Configuration configuration = new Configuration();
         Element parent = new Element(Tag.valueOf("test"), "");
