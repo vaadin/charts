@@ -183,7 +183,7 @@ public class ChartDesignWriterTest {
 
         ChartDesignWriter.writeConfigurationToElement(configuration, parent, designContext);
 
-        assertEquals("<test></test>", parent.toString());
+        assertEquals("<test>\n <exporting></exporting>\n</test>", parent.toString());
     }
 
     @Test
