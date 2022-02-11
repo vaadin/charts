@@ -21,7 +21,8 @@ import java.io.IOException;
 import java.util.regex.Pattern;
 
 import org.jsoup.Jsoup;
-import org.jsoup.safety.Whitelist;
+import org.jsoup.nodes.Document;
+import org.jsoup.safety.Safelist;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
