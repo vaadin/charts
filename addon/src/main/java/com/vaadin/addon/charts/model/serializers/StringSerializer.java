@@ -78,7 +78,7 @@ public class StringSerializer extends JsonSerializer<String> {
                         .addAttributes("img", "align", "alt", "height", "src",
                                 "title", "width")
                         .addAttributes(":all", "style")
-                        .addProtocols("img", "src", "data"));
+                        .addProtocols("img", "src", "data");
         String sanitized = Jsoup.clean(html, "", safelist, 
                 new Document.OutputSettings().prettyPrint(false));
         return sanitized;
