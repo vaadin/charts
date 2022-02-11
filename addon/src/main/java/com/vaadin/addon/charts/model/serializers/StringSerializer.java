@@ -74,8 +74,13 @@ public class StringSerializer extends JsonSerializer<String> {
      * SNYK-JS-HIGHCHARTS-571995Ï
      */
     private String sanitize(String html) {
-        Safelist safelist = Safelist.relaxed().addAttributes(":all", "style");
-        String sanitized = Jsoup.clean(html, "", safelist, new Document.OutputSettings().prettyPrint(false));
+        Safelist safelist = Safelist.basic().addTags("img", "h1", "h2", "h3", "s")
+                        .addAttributes("img", "align", "alt", "height", "src",
+                                "title", "width")
+                        .addAttributes(":all", "style")
+                        .addProtocols("img", "src", "data"));
+        String sanitized = Jsoup.clean(html, "", safelist, 
+                new Document.OutputSettings().prettyPrint(false));
         return sanitized;
     }
 }
