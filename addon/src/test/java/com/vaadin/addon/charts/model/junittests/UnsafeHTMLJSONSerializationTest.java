@@ -15,6 +15,16 @@ import com.vaadin.addon.charts.model.Configuration;
 public class UnsafeHTMLJSONSerializationTest {
 
     @Test
+    public void configurationJSONSerialization_plainString_notTouched() {
+        Configuration conf = new Configuration();
+        conf.setTitle(
+                "This & that is this & that");
+            assertEquals(
+                "{\"title\":{\"text\":\"This & that is this & that\"},\"plotOptions\":{},\"series\":[],\"exporting\":{\"enabled\":false}}",
+                toJSON(conf));
+    }
+
+    @Test
     public void configurationJSONSerialization_unsafeTitle_unsafeHTMLNotSerialized() {
         Configuration conf = new Configuration();
         conf.setTitle(
