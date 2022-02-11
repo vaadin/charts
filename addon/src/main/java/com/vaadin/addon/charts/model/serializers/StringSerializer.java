@@ -73,7 +73,9 @@ public class StringSerializer extends JsonSerializer<String> {
      * SNYK-JS-HIGHCHARTS-571995Ï
      */
     private String sanitize(String html) {
-        Safelist safelist = Safelist.relaxed().addAttributes(":all", "style");
+        Safelist safelist = Safelist.relaxed()
+                .addAttributes(":all", "style")
+                .addEnforcedAttribute("a", "rel", "nofollow");
         String sanitized = Jsoup.clean(html, safelist);
         return sanitized;
     }
