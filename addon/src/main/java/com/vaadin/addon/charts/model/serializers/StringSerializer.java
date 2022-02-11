@@ -18,6 +18,7 @@ package com.vaadin.addon.charts.model.serializers;
  */
 
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
@@ -56,7 +57,13 @@ public class StringSerializer extends JsonSerializer<String> {
      */
     private boolean shouldSanitize(String value, JsonGenerator gen) {
         return value != null && gen.getOutputContext().inObject()
-                && !gen.getOutputContext().getCurrentName().startsWith("_fn_");
+                && !gen.getOutputContext().getCurrentName().startsWith("_fn_")
+                && isHtml(value);
+    }
+
+    private boolean isHtml(String html) {
+        Pattern htmlPattern = Pattern.compile(".*\\<[^>]+>.*", Pattern.DOTALL);
+        return htmlPattern.matcher(html).matches();        
     }
 
     /*
@@ -66,11 +73,8 @@ public class StringSerializer extends JsonSerializer<String> {
      * SNYK-JS-HIGHCHARTS-571995Ï
      */
     private String sanitize(String html) {
-        return Jsoup.clean(html,
-                Whitelist.basic().addTags("img", "h1", "h2", "h3", "s")
-                        .addAttributes("img", "align", "alt", "height", "src",
-                                "title", "width")
-                        .addAttributes(":all", "style")
-                        .addProtocols("img", "src", "data"));
+        Safelist safelist = Safelist.relaxed().addAttributes(":all", "style");
+        String sanitized = Jsoup.clean(html, "", safelist, new Document.OutputSettings().prettyPrint(false));
+        return sanitized;
     }
 }
