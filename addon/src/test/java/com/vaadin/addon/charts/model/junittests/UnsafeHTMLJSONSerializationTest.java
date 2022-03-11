@@ -23,7 +23,7 @@ public class UnsafeHTMLJSONSerializationTest {
         tooltip.setPointFormat("<table><tr><td>{series.name}</td></tr><tr><td>{point.y}</td></tr></table>");
         conf.setTooltip(tooltip);
             assertEquals(
-                "{\"tooltip\":{\"pointFormat\":\"<table><tbody><tr><td>{series.name}</td></tr><tr><td>{point.y}</td></tr></tbody></table>\",\"useHTML\":true]},\"plotOptions\":{},\"series\":[],\"exporting\":{\"enabled\":false}}",
+                "{\"tooltip\":{\"pointFormat\":\"<table><tbody><tr><td>{series.name}</td></tr><tr><td>{point.y}</td></tr></tbody></table>\",\"useHTML\":true]]},\"plotOptions\":{},\"series\":[],\"exporting\":{\"enabled\":false}}",
                 toJSON(conf));
     }
 
