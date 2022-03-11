@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.util.regex.Pattern;
 
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.jsoup.safety.Safelist;
 
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -76,7 +77,7 @@ public class StringSerializer extends JsonSerializer<String> {
         Safelist safelist = Safelist.relaxed()
                 .addAttributes(":all", "style")
                 .addEnforcedAttribute("a", "rel", "nofollow");
-        String sanitized = Jsoup.clean(html, safelist);
+        String sanitized = Jsoup.clean(html, "", safelist, new Document.OutputSettings().prettyPrint(false));
         return sanitized;
     }
 }
