@@ -20,7 +20,7 @@ public class UnsafeHTMLJSONSerializationTest {
         Configuration conf = new Configuration();
         Tooltip tooltip = new Tooltip();
         tooltip.setUseHTML(true);
-        tooltip.setPointFormat("<table><tr><td>{series.name}</td></tr><tr><td>{point.y}</td></tr></table>");
+        tooltip.setPointFormat("<table><tbody><tr><td>{series.name}</td></tr><tr><td>{point.y}</td></tr></tbody></table>");
         conf.setTooltip(tooltip);
             assertEquals(
                 "{\"tooltip\":{\"pointFormat\":\"<table><tbody><tr><td>{series.name}</td></tr><tr><td>{point.y}</td></tr></tbody></table>\",\"useHTML\":true},\"plotOptions\":{},\"series\":[],\"exporting\":{\"enabled\":false}}",
