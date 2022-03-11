@@ -15,6 +15,18 @@ import com.vaadin.addon.charts.model.Configuration;
 public class UnsafeHTMLJSONSerializationTest {
 
     @Test
+    public void configurationJSONSerialization_tablePreserved() {
+        Configuration conf = new Configuration();
+        Tooltip tooltip = new Tooltip();
+        tooltip.setUseHTML(true);
+        tooltip.setPointFormat("<table><tr><td>{series.name}</td></tr><tr><td>{point.y}</td></tr></table>");
+        conf.setTooltip(tooltip);
+            assertEquals(
+                "{\"tooltip\":{\"pointFormat\":\"<table><tr><td>{series.name}</td></tr><tr><td>{point.y}</td></tr></table>\"},\"plotOptions\":{},\"series\":[],\"exporting\":{\"enabled\":false}}",
+                toJSON(conf));
+    }
+
+    @Test
     public void configurationJSONSerialization_plainString_notTouched() {
         Configuration conf = new Configuration();
         conf.setTitle(
