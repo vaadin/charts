@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.Tooltip;
 
 /**
  * Tests for the sanitization of unsafe HTML in JSON serialization in
