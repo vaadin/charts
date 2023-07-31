@@ -23,6 +23,7 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.ser.BeanPropertyWriter;
 import com.fasterxml.jackson.databind.ser.impl.BeanAsArraySerializer;
 import com.fasterxml.jackson.databind.ser.impl.ObjectIdWriter;
 import com.fasterxml.jackson.databind.ser.std.BeanSerializerBase;
@@ -44,14 +45,27 @@ public class ThemeGradientColorBeanSerializer extends BeanSerializerBase {
         super(source, objectIdWriter);
     }
 
+    @Deprecated
     public ThemeGradientColorBeanSerializer(BeanSerializerBase source,
             String[] toIgnore) {
         super(source, toIgnore);
     }
 
+    @Deprecated
     protected ThemeGradientColorBeanSerializer(BeanSerializerBase source,
             Set<String> toIgnore) {
         super(source, toIgnore);
+    }
+
+    protected ThemeGradientColorBeanSerializer(BeanSerializerBase source,
+            Set<String> toIgnore, Set<String> toInclude) {
+        super(source, toIgnore, toInclude);
+    }
+
+    protected ThemeGradientColorBeanSerializer(BeanSerializerBase source,
+            BeanPropertyWriter[] properties,
+            BeanPropertyWriter[] filteredProperties) {
+        super(source, properties, filteredProperties);
     }
 
     public ThemeGradientColorBeanSerializer(BeanSerializerBase source,
@@ -65,11 +79,13 @@ public class ThemeGradientColorBeanSerializer extends BeanSerializerBase {
     }
 
     @Override
+    @Deprecated
     protected BeanSerializerBase withIgnorals(String[] toIgnore) {
         return new ThemeGradientColorBeanSerializer(this, toIgnore);
     }
 
     @Override
+    @Deprecated
     protected BeanSerializerBase withIgnorals(Set<String> toIgnore) {
         return new ThemeGradientColorBeanSerializer(this, toIgnore);
     }
@@ -77,6 +93,19 @@ public class ThemeGradientColorBeanSerializer extends BeanSerializerBase {
     @Override
     public BeanSerializerBase withFilterId(Object filterId) {
         return new ThemeGradientColorBeanSerializer(this, filterId);
+    }
+
+    @Override
+    protected BeanSerializerBase withByNameInclusion(Set<String> toIgnore,
+            Set<String> toInclude) {
+        return new ThemeGradientColorBeanSerializer(this, toIgnore, toInclude);
+    }
+
+    @Override
+    protected BeanSerializerBase withProperties(BeanPropertyWriter[] properties,
+            BeanPropertyWriter[] filteredProperties) {
+        return new ThemeGradientColorBeanSerializer(this, properties,
+                filteredProperties);
     }
 
     @Override
