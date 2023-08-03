@@ -25,7 +25,9 @@ import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.ser.BeanSerializerModifier;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.vaadin.addon.charts.ChartOptions;
 import com.vaadin.addon.charts.model.AbstractConfigurationObject;
 import com.vaadin.addon.charts.model.serializers.AxisListSerializer;
@@ -35,10 +37,10 @@ import com.vaadin.addon.charts.model.serializers.DateSerializer;
 import com.vaadin.addon.charts.model.serializers.DefaultBeanSerializerModifier;
 import com.vaadin.addon.charts.model.serializers.GradientColorStopsSerializer;
 import com.vaadin.addon.charts.model.serializers.InstantSerializer;
-import com.vaadin.addon.charts.model.serializers.StringSerializer;
 import com.vaadin.addon.charts.model.serializers.PaneListSerializer;
 import com.vaadin.addon.charts.model.serializers.SolidColorSerializer;
 import com.vaadin.addon.charts.model.serializers.StopSerializer;
+import com.vaadin.addon.charts.model.serializers.StringSerializer;
 import com.vaadin.addon.charts.model.serializers.TimeUnitMultiplesSerializer;
 
 /**
@@ -87,7 +89,9 @@ public class ChartSerialization implements Serializable {
                 .registerModule(PaneListSerializer.getModule())
                 .registerModule(DateSerializer.getModule())
                 .registerModule(InstantSerializer.getModule())
-                .registerModule(StringSerializer.getModule());
+                .registerModule(StringSerializer.getModule())
+                .registerModule(new JavaTimeModule()).disable(
+                        SerializationFeature.WRITE_DATE_TIMESTAMPS_AS_NANOSECONDS);
 
         // serializer modifier used when basic serializer isn't enough
         return mapper.setSerializerFactory(mapper.getSerializerFactory()

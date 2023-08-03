@@ -22,6 +22,7 @@ import java.util.Set;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.ser.BeanPropertyWriter;
 import com.fasterxml.jackson.databind.ser.impl.BeanAsArraySerializer;
 import com.fasterxml.jackson.databind.ser.impl.ObjectIdWriter;
 import com.fasterxml.jackson.databind.ser.std.BeanSerializerBase;
@@ -46,12 +47,27 @@ public class BeanSerializerDelegator<T> extends BeanSerializerBase {
         super(source, objectIdWriter);
     }
 
-    public BeanSerializerDelegator(BeanSerializerBase source, String[] toIgnore) {
+    @Deprecated
+    public BeanSerializerDelegator(BeanSerializerBase source,
+            String[] toIgnore) {
         super(source, toIgnore);
     }
 
-    protected BeanSerializerDelegator(BeanSerializerBase source, Set<String> toIgnore) {
+    @Deprecated
+    protected BeanSerializerDelegator(BeanSerializerBase source,
+            Set<String> toIgnore) {
         super(source, toIgnore);
+    }
+
+    protected BeanSerializerDelegator(BeanSerializerBase source,
+            Set<String> toIgnore, Set<String> toInclude) {
+        super(source, toIgnore, toInclude);
+    }
+
+    protected BeanSerializerDelegator(BeanSerializerBase source,
+            BeanPropertyWriter[] properties,
+            BeanPropertyWriter[] filteredProperties) {
+        super(source, properties, filteredProperties);
     }
 
     public BeanSerializerDelegator(BeanSerializerBase source, Object filterId) {
@@ -66,23 +82,39 @@ public class BeanSerializerDelegator<T> extends BeanSerializerBase {
     }
 
     @Override
-    public BeanSerializerBase withObjectIdWriter(ObjectIdWriter objectIdWriter) {
-        return new BeanSerializerDelegator(this, objectIdWriter);
+    public BeanSerializerBase withObjectIdWriter(
+            ObjectIdWriter objectIdWriter) {
+        return new BeanSerializerDelegator<>(this, objectIdWriter);
     }
 
     @Override
+    @Deprecated
     protected BeanSerializerBase withIgnorals(String[] toIgnore) {
-        return new BeanSerializerDelegator(this, toIgnore);
+        return new BeanSerializerDelegator<>(this, toIgnore);
     }
 
     @Override
+    @Deprecated
     protected BeanSerializerBase withIgnorals(Set<String> toIgnore) {
-        return new BeanSerializerDelegator(this, toIgnore);
+        return new BeanSerializerDelegator<>(this, toIgnore);
     }
 
     @Override
     public BeanSerializerBase withFilterId(Object filterId) {
-        return new BeanSerializerDelegator(this, filterId);
+        return new BeanSerializerDelegator<>(this, filterId);
+    }
+
+    @Override
+    protected BeanSerializerBase withByNameInclusion(Set<String> toIgnore,
+            Set<String> toInclude) {
+        return new BeanSerializerDelegator<>(this, toIgnore, toInclude);
+    }
+
+    @Override
+    protected BeanSerializerBase withProperties(BeanPropertyWriter[] properties,
+            BeanPropertyWriter[] filteredProperties) {
+        return new BeanSerializerDelegator<>(this, properties,
+                filteredProperties);
     }
 
     @Override
