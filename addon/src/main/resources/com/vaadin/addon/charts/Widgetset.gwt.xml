@@ -16,7 +16,8 @@
   #L%
   -->
 
-<!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 1.7.0//EN" "http://google-web-toolkit.googlecode.com/svn/tags/1.7.0/distro-source/core/src/gwt-module.dtd">
+<!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 2.7.0//EN"
+  "https://gwtproject.org/doctype/2.7.0/gwt-module.dtd">
 <module>
 	<source path="shared" />
 	<source path="client" />
