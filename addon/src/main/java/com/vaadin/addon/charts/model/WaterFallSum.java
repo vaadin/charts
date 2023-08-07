@@ -1,21 +1,14 @@
-package com.vaadin.addon.charts.model;
-
-/*-
- * #%L
+/*
  * Vaadin Charts Addon
- * %%
- * Copyright (C) 2012 - 2019 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
+ *
+ * Copyright (C) 2012-2023 Vaadin Ltd
+ *
+ * This program is available under Vaadin Commercial License and Service Terms.
+ *
+ * See <https://vaadin.com/commercial-license-and-service-terms> for the full
+ * license.
  */
+package com.vaadin.addon.charts.model;
 
 /**
  * DataSeriesItem that can be used as sum or intermediate sum in waterfall

@@ -10,10 +10,9 @@ installation!
 
 !!!!! NOTE !!!!!
 Widget set compilation will fail unless you have a license for Vaadin
-Charts. A free trial key can be obtained by clicking the big orange "Free
-trial key" button on the right hand side of http://vaadin.com/addon/vaadin-charts
+Charts. See https://vaadin.com/pricing for details.
 Please find instructions for how to install the license at
-https://vaadin.com/directory/help/installing-cval-license
+https://vaadin.com/docs/v8/framework/addons
 
 Maven
 -----
@@ -53,18 +52,16 @@ included in this zip package in the "lib" directory.
 Licensing
 =========
 
-Vaadin Charts is a commercial product. After 30 days of evaluation use,
-you must either acquire a license or stop using it. More information about
-Commercial Vaadin Add-on License is available in LICENSE file or at
-https://vaadin.com/license/cval-3.
+Vaadin Charts is a commercial product. You must either acquire a license or
+stop using it. More information about Vaadin Commercial License and Service 
+Terms is available in LICENSE file or at
+https://vaadin.com/commercial-license-and-service-terms.
 
-You may obtain a valid license by subscribing to Vaadin Pro Account at
-https://vaadin.com/pro or by purchasing a perpetual license at
-https://vaadin.com/directory.
+You may obtain a valid license by subscribing to Vaadin Pro.
+See https://vaadin.com/pricing for details.
 
-A valid license key is your perpetual license key purchased from Vaadin
-Directory or alternatively the email address you use to login to an active
-Vaadin Pro Account.
+Once you have the subscription, the license key can be found in
+https://vaadin.com/myaccount/licenses#classic
 
 Register your copy of Vaadin Charts by creating a file named
 .vaadin.charts.developer.license containing the license key in your home
@@ -83,8 +80,9 @@ standalone-framework.js, no-data-to-display.js, drilldown.js, exporting.js,
 funnel.js, heatmap.js, solid-gauge.js and treemap.js)
 
 Please note that:
-- A valid Highstock JS license does not entitle you to use Vaadin Charts Add-on under the terms of CVALv3.
-- The Vaadin Charts Add-on (CVALv3) license does not entitle you to use the 
+- A valid Highstock JS license does not entitle you to use Vaadin Charts Add-on
+under the terms of VCL-2.
+- The Vaadin Charts Add-on (VCL-2) license does not entitle you to use the 
 Highstock JS product in other ways than through the Vaadin Charts Add-on API.
 
 Vaadin Charts also requires Jackson library licensed under liberal Apache 2 license.
