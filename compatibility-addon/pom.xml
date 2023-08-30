@@ -1,20 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  ~ #%L
-  ~ Vaadin Charts
-  ~ %%
-  ~ Copyright (C) 2012 - 2015 Vaadin Ltd
-  ~ %%
-  ~ This program is available under Commercial Vaadin Add-On License 3.0
-  ~ (CVALv3).
-  ~
-  ~ See the file licensing.txt distributed with this software for more
-  ~ information about licensing.
-  ~
-  ~ You should have received a copy of the CVALv3 along with this program.
-  ~ If not, see <https://vaadin.com/license/cval-3>.
-  ~ #L%
-  -->
 <!DOCTYPE project>
 <project xmlns="https://maven.apache.org/POM/4.0.0" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="https://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -47,19 +31,6 @@
 
 		<plugins>
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>license-maven-plugin</artifactId>
-				<version>1.8</version>
-				<configuration>
-					<licenseName>cval3</licenseName>
-					<licenseResolver>file://${basedir}/src/license</licenseResolver>
-					<includes>
-						<include>**/main/**/*.java</include>
-					</includes>
-				</configuration>
-			</plugin>
-
-			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>2.3.1</version>
@@ -78,7 +49,7 @@
 							<Vaadin-Package-Version>1</Vaadin-Package-Version>
 
 							<!-- Add-on specific fields to update -->
-							<AdVaaLicen>cval</AdVaaLicen>
+							<AdVaaLicen>VCL-2</AdVaaLicen>
 							<AdVaaName>vaadin-charts</AdVaaName>
 							<AdVaaPkg>com.vaadin.addon.charts.client</AdVaaPkg>
 

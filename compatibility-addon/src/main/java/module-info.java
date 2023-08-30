@@ -1,3 +1,13 @@
+/*
+ * Vaadin Charts Addon
+ *
+ * Copyright (C) 2012-2023 Vaadin Ltd
+ *
+ * This program is available under Vaadin Commercial License and Service Terms.
+ *
+ * See <https://vaadin.com/commercial-license-and-service-terms> for the full
+ * license.
+ */
 module com.vaadin.v7.addon.charts {
     requires com.vaadin.addon.charts;
     requires jackson.core;

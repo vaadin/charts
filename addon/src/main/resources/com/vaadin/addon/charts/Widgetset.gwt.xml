@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  #%L
-  Vaadin Charts
-  %%
-  Copyright (C) 2012 Vaadin Ltd
-  %%
-  This program is available under Commercial Vaadin Add-On License 2.0
-  (CVALv2).
-  
-  See the file licensing.txt distributed with this software for more
-  information about licensing.
-  
-  You should have received a copy of the CVALv2 along with this program.
-  If not, see <http://vaadin.com/license/cval-2.0>.
-  #L%
+  Vaadin Charts Addon
+
+  Copyright (C) 2012-2023 Vaadin Ltd
+
+  This program is available under Vaadin Commercial License and Service Terms.
+
+  See <https://vaadin.com/commercial-license-and-service-terms> for the full
+  license.
   -->
 
 <!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 2.7.0//EN"
