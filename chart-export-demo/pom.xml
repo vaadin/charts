@@ -14,7 +14,7 @@
 		<vaadin.version>8.14.1</vaadin.version>
 		<vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
 		<vaadin.charts.version>4.3-SNAPSHOT</vaadin.charts.version>
-		<batik.version>1.7</batik.version>
+		<batik.version>1.17</batik.version>
 	</properties>
 	<repositories>
 		<repository>
