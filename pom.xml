@@ -25,7 +25,7 @@
 
     <organization>
         <name>Vaadin Ltd</name>
-        <url>http://vaadin.com/</url>
+        <url>https://vaadin.com/</url>
     </organization>
 
     <properties>
@@ -33,9 +33,11 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.organization>Vaadin Ltd</project.organization>
         <vaadin.version>7.5.4</vaadin.version>
+        <jetty.version>9.4.8.v20171121</jetty.version>
+        <currentYear>2023</currentYear>
     </properties>
 
-    <url>http://vaadin.com/charts</url>
+    <url>https://vaadin.com/charts</url>
 
     <scm>
         <connection>scm:git:https://github.com/vaadin/charts.git</connection>
@@ -44,8 +46,8 @@
 
     <licenses>
         <license>
-            <name>cval3</name>
-            <url>https://vaadin.com/license/cval-3</url>
+            <name>Vaadin Commercial License and Service Terms</name>
+            <url>https://vaadin.com/commercial-license-and-service-terms</url>
         </license>
     </licenses>
 
@@ -53,12 +55,12 @@
         <snapshotRepository>
             <id>vaadin-snapshots</id>
             <name>Vaadin snapshot repository</name>
-            <url>http://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
+            <url>https://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
         </snapshotRepository>
         <repository>
             <id>vaadin-addons</id>
             <name>Vaadin add-ons repository</name>
-            <url>http://tools.vaadin.com/nexus/content/repositories/vaadin-addons</url>
+            <url>https://tools.vaadin.com/nexus/content/repositories/vaadin-addons</url>
         </repository>
     </distributionManagement>
 
@@ -159,9 +161,9 @@
                 </plugin>
 
                 <plugin>
-                    <groupId>org.mortbay.jetty</groupId>
+                    <groupId>org.eclipse.jetty</groupId>
                     <artifactId>jetty-maven-plugin</artifactId>
-                    <version>8.1.16.v20140903</version>
+                    <version>${jetty.version}</version>
                 </plugin>
 
                 <!--This plugin's configuration is used to store Eclipse
@@ -196,12 +198,45 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>4.2</version>
+                <configuration>
+                    <header>addon/src/license/header.txt</header>
+                    <quiet>false</quiet>
+                    <failIfMissing>true</failIfMissing>
+                    <aggregate>false</aggregate>
+                    <useDefaultExcludes>true</useDefaultExcludes>
+                    <useDefaultMapping>true</useDefaultMapping>
+                    <encoding>UTF-8</encoding>
+                    <properties>
+                        <year>${currentYear}</year>
+                    </properties>
+                    <excludes>
+                        <exclude>**/*.xml</exclude>
+                        <exclude>**/*.properties</exclude>
+                        <exclude>**/*.txt</exclude>
+                        <exclude>**/*.html</exclude>
+                        <exclude>**/*.js</exclude>
+                        <exclude>**/*.css</exclude>
+                        <exclude>**/*.scss</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 
     <repositories>
         <repository>
             <id>vaadin-addons</id>
-            <url>http://maven.vaadin.com/vaadin-addons</url>
+            <url>https://maven.vaadin.com/vaadin-addons</url>
+        </repository>
+        <repository>
+            <id>vaadin-prereleases</id>
+            <name>Vaadin Pre-releases</name>
+            <url>https://maven.vaadin.com/vaadin-prereleases</url>
         </repository>
         <repository>
             <id>vaadin-snapshots</id>
@@ -216,6 +251,13 @@
     </repositories>
 
     <pluginRepositories>
+        <pluginRepository>
+            <id>vaadin-prereleases</id>
+            <name>Vaadin Pre-releases</name>
+            <url>https://maven.vaadin.com/vaadin-prereleases</url>
+        </pluginRepository>
+
+
         <pluginRepository>
             <id>vaadin-snapshots</id>
             <url>https://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
