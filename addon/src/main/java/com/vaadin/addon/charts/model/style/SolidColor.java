@@ -172,14 +172,15 @@ public class SolidColor extends AbstractConfigurationObject implements Color {
     private final String color;
 
     /**
-     * Constructs a new color from a hex value like "#ff0000" for red.
+     * Constructs a new color from a hex value like "#ff0000" for red
+     * or other CSS spec like "rgb(255,0,0)" and "var(--custom-property)".
      *
      * @param color
      */
     public SolidColor(String color) {
 
         // Sanitize value to avoid cross site attacks
-        this.color = color.replaceAll("[^0-9a-z,A-Z#]", "");
+        this.color = color.replaceAll("[^0-9a-z,A-Z#()-]", "");
 
     }
 
