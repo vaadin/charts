@@ -54,14 +54,14 @@
 
     <distributionManagement>
         <snapshotRepository>
-            <id>vaadin-snapshots</id>
+            <id>vaadin-prereleases</id>
             <name>Vaadin snapshot repository</name>
-            <url>https://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
+            <url>https://maven.vaadin.com/vaadin-prereleases</url>
         </snapshotRepository>
         <repository>
             <id>vaadin-addons</id>
             <name>Vaadin add-ons repository</name>
-            <url>https://tools.vaadin.com/nexus/content/repositories/vaadin-addons</url>
+            <url>https://maven.vaadin.com/vaadin-addons/</url>
         </repository>
     </distributionManagement>
 
@@ -315,16 +315,6 @@
             <name>Vaadin Pre-releases</name>
             <url>https://maven.vaadin.com/vaadin-prereleases</url>
         </repository>
-        <repository>
-            <id>vaadin-snapshots</id>
-            <url>https://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
     </repositories>
 
     <pluginRepositories>
@@ -332,18 +322,6 @@
             <id>vaadin-prereleases</id>
             <name>Vaadin Pre-releases</name>
             <url>https://maven.vaadin.com/vaadin-prereleases</url>
-        </pluginRepository>
-
-
-        <pluginRepository>
-            <id>vaadin-snapshots</id>
-            <url>https://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
         </pluginRepository>
     </pluginRepositories>
 </project>
