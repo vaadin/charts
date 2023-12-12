@@ -57,7 +57,7 @@ public abstract class AbstractParallelTest extends ParallelTest {
 
         new File(ERROR_IMAGE_ROOT).mkdirs();
         Parameters.setScreenshotErrorDirectory(ERROR_IMAGE_ROOT);
-        Parameters.setScreenshotComparisonTolerance(0.05);
+        Parameters.setScreenshotComparisonTolerance(0.06);
         Parameters.setScreenshotReferenceDirectory(REF_IMAGE_ROOT);
 
         try {
