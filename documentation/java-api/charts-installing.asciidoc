@@ -10,8 +10,7 @@ layout: page
 As with most Vaadin add-ons, you can install Vaadin Charts as a Maven or Ivy
 dependency in your project, or from an installation package. For general
 instructions on installing add-ons, please see
-<<dummy/../../../framework/addons/addons-overview.asciidoc#addons.overview,"Using
-Vaadin Add-ons">>.
+https://vaadin.com/docs/v7/framework/addons/addons-overview#addons.overview[Installing Add-ons].
 
 Vaadin Charts requires Vaadin 7.4 or later.
 
@@ -19,7 +18,7 @@ Using Vaadin Charts requires a license key, which you must install before
 compiling the widget set. The widget set must be compiled after setting up the
 dependency or library JARs.
 
-For instructions on installing a license key, see <<dummy/../../../framework/addons/addons-cval.asciidoc#,"Installing Commercial Vaadin Add-on License">>.
+For instructions on installing a license key, see https://vaadin.com/myaccount/licenses#classic[Licenses].
 
 [[charts.installing.maven]]
 == Maven Dependency
@@ -40,7 +39,7 @@ You also need to define the Vaadin add-ons repository if not already defined:
 ----
 <repository>
    <id>vaadin-addons</id>
-   <url>http://maven.vaadin.com/vaadin-addons</url>
+   <url>https://maven.vaadin.com/vaadin-addons</url>
 </repository>
 ----
 
