@@ -80,7 +80,7 @@ public class SplineWithSymbols extends AbstractVaadinChartExample {
                 .getMarker()
                 .setSymbol(
                         new MarkerSymbolUrl(
-                                "http://www.highcharts.com/demo/gfx/sun.png"));
+                                "https://www.highcharts.com/samples/graphics/sun.png"));
 
         configuration.addSeries(ls);
 
@@ -97,7 +97,7 @@ public class SplineWithSymbols extends AbstractVaadinChartExample {
                 .getMarker()
                 .setSymbol(
                         new MarkerSymbolUrl(
-                                "http://www.highcharts.com/demo/gfx/snow.png"));
+                                "https://www.highcharts.com/samples/graphics/snow.png"));
         configuration.addSeries(ls);
 
         chart.drawChart(configuration);
