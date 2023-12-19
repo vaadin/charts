@@ -35,7 +35,7 @@ public class SkiesTheme extends HighChartsDefaultTheme {
         getChart().setBorderWidth(0);
         getChart().setPlotShadow(true);
         getChart().setPlotBackgroundImage(
-                "http://www.highcharts.com/demo/gfx/skies.jpg");
+                "https://www.highcharts.com/samples/graphics/skies.jpg");
         GradientColor bgColor = GradientColor.createLinear(0, 0, 0, 400);
         bgColor.addColorStop(0, new SolidColor(255, 255, 255, 1));
         bgColor.addColorStop(1, new SolidColor(255, 255, 255, 0));
