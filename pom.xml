@@ -32,7 +32,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.organization>Vaadin Ltd</project.organization>
-        <vaadin.version>8.23.0</vaadin.version>
+        <vaadin.version>8.14.3</vaadin.version>
         <jetty.version>9.4.8.v20171121</jetty.version>
         <bundle.plugin.version>3.5.0</bundle.plugin.version>
         <currentYear>2024</currentYear>
@@ -309,7 +309,7 @@
         <profile>
             <id>jdk11</id>
             <activation>
-                <jdk>[1.8,11)</jdk>
+                <jdk>[11,)</jdk>
             </activation>
             <build>
                 <plugins>
