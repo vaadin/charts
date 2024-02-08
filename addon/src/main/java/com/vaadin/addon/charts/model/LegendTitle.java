@@ -10,6 +10,8 @@
  */
 package com.vaadin.addon.charts.model;
 
+import com.vaadin.addon.charts.model.style.Style;
+
 /**
  * A title to be added on top of the legend.
  */
