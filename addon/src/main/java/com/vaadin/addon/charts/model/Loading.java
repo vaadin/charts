@@ -10,8 +10,8 @@
  */
 package com.vaadin.addon.charts.model;
 
-import javax.annotation.Generated;
 import com.vaadin.addon.charts.model.style.Style;
+
 /**
  * The loading options control the appearance of the loading screen that covers
  * the plot area on chart operations. This screen only appears after an explicit
@@ -21,7 +21,6 @@ import com.vaadin.addon.charts.model.style.Style;
  * not part of this configuration object, but part of the <code>lang</code>
  * object.
  */
-@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class Loading extends AbstractConfigurationObject {
 
 	private Number hideDuration;
