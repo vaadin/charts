@@ -10,7 +10,6 @@
  */
 package com.vaadin.addon.charts.model;
 
-import javax.annotation.Generated;
 import java.util.Date;
 import java.time.Instant;
 import com.vaadin.addon.charts.util.Util;
@@ -19,7 +18,6 @@ import com.vaadin.addon.charts.util.Util;
  * and all the points shifted closer to each other. Requires that the
  * broken-axis.js module is loaded.
  */
-@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class Breaks extends AbstractConfigurationObject {
 
 	private Number breakSize;

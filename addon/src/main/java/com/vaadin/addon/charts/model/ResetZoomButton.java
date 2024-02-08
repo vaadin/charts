@@ -10,13 +10,11 @@
  */
 package com.vaadin.addon.charts.model;
 
-import javax.annotation.Generated;
 import com.vaadin.addon.charts.model.style.ButtonTheme;
 /**
  * The button that appears after a selection zoom, allowing the user to reset
  * zoom.
  */
-@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class ResetZoomButton extends AbstractConfigurationObject {
 
 	private Position position;

@@ -10,14 +10,12 @@
  */
 package com.vaadin.addon.charts.model;
 
-import javax.annotation.Generated;
 import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.Style;
 /**
  * Options for the tooltip that appears when the user hovers over a series or
  * point.
  */
-@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class Tooltip extends AbstractConfigurationObject {
 
 	private Boolean animation;
