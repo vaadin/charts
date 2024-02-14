@@ -10,13 +10,11 @@
  */
 package com.vaadin.addon.charts.model;
 
-import javax.annotation.Generated;
 /**
  * Options for the exporting module. For an overview on the matter, see <a
  * href="http://www.highcharts.com/docs/export-module/export-module-overview"
  * >the docs</a>.
  */
-@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class Exporting extends AbstractConfigurationObject {
 
 	private Boolean allowHTML;

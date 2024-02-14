@@ -10,13 +10,11 @@
  */
 package com.vaadin.addon.charts.model;
 
-import javax.annotation.Generated;
 import com.vaadin.addon.charts.model.style.Color;
 /**
  * An array of lines stretching across the plot area, marking a specific value
  * on one of the axes.
  */
-@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class PlotLine extends AbstractConfigurationObject {
 
 	private Color color;

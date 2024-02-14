@@ -10,7 +10,6 @@
  */
 package com.vaadin.addon.charts.model;
 
-import javax.annotation.Generated;
 import com.vaadin.addon.charts.model.style.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,7 +25,6 @@ import com.vaadin.addon.charts.util.Util;
  * used on graphs to indicate the error, or uncertainty in a reported
  * measurement.
  */
-@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class PlotOptionsErrorbar extends AbstractPlotOptions {
 
 	private Boolean allowPointSelect;
