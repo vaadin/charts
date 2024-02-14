@@ -10,20 +10,14 @@
  */
 package com.vaadin.addon.charts.testbenchtests;
 
-import java.io.IOException;
-
 import org.junit.Ignore;
 
 import com.vaadin.addon.charts.examples.lineandscatter.SplineWithSymbols;
 
+@Ignore // This test is broken
 public class SplineWithSymbolsTBTest extends
         AbstractSimpleScreenShotTestBenchTest {
 
-    @Ignore // This test is broken
-    @Override
-    public void test() throws IOException, AssertionError {
-        super.test();
-    }
     
     @Override
     protected String getTestViewName() {
