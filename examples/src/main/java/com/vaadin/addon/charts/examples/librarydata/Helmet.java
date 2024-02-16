@@ -19,7 +19,7 @@ import java.util.Scanner;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 
 /**
  * This class consumes the HelMet REST service, which provides data on books in
@@ -45,7 +45,7 @@ public class Helmet {
 
         ObjectMapper mapper = new ObjectMapper()
                 .setPropertyNamingStrategy(
-                        PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES)
+                        PropertyNamingStrategies.SNAKE_CASE)
                 .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
                         false);
 
