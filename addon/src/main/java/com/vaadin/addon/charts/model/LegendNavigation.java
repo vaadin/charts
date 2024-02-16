@@ -10,9 +10,9 @@
  */
 package com.vaadin.addon.charts.model;
 
-import javax.annotation.Generated;
 import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.Style;
+
 /**
  * Options for the paging or navigation appearing when the legend is overflown.
  * Navigation works well on screen, but not in static exported images. One way
@@ -20,7 +20,6 @@ import com.vaadin.addon.charts.model.style.Style;
  * "http://jsfiddle.net/gh/get/jquery/1.7.2/highslide-software/highcharts.com/tree/master/samples/highcharts/legend/navigation-enabled-false/"
  * >increase the chart height in export</a>.
  */
-@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class LegendNavigation extends AbstractConfigurationObject {
 
 	private Color activeColor;

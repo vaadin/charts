@@ -10,7 +10,6 @@
  */
 package com.vaadin.addon.charts.model;
 
-import javax.annotation.Generated;
 import com.vaadin.addon.charts.model.style.Style;
 /**
  * Options for displaying a message like "No data to display". This feature
@@ -18,7 +17,6 @@ import com.vaadin.addon.charts.model.style.Style;
  * page. The actual text to display is set in the <a
  * href="#lang.noData">lang.noData</a> option.
  */
-@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class NoData extends AbstractConfigurationObject {
 
 	private Position position;

@@ -10,14 +10,12 @@
  */
 package com.vaadin.addon.charts.model;
 
-import javax.annotation.Generated;
 /**
  * Options to render charts in 3 dimensions. This feature requires
  * <code>highcharts-3d.js</code>, found in the download package or online at <a
  * href="http://code.highcharts.com/highcharts-3d.js">code.highcharts.com/
  * highcharts-3d.js</a>.
  */
-@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class Options3d extends AbstractConfigurationObject {
 
 	private Number alpha;

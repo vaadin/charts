@@ -10,13 +10,11 @@
  */
 package com.vaadin.addon.charts.model;
 
-import javax.annotation.Generated;
 import com.vaadin.addon.charts.model.style.Color;
 /**
  * An array defining zones within a series. Zones can be applied to the X axis,
  * Y axis or Z axis for bubbles, according to the <code>zoneAxis</code> option.
  */
-@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class Zones extends AbstractConfigurationObject {
 
 	private Color color;

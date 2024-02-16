@@ -10,7 +10,6 @@
  */
 package com.vaadin.addon.charts.model;
 
-import javax.annotation.Generated;
 import com.vaadin.addon.charts.model.style.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,7 +22,6 @@ import com.vaadin.addon.charts.model.serializers.SizeSerializer;
  * to each point value. Technically it is the same as a reversed funnel chart
  * without a neck.
  */
-@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class PlotOptionsPyramid extends PyramidOptions {
 
 	private Boolean allowPointSelect;

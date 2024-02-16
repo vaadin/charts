@@ -10,14 +10,12 @@
  */
 package com.vaadin.addon.charts.model;
 
-import javax.annotation.Generated;
 import com.vaadin.addon.charts.model.style.Color;
 /**
  * The navigator is a small series below the main series, displaying a view of
  * the entire data set. It provides tools to zoom in and out on parts of the
  * data as well as panning across the dataset.
  */
-@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class Navigator extends AbstractConfigurationObject {
 
 	private Boolean adaptToUpdatedData;

@@ -10,8 +10,11 @@
  */
 package com.vaadin.addon.charts.testbenchtests;
 
+import org.junit.Ignore;
+
 import com.vaadin.addon.charts.examples.themes.SkiesThemedPieChart;
 
+@Ignore("test view uses an image that is pointing to an URL that no longer works")
 public class SkiesThemedPieChartTBTest extends
         AbstractSimpleScreenShotTestBenchTest {
 

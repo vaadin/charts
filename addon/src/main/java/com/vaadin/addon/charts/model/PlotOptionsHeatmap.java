@@ -10,7 +10,6 @@
  */
 package com.vaadin.addon.charts.model;
 
-import javax.annotation.Generated;
 import com.vaadin.addon.charts.model.style.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,7 +24,6 @@ import java.util.Arrays;
  * controlled by settings on the <a href="#colorAxis">colorAxis</a>.
  * </p>
  */
-@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class PlotOptionsHeatmap extends AbstractPlotOptions {
 
 	private Boolean allowPointSelect;

@@ -10,7 +10,6 @@
  */
 package com.vaadin.addon.charts.model;
 
-import javax.annotation.Generated;
 /**
  * Options for the halo appearing around the hovered point in line-type series
  * as well as outside the hovered slice in pie charts. By default the halo is
@@ -18,7 +17,6 @@ import javax.annotation.Generated;
  * can be disabled by setting the <code>halo</code> option to <code>false</code>
  * .
  */
-@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class Halo extends AbstractConfigurationObject {
 
 	private Attributes attributes;
