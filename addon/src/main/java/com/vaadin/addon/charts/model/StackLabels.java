@@ -10,7 +10,6 @@
  */
 package com.vaadin.addon.charts.model;
 
-import javax.annotation.Generated;
 import com.vaadin.addon.charts.model.style.Style;
 /**
  * The stack labels show the total value for each bar in a stacked column or bar
@@ -18,7 +17,6 @@ import com.vaadin.addon.charts.model.style.Style;
  * columns. In case of an inverted column chart or a bar chart the label is
  * placed to the right of positive bars and to the left of negative bars.
  */
-@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class StackLabels extends AbstractConfigurationObject {
 
 	private HorizontalAlign align;

@@ -10,13 +10,11 @@
  */
 package com.vaadin.addon.charts.model;
 
-import javax.annotation.Generated;
 import com.vaadin.addon.charts.model.style.Color;
 /**
  * An optional scrollbar to display on the Y axis in response to limiting the
  * minimum an maximum of the axis values.
  */
-@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/charts/issues/new")
 public class Scrollbar extends AbstractConfigurationObject {
 
 	private Color barBackgroundColor;
