@@ -35,7 +35,7 @@
         <vaadin.version>8.14.1</vaadin.version>
         <jetty.version>9.4.8.v20171121</jetty.version>
         <bundle.plugin.version>3.5.0</bundle.plugin.version>
-        <currentYear>2023</currentYear>
+        <currentYear>2024</currentYear>
     </properties>
 
     <url>http://vaadin.com/charts</url>

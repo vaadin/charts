@@ -5,6 +5,7 @@ target/
 .classpath
 .project
 .settings
+.vscode
 rebel.xml
 
 chart-plugin-demo/src/main/webapp/VAADIN/
