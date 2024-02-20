@@ -1,9 +1,3 @@
-This Add-on component ("Software") to Vaadin Framework is distributed
-under the Vaadin Commercial License and Service Terms
-("VCL-2") included as LICENSE in this software package.
-
-You must either accept the terms of the above mentioned license agreement
-or delete the Software immediately.
-
-This software may also be available for download under alternative
-licenses at http://vaadin.com/directory.
+This program is available under Vaadin Commercial License and Service Terms.
+See https://vaadin.com/commercial-license-and-service-terms for the full
+license.
