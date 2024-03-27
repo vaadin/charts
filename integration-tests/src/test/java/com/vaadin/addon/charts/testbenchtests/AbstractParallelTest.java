@@ -39,12 +39,14 @@ import com.vaadin.testbench.parallel.BrowserUtil;
 import com.vaadin.testbench.parallel.ParallelTest;
 import com.vaadin.testbench.parallel.setup.SetupDriver;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 @RunOnHub("tb3-hub.intra.itmill.com")
 @BrowserFactory(ChartsBrowserFactory.class)
 public abstract class AbstractParallelTest extends ParallelTest {
 
     @Rule
-    public RetryRule maxAttempts = new RetryRule(2);
+    public RetryRule maxAttempts = new RetryRule(runLocally() ? 1 : 2);
 
     protected int TESTPORT;
     protected String BASEURL = getTestBaseUrl();
@@ -54,6 +56,8 @@ public abstract class AbstractParallelTest extends ParallelTest {
     protected static final String ERROR_IMAGE_ROOT = "target/testbench/errors/";
     protected static final String HUB_NAME_PROPERTY = "com.vaadin.testbench.Parameters.hubHostname";
     private String hubHostName;
+    private Boolean runLocally;
+    private Browser localBrowser;
 
     public AbstractParallelTest() {
         super();
@@ -63,11 +67,9 @@ public abstract class AbstractParallelTest extends ParallelTest {
     public void setup() throws Exception {
         hubHostName = System.getProperty(HUB_NAME_PROPERTY);
         // override local driver behaviour, so we can easily specify local
-        // PhantomJS
-        // with a system property
-        if (getBooleanProperty("localPhantom")) {
-            WebDriver driver = new SetupDriver()
-                    .setupLocalDriver(Browser.PHANTOMJS);
+        // PhantomJS with a system property
+        if (runLocally()) {
+            WebDriver driver = new SetupDriver().setupLocalDriver(localBrowser);
             setDriver(driver);
         } else {
             super.setup();
@@ -95,6 +97,30 @@ public abstract class AbstractParallelTest extends ParallelTest {
         } else {
             return super.getHubHostname();
         }
+    }
+
+    private boolean runLocally() {
+        if (runLocally == null) {
+            if (getBooleanProperty("localPhantom")) {
+                runLocally = true;
+                localBrowser = Browser.PHANTOMJS;
+            } else if (getBooleanProperty("localChrome")) {
+                runLocally = true;
+                localBrowser = Browser.CHROME;
+                WebDriverManager.chromedriver().setup();
+            } else if (getBooleanProperty("localFirefox")) {
+                runLocally = true;
+                localBrowser = Browser.FIREFOX;
+                WebDriverManager.firefoxdriver().setup();
+            } else if (getBooleanProperty("localEdge")) {
+                runLocally = true;
+                localBrowser = Browser.EDGE;
+                WebDriverManager.edgedriver().setup();
+            } else {
+                runLocally = false;
+            }
+        }
+        return runLocally;
     }
 
     /**
@@ -158,10 +184,14 @@ public abstract class AbstractParallelTest extends ParallelTest {
     @BrowserConfiguration
     public List<DesiredCapabilities> getBrowsersToTest() {
         List<DesiredCapabilities> allBrowsers = new ArrayList<>();
-        allBrowsers.add(Browser.IE11.getDesiredCapabilities());
-        allBrowsers.add(Browser.FIREFOX.getDesiredCapabilities());
-        allBrowsers.add(Browser.CHROME.getDesiredCapabilities());
-        allBrowsers.add(Browser.PHANTOMJS.getDesiredCapabilities());
+        if (runLocally()) {
+            allBrowsers.add(localBrowser.getDesiredCapabilities());
+        } else {
+            allBrowsers.add(Browser.IE11.getDesiredCapabilities());
+            allBrowsers.add(Browser.FIREFOX.getDesiredCapabilities());
+            allBrowsers.add(Browser.CHROME.getDesiredCapabilities());
+            allBrowsers.add(Browser.PHANTOMJS.getDesiredCapabilities());
+        }
         return allBrowsers;
     }
 
