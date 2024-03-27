@@ -123,7 +123,7 @@ image::img/charts-basicexample.png[]
 [[charts.overview.licensing]]
 == Licensing
 
-Vaadin Charts is a commercial product licensed under the VCL-2 License (Vaadin
+Vaadin Charts is a commercial product licensed under the VCL License (Vaadin
 Commercial License and Service Terms).
 You need a license for all Charts use, including web deployments as well as
 intranet use. See link:https://vaadin.com/pricing[pricing] for details.
