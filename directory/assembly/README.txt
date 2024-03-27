@@ -25,11 +25,11 @@ Dependency snippet for Maven users:
 	<version>${project.version}</version>
 </dependency>
 
-The add-on is available in Vaadin Add-Ons repository:
+Prereleases are available in Vaadin Prereleases repository:
 
 <repository>
-	<id>vaadin-addons</id>
-	<url>https://tools.vaadin.com/nexus/content/repositories/vaadin-addons</url>
+    <id>vaadin-prereleases</id>
+    <url>https://maven.vaadin.com/vaadin-prereleases</url>
 </repository>
 
 Ivy
@@ -54,8 +54,7 @@ Licensing
 
 Vaadin Charts is a commercial product. You must either acquire a license or
 stop using it. More information about Vaadin Commercial License and Service 
-Terms is available in LICENSE file or at
-https://vaadin.com/commercial-license-and-service-terms.
+Terms is available at https://vaadin.com/commercial-license-and-service-terms.
 
 You may obtain a valid license by subscribing to Vaadin Pro.
 See https://vaadin.com/pricing for details.
@@ -81,8 +80,8 @@ funnel.js, heatmap.js, solid-gauge.js and treemap.js)
 
 Please note that:
 - A valid Highstock JS license does not entitle you to use Vaadin Charts Add-on
-under the terms of VCL-2.
-- The Vaadin Charts Add-on (VCL-2) license does not entitle you to use the 
+under the terms of VCL.
+- The Vaadin Charts Add-on (VCL) license does not entitle you to use the 
 Highstock JS product in other ways than through the Vaadin Charts Add-on API.
 
 Vaadin Charts also requires Jackson library licensed under liberal Apache 2 license.
@@ -91,7 +90,7 @@ Links
 =====
 
 Homepage:
-https://vaadin.com/add-ons/charts
+https://vaadin.com/directory/component/vaadin-charts
 
 Code and usage examples:
 http://demo.vaadin.com/charts/
@@ -100,7 +99,7 @@ Issue tracker:
 https://github.com/vaadin/charts/issues
 
 Documentation:
-https://vaadin.com/docs/-/part/charts/charts-overview.html
+https://vaadin.com/docs/v8/charts/charts-overview
 
 SCM (Git):
 https://github.com/vaadin/charts

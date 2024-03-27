@@ -49,7 +49,7 @@
 							<Vaadin-Package-Version>1</Vaadin-Package-Version>
 
 							<!-- Add-on specific fields to update -->
-							<AdVaaLicen>VCL-2</AdVaaLicen>
+							<AdVaaLicen>VCL</AdVaaLicen>
 							<AdVaaName>vaadin-charts</AdVaaName>
 							<AdVaaPkg>com.vaadin.addon.charts.client</AdVaaPkg>
 

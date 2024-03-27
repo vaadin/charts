@@ -5,7 +5,7 @@ Vaadin Charts is a UI component add-on for Vaadin Framework 7+ which provides me
 
 ## License & Author
 
-This Add-on is distributed under [Vaadin Commercial License and Service Terms version 2](https://vaadin.com/commercial-license-and-service-terms) (VCL-2). For license terms, see LICENSE.txt.
+This Add-on is distributed under [Vaadin Commercial License and Service Terms](https://vaadin.com/commercial-license-and-service-terms) (VCL).
 
 Vaadin Charts is written by Vaadin Ltd.
 

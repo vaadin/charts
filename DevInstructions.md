@@ -157,12 +157,14 @@ Updating copyright year range
 Updating license name or version
 -----
 Java class license headers:
+1. update contents of <code>license</code> tags in root module's <code>pom.xml</code> and <code>vaadin-spreadsheet/pom.xml</code>
 1. update the files <code>header.txt</code> and <code>license.txt</code> in both <code>addon/src/license/</code> and <code>compatibility-addon/src/license/</code> (duplicated because both jars need to contain the files)
 1. run <code>license:format</code> for the parent module to update the license information and the year range in all the Java files of all the modules (based on <code>addon/src/license/header.txt</code> and <code>currentYear</code> in the parent module's <code>pom.xml</code>)
 1. check that only <code>.java</code> files got updated and update the exclusion list for <code>com.mycila.license-maven-plugin</code> in the parent module's <code>pom.xml</code> if needed
 1. update the header of <code>addon/src/main/resources/com/vaadin/addon/charts/Widgetset.gwt.xml</code> manually (the plugin is configured to ignore all <code>.xml</code> files)
 
 Other places where the licensing information should be updated:
+1. <code>README.md</code>
 1. <code>LICENSE.txt</code>
 1. <code>AdVaaLicen</code> tag for <code>org.apache.maven.plugins.maven-jar-plugin</code> in both <code>addon/pom.xml</code> and <code>compatibility-addon/pom.xml</code>
 1. Vaadin Charts documentation for [Vaadin 8](https://vaadin.com/docs/v8/charts/charts-overview) and [Vaadin 7](https://vaadin.com/docs/v7/charts/charts-overview)
@@ -172,3 +174,5 @@ Removal should be considered, but update while they still exist:
 1. <code>license.html</code> and <code>README.txt</code> in <code>directory/assembly/</code>
 1. <code>documentation/charts-overview.asciidoc</code>
 1. <code>documentation/java-api/charts-installing.asciidoc</code>
+
+License name update instructions should also be used if the decision is made to include the license version number again.
