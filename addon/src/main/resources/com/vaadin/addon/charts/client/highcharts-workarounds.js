@@ -51,5 +51,31 @@
 
     return result;
   };
+  
+  Highcharts.Axis.prototype.updateNames = function() {
+    var axis = this;
+    if (this.names.length > 0) {
+      this.names.length = 0;
+      this.minRange = undefined;
+      Highcharts.each(this.series || [], function(series) {
+
+        // When adding a series, points are not yet generated
+        if (!series.points || series.isDirtyData) {
+          series.processData();
+          series.generatePoints();
+        }
+        Highcharts.each(series.points, function(point, i) {
+          var x;
+          if (point.options) {
+            x = axis.nameToX(point);
+            if (x !== point.x) {
+              point.x = x;
+              series.xData[i] = x;
+            }
+          }
+        });
+      });
+    }
+  };
 
 }(Highcharts));
