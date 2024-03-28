@@ -104,6 +104,7 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- WebDriverManager uses SLF4J logging -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
