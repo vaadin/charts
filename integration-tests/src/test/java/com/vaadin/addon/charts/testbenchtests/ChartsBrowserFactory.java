@@ -24,6 +24,8 @@ public class ChartsBrowserFactory extends DefaultBrowserFactory {
     @Override
     public DesiredCapabilities create(Browser browser) {
         switch (browser) {
+        case EDGE:
+            return create(browser, "122", Platform.WINDOWS);
         case IE11:
             return createIE(browser, "11");
         case PHANTOMJS:
