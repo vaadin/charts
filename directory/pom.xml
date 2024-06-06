@@ -93,7 +93,7 @@
                         <goals>
                             <goal>gulp</goal>
                         </goals>
-                 
+
                         <!-- the default phase is "generate-resources" -->
                         <configuration>
                             <arguments>zip:stage</arguments>
