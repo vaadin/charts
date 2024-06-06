@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.vaadin.addon</groupId>
 		<artifactId>vaadin-charts-parent</artifactId>
-		<version>3.0-SNAPSHOT</version>
+		<version>3.3-SNAPSHOT</version>
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
@@ -271,6 +271,11 @@
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.17.2</version>
 		</dependency>
 
 		<!-- Testing -->
