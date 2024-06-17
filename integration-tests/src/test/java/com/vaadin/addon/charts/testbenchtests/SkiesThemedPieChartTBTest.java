@@ -27,5 +27,4 @@ public class SkiesThemedPieChartTBTest extends
     protected String getPackageName() {
         return "themes";
     }
-
 }
