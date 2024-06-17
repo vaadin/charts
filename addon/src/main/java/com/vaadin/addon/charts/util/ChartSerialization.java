@@ -29,7 +29,6 @@ import com.vaadin.addon.charts.model.serializers.GradientColorStopsSerializer;
 import com.vaadin.addon.charts.model.serializers.PaneListSerializer;
 import com.vaadin.addon.charts.model.serializers.SolidColorSerializer;
 import com.vaadin.addon.charts.model.serializers.StopSerializer;
-import com.vaadin.addon.charts.model.serializers.StringSerializer;
 import com.vaadin.addon.charts.model.serializers.TimeUnitMultiplesSerializer;
 
 /**
@@ -68,8 +67,7 @@ public class ChartSerialization implements Serializable {
                 .registerModule(GradientColorStopsSerializer.getModule())
                 .registerModule(AxisListSerializer.getModule())
                 .registerModule(PaneListSerializer.getModule())
-                .registerModule(DateSerializer.getModule())
-                .registerModule(StringSerializer.getModule());
+                .registerModule(DateSerializer.getModule());
 
         // serializer modifier used when basic serializer isn't enough
         return mapper.setSerializerFactory(mapper.getSerializerFactory()
