@@ -43,10 +43,9 @@ public class ChartDesignTest {
             "<legend align=\"right\" border-width=\"0\" layout=\"vertical\" vertical-align=\"top\" x=\"-10\" y=\"100\"></legend>\n" +
             "<plot-options>\n" +
             " <line>\n" +
-            "  <data-labels enabled></data-labels>\n" +
+            "  <data-labels enabled=\"true\"></data-labels>\n" +
             " </line>\n" +
-            "</plot-options>\n" +
-            "<exporting></exporting>";
+            "</plot-options>";
         Elements elements = createElements(testHtml);
         Configuration configuration = new Configuration();
         Element parent = new Element(Tag.valueOf("test"), "");
@@ -70,7 +69,6 @@ public class ChartDesignTest {
             "<plot-options>\n" +
             " <series compare=\"percent\"></series>\n" +
             "</plot-options>\n" +
-            "<exporting></exporting>\n" +
             "<range-selector selected=\"4\"></range-selector>";
         Elements elements = createElements(testHtml);
         Configuration configuration = new Configuration();
@@ -87,15 +85,14 @@ public class ChartDesignTest {
         String testHtml =
             "<chart-title text=\"Fruit consumption\"></chart-title>\n" +
             "<plot-options>\n" +
-            " <treemap alternate-starting-direction layout-algorithm=\"stripes\">\n" +
+            " <treemap alternate-starting-direction=\"true\" layout-algorithm=\"stripes\">\n" +
             "  <levels layout-algorithm=\"sliceanddice\" level=\"1\">\n" +
-            "   <data-labels align=\"left\" enabled vertical-align=\"top\">\n" +
+            "   <data-labels align=\"left\" enabled=\"true\" vertical-align=\"top\">\n" +
             "    <chart-style font-weight=\"bold\" font-size=\"15px\"></chart-style>\n" +
             "   </data-labels>\n" +
             "  </levels>\n" +
             " </treemap>\n" +
-            "</plot-options>\n" +
-            "<exporting></exporting>";
+            "</plot-options>";
         Elements elements = createElements(testHtml);
         Configuration configuration = new Configuration();
         Element parent = new Element(Tag.valueOf("test"), "");
