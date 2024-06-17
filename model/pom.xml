@@ -13,6 +13,7 @@
 	<packaging>jar</packaging>
 	<name>Vaadin Charts Model</name>
 	<inceptionYear>2012</inceptionYear>
+	<version>3.3-SNAPSHOT</version>
 
 	<properties>
 		<license.projectName>Vaadin Charts</license.projectName>
