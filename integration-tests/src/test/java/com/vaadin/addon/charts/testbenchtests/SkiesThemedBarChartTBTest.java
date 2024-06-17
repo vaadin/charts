@@ -10,12 +10,11 @@
  */
 package com.vaadin.addon.charts.testbenchtests;
 
-import java.io.IOException;
-
 import org.junit.Ignore;
 
 import com.vaadin.addon.charts.examples.themes.SkiesThemedBarChart;
 
+@Ignore("This test fails on the cluster due to dependency on external resources")
 public class SkiesThemedBarChartTBTest extends
         AbstractSimpleScreenShotTestBenchTest {
 
@@ -28,10 +27,5 @@ public class SkiesThemedBarChartTBTest extends
     protected String getPackageName() {
         return "themes";
     }
-    
-    @Override
-    @Ignore("This test fails on the cluster due to dependency on external resources")
-    public void test() throws IOException, AssertionError {
-    	//super.test();
-    }
+
 }
