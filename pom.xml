@@ -21,6 +21,7 @@
         <module>demo</module>
         <module>directory</module>
         <module>book-examples</module>
+        <module>compatibility-addon</module>
     </modules>
 
     <organization>
