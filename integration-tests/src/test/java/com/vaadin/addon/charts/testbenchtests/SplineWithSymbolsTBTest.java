@@ -10,10 +10,6 @@
  */
 package com.vaadin.addon.charts.testbenchtests;
 
-import java.io.IOException;
-
-import org.junit.Ignore;
-
 import com.vaadin.addon.charts.examples.lineandscatter.SplineWithSymbols;
 
 public class SplineWithSymbolsTBTest extends
@@ -27,12 +23,6 @@ public class SplineWithSymbolsTBTest extends
     @Override
     protected String getPackageName() {
         return "lineandscatter";
-    }
-    
-    @Override
-    @Ignore("This test fails on the cluster due to dependency on external resources")
-    public void test() throws IOException, AssertionError {
-    	//super.test();
     }
 
 }

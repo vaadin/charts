@@ -10,10 +10,6 @@
  */
 package com.vaadin.addon.charts.testbenchtests;
 
-import java.io.IOException;
-
-import org.junit.Ignore;
-
 import com.vaadin.addon.charts.examples.themes.SkiesThemedPieChart;
 
 public class SkiesThemedPieChartTBTest extends
@@ -27,11 +23,5 @@ public class SkiesThemedPieChartTBTest extends
     @Override
     protected String getPackageName() {
         return "themes";
-    }
-    
-    @Override
-    @Ignore("this test fails on the cluster due to dependency on external resources")
-    public void test() throws IOException, AssertionError {
-    	//super.test();
     }
 }

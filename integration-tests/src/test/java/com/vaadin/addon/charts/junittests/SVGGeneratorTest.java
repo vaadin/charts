@@ -17,7 +17,6 @@ import java.util.Random;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.vaadin.addon.charts.Chart;
@@ -172,7 +171,6 @@ public class SVGGeneratorTest {
     }
 
     @Test
-    @Ignore("Ignore this for now to see if we can get artifacts out")
     public void generate_TreemapChart_withoutException() {
         Chart chart = new Chart(ChartType.TREEMAP);
         Configuration conf = chart.getConfiguration();
