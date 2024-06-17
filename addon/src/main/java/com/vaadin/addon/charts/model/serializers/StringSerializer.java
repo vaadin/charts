@@ -70,7 +70,8 @@ public class StringSerializer extends JsonSerializer<String> {
         Safelist safelist = Safelist.relaxed()
                 .addAttributes(":all", "style")
                 .addEnforcedAttribute("a", "rel", "nofollow");
-        String sanitized = Jsoup.clean(html, "", safelist, new Document.OutputSettings().prettyPrint(false));
+        String sanitized = Jsoup.clean(html, "", safelist,
+                           new Document.OutputSettings().prettyPrint(false));
         return sanitized;
     }
 }
