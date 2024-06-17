@@ -13,25 +13,5 @@
 	<includeBaseDirectory>false</includeBaseDirectory>
 
 	<fileSets>
-		<!--
-		<fileSet>
-			<directory>target</directory>
-			<outputDirectory>./</outputDirectory>
-			<includes>
-				<include>*-${project.version}*.jar</include>
-			</includes>
-		</fileSet>
-		<fileSet>
-			<directory>target/libs</directory>
-			<outputDirectory>lib</outputDirectory>
-			<includes>
-				<include>*.jar</include>
-			</includes>
-		</fileSet>
-		<fileSet>
-			<directory>target/apidocs</directory>
-			<outputDirectory>apidocs</outputDirectory>
-		</fileSet>
-		-->
 	</fileSets>
 </assembly>
