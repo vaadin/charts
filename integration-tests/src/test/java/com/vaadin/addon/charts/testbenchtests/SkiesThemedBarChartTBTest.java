@@ -27,5 +27,4 @@ public class SkiesThemedBarChartTBTest extends
     protected String getPackageName() {
         return "themes";
     }
-
 }
