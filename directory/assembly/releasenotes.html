@@ -499,6 +499,27 @@
     <p>Vaadin Charts is an add-on for Vaadin Framework. It provides advanced charting functionality for any
        mobile or desktop Vaadin application.</p>
 
+    <h2 id="overview_since_3_2">Overview of changes in 3.3</h2>
+
+    <h3>Charts 3.3.2</h3>
+    <ul>
+        <li>Updated Vaadin dependency to 7.7.42</li>
+        <li>Updated JSoup dependency to follow Vaadin version</li>
+        <li>Backported security feature where all serialized strings are
+            sanitized to prevent code injection</li>
+    </ul>
+    <h3>Charts 3.3.1</h3>
+    <ul>
+        <li>Fixed plot lines and bands labels fail caused by highcharts bugs</li>        
+    </ul>
+
+    <h3>Charts 3.3.0</h3>
+    <ul>
+        <li>Removed jQuery sources. jQuery wasn't really used by the add-on but
+            sources were there since previous version, this new minor removes
+            sources and unused references</li>
+    </ul>
+
     <h2 id="overview_since_3x">Overview of changes in 3.2</h2>
 
     <ul>
@@ -507,7 +528,13 @@
         <li>Fixed serialization of size related properties.</li>
     </ul>
     
-        
+    
+    <h3 id="api_review_3_3">Java API Review for 3.3</h3>
+    
+    <ul>
+        <li>No new user-facing API</li>
+    </ul>
+
     <h3 id="api_review_3x">Java API Review for 3.2</h3>
 
     <ul>
