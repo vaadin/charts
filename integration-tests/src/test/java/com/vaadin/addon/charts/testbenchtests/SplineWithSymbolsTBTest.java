@@ -10,8 +10,11 @@
  */
 package com.vaadin.addon.charts.testbenchtests;
 
+import org.junit.Ignore;
+
 import com.vaadin.addon.charts.examples.lineandscatter.SplineWithSymbols;
 
+@Ignore("This test fails on the cluster due to dependency on external resources")
 public class SplineWithSymbolsTBTest extends
         AbstractSimpleScreenShotTestBenchTest {
 

@@ -1,10 +1,10 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="https://maven.apache.org/POM/4.0.0" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.vaadin.addon</groupId>
     <artifactId>vaadin-charts-parent</artifactId>
-    <version>3.0-SNAPSHOT</version>
+    <version>3.3-SNAPSHOT</version>
 
     <packaging>pom</packaging>
 
@@ -32,9 +32,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.organization>Vaadin Ltd</project.organization>
-        <vaadin.version>7.5.4</vaadin.version>
+        <vaadin.version>7.7.42</vaadin.version>
         <jetty.version>9.4.8.v20171121</jetty.version>
-        <currentYear>2023</currentYear>
+        <currentYear>2024</currentYear>
     </properties>
 
     <url>https://vaadin.com/charts</url>
@@ -81,6 +81,11 @@
                 <groupId>com.vaadin</groupId>
                 <artifactId>vaadin-client</artifactId>
                 <version>${vaadin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jsoup</groupId>
+                <artifactId>jsoup</artifactId>
+                <version>1.17.2</version>
             </dependency>
 
             <!-- Testing -->

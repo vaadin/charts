@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.vaadin.addon</groupId>
 		<artifactId>vaadin-charts-parent</artifactId>
-		<version>3.0-SNAPSHOT</version>
+		<version>3.3-SNAPSHOT</version>
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
@@ -230,7 +230,7 @@
 		</repository>
 		<repository>
 			<id>vaadin-snapshots</id>
-			<url>${snapshot.repository.url}</url>
+			<url>https://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
 			<releases>
 				<enabled>false</enabled>
 			</releases>

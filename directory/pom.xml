@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="https://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>vaadin-charts-parent</artifactId>
         <groupId>com.vaadin.addon</groupId>
-        <version>3.0-SNAPSHOT</version>
+        <version>3.3-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -49,79 +49,6 @@
                         <goals>
                             <goal>single</goal>
                         </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>com.github.eirslett</groupId>
-                <artifactId>frontend-maven-plugin</artifactId>
-                <version>0.0.23</version>
-                <inherited>false</inherited>
-
-                <configuration>
-                    <workingDirectory>../charts-webcomponent</workingDirectory>
-                </configuration>
-
-                <executions>
-                    <execution>
-                        <id>install node and npm</id>
-                        <goals>
-                            <goal>install-node-and-npm</goal>
-                        </goals>
-                        <configuration>
-                            <nodeVersion>v5.1.0</nodeVersion>
-                            <npmVersion>3.3.12</npmVersion>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>npm install</id>
-                        <goals>
-                            <goal>npm</goal>
-                        </goals>
-                    </execution>
-
-                    <execution>
-                        <id>bower install</id>
-                        <goals>
-                            <goal>bower</goal>
-                        </goals>
-                    </execution>
-
-                    <execution>
-                        <id>gulp stage</id>
-                        <goals>
-                            <goal>gulp</goal>
-                        </goals>
-
-                        <!-- the default phase is "generate-resources" -->
-
-                        <configuration>
-                            <arguments>zip:stage</arguments>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>gulp war</id>
-                        <goals>
-                            <goal>gulp</goal>
-                        </goals>
-                        <configuration>
-                            <arguments>war</arguments>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>gulp deploy</id>
-                        <goals>
-                            <goal>gulp</goal>
-                        </goals>
-
-                        <phase>deploy</phase>
-
-                        <configuration>
-                            <arguments>deploy</arguments>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
