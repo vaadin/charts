@@ -37,7 +37,7 @@
         <vaadin.version>8.14.3</vaadin.version>
         <jetty.version>9.4.54.v20240208</jetty.version>
         <bundle.plugin.version>3.5.0</bundle.plugin.version>
-        <currentYear>2024</currentYear>
+        <currentYear>2025</currentYear>
 
         <!-- Use Java 8 locale formats -->
         <argLine>-Djava.locale.providers=COMPAT</argLine>
