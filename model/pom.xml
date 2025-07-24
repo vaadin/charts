@@ -13,7 +13,6 @@
 	<packaging>jar</packaging>
 	<name>Vaadin Charts Model</name>
 	<inceptionYear>2012</inceptionYear>
-	<version>3.3-SNAPSHOT</version>
 
 	<properties>
 		<license.projectName>Vaadin Charts</license.projectName>
@@ -63,7 +62,6 @@
 		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-server</artifactId>
-			<version>${vaadin.version}</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>

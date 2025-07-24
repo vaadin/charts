@@ -35,6 +35,9 @@
         <vaadin.version>7.7.42</vaadin.version>
         <jetty.version>9.4.8.v20171121</jetty.version>
         <currentYear>2024</currentYear>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+        <maven.compiler.release>7</maven.compiler.release>
     </properties>
 
     <url>https://vaadin.com/charts</url>
@@ -53,9 +56,9 @@
 
     <distributionManagement>
         <snapshotRepository>
-            <id>vaadin-snapshots</id>
+            <id>vaadin-prereleases</id>
             <name>Vaadin snapshot repository</name>
-            <url>https://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
+            <url>https://maven.vaadin.com/vaadin-prereleases</url>
         </snapshotRepository>
         <repository>
             <id>vaadin-addons</id>
@@ -120,38 +123,6 @@
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.3</version>
-                    <configuration>
-                        <source>1.6</source>
-                        <target>1.6</target>
-                        <encoding>UTF-8</encoding>
-                    </configuration>
-                </plugin>
-
-                <plugin>
-                    <artifactId>maven-dependency-plugin</artifactId>
-                    <version>2.10</version>
-                </plugin>
-
-                <plugin>
-                    <artifactId>maven-war-plugin</artifactId>
-                    <version>2.4</version>
-                    <configuration>
-                        <failOnMissingWebXml>false</failOnMissingWebXml>
-                    </configuration>
-                </plugin>
-
-                <plugin>
-                    <artifactId>maven-deploy-plugin</artifactId>
-                    <version>2.7</version>
-                    <configuration>
-                        <!-- enable deployment by default, skip when needed -->
-                        <skip>false</skip>
-                    </configuration>
-                </plugin>
-
-                <plugin>
                     <artifactId>maven-resources-plugin</artifactId>
                     <version>2.7</version>
                     <configuration>
@@ -170,6 +141,15 @@
                     <artifactId>jetty-maven-plugin</artifactId>
                     <version>${jetty.version}</version>
                 </plugin>
+                
+                <plugin>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>3.4.0</version>
+                    <configuration>
+                        <failOnMissingWebXml>false</failOnMissingWebXml>
+                    </configuration>
+                </plugin>
+
 
                 <!--This plugin's configuration is used to store Eclipse
                     m2e settings only. It has no influence on the Maven build itself. -->
