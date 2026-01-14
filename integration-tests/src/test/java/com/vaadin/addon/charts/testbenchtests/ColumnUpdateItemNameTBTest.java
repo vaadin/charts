@@ -11,12 +11,14 @@
 package com.vaadin.addon.charts.testbenchtests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.io.IOException;
 import java.util.List;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 
 import com.vaadin.addon.charts.examples.columnandbar.ColumnUpdateItemName;
@@ -31,14 +33,24 @@ public class ColumnUpdateItemNameTBTest extends AbstractParallelTest {
 
         WebElement chart = findElement(By.id("column-update-item-name"));
 
-        assertEquals("Unexpected initial column name", "X",
-                getColumnLabel(chart));
+        waitForColumnLabelToMatch("Unexpected initial column name", "X", chart);
 
         $(ButtonElement.class).id("update-button").click();
         waitForVaadin();
 
-        assertEquals("Unexpected updated column name", "Y",
-                getColumnLabel(chart));
+        waitForColumnLabelToMatch("Unexpected updated column name", "Y", chart);
+    }
+
+    private void waitForColumnLabelToMatch(String errorMessage, String expected,
+            WebElement chart) {
+        try {
+            waitUntil(driver -> {
+                return expected.equals(getColumnLabel(chart));
+            });
+        } catch (TimeoutException e) {
+            fail(errorMessage + ", expected: " + expected + ", was: "
+                    + getColumnLabel(chart));
+        }
     }
 
     private String getColumnLabel(WebElement chart) {
@@ -47,7 +59,8 @@ public class ColumnUpdateItemNameTBTest extends AbstractParallelTest {
         assertEquals("Unexpect amount of columns", 1, xLabels.size());
 
         WebElement xLabel = xLabels.get(0);
-        return xLabel.findElement(By.tagName("tspan")).getText();
+        return xLabel.findElement(By.tagName("tspan"))
+                .getAttribute("textContent");
     }
 
     @Override
